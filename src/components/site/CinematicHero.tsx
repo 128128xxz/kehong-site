@@ -110,7 +110,7 @@ export default async function CinematicHero() {
           </div>
         </div>
 
-        <div className="hero-visual-depth relative hidden min-h-0 self-center animate-hero-rise lg:block" style={{ animationDelay: "180ms" }}>
+        <div className="hero-visual-depth relative mt-8 block min-h-[22rem] self-center animate-hero-rise lg:mt-0 lg:min-h-0 lg:block" style={{ animationDelay: "180ms" }}>
           <div className="premium-depth relative h-[min(72vh,680px)] overflow-hidden rounded-[1.6rem] border border-black/10 bg-white/35 p-3 shadow-2xl shadow-black/16 backdrop-blur-2xl">
             <div className="relative h-full overflow-hidden rounded-[1.25rem] bg-[#171713]">
               <Image

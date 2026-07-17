@@ -95,7 +95,7 @@ export default async function BuyerDecisionBrief() {
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${quoteMessage}`;
 
   return (
-    <section id="buyer-brief" className="texture-paper relative bg-[#f6f4ec] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+    <section id="buyer-brief" data-visual-section="trust" className="kh-trust-section texture-paper relative bg-[#f6f4ec] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
       <span id="factory" className="absolute left-0 top-0" aria-hidden="true" />
       <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[.82fr_1.18fr] lg:items-stretch">
         <div className="kh-panel rounded-lg border border-[#d9d2be] bg-white/88 p-5 shadow-xl shadow-[#171713]/8 sm:p-7 lg:p-8">

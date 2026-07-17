@@ -34,7 +34,7 @@ export default async function B2BProcurementSections() {
   const isZh = locale === "zh";
 
   return (
-    <section className="bg-[#f6f4ec] px-4 py-12 sm:px-6 lg:px-8">
+    <section data-visual-section="capability" className="kh-capability-section bg-[#f6f4ec] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
           <div className="premium-depth rounded-lg border border-[#d9d2be] bg-white p-5 shadow-xl shadow-[#171713]/8 sm:p-6">

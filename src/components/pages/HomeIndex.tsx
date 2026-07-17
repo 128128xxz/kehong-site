@@ -15,7 +15,7 @@ import SolutionExplorer from "@/components/site/SolutionExplorer";
 
 export default async function HomeIndex() {
   return (
-    <div className="texture-paper min-h-screen bg-[#f6f4ec] text-[#171713]">
+    <div className="kh-premium-site texture-paper min-h-screen bg-[#f6f4ec] text-[#171713]">
       <SiteMotion />
       <Header />
       <main>

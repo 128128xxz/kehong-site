@@ -53,6 +53,7 @@ export default async function ProductShowcase() {
   return (
     <section
       id="product-window"
+      data-visual-section="product-architecture"
       className="texture-paper scroll-mt-20 bg-[#f6f4ec] px-4 py-24 sm:px-6 lg:px-12 lg:py-32"
     >
       <div className="mx-auto max-w-7xl">
@@ -131,7 +132,7 @@ export default async function ProductShowcase() {
 
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="kh-family-grid grid gap-5 sm:grid-cols-2">
             {families.map((family, index) => {
               const image = familyVisuals[index % familyVisuals.length];
               const familyTitle =
@@ -143,7 +144,7 @@ export default async function ProductShowcase() {
                 <Link
                   key={family.id}
                   href="/products"
-                  className="premium-depth group relative overflow-hidden rounded-2xl border border-[#d9d2be] bg-white shadow-sm transition hover:-translate-y-1 hover:border-[#171713]/50 hover:shadow-xl hover:shadow-[#171713]/12"
+                  className="kh-family-card premium-depth group relative overflow-hidden rounded-2xl border border-[#d9d2be] bg-white shadow-sm transition hover:-translate-y-1 hover:border-[#171713]/50 hover:shadow-xl hover:shadow-[#171713]/12"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <Image

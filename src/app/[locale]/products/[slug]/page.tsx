@@ -342,14 +342,14 @@ export default async function ProductDetailPage({
         data-product-data-revision={productDataRevision}
         data-product-group-id={getProductGroupId(sku)}
         data-product-sku={sku.sku}
-        className="texture-paper min-h-screen bg-[#f6f4ec]"
+        className="kh-premium-product texture-paper min-h-screen bg-[#f6f4ec]"
       >
       <Header />
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <Link href="/products" className="text-sm font-bold text-[#171713]">
           {t("detail.back")}
         </Link>
-        <div className="premium-depth mt-6 overflow-hidden rounded-lg border border-[#d9d2be] bg-white shadow-2xl shadow-[#171713]/10 lg:grid lg:grid-cols-[.95fr_1.05fr]">
+        <div className="kh-detail-hero premium-depth mt-6 overflow-hidden rounded-lg border border-[#d9d2be] bg-white shadow-2xl shadow-[#171713]/10 lg:grid lg:grid-cols-[.95fr_1.05fr]">
           <div className="relative min-h-[380px] lg:min-h-[720px]">
             <ProductImageWithStatus
               sku={sku}

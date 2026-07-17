@@ -151,7 +151,7 @@ export default async function ProductsPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
       />
-      <div className="texture-paper min-h-screen bg-[#f6f4ec]">
+      <div className="kh-premium-site texture-paper min-h-screen bg-[#f6f4ec]">
       <Header />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <section className="premium-depth kh-micro-grid grid overflow-hidden rounded-lg border border-[#d9d2be] bg-[#171713] text-white shadow-2xl shadow-[#171713]/12 lg:grid-cols-[.9fr_1.1fr]">
