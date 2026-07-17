@@ -198,6 +198,8 @@ function StaticProduct3DStudio({
   return (
     <section
       id="studio"
+      data-3d-loading="on-demand"
+      data-3d-mobile-fallback="static"
       className="texture-ink relative isolate -mt-10 overflow-hidden bg-[#171713] px-4 pb-16 pt-14 text-white sm:-mt-12 sm:px-6 sm:pt-20 lg:mt-0 lg:px-8 lg:pt-24"
     >
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -270,6 +272,7 @@ function StaticProduct3DStudio({
               src={studioPreviewImage}
               alt={isZh ? "纸品包装结构静态预览" : "Paper packaging structure static preview"}
               fill
+              loading="lazy"
               sizes="(min-width: 1024px) 68vw, 100vw"
               className="object-cover"
             />

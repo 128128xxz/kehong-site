@@ -8,7 +8,7 @@ import {
   Truck,
 } from "lucide-react";
 import { getLocale } from "next-intl/server";
-import { contact } from "@/data/company";
+import { companyLegalName, companyProfile, contact } from "@/data/company";
 import { Link } from "@/i18n/navigation";
 
 const briefCopy = {
@@ -117,6 +117,23 @@ export default async function BuyerDecisionBrief() {
               <ClipboardCheck className="size-4 text-[#9a6b1f]" />
               {locale === "zh" ? "按材质、尺寸、工艺和数量准备报价" : "Quote preparation by material, size, process and quantity"}
             </div>
+          </div>
+          <div className="mt-6 border-t border-[#d9d2be] pt-5 text-sm">
+            <p className="font-black text-[#171713]">{companyLegalName}</p>
+            <dl className="mt-3 grid gap-2 text-[#626156]">
+              <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-2">
+                <dt className="font-bold text-[#171713]">{locale === "zh" ? "工厂所在地" : "Factory location"}</dt>
+                <dd>{locale === "zh" ? companyProfile.location.zh : companyProfile.location.en}</dd>
+              </div>
+              <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-2">
+                <dt className="font-bold text-[#171713]">{locale === "zh" ? "生产能力" : "Production capability"}</dt>
+                <dd>{locale === "zh" ? companyProfile.productionCapability.zh : companyProfile.productionCapability.en}</dd>
+              </div>
+              <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-2">
+                <dt className="font-bold text-[#171713]">{locale === "zh" ? "出口经验" : "Export experience"}</dt>
+                <dd>{locale === "zh" ? companyProfile.exportExperience.zh : companyProfile.exportExperience.en}</dd>
+              </div>
+            </dl>
           </div>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link

@@ -6,9 +6,9 @@ import {
   Rotate3D,
   ShieldCheck,
 } from "lucide-react";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { contact, productFamilies } from "@/data/company";
+import { companyLegalName, companyProfile, contact, productFamilies } from "@/data/company";
 
 const footerCopy = {
   zh: {
@@ -38,7 +38,6 @@ const footerCopy = {
 } as const;
 
 export default async function SiteFooter() {
-  const t = await getTranslations("Site");
   const locale = await getLocale();
   const copy = footerCopy[locale as keyof typeof footerCopy] ?? footerCopy.en;
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
@@ -63,7 +62,7 @@ export default async function SiteFooter() {
           <div className="inline-flex h-11 w-16 items-center justify-center rounded-md border-2 border-[#e8c06c]/70 bg-white/8 text-base font-black">
             KH
           </div>
-          <p className="mt-4 text-lg font-black">{t("brand")}</p>
+          <p className="mt-4 text-lg font-black">{companyLegalName}</p>
           <p className="mt-3 max-w-sm text-sm leading-7 text-[#f7f0df]/70">
             {copy.note}
           </p>
@@ -127,6 +126,9 @@ export default async function SiteFooter() {
             {copy.factory}
           </p>
           <div className="mt-4 space-y-2 text-sm text-[#f7f0df]/78">
+            <p>{locale === "zh" ? "工厂所在地" : "Factory location"}: {locale === "zh" ? companyProfile.location.zh : companyProfile.location.en}</p>
+            <p>{locale === "zh" ? "生产能力" : "Production capability"}: {locale === "zh" ? companyProfile.productionCapability.zh : companyProfile.productionCapability.en}</p>
+            <p>{locale === "zh" ? "出口经验" : "Export experience"}: {locale === "zh" ? companyProfile.exportExperience.zh : companyProfile.exportExperience.en}</p>
             <p>{locale === "zh" ? "海外销售 WhatsApp" : "Overseas Sales WhatsApp"}: {contact.whatsapp}</p>
             <p>Email: {contact.email}</p>
           </div>

@@ -2,14 +2,14 @@ import Image from "next/image";
 import { ArrowRight, Boxes, Layers3, PackageCheck } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getFamilies, getFeaturedProductGroups, getLocalizedCatalogValue, getLocalizedProductMaterial, getLocalizedProductTitle } from "@/lib/catalog";
+import { getFamilies, getFeaturedProductGroups, getLocalizedCatalogValue, getLocalizedProductMaterial } from "@/lib/catalog";
 import { showcaseImages } from "@/data/visuals";
 import ProductImageWithStatus from "@/components/site/ProductImageWithStatus";
 
 export default async function ProductShowcase() {
   const t = await getTranslations("Site");
   const locale = await getLocale();
-  const families = getFamilies().filter((family) => family.count > 0).slice(0, 8);
+  const families = getFamilies().slice(0, 8);
   const featuredGroups = getFeaturedProductGroups(8);
   const familyVisuals = [
     showcaseImages.webKraftBox,
@@ -172,10 +172,20 @@ export default async function ProductShowcase() {
                     <div className="mt-3 h-px bg-gradient-to-r from-[#171713]/18 via-[#e8c06c]/64 to-transparent" />
                     <div className="mt-3 flex items-center justify-between gap-3 text-sm">
                       <span className="font-semibold text-[#626156]">
-                        {family.count} {locale === "zh" ? "个产品" : "products"}
+                        {family.count > 0
+                          ? `${family.count} ${locale === "zh" ? "个产品" : "products"}`
+                          : locale === "zh"
+                            ? "查看产品范围"
+                            : "View range"}
                       </span>
                       <span className="inline-flex items-center gap-1 font-black text-[#b47b18] transition group-hover:translate-x-1">
-                        {locale === "zh" ? "查看规格" : "View specs"}
+                        {family.count > 0
+                          ? locale === "zh"
+                            ? "查看规格"
+                            : "View specs"
+                          : locale === "zh"
+                            ? "浏览产品"
+                            : "Explore products"}
                         <ArrowRight className="size-3.5" />
                       </span>
                     </div>
@@ -198,34 +208,54 @@ export default async function ProductShowcase() {
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {featuredGroups.map((group, index) => {
               const sku = group.representative;
+              const cardHref = sku ? `/products/${sku.slug}` : `/products/${group.categorySlug}`;
+              const groupTitle = locale === "zh" ? group.title.zh : group.title.en;
 
               return (
               <Link
                 key={group.id}
-                href={`/products/${sku.slug}`}
+                href={cardHref}
                 className="group overflow-hidden rounded-xl border border-white/12 bg-white/7 transition hover:-translate-y-1 hover:border-[#e8c06c]/60 hover:bg-white/10"
               >
                 <div className="relative h-36">
-                  <ProductImageWithStatus
-                    sku={sku}
-                    locale={locale}
-                    imageIndex={index}
-                    sizes="(min-width: 1280px) 280px, 50vw"
-                    className="object-cover transition duration-200 group-hover:scale-[1.03]"
-                  />
+                  {sku ? (
+                    <ProductImageWithStatus
+                      sku={sku}
+                      locale={locale}
+                      imageIndex={index}
+                      sizes="(min-width: 1280px) 280px, 50vw"
+                      className="object-cover transition duration-200 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <Image
+                      src={group.image}
+                      alt={groupTitle}
+                      fill
+                      sizes="(min-width: 1280px) 280px, 50vw"
+                      className="object-cover transition duration-200 group-hover:scale-[1.03]"
+                    />
+                  )}
                 </div>
                 <div className="p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e8c06c]">
-                    {sku.sku}
+                    {sku ? sku.sku : locale === "zh" ? "产品范围" : "Product range"}
                   </p>
                   <h3 className="mt-2 line-clamp-2 text-base font-bold leading-tight text-white">
-                    {getLocalizedProductTitle(sku, locale)}
+                    {groupTitle}
                   </h3>
                   <p className="mt-2 line-clamp-1 text-sm leading-6 text-[#f7f0df]/72">
-                    {getLocalizedProductMaterial(sku, locale) || getLocalizedCatalogValue(sku.gsmOrThickness, locale)}
+                    {sku
+                      ? getLocalizedProductMaterial(sku, locale) || getLocalizedCatalogValue(sku.gsmOrThickness, locale)
+                      : locale === "zh"
+                        ? "按规格、用途与项目要求浏览"
+                        : "Browse by specification, application and project need"}
                   </p>
                   <p className="mt-2 text-xs font-semibold text-[#e8c06c]/80">
-                    {group.variants.length} {locale === "zh" ? "个变体" : group.variants.length === 1 ? "variant" : "variants"}
+                    {group.variants.length > 0
+                      ? `${group.variants.length} ${locale === "zh" ? "个变体" : group.variants.length === 1 ? "variant" : "variants"}`
+                      : locale === "zh"
+                        ? "浏览产品范围"
+                        : "Explore products"}
                   </p>
                 </div>
               </Link>

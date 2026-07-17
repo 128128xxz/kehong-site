@@ -4,6 +4,20 @@ export const contact = {
   email: "info@kehong.tech",
 } as const;
 
+export const companyLegalName = "Foshan Kehong Paper Products Co., Ltd.";
+
+export const companyProfile = {
+  location: { en: "Foshan, Guangdong, China", zh: "中国广东佛山" },
+  productionCapability: {
+    en: "Paper converting, die-cutting, slitting, lamination and custom sampling",
+    zh: "纸材加工、模切、分切、裱纸与定制打样",
+  },
+  exportExperience: {
+    en: "Export-ready packing and project support for overseas B2B orders",
+    zh: "支持海外 B2B 订单的出口包装与项目协同",
+  },
+} as const;
+
 export const companyFacts = [
   { value: "20+", labelKey: "facts.years" },
   { value: "8000+", labelKey: "facts.factoryArea" },
