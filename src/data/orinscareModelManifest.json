@@ -1,0 +1,128 @@
+[
+  {
+    "id": "box",
+    "label": "Pizza box",
+    "filename": "orinscare_box_v6_realistic.web.glb",
+    "path": "/models/orinscare_box_v6_realistic.web.glb",
+    "webFilename": "orinscare_box_v6_realistic.web.glb",
+    "webPath": "/models/orinscare_box_v6_realistic.web.glb",
+    "bytes": 659556,
+    "meshes": 76,
+    "vertices": 47919,
+    "triangles": 19616,
+    "size": [
+      6.397,
+      4.572,
+      6.564
+    ],
+    "webBytes": 659556
+  },
+  {
+    "id": "pizza",
+    "label": "Six-slice pizza",
+    "filename": "orinscare_pizza_v6_realistic.web.glb",
+    "path": "/models/orinscare_pizza_v6_realistic.web.glb",
+    "webFilename": "orinscare_pizza_v6_realistic.web.glb",
+    "webPath": "/models/orinscare_pizza_v6_realistic.web.glb",
+    "bytes": 251228,
+    "meshes": 295,
+    "vertices": 195406,
+    "triangles": 78548,
+    "size": [
+      4.21,
+      0.407,
+      4.208
+    ],
+    "webBytes": 251228
+  },
+  {
+    "id": "cake-pad",
+    "label": "Cake pad",
+    "filename": "orinscare_cake_pad_v6_realistic.web.glb",
+    "path": "/models/orinscare_cake_pad_v6_realistic.web.glb",
+    "webFilename": "orinscare_cake_pad_v6_realistic.web.glb",
+    "webPath": "/models/orinscare_cake_pad_v6_realistic.web.glb",
+    "bytes": 147368,
+    "meshes": 80,
+    "vertices": 11933,
+    "triangles": 15296,
+    "size": [
+      3.75,
+      0.246,
+      3.75
+    ],
+    "webBytes": 147368
+  },
+  {
+    "id": "paper-cup",
+    "label": "Paper cup",
+    "filename": "orinscare_paper_cup_v6_realistic.web.glb",
+    "path": "/models/orinscare_paper_cup_v6_realistic.web.glb",
+    "webFilename": "orinscare_paper_cup_v6_realistic.web.glb",
+    "webPath": "/models/orinscare_paper_cup_v6_realistic.web.glb",
+    "bytes": 282252,
+    "meshes": 39,
+    "vertices": 16130,
+    "triangles": 12368,
+    "size": [
+      2.03,
+      3.08,
+      2.03
+    ],
+    "webBytes": 282252
+  },
+  {
+    "id": "donut-box",
+    "label": "Donut box",
+    "filename": "orinscare_donut_box_v6_realistic.web.glb",
+    "path": "/models/orinscare_donut_box_v6_realistic.web.glb",
+    "webFilename": "orinscare_donut_box_v6_realistic.web.glb",
+    "webPath": "/models/orinscare_donut_box_v6_realistic.web.glb",
+    "bytes": 342604,
+    "meshes": 15,
+    "vertices": 26307,
+    "triangles": 12912,
+    "size": [
+      5.08,
+      3.268,
+      5.108
+    ],
+    "webBytes": 342604
+  },
+  {
+    "id": "cosmetic-box",
+    "label": "Cosmetic box",
+    "filename": "orinscare_cosmetic_box_v6_realistic.web.glb",
+    "path": "/models/orinscare_cosmetic_box_v6_realistic.web.glb",
+    "webFilename": "orinscare_cosmetic_box_v6_realistic.web.glb",
+    "webPath": "/models/orinscare_cosmetic_box_v6_realistic.web.glb",
+    "bytes": 279464,
+    "meshes": 10,
+    "vertices": 21776,
+    "triangles": 7296,
+    "size": [
+      1.64,
+      4.133,
+      1.172
+    ],
+    "webBytes": 279464
+  },
+  {
+    "id": "cosmetic-tray",
+    "label": "Cosmetic inner tray",
+    "filename": "orinscare_cosmetic_inner_tray_v6_realistic.web.glb",
+    "path": "/models/orinscare_cosmetic_inner_tray_v6_realistic.web.glb",
+    "webFilename": "orinscare_cosmetic_inner_tray_v6_realistic.web.glb",
+    "webPath": "/models/orinscare_cosmetic_inner_tray_v6_realistic.web.glb",
+    "bytes": 270992,
+    "meshes": 16,
+    "vertices": 22139,
+    "triangles": 17032,
+    "size": [
+      4.43,
+      0.288,
+      2.48
+    ],
+    "webBytes": 270992
+  }
+]
