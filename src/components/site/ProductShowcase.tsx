@@ -216,6 +216,7 @@ export default async function ProductShowcase() {
               <Link
                 key={group.id}
                 href={cardHref}
+                data-product-group-id={group.id}
                 className="group overflow-hidden rounded-xl border border-white/12 bg-white/7 transition hover:-translate-y-1 hover:border-[#e8c06c]/60 hover:bg-white/10"
               >
                 <div className="relative h-36">

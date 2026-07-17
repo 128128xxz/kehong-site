@@ -19,8 +19,10 @@ const productDataRevision = String(catalog.generatedAt ?? "catalog-unknown");
 
 function withDiagnostics(response: NextResponse) {
   response.headers.set("x-kehong-build", buildId);
+  response.headers.set("x-kehong-build-sha", buildId);
   response.headers.set("x-kehong-commit-sha", commitSha);
   response.headers.set("x-kehong-product-data-revision", productDataRevision);
+  response.headers.set("x-kehong-data-revision", productDataRevision);
   response.headers.set("x-kehong-canonical-host", canonicalHost);
   return response;
 }
