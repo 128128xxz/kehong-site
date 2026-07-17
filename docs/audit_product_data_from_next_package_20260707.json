@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-07-07T08:05:53.987Z",
+  "totals": {
+    "skus": 398,
+    "productGroups": 179,
+    "families": 11,
+    "imageAssets": 10,
+    "skuImageMappings": 398,
+    "candidateImageRows": 179
+  },
+  "skuImageStatus": {
+    "representative": 398
+  },
+  "requestedSkuImageStatus": {
+    "representative": 398
+  },
+  "assetExactness": {
+    "representative": 10
+  },
+  "assetPermissionStatus": {
+    "approved": 10
+  },
+  "skuDataStatus": {
+    "complete": 292,
+    "pending-source": 106
+  },
+  "productTypeCounts": {
+    "corrugated-fluted-paper": 20,
+    "food-packaging-box": 9,
+    "kraft-paper": 10,
+    "paper-cup-fan": 292,
+    "paper-insert": 25,
+    "paper-packaging-material": 4,
+    "paper-pad": 19,
+    "specialty-paper": 6,
+    "white-cardboard": 13
+  },
+  "missingProductLinkByType": {
+    "corrugated-fluted-paper": 20,
+    "food-packaging-box": 9,
+    "kraft-paper": 10,
+    "paper-insert": 25,
+    "paper-packaging-material": 4,
+    "paper-pad": 19,
+    "specialty-paper": 6,
+    "white-cardboard": 13
+  },
+  "productLinkSummary": {
+    "linkedSkus": 292,
+    "missingProductLinks": 106,
+    "uniqueProductLinks": 88,
+    "duplicateProductLinks": 39
+  },
+  "candidateSourceOwners": {
+    "arabic.alibaba.com": 1,
+    "chinese.alibaba.com": 1,
+    "Kehong / user follow-up required": 91,
+    "m.alibaba.com": 16,
+    "shirongnewmaterial.en.alibaba.com": 1,
+    "www.alibaba.com": 9,
+    "www.shirongpaper.com": 60
+  },
+  "candidatePermissionStatus": {
+    "pending": 179
+  },
+  "candidateExactnessAssessment": {
+    "uncertain": 179
+  },
+  "conclusion": {
+    "exactSkuImageMappingComplete": false,
+    "productionUsesOnlyApprovedLocalRepresentativeAssets": true,
+    "stillNeedsExactSkuPhotography": true,
+    "stillNeedsSourceConfirmationForMissingProductLinks": true
+  }
+}
