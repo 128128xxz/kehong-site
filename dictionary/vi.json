@@ -1,0 +1,24 @@
+{
+  "Metadata": { "title": "Foshan Kehong Paper Products | Vật liệu bao bì giấy", "description": "Nhà máy vật liệu bao bì giấy: giấy sóng, giấy đặc biệt, hộp giấy, khay giấy và paper cup fan.", "keywords": "vật liệu bao bì giấy, giấy sóng, bao bì giấy thực phẩm, paper cup fan" },
+  "Site": {
+    "brand": "Kehong Paper",
+    "nav": { "products": "Sản phẩm", "process": "Quy trình", "factory": "Nhà máy", "contact": "Liên hệ" },
+    "cta": { "quote": "Yêu cầu báo giá", "explore": "Xem sản phẩm", "whatsapp": "WhatsApp", "sample": "Yêu cầu mẫu", "add": "Thêm vào hỏi giá", "email": "Hỏi giá email" },
+    "hero": { "eyebrow": "Đối tác vật liệu bao bì toàn cầu", "title": "Vật liệu bao bì giấy có nhà máy hỗ trợ cho người mua B2B.", "description": "Từ năm 2001, Kehong sản xuất giấy sóng, giấy đặc biệt, hộp, khay, cup fan và cấu trúc bao bì tùy chỉnh.", "proof": "Nguồn cung ổn định, mẫu nhanh, kiểm soát chất lượng và đơn hàng linh hoạt." },
+    "facts": { "years": "năm kinh nghiệm", "factoryArea": "m2 nhà máy", "customPackaging": "hỗ trợ OEM/ODM", "flexibleOrders": "hỗ trợ đơn linh hoạt" },
+    "products": { "eyebrow": "Khám phá sản phẩm", "title": "Vật liệu, bao bì và hoàn thiện cho mọi dự án.", "description": "Xem theo nhóm sản phẩm, so sánh thông số và gửi yêu cầu báo giá.", "featured": "Sản phẩm phổ biến", "families": "Nhóm sản phẩm", "viewAll": "Xem toàn bộ danh mục" },
+    "process": { "eyebrow": "Sản xuất kiểm soát", "title": "Từ tấm giấy đến bao bì hoàn thiện.", "description": "Quy trình ổn định cho cấp liệu, gia công, hoàn thiện và bảo vệ.", "dieCutting": { "title": "Bế tự động", "text": "Cắt hình tùy chỉnh và tạo nếp chính xác." }, "corrugated": { "title": "Gia công giấy sóng", "text": "Sản xuất giấy sóng chính xác, bề mặt mịn." }, "dyeing": { "title": "Nhuộm và xẻ", "text": "Màu ổn định và cấp liệu đều." }, "laminating": { "title": "Cán và bọc màng", "text": "Chống bụi và chống ẩm cho sản phẩm." } },
+    "inquiry": { "title": "Gửi vật liệu, kích thước, quy trình và số lượng. Chúng tôi hỗ trợ báo giá.", "description": "Giá phụ thuộc vào vật liệu, GSM, kích thước, quy trình, màu in, số lượng và điều khoản thương mại.", "selected": "Sản phẩm đã chọn", "empty": "Chưa chọn sản phẩm.", "message": "Xin chào Kehong, tôi muốn hỏi giá cho:" },
+    "catalog": { "title": "Danh mục sản phẩm", "description": "So sánh sản phẩm theo danh mục, vật liệu, quy trình và tùy chọn tùy chỉnh.", "search": "Tìm sản phẩm hoặc mã sản phẩm", "category": "Danh mục", "material": "Vật liệu", "process": "Quy trình", "all": "Tất cả", "customizable": "Tùy chỉnh", "reset": "Đặt lại", "results": "{count} sản phẩm", "details": "Chi tiết", "noResults": "Không có sản phẩm phù hợp. Hãy đặt lại bộ lọc hoặc gửi yêu cầu của bạn." },
+    "detail": { "back": "Quay lại sản phẩm", "specs": "Thông số", "material": "Vật liệu", "gsm": "GSM / Độ dày", "structure": "Cấu trúc / Sóng", "surface": "Xử lý bề mặt", "finishing": "Hoàn thiện", "size": "Kích thước phổ biến", "moq": "MOQ", "application": "Ứng dụng", "unit": "Đơn vị", "note": "Sản phẩm và giá cuối cùng theo mẫu hoặc bản vẽ đã xác nhận." },
+    "contact": { "title": "Liên hệ Kehong", "description": "Gửi vật liệu, kích thước, quy trình, số lượng và ứng dụng.", "country": "Quốc gia / Khu vực", "quantity": "Số lượng dự kiến", "requirements": "Ghi chú vật liệu, GSM, kích thước và quy trình" },
+    "footer": { "tagline": "Chất lượng trước · Trung thực · Hợp tác cùng thắng" }
+  },
+  "NotFound": { "title": "Không tìm thấy trang", "description": "Trang không tồn tại hoặc đã được di chuyển.", "homeLink": "Về trang chủ" },
+  "Error": {
+    "server": "Đã xảy ra lỗi",
+    "sorry": "Vui lòng thử lại hoặc quay về trang chủ để gửi yêu cầu.",
+    "tryAgain": "Thử lại",
+    "returnHome": "Về trang chủ"
+  }
+}
