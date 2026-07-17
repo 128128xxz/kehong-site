@@ -25,6 +25,7 @@ test.describe("Production SSR/CDN consistency", () => {
       expect(response.headers()["x-kehong-build-sha"]).toBe(expectedBuildSha);
       expect(response.headers()["x-kehong-data-revision"]).toBeTruthy();
     }
+    expect(new Set([normal, noCache, cacheBust].map((response) => response.headers()["x-kehong-data-revision"])).size).toBe(1);
 
     expect(root.headers()["x-kehong-build-sha"]).toBe(expectedBuildSha);
     expect(root.headers()["x-kehong-data-revision"]).toBe(normal.headers()["x-kehong-data-revision"]);
