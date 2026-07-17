@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-07-13T08:47:45.621Z",
+  "totalCandidates": 179,
+  "productionReadyCandidates": 0,
+  "permissionStatus": {
+    "pending": 179
+  },
+  "exactnessAssessment": {
+    "uncertain": 179
+  },
+  "recommendedAction": {
+    "request-kehong-owned-photo": 91,
+    "request-permission": 88
+  },
+  "sourceOwner": {
+    "arabic.alibaba.com": 1,
+    "chinese.alibaba.com": 1,
+    "Kehong / user follow-up required": 91,
+    "m.alibaba.com": 16,
+    "shirongnewmaterial.en.alibaba.com": 1,
+    "www.alibaba.com": 9,
+    "www.shirongpaper.com": 60
+  },
+  "errors": 0,
+  "warnings": 1
+}

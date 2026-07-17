@@ -1,0 +1,86 @@
+{
+  "Metadata": {
+    "title": "佛山市科宏纸品有限公司 | 定制纸质包装材料",
+    "description": "科宏纸品提供瓦楞纸、特种纸、纸盒、纸杯扇形片、内托和定制纸质包装材料，服务海外采购商与国内品牌客户。",
+    "keywords": "定制瓦楞纸, 纸质包装材料, 食品级纸包装, 纸杯扇形片, 纸盒厂家"
+  },
+  "Site": {
+    "brand": "科宏纸品",
+    "nav": { "products": "产品", "process": "工艺", "factory": "工厂", "contact": "联系" },
+    "cta": { "quote": "获取报价", "explore": "浏览产品", "whatsapp": "WhatsApp", "sample": "申请打样", "add": "加入询盘", "email": "邮件询盘" },
+    "hero": {
+      "eyebrow": "全球纸质包装材料伙伴",
+      "title": "有工厂支撑的纸质包装材料供应商。",
+      "description": "科宏始于 2001 年，生产瓦楞纸、特种纸、纸盒、内托、纸杯扇形片及定制包装结构，服务包装厂、品牌方、加工厂和贸易客户。",
+      "proof": "稳定供料、快速打样、严格品控、灵活订单。"
+    },
+    "facts": { "years": "年生产经验", "factoryArea": "平方米厂区", "customPackaging": "定制包装支持", "flexibleOrders": "灵活订单支持" },
+    "products": {
+      "eyebrow": "探索我们的产品",
+      "title": "覆盖材料、包装与后加工的完整产品方案。",
+      "description": "按产品族浏览、对比规格，并直接提交报价需求。",
+      "featured": "热门产品",
+      "families": "产品族",
+      "viewAll": "查看完整产品"
+    },
+    "process": {
+      "eyebrow": "稳定可控的生产",
+      "title": "从板材加工到成品包装。",
+      "description": "围绕稳定送料、精准加工、清洁后道和可靠防护组织生产流程。",
+      "dieCutting": { "title": "全自动模切", "text": "支持异形切割和精准压痕，送料顺畅、定位稳定。" },
+      "corrugated": { "title": "瓦楞纸生产加工", "text": "高精度瓦楞板生产，板面平整，分切压线准确。" },
+      "dyeing": { "title": "染色与分切", "text": "色彩稳定、上料均匀，可满足多种纹路和颜色需求。" },
+      "laminating": { "title": "裱纸与封膜", "text": "提升平整度和强度，成品具备防尘防潮保护。" }
+    },
+    "inquiry": {
+      "title": "告诉我们材料、尺寸、工艺和数量，我们帮你整理报价。",
+      "description": "价格取决于材质、克重、尺寸、工艺、印刷颜色、数量和贸易条款，第一步先发送结构化询盘。",
+      "selected": "已选产品",
+      "empty": "还没有选择产品。",
+      "message": "你好科宏，我想咨询以下产品报价："
+    },
+    "catalog": {
+      "title": "产品目录",
+      "description": "按大类、材质、工艺和定制选项对比科宏产品。",
+      "search": "搜索产品或产品编号",
+      "category": "大类",
+      "material": "材质",
+      "process": "工艺",
+      "all": "全部",
+      "customizable": "支持定制",
+      "reset": "重置筛选",
+      "results": "{count} 个产品",
+      "details": "查看详情",
+      "noResults": "没有匹配的产品。可以重置筛选，或直接发送需求。"
+    },
+    "detail": {
+      "back": "返回产品",
+      "specs": "规格信息",
+      "material": "材质",
+      "gsm": "克重 / 厚度",
+      "structure": "结构 / 坑型",
+      "surface": "表面工艺",
+      "finishing": "后加工",
+      "size": "常见尺寸",
+      "moq": "MOQ",
+      "application": "应用",
+      "unit": "计价单位",
+      "note": "最终产品和价格以确认样品或图纸为准。"
+    },
+    "contact": {
+      "title": "联系科宏",
+      "description": "告诉我们目标材质、尺寸、工艺、数量和用途，我们会为打样或报价准备下一步。",
+      "country": "国家 / 地区",
+      "quantity": "预计数量",
+      "requirements": "材质、克重、尺寸和工艺说明"
+    },
+    "footer": { "tagline": "品质为本 · 诚信经营 · 合作共赢" }
+  },
+  "NotFound": { "title": "页面不存在", "description": "您访问的页面不存在或已移动。", "homeLink": "返回首页" },
+  "Error": {
+    "server": "页面出错了",
+    "sorry": "请重试，或返回首页发送您的采购需求。",
+    "tryAgain": "重试",
+    "returnHome": "返回首页"
+  }
+}

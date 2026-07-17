@@ -1,0 +1,864 @@
+{
+  "generatedAt": "2026-07-17T02:20:05.381Z",
+  "totals": {
+    "skus": 398,
+    "publishedSkus": 292,
+    "productGroups": 6,
+    "issues": 106,
+    "blockingIssues": 0,
+    "pendingSourceRows": 106
+  },
+  "issueCounts": {
+    "pending-source": 106
+  },
+  "issues": [
+    {
+      "sku": "KH-KR-KRAFT-080-RAW-001",
+      "slug": "kh-kr-kraft-080-raw-001-single-sided-kraft-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-KR-KRAFT-120-RAW-002",
+      "slug": "kh-kr-kraft-120-raw-002-double-sided-kraft-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-KR-WKRAFT-150-PR-003",
+      "slug": "kh-kr-wkraft-150-pr-003-white-kraft-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-KR-YKRAFT-180-PR-004",
+      "slug": "kh-kr-ykraft-180-pr-004-yellow-kraft-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-KR-FOODK-100-OIL-005",
+      "slug": "kh-kr-foodk-100-oil-005-food-grade-kraft-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-KR-PEKRAFT-120-PE-006",
+      "slug": "kh-kr-pekraft-120-pe-006-pe-coated-kraft-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-KR-OILK-80-OIL-007",
+      "slug": "kh-kr-oilk-80-oil-007-greaseproof-kraft-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-KR-PRKRAFT-200-PR-008",
+      "slug": "kh-kr-prkraft-200-pr-008-printed-kraft-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-KR-KCARDB-300-MC-009",
+      "slug": "kh-kr-kcardb-300-mc-009-kraft-cardstock",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-KR-KFLUTE-250E-MT-010",
+      "slug": "kh-kr-kflute-250e-mt-010-kraft-laminated-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-WHITE-210-PR-011",
+      "slug": "kh-wc-white-210-pr-011-white-cardboard",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-FOODW-230-OIL-012",
+      "slug": "kh-wc-foodw-230-oil-012-food-grade-white-cardboard",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-SBS1-250-PR-013",
+      "slug": "kh-wc-sbs1-250-pr-013-single-side-coated-white-board",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-SBS2-300-LM-014",
+      "slug": "kh-wc-sbs2-300-lm-014-double-side-coated-white-board",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-BOXMAT-350-CR-015",
+      "slug": "kh-wc-boxmat-350-cr-015-white-cardboard-box-material",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-PAD-400-MC-016",
+      "slug": "kh-wc-pad-400-mc-016-white-cardboard-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-INSERT-450-MC-017",
+      "slug": "kh-wc-insert-450-mc-017-white-cardboard-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-WFLUTE-300E-MT-018",
+      "slug": "kh-wc-wflute-300e-mt-018-white-cardboard-laminated-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-PRINTW-350-UV-019",
+      "slug": "kh-wc-printw-350-uv-019-printed-white-cardboard",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-WC-PEWHITE-300-PE-020",
+      "slug": "kh-wc-pewhite-300-pe-020-pe-coated-white-cardboard",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-FOODW-210-RAW-021",
+      "slug": "kh-fd-foodw-210-raw-021-food-grade-white-cardboard",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-FOODK-120-RAW-022",
+      "slug": "kh-fd-foodk-120-raw-022-food-grade-kraft-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-GREASE-040-OIL-023",
+      "slug": "kh-fd-grease-040-oil-023-greaseproof-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-BURGER-050-PR-024",
+      "slug": "kh-fd-burger-050-pr-024-burger-wrapping-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-SANDW-060-PR-025",
+      "slug": "kh-fd-sandw-060-pr-025-sandwich-wrapping-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-BAKING-070-OIL-026",
+      "slug": "kh-fd-baking-070-oil-026-baking-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-CAKEPAD-230-MC-027",
+      "slug": "kh-fd-cakepad-230-mc-027-cake-pad-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-PIZZAP-120-MC-028",
+      "slug": "kh-fd-pizzap-120-mc-028-pizza-liner-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-TRAYP-250-PE-029",
+      "slug": "kh-fd-trayp-250-pe-029-food-tray-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-FD-BOXP-300-CR-030",
+      "slug": "kh-fd-boxp-300-cr-030-food-box-paper-material",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-SFLUTE-E-RAW-031",
+      "slug": "kh-cg-sflute-e-raw-031-single-face-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-DFLUTE-F-RAW-032",
+      "slug": "kh-cg-dflute-f-raw-032-double-wall-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-TFLUTE-G-RAW-033",
+      "slug": "kh-cg-tflute-g-raw-033-triple-layer-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-EFLUTE-E-MC-034",
+      "slug": "kh-cg-eflute-e-mc-034-e-flute-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-FFLUTE-F-MC-035",
+      "slug": "kh-cg-fflute-f-mc-035-f-flute-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-GFLUTE-G-MC-036",
+      "slug": "kh-cg-gflute-g-mc-036-g-flute-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-COLORF-E-DC-037",
+      "slug": "kh-cg-colorf-e-dc-037-colored-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-BLACKF-F-DC-038",
+      "slug": "kh-cg-blackf-f-dc-038-black-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-WHITEF-E-MT-039",
+      "slug": "kh-cg-whitef-e-mt-039-white-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-KFLUTE-E-MT-040",
+      "slug": "kh-cg-kflute-e-mt-040-kraft-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-BKFLUTE-F-MT-041",
+      "slug": "kh-cg-bkflute-f-mt-041-black-card-laminated-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-WCFLUTE-E-MT-042",
+      "slug": "kh-cg-wcflute-e-mt-042-white-card-laminated-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-SPFLUTE-G-MT-043",
+      "slug": "kh-cg-spflute-g-mt-043-specialty-paper-laminated-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-LOGOF-E-EM-044",
+      "slug": "kh-cg-logof-e-em-044-logo-embossed-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-SECFLUTE-F-AF-045",
+      "slug": "kh-cg-secflute-f-af-045-anti-counterfeit-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-CG-BOXFLUTE-E-CR-046",
+      "slug": "kh-cg-boxflute-e-cr-046-corrugated-box-semi-finished-sheet",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-GOLD-300-FG-047",
+      "slug": "kh-sp-gold-300-fg-047-gold-card-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-SILVER-300-FS-048",
+      "slug": "kh-sp-silver-300-fs-048-silver-card-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-LASER-250-UV-049",
+      "slug": "kh-sp-laser-250-uv-049-holographic-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-PEARL-230-LM-050",
+      "slug": "kh-sp-pearl-230-lm-050-pearlescent-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-BLACK-350-AS-051",
+      "slug": "kh-sp-black-350-as-051-black-card-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-COLOR-250-DC-052",
+      "slug": "kh-sp-color-250-dc-052-colored-specialty-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-SECURE-200-AF-053",
+      "slug": "kh-sp-secure-200-af-053-anti-counterfeit-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-ANTIS-300-AS-054",
+      "slug": "kh-sp-antis-300-as-054-anti-scratch-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-SCENT-180-SC-055",
+      "slug": "kh-sp-scent-180-sc-055-scented-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SP-SPFLUTE-300G-MT-056",
+      "slug": "kh-sp-spflute-300g-mt-056-specialty-paper-laminated-corrugated-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-BURGERBOX-300-MC-001",
+      "slug": "kh-bx-burgerbox-300-mc-001-burger-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-PIZZABOX-E-CR-002",
+      "slug": "kh-bx-pizzabox-e-cr-002-pizza-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-CAKEBOX-350-LM-003",
+      "slug": "kh-bx-cakebox-350-lm-003-cake-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-SANDWBOX-300-PR-004",
+      "slug": "kh-bx-sandwbox-300-pr-004-sandwich-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-TAKEOUT-320-PE-005",
+      "slug": "kh-bx-takeout-320-pe-005-takeaway-food-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-CHICKEN-350-PR-006",
+      "slug": "kh-bx-chicken-350-pr-006-fried-chicken-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-TRAY-300-PE-007",
+      "slug": "kh-bx-tray-300-pe-007-food-paper-tray",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-SLEEVE-250-PR-008",
+      "slug": "kh-bx-sleeve-250-pr-008-food-paper-sleeve",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-FOODPAD-080-OIL-009",
+      "slug": "kh-pd-foodpad-080-oil-009-food-liner-paper",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-BAKERY-350-PR-010",
+      "slug": "kh-bx-bakery-350-pr-010-bakery-packaging-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-CAKEPAD-350-MC-011",
+      "slug": "kh-pd-cakepad-350-mc-011-cake-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-PIZZAPAD-120-MC-012",
+      "slug": "kh-pd-pizzapad-120-mc-012-pizza-paper-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-FOODPAD-150-OIL-013",
+      "slug": "kh-pd-foodpad-150-oil-013-food-paper-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-COSPAD-350-AS-014",
+      "slug": "kh-pd-cospad-350-as-014-cosmetic-paper-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-ELECPAD-400-MC-015",
+      "slug": "kh-pd-elecpad-400-mc-015-electronics-paper-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-GIFTPAD-350-EM-016",
+      "slug": "kh-pd-giftpad-350-em-016-gift-box-inner-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-SHOCKPAD-E-MT-017",
+      "slug": "kh-pd-shockpad-e-mt-017-shock-absorbing-paper-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-ROUND-300-MC-018",
+      "slug": "kh-pd-round-300-mc-018-round-paper-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-SQUARE-300-MC-019",
+      "slug": "kh-pd-square-300-mc-019-square-paper-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-PD-DIECUT-300-MC-020",
+      "slug": "kh-pd-diecut-300-mc-020-custom-die-cut-paper-pad",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-COSINS-400-MC-021",
+      "slug": "kh-in-cosins-400-mc-021-cosmetic-paper-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-PERFINS-400-AS-022",
+      "slug": "kh-in-perfins-400-as-022-perfume-paper-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-ELECINS-E-MT-023",
+      "slug": "kh-in-elecins-e-mt-023-electronics-paper-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-GIFTINS-400-EM-024",
+      "slug": "kh-in-giftins-400-em-024-gift-box-paper-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-WINEINS-E-MT-025",
+      "slug": "kh-in-wineins-e-mt-025-wine-box-paper-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-TEAINS-350-PR-026",
+      "slug": "kh-in-teains-350-pr-026-tea-box-paper-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-FOODINS-300-PE-027",
+      "slug": "kh-in-foodins-300-pe-027-food-paper-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-CORGINS-E-MT-028",
+      "slug": "kh-in-corgins-e-mt-028-corrugated-paper-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-WHITEINS-400-MC-029",
+      "slug": "kh-in-whiteins-400-mc-029-white-cardboard-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-IN-SPINS-350-UV-030",
+      "slug": "kh-in-spins-350-uv-030-specialty-paper-insert",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-DIECUT-350-MC-031",
+      "slug": "kh-sf-diecut-350-mc-031-die-cut-semi-finished-sheet",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-CREASE-350-CR-032",
+      "slug": "kh-sf-crease-350-cr-032-creased-semi-finished-sheet",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-LAMIN-E-MT-033",
+      "slug": "kh-sf-lamin-e-mt-033-laminated-semi-finished-sheet",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-FLUTESHT-E-CR-034",
+      "slug": "kh-sf-flutesht-e-cr-034-corrugated-box-blank",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-FOLDBL-350-CR-035",
+      "slug": "kh-sf-foldbl-350-cr-035-folding-box-blank",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-COLORBL-350-PR-036",
+      "slug": "kh-sf-colorbl-350-pr-036-printed-color-box-blank",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-FOODBL-300-OIL-037",
+      "slug": "kh-sf-foodbl-300-oil-037-food-box-blank",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-GIFTBL-400-EM-038",
+      "slug": "kh-sf-giftbl-400-em-038-gift-box-semi-finished-sheet",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-COSBL-350-AS-039",
+      "slug": "kh-sf-cosbl-350-as-039-cosmetic-box-semi-finished-sheet",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-SF-SHAPEBL-350-MC-040",
+      "slug": "kh-sf-shapebl-350-mc-040-custom-shape-box-blank",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-WHITEBOX-350-PR-041",
+      "slug": "kh-bx-whitebox-350-pr-041-white-cardboard-packaging-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-KRAFTBOX-300-PR-042",
+      "slug": "kh-bx-kraftbox-300-pr-042-kraft-paper-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-CORBOX-E-CR-043",
+      "slug": "kh-bx-corbox-e-cr-043-corrugated-paper-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-COLORCOR-E-DC-044",
+      "slug": "kh-bx-colorcor-e-dc-044-colored-corrugated-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-COSBOX-350-AS-045",
+      "slug": "kh-bx-cosbox-350-as-045-cosmetic-packaging-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-ELECBOX-E-MT-046",
+      "slug": "kh-bx-elecbox-e-mt-046-electronics-packaging-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-FOODBOX-320-PE-047",
+      "slug": "kh-bx-foodbox-320-pe-047-food-packaging-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-GIFTBOX-400-FG-048",
+      "slug": "kh-bx-giftbox-400-fg-048-gift-packaging-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-FOLDBOX-350-CR-049",
+      "slug": "kh-bx-foldbox-350-cr-049-folding-carton",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    },
+    {
+      "sku": "KH-BX-ONEPIECE-350-MC-050",
+      "slug": "kh-bx-onepiece-350-mc-050-one-piece-paper-box",
+      "field": "sourceStatus",
+      "issueType": "pending-source",
+      "currentValue": "pending / published=false",
+      "suggestedAction": "Confirm source, specification and publication approval with the business owner."
+    }
+  ]
+}

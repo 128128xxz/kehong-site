@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-07-13T08:47:45.258Z",
+  "aiGeneratedAssetCount": 12,
+  "aiGeneratedAssets": [
+    {
+      "assetId": "ai-category-paper-cup-fan",
+      "localPath": "/images/ai-generated/category/ai-category-paper-cup-fan-v2.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-pe-coated-paper-roll",
+      "localPath": "/images/ai-generated/category/ai-category-pe-coated-paper-roll.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-pe-coated-paper-sheet",
+      "localPath": "/images/ai-generated/category/ai-category-pe-coated-paper-sheet.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-kraft-paper-roll-sheet",
+      "localPath": "/images/ai-generated/category/ai-category-kraft-corrugated-v2.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-white-cardboard",
+      "localPath": "/images/ai-generated/category/ai-category-white-cardboard.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-corrugated-fluted-paper",
+      "localPath": "/images/ai-generated/category/ai-category-kraft-corrugated-v2.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-food-packaging-box",
+      "localPath": "/images/ai-generated/category/ai-category-food-packaging-box-v2.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-paper-insert",
+      "localPath": "/images/ai-generated/category/ai-category-paper-insert-pad-v2.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-paper-pad",
+      "localPath": "/images/ai-generated/category/ai-category-paper-insert-pad-v2.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-specialty-paper",
+      "localPath": "/images/ai-generated/category/ai-category-specialty-paper.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-food-grade-packaging-material",
+      "localPath": "/images/ai-generated/category/ai-category-food-grade-packaging-material.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    },
+    {
+      "assetId": "ai-category-custom-printed-packaging",
+      "localPath": "/images/ai-generated/category/ai-category-custom-printed-packaging.webp",
+      "permissionStatus": "generated-for-site",
+      "exactness": "representative",
+      "imageStatus": "ai-representative",
+      "productionUsageAllowed": true,
+      "exactSkuEligible": false
+    }
+  ],
+  "requestedSkuImageStatus": {
+    "ai-representative": 398
+  },
+  "effectiveSkuImageStatus": {
+    "ai-representative": 398
+  },
+  "exactSkuImagesUsingAiAssets": [],
+  "errors": 0,
+  "warnings": 0
+}

@@ -1,0 +1,28 @@
+{
+  "Metadata": {
+    "title": "Foshan Kehong Paper Products | Bahan Kemasan Kertas",
+    "description": "Pabrik bahan kemasan kertas untuk corrugated paper, specialty paper, paper box, tray, dan paper cup fan.",
+    "keywords": "bahan kemasan kertas, corrugated paper, food grade paper packaging, paper cup fan"
+  },
+  "Site": {
+    "brand": "Kehong Paper",
+    "nav": { "products": "Produk", "process": "Proses", "factory": "Pabrik", "contact": "Kontak" },
+    "cta": { "quote": "Minta Penawaran", "explore": "Lihat Produk", "whatsapp": "WhatsApp", "sample": "Minta Sampel", "add": "Tambah Inquiry", "email": "Inquiry Email" },
+    "hero": { "eyebrow": "Mitra Global Bahan Kemasan", "title": "Bahan kemasan kertas dari pabrik untuk pembeli serius.", "description": "Sejak 2001, Kehong memproduksi corrugated paper, specialty paper, box, tray, cup fan, dan struktur kemasan khusus.", "proof": "Pasokan stabil, sampel cepat, kontrol kualitas, dan pesanan fleksibel." },
+    "facts": { "years": "tahun pengalaman", "factoryArea": "m2 area pabrik", "customPackaging": "dukungan OEM/ODM", "flexibleOrders": "dukungan pesanan fleksibel" },
+    "products": { "eyebrow": "Jelajahi Produk Kami", "title": "Material, kemasan, dan finishing untuk setiap proyek.", "description": "Jelajahi keluarga produk, bandingkan spesifikasi, dan minta penawaran dengan mudah.", "featured": "Produk Populer", "families": "Keluarga Produk", "viewAll": "Lihat katalog lengkap" },
+    "process": { "eyebrow": "Produksi Terkontrol", "title": "Dari board processing ke kemasan jadi.", "description": "Proses stabil untuk feeding, converting, finishing, dan proteksi.", "dieCutting": { "title": "Die-cutting otomatis", "text": "Pemotongan bentuk khusus dan creasing presisi." }, "corrugated": { "title": "Corrugated board converting", "text": "Produksi board presisi dengan permukaan halus." }, "dyeing": { "title": "Dyeing dan slitting", "text": "Warna stabil dan feeding merata." }, "laminating": { "title": "Laminating dan sealing", "text": "Perlindungan anti debu dan tahan lembap." } },
+    "inquiry": { "title": "Kirim material, ukuran, proses dan kuantitas. Kami bantu siapkan penawaran.", "description": "Harga bergantung pada material, GSM, ukuran, proses, warna cetak, jumlah dan term dagang.", "selected": "Produk terpilih", "empty": "Belum ada produk dipilih.", "message": "Halo Kehong, saya ingin meminta penawaran untuk:" },
+    "catalog": { "title": "Katalog Produk", "description": "Bandingkan produk berdasarkan kategori, material, proses dan opsi kustomisasi.", "search": "Cari produk atau kode produk", "category": "Kategori", "material": "Material", "process": "Proses", "all": "Semua", "customizable": "Bisa dikustomisasi", "reset": "Reset", "results": "{count} produk", "details": "Detail", "noResults": "Tidak ada produk yang cocok. Reset filter atau kirim kebutuhan Anda." },
+    "detail": { "back": "Kembali ke produk", "specs": "Spesifikasi", "material": "Material", "gsm": "GSM / Tebal", "structure": "Struktur / Flute", "surface": "Proses permukaan", "finishing": "Finishing", "size": "Ukuran umum", "moq": "MOQ", "application": "Aplikasi", "unit": "Unit", "note": "Produk dan harga final mengikuti sampel atau gambar yang disetujui." },
+    "contact": { "title": "Hubungi Kehong", "description": "Kirim material, ukuran, proses, kuantitas dan aplikasi target.", "country": "Negara / Wilayah", "quantity": "Perkiraan kuantitas", "requirements": "Catatan material, GSM, ukuran dan proses" },
+    "footer": { "tagline": "Quality First · Integrity Management · Win-Win Cooperation" }
+  },
+  "NotFound": { "title": "Halaman tidak ditemukan", "description": "Halaman tidak ada atau sudah dipindahkan.", "homeLink": "Kembali ke beranda" },
+  "Error": {
+    "server": "Terjadi kesalahan",
+    "sorry": "Silakan coba lagi, atau kembali ke beranda untuk mengirim kebutuhan Anda.",
+    "tryAgain": "Coba lagi",
+    "returnHome": "Kembali ke beranda"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "reviewedAt": "2026-07-07",
+  "verdict": "intermediate_not_finished",
+  "skuCount": 398,
+  "familyCount": 11,
+  "groupCount": 179,
+  "assetCount": 10,
+  "skuImageStatus": {
+    "representative": 398
+  },
+  "skuDataStatus": {
+    "pending-source": 106,
+    "complete": 292
+  },
+  "assetExactness": {
+    "representative": 10
+  },
+  "assetPermission": {
+    "approved": 10
+  },
+  "productTypeCounts": {
+    "kraft-paper": 10,
+    "paper-pad": 19,
+    "paper-insert": 25,
+    "white-cardboard": 13,
+    "corrugated-fluted-paper": 20,
+    "paper-packaging-material": 4,
+    "specialty-paper": 6,
+    "food-packaging-box": 9,
+    "paper-cup-fan": 292
+  },
+  "missingProductLink": 106,
+  "productLinks": 292,
+  "uniqueProductLinks": 88,
+  "duplicatedProductLinks": 39,
+  "sourceDomains": {
+    "www.shirongpaper.com": 264,
+    "shirongnewmaterial.en.alibaba.com": 1,
+    "www.alibaba.com": 9,
+    "chinese.alibaba.com": 1,
+    "arabic.alibaba.com": 1,
+    "m.alibaba.com": 16
+  },
+  "largestRisks": [
+    "0 exact SKU images; all SKU visuals remain representative only",
+    "106 SKUs have no productLink/source URL",
+    "292 cup-fan SKUs dominate the catalog and still need real grouping/source verification",
+    "Uploaded package included non-production screenshots/work/.superpowers folders and backup GLB models",
+    "Heavy 3D component still needed final render-cost reduction in this patch"
+  ]
+}

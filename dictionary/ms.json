@@ -1,0 +1,24 @@
+{
+  "Metadata": { "title": "Foshan Kehong Paper Products | Bahan Pembungkusan Kertas", "description": "Pengeluar bahan pembungkusan kertas untuk corrugated paper, specialty paper, paper box, tray dan paper cup fan.", "keywords": "bahan pembungkusan kertas, corrugated paper, food grade paper packaging, paper cup fan" },
+  "Site": {
+    "brand": "Kehong Paper",
+    "nav": { "products": "Produk", "process": "Proses", "factory": "Kilang", "contact": "Hubungi" },
+    "cta": { "quote": "Minta Sebut Harga", "explore": "Lihat Produk", "whatsapp": "WhatsApp", "sample": "Minta Sampel", "add": "Tambah Pertanyaan", "email": "Pertanyaan Email" },
+    "hero": { "eyebrow": "Rakan Bahan Pembungkusan Global", "title": "Bahan pembungkusan kertas berasaskan kilang untuk pembeli B2B.", "description": "Sejak 2001, Kehong menghasilkan corrugated paper, specialty paper, kotak, tray, cup fan dan struktur pembungkusan tersuai.", "proof": "Bekalan stabil, sampel pantas, kawalan kualiti dan pesanan fleksibel." },
+    "facts": { "years": "tahun pengalaman", "factoryArea": "m2 kawasan kilang", "customPackaging": "sokongan OEM/ODM", "flexibleOrders": "sokongan pesanan fleksibel" },
+    "products": { "eyebrow": "Terokai Produk Kami", "title": "Bahan, pembungkusan dan kemasan untuk setiap projek.", "description": "Lihat keluarga produk, bandingkan spesifikasi dan minta sebut harga dengan mudah.", "featured": "Produk Popular", "families": "Keluarga Produk", "viewAll": "Lihat katalog lengkap" },
+    "process": { "eyebrow": "Pengeluaran terkawal", "title": "Daripada papan kertas kepada pembungkusan siap.", "description": "Proses stabil untuk feeding, converting, finishing dan perlindungan.", "dieCutting": { "title": "Die-cutting automatik", "text": "Potongan bentuk tersuai dan creasing tepat." }, "corrugated": { "title": "Corrugated board converting", "text": "Pengeluaran board tepat dengan permukaan licin." }, "dyeing": { "title": "Dyeing dan slitting", "text": "Warna stabil dan feeding sekata." }, "laminating": { "title": "Laminating dan sealing", "text": "Perlindungan anti habuk dan tahan lembap." } },
+    "inquiry": { "title": "Hantar bahan, saiz, proses dan kuantiti. Kami bantu sediakan sebut harga.", "description": "Harga bergantung kepada bahan, GSM, saiz, proses, warna cetak, kuantiti dan terma dagangan.", "selected": "Produk dipilih", "empty": "Tiada produk dipilih.", "message": "Hello Kehong, saya ingin meminta sebut harga untuk:" },
+    "catalog": { "title": "Katalog Produk", "description": "Bandingkan produk mengikut kategori, bahan, proses dan pilihan tersuai.", "search": "Cari produk atau kod produk", "category": "Kategori", "material": "Bahan", "process": "Proses", "all": "Semua", "customizable": "Boleh tersuai", "reset": "Set semula", "results": "{count} produk", "details": "Butiran", "noResults": "Tiada produk sepadan. Set semula tapisan atau hantar keperluan anda." },
+    "detail": { "back": "Kembali ke produk", "specs": "Spesifikasi", "material": "Bahan", "gsm": "GSM / Ketebalan", "structure": "Struktur / Flute", "surface": "Proses permukaan", "finishing": "Kemasan", "size": "Saiz biasa", "moq": "MOQ", "application": "Aplikasi", "unit": "Unit", "note": "Produk dan harga akhir tertakluk kepada sampel atau lukisan yang disahkan." },
+    "contact": { "title": "Hubungi Kehong", "description": "Hantar bahan, saiz, proses, kuantiti dan aplikasi sasaran.", "country": "Negara / Wilayah", "quantity": "Anggaran kuantiti", "requirements": "Nota bahan, GSM, saiz dan proses" },
+    "footer": { "tagline": "Quality First · Integrity Management · Win-Win Cooperation" }
+  },
+  "NotFound": { "title": "Halaman tidak ditemui", "description": "Halaman tidak wujud atau telah dipindahkan.", "homeLink": "Kembali ke laman utama" },
+  "Error": {
+    "server": "Sesuatu telah berlaku",
+    "sorry": "Sila cuba lagi, atau kembali ke laman utama untuk menghantar keperluan anda.",
+    "tryAgain": "Cuba lagi",
+    "returnHome": "Kembali ke laman utama"
+  }
+}

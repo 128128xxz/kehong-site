@@ -1,0 +1,40 @@
+{
+  "skus": 398,
+  "families": 11,
+  "groups": 179,
+  "skuImageStatus": {
+    "representative": 398
+  },
+  "skuDataStatus": {
+    "pending-source": 106,
+    "complete": 292
+  },
+  "productTypeCounts": {
+    "kraft-paper": 10,
+    "paper-pad": 19,
+    "paper-insert": 25,
+    "white-cardboard": 13,
+    "corrugated-fluted-paper": 20,
+    "paper-packaging-material": 4,
+    "specialty-paper": 6,
+    "food-packaging-box": 9,
+    "paper-cup-fan": 292
+  },
+  "missingProductLink": 106,
+  "assets": 10,
+  "assetExactness": {
+    "representative": 10
+  },
+  "assetPermission": {
+    "approved": 10
+  },
+  "uniqueProductLinks": 88,
+  "sourceDomains": {
+    "www.shirongpaper.com": 264,
+    "shirongnewmaterial.en.alibaba.com": 1,
+    "www.alibaba.com": 9,
+    "chinese.alibaba.com": 1,
+    "arabic.alibaba.com": 1,
+    "m.alibaba.com": 16
+  }
+}

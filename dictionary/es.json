@@ -1,0 +1,86 @@
+{
+  "Metadata": {
+    "title": "Foshan Kehong Paper Products | Materiales de embalaje de papel",
+    "description": "Fabricante de papel corrugado, papel especial, cajas, bandejas, paper cup fans y materiales personalizados de embalaje.",
+    "keywords": "papel corrugado personalizado, material de embalaje de papel, embalaje de papel grado alimentario, fabricante de cajas de papel"
+  },
+  "Site": {
+    "brand": "Kehong Paper",
+    "nav": { "products": "Productos", "process": "Proceso", "factory": "Fábrica", "contact": "Contacto" },
+    "cta": { "quote": "Solicitar cotización", "explore": "Ver productos", "whatsapp": "WhatsApp", "sample": "Pedir muestra", "add": "Añadir consulta", "email": "Consulta por email" },
+    "hero": {
+      "eyebrow": "Socio global de materiales de embalaje",
+      "title": "Materiales de embalaje de papel respaldados por fábrica.",
+      "description": "Desde 2001, Kehong produce papel corrugado, papel especial, cajas, bandejas, paper cup fans y estructuras personalizadas para compradores B2B.",
+      "proof": "Suministro estable, muestras rápidas, control de calidad y pedidos flexibles."
+    },
+    "facts": { "years": "años de experiencia", "factoryArea": "m2 de fábrica", "customPackaging": "soporte OEM/ODM", "flexibleOrders": "soporte de pedido flexible" },
+    "products": {
+      "eyebrow": "Sistemas de producto",
+      "title": "Una vitrina de materiales, cajas y acabados personalizados.",
+      "description": "Explore las familias de productos, compare especificaciones y solicite una cotización.",
+      "featured": "Productos destacados",
+      "families": "Familias de producto",
+      "viewAll": "Ver catálogo"
+    },
+    "process": {
+      "eyebrow": "Producción controlada",
+      "title": "Del cartón al embalaje terminado.",
+      "description": "Proceso organizado para alimentación estable, conversión precisa y acabado limpio.",
+      "dieCutting": { "title": "Troquelado automático", "text": "Corte de formas personalizadas y hendido preciso." },
+      "corrugated": { "title": "Conversión de cartón corrugado", "text": "Producción precisa de cartón acanalado con superficie lisa." },
+      "dyeing": { "title": "Teñido y corte", "text": "Color estable, alimentación uniforme y opciones de textura." },
+      "laminating": { "title": "Laminado y sellado", "text": "Laminado y envoltura para protección contra polvo y humedad." }
+    },
+    "inquiry": {
+      "title": "Envíe material, tamaño, proceso y cantidad. Le ayudamos con la cotización.",
+      "description": "El precio depende de material, gramaje, tamaño, proceso, colores, cantidad y términos comerciales.",
+      "selected": "Productos seleccionados",
+      "empty": "Todavía no hay productos seleccionados.",
+      "message": "Hola Kehong, quiero solicitar cotización para:"
+    },
+    "catalog": {
+      "title": "Catálogo de productos",
+      "description": "Compare productos por categoría, material, proceso y opciones de personalización.",
+      "search": "Buscar productos o códigos",
+      "category": "Categoría",
+      "material": "Material",
+      "process": "Proceso",
+      "all": "Todos",
+      "customizable": "Personalizable",
+      "reset": "Restablecer",
+      "results": "{count} productos",
+      "details": "Ver detalles",
+      "noResults": "No hay productos coincidentes. Restablezca los filtros o envíe sus requisitos."
+    },
+    "detail": {
+      "back": "Volver a productos",
+      "specs": "Especificación",
+      "material": "Material",
+      "gsm": "Gramaje / Espesor",
+      "structure": "Estructura / Onda",
+      "surface": "Proceso de superficie",
+      "finishing": "Acabado",
+      "size": "Tamaño común",
+      "moq": "MOQ",
+      "application": "Aplicación",
+      "unit": "Unidad",
+      "note": "Producto y precio finales sujetos a muestra o plano confirmado."
+    },
+    "contact": {
+      "title": "Contactar a Kehong",
+      "description": "Indique material, tamaño, proceso, cantidad y aplicación para preparar la siguiente cotización.",
+      "country": "País / Región",
+      "quantity": "Cantidad estimada",
+      "requirements": "Notas de material, gramaje, tamaño y proceso"
+    },
+    "footer": { "tagline": "Calidad primero · Integridad · Cooperación ganar-ganar" }
+  },
+  "NotFound": { "title": "Página no encontrada", "description": "La página no existe o fue movida.", "homeLink": "Volver al inicio" },
+  "Error": {
+    "server": "Algo salió mal",
+    "sorry": "Inténtelo de nuevo o vuelva al inicio para enviar sus requisitos.",
+    "tryAgain": "Intentar de nuevo",
+    "returnHome": "Volver al inicio"
+  }
+}

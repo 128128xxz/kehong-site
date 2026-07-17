@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-07-16T06:52:32.524Z",
+  "totalProducts": 398,
+  "migratedProducts": 398,
+  "publishedProducts": 292,
+  "pendingProducts": 106,
+  "unresolvedTaxonomyProducts": 0,
+  "oneToManySplits": 324,
+  "emptyFields": 0,
+  "reports": {
+    "taxonomy": "/Users/a369/Documents/Codex/2026-07-13/new-chat/kehong-site/src/data/taxonomy.json",
+    "unresolved": "/Users/a369/Documents/Codex/2026-07-13/new-chat/kehong-site/reports/unresolved-taxonomy.json",
+    "pending": "/Users/a369/Documents/Codex/2026-07-13/new-chat/kehong-site/reports/pending-product-sources.csv",
+    "migration": "/Users/a369/Documents/Codex/2026-07-13/new-chat/kehong-site/reports/taxonomy-migration.json"
+  }
+}

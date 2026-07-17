@@ -1,0 +1,47 @@
+{
+  "reviewedAt": "2026-07-07",
+  "skus": 398,
+  "families": 11,
+  "groups": 179,
+  "assets": 10,
+  "skuImageStatus": {
+    "representative": 398
+  },
+  "skuDataStatus": {
+    "pending-source": 106,
+    "complete": 292
+  },
+  "productTypeCounts": {
+    "paper-cup-fan": 292,
+    "paper-insert": 25,
+    "corrugated-fluted-paper": 20,
+    "paper-pad": 19,
+    "white-cardboard": 13,
+    "kraft-paper": 10,
+    "food-packaging-box": 9,
+    "specialty-paper": 6,
+    "paper-packaging-material": 4
+  },
+  "missingProductLink": 106,
+  "uniqueProductLinks": 88,
+  "duplicateProductLinks": 39,
+  "maxSkusPerProductLink": 7,
+  "sourceDomains": {
+    "www.shirongpaper.com": 264,
+    "m.alibaba.com": 16,
+    "www.alibaba.com": 9,
+    "shirongnewmaterial.en.alibaba.com": 1,
+    "chinese.alibaba.com": 1,
+    "arabic.alibaba.com": 1
+  },
+  "candidateImages": 179,
+  "candidateDirectImageUrlFilled": 0,
+  "candidatePermissionStatus": {
+    "pending": 179
+  },
+  "candidateExactnessAssessment": {
+    "uncertain": 179
+  },
+  "productionPromotedImages": 0,
+  "packageCleanup": "screenshots, model backups, hidden scratch folders and tsbuildinfo removed in reviewed handoff package"
+}

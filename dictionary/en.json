@@ -1,0 +1,121 @@
+{
+  "Metadata": {
+    "title": "Foshan Kehong Paper Products | Custom Paper Packaging Solutions",
+    "description": "Corrugated paper, specialty paper, paper boxes, cup fan blanks, inner trays and custom packaging solutions for international B2B buyers.",
+    "keywords": "custom corrugated paperboard, fluted paper packaging material, food-grade paper packaging, paper cup fan blanks, custom paper box manufacturer"
+  },
+  "Site": {
+    "brand": "Kehong Paper",
+    "nav": {
+      "products": "Products",
+      "process": "Process",
+      "factory": "Factory",
+      "contact": "Contact"
+    },
+    "cta": {
+      "quote": "Request a quote",
+      "explore": "Explore products",
+      "whatsapp": "WhatsApp",
+      "sample": "Ask for samples",
+      "add": "Add to inquiry",
+      "email": "Send email inquiry"
+    },
+    "hero": {
+      "eyebrow": "Global paper packaging partner",
+      "title": "Paper packaging materials from a reliable manufacturing partner.",
+      "description": "Founded in 2001, Kehong supplies corrugated paper, specialty paper, paper boxes, trays, cup fan blanks and custom packaging structures to brands, converters, distributors and packaging manufacturers worldwide.",
+      "proof": "Reliable supply, responsive sampling, consistent quality and flexible order quantities from Foshan."
+    },
+    "facts": {
+      "years": "years of manufacturing experience",
+      "factoryArea": "m² manufacturing site",
+      "customPackaging": "OEM/ODM customization",
+      "flexibleOrders": "flexible order quantities"
+    },
+    "products": {
+      "eyebrow": "Explore our products",
+      "title": "Materials, packaging and finishing for every project.",
+      "description": "Browse by product family, compare specifications and request a quote with confidence.",
+      "featured": "Popular products",
+      "families": "Product Families",
+      "viewAll": "View full catalog"
+    },
+    "process": {
+      "eyebrow": "Controlled production",
+      "title": "From board processing to finished packaging.",
+      "description": "Our process combines consistent material handling, precise converting, clean finishing and dependable product protection.",
+      "dieCutting": {
+        "title": "Automatic die-cutting",
+        "text": "Custom-shape cutting and precise creasing with smooth feeding and positioning."
+      },
+      "corrugated": {
+        "title": "Corrugated board converting",
+        "text": "High-precision fluted board production with smooth surface and accurate slitting."
+      },
+      "dyeing": {
+        "title": "Coloring and slitting",
+        "text": "Consistent color output, even feeding and multiple pattern options."
+      },
+      "laminating": {
+        "title": "Lamination and coating",
+        "text": "Paper-to-board lamination and film coating for dust-resistant and moisture-resistant products."
+      }
+    },
+    "inquiry": {
+      "title": "Share your material, size, process and quantity. We will prepare a tailored quotation.",
+      "description": "Pricing depends on material, GSM, size, process, print colors, quantity and trade terms, so a clear project brief helps us quote accurately.",
+      "selected": "Selected products",
+      "empty": "No products selected yet.",
+      "message": "Hello Kehong, I would like to request a quote for:"
+    },
+    "catalog": {
+      "title": "Product Catalog",
+      "description": "Compare Kehong products by category, material, process and customization options.",
+      "search": "Search products or product codes",
+      "category": "Category",
+      "material": "Material",
+      "process": "Process",
+      "all": "All",
+      "customizable": "Customizable",
+      "reset": "Reset filters",
+      "results": "{count} products",
+      "details": "View details",
+      "noResults": "No matching products. Reset the filters or send us your requirements."
+    },
+    "detail": {
+      "back": "Back to products",
+      "specs": "Specification",
+      "material": "Material",
+      "gsm": "GSM / Thickness",
+      "structure": "Structure / Flute",
+      "surface": "Surface process",
+      "finishing": "Finishing process",
+      "size": "Typical size",
+      "moq": "MOQ",
+      "application": "Application",
+      "unit": "Unit",
+      "note": "Final specifications and pricing are confirmed against approved samples or drawings."
+    },
+    "contact": {
+      "title": "Contact Kehong",
+      "description": "Tell us your target material, size, process, quantity and application. We will outline the next steps for sampling or a quotation.",
+      "country": "Country / Region",
+      "quantity": "Estimated quantity",
+      "requirements": "Material, GSM, size and process notes"
+    },
+    "footer": {
+      "tagline": "Quality first · Integrity in every project · Long-term partnerships"
+    }
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or may have been moved.",
+    "homeLink": "Go back home"
+  },
+  "Error": {
+    "server": "Something went wrong",
+    "sorry": "Please try again, or return to the home page and send us your requirements.",
+    "tryAgain": "Try again",
+    "returnHome": "Return home"
+  }
+}
