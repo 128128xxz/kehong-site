@@ -1,0 +1,576 @@
+{
+  "categories": [
+    {
+      "id": "kraft-paper-series",
+      "slug": "kraft-paper",
+      "localizedLabel": {
+        "en": "Kraft Paper Series",
+        "zh": "牛皮纸系列"
+      },
+      "sortOrder": 1,
+      "active": true
+    },
+    {
+      "id": "white-cardboard-series",
+      "slug": "white-cardboard",
+      "localizedLabel": {
+        "en": "White Cardboard Series",
+        "zh": "白卡纸系列"
+      },
+      "sortOrder": 2,
+      "active": true
+    },
+    {
+      "id": "food-grade-paper-series",
+      "slug": "food-paper",
+      "localizedLabel": {
+        "en": "Food Paper Series",
+        "zh": "食品纸系列"
+      },
+      "sortOrder": 3,
+      "active": true
+    },
+    {
+      "id": "corrugated-fluted-paper-series",
+      "slug": "corrugated-paper",
+      "localizedLabel": {
+        "en": "Corrugated / Fluted Paper Series",
+        "zh": "瓦楞纸 / 坑纸系列"
+      },
+      "sortOrder": 4,
+      "active": true
+    },
+    {
+      "id": "specialty-paper-series",
+      "slug": "specialty-paper",
+      "localizedLabel": {
+        "en": "Specialty Paper Series",
+        "zh": "特种纸系列"
+      },
+      "sortOrder": 5,
+      "active": true
+    },
+    {
+      "id": "food-packaging-boxes",
+      "slug": "food-packaging-boxes",
+      "localizedLabel": {
+        "en": "Food Packaging Boxes",
+        "zh": "食品包装盒"
+      },
+      "sortOrder": 6,
+      "active": true
+    },
+    {
+      "id": "paper-pads",
+      "slug": "paper-pads",
+      "localizedLabel": {
+        "en": "Paper Pads",
+        "zh": "纸垫片"
+      },
+      "sortOrder": 7,
+      "active": true
+    },
+    {
+      "id": "paper-inserts",
+      "slug": "paper-inserts",
+      "localizedLabel": {
+        "en": "Paper Inserts",
+        "zh": "纸内托"
+      },
+      "sortOrder": 8,
+      "active": true
+    },
+    {
+      "id": "paper-box-components",
+      "slug": "paper-box-components",
+      "localizedLabel": {
+        "en": "Paper Box Components",
+        "zh": "纸盒半成品"
+      },
+      "sortOrder": 9,
+      "active": true
+    },
+    {
+      "id": "finished-paper-boxes",
+      "slug": "finished-paper-boxes",
+      "localizedLabel": {
+        "en": "Finished Paper Boxes",
+        "zh": "包装盒成品"
+      },
+      "sortOrder": 10,
+      "active": true
+    },
+    {
+      "id": "food-grade-paper",
+      "slug": "food-grade-paper",
+      "localizedLabel": {
+        "en": "Food-Grade Paper Series",
+        "zh": "食品级纸系列"
+      },
+      "sortOrder": 11,
+      "active": true
+    }
+  ],
+  "materials": [
+    {
+      "id": "kraft-paper",
+      "slug": "kraft-paper",
+      "localizedLabel": {
+        "en": "Kraft paper",
+        "zh": "牛皮纸"
+      },
+      "aliases": [
+        "Kraft paper",
+        "牛皮纸",
+        "kraft paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "single-sided-kraft-paper",
+      "slug": "single-sided-kraft-paper",
+      "localizedLabel": {
+        "en": "Single-sided kraft paper",
+        "zh": "单面牛皮纸"
+      },
+      "aliases": [
+        "Single-sided kraft paper",
+        "单面牛皮纸",
+        "single-sided kraft paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "double-sided-kraft-paper",
+      "slug": "double-sided-kraft-paper",
+      "localizedLabel": {
+        "en": "Double-sided kraft paper",
+        "zh": "双面牛皮纸"
+      },
+      "aliases": [
+        "Double-sided kraft paper",
+        "双面牛皮纸",
+        "double-sided kraft paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "white-kraft-paper",
+      "slug": "white-kraft-paper",
+      "localizedLabel": {
+        "en": "White kraft paper",
+        "zh": "白牛皮纸"
+      },
+      "aliases": [
+        "White kraft paper",
+        "白牛皮纸",
+        "white kraft",
+        "white kraft paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "yellow-kraft-paper",
+      "slug": "yellow-kraft-paper",
+      "localizedLabel": {
+        "en": "Yellow kraft paper",
+        "zh": "黄牛皮纸"
+      },
+      "aliases": [
+        "Yellow kraft paper",
+        "黄牛皮纸",
+        "yellow kraft",
+        "yellow kraft paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "food-grade-kraft-paper",
+      "slug": "food-grade-kraft-paper",
+      "localizedLabel": {
+        "en": "Food-grade kraft paper",
+        "zh": "食品级牛皮纸"
+      },
+      "aliases": [
+        "Food-grade kraft paper",
+        "食品级牛皮纸",
+        "food grade kraft",
+        "food-grade kraft paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "kraft-cardstock",
+      "slug": "kraft-cardstock",
+      "localizedLabel": {
+        "en": "Kraft cardstock",
+        "zh": "牛卡纸"
+      },
+      "aliases": [
+        "Kraft cardstock",
+        "牛卡纸",
+        "kraft cardstock",
+        "牛卡"
+      ],
+      "active": true
+    },
+    {
+      "id": "white-cardboard",
+      "slug": "white-cardboard",
+      "localizedLabel": {
+        "en": "White cardboard",
+        "zh": "白卡纸"
+      },
+      "aliases": [
+        "White cardboard",
+        "白卡纸",
+        "white cardboard",
+        "white board",
+        "white card",
+        "白卡"
+      ],
+      "active": true
+    },
+    {
+      "id": "food-grade-white-board",
+      "slug": "food-grade-white-board",
+      "localizedLabel": {
+        "en": "Food-grade white board",
+        "zh": "食品级白卡纸"
+      },
+      "aliases": [
+        "Food-grade white board",
+        "食品级白卡纸",
+        "food-grade white board",
+        "food grade white board",
+        "食品白卡"
+      ],
+      "active": true
+    },
+    {
+      "id": "coated-white-board",
+      "slug": "coated-white-board",
+      "localizedLabel": {
+        "en": "Coated white board",
+        "zh": "涂布白卡纸"
+      },
+      "aliases": [
+        "Coated white board",
+        "涂布白卡纸",
+        "coated white board",
+        "single-coated white board",
+        "double-coated white board",
+        "单铜白卡",
+        "双铜白卡"
+      ],
+      "active": true
+    },
+    {
+      "id": "cupstock-paper",
+      "slug": "cupstock-paper",
+      "localizedLabel": {
+        "en": "Cupstock paper",
+        "zh": "杯纸"
+      },
+      "aliases": [
+        "Cupstock paper",
+        "杯纸",
+        "cupstock",
+        "cupstock paper",
+        "paper cup stock"
+      ],
+      "active": true
+    },
+    {
+      "id": "food-grade-paper",
+      "slug": "food-grade-paper",
+      "localizedLabel": {
+        "en": "Food-grade paper",
+        "zh": "食品级纸"
+      },
+      "aliases": [
+        "Food-grade paper",
+        "食品级纸",
+        "food-grade paper",
+        "food paper",
+        "食品纸"
+      ],
+      "active": true
+    },
+    {
+      "id": "greaseproof-paper",
+      "slug": "greaseproof-paper",
+      "localizedLabel": {
+        "en": "Greaseproof paper",
+        "zh": "防油纸"
+      },
+      "aliases": [
+        "Greaseproof paper",
+        "防油纸",
+        "greaseproof",
+        "greaseproof paper",
+        "防油食品纸",
+        "防油牛皮纸"
+      ],
+      "active": true
+    },
+    {
+      "id": "corrugated-paper",
+      "slug": "corrugated-paper",
+      "localizedLabel": {
+        "en": "Corrugated paper",
+        "zh": "瓦楞纸"
+      },
+      "aliases": [
+        "Corrugated paper",
+        "瓦楞纸",
+        "corrugated",
+        "corrugated paper",
+        "瓦楞",
+        "彩色瓦楞纸"
+      ],
+      "active": true
+    },
+    {
+      "id": "fluted-paper",
+      "slug": "fluted-paper",
+      "localizedLabel": {
+        "en": "Fluted paper",
+        "zh": "坑纸"
+      },
+      "aliases": [
+        "Fluted paper",
+        "坑纸",
+        "fluted",
+        "fluted paper",
+        "E 坑",
+        "F 坑",
+        "G 坑",
+        "E/F/G 坑",
+        "E/F/G flute"
+      ],
+      "active": true
+    },
+    {
+      "id": "corrugated-medium",
+      "slug": "corrugated-medium",
+      "localizedLabel": {
+        "en": "Corrugated medium",
+        "zh": "瓦楞芯纸"
+      },
+      "aliases": [
+        "Corrugated medium",
+        "瓦楞芯纸",
+        "corrugated medium",
+        "fluting medium",
+        "芯纸"
+      ],
+      "active": true
+    },
+    {
+      "id": "liner-paper",
+      "slug": "liner-paper",
+      "localizedLabel": {
+        "en": "Liner paper",
+        "zh": "面纸"
+      },
+      "aliases": [
+        "Liner paper",
+        "面纸",
+        "liner paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "inner-liner",
+      "slug": "inner-liner",
+      "localizedLabel": {
+        "en": "Inner liner",
+        "zh": "里纸"
+      },
+      "aliases": [
+        "Inner liner",
+        "里纸",
+        "inner liner"
+      ],
+      "active": true
+    },
+    {
+      "id": "specialty-paper",
+      "slug": "specialty-paper",
+      "localizedLabel": {
+        "en": "Specialty paper",
+        "zh": "特种纸"
+      },
+      "aliases": [
+        "Specialty paper",
+        "特种纸",
+        "specialty paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "colored-paper",
+      "slug": "colored-paper",
+      "localizedLabel": {
+        "en": "Colored paper",
+        "zh": "彩色纸"
+      },
+      "aliases": [
+        "Colored paper",
+        "彩色纸",
+        "colored paper",
+        "彩纸"
+      ],
+      "active": true
+    },
+    {
+      "id": "black-board",
+      "slug": "black-board",
+      "localizedLabel": {
+        "en": "Black board",
+        "zh": "黑卡纸"
+      },
+      "aliases": [
+        "Black board",
+        "黑卡纸",
+        "black board",
+        "black card",
+        "黑卡"
+      ],
+      "active": true
+    },
+    {
+      "id": "gold-board",
+      "slug": "gold-board",
+      "localizedLabel": {
+        "en": "Gold board",
+        "zh": "金卡纸"
+      },
+      "aliases": [
+        "Gold board",
+        "金卡纸",
+        "gold board",
+        "gold card",
+        "金卡"
+      ],
+      "active": true
+    },
+    {
+      "id": "silver-board",
+      "slug": "silver-board",
+      "localizedLabel": {
+        "en": "Silver board",
+        "zh": "银卡纸"
+      },
+      "aliases": [
+        "Silver board",
+        "银卡纸",
+        "silver board",
+        "silver card",
+        "银卡"
+      ],
+      "active": true
+    },
+    {
+      "id": "holographic-paper",
+      "slug": "holographic-paper",
+      "localizedLabel": {
+        "en": "Holographic paper",
+        "zh": "镭射纸"
+      },
+      "aliases": [
+        "Holographic paper",
+        "镭射纸",
+        "holographic paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "pearlescent-paper",
+      "slug": "pearlescent-paper",
+      "localizedLabel": {
+        "en": "Pearlescent paper",
+        "zh": "珠光纸"
+      },
+      "aliases": [
+        "Pearlescent paper",
+        "珠光纸",
+        "pearlescent paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "composite-paper",
+      "slug": "composite-paper",
+      "localizedLabel": {
+        "en": "Composite paper",
+        "zh": "复合纸"
+      },
+      "aliases": [
+        "Composite paper",
+        "复合纸",
+        "composite paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "greyboard",
+      "slug": "greyboard",
+      "localizedLabel": {
+        "en": "Greyboard",
+        "zh": "灰板"
+      },
+      "aliases": [
+        "Greyboard",
+        "灰板",
+        "greyboard",
+        "灰板面纸"
+      ],
+      "active": true
+    },
+    {
+      "id": "security-paper",
+      "slug": "security-paper",
+      "localizedLabel": {
+        "en": "Security paper",
+        "zh": "防伪纸"
+      },
+      "aliases": [
+        "Security paper",
+        "防伪纸",
+        "security paper",
+        "防伪透明字"
+      ],
+      "active": true
+    },
+    {
+      "id": "scratch-resistant-paper",
+      "slug": "scratch-resistant-paper",
+      "localizedLabel": {
+        "en": "Scratch-resistant paper",
+        "zh": "防刮花纸"
+      },
+      "aliases": [
+        "Scratch-resistant paper",
+        "防刮花纸",
+        "scratch-resistant paper"
+      ],
+      "active": true
+    },
+    {
+      "id": "fragrance-paper",
+      "slug": "fragrance-paper",
+      "localizedLabel": {
+        "en": "Fragrance paper",
+        "zh": "留香纸"
+      },
+      "aliases": [
+        "Fragrance paper",
+        "留香纸",
+        "fragrance paper"
+      ],
+      "active": true
+    }
+  ]
+}
