@@ -24,7 +24,7 @@ if (from.value && !emailPattern.test(from.value)) invalid.push("EMAIL_FROM");
 if (recipients.some((email) => !emailPattern.test(email))) invalid.push("EMAIL_TO");
 if (process.env.EMAIL_REPLY_TO_FALLBACK && !emailPattern.test(process.env.EMAIL_REPLY_TO_FALLBACK.trim())) invalid.push("EMAIL_REPLY_TO_FALLBACK");
 
-const production = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+const production = process.env.VERCEL_ENV === "production" || (!process.env.VERCEL_ENV && process.env.NODE_ENV === "production");
 const result = {
   configured: missing.length === 0 && invalid.length === 0,
   production,
@@ -34,4 +34,3 @@ const result = {
 };
 console.log(JSON.stringify(result, null, 2));
 if (production && !result.configured) process.exit(1);
-
