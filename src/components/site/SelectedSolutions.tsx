@@ -83,7 +83,7 @@ function SolutionCard({ solution, locale, featured = false, supportIndex }: { so
           <div className="kh-solution-tags mt-3 flex flex-wrap gap-1.5">
             {copy.tags.map((tag) => <span key={tag} className="border border-[#18372e]/16 bg-white/55 px-2 py-1 text-[10px] font-bold text-[#18372e]">{tag}</span>)}
           </div>
-          <span className="mt-3 inline-flex min-h-11 items-center gap-2 text-xs font-black uppercase tracking-[.12em] text-[#9a6b1f]">{locale === "zh" ? "查看方案" : "View solution"}<ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" /></span>
+          <span className="mt-3 inline-flex min-h-11 items-center gap-2 text-xs font-black uppercase tracking-[.12em] text-[#805716]">{locale === "zh" ? "查看方案" : "View solution"}<ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" /></span>
         </div>
       </Link>
     );
