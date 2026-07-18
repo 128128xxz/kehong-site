@@ -2,6 +2,7 @@ import { ArrowRight, ClipboardCheck } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { homeEnglish } from "@/content/en/home";
 
 export default async function InquiryBand() {
   const t = await getTranslations("Site");
@@ -15,10 +16,10 @@ export default async function InquiryBand() {
             {t("cta.quote")}
           </p>
           <h2 className="kh-editorial-heading mt-4 text-3xl leading-tight tracking-[-.03em] sm:text-5xl">
-            {t("inquiry.title")}
+            {locale === "zh" ? t("inquiry.title") : homeEnglish.inquiry.title}
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-8 text-[#f7f0df]/76">
-            {t("inquiry.description")}
+            {locale === "zh" ? t("inquiry.description") : homeEnglish.inquiry.body}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button

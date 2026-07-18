@@ -4,10 +4,11 @@ import { Link } from "@/i18n/navigation";
 import { companyProfile } from "@/data/company";
 import { showcaseImages } from "@/data/visuals";
 import ResilientImage from "@/components/ui/ResilientImage";
+import { homeEnglish } from "@/content/en/home";
 
 const proofSteps = [
   { number: "01", title: { en: "Board converting", zh: "纸板加工" }, body: { en: "Match paper grade, board construction, and flute direction to the intended structure.", zh: "根据结构要求匹配纸材、纸板和坑型方向。" } },
-  { number: "02", title: { en: "Automatic die-cutting", zh: "自动模切" }, body: { en: "Review the drawing, fit and assembly sequence before production.", zh: "生产前复核图纸、尺寸贴合和组装顺序。" } },
+  { number: "02", title: { en: "Automatic die-cutting", zh: "自动模切" }, body: { en: "Review the drawing, fit, crease sequence, and assembly requirements before production.", zh: "生产前复核图纸、尺寸贴合、压痕顺序和组装要求。" } },
   { number: "03", title: { en: "Finishing & inspection", zh: "后工艺与检查" }, body: { en: "Confirm coatings, key dimensions, packing, and inspection checkpoints.", zh: "确认涂层、打样、关键尺寸和包装节点。" } },
 ] as const;
 
@@ -27,7 +28,7 @@ export default async function ManufacturingProof() {
             <p className="mt-5 max-w-md text-sm leading-7 text-white/72">
               {isZh
                 ? `${companyProfile.location.zh}的团队围绕纸材、结构、加工和交付节点协同。`
-                : `A production team in ${companyProfile.location.en}, coordinating material selection, structural development, converting, and delivery checkpoints.`}
+                : homeEnglish.manufacturing.body}
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link href="/factory" className="inline-flex items-center gap-2 border-b border-[#e8c06c] pb-1.5 text-sm font-black text-[#e8c06c]">{isZh ? "查看工厂" : "Explore our factory"}<ArrowRight className="size-4" /></Link>
@@ -37,14 +38,14 @@ export default async function ManufacturingProof() {
 
           <div className="kh-manufacturing__media grid gap-3 sm:grid-cols-[1.35fr_.65fr]">
             <div className="kh-manufacturing__main-media relative overflow-hidden border border-white/15">
-              <ResilientImage src={showcaseImages.machine} fallbackSrc={showcaseImages.machineClose} alt={isZh ? "科宏自动送料设备" : "Kehong automatic feeding equipment"} fill sizes="(min-width: 1100px) 48vw, 90vw" className="object-cover" />
+              <ResilientImage src={showcaseImages.machineClose} fallbackSrc={showcaseImages.structureMaterialReal} alt={isZh ? "科宏纸张输送与加工机械细节" : "Kehong paper feeding and converting machine detail"} fill sizes="(min-width: 1100px) 48vw, 90vw" className="object-cover object-[54%_52%]" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#102820]/82 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4"><p className="text-[10px] font-black uppercase tracking-[.2em] text-[#e8c06c]">{isZh ? "设备实景" : "Equipment view"}</p><p className="mt-1 text-lg font-black">{isZh ? "自动送料与纸板加工" : "Automatic feeding and board converting"}</p></div>
+              <div className="absolute bottom-4 left-4 right-4"><p className="text-[10px] font-black uppercase tracking-[.2em] text-[#e8c06c]">{isZh ? "设备细节" : "Converting detail"}</p><p className="mt-1 text-lg font-black">{isZh ? "纸张走料与加工控制" : "Paper feeding and process control"}</p></div>
             </div>
             <div className="kh-manufacturing__detail-media relative overflow-hidden border border-white/15">
-              <ResilientImage src={showcaseImages.machineClose} fallbackSrc={showcaseImages.structureMaterialReal} alt={isZh ? "纸品加工机械细节" : "Paper converting machine detail"} fill sizes="(min-width: 1100px) 22vw, 90vw" className="object-cover" />
+              <ResilientImage src={showcaseImages.structureMaterialReal} fallbackSrc={showcaseImages.sampleRoom} alt={isZh ? "科宏纸材加工生产线" : "Kehong paperboard converting line"} fill sizes="(min-width: 1100px) 22vw, 90vw" className="object-cover object-center" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#102820]/82 via-transparent to-transparent" />
-              <p className="absolute bottom-4 left-4 right-4 text-sm font-black leading-5 text-white">{isZh ? "机械细节与材料走料" : "Machine detail and material handling"}</p>
+              <p className="absolute bottom-4 left-4 right-4 text-sm font-black leading-5 text-white">{isZh ? "纸材加工与走料" : "Paperboard converting stage"}</p>
             </div>
           </div>
         </div>

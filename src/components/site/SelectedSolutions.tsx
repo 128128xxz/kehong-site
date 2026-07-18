@@ -3,34 +3,35 @@ import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import ResilientImage from "@/components/ui/ResilientImage";
+import { homeEnglish } from "@/content/en/home";
 
 const solutions = [
   {
     id: "food",
-    image: showcaseImages.webBakeryWindowBox,
+    image: showcaseImages.foodDetail,
     href: "/products?search=food",
-    en: { title: "Food & bakery packaging", tags: ["Food contact", "Grease resistance"], body: "Boxes, pads, and structures developed around dimensions, ventilation, and delivery stability." },
+    en: { title: "Food & bakery packaging", tags: ["Food contact", "Grease resistance"], body: homeEnglish.solutions.food },
     zh: { title: "食品与烘焙包装", tags: ["食品接触", "防油结构"], body: "围绕尺寸、通风和配送稳定性规划纸盒、纸垫与包装结构。" },
   },
   {
     id: "cupstock",
     image: showcaseImages.webPaperCupStacks,
     href: "/products?search=cup",
-    en: { title: "Cupstock & cup fan blanks", tags: ["GSM selection", "Coating"], body: "Confirm cupstock grade, GSM, coating, and grain direction before sampling." },
+    en: { title: "Cupstock & cup fan blanks", tags: ["GSM selection", "Coating"], body: homeEnglish.solutions.cupstock },
     zh: { title: "杯纸与纸杯扇形片", tags: ["克重选择", "涂层"], body: "在打样前确认杯纸方向、克重和涂层。" },
   },
   {
     id: "corrugated",
-    image: showcaseImages.webCorrugatedSheet,
+    image: showcaseImages.honeycomb,
     href: "/products?search=corrugated",
-    en: { title: "Corrugated board & specialty paper", tags: ["Flute structure", "Material match"], body: "Select corrugated board and specialty papers for protection, display, and converting." },
+    en: { title: "Corrugated board & specialty paper", tags: ["Board structure", "Material match"], body: homeEnglish.solutions.corrugated },
     zh: { title: "瓦楞与特种纸", tags: ["坑型结构", "材料匹配"], body: "为防护、展示和定制加工选择纸板与特种纸。" },
   },
   {
     id: "inserts",
     image: showcaseImages.cakeBoardReal,
     href: "/products?search=insert",
-    en: { title: "Inserts, pads & structures", tags: ["Die-cut", "Dimensional fit"], body: "Use die-cut pads and inserts to keep products stable through delivery." },
+    en: { title: "Inserts, pads & custom structures", tags: ["Die-cut", "Dimensional fit"], body: homeEnglish.solutions.inserts },
     zh: { title: "内托、纸垫与定制结构", tags: ["模切", "尺寸贴合"], body: "通过模切纸垫和内托，让产品在配送中保持稳定。" },
   },
 ] as const;
@@ -47,11 +48,11 @@ export default async function SelectedSolutions() {
           <div>
             <p className="kh-section-kicker">{isZh ? "解决方案入口" : "Featured solutions"}</p>
             <h2 className="kh-editorial-heading mt-4 max-w-2xl text-4xl leading-[.98] tracking-[-.045em] text-[#171713] sm:text-6xl">
-              {isZh ? "为真实生产需求准备的包装方案。" : "Packaging solutions for real production needs."}
+              {isZh ? "为真实生产需求准备的包装方案。" : homeEnglish.solutions.heading}
             </h2>
           </div>
           <p className="max-w-md text-sm leading-7 text-[#626156]">
-            {isZh ? "从应用场景进入已经筛选的产品范围。" : "Start with an application, then move into a focused product range."}
+            {isZh ? "从应用场景进入已经筛选的产品范围。" : homeEnglish.solutions.intro}
           </p>
         </div>
 

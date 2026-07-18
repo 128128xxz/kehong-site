@@ -3,20 +3,15 @@ import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import ResilientImage from "@/components/ui/ResilientImage";
+import { homeEnglish } from "@/content/en/home";
 
 const productSystems = [
   {
     id: "materials",
     icon: Layers3,
-    image: showcaseImages.structureMaterialReal,
+    image: showcaseImages.swatch,
     href: "/products?system=materials",
-    en: {
-      number: "01 / Materials",
-      title: "Paper materials for the next production step.",
-      body: "Select by material, GSM, coating, and converting requirements.",
-      items: ["Cupstock", "Kraft paper", "White board", "Corrugated paper"],
-      cta: "Browse materials",
-    },
+    en: homeEnglish.systems.materials,
     zh: {
       number: "01 / 材料",
       title: "为下一道生产工序选择合适纸材。",
@@ -28,15 +23,9 @@ const productSystems = [
   {
     id: "packaging",
     icon: PackageCheck,
-    image: showcaseImages.webWhiteBox,
+    image: showcaseImages.displayWide,
     href: "/products?system=packaging",
-    en: {
-      number: "02 / Finished packaging",
-      title: "Finished packaging for practical production needs.",
-      body: "Select by application, structure, dimensions, and finishing requirements.",
-      items: ["Food & bakery boxes", "Paper boxes", "Trays", "Inserts"],
-      cta: "Browse packaging",
-    },
+    en: homeEnglish.systems.packaging,
     zh: {
       number: "02 / 成品包装",
       title: "面向真实应用的成品包装结构。",
@@ -62,11 +51,11 @@ export default async function ProductShowcase() {
           <div>
             <p className="kh-section-kicker">{isZh ? "产品入口" : "Product systems"}</p>
             <h2 className="kh-editorial-heading mt-4 max-w-2xl text-4xl leading-[.96] tracking-[-.045em] text-[#171713] sm:text-6xl">
-              {isZh ? "两个产品体系，一个制造伙伴。" : "Two product systems. One manufacturing partner."}
+              {isZh ? "两个产品体系，一个制造伙伴。" : homeEnglish.systems.heading}
             </h2>
           </div>
           <p className="max-w-md text-sm leading-7 text-[#626156]">
-            {isZh ? "从材料采购或成品包装方向进入产品目录。" : "Start with material sourcing or finished packaging, then move into the full catalog."}
+            {isZh ? "从材料采购或成品包装方向进入产品目录。" : homeEnglish.systems.intro}
           </p>
         </div>
 
@@ -79,7 +68,7 @@ export default async function ProductShowcase() {
               <Link
                 key={system.id}
                 href={system.href}
-                className="kh-system-card group relative overflow-hidden border border-[#cdbb9a] bg-[#18372e] text-white shadow-[0_18px_48px_rgba(62,49,28,.12)]"
+                className={`kh-system-card group relative overflow-hidden border border-[#cdbb9a] shadow-[0_18px_48px_rgba(62,49,28,.12)] ${system.id === "packaging" ? "kh-system-card--packaging bg-[#eee8db] text-[#171713]" : "bg-[#18372e] text-white"}`}
               >
                 <ResilientImage
                   src={system.image}
@@ -89,7 +78,7 @@ export default async function ProductShowcase() {
                   sizes="(min-width: 1024px) 48vw, 94vw"
                   className="object-cover opacity-72 transition duration-700 group-hover:scale-[1.035] group-hover:opacity-84"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,40,32,.96),rgba(16,40,32,.62)_56%,rgba(16,40,32,.08))]" />
+                <div className="kh-system-card__veil absolute inset-0" />
                 <div className="kh-system-card__content relative flex flex-col justify-between p-5 sm:p-8">
                   <div className="flex items-start justify-between gap-4">
                     <span className="grid size-10 place-items-center border border-[#e8c06c]/60 bg-[#e8c06c] text-[#171713]">
