@@ -123,7 +123,7 @@ export default async function ProcurementAssurance() {
             <p className="text-xs font-black uppercase tracking-[0.25em] text-[#9a6b1f]">
               {copy.eyebrow}
             </p>
-            <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-[#171713] sm:text-5xl">
+            <h2 className="kh-editorial-heading mt-4 max-w-3xl text-4xl leading-tight tracking-[-.03em] text-[#171713] sm:text-5xl">
               {copy.title}
             </h2>
           </div>

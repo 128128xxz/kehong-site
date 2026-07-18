@@ -72,10 +72,17 @@ test.describe("Kehong production flows", () => {
     await expect(page).toHaveURL(/category=/);
   });
 
+  test("selected products persist when moving from catalog to contact", async ({ page }) => {
+    await page.goto("/en/products", { waitUntil: "networkidle" });
+    await page.getByRole("button", { name: /add to inquiry/i }).first().click();
+    await page.goto("/en/contact", { waitUntil: "networkidle" });
+    await expect(page.locator('textarea[name="products"]')).toHaveValue(/KH-/);
+  });
+
   test("3D showroom is discoverable and has a working preview route", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
     await expect(page.locator("#studio")).toBeVisible();
-    await expect(page.getByRole("link", { name: /3D Studio/i }).first()).toHaveAttribute("href", /#studio/);
+    await expect(page.getByRole("link", { name: /3D Studio/i }).first()).toHaveAttribute("href", /model-preview/);
     await expect(page.getByRole("link", { name: /3D Product Preview/i }).first()).toHaveAttribute("href", /model-preview/);
     await page.goto("/en/model-preview", { waitUntil: "domcontentloaded" });
     await expect(page.locator("h1")).toHaveCount(1);

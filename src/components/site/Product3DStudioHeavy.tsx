@@ -177,7 +177,7 @@ const downloadedModels = {
   cake: "/models/poly-pizza/birthday-cake.glb",
 } as const;
 
-const studioPreviewImage = "/images/web/studio-pizza-preview.webp";
+const studioPreviewImage = showcaseImages.webWhiteBox;
 
 function localized(copy: Localized, locale: string) {
   return locale === "zh" ? copy.zh : copy.en;

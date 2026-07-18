@@ -34,14 +34,14 @@ export default async function B2BProcurementSections() {
   const isZh = locale === "zh";
 
   return (
-    <section className="bg-[#f6f4ec] px-4 py-12 sm:px-6 lg:px-8">
+    <section data-visual-section="capability" className="kh-capability-section bg-[#f6f4ec] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
           <div className="premium-depth rounded-lg border border-[#d9d2be] bg-white p-5 shadow-xl shadow-[#171713]/8 sm:p-6">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#9a6b1f]">
                 {isZh ? "工厂与服务能力" : "Manufacturing and service capabilities"}
             </p>
-            <h2 className="mt-3 text-3xl font-black leading-tight text-[#171713] sm:text-4xl">
+            <h2 className="kh-editorial-heading mt-3 text-3xl leading-tight tracking-[-.025em] text-[#171713] sm:text-4xl">
               {isZh ? "为食品、烘焙和零售包装项目提供稳定的生产支持" : "Production support for food, bakery and retail packaging projects"}
             </h2>
             <p className="mt-4 text-sm leading-7 text-[#626156]">

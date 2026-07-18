@@ -11,16 +11,16 @@ export default async function CaseGallery() {
         <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.25em] text-[#e8c06c]">
-              {locale === "zh" ? "工厂与产品实景" : "Factory and product gallery"}
+              {locale === "zh" ? "结构在实际应用中的表现" : "Structure in practice"}
             </p>
-            <h2 className="mt-4 max-w-2xl text-4xl font-black leading-tight">
-              {locale === "zh" ? "通过样品、材料和工厂实景，直观看到科宏的生产与包装能力。" : "See Kehong's production and packaging capabilities through samples, materials and factory views."}
+            <h2 className="kh-editorial-heading mt-4 max-w-2xl text-4xl leading-tight tracking-[-.03em]">
+              {locale === "zh" ? "通过匿名应用、材料和结构细节，了解纸包装如何服务真实使用场景。" : "Review anonymous applications, material choices and structural details without invented customer claims."}
             </h2>
           </div>
           <p className="max-w-md text-sm leading-7 text-[#f7f0df]/72">
             {locale === "zh"
-              ? "从材料纹理到成品结构，了解适合您项目的纸品包装方向。"
-              : "From material textures to finished structures, explore packaging directions for your project."}
+              ? "从材料纹理到成品结构，选择适合您项目的包装方向。"
+              : "From material texture to finished structure, choose a direction for your project."}
           </p>
         </div>
       </div>

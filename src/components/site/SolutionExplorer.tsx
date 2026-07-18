@@ -54,7 +54,7 @@ export default function SolutionExplorer() {
             <p className="text-xs font-black uppercase tracking-[0.25em] text-[#b47b18]">
               {isZh ? "包装解决方案" : "Packaging solutions"}
             </p>
-            <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-[#171713] sm:text-5xl">
+            <h2 className="kh-editorial-heading mt-4 max-w-3xl text-4xl leading-tight tracking-[-.03em] text-[#171713] sm:text-5xl">
               {locale === "zh"
                 ? "像逛展厅一样，先选场景，再进入产品。"
                 : "Choose a packaging application, then explore the right products."}

@@ -2,7 +2,7 @@
 
 import { MessageCircle, Send, X } from "lucide-react";
 import { useLocale } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { contact } from "@/data/company";
 
 const contactCopy = {
@@ -81,11 +81,29 @@ export default function FloatingContactWidget() {
       : "Hello Kehong, I would like a quotation for custom paper packaging.",
   );
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${quoteMessage}`;
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const updateVisibility = () => {
+      const hero = document.querySelector<HTMLElement>("#home");
+      setVisible(!hero || window.scrollY > hero.getBoundingClientRect().bottom + 16);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    window.addEventListener("resize", updateVisibility);
+    return () => {
+      window.removeEventListener("scroll", updateVisibility);
+      window.removeEventListener("resize", updateVisibility);
+    };
+  }, []);
+
+  if (!visible) return null;
 
   return (
-    <div className="fixed right-3 top-1/2 z-50 hidden -translate-y-1/2 lg:block">
+    <div className="fixed bottom-4 right-4 z-50 hidden lg:block xl:right-6">
       {open ? (
-        <div className="premium-depth absolute right-0 top-14 w-[min(calc(100vw-2rem),21rem)] overflow-hidden rounded-lg border border-white/55 bg-white/88 text-[#171713] shadow-2xl shadow-black/20 backdrop-blur-2xl sm:right-0">
+        <div className="premium-depth absolute bottom-14 right-0 w-[min(calc(100vw-2rem),21rem)] overflow-hidden rounded-lg border border-white/55 bg-white/88 text-[#171713] shadow-2xl shadow-black/20 backdrop-blur-2xl sm:right-0">
           <div className="kh-micro-grid border-b border-black/8 bg-[#f6f4ec]/62 p-4">
             <div className="flex items-start justify-between gap-3">
               <div>

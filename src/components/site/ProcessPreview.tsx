@@ -14,7 +14,7 @@ export default async function ProcessPreview() {
     { icon: ShieldCheck, label: isZh ? "质量确认" : "Quality assurance" },
   ] as const;
   const proofImages = [
-    { src: showcaseImages.factoryPoster, alt: isZh ? "科宏厂区实拍" : "Kehong factory exterior" },
+    { src: showcaseImages.machine, alt: isZh ? "科宏自动送料生产线" : "Kehong automatic feeding line" },
     { src: showcaseImages.machine, alt: isZh ? "自动上料设备实拍" : "Automatic feeding equipment" },
     { src: showcaseImages.machineClose, alt: isZh ? "设备加工细节实拍" : "Machine process detail" },
     { src: showcaseImages.sampleRoom, alt: isZh ? "样品与包装展示实拍" : "Sample and packaging display" },
@@ -27,7 +27,7 @@ export default async function ProcessPreview() {
           <p className="text-xs font-black uppercase tracking-[0.25em] text-[#e8c06c]">
             {t("process.eyebrow")}
           </p>
-          <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
+          <h2 className="kh-editorial-heading mt-4 text-4xl leading-tight tracking-[-.03em] sm:text-5xl">
             {t("process.title")}
           </h2>
           <p className="mt-5 max-w-xl text-base leading-8 text-[#f7f0df]/76">

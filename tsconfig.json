@@ -38,6 +38,8 @@
   "exclude": [
     "node_modules",
     "work",
-    ".superpowers"
+    ".superpowers",
+    ".next/types/**/* 2.ts",
+    ".next/dev/types/**/* 2.ts"
   ]
 }

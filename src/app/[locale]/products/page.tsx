@@ -7,6 +7,7 @@ import ProductCatalog from "@/components/site/ProductCatalog";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { filterCatalogSkus, getAllSkus, getCatalogFilterOptions, getCatalogGroups, getLocalizedProductSku, getProductGroupId } from "@/lib/catalog";
+import { getCanonicalTaxonomyCategoryId } from "@/lib/taxonomy";
 import { showcaseImages } from "@/data/visuals";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
 
@@ -27,7 +28,7 @@ export async function generateMetadata({
   const description = t("catalog.description");
   const canonical = await getLocaleUrl(locale, "/products");
   const query = searchParams ? await searchParams : {};
-  const hasFilters = ["category", "group", "productType", "material", "gsm", "coating", "process", "customizable", "search", "page"]
+  const hasFilters = ["system", "category", "group", "productType", "material", "gsm", "coating", "process", "customizable", "search", "page"]
     .some((key) => query[key] !== undefined);
 
   return {
@@ -76,8 +77,16 @@ export default async function ProductsPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Site" });
   const value = (key: string) => (typeof query[key] === "string" ? query[key] : "");
+  const system = value("system");
   const page = Math.max(1, Number.parseInt(value("page") || "1", 10) || 1);
   const allSkus = getAllSkus();
+  const materialCategories = new Set(["kraft-paper", "kraft-paper-series", "white-cardboard", "white-cardboard-series", "food-grade-paper", "food-grade-paper-series", "corrugated-paper", "corrugated-fluted-paper-series", "specialty-paper", "specialty-paper-series"]);
+  const packagingCategories = new Set(["food-packaging-boxes", "paper-pads", "paper-inserts", "paper-boxes", "paper-box-components", "finished-paper-boxes"]);
+  const systemSkus = system === "materials"
+    ? allSkus.filter((sku) => materialCategories.has(sku.categoryId) || materialCategories.has(getCanonicalTaxonomyCategoryId(sku.categoryId) ?? ""))
+    : system === "packaging"
+      ? allSkus.filter((sku) => packagingCategories.has(sku.categoryId) || packagingCategories.has(getCanonicalTaxonomyCategoryId(sku.categoryId) ?? ""))
+      : allSkus;
   const filteredSkus = filterCatalogSkus({
     category: value("category"),
     group: value("group"),
@@ -88,7 +97,7 @@ export default async function ProductsPage({
     process: value("process"),
     customizable: value("customizable") === "true",
     search: value("search"),
-  }, allSkus);
+  }, systemSkus);
   const allGroups = getCatalogGroups(filteredSkus);
   const pageSize = 24;
   const totalPages = Math.max(1, Math.ceil(allGroups.length / pageSize));
@@ -151,7 +160,7 @@ export default async function ProductsPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
       />
-      <div className="texture-paper min-h-screen bg-[#f6f4ec]">
+      <div className="kh-premium-site texture-paper min-h-screen bg-[#f6f4ec]">
       <Header />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <section className="premium-depth kh-micro-grid grid overflow-hidden rounded-lg border border-[#d9d2be] bg-[#171713] text-white shadow-2xl shadow-[#171713]/12 lg:grid-cols-[.9fr_1.1fr]">

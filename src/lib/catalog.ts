@@ -1,5 +1,6 @@
 import catalog from "@/data/catalog.normalized.json";
 import {
+  getCanonicalTaxonomyCategoryId,
   getLocalizedProductMaterials,
   getTaxonomyCategoryById,
   getTaxonomyCategoryBySlug,
@@ -336,23 +337,35 @@ export function getLocalizedCatalogValue(
   return containsCjk(normalized) ? fallback : normalized;
 }
 
-export function getFamilies(): ProductFamily[] {
+export type HomepageProductFamily = Omit<ProductFamily, "categoryId"> & { categoryId: string };
+
+export function getFamilies(): HomepageProductFamily[] {
   const publishedCounts = new Map<string, number>();
   for (const sku of getAllSkus()) {
-    publishedCounts.set(sku.productType, (publishedCounts.get(sku.productType) ?? 0) + 1);
+    const categoryId = getCanonicalTaxonomyCategoryId(sku.categoryId);
+    if (!categoryId) continue;
+    publishedCounts.set(categoryId, (publishedCounts.get(categoryId) ?? 0) + 1);
   }
 
-  return catalog.families
-    .map((family) => {
-      const productType = family.categoryId
-        .replace(/-series$/u, "")
-        .replace("paper-box-components", "paper-box")
-        .replace("finished-paper-boxes", "paper-box");
-      return {
-        ...family,
-        count: publishedCounts.get(productType) ?? 0,
-      };
+  const seenCategoryIds = new Set<string>();
+  const candidates: Array<{ family: HomepageProductFamily; categoryId: string; count: number }> = [];
+  for (const family of catalog.families) {
+    const categoryId = getCanonicalTaxonomyCategoryId(family.categoryId);
+    if (!categoryId) continue;
+    candidates.push({
+      family: { ...family, categoryId },
+      categoryId,
+      count: publishedCounts.get(categoryId) ?? 0,
+    });
+  }
+
+  return candidates
+    .filter(({ categoryId }) => {
+      if (seenCategoryIds.has(categoryId)) return false;
+      seenCategoryIds.add(categoryId);
+      return true;
     })
+    .map(({ family, count }) => ({ ...family, count }))
     .sort((a, b) => b.count - a.count || a.title.en.localeCompare(b.title.en));
 }
 
@@ -501,9 +514,93 @@ export function getCatalogGroups(skus: ProductSku[]): Array<{ id: string; repres
   });
 }
 
-/** Homepage cards are selected by product group so one range cannot crowd out the others. */
-export function getFeaturedProductGroups(limit = 8) {
-  return getCatalogGroups(getAllSkus()).slice(0, limit);
+export type FeaturedProductGroup = {
+  id: string;
+  productGroupId: string;
+  categoryId: string;
+  categorySlug: string;
+  title: { en: string; zh: string };
+  representative?: ProductSku;
+  variants: ProductSku[];
+  image: string;
+};
+
+/**
+ * Homepage cards are curated by stable productGroupId. Confirmed groups use a
+ * product detail URL; groups awaiting source confirmation intentionally link
+ * to their product range instead of publishing an unverified product detail.
+ */
+const homepageFeaturePlan = [
+  {
+    productGroupId: "paper-cup-fan-paper-cup-fan",
+    categoryId: "food-grade-paper",
+    categorySlug: "food-grade-paper",
+    title: { en: "Cup fan", zh: "纸杯扇形片" },
+    image: "/images/ai-generated/category/ai-category-paper-cup-fan-v2.webp",
+  },
+  {
+    productGroupId: "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
+    categoryId: "food-grade-paper",
+    categorySlug: "food-grade-paper",
+    title: { en: "Cupstock roll", zh: "杯纸卷" },
+    image: "/images/web/paper-cup-stacks.jpg",
+  },
+  {
+    productGroupId: "paper-cup-fan-kraft-cupstock-paper",
+    categoryId: "kraft-paper",
+    categorySlug: "kraft-paper",
+    title: { en: "Kraft paper", zh: "牛皮纸" },
+    image: "/images/ai-generated/category/ai-category-kraft-paper-roll-sheet.webp",
+  },
+  {
+    productGroupId: "food-packaging-box-burger-box",
+    categoryId: "food-packaging-boxes",
+    categorySlug: "food-packaging-boxes",
+    title: { en: "Food box", zh: "食品包装盒" },
+    image: "/images/ai-generated/category/ai-category-food-packaging-box-v2.webp",
+  },
+  {
+    productGroupId: "food-packaging-box-bakery-packaging-box",
+    categoryId: "food-packaging-boxes",
+    categorySlug: "food-packaging-boxes",
+    title: { en: "Bakery packaging", zh: "烘焙包装" },
+    image: "/images/web/bakery-kraft-window-box.jpg",
+  },
+  {
+    productGroupId: "corrugated-fluted-paper-colored-corrugated-paper",
+    categoryId: "corrugated-paper",
+    categorySlug: "corrugated-paper",
+    title: { en: "Corrugated", zh: "瓦楞纸" },
+    image: "/images/ai-generated/category/ai-category-corrugated-fluted-paper.webp",
+  },
+  {
+    productGroupId: "specialty-paper-holographic-paper",
+    categoryId: "specialty-paper",
+    categorySlug: "specialty-paper",
+    title: { en: "Specialty paper", zh: "特种纸" },
+    image: "/images/ai-generated/category/ai-category-specialty-paper.webp",
+  },
+  {
+    productGroupId: "paper-insert-food-paper-insert",
+    categoryId: "paper-inserts",
+    categorySlug: "paper-inserts",
+    title: { en: "Paper insert / pad", zh: "纸内托 / 纸垫片" },
+    image: "/images/ai-generated/category/ai-category-paper-insert-pad-v2.webp",
+  },
+] as const;
+
+export function getFeaturedProductGroups(limit = 8): FeaturedProductGroup[] {
+  const publishedSkus = getAllSkus();
+
+  return homepageFeaturePlan.slice(0, limit).map((plan) => {
+    const variants = publishedSkus.filter((sku) => getProductGroupId(sku) === plan.productGroupId);
+    return {
+      ...plan,
+      id: plan.productGroupId,
+      representative: variants[0],
+      variants,
+    };
+  });
 }
 
 function searchableSkuText(sku: ProductSku): string {

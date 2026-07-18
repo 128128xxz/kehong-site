@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import catalog from "@/data/catalog.normalized.json";
 import taxonomy from "@/data/taxonomy.json";
-import { getAllSkus, getCatalogGroups, matchesGsmOption } from "@/lib/catalog";
+import { getAllSkus, getCatalogGroups, getFamilies, getFeaturedProductGroups, matchesGsmOption } from "@/lib/catalog";
 import { resolveTaxonomyMaterialAlias } from "@/lib/taxonomy";
 
 describe("product taxonomy and publication gate", () => {
@@ -34,5 +34,20 @@ describe("product taxonomy and publication gate", () => {
     expect(matchesGsmOption("210g", "210gsm")).toBe(true);
     expect(matchesGsmOption("180–250g", "210gsm")).toBe(true);
     expect(matchesGsmOption("180g", "300gsm")).toBe(false);
+  });
+
+  it("uses canonical category IDs for family counts and diversifies homepage groups", () => {
+    const families = getFamilies();
+    expect(new Set(families.map((family) => family.categoryId)).size).toBe(families.length);
+    expect(families.find((family) => family.categoryId === "food-grade-paper")?.count).toBe(284);
+    expect(families.find((family) => family.categoryId === "kraft-paper")?.count).toBe(8);
+
+    const featured = getFeaturedProductGroups(8);
+    const groupCounts = new Map<string, number>();
+    featured.forEach((group) => groupCounts.set(group.productGroupId, (groupCounts.get(group.productGroupId) ?? 0) + 1));
+    expect(featured).toHaveLength(8);
+    expect([...groupCounts.values()].every((count) => count <= 2)).toBe(true);
+    expect(new Set(featured.map((group) => group.categoryId)).size).toBeGreaterThanOrEqual(5);
+    expect(featured.filter((group) => group.representative).length).toBeGreaterThan(0);
   });
 });

@@ -10,9 +10,6 @@ export function visualText(copy: VisualCopy, locale: string) {
 }
 
 export const showcaseImages = {
-  factoryPoster: "/images/kehong/factory.webp",
-  factoryProcess: "/images/kehong/process.webp",
-  factoryProducts: "/images/kehong/products.webp",
   foodBox: "/images/kehong/showcase/orins-pizza-box-collage.webp",
   pinkBox: "/images/kehong/showcase/pink-structural-box.webp",
   foodOpen: "/images/kehong/showcase/food-paper-box-open.webp",
@@ -48,6 +45,7 @@ export const showcaseImages = {
   webOpenShippingBox: "/images/kehong/showcase/custom-box-display-open.webp",
   webKraftGiftBox: "/images/kehong/showcase/pink-structural-box.webp",
   webFactoryWorktable: "/images/kehong/showcase/precision-machine-closeup.webp",
+  modelTechnicalPreview: "/models/orinscare/v2/orinscare_packaging_set_v2_ultra_preview.png",
   unsplashFoodPackaging: "/images/web/unsplash/paper-food-packaging.jpg",
   unsplashTakeawayPackaging: "/images/web/unsplash/paper-takeaway-packaging.jpg",
 } as const;

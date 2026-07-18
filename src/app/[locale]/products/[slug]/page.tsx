@@ -8,6 +8,7 @@ import {
   MessageCircle,
   PackageCheck,
   Ruler,
+  Search,
   ShieldCheck,
   Timer,
   Truck,
@@ -132,10 +133,13 @@ export async function generateMetadata({
 
 export default async function ProductDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string; slug: string }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { locale, slug } = await params;
+  const query = searchParams ? await searchParams : {};
   setRequestLocale(locale);
   const sku = getSkuBySlug(slug);
 
@@ -187,6 +191,15 @@ export default async function ProductDetailPage({
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(`${t("inquiry.message")}\n- ${isZh ? "产品编号" : "Product code"}: ${sku.sku} ${getLocalizedProductTitle(sku, locale)}\n- URL: ${productUrl}`)}`;
   const imageMeta = getSkuImageMeta(sku, locale);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
+  const variantSearch = typeof query.variantSearch === "string" ? query.variantSearch.trim().toLowerCase() : "";
+  const matchingVariants = variantSearch
+    ? groupVariants.filter((variant) => [variant.sku, variant.gsmOrThickness, variant.coating, variant.commonSize]
+      .map((value) => getLocalizedCatalogValue(value, locale).toLowerCase())
+      .some((value) => value.includes(variantSearch)))
+    : groupVariants;
+  const showAllVariants = query.variants === "all" || Boolean(variantSearch);
+  const visibleVariants = showAllVariants ? matchingVariants : matchingVariants.slice(0, 12);
+  const hasMoreVariants = matchingVariants.length > visibleVariants.length;
 
   const specs = [
     [isZh ? "产品类型" : "Product type", getProductTypeLabel(sku.productType, locale)],
@@ -342,14 +355,14 @@ export default async function ProductDetailPage({
         data-product-data-revision={productDataRevision}
         data-product-group-id={getProductGroupId(sku)}
         data-product-sku={sku.sku}
-        className="texture-paper min-h-screen bg-[#f6f4ec]"
+        className="kh-premium-product texture-paper min-h-screen bg-[#f6f4ec]"
       >
       <Header />
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <Link href="/products" className="text-sm font-bold text-[#171713]">
           {t("detail.back")}
         </Link>
-        <div className="premium-depth mt-6 overflow-hidden rounded-lg border border-[#d9d2be] bg-white shadow-2xl shadow-[#171713]/10 lg:grid lg:grid-cols-[.95fr_1.05fr]">
+        <div className="kh-detail-hero premium-depth mt-6 overflow-hidden rounded-lg border border-[#d9d2be] bg-white shadow-2xl shadow-[#171713]/10 lg:grid lg:grid-cols-[.95fr_1.05fr]">
           <div className="relative min-h-[380px] lg:min-h-[720px]">
             <ProductImageWithStatus
               sku={sku}
@@ -494,13 +507,24 @@ export default async function ProductDetailPage({
 
             {groupVariants.length > 1 ? (
               <div className="mt-6 overflow-hidden rounded-lg border border-[#d9d2be]">
-                <div className="flex items-center justify-between gap-3 bg-[#f6f4ec] px-4 py-3">
-                  <h3 className="text-sm font-black uppercase tracking-[0.14em] text-[#171713]">
-                    {isZh ? "产品选项" : "Product options"}
-                  </h3>
-                  <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#9a6b1f]">
-                    {groupVariants.length} {isZh ? "项" : "items"}
-                  </span>
+                <div className="flex flex-col gap-3 bg-[#f6f4ec] px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h3 className="text-sm font-black uppercase tracking-[0.14em] text-[#171713]">
+                      {isZh ? "产品选项" : "Product options"}
+                    </h3>
+                    <p className="mt-1 text-xs text-[#626156]">
+                      {isZh ? `显示 ${visibleVariants.length} / ${matchingVariants.length} 项` : `Showing ${visibleVariants.length} of ${matchingVariants.length} variants`}
+                    </p>
+                  </div>
+                  <form method="get" className="flex min-w-0 items-center gap-2">
+                    {query.variants === "all" ? <input type="hidden" name="variants" value="all" /> : null}
+                    <label htmlFor="variant-search" className="sr-only">{isZh ? "搜索变体" : "Search variants"}</label>
+                    <div className="flex min-w-0 items-center gap-2 border border-[#d9d2be] bg-white px-3 py-2">
+                      <Search className="size-3.5 shrink-0 text-[#9a6b1f]" aria-hidden="true" />
+                      <input id="variant-search" name="variantSearch" defaultValue={variantSearch} placeholder={isZh ? "搜索尺寸 / 克重 / 涂层" : "Search size / GSM / coating"} className="min-w-0 w-full bg-transparent text-xs font-semibold text-[#171713] outline-none placeholder:text-[#626156]/70" />
+                    </div>
+                    <button type="submit" className="min-h-9 border border-[#18372e] bg-[#18372e] px-3 text-xs font-black text-white">{isZh ? "搜索" : "Search"}</button>
+                  </form>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="min-w-[720px] w-full border-collapse bg-white text-sm">
@@ -513,7 +537,7 @@ export default async function ProductDetailPage({
                       </tr>
                     </thead>
                     <tbody>
-                      {groupVariants.map((variant) => (
+                      {visibleVariants.map((variant) => (
                         <tr key={variant.sku} className="border-b border-[#f1e7cf] last:border-0">
                           <td className="px-4 py-3 font-black text-[#171713]">{variant.sku}</td>
                           <td className="px-4 py-3 text-[#626156]">{getLocalizedCatalogValue(variant.gsmOrThickness, locale) || "-"}</td>
@@ -524,6 +548,20 @@ export default async function ProductDetailPage({
                     </tbody>
                   </table>
                 </div>
+                {matchingVariants.length === 0 ? (
+                  <p className="border-t border-[#d9d2be] bg-white px-4 py-4 text-sm text-[#626156]">{isZh ? "没有匹配的变体，请调整搜索条件。" : "No matching variants. Adjust the search terms and try again."}</p>
+                ) : null}
+                {hasMoreVariants ? (
+                  <div className="border-t border-[#d9d2be] bg-white px-4 py-3">
+                    <Link href={`${productHref}?variants=all${variantSearch ? `&variantSearch=${encodeURIComponent(variantSearch)}` : ""}`} className="text-sm font-black text-[#9a6b1f] hover:text-[#18372e]">
+                      {isZh ? `查看全部 ${matchingVariants.length} 个变体` : `View all ${matchingVariants.length} variants`} →
+                    </Link>
+                  </div>
+                ) : showAllVariants && matchingVariants.length > 12 ? (
+                  <div className="border-t border-[#d9d2be] bg-white px-4 py-3">
+                    <Link href={productHref} className="text-sm font-black text-[#9a6b1f] hover:text-[#18372e]">{isZh ? "收起变体" : "Show fewer variants"} ↑</Link>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </section>

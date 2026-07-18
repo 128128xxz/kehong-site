@@ -2,7 +2,7 @@ const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_U
 const siteUrl = configuredSiteUrl.replace(/\/+$/u, "");
 
 export const siteConfig = {
-  name: "Foshan Kehong Paper Products",
+  name: "Foshan Kehong Paper Products Co., Ltd.",
   url: siteUrl,
   author: {
     name: "Foshan Kehong Paper Products Co., Ltd.",

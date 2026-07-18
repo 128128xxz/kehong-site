@@ -93,7 +93,7 @@ export default async function BakeryPackagingFocus() {
             <p className="text-xs font-black uppercase tracking-[0.25em] text-[#e8c06c]">
               {locale === "zh" ? "烘焙包装方案" : "Bakery packaging solutions"}
             </p>
-            <h2 className="mt-4 max-w-2xl text-4xl font-black leading-tight sm:text-5xl">
+            <h2 className="kh-editorial-heading mt-4 max-w-2xl text-4xl leading-tight tracking-[-.03em] sm:text-5xl">
               {locale === "zh"
                 ? "为蛋糕、点心和外卖配送选择合适的纸质包装。"
                 : "Choose the right paper packaging for cakes, pastries and takeaway delivery."}

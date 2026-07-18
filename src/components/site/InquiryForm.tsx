@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckCircle2, MessageCircle, Send } from "lucide-react";
-import { type FormEvent, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 
@@ -89,9 +89,36 @@ export default function InquiryForm({
 }: InquiryFormProps) {
   const isZh = locale === "zh";
   const text = isZh ? copy.zh : copy.en;
+  const [storedProducts, setStoredProducts] = useState<InquiryProduct[]>([]);
+  useEffect(() => {
+    try {
+      const raw = window.sessionStorage.getItem("kehong-selected-products");
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as Array<InquiryProduct & { slug?: string; title?: { en?: string } }>;
+      if (Array.isArray(parsed)) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setStoredProducts(parsed.map((product) => ({
+          sku: product.sku,
+          name: product.name ?? product.title?.en,
+          url: product.url ?? (product.slug ? `https://www.kehong.tech/${locale}/products/${product.slug}` : undefined),
+        })));
+      }
+    } catch {
+      // Ignore unavailable storage in privacy-restricted browsers.
+    }
+  }, [locale]);
+  const effectiveProducts = useMemo(() => {
+    const seen = new Set<string>();
+    return [...initialProducts, ...storedProducts].filter((product) => {
+      const key = product.sku || product.url || product.name || "";
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }, [initialProducts, storedProducts]);
   const initialProductText = useMemo(
-    () => initialProducts.map(productLine).filter(Boolean).join("\n"),
-    [initialProducts],
+    () => effectiveProducts.map(productLine).filter(Boolean).join("\n"),
+    [effectiveProducts],
   );
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");

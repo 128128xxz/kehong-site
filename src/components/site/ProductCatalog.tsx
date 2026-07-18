@@ -129,7 +129,9 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
           {locale === "zh" ? "筛选产品" : "Filter products"}
         </button>
         <span className="text-right text-xs font-bold leading-5 text-[#626156]">
-          {pagination?.totalGroups ?? groups.length} {locale === "zh" ? "个产品组" : "product groups"}
+          {(pagination?.totalGroups ?? groups.length) > 0
+            ? `${pagination?.totalGroups ?? groups.length} ${locale === "zh" ? "个产品组" : "product groups"}`
+            : (locale === "zh" ? "按项目确认" : "Available on request")}
         </span>
       </div>
 
@@ -315,9 +317,11 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
         <div className="mb-4 grid gap-3 rounded-lg border border-[#d9d2be] bg-white/86 p-4 shadow-sm lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="text-sm font-black text-[#171713]">
-              {locale === "zh"
-                ? `${pagination?.totalGroups ?? groups.length} 个产品组 / ${pagination?.totalSkus ?? skus.length} 个产品`
-                : `${pagination?.totalGroups ?? groups.length} product groups / ${pagination?.totalSkus ?? skus.length} products`}
+              {(pagination?.totalGroups ?? groups.length) > 0
+                ? (locale === "zh"
+                  ? `${pagination?.totalGroups ?? groups.length} 个产品组 / ${pagination?.totalSkus ?? skus.length} 个产品`
+                  : `${pagination?.totalGroups ?? groups.length} product groups / ${pagination?.totalSkus ?? skus.length} products`)
+                : (locale === "zh" ? "该范围可按项目确认" : "This range is available on request")}
             </p>
             <p className="mt-1 text-sm leading-6 text-[#626156]">
               {locale === "zh"
@@ -335,7 +339,9 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
 
         {groups.length === 0 ? (
           <div className="rounded-lg border border-[#d9d2be] bg-white p-8 text-center text-[#626156]">
-            {t("catalog.noResults")}
+            <p>{t("catalog.noResults")}</p>
+            <p className="mt-2 text-sm">{locale === "zh" ? "如果您正在寻找定制包装结构，请直接提交需求。" : "If you are looking for a custom packaging structure, send the requirement directly."}</p>
+            <Link href="/contact" className="mt-5 inline-flex min-h-10 items-center rounded-full bg-[#171713] px-4 text-sm font-black text-white">{locale === "zh" ? "提交项目需求" : "Start a packaging project"}</Link>
           </div>
         ) : (
           <div className="grid min-w-0 gap-4 xl:grid-cols-[repeat(2,minmax(0,1fr))]">
