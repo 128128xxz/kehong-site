@@ -52,9 +52,10 @@ test.describe("final design contract", () => {
   }
 
   test("640-959 solutions grid has no empty final half-column", async ({ page }) => {
+    await page.setViewportSize({ width: 640, height: 1024 });
+    await page.goto("/en", { waitUntil: "domcontentloaded" });
     for (const width of [640, 768, 959]) {
       await page.setViewportSize({ width, height: 1024 });
-      await page.goto("/en", { waitUntil: "networkidle" });
       const cards = page.locator("#solutions .kh-solution-card");
       await expect(cards).toHaveCount(4);
       const boxes = await cards.evaluateAll((items) => items.map((item) => {
