@@ -2,7 +2,6 @@ import {
   Boxes,
   CheckCircle2,
   ClipboardCheck,
-  Factory,
   Globe2,
   Layers3,
   PackageCheck,
@@ -11,17 +10,17 @@ import {
 import { getLocale } from "next-intl/server";
 
 const capabilityItems = [
-  { icon: Factory, title: "Packaging manufacturing experience", zh: "纸品包装制造经验", detail: "Paper materials, packaging structures and batch production coordinated by an experienced factory team.", detailZh: "由经验丰富的工厂团队协同材料、包装结构与批量生产。" },
-  { icon: Boxes, title: "Production capability", zh: "生产能力", detail: "Material matching, cutting, forming, packing and clear project follow-up from sampling to delivery.", detailZh: "覆盖材料匹配、模切、成型、包装，并从打样跟进至交付。" },
-  { icon: Layers3, title: "OEM / ODM support", zh: "OEM / ODM 定制", detail: "Material, GSM, structure, size, printing and finishing options for custom projects.", detailZh: "支持材质、克重、结构、尺寸、印刷与后加工定制。" },
-  { icon: Globe2, title: "Export service", zh: "出口服务", detail: "Clear communication, sample confirmation and delivery-ready packing support for overseas orders.", detailZh: "为海外订单提供清晰沟通、样品确认与出口包装支持。" },
+  { icon: ClipboardCheck, title: "Quote requirements", zh: "报价资料", detail: "Share the product use, dimensions, material or GSM target, quantity, and destination market.", detailZh: "提供产品用途、尺寸、材质或克重目标、数量和目的市场。" },
+  { icon: Layers3, title: "Material and GSM", zh: "材质与克重", detail: "Paper grade, coating, board construction, and converting requirements are reviewed together.", detailZh: "结合纸张等级、涂层、纸板结构和加工要求进行确认。" },
+  { icon: Boxes, title: "Sampling and OEM / ODM", zh: "打样与 OEM / ODM", detail: "Drawings, dimensions, folds, printing, and finishing can be confirmed through project samples.", detailZh: "可通过项目样品确认图纸、尺寸、折线、印刷与后工艺。" },
+  { icon: Globe2, title: "Export packing and documents", zh: "出口包装与文件", detail: "Packing method, shipment preparation, and available project documents are confirmed before dispatch.", detailZh: "出货前确认包装方式、出货准备和可提供的项目文件。" },
 ];
 
 const chooseItems = [
-  { icon: PackageCheck, title: "Reliable supply", zh: "稳定供应", detail: "Consistent material matching and production coordination for repeat orders.", detailZh: "为持续采购提供稳定的材料匹配与生产协同。" },
-  { icon: ClipboardCheck, title: "Custom packaging", zh: "定制包装", detail: "Adjust size, material, coating and packaging structure to suit your project.", detailZh: "可按项目调整尺寸、材质、涂层与包装结构。" },
-  { icon: ShieldCheck, title: "Quality assurance", zh: "质量保障", detail: "Material, GSM, structure and finishing details are confirmed before production.", detailZh: "生产前确认材料、克重、结构与后加工细节。" },
-  { icon: Globe2, title: "International service", zh: "国际服务", detail: "Multilingual communication, WhatsApp support and export-ready documentation.", detailZh: "提供多语言沟通、WhatsApp 支持与出口文件协助。" },
+  { icon: PackageCheck, title: "MOQ by project", zh: "按项目确认 MOQ", detail: "MOQ depends on the material, structure, converting method, and production setup.", detailZh: "MOQ 根据材质、结构、加工方式和生产设置确认。" },
+  { icon: ClipboardCheck, title: "Sample review", zh: "样品确认", detail: "Structural fit and key specifications are reviewed before batch production.", detailZh: "批量生产前确认结构贴合和关键规格。" },
+  { icon: ShieldCheck, title: "Quality checkpoints", zh: "质量检查节点", detail: "Material, dimensions, finish, and packing requirements are checked at relevant stages.", detailZh: "在相应节点检查材料、尺寸、表面效果和包装要求。" },
+  { icon: Globe2, title: "Destination requirements", zh: "目的市场要求", detail: "Tell us the destination market and any food-contact or documentation requirements for review.", detailZh: "请提供目的市场及食品接触或文件要求，以便核对。" },
 ];
 
 const processSteps = {
@@ -41,13 +40,13 @@ export default async function B2BProcurementSections() {
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#9a6b1f]">
                 {isZh ? "工厂与服务能力" : "Manufacturing and service capabilities"}
             </p>
-            <h2 className="kh-editorial-heading mt-3 text-3xl leading-tight tracking-[-.025em] text-[#171713] sm:text-4xl">
-              {isZh ? "为食品、烘焙和零售包装项目提供稳定的生产支持" : "Production support for food, bakery and retail packaging projects"}
-            </h2>
+            <h1 className="kh-editorial-heading mt-3 text-3xl leading-tight tracking-[-.025em] text-[#171713] sm:text-5xl">
+              {isZh ? "把采购要求整理成可确认的生产规格。" : "Turn your packaging brief into a quote-ready specification."}
+            </h1>
             <p className="mt-4 text-sm leading-7 text-[#626156]">
               {isZh
                 ? "从材料匹配、结构打样到批量生产与出口包装，科宏为每个项目提供清晰、连贯的交付支持。"
-                : "From material matching and structural sampling to batch production and export packing, Kehong provides clear coordination from sampling to delivery."}
+                : "Use this guide to prepare material, GSM, structure, sampling, quantity, destination, and document requirements before requesting a quote."}
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {capabilityItems.map((item) => {
@@ -73,7 +72,7 @@ export default async function B2BProcurementSections() {
           <div className="grid gap-5">
             <div className="premium-depth rounded-lg border border-[#d9d2be] bg-[#171713] p-5 text-white shadow-xl shadow-[#171713]/10 sm:p-6">
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[#e8c06c]">
-                {isZh ? "客户选择科宏的理由" : "Why customers choose Kehong"}
+                {isZh ? "采购确认事项" : "Procurement checkpoints"}
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {chooseItems.map((item) => {
