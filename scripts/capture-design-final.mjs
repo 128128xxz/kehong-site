@@ -104,7 +104,7 @@ const manifest = {
   tests: {
     typecheck: "PASS",
     eslint: "PASS",
-    unit: "14 passed",
+    unit: "15 passed",
     playwright: "27 passed, 1 production-only test skipped",
     productionBuild: "PASS",
   },
