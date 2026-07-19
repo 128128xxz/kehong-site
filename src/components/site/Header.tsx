@@ -18,7 +18,7 @@ const headerCopy = {
 } as const;
 
 function navLinkClass(active: boolean) {
-  return `group relative inline-flex h-10 items-center gap-2 overflow-hidden rounded-full px-3.5 transition ${active ? "bg-[#171713] text-[#e8c06c]" : "text-[#4e4b42] hover:bg-[#171713] hover:text-[#e8c06c]"}`;
+  return `group relative inline-flex h-10 items-center gap-2 overflow-hidden rounded-[.3rem] px-3.5 transition ${active ? "text-[#805716] after:absolute after:inset-x-3 after:bottom-1 after:h-px after:bg-[#805716]" : "text-[#4e4b42] hover:bg-[#171713]/5 hover:text-[#805716]"}`;
 }
 
 export default function Header() {

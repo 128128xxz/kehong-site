@@ -43,7 +43,7 @@ export default async function SiteFooter() {
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
   const serviceChips = locale === "zh"
     ? ["OEM/ODM", "快速打样", "材料匹配", "出口包装", "质检文件", "灵活 MOQ"]
-    : ["OEM/ODM", "Sampling", "Material match", "Export packing", "QC documents", "Flexible MOQ"];
+    : ["OEM/ODM", "Sampling", "Material match", "Export packing", "QC documents"];
   const localizedProductFamilies = locale === "zh"
     ? ["瓦楞纸 / 坑纸", "食品级纸", "牛皮纸", "白卡纸", "特种纸", "纸盒与纸托"]
     : productFamilies;
@@ -77,7 +77,7 @@ export default async function SiteFooter() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex items-center justify-between rounded-lg border border-white/12 bg-white/7 px-4 py-3 text-sm font-black text-[#f7f0df]/86 transition hover:-translate-y-0.5 hover:border-[#e8c06c]/60 hover:bg-white/10 hover:text-[#e8c06c]"
+                  className="group flex items-center justify-between text-sm font-semibold text-[#f7f0df]/78 transition hover:text-[#e8c06c]"
                 >
                   <span className="inline-flex items-center gap-3">
                     <Icon className="size-4" />
@@ -88,7 +88,7 @@ export default async function SiteFooter() {
               );
             })}
           </nav>
-          <div className="hidden rounded-lg border border-white/12 bg-white/7 p-4 sm:block">
+          <div className="kh-footer-families hidden sm:block">
             <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-[#e8c06c]">
               {locale === "zh" ? "产品系列" : "Product families"}
             </p>
@@ -106,7 +106,7 @@ export default async function SiteFooter() {
               })}
             </div>
           </div>
-          <div className="hidden rounded-lg border border-white/12 bg-white/7 p-4 sm:block md:col-span-2">
+          <div className="kh-footer-support hidden border-t border-white/12 pt-4 sm:block md:col-span-2">
             <p className="mb-3 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.18em] text-[#e8c06c]">
               <ShieldCheck className="size-4" />
               {locale === "zh" ? "项目支持" : "Project support"}

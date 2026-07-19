@@ -23,7 +23,7 @@ const productSystems = [
   {
     id: "packaging",
     icon: PackageCheck,
-    image: showcaseImages.displayWide,
+    image: showcaseImages.foodOpen,
     href: "/products?system=packaging",
     en: homeEnglish.systems.packaging,
     zh: {
@@ -70,14 +70,24 @@ export default async function ProductShowcase() {
                 href={system.href}
                 className={`kh-system-card group relative overflow-hidden border border-[#cdbb9a] shadow-[0_18px_48px_rgba(62,49,28,.12)] ${system.id === "packaging" ? "kh-system-card--packaging bg-[#eee8db] text-[#171713]" : "bg-[#18372e] text-white"}`}
               >
-                <ResilientImage
-                  src={system.image}
-                  fallbackSrc={system.id === "materials" ? showcaseImages.structureMaterialReal : showcaseImages.webOpenBox}
-                  alt={copy.title}
-                  fill
-                  sizes="(min-width: 1024px) 48vw, 94vw"
-                  className="object-cover opacity-72 transition duration-700 group-hover:scale-[1.035] group-hover:opacity-84"
-                />
+                {system.id === "packaging" ? (
+                  <div className="kh-packaging-diagram absolute inset-0" role="img" aria-label={isZh ? "暖白纸盒、打开状态和纸托结构示意" : "Warm-white carton, open state, and tray structure diagram"}>
+                    <span className="kh-packaging-diagram__lid" />
+                    <span className="kh-packaging-diagram__base" />
+                    <span className="kh-packaging-diagram__tray" />
+                    <span className="kh-packaging-diagram__crease kh-packaging-diagram__crease--one" />
+                    <span className="kh-packaging-diagram__crease kh-packaging-diagram__crease--two" />
+                  </div>
+                ) : (
+                  <ResilientImage
+                    src={system.image}
+                    fallbackSrc={showcaseImages.structureMaterialReal}
+                    alt={copy.title}
+                    fill
+                    sizes="(min-width: 1024px) 48vw, 94vw"
+                    className="object-cover opacity-72 transition duration-700 group-hover:scale-[1.035] group-hover:opacity-84"
+                  />
+                )}
                 <div className="kh-system-card__veil absolute inset-0" />
                 <div className="kh-system-card__content relative flex flex-col justify-between p-5 sm:p-8">
                   <div className="flex items-start justify-between gap-4">

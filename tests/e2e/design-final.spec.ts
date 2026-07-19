@@ -26,6 +26,27 @@ test.describe("final design contract", () => {
     await expect(page.locator("#inquiry h2")).toHaveText("Move your packaging brief into production.");
   });
 
+  test("production metadata stays on the canonical public origin", async ({ request }) => {
+    for (const path of [
+      "/en",
+      "/en/products",
+      "/en/contact",
+      "/en/factory",
+      "/en/process",
+      "/en/procurement",
+      "/en/model-preview",
+      "/en/products/kh-fd-cupfan-150350-pr-001-paper-cup-fan",
+    ]) {
+      const response = await request.get(path);
+      expect(response.status()).toBe(200);
+      const html = await response.text();
+      expect(html).not.toContain('href="http://127.0.0.1');
+      expect(html).not.toContain('content="http://127.0.0.1');
+      expect(html).toContain("https://www.kehong.tech");
+      expect((html.match(/rel=\"canonical\"/g) ?? []).length).toBe(1);
+    }
+  });
+
   test("hero and manufacturing use distinct verified local compositions", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
     const hero = await page.locator("#home img").first().getAttribute("src");
@@ -34,6 +55,18 @@ test.describe("final design contract", () => {
     expect(manufacturing).toHaveLength(2);
     expect(manufacturing).not.toContain(hero);
     expect(new Set(manufacturing).size).toBe(2);
+  });
+
+  test("homepage image semantics are unique and desktop inquiry widget is absent", async ({ page }) => {
+    await page.goto("/en", { waitUntil: "networkidle" });
+    const imageSources = await page.locator("main img").evaluateAll((images) => images.map((image) => (image as HTMLImageElement).currentSrc || image.getAttribute("src")).filter(Boolean));
+    expect(new Set(imageSources).size).toBe(imageSources.length);
+    await expect(page.locator(".kh-solution-visual--cupstock")).toHaveCount(1);
+    await expect(page.locator(".kh-solution-visual--corrugated")).toHaveCount(1);
+    await expect(page.locator(".kh-solution-visual--inserts")).toHaveCount(1);
+    await expect(page.locator("text=CONTACT US")).toHaveCount(0);
+    await expect(page.locator(".kh-packaging-diagram")).toHaveCount(1);
+    await expect(page.locator("html")).toHaveCSS("scroll-padding-top", "96px");
   });
 
   for (const viewport of [
@@ -76,6 +109,7 @@ test.describe("final design contract", () => {
       await expect(page.locator(".kh-desktop-nav")).toBeHidden();
       await expectActuallyVisible(page.locator("details.kh-compact-nav > summary"));
       await expectActuallyVisible(page.locator("#home .kh-hero__visual"));
+      await expect(page.locator(".mobile-sticky-action-bar")).toHaveCSS("display", "none");
     }
   });
 
