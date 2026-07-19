@@ -17,7 +17,6 @@ import {
   openGraphLocales,
   siteConfig,
 } from "@/lib/site";
-import MobileStickyActionBar from "@/components/site/MobileStickyActionBar";
 import "../globals.css";
 
 export default async function RootLayout({
@@ -55,7 +54,6 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages} timeZone={timeZone} now={now}>
           {children}
-          <MobileStickyActionBar />
         </NextIntlClientProvider>
         {process.env.VERCEL === "1" ? (
           <>

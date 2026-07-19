@@ -70,14 +70,14 @@ export default async function CinematicHero() {
                 {isZh ? "真实设备" : homeEnglish.hero.imageLabel}
               </div>
               <div className="kh-hero__caption absolute bottom-5 left-5 right-5 max-w-xl text-white sm:bottom-7 sm:left-7 sm:right-auto">
-                <p className="text-[10px] font-black uppercase tracking-[.24em] text-[#e8c06c]">Foshan Kehong</p>
-                <p className="mt-2 text-2xl font-black leading-tight sm:text-3xl">
+                <p className="kh-hero__brand text-[10px] font-black uppercase tracking-[.24em] text-[#e8c06c]">Foshan Kehong</p>
+                <p className="kh-hero__image-title mt-2 text-2xl font-black leading-tight sm:text-3xl">
                   {isZh ? "纸材加工能力，支持可靠生产。" : homeEnglish.hero.imageTitle}
                 </p>
-                <p className="mt-2 text-xs leading-5 text-white/72 sm:text-sm">
+                <p className="kh-hero__detail mt-2 text-xs leading-5 text-white/72 sm:text-sm">
                   {isZh ? "自动送料 · 纸板加工 · 过程控制" : homeEnglish.hero.imageDetail}
                 </p>
-                <Link href="/factory" className="mt-4 inline-flex min-h-11 items-center gap-2 border-b border-[#e8c06c] pb-1.5 text-sm font-black text-[#e8c06c] transition hover:text-white">
+                <Link href="/factory" className="kh-hero__factory-link mt-4 inline-flex min-h-11 items-center gap-2 border-b border-[#e8c06c] pb-1.5 text-sm font-black text-[#e8c06c] transition hover:text-white">
                   {isZh ? "探索工厂" : homeEnglish.hero.imageCta}
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>

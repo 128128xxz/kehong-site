@@ -49,7 +49,6 @@ const publicCandidates = [
   path.join(root, "src/app/sitemap.ts"),
   path.join(root, "src/lib/inquiryEmail.ts"),
   path.join(root, "src/components/site/InquiryForm.tsx"),
-  path.join(root, "src/components/site/FloatingContactWidget.tsx"),
 ].filter((file) => fs.existsSync(file));
 
 const publicFiles = [...new Set(publicCandidates)].filter((file) => {

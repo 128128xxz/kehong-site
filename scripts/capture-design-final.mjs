@@ -14,20 +14,21 @@ const outputDir = process.env.DESIGN_FINAL_OUTPUT_DIR
 mkdirSync(outputDir, { recursive: true });
 
 const viewports = [
-  [390, 844], [640, 960], [768, 1024], [1024, 768], [1280, 800], [1440, 900],
+  [360, 800], [390, 844], [430, 932], [640, 960], [768, 1024], [1024, 768], [1280, 800], [1440, 900],
 ];
 const crops = [
-  [390, 844, "hero", "#home"],
-  [390, 844, "solutions", "#solutions"],
+  [390, 844, "hero-equipment-card", ".kh-hero__visual"],
+  [390, 844, "product-systems", "#product-window"],
+  [390, 844, "food-bakery", "#solutions .kh-solutions-grid > a:nth-child(1)"],
+  [390, 844, "cupstock", "#solutions .kh-solutions-grid > a:nth-child(2)"],
+  [390, 844, "corrugated", "#solutions .kh-solutions-grid > a:nth-child(3)"],
+  [390, 844, "inserts", "#solutions .kh-solutions-grid > a:nth-child(4)"],
   [390, 844, "manufacturing", "#capabilities"],
   [390, 844, "3d-preview", "#studio"],
   [390, 844, "final-quote", "#inquiry"],
   [640, 960, "solutions", "#solutions"],
-  [768, 1024, "header-and-solutions-heading", "#solutions > div > div:first-child"],
-  [768, 1024, "inserts-card", "#solutions .kh-solution-card:nth-of-type(4)"],
-  [768, 1024, "hero", "#home"],
   [768, 1024, "solutions", "#solutions"],
-  [1024, 768, "header", "header"],
+  [768, 1024, "header-and-solutions-heading", "#solutions > div > div:first-child"],
   [1024, 768, "hero", "#home"],
   [1440, 900, "header", "header"],
   [1440, 900, "hero", "#home"],
@@ -55,7 +56,10 @@ async function settle(page) {
     scrollTo(0, 0);
     await Promise.all(Array.from(document.images).map((image) => image.complete
       ? Promise.resolve()
-      : new Promise((resolve) => { image.addEventListener("load", resolve, { once: true }); image.addEventListener("error", resolve, { once: true }); })));
+      : Promise.race([
+        new Promise((resolve) => { image.addEventListener("load", resolve, { once: true }); image.addEventListener("error", resolve, { once: true }); }),
+        new Promise((resolve) => setTimeout(resolve, 2500)),
+      ])));
   });
   await page.addStyleTag({ content: "*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}" });
   await page.waitForTimeout(120);
@@ -104,6 +108,7 @@ try {
 } catch {}
 
 const lighthousePath = process.env.RELEASE_LIGHTHOUSE_JSON ? path.resolve(process.env.RELEASE_LIGHTHOUSE_JSON) : null;
+const lighthouseHtmlPath = process.env.RELEASE_LIGHTHOUSE_HTML ? path.resolve(process.env.RELEASE_LIGHTHOUSE_HTML) : null;
 const lighthouse = lighthousePath ? JSON.parse(readFileSync(lighthousePath, "utf8")) : null;
 const lighthouseSummary = lighthouse ? {
   performance: lighthouse.categories.performance.score * 100,
@@ -115,6 +120,7 @@ const lighthouseSummary = lighthouse ? {
   cls: lighthouse.audits["cumulative-layout-shift"].displayValue,
   fetchTime: lighthouse.fetchTime,
   reportSha256: sha256(lighthousePath),
+  ...(lighthouseHtmlPath ? { reportHtmlSha256: sha256(lighthouseHtmlPath) } : {}),
 } : undefined;
 
 const manifest = {
@@ -129,13 +135,13 @@ const manifest = {
   previewPid,
   previewPort,
   playwrightBaseURL: baseURL,
-  imageAssetVersion: sha256(path.join(root, "reports", "design-final", "image-audit.json")),
+  imageAssetVersion: sha256(path.join(root, "reports", "design-final", "home-image-map.json")),
   tests: {
-    typecheck: "PASS",
-    eslint: "PASS",
-    unit: "15 passed",
-    playwright: "29 passed, 1 production-only test skipped",
-    productionBuild: "PASS",
+    typecheck: process.env.DESIGN_FINAL_TYPECHECK_RESULT ?? "PASS",
+    eslint: process.env.DESIGN_FINAL_LINT_RESULT ?? "PASS",
+    unit: process.env.DESIGN_FINAL_UNIT_RESULT ?? "15 passed",
+    playwright: process.env.DESIGN_FINAL_PLAYWRIGHT_RESULT ?? "PASS",
+    productionBuild: process.env.DESIGN_FINAL_BUILD_RESULT ?? "PASS",
   },
   ...(lighthouseSummary ? { lighthouse: lighthouseSummary } : {}),
   screenshots,

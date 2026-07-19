@@ -65,6 +65,8 @@ test.describe("final design contract", () => {
     await expect(page.locator(".kh-solution-visual--corrugated")).toHaveCount(1);
     await expect(page.locator(".kh-solution-visual--inserts")).toHaveCount(1);
     await expect(page.locator("text=CONTACT US")).toHaveCount(0);
+    await expect(page.locator(".mobile-sticky-action-bar")).toHaveCount(0);
+    await expect(page.getByText("Inquiry", { exact: true })).toHaveCount(0);
     await expect(page.locator(".kh-packaging-diagram")).toHaveCount(1);
     await expect(page.locator("html")).toHaveCSS("scroll-padding-top", "96px");
   });
@@ -109,27 +111,99 @@ test.describe("final design contract", () => {
       await expect(page.locator(".kh-desktop-nav")).toBeHidden();
       await expectActuallyVisible(page.locator("details.kh-compact-nav > summary"));
       await expectActuallyVisible(page.locator("#home .kh-hero__visual"));
-      await expect(page.locator(".mobile-sticky-action-bar")).toHaveCSS("display", "none");
+      await expect(page.locator(".mobile-sticky-action-bar")).toHaveCount(0);
     }
   });
 
-  test("mobile inquiry bar follows the visibility contract", async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/en", { waitUntil: "networkidle" });
-    const bar = page.locator(".mobile-sticky-action-bar");
-    await expect(bar).toHaveAttribute("data-visible", "false");
+  test("homepage has no fixed inquiry or floating contact UI", async ({ page }) => {
+    for (const viewport of [
+      { width: 360, height: 800 },
+      { width: 390, height: 844 },
+      { width: 430, height: 932 },
+      { width: 640, height: 960 },
+      { width: 768, height: 1024 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/en", { waitUntil: "networkidle" });
+      await expect(page.locator(".mobile-sticky-action-bar")).toHaveCount(0);
+      await expect(page.getByText("Inquiry", { exact: true })).toHaveCount(0);
+      await expect(page.getByText("CONTACT US", { exact: true })).toHaveCount(0);
+      expect(await page.evaluate(() => document.body.textContent?.includes("Request a quote") ?? false)).toBe(true);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+    }
+  });
 
-    await page.locator("#product-window").scrollIntoViewIfNeeded();
-    await expect(bar).toHaveAttribute("data-visible", "true");
-    await expectActuallyVisible(bar);
+  test("mobile solutions and studio keep visual and copy regions separate", async ({ page }) => {
+    for (const viewport of [
+      { width: 360, height: 800 },
+      { width: 390, height: 844 },
+      { width: 430, height: 932 },
+      { width: 640, height: 960 },
+      { width: 768, height: 1024 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/en", { waitUntil: "networkidle" });
+      const result = await page.evaluate(() => {
+        const section = document.querySelector("#solutions");
+        const cards = [...document.querySelectorAll<HTMLElement>("#solutions .kh-solution-card")];
+        const overlap = cards.some((card) => {
+          const visual = card.querySelector<HTMLElement>(".kh-solution-visual, .kh-solution-split__media");
+          const copy = card.querySelector<HTMLElement>(".kh-solution-card__content, .kh-solution-split__copy");
+          if (!visual || !copy) return false;
+          const a = visual.getBoundingClientRect();
+          const b = copy.getBoundingClientRect();
+          return Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)) > 1
+            && Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) > 1;
+        });
+        const clippedCopy = cards.some((card) => [...card.querySelectorAll<HTMLElement>("h3, p, a")].some((element) => {
+          const style = getComputedStyle(element);
+          return style.textOverflow === "ellipsis" || style.webkitLineClamp !== "none" || (style.overflow === "hidden" && element.scrollHeight > element.clientHeight + 1);
+        }));
+        const studio = document.querySelector<HTMLElement>("#studio .kh-3d-technical");
+        const detail = studio?.querySelector<HTMLElement>(".kh-3d-technical__detail");
+        const model = studio?.querySelector<HTMLElement>(".kh-3d-technical__model");
+        const detailBox = detail?.getBoundingClientRect();
+        const modelBox = model?.getBoundingClientRect();
+        const positionedOverlays = [...document.querySelectorAll<HTMLElement>("body *")].filter((element) => {
+          const position = getComputedStyle(element).position;
+          return position === "fixed" || (position === "sticky" && element.tagName.toLowerCase() !== "header");
+        });
+        const headingsInsideCards = cards.every((card) => {
+          const cardBox = card.getBoundingClientRect();
+          return [...card.querySelectorAll<HTMLElement>("h3")].every((heading) => {
+            const box = heading.getBoundingClientRect();
+            return box.top >= cardBox.top - 1 && box.bottom <= cardBox.bottom + 1 && box.left >= cardBox.left - 1 && box.right <= cardBox.right + 1;
+          });
+        });
+        return {
+          cardCount: cards.length,
+          sectionWidth: section?.getBoundingClientRect().width ?? 0,
+          overlap,
+          clippedCopy,
+          positionedOverlays: positionedOverlays.length,
+          headingsInsideCards,
+          studioVertical: Boolean(detailBox && modelBox && detailBox.top >= modelBox.bottom - 1),
+          structureReviewRows: document.querySelectorAll("#studio .kh-3d-checks li").length,
+        };
+      });
+      expect(result.cardCount).toBe(4);
+      expect(result.overlap).toBe(false);
+      expect(result.clippedCopy).toBe(false);
+      expect(result.positionedOverlays).toBe(0);
+      expect(result.headingsInsideCards).toBe(true);
+      expect(result.structureReviewRows).toBe(4);
+      if (viewport.width < 640) expect(result.studioVertical).toBe(true);
 
-    await page.locator("#inquiry").scrollIntoViewIfNeeded();
-    await expect(bar).toHaveAttribute("data-visible", "false");
-    await page.locator("footer").scrollIntoViewIfNeeded();
-    await expect(bar).toHaveAttribute("data-visible", "false");
-
-    await page.goto("/en/contact", { waitUntil: "networkidle" });
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight / 2));
-    await expect(bar).toHaveAttribute("data-visible", "false");
+      for (const card of await page.locator("#solutions .kh-solution-card").all()) {
+        await card.scrollIntoViewIfNeeded();
+        await expect.poll(() => card.evaluate((element) => {
+          const box = element.getBoundingClientRect();
+          const x = Math.round(box.left + box.width / 2);
+          const y = Math.round(box.top + box.height / 2);
+          const hit = document.elementFromPoint(x, y);
+          return Boolean(hit && (hit === element || element.contains(hit)));
+        })).toBe(true);
+      }
+    }
   });
 });

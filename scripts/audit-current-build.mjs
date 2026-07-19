@@ -155,30 +155,14 @@ const assertions = {};
   const page = await browser.newPage({ viewport, reducedMotion: "reduce" });
   await page.goto(`${baseURL}/en`, { waitUntil: "networkidle" });
   await settle(page);
-  const bar = page.locator(".mobile-sticky-action-bar");
-  assertions.mobileSticky = { initial: await visualState(bar) };
-  await page.evaluate(() => scrollTo(0, document.querySelector(".kh-hero").getBoundingClientRect().bottom + 100));
-  await page.waitForTimeout(300);
-  assertions.mobileSticky.afterHero = await visualState(bar);
-  await page.locator("#inquiry").scrollIntoViewIfNeeded();
-  await page.waitForTimeout(300);
-  assertions.mobileSticky.finalQuote = await visualState(bar);
-  await page.locator("footer").scrollIntoViewIfNeeded();
-  await page.waitForTimeout(300);
-  assertions.mobileSticky.footer = await visualState(bar);
-  await page.goto(`${baseURL}/en/contact`, { waitUntil: "networkidle" });
-  await page.waitForTimeout(300);
-  assertions.mobileSticky.contact = await visualState(bar);
+  assertions.mobileInquiryBar = {
+    count: await page.locator(".mobile-sticky-action-bar").count(),
+    floatingInquiryText: await page.getByText("Inquiry", { exact: true }).count(),
+  };
   await page.goto(`${baseURL}/en`, { waitUntil: "networkidle" });
   await settle(page);
   await saveLocator(page.locator(".kh-hero"), "crops/hero-390.png", viewport);
   await saveLocator(page.locator("#studio"), "crops/studio-390.png", viewport);
-  await page.evaluate(() => {
-    const inquiry = document.querySelector("#inquiry");
-    scrollTo(0, inquiry.offsetTop - innerHeight + 100);
-  });
-  await page.waitForTimeout(300);
-  await save(page, "crops/sticky-final-transition-390.png", viewport);
   await page.close();
 }
 
