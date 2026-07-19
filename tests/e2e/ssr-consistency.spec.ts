@@ -7,7 +7,7 @@ test.describe("Production SSR/CDN consistency", () => {
 
   test("raw HTML carries the current build and homepage architecture", async ({ request }) => {
     const origin = (process.env.PRODUCTION_BASE_URL || "https://www.kehong.tech").replace(/\/+$/u, "");
-    const expectedBuildSha = process.env.EXPECTED_PRODUCTION_BUILD_SHA || "01cf624";
+    const expectedBuildSha = process.env.EXPECTED_PRODUCTION_BUILD_SHA || process.env.VERCEL_GIT_COMMIT_SHA || "local";
 
     const root = await request.get(`${origin}/`, { maxRedirects: 0 });
     expect(root.status()).toBe(308);
@@ -32,9 +32,9 @@ test.describe("Production SSR/CDN consistency", () => {
 
     const html = await normal.text();
     expect(html).not.toContain("0 products");
-    expect(html).toContain("Two product systems");
-    expect(html).toContain("Packaging solutions for real production needs");
-    expect(html).toContain("Production you can verify");
+    expect(html).toContain("Paper packaging,");
+    expect(html).toContain("Explore Kehong");
+    expect(html).toContain("Paper materials");
     expect(html).not.toContain("Popular products");
   });
 });

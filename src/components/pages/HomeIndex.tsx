@@ -1,27 +1,16 @@
-import CinematicHero from "@/components/site/CinematicHero";
 import Header from "@/components/site/Header";
-import InquiryBand from "@/components/site/InquiryBand";
-import ManufacturingProof from "@/components/site/ManufacturingProof";
-import ProductShowcase from "@/components/site/ProductShowcase";
-import Product3DStudio from "@/components/site/Product3DStudio";
-import SelectedSolutions from "@/components/site/SelectedSolutions";
-import SiteMotion from "@/components/site/SiteMotion";
-import SiteFooter from "@/components/site/SiteFooter";
+import ProductionPortalHome from "@/components/site/ProductionPortalHome";
+import { getLocale } from "next-intl/server";
 
 export default async function HomeIndex() {
+  const locale = await getLocale();
+
   return (
-    <div className="kh-premium-site texture-paper min-h-screen bg-[#f6f4ec] text-[#171713]">
-      <SiteMotion />
+    <div className="kh-premium-site production-portal-page min-h-screen bg-[#f6f4ec] text-[#171713]">
       <Header />
-      <main>
-        <CinematicHero />
-        <ProductShowcase />
-        <SelectedSolutions />
-        <ManufacturingProof />
-        <Product3DStudio />
-        <InquiryBand />
+      <main className="production-portal-main">
+        <ProductionPortalHome locale={locale} />
       </main>
-      <SiteFooter />
     </div>
   );
 }

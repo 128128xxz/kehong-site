@@ -45,6 +45,7 @@ next-env.d.ts
 /reports/screenshots/
 /reports/release-candidate/
 /reports/lighthouse-*.json
+/reports/lighthouse/
 /reports/design-final/working/
 
 # codex working files

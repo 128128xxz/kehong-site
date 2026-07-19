@@ -44,7 +44,7 @@ export default function Header() {
   return (
     <header className="kh-hairline sticky top-0 z-50 border-b border-[#d9d2be]/80 bg-[#f8f7f1]/94 text-[#171713] shadow-sm backdrop-blur-2xl">
       <div className="mx-auto flex h-[4.5rem] max-w-[90rem] items-center justify-between gap-5 px-4 sm:px-6 lg:px-12">
-        <Link href="/" className="flex min-w-0 items-center gap-3" aria-label={copy.home}>
+        <Link href="/" className="flex min-w-0 items-center gap-3">
           <span className="premium-depth flex h-10 w-14 items-center justify-center rounded-lg border-2 border-[#171713]/80 bg-[#171713] text-sm font-black tracking-tight text-[#e8c06c] shadow-sm">KH</span>
           <span className="min-w-0">
             <span className="block truncate text-sm font-black uppercase tracking-[0.18em] text-[#171713]">{t("brand")}</span>
