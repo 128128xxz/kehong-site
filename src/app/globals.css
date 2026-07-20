@@ -652,6 +652,306 @@
   }
 }
 
+/* Production portal closeout: paper-engineering surface, static technical visuals, and stable breakpoints. */
+.production-portal {
+  background-color: var(--portal-paper);
+  background-image:
+    linear-gradient(125deg, rgba(255, 255, 255, 0.62), rgba(232, 225, 211, 0.18) 52%, rgba(255, 255, 255, 0.35)),
+    url("/images/textures/paper-fiber.svg");
+  background-position: center, center;
+  background-size: auto, 620px auto;
+}
+
+.production-portal::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  opacity: 0.32;
+  background:
+    linear-gradient(90deg, transparent 0 7%, rgba(24, 55, 46, 0.06) 7% 7.2%, transparent 7.2% 92.8%, rgba(24, 55, 46, 0.06) 92.8% 93%, transparent 93%),
+    linear-gradient(0deg, transparent 0 13%, rgba(24, 55, 46, 0.06) 13% 13.2%, transparent 13.2% 86.8%, rgba(24, 55, 46, 0.06) 86.8% 87%, transparent 87%);
+}
+
+.production-portal__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.production-portal__stage-visual::after {
+  background: linear-gradient(180deg, rgba(16, 40, 32, 0.02) 36%, rgba(16, 40, 32, 0.42));
+}
+
+.production-portal__stage-visual[data-visual-route="factory"]::after {
+  background: linear-gradient(180deg, rgba(16, 40, 32, 0.02) 45%, rgba(16, 40, 32, 0.22));
+}
+
+.production-portal__stage-copy > div > p:not(.production-portal__stage-category) {
+  color: rgba(255, 253, 247, 0.86);
+}
+
+.production-portal__route-text small {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.production-portal__dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+}
+
+.production-portal__technical-visual {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: #e9e3d6;
+  color: #24483d;
+}
+
+.production-portal__technical-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.55;
+  background-image:
+    linear-gradient(rgba(36, 72, 61, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 72, 61, 0.08) 1px, transparent 1px);
+  background-size: 2.8rem 2.8rem;
+}
+
+.production-portal__technical-caption {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.8rem;
+  margin: 0;
+  color: rgba(36, 72, 61, 0.7);
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+
+.production-portal__package-drawing,
+.production-portal__studio-drawing {
+  position: relative;
+  width: min(72%, 21rem);
+  aspect-ratio: 1.35;
+}
+
+.production-portal__package-panel,
+.production-portal__package-insert,
+.production-portal__studio-panel,
+.production-portal__studio-fold,
+.production-portal__studio-insert {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 1px solid #24483d;
+  background: rgba(250, 248, 243, 0.86);
+  color: #24483d;
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.production-portal__package-panel--back {
+  inset: 7% 20% 38% 8%;
+  transform: skewY(-12deg);
+}
+
+.production-portal__package-panel--base {
+  inset: 40% 9% 10% 18%;
+  background: #e4d1aa;
+  transform: skewY(12deg);
+}
+
+.production-portal__package-panel--lid {
+  inset: 9% 9% 57% 42%;
+  background: #f6f1e6;
+  transform: rotate(9deg);
+}
+
+.production-portal__package-insert {
+  inset: 49% 34% 20% 38%;
+  border-style: dashed;
+  background: rgba(255, 253, 247, 0.48);
+  transform: rotate(-7deg);
+}
+
+.production-portal__solution-stack {
+  display: grid;
+  width: min(75%, 22rem);
+  gap: 0.4rem;
+  transform: rotate(-5deg);
+}
+
+.production-portal__solution-stack span {
+  display: flex;
+  min-height: 2.3rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(36, 72, 61, 0.48);
+  background: hsl(calc(40 + var(--layer-index) * 8) 45% calc(93% - var(--layer-index) * 5%));
+  color: #24483d;
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  box-shadow: calc(var(--layer-index) * 0.18rem) calc(var(--layer-index) * 0.18rem) 0 rgba(36, 72, 61, 0.12);
+}
+
+.production-portal__studio-panel {
+  inset: 14% 16% 18% 12%;
+  background: #f8f4e9;
+}
+
+.production-portal__studio-fold {
+  inset: 32% 29% 34% 27%;
+  border-style: dashed;
+  background: #e4d1aa;
+  transform: skewY(-10deg);
+}
+
+.production-portal__studio-insert {
+  inset: 44% 38% 26% 43%;
+  background: rgba(255, 253, 247, 0.72);
+  transform: rotate(10deg);
+}
+
+.production-portal__dimension {
+  position: absolute;
+  color: #66766f;
+  font-size: 0.48rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.production-portal__dimension::before {
+  position: absolute;
+  content: "";
+  border-color: #66766f;
+}
+
+.production-portal__dimension--width {
+  left: 18%;
+  right: 18%;
+  bottom: 5%;
+  text-align: center;
+}
+
+.production-portal__dimension--width::before {
+  right: 0;
+  bottom: 0.85rem;
+  left: 0;
+  border-top: 1px solid;
+}
+
+.production-portal__dimension--depth {
+  top: 18%;
+  right: 2%;
+  writing-mode: vertical-rl;
+}
+
+.production-portal__dimension--depth::before {
+  top: -0.4rem;
+  bottom: -0.4rem;
+  left: -0.35rem;
+  border-left: 1px solid;
+}
+
+@media (min-width: 1180px) {
+  .production-portal-page .kh-desktop-nav { display: flex !important; }
+  .production-portal-page .kh-compact-nav { display: none !important; }
+}
+
+@media (max-width: 1179px) {
+  .production-portal-page .kh-desktop-nav { display: none !important; }
+  .production-portal-page .kh-compact-nav { display: block !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1179px) {
+  .production-portal {
+    height: calc(100dvh - var(--site-header-height));
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .production-portal__inner {
+    height: 100%;
+    min-height: 0;
+    padding-top: clamp(0.75rem, 2vw, 1.4rem);
+    padding-bottom: 0.85rem;
+    grid-template-rows: minmax(0, 1fr) 2.9rem;
+  }
+
+  .production-portal__stage {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .production-portal__brand-panel h1 {
+    margin-block: clamp(0.65rem, 2vh, 1.2rem);
+  }
+
+  .production-portal__proofs {
+    margin-top: 0.8rem;
+    padding-top: 0.7rem;
+  }
+
+  .production-portal__mobile-actions {
+    min-height: 2.9rem;
+  }
+}
+
+@media (min-width: 1180px) and (max-height: 850px) {
+  .production-portal__inner {
+    padding-top: 0.85rem;
+    grid-template-rows: minmax(0, 1fr) 2.45rem;
+  }
+
+  .production-portal__brand-panel h1 {
+    margin-block: 0.75rem 0.85rem;
+  }
+
+  .production-portal__proofs {
+    margin-top: 0.75rem;
+    padding-top: 0.7rem;
+  }
+
+  .production-portal__stage {
+    grid-template-rows: minmax(0, 1fr) minmax(9.2rem, 0.4fr);
+  }
+
+  .production-portal__route {
+    min-height: 3.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .production-portal-page .kh-compact-nav { display: none !important; }
+  .production-portal-page [data-portal-quote="true"] { display: none !important; }
+  .production-portal {
+    background-color: var(--portal-paper-light);
+    background-image:
+      linear-gradient(125deg, rgba(255, 255, 255, 0.64), rgba(232, 225, 211, 0.12) 52%, rgba(255, 255, 255, 0.45)),
+      url("/images/textures/paper-fiber.svg");
+    background-size: auto, 540px auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .production-portal-page [data-portal-quote="true"] { display: inline-flex !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .interactive-portal *,
   .interactive-portal *::before,
@@ -4665,4 +4965,155 @@ footer nav a {
     margin-top: 0.75rem;
     font-size: 0.9375rem;
   }
+}
+
+/* Final portal overrides intentionally live last so legacy portal rules cannot regress the release candidate. */
+.production-portal {
+  position: relative;
+  background-color: var(--portal-paper);
+  background-image:
+    linear-gradient(125deg, rgba(255, 255, 255, 0.62), rgba(232, 225, 211, 0.18) 52%, rgba(255, 255, 255, 0.35)),
+    url("/images/textures/paper-fiber.svg");
+  background-position: center, center;
+  background-size: auto, 620px auto;
+}
+
+.production-portal::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  opacity: 0.32;
+  background:
+    linear-gradient(90deg, transparent 0 7%, rgba(24, 55, 46, 0.06) 7% 7.2%, transparent 7.2% 92.8%, rgba(24, 55, 46, 0.06) 92.8% 93%, transparent 93%),
+    linear-gradient(0deg, transparent 0 13%, rgba(24, 55, 46, 0.06) 13% 13.2%, transparent 13.2% 86.8%, rgba(24, 55, 46, 0.06) 86.8% 87%, transparent 87%);
+}
+
+.production-portal__inner { position: relative; z-index: 1; }
+.production-portal__stage-visual::after { background: linear-gradient(180deg, rgba(16, 40, 32, 0.02) 36%, rgba(16, 40, 32, 0.42)); }
+.production-portal__stage-visual[data-visual-route="factory"]::after { background: linear-gradient(180deg, rgba(16, 40, 32, 0.02) 45%, rgba(16, 40, 32, 0.22)); }
+.production-portal__stage-copy > div > p:not(.production-portal__stage-category) { color: rgba(255, 253, 247, 0.86); }
+.production-portal__route-text small { overflow: visible; text-overflow: clip; white-space: normal; }
+
+.production-portal__dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+}
+
+.production-portal__technical-visual {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: #e9e3d6;
+  color: #24483d;
+}
+
+.production-portal__technical-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.55;
+  background-image: linear-gradient(rgba(36, 72, 61, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(36, 72, 61, 0.08) 1px, transparent 1px);
+  background-size: 2.8rem 2.8rem;
+}
+
+.production-portal__technical-caption {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.8rem;
+  margin: 0;
+  color: rgba(36, 72, 61, 0.7);
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+
+.production-portal__package-drawing,
+.production-portal__studio-drawing { position: relative; width: min(72%, 21rem); aspect-ratio: 1.35; }
+.production-portal__package-panel,
+.production-portal__package-insert,
+.production-portal__studio-panel,
+.production-portal__studio-fold,
+.production-portal__studio-insert {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 1px solid #24483d;
+  background: rgba(250, 248, 243, 0.86);
+  color: #24483d;
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+.production-portal__package-panel--back { inset: 7% 20% 38% 8%; transform: skewY(-12deg); }
+.production-portal__package-panel--base { inset: 40% 9% 10% 18%; background: #e4d1aa; transform: skewY(12deg); }
+.production-portal__package-panel--lid { inset: 9% 9% 57% 42%; background: #f6f1e6; transform: rotate(9deg); }
+.production-portal__package-insert { inset: 49% 34% 20% 38%; border-style: dashed; background: rgba(255, 253, 247, 0.48); transform: rotate(-7deg); }
+.production-portal__solution-stack { display: grid; width: min(75%, 22rem); gap: 0.4rem; transform: rotate(-5deg); }
+.production-portal__solution-stack span {
+  display: flex;
+  min-height: 2.3rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(36, 72, 61, 0.48);
+  background: hsl(calc(40 + var(--layer-index) * 8) 45% calc(93% - var(--layer-index) * 5%));
+  color: #24483d;
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  box-shadow: calc(var(--layer-index) * 0.18rem) calc(var(--layer-index) * 0.18rem) 0 rgba(36, 72, 61, 0.12);
+}
+.production-portal__studio-panel { inset: 14% 16% 18% 12%; background: #f8f4e9; }
+.production-portal__studio-fold { inset: 32% 29% 34% 27%; border-style: dashed; background: #e4d1aa; transform: skewY(-10deg); }
+.production-portal__studio-insert { inset: 44% 38% 26% 43%; background: rgba(255, 253, 247, 0.72); transform: rotate(10deg); }
+.production-portal__dimension { position: absolute; color: #66766f; font-size: 0.48rem; font-style: normal; font-weight: 800; letter-spacing: 0.1em; }
+.production-portal__dimension--width { right: 18%; bottom: 5%; left: 18%; text-align: center; }
+.production-portal__dimension--width::before { position: absolute; right: 0; bottom: 0.85rem; left: 0; border-top: 1px solid #66766f; content: ""; }
+.production-portal__dimension--depth { top: 18%; right: 2%; writing-mode: vertical-rl; }
+.production-portal__dimension--depth::before { position: absolute; top: -0.4rem; bottom: -0.4rem; left: -0.35rem; border-left: 1px solid #66766f; content: ""; }
+
+@media (min-width: 1180px) {
+  .production-portal-page .kh-desktop-nav { display: flex !important; }
+  .production-portal-page .kh-compact-nav { display: none !important; }
+}
+
+@media (max-width: 1179px) {
+  .production-portal-page .kh-desktop-nav { display: none !important; }
+  .production-portal-page .kh-compact-nav { display: block !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1179px) {
+  .production-portal { height: calc(100dvh - var(--site-header-height)); min-height: 0; overflow: visible; }
+  .production-portal__inner { height: 100%; min-height: 0; padding-top: clamp(0.75rem, 2vw, 1.4rem); padding-bottom: 0.85rem; grid-template-rows: minmax(0, 1fr) 2.9rem; }
+  .production-portal__stage { height: 100%; min-height: 0; }
+  .production-portal__brand-panel h1 { margin-block: clamp(0.65rem, 2vh, 1.2rem); }
+  .production-portal__proofs { margin-top: 0.8rem; padding-top: 0.7rem; }
+  .production-portal__mobile-actions { min-height: 2.9rem; }
+}
+
+@media (min-width: 1180px) and (max-height: 850px) {
+  .production-portal__inner { padding-top: 0.85rem; grid-template-rows: minmax(0, 1fr) 2.45rem; }
+  .production-portal__brand-panel h1 { margin-block: 0.75rem 0.85rem; }
+  .production-portal__proofs { margin-top: 0.75rem; padding-top: 0.7rem; }
+  .production-portal__stage { grid-template-rows: minmax(0, 1fr) minmax(9.2rem, 0.4fr); }
+  .production-portal__route { min-height: 3.5rem; }
+}
+
+@media (max-width: 767px) {
+  .production-portal-page .kh-compact-nav { display: none !important; }
+  .production-portal-page [data-portal-quote="true"] { display: none !important; }
+  .production-portal { background-color: var(--portal-paper-light); background-image: linear-gradient(125deg, rgba(255, 255, 255, 0.64), rgba(232, 225, 211, 0.12) 52%, rgba(255, 255, 255, 0.45)), url("/images/textures/paper-fiber.svg"); background-size: auto, 540px auto; }
+}
+
+@media (min-width: 768px) {
+  .production-portal-page [data-portal-quote="true"] { display: inline-flex !important; }
 }

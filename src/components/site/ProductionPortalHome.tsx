@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import {
   ArrowRight,
@@ -9,16 +8,11 @@ import {
   MessageCircle,
   X,
 } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { showcaseImages } from "@/data/visuals";
 import ResilientImage from "@/components/ui/ResilientImage";
-
-const InteractivePortalScene = dynamic(() => import("@/components/lab/InteractivePortalScene"), {
-  ssr: false,
-  loading: () => <div className="production-portal__scene-fallback" aria-label="Loading structure preview" />,
-});
 
 type PortalRoute = {
   id: string;
@@ -28,7 +22,7 @@ type PortalRoute = {
   href: string;
   image?: string;
   imageAlt?: string;
-  visual: "image" | "scene" | "checklist" | "brief";
+  visual: "image" | "packaging" | "solutions" | "studio" | "checklist" | "brief";
   category: string;
   heading: string;
   description: string;
@@ -45,7 +39,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       title: "Paper materials",
       subtitle: "Grades, GSM, coating, and converting.",
       href: "/products?system=materials",
-      image: showcaseImages.swatch,
+      image: showcaseImages.portalSwatch,
       imageAlt: "Real corrugated paperboard edge and material layers",
       visual: "image",
       category: "Paper materials",
@@ -59,9 +53,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       title: "Finished packaging",
       subtitle: "Boxes, trays, inserts, and custom structures.",
       href: "/products?system=packaging",
-      image: showcaseImages.webOpenBox,
-      imageAlt: "Open custom paper box prepared for production review",
-      visual: "image",
+      visual: "packaging",
       category: "Finished packaging",
       heading: "Finished packaging",
       description: "Boxes, trays, inserts, and custom paper structures for practical production needs.",
@@ -73,9 +65,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       title: "Packaging solutions",
       subtitle: "Choose by application and production need.",
       href: "/solutions",
-      image: showcaseImages.foodBox,
-      imageAlt: "Food and bakery paper packaging assortment",
-      visual: "image",
+      visual: "solutions",
       category: "Packaging solutions",
       heading: "Packaging solutions",
       description: "Find an appropriate structure by application, material, protection, and delivery requirement.",
@@ -101,9 +91,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       title: "3D structure studio",
       subtitle: "Review panels, folds, inserts, and material layers.",
       href: "/model-preview",
-      image: showcaseImages.modelTechnicalPreview,
-      imageAlt: "Technical packaging structure preview",
-      visual: "scene",
+      visual: "studio",
       category: "3D structure studio",
       heading: "Review the structure before production",
       description: "Inspect panel relationships, fold sequence, insert fit, and material layers.",
@@ -143,7 +131,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       title: "纸材与材料",
       subtitle: "纸种、克重、涂层与加工。",
       href: "/products?system=materials",
-      image: showcaseImages.swatch,
+      image: showcaseImages.portalSwatch,
       imageAlt: "真实瓦楞纸板边缘与材料层次",
       visual: "image",
       category: "纸材与材料",
@@ -157,9 +145,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       title: "成品包装",
       subtitle: "纸盒、纸托、内衬与定制结构。",
       href: "/products?system=packaging",
-      image: showcaseImages.webOpenBox,
-      imageAlt: "用于生产评审的定制纸盒",
-      visual: "image",
+      visual: "packaging",
       category: "成品包装",
       heading: "成品包装",
       description: "纸盒、纸托、内衬与定制纸结构，面向实际生产需求。",
@@ -171,9 +157,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       title: "包装解决方案",
       subtitle: "按应用场景与生产需求选择。",
       href: "/solutions",
-      image: showcaseImages.foodBox,
-      imageAlt: "食品与烘焙纸包装组合",
-      visual: "image",
+      visual: "solutions",
       category: "包装解决方案",
       heading: "包装解决方案",
       description: "按应用、材料、防护与交付要求寻找合适结构。",
@@ -199,9 +183,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       title: "3D 结构展厅",
       subtitle: "评审面板、折叠、内衬与材料层次。",
       href: "/model-preview",
-      image: showcaseImages.modelTechnicalPreview,
-      imageAlt: "包装结构技术预览",
-      visual: "scene",
+      visual: "studio",
       category: "3D 结构展厅",
       heading: "在生产前评审结构",
       description: "检查面板关系、折叠顺序、内衬适配与材料层次。",
@@ -322,8 +304,52 @@ function BriefDiagram({ isZh }: { isZh: boolean }) {
   );
 }
 
-function PortalVisual({ route, isZh, active }: { route: PortalRoute; isZh: boolean; active: boolean }) {
-  if (route.visual === "scene") return <InteractivePortalScene active={active} />;
+function PackagingStructureVisual({ isZh }: { isZh: boolean }) {
+  return (
+    <div className="production-portal__technical-visual production-portal__technical-visual--packaging" aria-label={isZh ? "成品包装结构示意" : "Finished packaging structure diagram"}>
+      <div className="production-portal__technical-grid" aria-hidden="true" />
+      <div className="production-portal__package-drawing" aria-hidden="true">
+        <span className="production-portal__package-panel production-portal__package-panel--back">BACK</span>
+        <span className="production-portal__package-panel production-portal__package-panel--base">BASE</span>
+        <span className="production-portal__package-panel production-portal__package-panel--lid">LID</span>
+        <span className="production-portal__package-insert">INSERT</span>
+      </div>
+      <p className="production-portal__technical-caption">PANEL / FOLD / INSERT</p>
+    </div>
+  );
+}
+
+function SolutionsStructureVisual({ isZh }: { isZh: boolean }) {
+  const layers = isZh ? ["食品纸盒", "烘焙托盒", "杯纸材料", "瓦楞结构", "纸内衬"] : ["FOOD BOX", "BAKERY TRAY", "CUPSTOCK", "CORRUGATED", "PAPER INSERT"];
+  return (
+    <div className="production-portal__technical-visual production-portal__technical-visual--solutions" aria-label={isZh ? "包装解决方案结构示意" : "Packaging solutions structure diagram"}>
+      <div className="production-portal__technical-grid" aria-hidden="true" />
+      <div className="production-portal__solution-stack">{layers.map((layer, index) => <span key={layer} style={{ "--layer-index": index } as CSSProperties}>{layer}</span>)}</div>
+      <p className="production-portal__technical-caption">APPLICATION / PROTECTION / DELIVERY</p>
+    </div>
+  );
+}
+
+function StudioStructureVisual({ isZh }: { isZh: boolean }) {
+  return (
+    <div className="production-portal__technical-visual production-portal__technical-visual--studio" aria-label={isZh ? "纸包装结构技术示意" : "Paper packaging technical structure diagram"}>
+      <div className="production-portal__technical-grid" aria-hidden="true" />
+      <div className="production-portal__studio-drawing" aria-hidden="true">
+        <span className="production-portal__studio-panel">PANEL</span>
+        <span className="production-portal__studio-fold">FOLD</span>
+        <span className="production-portal__studio-insert">INSERT</span>
+        <i className="production-portal__dimension production-portal__dimension--width">WIDTH</i>
+        <i className="production-portal__dimension production-portal__dimension--depth">DEPTH</i>
+      </div>
+      <p className="production-portal__technical-caption">STRUCTURE REVIEW / OPEN + CLOSED</p>
+    </div>
+  );
+}
+
+function PortalVisual({ route, isZh }: { route: PortalRoute; isZh: boolean }) {
+  if (route.visual === "packaging") return <PackagingStructureVisual isZh={isZh} />;
+  if (route.visual === "solutions") return <SolutionsStructureVisual isZh={isZh} />;
+  if (route.visual === "studio") return <StudioStructureVisual isZh={isZh} />;
   if (route.visual === "checklist") return <PaperChecklist isZh={isZh} />;
   if (route.visual === "brief") return <BriefDiagram isZh={isZh} />;
 
@@ -333,9 +359,10 @@ function PortalVisual({ route, isZh, active }: { route: PortalRoute; isZh: boole
       fallbackSrc={showcaseImages.foodOpen}
       alt={route.imageAlt!}
       fill
-      priority={route.id === "materials"}
-      sizes="(max-width: 480px) 384px, (max-width: 767px) 100vw, (max-width: 1179px) 52vw, 42vw"
-      quality={68}
+      preload={route.id === "materials"}
+      fetchPriority={route.id === "materials" ? "high" : undefined}
+      sizes="(max-width: 480px) 344px, (max-width: 767px) 100vw, (max-width: 1179px) 52vw, 42vw"
+      quality={route.id === "materials" ? 54 : 68}
       unoptimized={route.id === "materials"}
       className="object-cover"
     />
@@ -430,8 +457,8 @@ export default function ProductionPortalHome({ locale }: { locale: string }) {
           <div className="production-portal__stage" data-testid="production-portal-stage">
             <div className="production-portal__stage-media">
               <AnimatePresence mode="wait" initial={false}>
-                <motion.div key={activeRoute.id} className="production-portal__stage-visual" initial={reduceMotion ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: -8 }} transition={transition}>
-                  <PortalVisual route={activeRoute} isZh={isZh} active={selectedId === "studio"} />
+                <motion.div key={activeRoute.id} className="production-portal__stage-visual" data-visual-route={activeRoute.id} initial={reduceMotion || !previewId ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: -8 }} transition={transition}>
+                  <PortalVisual route={activeRoute} isZh={isZh} />
                   <span className="production-portal__stage-marker">{activeRoute.category}</span>
                   <span className="production-portal__stage-source">{strings.idleLabel}</span>
                 </motion.div>
@@ -439,7 +466,7 @@ export default function ProductionPortalHome({ locale }: { locale: string }) {
             </div>
             <div className="production-portal__stage-copy">
               <AnimatePresence mode="wait" initial={false}>
-                <motion.div key={activeRoute.id} initial={reduceMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: -6 }} transition={transition}>
+                <motion.div key={activeRoute.id} initial={reduceMotion || !previewId ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: -6 }} transition={transition}>
                   <p className="production-portal__stage-category">{strings.visualLabel} / {activeRoute.category}</p>
                   <h2>{activeRoute.heading}</h2>
                   <p>{activeRoute.description}</p>

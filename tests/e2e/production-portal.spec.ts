@@ -83,8 +83,9 @@ test.describe("Version C production portal", () => {
     const dialog = page.getByRole("dialog", { name: "Explore Kehong" });
     await expect(dialog).toBeVisible();
     const box = await dialog.boundingBox();
-    expect(box?.width).toBe(390);
-    expect(box?.height).toBe(844);
+    const viewport = await page.evaluate(() => ({ width: document.documentElement.clientWidth, height: window.innerHeight }));
+    expect(box?.width).toBe(viewport.width);
+    expect(box?.height).toBe(viewport.height);
     await expect(dialog.locator(".production-portal__dialog-routes a")).toHaveCount(7);
     await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
     await page.keyboard.press("Escape");

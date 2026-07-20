@@ -52,8 +52,9 @@ test.describe("interactive portal lab", () => {
     const dialog = page.getByRole("dialog", { name: "Mobile route panel" });
     await expect(dialog).toBeVisible();
     const dialogBox = await dialog.boundingBox();
-    expect(dialogBox?.width).toBe(390);
-    expect(dialogBox?.height).toBe(844);
+    const viewport = await page.evaluate(() => ({ width: Math.min(document.documentElement.clientWidth, document.body.getBoundingClientRect().width), height: window.innerHeight }));
+    expect(dialogBox?.width).toBe(viewport.width);
+    expect(dialogBox?.height).toBe(viewport.height);
     await expect(dialog.getByRole("button", { name: /3D Studio/ })).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(dialog).toBeHidden();

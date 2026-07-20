@@ -12,7 +12,9 @@ const viewports = [
   [430, 932],
   [768, 1024],
   [1024, 768],
+  [1180, 820],
   [1280, 800],
+  [1366, 768],
   [1440, 900],
 ];
 const routeIds = ["materials", "packaging", "solutions", "factory", "studio", "support", "project"];
@@ -26,13 +28,76 @@ const routeMap = {
   project: "/en/contact",
 };
 const imageMap = {
-  materials: "/images/kehong/showcase/color-material-swatch-q68.webp",
-  packaging: "/images/kehong/showcase/custom-box-display-open.webp",
-  solutions: "/images/kehong/showcase/food-paper-box-detail.webp",
-  factory: "/images/kehong/showcase/precision-machine-closeup.webp",
-  studio: "dynamic InteractivePortalScene (loaded only after selection)",
-  support: "CSS/SVG buyer preparation checklist (no stock image)",
-  project: "CSS/SVG packaging project brief diagram (no stock image)",
+  materials: {
+    imagePath: "/images/kehong/showcase/color-material-swatch-portal.webp",
+    actualContent: "Corrugated paperboard and colored material swatches.",
+    isRealKehongAsset: true,
+    containsThirdPartyBranding: false,
+    containsChineseUi: false,
+    recommendedCrop: "Keep the diagonal board edges and material layers visible.",
+    alt: "Corrugated paperboard edge and paper material swatches",
+    responsiveSizes: "static 640x494 WebP; fill crop in portal stage",
+  },
+  packaging: {
+    imagePath: "CSS technical visual (no image)",
+    actualContent: "Neutral closed/open packaging panels with insert structure labels.",
+    isRealKehongAsset: false,
+    containsThirdPartyBranding: false,
+    containsChineseUi: false,
+    recommendedCrop: "Responsive CSS drawing remains centered in the stage.",
+    alt: "Finished packaging structure diagram",
+    responsiveSizes: "CSS; no network image",
+  },
+  solutions: {
+    imagePath: "CSS technical visual (no image)",
+    actualContent: "Stacked paper-first application layers: food box, bakery tray, cupstock, corrugated and insert.",
+    isRealKehongAsset: false,
+    containsThirdPartyBranding: false,
+    containsChineseUi: false,
+    recommendedCrop: "Keep all five application layers visible.",
+    alt: "Packaging solutions structure diagram",
+    responsiveSizes: "CSS; no network image",
+  },
+  factory: {
+    imagePath: "/images/kehong/showcase/precision-machine-closeup.webp",
+    actualContent: "Kehong paper converting machine detail with visible rollers and material path.",
+    isRealKehongAsset: true,
+    containsThirdPartyBranding: false,
+    containsChineseUi: false,
+    recommendedCrop: "Keep the machine rollers and blue material path in frame.",
+    alt: "Kehong paper converting equipment detail",
+    responsiveSizes: "fill; (max-width: 1179px) 52vw; desktop 42vw",
+  },
+  studio: {
+    imagePath: "CSS technical visual (no image)",
+    actualContent: "Panel, fold, insert, width and depth technical structure drawing.",
+    isRealKehongAsset: false,
+    containsThirdPartyBranding: false,
+    containsChineseUi: false,
+    recommendedCrop: "Keep dimension labels inside the technical drawing bounds.",
+    alt: "Paper packaging technical structure diagram",
+    responsiveSizes: "CSS; no network image",
+  },
+  support: {
+    imagePath: "CSS checklist visual (no image)",
+    actualContent: "Material and GSM, structure and size, sampling and MOQ, export documents.",
+    isRealKehongAsset: false,
+    containsThirdPartyBranding: false,
+    containsChineseUi: false,
+    recommendedCrop: "Keep all four checklist rows legible.",
+    alt: "Buyer preparation checklist",
+    responsiveSizes: "CSS; no network image",
+  },
+  project: {
+    imagePath: "CSS brief diagram (no image)",
+    actualContent: "Technical packaging brief fields: size, material, quantity and destination.",
+    isRealKehongAsset: false,
+    containsThirdPartyBranding: false,
+    containsChineseUi: false,
+    recommendedCrop: "Keep the four brief fields visible.",
+    alt: "Packaging project brief diagram",
+    responsiveSizes: "CSS; no network image",
+  },
 };
 const sha256 = async (filePath) => createHash("sha256").update(await readFile(filePath)).digest("hex");
 const git = (...args) => execFileSync("git", args, { encoding: "utf8" }).trim();
@@ -72,7 +137,12 @@ try {
     await settle(page);
     assertions.push({
       viewport: `${width}x${height}`,
-      horizontalOverflow: await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
+      noHorizontalOverflow: await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 2),
+      noVerticalOverflow: await page.evaluate(() => document.documentElement.scrollHeight <= document.documentElement.clientHeight + 2),
+      scrollWidth: await page.evaluate(() => document.documentElement.scrollWidth),
+      clientWidth: await page.evaluate(() => document.documentElement.clientWidth),
+      scrollHeight: await page.evaluate(() => document.documentElement.scrollHeight),
+      clientHeight: await page.evaluate(() => document.documentElement.clientHeight),
       routeCount: await page.locator(".production-portal__routes > a").count(),
       oneH1: await page.locator("h1").count() === 1,
       mobileActionsVisible: await page.locator(".production-portal__mobile-actions").isVisible().catch(() => false),
@@ -86,6 +156,11 @@ try {
   await settle(desktop);
   for (const routeId of routeIds) {
     await desktop.locator(`[data-route-id="${routeId}"]`).first().hover();
+    const activeVisual = desktop.locator(`[data-visual-route="${routeId}"]`);
+    await activeVisual.waitFor({ state: "visible" });
+    await activeVisual.locator("img").evaluateAll((images) => Promise.all(images.map((image) => image.complete && image.naturalWidth > 0
+      ? Promise.resolve()
+      : new Promise((resolve) => image.addEventListener("load", resolve, { once: true })))));
     await desktop.waitForTimeout(240);
     await capture(desktop, `states/desktop-${routeId}.png`, "1440x900", `desktop-${routeId}`);
   }
@@ -151,6 +226,18 @@ const manifest = {
   nodeVersion: process.version,
   packageManager: "pnpm 11.9.0",
   previewPort: Number(new URL(baseURL).port || 80),
+  previewPid: Number(process.env.PRODUCTION_PORTAL_PREVIEW_PID || 0),
+  routeCount: routeIds.length,
+  canonicalValues: {
+    "/en": "https://www.kehong.tech/en",
+    "/en/products": "https://www.kehong.tech/en/products",
+    "/en/solutions": "https://www.kehong.tech/en/solutions",
+    "/en/factory": "https://www.kehong.tech/en/factory",
+    "/en/process": "https://www.kehong.tech/en/process",
+    "/en/model-preview": "https://www.kehong.tech/en/model-preview",
+    "/en/procurement": "https://www.kehong.tech/en/procurement",
+    "/en/contact": "https://www.kehong.tech/en/contact",
+  },
   screenshots,
   assertions,
   routeMap,
@@ -183,4 +270,29 @@ const manifest = {
   ],
 };
 await writeFile(path.join(outputDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+const routeMapDir = path.resolve("reports/production-portal-final");
+await mkdir(routeMapDir, { recursive: true });
+await writeFile(path.join(routeMapDir, "route-image-map.json"), `${JSON.stringify(imageMap, null, 2)}\n`);
+const routeMapMarkdown = [
+  "# Production Portal route visual map",
+  "",
+  `Generated from ${baseURL} at ${manifest.gitCommit}.`,
+  "",
+  ...Object.entries(imageMap).map(([route, item]) => {
+    const value = typeof item === "string" ? { imagePath: item } : item;
+    return [
+      `## ${route}`,
+      `- Image path: ${value.imagePath}`,
+      `- Actual content: ${value.actualContent ?? "See route visual implementation."}`,
+      `- Is real Kehong asset: ${value.isRealKehongAsset ?? "not applicable"}`,
+      `- Contains third-party branding: ${value.containsThirdPartyBranding ?? "not applicable"}`,
+      `- Contains Chinese UI: ${value.containsChineseUi ?? "not applicable"}`,
+      `- Recommended crop: ${value.recommendedCrop ?? "Responsive crop follows the portal stage."}`,
+      `- Alt: ${value.alt ?? "Route visual"}`,
+      `- Responsive sizes: ${value.responsiveSizes ?? "See component sizes."}`,
+      "",
+    ].join("\n");
+  }),
+].join("\n");
+await writeFile(path.join(routeMapDir, "route-image-map.md"), `${routeMapMarkdown}\n`);
 console.log(JSON.stringify({ outputDir, gitCommit: manifest.gitCommit, screenshotCount: screenshots.length }, null, 2));

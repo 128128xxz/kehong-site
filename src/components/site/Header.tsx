@@ -43,8 +43,8 @@ export default function Header() {
 
   return (
     <header className="kh-hairline sticky top-0 z-50 border-b border-[#d9d2be]/80 bg-[#f8f7f1]/94 text-[#171713] shadow-sm backdrop-blur-2xl">
-      <div className="mx-auto flex h-[4.5rem] max-w-[90rem] items-center justify-between gap-5 px-4 sm:px-6 lg:px-12">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
+      <div className="kh-header-inner mx-auto flex h-[4.5rem] max-w-[90rem] items-center justify-between gap-5 px-4 sm:px-6 lg:px-12">
+        <Link href="/" className="kh-header-brand flex min-w-0 items-center gap-3">
           <span className="premium-depth flex h-10 w-14 items-center justify-center rounded-lg border-2 border-[#171713]/80 bg-[#171713] text-sm font-black tracking-tight text-[#e8c06c] shadow-sm">KH</span>
           <span className="min-w-0">
             <span className="block truncate text-sm font-black uppercase tracking-[0.18em] text-[#171713]">{t("brand")}</span>
@@ -74,7 +74,7 @@ export default function Header() {
           <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}><span>{copy.company}</span></Link>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="kh-header-actions flex items-center gap-2">
           <LanguageSwitcher />
           <details className="kh-compact-nav group relative">
             <summary aria-label={locale === "zh" ? "打开导航菜单" : "Open navigation menu"} className="grid size-10 cursor-pointer list-none place-items-center rounded-md border border-[#171713]/18 bg-white text-[#171713] shadow-sm [&::-webkit-details-marker]:hidden"><Menu className="size-5" /></summary>
@@ -93,7 +93,7 @@ export default function Header() {
             </div>
           </details>
           <Button asChild size="sm" variant="outline" className="hidden rounded-full border-[#171713]/18 bg-white text-[#171713] shadow-sm hover:bg-[#171713] hover:text-white xl:inline-flex"><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle className="size-4" />WhatsApp</a></Button>
-          <Button asChild size="sm" className="hidden rounded-full bg-[#e8c06c] text-[#171713] shadow-lg shadow-[#e8c06c]/20 hover:bg-[#f3d182] sm:inline-flex"><Link href="/contact">{copy.contact}</Link></Button>
+          <Button asChild size="sm" data-portal-quote="true" className="hidden rounded-full bg-[#e8c06c] text-[#171713] shadow-lg shadow-[#e8c06c]/20 hover:bg-[#f3d182] sm:inline-flex"><Link href="/contact">{copy.contact}</Link></Button>
         </div>
       </div>
     </header>

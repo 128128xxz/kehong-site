@@ -18,6 +18,7 @@ export const showcaseImages = {
   machineClose: "/images/kehong/showcase/precision-machine-closeup.webp",
   honeycomb: "/images/kehong/showcase/honeycomb-paper-roll.webp",
   swatch: "/images/kehong/showcase/color-material-swatch-q68.webp",
+  portalSwatch: "/images/kehong/showcase/color-material-swatch-portal.webp",
   goldBoard: "/images/kehong/showcase/gold-board-stack.webp",
   displayWide: "/images/kehong/showcase/custom-box-display-wide.webp",
   displayOpen: "/images/kehong/showcase/custom-box-display-open.webp",
