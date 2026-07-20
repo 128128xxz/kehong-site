@@ -101,7 +101,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       id: "support",
       number: "06",
       title: "Buyer support",
-      subtitle: "Sampling, MOQ, documents, and export preparation.",
+      subtitle: "Sampling, MOQ, documents, and export prep.",
       image: showcaseImages.structureMaterialReal,
       imageAlt: "Paper structure sample prepared for buyer review",
       href: "/procurement",
@@ -115,7 +115,7 @@ const routeContent: Record<PortalLocale, PortalRoute[]> = {
       id: "project",
       number: "07",
       title: "Start a packaging project",
-      subtitle: "Send specifications, drawings, quantity, and destination.",
+      subtitle: "Send specs, drawings, quantity, destination.",
       href: "/contact",
       visual: "brief",
       category: "Project brief",
@@ -309,10 +309,14 @@ function PackagingStructureVisual({ isZh }: { isZh: boolean }) {
     <div className="production-portal__technical-visual production-portal__technical-visual--packaging" aria-label={isZh ? "成品包装结构示意" : "Finished packaging structure diagram"}>
       <div className="production-portal__technical-grid" aria-hidden="true" />
       <div className="production-portal__package-drawing" aria-hidden="true">
-        <span className="production-portal__package-panel production-portal__package-panel--back">BACK</span>
-        <span className="production-portal__package-panel production-portal__package-panel--base">BASE</span>
-        <span className="production-portal__package-panel production-portal__package-panel--lid">LID</span>
-        <span className="production-portal__package-insert">INSERT</span>
+        <span className="production-portal__package-panel production-portal__package-panel--back" />
+        <span className="production-portal__package-panel production-portal__package-panel--base" />
+        <span className="production-portal__package-panel production-portal__package-panel--lid" />
+        <span className="production-portal__package-insert" />
+        <span className="production-portal__technical-label production-portal__technical-label--back" data-technical-label="BACK">BACK</span>
+        <span className="production-portal__technical-label production-portal__technical-label--base" data-technical-label="BASE">BASE</span>
+        <span className="production-portal__technical-label production-portal__technical-label--lid" data-technical-label="LID">LID</span>
+        <span className="production-portal__technical-label production-portal__technical-label--insert" data-technical-label="INSERT">INSERT</span>
       </div>
       <p className="production-portal__technical-caption">PANEL / FOLD / INSERT</p>
     </div>
@@ -335,11 +339,14 @@ function StudioStructureVisual({ isZh }: { isZh: boolean }) {
     <div className="production-portal__technical-visual production-portal__technical-visual--studio" aria-label={isZh ? "纸包装结构技术示意" : "Paper packaging technical structure diagram"}>
       <div className="production-portal__technical-grid" aria-hidden="true" />
       <div className="production-portal__studio-drawing" aria-hidden="true">
-        <span className="production-portal__studio-panel">PANEL</span>
-        <span className="production-portal__studio-fold">FOLD</span>
-        <span className="production-portal__studio-insert">INSERT</span>
-        <i className="production-portal__dimension production-portal__dimension--width">WIDTH</i>
-        <i className="production-portal__dimension production-portal__dimension--depth">DEPTH</i>
+        <span className="production-portal__studio-panel" />
+        <span className="production-portal__studio-fold" />
+        <span className="production-portal__studio-insert" />
+        <i className="production-portal__dimension production-portal__dimension--width" data-technical-label="WIDTH">WIDTH</i>
+        <i className="production-portal__dimension production-portal__dimension--depth" data-technical-label="DEPTH">DEPTH</i>
+        <span className="production-portal__technical-label production-portal__technical-label--panel" data-technical-label="PANEL">PANEL</span>
+        <span className="production-portal__technical-label production-portal__technical-label--fold" data-technical-label="FOLD">FOLD</span>
+        <span className="production-portal__technical-label production-portal__technical-label--studio-insert" data-technical-label="INSERT">INSERT</span>
       </div>
       <p className="production-portal__technical-caption">STRUCTURE REVIEW / OPEN + CLOSED</p>
     </div>
@@ -360,6 +367,7 @@ function PortalVisual({ route, isZh }: { route: PortalRoute; isZh: boolean }) {
       alt={route.imageAlt!}
       fill
       preload={route.id === "materials"}
+      loading={route.id === "materials" ? "eager" : "lazy"}
       fetchPriority={route.id === "materials" ? "high" : undefined}
       sizes="(max-width: 480px) 344px, (max-width: 767px) 100vw, (max-width: 1179px) 52vw, 42vw"
       quality={route.id === "materials" ? 54 : 68}
@@ -380,6 +388,8 @@ export default function ProductionPortalHome({ locale }: { locale: string }) {
   const [panelOpen, setPanelOpen] = useState(false);
   const panelRef = useRef<HTMLDialogElement>(null);
   const panelTriggerRef = useRef<HTMLButtonElement>(null);
+  const previousBodyOverflow = useRef("");
+  const previousHtmlOverflow = useRef("");
   const routeRefs = useRef<Array<HTMLAnchorElement | null>>([]);
   const prefetched = useRef(new Set<string>());
   const activeId = previewId ?? selectedId;
@@ -408,16 +418,43 @@ export default function ProductionPortalHome({ locale }: { locale: string }) {
   useEffect(() => {
     const dialog = panelRef.current;
     if (!dialog) return;
-    if (panelOpen && !dialog.open) dialog.showModal();
-    if (!panelOpen && dialog.open) dialog.close();
-    document.body.style.overflow = panelOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (panelOpen) {
+      previousBodyOverflow.current = document.body.style.overflow;
+      previousHtmlOverflow.current = document.documentElement.style.overflow;
+      document.documentElement.classList.add("route-dialog-open");
+      document.body.classList.add("route-dialog-open");
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      if (!dialog.open) dialog.showModal();
+      return;
+    }
+
+    if (dialog.open) dialog.close();
+    document.documentElement.classList.remove("route-dialog-open");
+    document.body.classList.remove("route-dialog-open");
+    document.documentElement.style.overflow = previousHtmlOverflow.current;
+    document.body.style.overflow = previousBodyOverflow.current;
   }, [panelOpen]);
 
   const closePanel = useCallback(() => {
     setPanelOpen(false);
-    window.setTimeout(() => panelTriggerRef.current?.focus(), 0);
   }, []);
+
+  useEffect(() => {
+    const onPageHide = () => setPanelOpen(false);
+    window.addEventListener("pagehide", onPageHide);
+    return () => {
+      window.removeEventListener("pagehide", onPageHide);
+      document.documentElement.classList.remove("route-dialog-open");
+      document.body.classList.remove("route-dialog-open");
+      document.documentElement.style.overflow = previousHtmlOverflow.current;
+      document.body.style.overflow = previousBodyOverflow.current;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!panelOpen) panelTriggerRef.current?.focus();
+  }, [panelOpen]);
 
   const rememberAndNavigate = useCallback((route: PortalRoute) => {
     window.sessionStorage.setItem("kehong:portal-preview", route.id);
@@ -441,7 +478,7 @@ export default function ProductionPortalHome({ locale }: { locale: string }) {
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="production-portal" data-reduced-motion={reduceMotion ? "true" : "false"} aria-label={isZh ? "科宏包装门户" : "Kehong route-led packaging portal"}>
+      <section className="production-portal" data-reduced-motion={reduceMotion ? "true" : "false"} data-dialog-open={panelOpen ? "true" : "false"} aria-label={isZh ? "科宏包装门户" : "Kehong route-led packaging portal"}>
         <div className="production-portal__inner">
           <div className="production-portal__brand-panel">
             <div>
@@ -512,7 +549,7 @@ export default function ProductionPortalHome({ locale }: { locale: string }) {
           </nav>
         </div>
 
-        <dialog ref={panelRef} className="production-portal__dialog" aria-labelledby="production-portal-dialog-title" onCancel={closePanel} onClick={(event) => { if (event.target === event.currentTarget) closePanel(); }}>
+        <dialog ref={panelRef} className="production-portal__dialog" aria-labelledby="production-portal-dialog-title" onCancel={(event) => { event.preventDefault(); closePanel(); }} onClose={() => { if (panelOpen) setPanelOpen(false); }} onClick={(event) => { if (event.target === event.currentTarget) closePanel(); }}>
           <div className="production-portal__dialog-inner">
             <div className="production-portal__dialog-top"><span className="production-portal__dialog-logo">KH</span><span className="production-portal__dialog-name">{strings.panelTitle}</span><button type="button" aria-label={strings.closePanel} onClick={closePanel}><X size={20} /></button></div>
             <div className="production-portal__dialog-intro"><p className="production-portal__eyebrow">{strings.routes}</p><h2 id="production-portal-dialog-title">{strings.panelTitle}</h2><p>{strings.panelIntro}</p></div>

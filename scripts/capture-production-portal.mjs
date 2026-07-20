@@ -108,37 +108,119 @@ async function settle(page) {
   await page.waitForLoadState("networkidle");
   await page.evaluate(async () => {
     await document.fonts.ready;
-    await Promise.all(Array.from(document.images).map((image) => image.complete
-      ? Promise.resolve()
-      : new Promise((resolve) => {
+    await Promise.all(Array.from(document.images).map(async (image) => {
+      if (!image.complete) await new Promise((resolve) => {
         image.addEventListener("load", resolve, { once: true });
         image.addEventListener("error", resolve, { once: true });
-      })));
+      });
+      if (image.decode) await image.decode().catch(() => undefined);
+    }));
     await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
   });
   await page.addStyleTag({ content: "*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}" });
-  await page.waitForTimeout(80);
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
 }
 
 const browser = await chromium.launch({ headless: true });
 const screenshots = [];
 const assertions = [];
+let technicalLabelResults = {};
 
 async function capture(page, fileName, viewport, type) {
   const filePath = path.join(outputDir, fileName);
   await page.screenshot({ path: filePath, fullPage: false });
-  screenshots.push({ viewport, type, path: path.relative(root, filePath), sha256: await sha256(filePath) });
+  const state = await page.evaluate(() => {
+    const active = document.activeElement;
+    const hero = document.querySelector("[data-visual-route=materials] img");
+    const dialog = document.querySelector(".production-portal__dialog");
+    return {
+      url: window.location.href,
+      activeElement: active ? {
+        tag: active.tagName.toLowerCase(),
+        id: active.id || null,
+        role: active.getAttribute("role"),
+        routeId: active.getAttribute("data-route-id"),
+        ariaLabel: active.getAttribute("aria-label"),
+        text: (active.textContent || "").trim().replace(/\s+/g, " ").slice(0, 100),
+      } : null,
+      dialogOpen: dialog instanceof HTMLDialogElement ? dialog.open : false,
+      heroImageOpacity: hero ? getComputedStyle(hero).opacity : null,
+      heroImageFilter: hero ? getComputedStyle(hero).filter : null,
+      bodyTextLength: document.body.innerText.length,
+    };
+  });
+  screenshots.push({ viewport, type, path: path.relative(root, filePath), sha256: await sha256(filePath), ...state });
+}
+
+async function focusDialogRoute(page, routeId) {
+  const dialog = page.getByRole("dialog", { name: "Explore Kehong" });
+  await dialog.locator("button").first().focus();
+  for (let index = 0; index < 12; index += 1) {
+    const focused = await dialog.locator(`[data-route-id="${routeId}"]`).evaluate((element) => element === document.activeElement);
+    if (focused) return;
+    await page.keyboard.press("Tab");
+  }
+  throw new Error(`Could not focus dialog route ${routeId} with keyboard navigation.`);
+}
+
+async function waitForHome(page) {
+  await page.waitForURL((url) => url.pathname === "/en");
+  await page.locator("h1").waitFor({ state: "visible" });
+  await page.locator("[data-visual-route=materials] img").waitFor({ state: "visible" });
+  await page.waitForFunction(() => {
+    const image = document.querySelector("[data-visual-route=materials] img");
+    return image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
+  });
+  await settle(page);
+}
+
+async function expectHomeAfterClose(page) {
+  await page.getByRole("button", { name: "Explore Kehong" }).waitFor({ state: "visible" });
+  await page.locator("h1").waitFor({ state: "visible" });
+  await page.waitForFunction(() => {
+    const root = document.querySelector(".production-portal");
+    const image = document.querySelector("[data-visual-route=materials] img");
+    return root && getComputedStyle(root).opacity === "1" && image instanceof HTMLImageElement
+      && getComputedStyle(image).opacity === "1" && getComputedStyle(image).filter === "none";
+  });
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+}
+
+async function technicalLabelAssertions(page, routeId) {
+  await page.locator(`[data-route-id="${routeId}"]`).first().hover();
+  await page.locator(`[data-visual-route="${routeId}"]`).waitFor({ state: "visible" });
+  return page.locator(`[data-visual-route="${routeId}"]`).evaluate((visual) => {
+    const rect = (element) => {
+      const box = element.getBoundingClientRect();
+      return { left: box.left, top: box.top, right: box.right, bottom: box.bottom };
+    };
+    const overlaps = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    const labels = Array.from(visual.querySelectorAll("[data-technical-label]"), (element) => ({
+      label: element.getAttribute("data-technical-label"),
+      rect: rect(element),
+    }));
+    const collisions = [];
+    for (let index = 0; index < labels.length; index += 1) {
+      for (let next = index + 1; next < labels.length; next += 1) {
+        if (overlaps(labels[index].rect, labels[next].rect)) collisions.push([labels[index].label, labels[next].label]);
+      }
+    }
+    const source = visual.parentElement?.querySelector(".production-portal__stage-source");
+    const sourceRect = source ? rect(source) : null;
+    const watermarkCollisions = sourceRect ? labels.filter((label) => overlaps(label.rect, sourceRect)).map((label) => label.label) : [];
+    return { labels, collisions, watermarkCollisions };
+  });
 }
 
 try {
-  for (const [width, height] of viewports) {
+  for (const [width, height] of [...viewports, [1399, 800], [1400, 800]]) {
     const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
     await page.goto(`${baseURL}/en`, { waitUntil: "domcontentloaded" });
     await settle(page);
     assertions.push({
       viewport: `${width}x${height}`,
-      noHorizontalOverflow: await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 2),
-      noVerticalOverflow: await page.evaluate(() => document.documentElement.scrollHeight <= document.documentElement.clientHeight + 2),
+      noHorizontalOverflow: await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2),
+      noVerticalOverflow: await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight + 2),
       scrollWidth: await page.evaluate(() => document.documentElement.scrollWidth),
       clientWidth: await page.evaluate(() => document.documentElement.clientWidth),
       scrollHeight: await page.evaluate(() => document.documentElement.scrollHeight),
@@ -146,6 +228,8 @@ try {
       routeCount: await page.locator(".production-portal__routes > a").count(),
       oneH1: await page.locator("h1").count() === 1,
       mobileActionsVisible: await page.locator(".production-portal__mobile-actions").isVisible().catch(() => false),
+      desktopHeaderVisible: await page.locator(".kh-desktop-nav").isVisible().catch(() => false),
+      compactHeaderVisible: await page.locator(".kh-compact-nav").isVisible().catch(() => false),
     });
     await capture(page, `home-${width}x${height}.png`, `${width}x${height}`, "home");
     await page.close();
@@ -164,33 +248,62 @@ try {
     await desktop.waitForTimeout(240);
     await capture(desktop, `states/desktop-${routeId}.png`, "1440x900", `desktop-${routeId}`);
   }
+  technicalLabelResults = {
+    packaging: await technicalLabelAssertions(desktop, "packaging"),
+    studio: await technicalLabelAssertions(desktop, "studio"),
+    solutions: await technicalLabelAssertions(desktop, "solutions"),
+  };
   await desktop.close();
 
   const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
   await mobile.goto(`${baseURL}/en`, { waitUntil: "domcontentloaded" });
   await settle(mobile);
+  await capture(mobile, "states/mobile-home-default.png", "390x844", "mobile-home-default");
   await mobile.getByRole("button", { name: "Explore Kehong" }).click();
-  await mobile.waitForTimeout(200);
+  await mobile.getByRole("dialog", { name: "Explore Kehong" }).waitFor({ state: "visible" });
   await capture(mobile, "states/mobile-panel-open.png", "390x844", "mobile-panel-open");
-  const dialog = mobile.getByRole("dialog", { name: "Explore Kehong" });
-  await dialog.locator(".production-portal__dialog-inner").evaluate((element) => { element.scrollTop = Math.round(element.scrollHeight / 2); });
-  await mobile.waitForTimeout(80);
-  await capture(mobile, "states/mobile-panel-middle.png", "390x844", "mobile-panel-middle");
-  await dialog.locator(".production-portal__dialog-inner").evaluate((element) => { element.scrollTop = element.scrollHeight; });
-  await mobile.waitForTimeout(80);
-  await capture(mobile, "states/mobile-panel-footer.png", "390x844", "mobile-panel-footer");
-  await dialog.locator('.production-portal__dialog-routes [data-route-id="studio"]').focus();
-  await capture(mobile, "states/mobile-panel-focus.png", "390x844", "mobile-panel-focus");
+  await focusDialogRoute(mobile, "solutions");
+  await capture(mobile, "states/mobile-panel-focus-solutions.png", "390x844", "mobile-panel-focus-solutions");
+  await focusDialogRoute(mobile, "project");
+  await capture(mobile, "states/mobile-panel-focus-project.png", "390x844", "mobile-panel-focus-project");
   await mobile.keyboard.press("Escape");
+  await expectHomeAfterClose(mobile);
   await capture(mobile, "states/mobile-home-after-close.png", "390x844", "mobile-home-after-close");
   await mobile.getByRole("button", { name: "Explore Kehong" }).click();
   await mobile.getByRole("dialog", { name: "Explore Kehong" }).locator('[data-route-id="materials"]').click();
-  await mobile.waitForLoadState("networkidle");
-  await capture(mobile, "states/mobile-navigate-materials.png", "390x844", "mobile-navigate-materials");
-  await mobile.goBack({ waitUntil: "networkidle" });
+  await mobile.waitForURL((url) => url.pathname === "/en/products" && url.searchParams.get("system") === "materials");
+  await mobile.locator("h1").waitFor({ state: "visible" });
   await settle(mobile);
+  await capture(mobile, "states/mobile-navigate-materials.png", "390x844", "mobile-navigate-materials");
+  await mobile.goBack({ waitUntil: "domcontentloaded" });
+  await waitForHome(mobile);
   await capture(mobile, "states/mobile-browser-back.png", "390x844", "mobile-browser-back");
   await mobile.close();
+
+  for (const [width, height] of [[768, 1024], [1024, 768]]) {
+    const tablet = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
+    await tablet.goto(`${baseURL}/en`, { waitUntil: "domcontentloaded" });
+    await settle(tablet);
+    await capture(tablet, `states/home-${width}x${height}.png`, `${width}x${height}`, `home-${width}x${height}`);
+    await tablet.getByRole("button", { name: "Explore Kehong" }).click();
+    await capture(tablet, `states/dialog-open-${width}x${height}.png`, `${width}x${height}`, `dialog-open-${width}x${height}`);
+    await tablet.close();
+  }
+
+  for (const [width, height] of [[1180, 820], [1280, 800], [1366, 768], [1399, 800]]) {
+    const compact = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
+    await compact.goto(`${baseURL}/en`, { waitUntil: "domcontentloaded" });
+    await settle(compact);
+    await compact.locator(".kh-compact-nav > summary").click();
+    await capture(compact, `states/compact-header-open-${width}x${height}.png`, `${width}x${height}`, `compact-header-open-${width}x${height}`);
+    await compact.close();
+  }
+
+  const fullHeader = await browser.newPage({ viewport: { width: 1400, height: 800 }, deviceScaleFactor: 1 });
+  await fullHeader.goto(`${baseURL}/en`, { waitUntil: "domcontentloaded" });
+  await settle(fullHeader);
+  await capture(fullHeader, "states/full-header-1400x800.png", "1400x800", "full-header-1400x800");
+  await fullHeader.close();
 } finally {
   await browser.close();
 }
@@ -199,6 +312,7 @@ let lighthouseReport;
 let lighthouseReportPath;
 let lighthouseMobileReport;
 let lighthouseMobileReportPath;
+const lighthouseMobileReports = [];
 if (process.env.PRODUCTION_PORTAL_LIGHTHOUSE_JSON) {
   lighthouseReportPath = path.resolve(process.env.PRODUCTION_PORTAL_LIGHTHOUSE_JSON);
   try {
@@ -215,6 +329,45 @@ if (process.env.PRODUCTION_PORTAL_LIGHTHOUSE_MOBILE_JSON) {
     lighthouseMobileReport = undefined;
   }
 }
+for (const reportPath of (process.env.PRODUCTION_PORTAL_LIGHTHOUSE_MOBILE_JSONS || "").split(",").map((value) => value.trim()).filter(Boolean)) {
+  try {
+    lighthouseMobileReports.push({ path: path.resolve(reportPath), report: JSON.parse(await readFile(path.resolve(reportPath), "utf8")) });
+  } catch {
+    // Keep the evidence manifest usable when an optional run is unavailable.
+  }
+}
+if (lighthouseMobileReport && lighthouseMobileReports.length === 0 && lighthouseMobileReportPath) {
+  lighthouseMobileReports.push({ path: lighthouseMobileReportPath, report: lighthouseMobileReport });
+}
+
+const screenshotByType = (type) => screenshots.find((screenshot) => screenshot.type === type);
+const mobileInteractiveScreenshots = screenshots.filter((screenshot) => screenshot.type.startsWith("mobile-panel-"));
+const screenshotIntegrity = {
+  focusStatesUnique: new Set(mobileInteractiveScreenshots.filter((screenshot) => screenshot.type.includes("focus")).map((screenshot) => screenshot.sha256)).size === 2,
+  openAndFocusDiffer: mobileInteractiveScreenshots.some((screenshot) => screenshot.type === "mobile-panel-open")
+    && mobileInteractiveScreenshots.some((screenshot) => screenshot.type === "mobile-panel-focus-solutions" && screenshot.sha256 !== screenshotByType("mobile-panel-open")?.sha256),
+  materialsNavigationTarget: screenshotByType("mobile-navigate-materials")?.url.endsWith("/en/products?system=materials") === true,
+  browserBackTarget: screenshotByType("mobile-browser-back")?.url.endsWith("/en") === true,
+  browserBackNotBlank: (screenshotByType("mobile-browser-back")?.bodyTextLength ?? 0) > 300,
+  closeHeroOpacity: screenshotByType("mobile-home-after-close")?.heroImageOpacity === "1",
+};
+
+const median = (values) => {
+  const sorted = values.filter((value) => Number.isFinite(value)).sort((a, b) => a - b);
+  return sorted.length ? sorted[Math.floor(sorted.length / 2)] : null;
+};
+const mobileRunMetrics = lighthouseMobileReports.map(({ report }) => ({
+  performance: Math.round((report.categories?.performance?.score ?? 0) * 100),
+  lcp: report.audits?.["largest-contentful-paint"]?.numericValue ?? null,
+  fcp: report.audits?.["first-contentful-paint"]?.numericValue ?? null,
+  cls: report.audits?.["cumulative-layout-shift"]?.numericValue ?? null,
+}));
+const mobileMedian = {
+  performance: median(mobileRunMetrics.map((run) => run.performance)),
+  lcp: median(mobileRunMetrics.map((run) => run.lcp)),
+  fcp: median(mobileRunMetrics.map((run) => run.fcp)),
+  cls: median(mobileRunMetrics.map((run) => run.cls)),
+};
 
 const manifest = {
   gitCommit: git("rev-parse", "HEAD"),
@@ -240,6 +393,8 @@ const manifest = {
   },
   screenshots,
   assertions,
+  technicalLabelAssertions: technicalLabelResults,
+  screenshotIntegrity,
   routeMap,
   imageMap,
   tests: {
@@ -261,6 +416,10 @@ const manifest = {
         mobileFcp: lighthouseMobileReport.audits?.["first-contentful-paint"]?.displayValue,
         mobileLcp: lighthouseMobileReport.audits?.["largest-contentful-paint"]?.displayValue,
         mobileReportSha256: await sha256(lighthouseMobileReportPath),
+        mobileRuns: mobileRunMetrics,
+        mobileMedian,
+        mobileLcpElement: lighthouseMobileReport.audits?.["largest-contentful-paint-element"]?.details?.items?.[0] ?? null,
+        mobileLcpBreakdown: lighthouseMobileReport.audits?.["lcp-breakdown-insight"]?.details?.items?.find((item) => item.type === "table")?.items ?? [],
       } : {}),
     },
   } : {}),
@@ -270,7 +429,7 @@ const manifest = {
   ],
 };
 await writeFile(path.join(outputDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
-const routeMapDir = path.resolve("reports/production-portal-final");
+const routeMapDir = path.resolve(process.env.PRODUCTION_PORTAL_ROUTE_MAP_OUTPUT || "reports/production-portal-release-verified");
 await mkdir(routeMapDir, { recursive: true });
 await writeFile(path.join(routeMapDir, "route-image-map.json"), `${JSON.stringify(imageMap, null, 2)}\n`);
 const routeMapMarkdown = [

@@ -92,7 +92,7 @@ export default function Header() {
               </div>
             </div>
           </details>
-          <Button asChild size="sm" variant="outline" className="hidden rounded-full border-[#171713]/18 bg-white text-[#171713] shadow-sm hover:bg-[#171713] hover:text-white xl:inline-flex"><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle className="size-4" />WhatsApp</a></Button>
+          <Button asChild size="sm" data-portal-whatsapp="true" variant="outline" className="hidden rounded-full border-[#171713]/18 bg-white text-[#171713] shadow-sm hover:bg-[#171713] hover:text-white xl:inline-flex"><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle className="size-4" />WhatsApp</a></Button>
           <Button asChild size="sm" data-portal-quote="true" className="hidden rounded-full bg-[#e8c06c] text-[#171713] shadow-lg shadow-[#e8c06c]/20 hover:bg-[#f3d182] sm:inline-flex"><Link href="/contact">{copy.contact}</Link></Button>
         </div>
       </div>
