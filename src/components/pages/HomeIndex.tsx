@@ -1,5 +1,7 @@
 import Header from "@/components/site/Header";
 import ProductionPortalHome from "@/components/site/ProductionPortalHome";
+import HomeBusinessSections from "@/components/pages/HomeBusinessSections";
+import SiteFooter from "@/components/site/SiteFooter";
 import { getLocale } from "next-intl/server";
 
 export default async function HomeIndex() {
@@ -10,7 +12,9 @@ export default async function HomeIndex() {
       <Header />
       <main className="production-portal-main">
         <ProductionPortalHome locale={locale} />
+        <HomeBusinessSections locale={locale} />
       </main>
+      <SiteFooter />
     </div>
   );
 }

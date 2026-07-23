@@ -33,7 +33,7 @@ test.describe("Version C production portal", () => {
   test("has one gateway, no lab content and seven SSR route links", async ({ page }) => {
     await expect(page.locator(".production-portal")).toHaveCount(1);
     await expect(page.locator(".production-portal__route")).toHaveCount(7);
-    await expect(page.locator("footer")).toHaveCount(0);
+    await expect(page.locator("footer")).toHaveCount(1);
     const body = await page.locator("body").innerText();
     for (const phrase of bannedHomeCopy) expect(body).not.toContain(phrase);
     await expect(page.locator("h1")).toHaveCount(1);

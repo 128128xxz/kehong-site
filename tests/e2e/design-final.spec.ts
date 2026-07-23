@@ -14,10 +14,10 @@ test.describe("Version C production portal contract", () => {
     await page.goto("/en", { waitUntil: "networkidle" });
 
     await expect(page.locator(".production-portal")).toHaveCount(1);
-    await expect(page.locator("main > section")).toHaveCount(1);
+    await expect(page.locator("main > section").first()).toBeVisible();
     await expect(page.locator(".production-portal__routes > a")).toHaveCount(7);
     await expect(page.locator("h1")).toHaveCount(1);
-    await expect(page.locator("footer")).toHaveCount(0);
+    await expect(page.locator("footer")).toHaveCount(1);
     await expect(page.locator("main form")).toHaveCount(0);
     await expect(page.locator(".production-portal")).not.toContainText("Version A");
     await expect(page.locator(".production-portal")).not.toContainText("Version B");

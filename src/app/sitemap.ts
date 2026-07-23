@@ -1,10 +1,12 @@
 import { MetadataRoute } from "next";
 import { getAllSkus, getProductCategories } from "@/lib/catalog";
 import { getAlternateLanguages, getLocaleUrl, type SiteHref } from "@/lib/site";
+import { packagingCategories } from "@/data/packagingCategories";
 
 const staticRoutes = [
   { href: "/", changeFrequency: "weekly", priority: 1 },
   { href: "/products", changeFrequency: "weekly", priority: 0.9 },
+  { href: "/industries", changeFrequency: "monthly", priority: 0.84 },
   { href: "/contact", changeFrequency: "monthly", priority: 0.8 },
   { href: "/paper-cup-fan-manufacturer", changeFrequency: "monthly", priority: 0.82 },
   { href: "/paper-packaging-supplier", changeFrequency: "monthly", priority: 0.82 },
@@ -52,8 +54,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "monthly" as const,
     priority: 0.78,
   }));
+  const packagingRoutes = packagingCategories.map((category) => ({
+    href: `/packaging/${category.slug}` as SiteHref,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
 
-  const routes = [...staticRoutes, ...categoryRoutes, ...productRoutes];
+  const routes = [...staticRoutes, ...packagingRoutes, ...categoryRoutes, ...productRoutes];
   const entries = await Promise.all(
     routes.map((route) => sitemapEntry({ ...route, lastModified })),
   );
