@@ -21,6 +21,7 @@ const staticRoutes = [
   "/privacy",
   "/terms",
 ];
+staticRoutes.push("/industries/bakery-packaging", "/capabilities", "/resources");
 const categoryRoutes = [
   "kraft-paper",
   "white-cardboard",
@@ -43,6 +44,7 @@ const packagingRoutes = [
   "corrugated-mailer-boxes",
   "all-products",
 ];
+const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"];
 
 const errors = [];
 const seen = new Set();
@@ -64,6 +66,8 @@ const locale = "en";
 for (const route of staticRoutes) addRoute(`/${locale}${route === "/" ? "" : route}`, `${locale}${route}`);
 addRoute(`/${locale}/industries`, `${locale}/industries`);
 for (const slug of packagingRoutes) addRoute(`/${locale}/packaging/${slug}`, `${locale}/packaging/${slug}`);
+for (const slug of resourceRoutes) addRoute(`/${locale}/resources/${slug}`, `${locale}/resources/${slug}`);
+for (const slug of ["cake-boxes", "cake-boards-and-drums"]) addRoute(`/${locale}/products/${slug}`, `${locale}/products/${slug}`);
 for (const slug of categoryRoutes) addRoute(`/${locale}/products/${slug}`, `${locale}/products/${slug}`);
 for (const sku of catalog.skus.filter((item) => item?.published === true && item?.sourceStatus === "confirmed")) {
   if (!sku?.slug || typeof sku.slug !== "string") errors.push("catalog SKU is missing a valid slug");

@@ -1,5 +1,7 @@
 import {
   CakeSlice,
+  Factory as FactoryIcon,
+  FileText as FileTextIcon,
   Mail,
   MessageCircle,
   PackageSearch,
@@ -51,6 +53,9 @@ export default async function SiteFooter() {
     { href: "/model-preview", label: copy.studio, icon: Rotate3D },
     { href: "/custom-paper-products", label: copy.bakery, icon: CakeSlice },
     { href: "/products", label: copy.products, icon: PackageSearch },
+    { href: "/industries", label: locale === "zh" ? "行业应用" : "Industries", icon: FactoryIcon },
+    { href: "/capabilities", label: locale === "zh" ? "制造能力" : "Capabilities", icon: ShieldCheck },
+    { href: "/resources", label: locale === "zh" ? "资源中心" : "Resources", icon: FileTextIcon },
     { href: "/contact", label: copy.contact, icon: MessageCircle },
   ] as const;
   const categorySlugs = ["corrugated-paper", "food-grade-paper", "kraft-paper", "white-cardboard", "specialty-paper", "paper-boxes"];

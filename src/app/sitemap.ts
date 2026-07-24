@@ -7,6 +7,9 @@ const staticRoutes = [
   { href: "/", changeFrequency: "weekly", priority: 1 },
   { href: "/products", changeFrequency: "weekly", priority: 0.9 },
   { href: "/industries", changeFrequency: "monthly", priority: 0.84 },
+  { href: "/industries/bakery-packaging", changeFrequency: "monthly", priority: 0.84 },
+  { href: "/capabilities", changeFrequency: "monthly", priority: 0.82 },
+  { href: "/resources", changeFrequency: "monthly", priority: 0.76 },
   { href: "/contact", changeFrequency: "monthly", priority: 0.8 },
   { href: "/paper-cup-fan-manufacturer", changeFrequency: "monthly", priority: 0.82 },
   { href: "/paper-packaging-supplier", changeFrequency: "monthly", priority: 0.82 },
@@ -59,8 +62,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
+  const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"].map((slug) => ({ href: `/resources/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.65 }));
+  const bakeryProductRoutes = ["cake-boxes", "cake-boards-and-drums"].map((slug) => ({ href: `/products/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.78 }));
 
-  const routes = [...staticRoutes, ...packagingRoutes, ...categoryRoutes, ...productRoutes];
+  const routes = [...staticRoutes, ...resourceRoutes, ...bakeryProductRoutes, ...packagingRoutes, ...categoryRoutes, ...productRoutes];
   const entries = await Promise.all(
     routes.map((route) => sitemapEntry({ ...route, lastModified })),
   );

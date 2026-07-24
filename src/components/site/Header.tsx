@@ -45,8 +45,14 @@ export default function Header() {
     { title: locale === "zh" ? "品牌、内托与保护" : "Branding, Inserts & Protection", links: [["Labels & Stickers", "labels-stickers"], ["Custom Inserts", "all-products"], ["Custom Trays", "all-products"], ["Protective Packaging", "corrugated-mailer-boxes"]] },
   ];
   const capabilityLinks = [
+    { href: "/capabilities", label: locale === "zh" ? "能力总览 Capabilities" : "Capabilities overview" },
     { href: "/factory", label: locale === "zh" ? "工厂 Factory" : "Factory" },
     { href: "/process", label: locale === "zh" ? "生产流程 Production process" : "Production process" },
+  ];
+  const resourceLinks = [
+    { href: "/resources", label: locale === "zh" ? "资源中心 Design Center" : "Resources & Design Center" },
+    { href: "/resources/artwork-guidelines", label: locale === "zh" ? "Artwork 指南" : "Artwork guidelines" },
+    { href: "/resources/dielines-templates", label: locale === "zh" ? "Dieline 请求" : "Request a dieline" },
   ];
 
   return (
@@ -65,6 +71,13 @@ export default function Header() {
             <summary className={`${navLinkClass(isProducts && !isSolutionContext)} list-none [&::-webkit-details-marker]:hidden`}><PackageSearch className="size-4" /><span>{copy.products}</span><ChevronDown className="size-3.5 transition group-open:rotate-180" /></summary>
             <div className="absolute left-1/2 top-12 grid w-[min(92vw,62rem)] -translate-x-1/2 grid-cols-4 gap-5 rounded-lg border border-[#d9d2be] bg-[#171713] p-5 text-white shadow-2xl shadow-black/20">
               {productGroups.map((group) => <div key={group.title}><p className="mb-2 px-2 text-[10px] font-black uppercase tracking-[.16em] text-[#e8c06c]">{group.title}</p><div className="grid gap-1">{group.links.map(([label, slug]) => <Link key={`${group.title}-${label}`} href={`/packaging/${slug}`} className="rounded-md px-2 py-2 text-xs font-bold text-white/78 transition hover:bg-white/10 hover:text-[#e8c06c]">{label}<span className="float-right">→</span></Link>)}</div></div>)}
+            </div>
+          </details>
+
+          <details className="group relative">
+            <summary className={`${navLinkClass(isActive("/resources"))} list-none [&::-webkit-details-marker]:hidden`}><span>{copy.resources}</span><ChevronDown className="size-3.5 transition group-open:rotate-180" /></summary>
+            <div className="absolute left-0 top-12 grid w-72 gap-1 rounded-lg border border-[#d9d2be] bg-[#171713] p-2 text-sm font-black text-white shadow-2xl shadow-black/20">
+              {resourceLinks.map((item) => <Link key={item.href} href={item.href} className="rounded-md px-3 py-3 transition hover:bg-white/10 hover:text-[#e8c06c]">{item.label}<span className="float-right text-[#e8c06c]">→</span></Link>)}
             </div>
           </details>
 
@@ -105,7 +118,8 @@ export default function Header() {
                 <Link href="/procurement" className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-[#e8c06c]"><ClipboardCheck className="size-4 text-[#e8c06c]" />{copy.buyerSupport}</Link>
                 <Link href="/factory" className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-[#e8c06c]">{copy.company}</Link>
                 <Link href="/industries" className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-[#e8c06c]">{copy.industries}</Link>
-                <Link href="/procurement" className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-[#e8c06c]">{copy.resources}</Link>
+                <p className="px-3 pt-3 text-[10px] font-black uppercase tracking-[.18em] text-[#e8c06c]">{copy.resources}</p>
+                {resourceLinks.map((item) => <Link key={item.href} href={item.href} className="flex min-h-10 items-center justify-between rounded-md px-3 pl-9 text-sm font-bold text-white/78 transition hover:bg-white/10 hover:text-[#e8c06c]">{item.label}<span>→</span></Link>)}
                 <Link href="/contact" className="mt-1 flex min-h-11 items-center justify-center rounded-md bg-[#e8c06c] px-3 text-sm font-black text-[#171713]">{copy.contact}</Link>
               </div>
             </div>

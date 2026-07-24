@@ -95,11 +95,12 @@ test.describe("Kehong production flows", () => {
     await page.goto("/en/products", { waitUntil: "networkidle" });
     await page.locator('article a[href*="/products/"]').first().click();
     await expect(page.locator('textarea[name="products"]')).toHaveValue(/KH-/);
+    for (let index = 0; index < 4; index += 1) await page.getByRole("button", { name: /continue/i }).click();
     await page.locator('input[name="name"]').fill("Playwright QA");
     await page.locator('input[name="email"]').fill("playwright@example.com");
     await page.locator('input[name="privacy"]').check();
     await page.getByRole("button", { name: /request a quote/i }).last().click();
-    await expect(page.getByText(/accepted by the Kehong website/i)).toBeVisible();
+    await expect(page.getByText(/inquiry was accepted/i)).toBeVisible();
   });
 
   test("published product routes use one v2 template and expose group variants", async ({ page }) => {
@@ -128,6 +129,7 @@ test.describe("Kehong production flows", () => {
       }
     });
     await page.goto("/en/contact", { waitUntil: "networkidle" });
+    for (let index = 0; index < 4; index += 1) await page.getByRole("button", { name: /continue/i }).click();
     await page.locator('input[name="name"]').fill("Playwright QA");
     await page.locator('input[name="email"]').fill("playwright@example.com");
     await page.locator('textarea[name="products"]').fill("KH-QA-001 | QA product");
@@ -136,6 +138,6 @@ test.describe("Kehong production flows", () => {
     await submit.click();
     await expect(page.getByText(/submission failed/i)).toBeVisible();
     await submit.click();
-    await expect(page.getByText(/accepted by the Kehong website/i)).toBeVisible();
+    await expect(page.getByText(/inquiry was accepted/i)).toBeVisible();
   });
 });

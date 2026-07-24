@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/validate-email-config.mjs && node scripts/validate-catalog.mjs && node scripts/validate-sitemap.mjs && node scripts/audit-legacy-domain.mjs",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",

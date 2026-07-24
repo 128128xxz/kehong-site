@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Header from "@/components/site/Header";
-import InquiryForm from "@/components/site/InquiryForm";
+import GuidedQuoteForm from "@/components/site/GuidedQuoteForm";
 import SiteFooter from "@/components/site/SiteFooter";
 import { contact } from "@/data/company";
 import { showcaseImages } from "@/data/visuals";
@@ -142,17 +142,7 @@ export default async function ContactPage({
               </span>
             ))}
           </div>
-          <InquiryForm
-            locale={locale}
-            initialProducts={initialProducts}
-            title={locale === "zh" ? "快速报价表单" : "Quick quote form"}
-            description={
-              locale === "zh"
-                ? "填写产品、数量、尺寸和目标市场，科宏团队会按项目配置回复报价。"
-                : "Add product, quantity, size and destination market so Kehong can reply with a tailored quotation."
-            }
-            compact
-          />
+          <GuidedQuoteForm locale={locale} initialProducts={initialProducts} />
         </div>
       </main>
       <SiteFooter />
