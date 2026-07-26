@@ -33,8 +33,9 @@ async function settle(page) {
       scrollTo(0, y);
       await new Promise((resolve) => setTimeout(resolve, 140));
     }
-    // 逐张确认:仍未加载的图片滚进视口等它完成
+    // 逐张确认:仍未加载的图片滚进视口等它完成(display:none 的隐藏图跳过)
     for (const image of Array.from(document.images)) {
+      if (!image.offsetParent && getComputedStyle(image).position !== "fixed") continue;
       if (image.complete && image.naturalWidth > 0) continue;
       image.scrollIntoView({ block: "center", behavior: "auto" });
       await Promise.race([
@@ -45,7 +46,7 @@ async function settle(page) {
     scrollTo(0, 0);
   });
   await page.waitForTimeout(400);
-  const unloaded = await page.evaluate(() => Array.from(document.images).filter((image) => !image.complete || image.naturalWidth === 0).map((image) => image.currentSrc || image.src));
+  const unloaded = await page.evaluate(() => Array.from(document.images).filter((image) => (image.offsetParent || getComputedStyle(image).position === "fixed") && (!image.complete || image.naturalWidth === 0)).map((image) => image.currentSrc || image.src));
   if (unloaded.length) console.warn("images still unloaded:", unloaded.length, unloaded.slice(0, 3));
 }
 

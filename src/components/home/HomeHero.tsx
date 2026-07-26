@@ -1,72 +1,100 @@
-import Image from "next/image";
-import { ArrowRight, Check } from "lucide-react";
+import type { ReactNode } from "react";
+import { getImageProps } from "next/image";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { companyProfile } from "@/data/company";
 import { showcaseImages } from "@/data/visuals";
+import { CountUp } from "@/components/home/interactive";
 
 export default function HomeHero({ locale }: { locale: string }) {
   const zh = locale === "zh";
-  const facts = zh
-    ? ["20+ 年纸品经验", "8000+㎡工厂", "OEM / ODM", "海外订单支持"]
-    : ["20+ years", "8000+ m² factory", "OEM / ODM", "Export-ready support"];
+  const alt = zh
+    ? "科宏工厂车间:成排模切设备与纸板堆垛"
+    : "Kehong factory hall with die-cutting lines and stacked board";
+
+  const desktop = getImageProps({
+    alt,
+    src: showcaseImages.factoryHallWide,
+    width: 1672,
+    height: 941,
+    sizes: "100vw",
+    quality: 78,
+    priority: true,
+  });
+  const mobile = getImageProps({
+    alt,
+    src: showcaseImages.machine,
+    width: 1086,
+    height: 1448,
+    sizes: "100vw",
+    quality: 78,
+  });
+
+  const stats: Array<{ value: ReactNode; label: string }> = [
+    { value: <CountUp to={20} suffix="+" />, label: zh ? "年纸品制造经验" : "Years in paper converting" },
+    { value: <CountUp to={8000} suffix="+" />, label: zh ? "平方米厂房面积" : "m² of factory floor" },
+    { value: "OEM / ODM", label: zh ? "定制项目模式" : "Custom project models" },
+    { value: "MOQ", label: zh ? "弹性起订量" : "Flexible order volumes" },
+  ];
 
   return (
     <section className="kh-home-hero">
-      <div className="kh-shell kh-home-hero-grid">
-        <div className="kh-home-hero-copy">
-          <p className="kh-eyebrow">
-            {zh ? "佛山纸材加工与定制包装" : "Foshan paper converting & custom packaging"}
+      <div className="kh-hero-bg" aria-hidden="true">
+        <picture>
+          <source media="(min-width: 761px)" srcSet={desktop.props.srcSet} sizes="100vw" />
+          {/* eslint-disable-next-line jsx-a11y/alt-text -- mobile.props 已含 alt */}
+          <img {...mobile.props} loading="eager" fetchPriority="high" />
+        </picture>
+      </div>
+      <div className="kh-hero-scrim" aria-hidden="true" />
+      <div className="kh-hero-noise" aria-hidden="true" />
+
+      <div className="kh-shell kh-hero-inner">
+        <p className="kh-mono kh-hero-index kh-rise kh-rise-1">
+          <span>Foshan Kehong Paper Products</span>
+          <span>Est. 20+ yrs</span>
+          <span>OEM / ODM</span>
+        </p>
+
+        <div className="kh-hero-copy">
+          <p className="kh-eyebrow kh-eyebrow-light kh-rise kh-rise-2">
+            {zh ? "佛山 · 纸材加工与定制包装工厂" : "Foshan paper converting & custom packaging"}
           </p>
-          <h1>
+          <h1 className="kh-rise kh-rise-3">
             {zh ? (
-              <>
-                从纸材到<span className="whitespace-nowrap">包装结构</span>，清晰地交付。
-              </>
+              <>从一张纸材，到撑得起品牌的<span className="whitespace-nowrap">包装结构</span>。</>
             ) : (
-              "Paper packaging, built from the material up."
+              "From raw paper to structures that carry brands."
             )}
           </h1>
-          <p className="kh-lede">
+          <p className="kh-lede kh-rise kh-rise-4">
             {zh
-              ? "从纸材选择、结构打样到成品包装，科宏为海外品牌、经销商和采购团队提供可执行的项目支持。"
-              : "From paper selection and structural sampling to finished packaging, Kehong supports overseas brands, distributors and procurement teams with a clear production workflow."}
+              ? "纸材选择、结构打样、加工与出口协同在同一条项目流程里完成，服务海外品牌、经销商与采购团队。"
+              : "Material selection, structural sampling, converting and export coordination run in one project workflow for overseas brands, distributors and procurement teams."}
           </p>
-          <div className="kh-actions">
-            <Link className="kh-button kh-button-primary" href="/products">
+          <div className="kh-actions kh-rise kh-rise-5">
+            <Link className="kh-button kh-button-light" href="/products">
               {zh ? "探索产品" : "Explore products"}
               <ArrowRight className="size-4" />
             </Link>
-            <Link className="kh-button kh-button-secondary" href="/contact">
+            <Link className="kh-button kh-button-ghost" href="/contact">
               {zh ? "提交询盘" : "Request a quote"}
             </Link>
           </div>
-          <div className="kh-proof-strip">
-            {facts.map((fact, index) => (
-              <span key={fact}>
-                <Check className="size-4" />
-                {fact}
-                {index < facts.length - 1 && <i aria-hidden="true" />}
-              </span>
-            ))}
-          </div>
         </div>
-        <div className="kh-home-hero-media">
-          <Image
-            src={showcaseImages.webCorrugatedSheet}
-            alt={zh ? "科宏瓦楞纸与纸材样本" : "Corrugated and paper material samples at Kehong"}
-            fill
-            priority
-            sizes="(max-width: 900px) 100vw, 52vw"
-            className="object-cover"
-          />
-          <span className="kh-image-label">
-            {zh ? "纸材与生产参考" : "Paper materials / production reference"}
-          </span>
-          <div className="kh-hero-caption">
-            <p>{zh ? "纸材、结构与加工能力" : "Material, structure and converting"}</p>
-            <span>{zh ? companyProfile.location.zh : companyProfile.location.en}</span>
-          </div>
-        </div>
+
+        <dl className="kh-hero-stats kh-rise kh-rise-6">
+          {stats.map((stat) => (
+            <div className="kh-hero-stat" key={stat.label}>
+              <b>{stat.value}</b>
+              <span className="kh-mono">{stat.label}</span>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div className="kh-scroll-cue" aria-hidden="true">
+        <i />
+        <span className="kh-mono">Scroll</span>
       </div>
     </section>
   );

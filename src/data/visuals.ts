@@ -49,6 +49,11 @@ export const showcaseImages = {
   modelTechnicalPreview: "/models/orinscare/v2/orinscare_packaging_set_v2_ultra_preview.png",
   unsplashFoodPackaging: "/images/web/unsplash/paper-food-packaging.jpg",
   unsplashTakeawayPackaging: "/images/web/unsplash/paper-takeaway-packaging.jpg",
+  // 语义别名(按图片真实画面命名;历史键名与实际内容不符,alt 文案以这些为准)
+  factoryHallWide: "/images/kehong/showcase/exhibition-booth-wide.webp",
+  corrugatorHall: "/images/kehong/showcase/sample-room-boxes.webp",
+  slittingLinePink: "/images/kehong/showcase/gold-board-stack.webp",
+  feederOperator: "/images/kehong/showcase/exhibition-team.webp",
 } as const;
 
 export const heroScenes = [

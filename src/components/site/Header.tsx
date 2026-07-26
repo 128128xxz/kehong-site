@@ -41,7 +41,12 @@ const resourceLinks: NavItem[] = [
   { href: "/procurement", zh: "买家支持", en: "Buyer support" },
 ];
 
-export default function Header() {
+type HeaderProps = {
+  /** cinema = 首页暗场:透明起始,滚过 Hero 后过渡为实底 */
+  variant?: "solid" | "cinema";
+};
+
+export default function Header({ variant = "solid" }: HeaderProps) {
   const locale = useLocale();
   const pathname = usePathname();
   const copy = headerCopy[locale as keyof typeof headerCopy] ?? headerCopy.en;
@@ -52,7 +57,30 @@ export default function Header() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(variant !== "cinema");
   const [lastPathname, setLastPathname] = useState(pathname);
+
+  // cinema 变体:观察 Hero 底部哨兵,离开视口上沿即切换实底(IO,无 scroll 抖动)
+  useEffect(() => {
+    if (variant !== "cinema") return;
+    const sentinel = document.querySelector("[data-kh-hero-sentinel]");
+    if (!sentinel) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- 无哨兵页面直接回退实底态
+      setScrolled(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          // rootMargin 把根上沿下移了 73px:哨兵从上方离开时 top≈73 而非 <0
+          setScrolled(!entry.isIntersecting && entry.boundingClientRect.top < 74);
+        }
+      },
+      { rootMargin: "-73px 0px 0px 0px", threshold: 0 },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [variant]);
 
   const closeDesktopDropdowns = () => {
     headerRef.current?.querySelectorAll("details[open]").forEach((node) => node.removeAttribute("open"));
@@ -129,7 +157,12 @@ export default function Header() {
   const navLinkClass = (active: boolean) => `kh-nav-link${active ? " is-active" : ""}`;
 
   return (
-    <header ref={headerRef} className="kh-header">
+    <header
+      ref={headerRef}
+      className="kh-header"
+      data-variant={variant}
+      data-scrolled={String(variant !== "cinema" || scrolled || menuOpen)}
+    >
       <div className="kh-shell kh-header-bar">
         <Link href="/" className="kh-header-brand">
           <span className="kh-monogram" aria-hidden="true">KH</span>

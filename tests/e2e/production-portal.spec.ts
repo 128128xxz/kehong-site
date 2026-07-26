@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("homepage manufacturing website", () => {
-  test("shows a focused hero and six business zones", async ({ page }) => {
+  test("shows a cinematic hero and the full section stack", async ({ page }) => {
     await page.goto("/en");
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator(".kh-home-hero")).toBeVisible();
@@ -9,7 +9,10 @@ test.describe("homepage manufacturing website", () => {
     await expect(page.getByRole("link", { name: /Request a quote/i }).first()).toBeVisible();
     await expect(page.locator(".production-portal")).toHaveCount(0);
     await expect(page.locator(".kh-system-card")).toHaveCount(4);
+    await expect(page.locator(".kh-marquee")).toBeVisible();
+    await expect(page.locator(".kh-gallery-track")).toBeVisible();
     await expect(page.locator(".kh-section-forest")).toBeVisible();
+    await expect(page.locator(".kh-spec-panel")).toBeVisible();
   });
 
   for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1366, height: 768 }, { width: 1440, height: 900 }, { width: 1920, height: 1080 }]) {
@@ -28,9 +31,20 @@ test.describe("homepage manufacturing website", () => {
     await expect(page.getByRole("link", { name: "提交询盘" }).first()).toBeVisible();
   });
 
-  test("homepage keeps exactly six top-level sections", async ({ page }) => {
+  test("homepage keeps exactly eight top-level sections", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.locator("main > section")).toHaveCount(6);
+    await expect(page.locator("main > section")).toHaveCount(8);
+  });
+
+  test("cinema header starts transparent and turns solid after the hero", async ({ page }) => {
+    await page.goto("/en");
+    const header = page.locator("header.kh-header");
+    await expect(header).toHaveAttribute("data-variant", "cinema");
+    await expect(header).toHaveAttribute("data-scrolled", "false");
+    await page.evaluate(() => window.scrollTo(0, window.innerHeight * 1.6));
+    await expect(header).toHaveAttribute("data-scrolled", "true");
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(header).toHaveAttribute("data-scrolled", "false");
   });
 
   test("hero CTAs stay fully above the fold at 1366x768", async ({ page }) => {

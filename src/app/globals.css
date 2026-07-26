@@ -25,7 +25,10 @@
   --kh-brass: #b98932;
   --kh-brass-soft: #dcc28b;
   --kh-line: rgba(29, 33, 29, .14);
+  --kh-forest-deep: #0a1612;
   --kh-shadow-soft: 0 10px 30px rgba(29, 33, 29, .08);
+  --kh-ease: cubic-bezier(.22, 1, .36, 1);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --background: var(--kh-paper);
   --foreground: var(--kh-ink);
   --primary: var(--kh-forest);
@@ -430,99 +433,210 @@
     box-shadow: var(--kh-shadow-soft);
   }
 
-  /* ---------- 首页 Hero ---------- */
-  .kh-home-hero {
-    padding: clamp(3.5rem, 7vw, 7rem) 0 2.5rem;
-  }
-  .kh-home-hero-grid {
-    display: grid;
-    align-items: center;
-    gap: clamp(2.5rem, 6vw, 6rem);
-    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
-  }
-  .kh-home-hero-copy h1 {
-    max-width: 10ch;
-    margin: 1rem 0 1.25rem;
-    font-size: clamp(3rem, 6vw, 5rem);
+  /* ---------- 工程注记语言 ---------- */
+  .kh-mono {
+    font-family: var(--font-mono);
+    font-size: .72rem;
     font-weight: 700;
-    letter-spacing: -.045em;
-    line-height: 1.04;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    line-height: 1.5;
   }
-  .kh-actions {
+  .kh-kicker-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: .75rem;
-    margin-top: 2rem;
-  }
-  .kh-proof-strip {
-    display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: .65rem;
-    margin-top: 2.5rem;
-    color: var(--kh-muted);
-    font-size: .84rem;
-    font-weight: 600;
+    gap: .6rem;
   }
-  .kh-proof-strip span {
-    display: inline-flex;
-    align-items: center;
-    gap: .38rem;
-  }
-  .kh-proof-strip svg {
+  .kh-kicker-row svg {
+    flex: none;
     color: var(--kh-brass);
   }
-  .kh-proof-strip i {
-    width: 1px;
-    height: 1rem;
-    background: var(--kh-line);
+  .kh-kicker-index {
+    color: var(--kh-brass);
   }
-  .kh-home-hero-media, .kh-capability-media, .kh-factory-image {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-  }
-  .kh-home-hero-media {
-    min-height: clamp(420px, 48vw, 640px);
-    border: 1px solid var(--kh-line);
-  }
-  .kh-image-label {
+  .kh-fig-caption {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
-    border-radius: 4px;
-    background: rgba(16, 42, 35, .86);
+    left: .9rem;
+    bottom: .8rem;
+    z-index: 1;
     color: #fff;
-    padding: .45rem .65rem;
-    font-size: .7rem;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+    text-shadow: 0 1px 6px rgba(10, 22, 18, .7);
   }
-  .kh-hero-caption {
+  .kh-media-shade::after {
+    content: "";
     position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, .28);
-    padding: .8rem 1rem 1rem;
-    background: linear-gradient(180deg, rgba(16, 42, 35, 0), rgba(16, 42, 35, .58));
-    color: #fff;
-    font-size: .85rem;
-    text-shadow: 0 1px 6px rgba(16, 42, 35, .65);
-  }
-  .kh-hero-caption p {
-    margin: 0;
-    font-weight: 700;
-  }
-  .kh-hero-caption span {
-    color: rgba(255, 255, 255, .85);
+    inset: auto 0 0 0;
+    height: 38%;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent, rgba(10, 22, 18, .55));
   }
 
-  /* ---------- 首页区块 ---------- */
+  /* ---------- S1 Cinematic Hero ---------- */
+  .kh-home-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* 上提到透明页头之下,hero 画面直达页面顶端 */
+    margin-top: -72px;
+    min-height: 100svh;
+    overflow: hidden;
+    background: var(--kh-forest-deep);
+    color: #fffdf8;
+  }
+  .kh-hero-bg {
+    position: absolute;
+    inset: 0;
+    animation: kh-settle 1.2s var(--kh-ease) both;
+  }
+  .kh-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 62%;
+  }
+  .kh-hero-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(16, 42, 35, .5) 0%, rgba(16, 42, 35, .3) 45%, rgba(10, 22, 18, .86) 100%),
+      radial-gradient(120% 90% at 18% 55%, rgba(10, 22, 18, .55), transparent 60%);
+  }
+  .kh-hero-noise {
+    position: absolute;
+    inset: 0;
+    opacity: .05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='.55'/></svg>");
+  }
+  .kh-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 7rem;
+  }
+  .kh-hero-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 253, 248, .18);
+    color: rgba(255, 253, 248, .62);
+  }
+  .kh-hero-copy {
+    max-width: 720px;
+    padding: 2.5rem 0 2.25rem;
+  }
+  .kh-hero-copy h1 {
+    margin: 1rem 0 1.25rem;
+    font-size: clamp(2.75rem, 6vw, 5.25rem);
+    font-weight: 700;
+    letter-spacing: -.04em;
+    line-height: 1.04;
+    color: #fffdf8;
+  }
+  .kh-hero-copy .kh-lede {
+    color: rgba(255, 253, 248, .78);
+  }
+  .kh-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem 2rem;
+    margin: 0;
+    border-top: 1px solid rgba(255, 253, 248, .18);
+    padding: 1.5rem 0 2rem;
+  }
+  .kh-hero-stat b {
+    display: block;
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.15;
+  }
+  .kh-hero-stat span {
+    display: block;
+    margin-top: .35rem;
+    color: var(--kh-brass-soft);
+  }
+  .kh-scroll-cue {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    color: var(--kh-brass-soft);
+  }
+  .kh-scroll-cue i {
+    position: relative;
+    width: 1px;
+    height: 48px;
+    overflow: hidden;
+    background: rgba(255, 253, 248, .25);
+  }
+  .kh-scroll-cue i::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: var(--kh-brass);
+    animation: kh-cue 2.4s linear infinite;
+  }
+  .kh-rise {
+    animation: kh-rise .6s var(--kh-ease) both;
+  }
+  .kh-rise-1 { animation-delay: .05s; }
+  .kh-rise-2 { animation-delay: .13s; }
+  .kh-rise-3 { animation-delay: .21s; }
+  .kh-rise-4 { animation-delay: .29s; }
+  .kh-rise-5 { animation-delay: .37s; }
+  .kh-rise-6 { animation-delay: .45s; }
+
+  /* ---------- S2 材料跑马带 ---------- */
+  .kh-marquee {
+    overflow: hidden;
+    border-bottom: 1px solid var(--kh-brass-soft);
+    background: var(--kh-forest-strong);
+    padding: 1.05rem 0;
+  }
+  .kh-marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+    animation: kh-marquee 40s linear infinite;
+  }
+  .kh-marquee:hover .kh-marquee-track,
+  .kh-marquee:focus-within .kh-marquee-track {
+    animation-play-state: paused;
+  }
+  .kh-marquee-track a {
+    display: inline-flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-right: 2.5rem;
+    color: rgba(255, 253, 248, .85);
+    font-size: .95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color .12s ease;
+  }
+  .kh-marquee-track a::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--kh-brass);
+  }
+  .kh-marquee-track a:hover {
+    color: var(--kh-brass-soft);
+  }
+
+  /* ---------- 区块通用 ---------- */
   .kh-section {
     padding: clamp(4.5rem, 8vw, 7.5rem) 0;
   }
@@ -544,19 +658,26 @@
     margin-bottom: 2.5rem;
   }
   .kh-section h2, .kh-section-cta h2 {
-    max-width: 18ch;
+    max-width: 20ch;
     margin: .7rem 0 0;
-    font-size: clamp(2rem, 4vw, 3.35rem);
+    font-size: clamp(2.25rem, 4.5vw, 3.6rem);
     font-weight: 600;
-    letter-spacing: -.045em;
+    letter-spacing: -.035em;
     line-height: 1.06;
   }
-  .kh-system-grid {
+
+  /* ---------- S3 产品系统 Bento ---------- */
+  .kh-bento {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(12, minmax(0, 1fr));
   }
+  .kh-bento-a { grid-column: span 6; grid-row: span 2; }
+  .kh-bento-b { grid-column: span 6; }
+  .kh-bento-c, .kh-bento-d { grid-column: span 3; }
   .kh-system-card {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     border: 1px solid var(--kh-line);
     background: var(--kh-paper);
@@ -567,21 +688,46 @@
     transform: translateY(-4px);
     border-color: var(--kh-brass);
   }
-  .kh-system-image {
+  .kh-card-media {
     position: relative;
+    overflow: hidden;
     aspect-ratio: 4 / 3;
+  }
+  .kh-bento-a .kh-card-media { aspect-ratio: auto; flex: 1; min-height: 340px; }
+  .kh-bento-b .kh-card-media { aspect-ratio: 21 / 9; }
+  .kh-card-media img {
+    transition: transform .7s var(--kh-ease);
+  }
+  .kh-system-card:hover .kh-card-media img {
+    transform: scale(1.05);
   }
   .kh-system-copy {
     padding: 1.25rem;
   }
   .kh-system-copy h3 {
+    position: relative;
+    display: inline-block;
     margin: 0;
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 1.2;
   }
+  .kh-system-copy h3::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    left: 0;
+    height: 2px;
+    background: var(--kh-brass);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s var(--kh-ease);
+  }
+  .kh-system-card:hover .kh-system-copy h3::after {
+    transform: scaleX(1);
+  }
   .kh-system-copy p {
-    min-height: 4.8rem;
     margin: .65rem 0 1.1rem;
     color: var(--kh-muted);
     font-size: .94rem;
@@ -595,51 +741,186 @@
     font-size: .88rem;
     font-weight: 700;
   }
-  .kh-capability-grid, .kh-factory-grid {
+  .kh-index-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin-top: 2.5rem;
+    border-block: 1px solid var(--kh-line);
+  }
+  .kh-index-item {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: .6rem;
+    padding: .95rem .6rem;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--kh-ink);
+  }
+  .kh-index-item b {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--kh-muted);
+    transition: color .12s ease;
+  }
+  .kh-index-item::after {
+    content: "";
+    position: absolute;
+    right: .6rem;
+    bottom: .55rem;
+    left: .6rem;
+    height: 1px;
+    background: var(--kh-brass);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s var(--kh-ease);
+  }
+  .kh-index-item:hover b {
+    color: var(--kh-brass);
+  }
+  .kh-index-item:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* ---------- S4 工艺流程(sticky 步进) ---------- */
+  .kh-process-grid {
+    display: grid;
+    align-items: start;
+    gap: clamp(2rem, 5vw, 5rem);
+    grid-template-columns: 1.05fr .95fr;
+  }
+  .kh-process-media {
+    position: sticky;
+    top: 96px;
+    height: min(72vh, 640px);
+    overflow: hidden;
+    border: 1px solid var(--kh-line);
+    border-radius: 12px;
+  }
+  .kh-process-img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .5s var(--kh-ease);
+  }
+  .kh-process-img.is-active {
+    opacity: 1;
+  }
+  .kh-process-steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .kh-process-step {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr;
+    gap: 1rem;
+    border-bottom: 1px solid var(--kh-line);
+    padding: 1.5rem 0;
+    opacity: .45;
+    transition: opacity .3s ease;
+  }
+  .kh-process-step.is-active {
+    opacity: 1;
+  }
+  .kh-process-step b {
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    font-weight: 700;
+    color: var(--kh-brass);
+  }
+  .kh-process-step h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .kh-process-step p {
+    margin: .4rem 0 0;
+    color: var(--kh-muted);
+    font-size: .95rem;
+    line-height: 1.6;
+  }
+  .kh-process-tabs {
+    display: none;
+    gap: .5rem;
+    overflow-x: auto;
+    margin-top: 1.25rem;
+    padding-bottom: .5rem;
+    scroll-snap-type: x proximity;
+  }
+  .kh-process-tabs button {
+    flex: none;
+    scroll-snap-align: start;
+    border: 1px solid var(--kh-line);
+    border-radius: 999px;
+    background: var(--kh-surface);
+    color: var(--kh-ink);
+    font-size: .88rem;
+    font-weight: 600;
+    padding: .5rem .95rem;
+    cursor: pointer;
+  }
+  .kh-process-tabs button.is-active {
+    border-color: var(--kh-forest);
+    background: var(--kh-forest);
+    color: var(--kh-surface);
+  }
+
+  /* ---------- S5 材料画廊(scroll-snap) ---------- */
+  .kh-gallery-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: .25rem .25rem .75rem;
+    scroll-snap-type: x mandatory;
+    mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  }
+  .kh-gallery-card {
+    position: relative;
+    flex: none;
+    width: clamp(260px, 30vw, 420px);
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border: 1px solid var(--kh-line);
+    border-radius: 10px;
+    scroll-snap-align: start;
+  }
+  .kh-gallery-card img {
+    transition: transform .7s var(--kh-ease);
+  }
+  .kh-gallery-card:hover img {
+    transform: scale(1.04);
+  }
+  .kh-gallery-nav {
+    display: flex;
+    gap: .5rem;
+  }
+  .kh-gallery-nav button {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--kh-line);
+    border-radius: 999px;
+    background: var(--kh-surface);
+    color: var(--kh-ink);
+    cursor: pointer;
+    transition: border-color .12s ease, color .12s ease;
+  }
+  .kh-gallery-nav button:hover {
+    border-color: var(--kh-brass);
+    color: var(--kh-brass);
+  }
+
+  /* ---------- S6 工厂规模带 ---------- */
+  .kh-factory-grid {
     display: grid;
     align-items: center;
     gap: clamp(2rem, 6vw, 6rem);
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-  .kh-capability-media {
-    min-height: 520px;
-  }
-  .kh-capability-copy h2, .kh-factory-grid h2 {
-    max-width: 13ch;
-  }
-  .kh-capability-copy > p:not(.kh-eyebrow) {
-    margin: 1.25rem 0 2rem;
-    color: var(--kh-muted);
-    font-size: 1.05rem;
-  }
-  .kh-capability-copy ol {
-    display: grid;
-    gap: 0;
-    margin: 0 0 2rem;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid var(--kh-line);
-  }
-  .kh-capability-copy li {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    border-bottom: 1px solid var(--kh-line);
-    padding: .95rem 0;
-  }
-  .kh-capability-copy li b {
-    color: var(--kh-brass);
-    font-size: .78rem;
-    letter-spacing: .1em;
-  }
-  .kh-capability-copy li span {
-    font-weight: 600;
-  }
-  .kh-factory-grid {
     grid-template-columns: .85fr 1.15fr;
   }
-  .kh-factory-grid > div:first-child {
-    max-width: 50ch;
+  .kh-factory-grid h2 {
+    max-width: 14ch;
   }
   .kh-factory-grid .kh-section-lede {
     color: rgba(255, 253, 248, .75);
@@ -654,16 +935,42 @@
   }
   .kh-factory-grid li {
     display: flex;
-    gap: .6rem;
     align-items: start;
+    gap: .6rem;
   }
   .kh-factory-grid li svg {
     flex: none;
-    color: var(--kh-brass-soft);
     margin-top: .25rem;
+    color: var(--kh-brass-soft);
   }
-  .kh-factory-image {
-    min-height: 500px;
+  .kh-factory-stack {
+    position: relative;
+    padding: 0 clamp(1rem, 4vw, 3rem) 3rem 0;
+  }
+  .kh-factory-main {
+    position: relative;
+    max-width: 440px;
+    aspect-ratio: 3 / 4;
+    margin-left: auto;
+    overflow: hidden;
+    border: 1px solid rgba(255, 253, 248, .2);
+    border-radius: 12px;
+  }
+  .kh-factory-mini {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: min(46%, 260px);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid rgba(255, 253, 248, .25);
+    border-radius: 10px;
+    box-shadow: 0 24px 48px rgba(10, 22, 18, .4);
+  }
+
+  /* ---------- S7 行业路径(hover 预览) ---------- */
+  .kh-industry-wrap {
+    position: relative;
   }
   .kh-industry-list {
     border-top: 1px solid var(--kh-line);
@@ -682,8 +989,9 @@
     color: var(--kh-forest);
   }
   .kh-industry-row > span {
+    font-family: var(--font-mono);
     color: var(--kh-brass);
-    font-size: .8rem;
+    font-size: .78rem;
     font-weight: 700;
   }
   .kh-industry-row h3 {
@@ -695,14 +1003,134 @@
     margin: .25rem 0 0;
     color: var(--kh-muted);
   }
-  .kh-cta-inner {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 2rem;
+  .kh-industry-row svg {
+    transition: transform .2s ease;
   }
-  .kh-cta-inner h2 {
-    max-width: 15ch;
+  .kh-industry-row:hover svg {
+    transform: translate(2px, -2px);
+  }
+  .kh-industry-thumb {
+    display: none;
+    position: relative;
+    flex: none;
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  .kh-industry-preview {
+    position: absolute;
+    top: .25rem;
+    right: 0;
+    width: 280px;
+    height: 200px;
+    overflow: hidden;
+    border: 1px solid var(--kh-line);
+    border-radius: 10px;
+    box-shadow: var(--kh-shadow-soft);
+    pointer-events: none;
+    transition: transform .3s var(--kh-ease);
+  }
+
+  /* ---------- S8 规格单 CTA ---------- */
+  .kh-section-cta {
+    position: relative;
+    overflow: hidden;
+  }
+  .kh-keyline {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--kh-brass), transparent);
+    transform-origin: center;
+    transition: transform .7s var(--kh-ease);
+  }
+  .kh-cta-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-items: start;
+    gap: clamp(2rem, 5vw, 5rem);
+    grid-template-columns: 1.05fr .95fr;
+  }
+  .kh-cta-watermark {
+    position: absolute;
+    right: -3%;
+    bottom: -12%;
+    width: 340px;
+    opacity: .08;
+    pointer-events: none;
+  }
+  .kh-spec-panel {
+    position: relative;
+    border: 1px solid rgba(245, 241, 232, .24);
+    border-radius: 10px;
+    padding: 1.6rem;
+    background: rgba(10, 22, 18, .18);
+  }
+  .kh-spec-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    border-bottom: 1px dashed rgba(245, 241, 232, .18);
+    padding: .85rem .4rem;
+    transition: background-color .15s ease;
+  }
+  .kh-spec-row:hover {
+    background: rgba(245, 241, 232, .06);
+  }
+  .kh-spec-row b {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--kh-brass-soft);
+    transition: color .15s ease;
+  }
+  .kh-spec-row:hover b {
+    color: var(--kh-brass);
+  }
+  .kh-spec-row span {
+    font-weight: 600;
+  }
+  .kh-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1.4rem;
+  }
+  .kh-button-ghost {
+    border: 1px solid rgba(255, 253, 248, .4);
+    background: transparent;
+    color: #fffdf8;
+  }
+  .kh-button-ghost:hover {
+    border-color: var(--kh-brass-soft);
+    color: var(--kh-brass-soft);
+  }
+  .kh-cta-note {
+    margin-top: 2rem;
+    color: rgba(255, 253, 248, .55);
+  }
+
+  /* ---------- 滚动 Reveal 原语 ---------- */
+  .kh-reveal-armed {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s var(--kh-ease), transform .6s var(--kh-ease);
+  }
+  .kh-reveal-armed.kh-reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+  /* mode="none" 的 Reveal:自身不位移,只给子元素发 is-in 信号 */
+  .kh-reveal-watch .kh-keyline {
+    transform: scaleX(0);
+  }
+  .kh-reveal-watch.kh-reveal-in .kh-keyline {
+    transform: scaleX(1);
   }
 
   /* ---------- Footer ---------- */
@@ -801,52 +1229,115 @@
   .kh-compact-nav {
     display: block;
   }
-  .kh-home-hero-grid {
-    gap: 2rem;
+  .kh-bento {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
-  .kh-system-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .kh-bento-a, .kh-bento-b {
+    grid-column: span 6;
+    grid-row: auto;
+  }
+  .kh-bento-a .kh-card-media {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    flex: none;
+  }
+  .kh-bento-c, .kh-bento-d {
+    grid-column: span 3;
+  }
+  .kh-index-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .kh-process-grid {
+    grid-template-columns: 1fr;
+  }
+  .kh-process-media {
+    position: relative;
+    top: 0;
+    height: min(52vh, 440px);
+  }
+  .kh-process-steps {
+    display: none;
+  }
+  .kh-process-tabs {
+    display: flex;
+  }
+  .kh-process-mobile-copy {
+    display: block;
+    margin-top: .75rem;
+    color: var(--kh-muted);
+    font-size: .95rem;
+    line-height: 1.6;
+  }
+  .kh-industry-preview {
+    display: none;
+  }
+  .kh-industry-thumb {
+    display: block;
+  }
+  .kh-industry-row {
+    grid-template-columns: 2.4rem 1fr auto auto;
+  }
+  .kh-factory-grid, .kh-cta-grid {
+    grid-template-columns: 1fr;
+  }
+  .kh-factory-stack {
+    padding-right: 0;
+  }
+  .kh-factory-main {
+    margin-left: 0;
   }
 }
 
 @media (max-width: 760px) {
   .kh-home-hero {
-    padding-top: 3.5rem;
+    min-height: 88svh;
   }
-  .kh-home-hero-grid, .kh-capability-grid, .kh-factory-grid, .kh-footer-grid {
-    grid-template-columns: 1fr;
+  .kh-hero-inner {
+    padding-top: 6rem;
   }
-  .kh-home-hero-copy h1 {
-    max-width: 11ch;
-    font-size: clamp(2.75rem, 13vw, 4rem);
+  .kh-hero-copy {
+    padding: 2rem 0 1.75rem;
   }
-  .kh-home-hero-media {
-    min-height: 380px;
+  .kh-hero-copy h1 {
+    font-size: clamp(2.4rem, 10.5vw, 3.4rem);
   }
-  .kh-proof-strip {
-    gap: .5rem .8rem;
+  .kh-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    padding-bottom: 1.5rem;
   }
-  .kh-proof-strip i {
+  .kh-scroll-cue {
     display: none;
   }
-  .kh-section-heading, .kh-cta-inner {
+  .kh-marquee-track {
+    animation-duration: 55s;
+  }
+  .kh-actions .kh-button {
+    flex: 1 1 100%;
+  }
+  .kh-bento {
+    grid-template-columns: 1fr;
+  }
+  .kh-bento-a, .kh-bento-b, .kh-bento-c, .kh-bento-d {
+    grid-column: auto;
+  }
+  .kh-index-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .kh-section-heading {
     align-items: start;
     flex-direction: column;
   }
   .kh-section h2, .kh-section-cta h2 {
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(2rem, 9.5vw, 2.8rem);
   }
-  .kh-system-grid {
-    grid-template-columns: 1fr;
+  .kh-gallery-card {
+    width: 78vw;
   }
-  .kh-system-copy p {
-    min-height: 0;
-  }
-  .kh-capability-media, .kh-factory-image {
-    min-height: 340px;
+  .kh-factory-mini {
+    right: 0;
+    bottom: -1.25rem;
   }
   .kh-industry-row {
-    grid-template-columns: 2rem 1fr auto;
     gap: .75rem;
   }
   .kh-industry-row h3 {
@@ -855,8 +1346,14 @@
   .kh-industry-row p {
     font-size: .9rem;
   }
+  .kh-footer-grid {
+    grid-template-columns: 1fr;
+  }
   .kh-footer-links {
     grid-template-columns: 1fr 1fr;
+  }
+  .kh-cta-watermark {
+    display: none;
   }
 }
 
@@ -869,6 +1366,76 @@
   }
 }
 
+/* ---------- Cinema 页头变体(首页暗场,未分层以压过工具类) ---------- */
+.kh-header[data-variant="cinema"] {
+  transition: background-color .3s ease, border-color .3s ease, color .3s ease;
+}
+.kh-header[data-variant="cinema"][data-scrolled="false"] {
+  background: transparent;
+  border-color: transparent;
+  color: #fffdf8;
+  backdrop-filter: none;
+}
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-nav-link {
+  color: #fffdf8;
+}
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-nav-link:hover {
+  background: rgba(255, 255, 255, .12);
+  color: #fffdf8;
+}
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-nav-link.is-active {
+  box-shadow: inset 0 -2px 0 var(--kh-brass-soft);
+}
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-monogram {
+  background: var(--kh-brass-soft);
+  color: var(--kh-ink);
+}
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-brand-tag {
+  color: rgba(255, 253, 248, .65);
+}
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-actions button {
+  border-color: rgba(255, 253, 248, .4);
+  background: transparent;
+  color: #fffdf8;
+}
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta {
+  background: var(--kh-brass-soft);
+  color: var(--kh-ink);
+}
+
+/* ---------- 关键帧 ---------- */
+@keyframes kh-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes kh-settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes kh-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes kh-cue {
+  from {
+    transform: translateY(-110%);
+  }
+  to {
+    transform: translateY(260%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -877,5 +1444,27 @@
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
+  }
+  .kh-marquee-track {
+    flex-wrap: wrap;
+    width: auto;
+    animation: none !important;
+  }
+  .kh-marquee-track span[aria-hidden="true"] {
+    display: none;
+  }
+  .kh-scroll-cue i::after {
+    animation: none !important;
+  }
+  .kh-hero-bg, .kh-rise {
+    animation: none !important;
+  }
+  .kh-reveal-armed {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .kh-reveal-watch .kh-keyline {
+    transform: scaleX(1) !important;
   }
 }

@@ -1,7 +1,7 @@
 {
-  "gitCommit": "249088f770e8786bcd9285a78707da200e23a1c5",
+  "gitCommit": "394994f5c6df45c97e162f99de8ddceb7d93260b",
   "branch": "codex/production-portal-release-fix-20260720-1703",
-  "buildTimestamp": "2026-07-26T10:16:05.686Z",
+  "buildTimestamp": "2026-07-26T10:58:53.582Z",
   "baseURL": "http://127.0.0.1:3000",
   "nodeVersion": "v24.18.0",
   "packageManager": "pnpm",
@@ -9,43 +9,43 @@
   "screenshots": [
     {
       "file": "screenshots/design-redesign-20260725/en-390x844.png",
-      "sha256": "64bafc21922009a0aae09716fc8db924daf4250a463a6bde6a780db95e77a634"
+      "sha256": "d1a5b7a61db7165342d77fbd3a75c8607e7b9d6b365326901c4a724acfbe1823"
     },
     {
       "file": "screenshots/design-redesign-20260725/en-768x1024.png",
-      "sha256": "98a6f2374f76f23964ea53b6a7c478929be8ab5ea0ddd4275d0e61b9017264c4"
+      "sha256": "f6181087d570ebaf2a6d70b9bf4ebdd8eda5f3d6351a61ecc072d0b44f6834b4"
     },
     {
       "file": "screenshots/design-redesign-20260725/en-1366x768.png",
-      "sha256": "e35a3c2b97acc4ff03a52f72a8d516ea3ba9bdb3eef20ed28c9566028d8382bd"
+      "sha256": "f6b9702ba07455cdd9ff565b8df938b965023dc820d6ef63526045c926365c23"
     },
     {
       "file": "screenshots/design-redesign-20260725/en-1440x900.png",
-      "sha256": "7592136558b113b33a1a70e1fc31b41046ab877c0bc8add379e1d20773381666"
+      "sha256": "f70aba3b6981ae4f17fc5b78c3a6bdc6add74eb7558eb21efb61a95b843c2b33"
     },
     {
       "file": "screenshots/design-redesign-20260725/en-1920x1080.png",
-      "sha256": "b6b4675bab742eaf6b9a8169e6468dbd6c7905063c76e78580d0e5cf24ac36b5"
+      "sha256": "6fe52e1a7e1580067c11923715754c506d5b1d2e81a405957333f12d82effa8d"
     },
     {
       "file": "screenshots/design-redesign-20260725/zh-390x844.png",
-      "sha256": "04de80fd069696043cdeff6c7e9de8bbc0204ba6ef2ce613bd962ce726604096"
+      "sha256": "783fad05d23250d71f284f7737b112bd3f49fd8f9ef8c0c6558d65ee2b7465ef"
     },
     {
       "file": "screenshots/design-redesign-20260725/zh-768x1024.png",
-      "sha256": "045df44b8f882adb7ff5884d408e6cc8577b5ae5672835f3a138264edc03be91"
+      "sha256": "d84abde9aa1486340bf8bedcdde7d719a3dc88f4ade6e0f03200251f087aaee0"
     },
     {
       "file": "screenshots/design-redesign-20260725/zh-1366x768.png",
-      "sha256": "091f91f6e3e0e8a56705c85b90121253d9cfecdabf1ba327fa4120913fd1bbd8"
+      "sha256": "7c729d999d4444186ced1d496f166baa6617345cb9f7721a564a8102c284b849"
     },
     {
       "file": "screenshots/design-redesign-20260725/zh-1440x900.png",
-      "sha256": "351173da82fd52be41a6292c8fef9a9419f688d0f6abb0dee5499327de491fd3"
+      "sha256": "6d88781c86859d1dbc7c27f957a2ad0db956545ed86a6aeb12750038fe427477"
     },
     {
       "file": "screenshots/design-redesign-20260725/zh-1920x1080.png",
-      "sha256": "00d37547ebb68e8140da25e5b33efeb2df9469817bd0d359a4b796bfeab5056b"
+      "sha256": "8accb26c317166e98c3c5c360d6ca9045a93f010c12f38c9b93ff62601118c4a"
     },
     {
       "file": "screenshots/design-redesign-20260725/en_products-1440x900.png",
@@ -61,7 +61,7 @@
     },
     {
       "file": "screenshots/design-redesign-20260725/en_factory-1440x900.png",
-      "sha256": "278af85b171caeebd259acd1d1b8fa98f5b537c8df3d8291361d487b8e3edfeb"
+      "sha256": "2febaa90f3e38d9e284413798e9b11b5aef8e68291b753fb6e13e8cb888bf106"
     },
     {
       "file": "screenshots/design-redesign-20260725/en_contact-1440x900.png",
