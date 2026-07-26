@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-16T06:52:32.523Z",
+  "generatedAt": "2026-07-26T16:55:16.048Z",
   "count": 0,
   "items": [],
   "differences": [
     {
       "sku": "KH-KR-KRAFT-080-RAW-001",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "单面牛皮纸 / Kraft paper"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -19,8 +19,8 @@
     {
       "sku": "KH-KR-KRAFT-120-RAW-002",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "双面牛皮纸 / Kraft paper"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -32,8 +32,8 @@
     {
       "sku": "KH-KR-WKRAFT-150-PR-003",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "白牛皮纸 / White kraft"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -45,8 +45,8 @@
     {
       "sku": "KH-KR-YKRAFT-180-PR-004",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "黄牛皮纸 / Yellow kraft"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -58,8 +58,8 @@
     {
       "sku": "KH-KR-FOODK-100-OIL-005",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "食品级牛皮纸 / Food grade kraft"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -71,8 +71,8 @@
     {
       "sku": "KH-KR-PEKRAFT-120-PE-006",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "牛皮纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -84,8 +84,8 @@
     {
       "sku": "KH-KR-OILK-80-OIL-007",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "防油牛皮纸"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -98,8 +98,8 @@
     {
       "sku": "KH-KR-PRKRAFT-200-PR-008",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "牛皮纸"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -111,8 +111,8 @@
     {
       "sku": "KH-KR-KCARDB-300-MC-009",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "牛卡纸 / Kraft cardstock"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -124,8 +124,8 @@
     {
       "sku": "KH-KR-KFLUTE-250E-MT-010",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "牛皮纸 + 瓦楞芯纸"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -138,8 +138,8 @@
     {
       "sku": "KH-WC-WHITE-210-PR-011",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "白卡纸 / White cardboard"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -151,8 +151,8 @@
     {
       "sku": "KH-WC-FOODW-230-OIL-012",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "食品级白卡纸"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -164,8 +164,8 @@
     {
       "sku": "KH-WC-SBS1-250-PR-013",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "单铜白卡"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -177,8 +177,8 @@
     {
       "sku": "KH-WC-SBS2-300-LM-014",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "双铜白卡"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -190,8 +190,8 @@
     {
       "sku": "KH-WC-BOXMAT-350-CR-015",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "白卡纸"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -203,8 +203,8 @@
     {
       "sku": "KH-WC-PAD-400-MC-016",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "白卡纸"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -216,8 +216,8 @@
     {
       "sku": "KH-WC-INSERT-450-MC-017",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "白卡纸"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -229,8 +229,8 @@
     {
       "sku": "KH-WC-WFLUTE-300E-MT-018",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "白卡 + E/F/G 坑"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -245,8 +245,8 @@
     {
       "sku": "KH-WC-PRINTW-350-UV-019",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "白卡纸"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -258,8 +258,8 @@
     {
       "sku": "KH-WC-PEWHITE-300-PE-020",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "白卡纸系列",
+        "material": "白卡纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "white-cardboard-series",
@@ -271,8 +271,8 @@
     {
       "sku": "KH-FD-FOODW-210-RAW-021",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "食品级白卡纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -284,8 +284,8 @@
     {
       "sku": "KH-FD-FOODK-120-RAW-022",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "食品级牛皮纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -297,8 +297,8 @@
     {
       "sku": "KH-FD-GREASE-040-OIL-023",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "防油纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -310,8 +310,8 @@
     {
       "sku": "KH-FD-BURGER-050-PR-024",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "食品级纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -323,8 +323,8 @@
     {
       "sku": "KH-FD-SANDW-060-PR-025",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "食品级纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -336,8 +336,8 @@
     {
       "sku": "KH-FD-BAKING-070-OIL-026",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "防油食品纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -349,8 +349,8 @@
     {
       "sku": "KH-FD-CAKEPAD-230-MC-027",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "白卡 / 食品纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -363,8 +363,8 @@
     {
       "sku": "KH-FD-PIZZAP-120-MC-028",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "食品纸 / 瓦楞纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -377,8 +377,8 @@
     {
       "sku": "KH-FD-TRAYP-250-PE-029",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "食品白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -391,8 +391,8 @@
     {
       "sku": "KH-FD-BOXP-300-CR-030",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品纸系列",
+        "material": "食品白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "food-grade-paper-series",
@@ -405,8 +405,8 @@
     {
       "sku": "KH-CG-SFLUTE-E-RAW-031",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "面纸 + 芯纸"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -419,8 +419,8 @@
     {
       "sku": "KH-CG-DFLUTE-F-RAW-032",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "面纸 + 芯纸 + 里纸"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -434,8 +434,8 @@
     {
       "sku": "KH-CG-TFLUTE-G-RAW-033",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "面纸 + 芯纸 + 里纸"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -449,8 +449,8 @@
     {
       "sku": "KH-CG-EFLUTE-E-MC-034",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "白卡 / 牛皮 + E 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -464,8 +464,8 @@
     {
       "sku": "KH-CG-FFLUTE-F-MC-035",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "白卡 / 牛皮 + F 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -479,8 +479,8 @@
     {
       "sku": "KH-CG-GFLUTE-G-MC-036",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "白卡 / 特种纸 + G 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -494,8 +494,8 @@
     {
       "sku": "KH-CG-COLORF-E-DC-037",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "彩纸 + E/F/G 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -510,8 +510,8 @@
     {
       "sku": "KH-CG-BLACKF-F-DC-038",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "黑卡 + E/F/G 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -526,8 +526,8 @@
     {
       "sku": "KH-CG-WHITEF-E-MT-039",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "白卡 / 白牛皮 + E/F/G 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -543,8 +543,8 @@
     {
       "sku": "KH-CG-KFLUTE-E-MT-040",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "牛皮纸 + E/F/G 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -559,8 +559,8 @@
     {
       "sku": "KH-CG-BKFLUTE-F-MT-041",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "黑卡 + E/F/G 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -575,8 +575,8 @@
     {
       "sku": "KH-CG-WCFLUTE-E-MT-042",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "白卡 + E/F/G 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -591,8 +591,8 @@
     {
       "sku": "KH-CG-SPFLUTE-G-MT-043",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "特种纸 + E/F/G 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -607,8 +607,8 @@
     {
       "sku": "KH-CG-LOGOF-E-EM-044",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "白卡 / 牛皮 + 坑纸"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -622,8 +622,8 @@
     {
       "sku": "KH-CG-SECFLUTE-F-AF-045",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "复合纸 + 坑纸"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -636,8 +636,8 @@
     {
       "sku": "KH-CG-BOXFLUTE-E-CR-046",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "瓦楞纸 / 坑纸系列",
+        "material": "白卡 / 牛皮 + E/F/G 坑"
       },
       "after": {
         "categoryId": "corrugated-fluted-paper-series",
@@ -653,8 +653,8 @@
     {
       "sku": "KH-SP-GOLD-300-FG-047",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "金卡纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -666,8 +666,8 @@
     {
       "sku": "KH-SP-SILVER-300-FS-048",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "银卡纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -679,8 +679,8 @@
     {
       "sku": "KH-SP-LASER-250-UV-049",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "镭射纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -692,8 +692,8 @@
     {
       "sku": "KH-SP-PEARL-230-LM-050",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "珠光纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -705,8 +705,8 @@
     {
       "sku": "KH-SP-BLACK-350-AS-051",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "黑卡纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -718,8 +718,8 @@
     {
       "sku": "KH-SP-COLOR-250-DC-052",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "彩色特种纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -731,8 +731,8 @@
     {
       "sku": "KH-SP-SECURE-200-AF-053",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "防伪纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -744,8 +744,8 @@
     {
       "sku": "KH-SP-ANTIS-300-AS-054",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "防刮花纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -757,8 +757,8 @@
     {
       "sku": "KH-SP-SCENT-180-SC-055",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "留香纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -770,8 +770,8 @@
     {
       "sku": "KH-SP-SPFLUTE-300G-MT-056",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "特种纸系列",
+        "material": "特种纸 + 瓦楞芯纸"
       },
       "after": {
         "categoryId": "specialty-paper-series",
@@ -784,8 +784,8 @@
     {
       "sku": "KH-BX-BURGERBOX-300-MC-001",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "食品级白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -798,8 +798,8 @@
     {
       "sku": "KH-BX-PIZZABOX-E-CR-002",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "瓦楞纸 / 食品牛皮纸"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -812,8 +812,8 @@
     {
       "sku": "KH-BX-CAKEBOX-350-LM-003",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "食品白卡 / 特种纸"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -826,8 +826,8 @@
     {
       "sku": "KH-BX-SANDWBOX-300-PR-004",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "食品白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -840,8 +840,8 @@
     {
       "sku": "KH-BX-TAKEOUT-320-PE-005",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "食品白卡 / 牛皮纸 + PE"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -854,8 +854,8 @@
     {
       "sku": "KH-BX-CHICKEN-350-PR-006",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "食品白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -868,8 +868,8 @@
     {
       "sku": "KH-BX-TRAY-300-PE-007",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "食品白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -882,8 +882,8 @@
     {
       "sku": "KH-BX-SLEEVE-250-PR-008",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "食品纸 / 牛皮纸"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -896,8 +896,8 @@
     {
       "sku": "KH-PD-FOODPAD-080-OIL-009",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "防油纸 / 食品纸"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -910,8 +910,8 @@
     {
       "sku": "KH-BX-BAKERY-350-PR-010",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品包装盒",
+        "material": "食品白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "food-packaging-boxes",
@@ -924,8 +924,8 @@
     {
       "sku": "KH-PD-CAKEPAD-350-MC-011",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "白卡 / 金卡 / 食品纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -939,8 +939,8 @@
     {
       "sku": "KH-PD-PIZZAPAD-120-MC-012",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "食品纸 / 瓦楞纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -953,8 +953,8 @@
     {
       "sku": "KH-PD-FOODPAD-150-OIL-013",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "食品白卡 / 防油纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -967,8 +967,8 @@
     {
       "sku": "KH-PD-COSPAD-350-AS-014",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "白卡 / 黑卡 / 特种纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -982,8 +982,8 @@
     {
       "sku": "KH-PD-ELECPAD-400-MC-015",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "白卡 / 瓦楞纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -996,8 +996,8 @@
     {
       "sku": "KH-PD-GIFTPAD-350-EM-016",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "白卡 / 黑卡 / 特种纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -1011,8 +1011,8 @@
     {
       "sku": "KH-PD-SHOCKPAD-E-MT-017",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "瓦楞纸 / 复合纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -1025,8 +1025,8 @@
     {
       "sku": "KH-PD-ROUND-300-MC-018",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "白卡 / 食品纸 / 特种纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -1040,8 +1040,8 @@
     {
       "sku": "KH-PD-SQUARE-300-MC-019",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "白卡 / 牛皮纸 / 瓦楞纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -1055,8 +1055,8 @@
     {
       "sku": "KH-PD-DIECUT-300-MC-020",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸垫片 / Paper Pads",
+        "material": "白卡 / 特种纸 / 瓦楞纸"
       },
       "after": {
         "categoryId": "paper-pads",
@@ -1070,8 +1070,8 @@
     {
       "sku": "KH-IN-COSINS-400-MC-021",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "白卡 / 黑卡 / 特种纸"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1085,8 +1085,8 @@
     {
       "sku": "KH-IN-PERFINS-400-AS-022",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "黑卡 / 白卡 / 特种纸"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1100,8 +1100,8 @@
     {
       "sku": "KH-IN-ELECINS-E-MT-023",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "瓦楞纸 / 白卡"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1114,8 +1114,8 @@
     {
       "sku": "KH-IN-GIFTINS-400-EM-024",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "白卡 / 黑卡 / 特种纸"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1129,8 +1129,8 @@
     {
       "sku": "KH-IN-WINEINS-E-MT-025",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "瓦楞纸 / 特种纸"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1143,8 +1143,8 @@
     {
       "sku": "KH-IN-TEAINS-350-PR-026",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "白卡 / 牛皮纸 / 特种纸"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1158,8 +1158,8 @@
     {
       "sku": "KH-IN-FOODINS-300-PE-027",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "食品白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1172,8 +1172,8 @@
     {
       "sku": "KH-IN-CORGINS-E-MT-028",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "瓦楞纸"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1185,8 +1185,8 @@
     {
       "sku": "KH-IN-WHITEINS-400-MC-029",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "白卡纸"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1198,8 +1198,8 @@
     {
       "sku": "KH-IN-SPINS-350-UV-030",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸内托 / Paper Inserts",
+        "material": "特种纸 / 黑卡"
       },
       "after": {
         "categoryId": "paper-inserts",
@@ -1212,8 +1212,8 @@
     {
       "sku": "KH-SF-DIECUT-350-MC-031",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "白卡 / 牛皮纸 / 瓦楞纸"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1227,8 +1227,8 @@
     {
       "sku": "KH-SF-CREASE-350-CR-032",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1241,8 +1241,8 @@
     {
       "sku": "KH-SF-LAMIN-E-MT-033",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "面纸 + 瓦楞芯纸"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1255,8 +1255,8 @@
     {
       "sku": "KH-SF-FLUTESHT-E-CR-034",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "白卡 / 牛皮 + E/F/G 坑"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1272,8 +1272,8 @@
     {
       "sku": "KH-SF-FOLDBL-350-CR-035",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1286,8 +1286,8 @@
     {
       "sku": "KH-SF-COLORBL-350-PR-036",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "白卡 / 裱瓦楞纸"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1299,8 +1299,8 @@
     {
       "sku": "KH-SF-FOODBL-300-OIL-037",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "食品级白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1313,8 +1313,8 @@
     {
       "sku": "KH-SF-GIFTBL-400-EM-038",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "特种纸 / 白卡 / 灰板面纸"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1328,8 +1328,8 @@
     {
       "sku": "KH-SF-COSBL-350-AS-039",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "白卡 / 黑卡 / 特种纸"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1343,8 +1343,8 @@
     {
       "sku": "KH-SF-SHAPEBL-350-MC-040",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "纸盒半成品",
+        "material": "白卡 / 特种纸 / 瓦楞纸"
       },
       "after": {
         "categoryId": "paper-box-components",
@@ -1358,8 +1358,8 @@
     {
       "sku": "KH-BX-WHITEBOX-350-PR-041",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "白卡纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1371,8 +1371,8 @@
     {
       "sku": "KH-BX-KRAFTBOX-300-PR-042",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "牛皮纸 / 牛卡纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1385,8 +1385,8 @@
     {
       "sku": "KH-BX-CORBOX-E-CR-043",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "瓦楞纸 / 裱瓦楞纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1398,8 +1398,8 @@
     {
       "sku": "KH-BX-COLORCOR-E-DC-044",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "彩色瓦楞纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1411,8 +1411,8 @@
     {
       "sku": "KH-BX-COSBOX-350-AS-045",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "白卡 / 黑卡 / 特种纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1426,8 +1426,8 @@
     {
       "sku": "KH-BX-ELECBOX-E-MT-046",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "白卡 / 瓦楞纸 / 特种纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1441,8 +1441,8 @@
     {
       "sku": "KH-BX-FOODBOX-320-PE-047",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "食品白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1455,8 +1455,8 @@
     {
       "sku": "KH-BX-GIFTBOX-400-FG-048",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "白卡 / 特种纸 / 裱瓦楞纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1469,8 +1469,8 @@
     {
       "sku": "KH-BX-FOLDBOX-350-CR-049",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "白卡 / 牛皮纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1483,8 +1483,8 @@
     {
       "sku": "KH-BX-ONEPIECE-350-MC-050",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "包装盒成品",
+        "material": "白卡 / 牛皮纸 / 瓦楞纸"
       },
       "after": {
         "categoryId": "finished-paper-boxes",
@@ -1498,22 +1498,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-001",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-002",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1526,8 +1512,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-003",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1540,8 +1526,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PR-004",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1554,8 +1540,8 @@
     {
       "sku": "KH-FD-CUPFAN-280-PR-005",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1568,8 +1554,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PR-006",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1582,8 +1568,8 @@
     {
       "sku": "KH-FD-CUPFAN-160350-PR-007",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1596,8 +1582,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PR-008",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1610,22 +1596,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-009",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-010",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1638,22 +1610,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-011",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-012",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1666,8 +1624,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-013",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1680,92 +1638,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-014",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-015",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-016",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-017",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-018",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-019",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-020",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1778,8 +1652,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-021",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1792,22 +1666,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-022",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-023",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1820,8 +1680,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-024",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1833,8 +1693,8 @@
     {
       "sku": "KH-FD-CUPBOT-150350-PE-025",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1846,8 +1706,8 @@
     {
       "sku": "KH-FD-CUPBOT-150350-PR-026",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1860,36 +1720,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PE-027",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-028",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-029",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1902,22 +1734,8 @@
     {
       "sku": "KH-FD-CUPFAN-150-PE-030",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150350-PR-031",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1930,8 +1748,8 @@
     {
       "sku": "KH-FD-CUPROLL-150350-PR-032",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1944,8 +1762,8 @@
     {
       "sku": "KH-FD-CUPROLL-150350-PR-033",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1958,8 +1776,8 @@
     {
       "sku": "KH-FD-CUPROLL-150350-PR-034",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -1969,66 +1787,10 @@
       }
     },
     {
-      "sku": "KH-FD-CUPROLL-150350-PR-035",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPROLL-150350-PR-036",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
       "sku": "KH-FD-CUPBOT-150350-PR-037",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPROLL-150350-PR-038",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPROLL-150350-PR-039",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2041,22 +1803,8 @@
     {
       "sku": "KH-FD-CUPROLL-170-PR-040",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPROLL-150350-PR-041",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2069,8 +1817,8 @@
     {
       "sku": "KH-FD-CUPROLL-150350-PR-042",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2083,8 +1831,8 @@
     {
       "sku": "KH-FD-CUPSHEET-150350-PE-043",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2097,36 +1845,8 @@
     {
       "sku": "KH-FD-CUPSHEET-150350-PR-044",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPSHEET-150350-PR-045",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPSHEET-150350-PR-046",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2139,8 +1859,8 @@
     {
       "sku": "KH-FD-CUPROLL-180-PR-047",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2152,8 +1872,8 @@
     {
       "sku": "KH-FD-KCUP-150350-PR-048",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -2166,8 +1886,8 @@
     {
       "sku": "KH-FD-KCUP-150350-PR-049",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -2179,8 +1899,8 @@
     {
       "sku": "KH-FD-KCUP-150350-PR-050",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -2191,36 +1911,10 @@
       }
     },
     {
-      "sku": "KH-FD-CUPROLL-150350-PR-051",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-kraft-paper"
-        ]
-      }
-    },
-    {
       "sku": "KH-FD-CUPROLL-150350-PE-052",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-kraft-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPROLL-150350-PE-053",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2232,8 +1926,8 @@
     {
       "sku": "KH-FD-KCUP-150350-PR-054",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -2243,78 +1937,23 @@
       }
     },
     {
-      "sku": "KH-FD-CUPROLL-150350-PR-055",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-kraft-paper"
-        ]
-      }
-    },
-    {
       "sku": "KH-FD-CUPROLL-150-PR-056",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
         "materialIds": [
           "food-grade-kraft-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPBOT-150350-PR-057",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPBOT-150350-PR-058",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
         ]
       }
     },
     {
       "sku": "KH-FD-CUPBOT-150350-PR-059",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPBOT-150350-PR-060",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2327,8 +1966,8 @@
     {
       "sku": "KH-FD-CUPBOT-150350-PR-061",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2341,8 +1980,8 @@
     {
       "sku": "KH-FD-KCUP-300-PR-062",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -2354,8 +1993,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-063",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2368,8 +2007,8 @@
     {
       "sku": "KH-FD-CUPROLL-150350-PR-064",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2382,8 +2021,8 @@
     {
       "sku": "KH-FD-CUPROLL-210-PR-065",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2396,8 +2035,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-066",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2410,8 +2049,8 @@
     {
       "sku": "KH-FD-CUPROLL-250-PR-067",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2424,8 +2063,8 @@
     {
       "sku": "KH-FD-CUPSHEET-150350-PR-068",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2438,8 +2077,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-069",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2452,8 +2091,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-070",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2466,8 +2105,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PE-071",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2480,8 +2119,8 @@
     {
       "sku": "KH-FD-CUPBOT-150350-PR-072",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2494,8 +2133,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-PR-073",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2508,8 +2147,8 @@
     {
       "sku": "KH-FD-CUPFAN-180-PE-074",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2522,8 +2161,8 @@
     {
       "sku": "KH-FD-CUPFAN-190-PR-075",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2536,8 +2175,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PR-076",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2550,8 +2189,8 @@
     {
       "sku": "KH-FD-CUPFAN-230-PE-077",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2564,8 +2203,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PR-078",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2578,8 +2217,8 @@
     {
       "sku": "KH-FD-CUPFAN-280-PR-079",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2592,8 +2231,8 @@
     {
       "sku": "KH-FD-CUPFAN-300-PE-080",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2606,8 +2245,8 @@
     {
       "sku": "KH-FD-CUPFAN-320-PR-081",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2620,8 +2259,8 @@
     {
       "sku": "KH-FD-CUPFAN-350-PR-082",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2634,8 +2273,8 @@
     {
       "sku": "KH-FD-CUPFAN-150-PE-083",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2648,8 +2287,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-PR-084",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2662,8 +2301,8 @@
     {
       "sku": "KH-FD-CUPFAN-320-PR-085",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2676,8 +2315,8 @@
     {
       "sku": "KH-FD-CUPFAN-350-PE-086",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2690,8 +2329,8 @@
     {
       "sku": "KH-FD-CUPFAN-150-PR-087",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2704,8 +2343,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-PR-088",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2718,8 +2357,8 @@
     {
       "sku": "KH-FD-CUPFAN-180-PE-089",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2732,8 +2371,8 @@
     {
       "sku": "KH-FD-CUPFAN-190-PR-090",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2746,8 +2385,8 @@
     {
       "sku": "KH-FD-CUPFAN-180-PR-091",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2760,8 +2399,8 @@
     {
       "sku": "KH-FD-CUPFAN-190-PE-092",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2774,8 +2413,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PR-093",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2788,8 +2427,8 @@
     {
       "sku": "KH-FD-CUPFAN-230-PR-094",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2802,8 +2441,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PE-095",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2816,8 +2455,8 @@
     {
       "sku": "KH-FD-CUPFAN-250-PR-096",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2830,8 +2469,8 @@
     {
       "sku": "KH-FD-CUPFAN-350-PR-097",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2844,8 +2483,8 @@
     {
       "sku": "KH-FD-CUPFAN-150-PE-098",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2858,8 +2497,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-PR-099",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2872,8 +2511,8 @@
     {
       "sku": "KH-FD-CUPFAN-180-PR-100",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2886,8 +2525,8 @@
     {
       "sku": "KH-FD-CUPFAN-190-PE-101",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2900,8 +2539,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PR-102",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2914,8 +2553,8 @@
     {
       "sku": "KH-FD-CUPFAN-250-MC-103",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2928,8 +2567,8 @@
     {
       "sku": "KH-FD-CUPFAN-280-PE-104",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2942,8 +2581,8 @@
     {
       "sku": "KH-FD-CUPFAN-300-MC-105",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2956,8 +2595,8 @@
     {
       "sku": "KH-FD-CUPFAN-320-PR-106",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2970,8 +2609,8 @@
     {
       "sku": "KH-FD-CUPFAN-350-PE-107",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2984,8 +2623,8 @@
     {
       "sku": "KH-FD-CUPFAN-150-PR-108",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -2998,8 +2637,8 @@
     {
       "sku": "KH-FD-CUPFAN-160350-PR-109",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3012,8 +2651,8 @@
     {
       "sku": "KH-FD-CUPFAN-160350-PE-110",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3026,8 +2665,8 @@
     {
       "sku": "KH-FD-CUPFAN-160350-PR-111",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3040,8 +2679,8 @@
     {
       "sku": "KH-FD-CUPFAN-160350-PR-112",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3054,8 +2693,8 @@
     {
       "sku": "KH-FD-CUPFAN-160350-PE-113",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3068,8 +2707,8 @@
     {
       "sku": "KH-FD-CUPFAN-160350-PR-114",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3082,8 +2721,8 @@
     {
       "sku": "KH-FD-CUPFAN-180-PR-115",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3096,8 +2735,8 @@
     {
       "sku": "KH-FD-CUPFAN-190-PE-116",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3110,8 +2749,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PR-117",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3124,8 +2763,8 @@
     {
       "sku": "KH-FD-CUPFAN-230-PR-118",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3138,8 +2777,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PE-119",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3152,8 +2791,8 @@
     {
       "sku": "KH-FD-CUPFAN-250-PR-120",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3166,8 +2805,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PR-121",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3180,8 +2819,8 @@
     {
       "sku": "KH-FD-CUPFAN-250-PE-122",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3194,8 +2833,8 @@
     {
       "sku": "KH-FD-CUPFAN-280-PR-123",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3208,8 +2847,8 @@
     {
       "sku": "KH-FD-CUPFAN-300-PR-124",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3222,8 +2861,8 @@
     {
       "sku": "KH-FD-CUPFAN-320-PE-125",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3236,8 +2875,8 @@
     {
       "sku": "KH-FD-CUPFAN-350-PR-126",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3250,8 +2889,8 @@
     {
       "sku": "KH-FD-CUPFAN-300-PR-127",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3264,8 +2903,8 @@
     {
       "sku": "KH-FD-CUPFAN-320-PE-128",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3278,8 +2917,8 @@
     {
       "sku": "KH-FD-CUPFAN-350-PR-129",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3292,8 +2931,8 @@
     {
       "sku": "KH-FD-CUPFAN-150-PR-130",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3306,8 +2945,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-PE-131",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3320,64 +2959,8 @@
     {
       "sku": "KH-FD-CUPFAN-180-PR-132",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-170-PR-133",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-180-PE-134",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-190-PR-135",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-210-PR-136",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3390,106 +2973,8 @@
     {
       "sku": "KH-FD-CUPFAN-230-PE-137",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-240-PR-138",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-170-PR-139",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-180-PE-140",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-190-PR-141",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-210-PR-142",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-230-PE-143",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-240-PR-144",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3502,8 +2987,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PR-145",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3516,8 +3001,8 @@
     {
       "sku": "KH-FD-CUPFAN-250-PE-146",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3530,8 +3015,8 @@
     {
       "sku": "KH-FD-CUPFAN-280-PR-147",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3544,8 +3029,8 @@
     {
       "sku": "KH-FD-CUPFAN-300-PR-148",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3558,8 +3043,8 @@
     {
       "sku": "KH-FD-CUPFAN-320-PE-149",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3572,8 +3057,8 @@
     {
       "sku": "KH-FD-CUPFAN-350-PR-150",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3586,8 +3071,8 @@
     {
       "sku": "KH-FD-CUPFAN-190-PR-151",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3600,8 +3085,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PE-152",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3614,8 +3099,8 @@
     {
       "sku": "KH-FD-CUPFAN-230-PR-153",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3628,8 +3113,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PR-154",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3642,8 +3127,8 @@
     {
       "sku": "KH-FD-CUPFAN-250-PE-155",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3656,148 +3141,8 @@
     {
       "sku": "KH-FD-CUPFAN-280-PR-156",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-300-PR-157",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-320-PE-158",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-350-PR-159",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150-PR-160",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-170-PE-161",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-180-PR-162",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-300-PR-163",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-320-PE-164",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-350-PR-165",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150-PR-166",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3810,22 +3155,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-PE-167",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-180-PR-168",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3838,8 +3169,8 @@
     {
       "sku": "KH-FD-CUPFAN-300-PR-169",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3852,8 +3183,8 @@
     {
       "sku": "KH-FD-CUPFAN-320-PE-170",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3866,8 +3197,8 @@
     {
       "sku": "KH-FD-CUPFAN-350-PR-171",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3880,8 +3211,8 @@
     {
       "sku": "KH-FD-CUPFAN-150-PR-172",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3894,8 +3225,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-PE-173",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3908,8 +3239,8 @@
     {
       "sku": "KH-FD-CUPFAN-180-PR-174",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3922,8 +3253,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PR-175",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3936,8 +3267,8 @@
     {
       "sku": "KH-FD-CUPFAN-230-PE-176",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3950,8 +3281,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PR-177",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3964,8 +3295,8 @@
     {
       "sku": "KH-FD-CUPFAN-250-PR-178",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3978,8 +3309,8 @@
     {
       "sku": "KH-FD-CUPFAN-280-PE-179",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -3992,8 +3323,8 @@
     {
       "sku": "KH-FD-CUPFAN-300-MC-180",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4006,8 +3337,8 @@
     {
       "sku": "KH-FD-CUPROLL-230-PE-181",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4020,8 +3351,8 @@
     {
       "sku": "KH-FD-CUPROLL-240-PE-182",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4034,8 +3365,8 @@
     {
       "sku": "KH-FD-CUPROLL-250-PR-183",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4048,22 +3379,8 @@
     {
       "sku": "KH-FD-CUPROLL-280-PE-184",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-300-PR-185",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4076,22 +3393,8 @@
     {
       "sku": "KH-FD-CUPFAN-320-PR-186",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-350-PR-187",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4104,8 +3407,8 @@
     {
       "sku": "KH-FD-CUPFAN-150-PE-188",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4118,22 +3421,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-MC-189",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-180-PR-190",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4146,8 +3435,8 @@
     {
       "sku": "KH-FD-CUPROLL-210-PR-191",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4159,8 +3448,8 @@
     {
       "sku": "KH-FD-CUPROLL-230-PR-192",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4172,8 +3461,8 @@
     {
       "sku": "KH-FD-CUPROLL-240-PE-193",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4185,8 +3474,8 @@
     {
       "sku": "KH-FD-CUPROLL-250-PR-194",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4198,8 +3487,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PE-195",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4212,8 +3501,8 @@
     {
       "sku": "KH-FD-CUPFAN-230-MC-196",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4226,8 +3515,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PE-197",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4240,8 +3529,8 @@
     {
       "sku": "KH-FD-CUPFAN-250-PR-198",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4254,8 +3543,8 @@
     {
       "sku": "KH-FD-CUPFAN-280-PR-199",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4268,8 +3557,8 @@
     {
       "sku": "KH-FD-CUPFAN-300-PE-200",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4282,8 +3571,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-PE-201",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4296,8 +3585,8 @@
     {
       "sku": "KH-FD-CUPFAN-180-PR-202",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4310,8 +3599,8 @@
     {
       "sku": "KH-FD-CUPFAN-190-PE-203",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4324,8 +3613,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PR-204",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4338,8 +3627,8 @@
     {
       "sku": "KH-FD-CUPFAN-230-MC-205",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4352,8 +3641,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PE-206",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4366,8 +3655,8 @@
     {
       "sku": "KH-FD-CUPBOT-150-PE-207",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4380,8 +3669,8 @@
     {
       "sku": "KH-FD-CUPBOT-170-PR-208",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4394,8 +3683,8 @@
     {
       "sku": "KH-FD-CUPBOT-180-PE-209",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4408,92 +3697,8 @@
     {
       "sku": "KH-FD-CUPBOT-190-PE-210",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-300-PR-211",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-320-PE-212",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-350-PR-213",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-150-PR-214",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-170-PE-215",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-180-PR-216",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4506,8 +3711,8 @@
     {
       "sku": "KH-FD-CUPROLL-350-PE-217",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4520,8 +3725,8 @@
     {
       "sku": "KH-FD-CUPROLL-150-PE-218",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4534,8 +3739,8 @@
     {
       "sku": "KH-FD-CUPROLL-170-PR-219",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4548,8 +3753,8 @@
     {
       "sku": "KH-FD-CUPROLL-180-PE-220",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4562,8 +3767,8 @@
     {
       "sku": "KH-FD-CUPSHEET-250-PE-221",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4576,8 +3781,8 @@
     {
       "sku": "KH-FD-CUPSHEET-280-PE-222",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4590,8 +3795,8 @@
     {
       "sku": "KH-FD-CUPSHEET-300-PE-223",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4604,8 +3809,8 @@
     {
       "sku": "KH-FD-CUPSHEET-320-PE-224",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4618,8 +3823,8 @@
     {
       "sku": "KH-FD-CUPSHEET-320-PR-225",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4632,8 +3837,8 @@
     {
       "sku": "KH-FD-CUPSHEET-350-PR-226",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4646,8 +3851,8 @@
     {
       "sku": "KH-FD-CUPSHEET-150-PR-227",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4660,8 +3865,8 @@
     {
       "sku": "KH-FD-CUPSHEET-170-PR-228",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4674,8 +3879,8 @@
     {
       "sku": "KH-FD-CUPSHEET-280-PE-229",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4688,8 +3893,8 @@
     {
       "sku": "KH-FD-CUPSHEET-300-PE-230",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4702,8 +3907,8 @@
     {
       "sku": "KH-FD-CUPSHEET-320-PE-231",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4716,8 +3921,8 @@
     {
       "sku": "KH-FD-CUPSHEET-350-PE-232",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4730,8 +3935,8 @@
     {
       "sku": "KH-FD-CUPSHEET-230-PR-233",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4744,8 +3949,8 @@
     {
       "sku": "KH-FD-CUPSHEET-240-PR-234",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4758,8 +3963,8 @@
     {
       "sku": "KH-FD-CUPSHEET-250-PR-235",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4772,8 +3977,8 @@
     {
       "sku": "KH-FD-CUPSHEET-280-PR-236",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4786,8 +3991,8 @@
     {
       "sku": "KH-FD-CUPROLL-190-PR-237",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4799,8 +4004,8 @@
     {
       "sku": "KH-FD-CUPROLL-210-PE-238",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4812,8 +4017,8 @@
     {
       "sku": "KH-FD-CUPROLL-230-PR-239",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4825,8 +4030,8 @@
     {
       "sku": "KH-FD-CUPROLL-240-PR-240",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4838,8 +4043,8 @@
     {
       "sku": "KH-FD-CUPFAN-350-PR-241",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4852,8 +4057,8 @@
     {
       "sku": "KH-FD-CUPFAN-150-PE-242",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4866,8 +4071,8 @@
     {
       "sku": "KH-FD-CUPFAN-170-PR-243",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4880,8 +4085,8 @@
     {
       "sku": "KH-FD-CUPFAN-180-PR-244",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4894,8 +4099,8 @@
     {
       "sku": "KH-FD-CUPFAN-190-PE-245",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4908,8 +4113,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-PR-246",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4922,8 +4127,8 @@
     {
       "sku": "KH-FD-KCUP-320-PE-247",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -4935,8 +4140,8 @@
     {
       "sku": "KH-FD-KCUP-350-PE-248",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -4948,8 +4153,8 @@
     {
       "sku": "KH-FD-CUPROLL-150-PR-249",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4961,8 +4166,8 @@
     {
       "sku": "KH-FD-CUPROLL-170-PE-250",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -4972,38 +4177,10 @@
       }
     },
     {
-      "sku": "KH-FD-CUPFAN-180-PR-251",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
       "sku": "KH-FD-CUPFAN-190-PR-252",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-210-PR-253",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5016,8 +4193,8 @@
     {
       "sku": "KH-FD-CUPFAN-230-PE-254",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5030,22 +4207,8 @@
     {
       "sku": "KH-FD-CUPFAN-240-PR-255",
       "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
-      "sku": "KH-FD-CUPFAN-250-PR-256",
-      "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5058,8 +4221,8 @@
     {
       "sku": "KH-FD-CUPROLL-320-PR-257",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5071,8 +4234,8 @@
     {
       "sku": "KH-FD-CUPROLL-350-PR-258",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5084,8 +4247,8 @@
     {
       "sku": "KH-FD-CUPROLL-150-PE-259",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5097,8 +4260,8 @@
     {
       "sku": "KH-FD-CUPROLL-170-PR-260",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5110,8 +4273,8 @@
     {
       "sku": "KH-FD-CUPROLL-320-PE-261",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5123,8 +4286,8 @@
     {
       "sku": "KH-FD-CUPROLL-350-PE-262",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5136,8 +4299,8 @@
     {
       "sku": "KH-FD-CUPROLL-150-PE-263",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5149,8 +4312,8 @@
     {
       "sku": "KH-FD-CUPROLL-170-PE-264",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5162,8 +4325,8 @@
     {
       "sku": "KH-FD-CUPBOT-170-PE-265",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5176,8 +4339,8 @@
     {
       "sku": "KH-FD-CUPBOT-180-PE-266",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5190,8 +4353,8 @@
     {
       "sku": "KH-FD-CUPBOT-190-PR-267",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5204,8 +4367,8 @@
     {
       "sku": "KH-FD-CUPBOT-210-PE-268",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5218,8 +4381,8 @@
     {
       "sku": "KH-FD-CUPBOT-210-MC-269",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5232,8 +4395,8 @@
     {
       "sku": "KH-FD-CUPBOT-230-PR-270",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5246,8 +4409,8 @@
     {
       "sku": "KH-FD-CUPBOT-240-PE-271",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PLA 涂层"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5260,8 +4423,8 @@
     {
       "sku": "KH-FD-CUPBOT-250-PE-272",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5274,8 +4437,8 @@
     {
       "sku": "KH-FD-CUPROLL-300-PR-273",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5288,8 +4451,8 @@
     {
       "sku": "KH-FD-CUPROLL-320-PR-274",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5302,8 +4465,8 @@
     {
       "sku": "KH-FD-CUPROLL-350-PR-275",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5316,8 +4479,8 @@
     {
       "sku": "KH-FD-CUPROLL-150-PR-276",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5330,8 +4493,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PE-277",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5344,8 +4507,8 @@
     {
       "sku": "KH-FD-CUPFAN-210-MC-278",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5358,8 +4521,8 @@
     {
       "sku": "KH-FD-CUPROLL-150-PR-279",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5372,8 +4535,8 @@
     {
       "sku": "KH-FD-CUPROLL-150350-PE-280",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5386,8 +4549,8 @@
     {
       "sku": "KH-FD-CUPROLL-190-PE-281",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5400,8 +4563,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-282",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5414,8 +4577,8 @@
     {
       "sku": "KH-FD-KCUP-280-MC-283",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "牛皮纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "kraft-paper-series",
@@ -5427,8 +4590,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-MC-284",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5440,8 +4603,8 @@
     {
       "sku": "KH-FD-CUPFAN-280-PR-285",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5454,8 +4617,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-MC-286",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5465,24 +4628,10 @@
       }
     },
     {
-      "sku": "KH-FD-CUPFAN-210-MC-287",
-      "before": {
-        "category": "",
-        "material": ""
-      },
-      "after": {
-        "categoryId": "food-grade-paper",
-        "materialIds": [
-          "food-grade-white-board",
-          "cupstock-paper"
-        ]
-      }
-    },
-    {
       "sku": "KH-FD-CUPFAN-150350-PR-288",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5495,8 +4644,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PE-289",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级牛皮纸 + PE/PLA 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5508,8 +4657,8 @@
     {
       "sku": "KH-FD-TRAYP-150350-PE-290",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5522,8 +4671,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-291",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",
@@ -5536,8 +4685,8 @@
     {
       "sku": "KH-FD-CUPFAN-150350-PR-292",
       "before": {
-        "category": "",
-        "material": ""
+        "category": "食品级纸系列",
+        "material": "食品级白卡纸 / 杯纸 + PE 淋膜"
       },
       "after": {
         "categoryId": "food-grade-paper",

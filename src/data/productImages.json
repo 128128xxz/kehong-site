@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T16:03:06.894Z",
+  "generatedAt": "2026-07-26T16:55:16.012Z",
   "policy": {
     "exact": "Only assets verified as the exact SKU image may be used as exact.",
     "representative": "Representative assets can be used for family, group and SKU context only when visibly labeled.",
@@ -1131,15 +1131,6 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPFAN-150350-PR-002": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPFAN-150350-PR-003": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
@@ -1203,25 +1194,7 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPFAN-150350-PR-010": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPFAN-150350-PR-011": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150350-PR-012": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -1248,60 +1221,6 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPFAN-150350-PR-015": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150350-PR-016": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150350-PR-017": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150350-PR-018": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150350-PR-019": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150350-PR-020": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPFAN-150350-PR-021": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
@@ -1312,15 +1231,6 @@
       "imageStatus": "representative"
     },
     "KH-FD-CUPFAN-150350-PR-022": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150350-PR-023": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -1365,34 +1275,7 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPFAN-150350-PR-028": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150350-PR-029": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPFAN-150-PE-030": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150350-PR-031": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -1428,24 +1311,6 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPROLL-150350-PR-035": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPROLL-150350-PR-036": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPBOT-150350-PR-037": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
@@ -1455,34 +1320,7 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPROLL-150350-PR-038": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPROLL-150350-PR-039": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPROLL-170-PR-040": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPROLL-150350-PR-041": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -1510,24 +1348,6 @@
       "imageStatus": "representative"
     },
     "KH-FD-CUPSHEET-150350-PR-044": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPSHEET-150350-PR-045": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPSHEET-150350-PR-046": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -1572,25 +1392,7 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPROLL-150350-PR-051": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPROLL-150350-PE-052": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPROLL-150350-PE-053": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -1608,15 +1410,6 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPROLL-150350-PR-055": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPROLL-150-PR-056": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
@@ -1626,34 +1419,7 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPBOT-150350-PR-057": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPBOT-150350-PR-058": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPBOT-150350-PR-059": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPBOT-150350-PR-060": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -2310,106 +2076,7 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPFAN-170-PR-133": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-180-PE-134": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-190-PR-135": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-210-PR-136": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPFAN-230-PE-137": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-240-PR-138": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-170-PR-139": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-180-PE-140": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-190-PR-141": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-210-PR-142": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-230-PE-143": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-240-PR-144": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -2526,106 +2193,7 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPFAN-300-PR-157": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-320-PE-158": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-350-PR-159": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150-PR-160": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-170-PE-161": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-180-PR-162": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-300-PR-163": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-320-PE-164": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-350-PR-165": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150-PR-166": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPFAN-170-PE-167": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-180-PR-168": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -2778,25 +2346,7 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPFAN-300-PR-185": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPFAN-320-PR-186": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-350-PR-187": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -2815,15 +2365,6 @@
       "imageStatus": "representative"
     },
     "KH-FD-CUPFAN-170-MC-189": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-180-PR-190": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -3004,60 +2545,6 @@
       "imageStatus": "representative"
     },
     "KH-FD-CUPBOT-190-PE-210": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-300-PR-211": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-320-PE-212": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-350-PR-213": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-150-PR-214": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-170-PE-215": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-180-PR-216": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -3372,25 +2859,7 @@
       ],
       "imageStatus": "representative"
     },
-    "KH-FD-CUPFAN-180-PR-251": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
     "KH-FD-CUPFAN-190-PR-252": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-210-PR-253": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -3409,15 +2878,6 @@
       "imageStatus": "representative"
     },
     "KH-FD-CUPFAN-240-PR-255": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-250-PR-256": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",
@@ -3688,15 +3148,6 @@
       "imageStatus": "representative"
     },
     "KH-FD-CUPFAN-150350-MC-286": {
-      "main": "kh-cupfan-family-representative",
-      "gallery": [
-        "kh-cupfan-family-representative",
-        "kh-material-family-representative",
-        "kh-food-box-family-representative"
-      ],
-      "imageStatus": "representative"
-    },
-    "KH-FD-CUPFAN-210-MC-287": {
       "main": "kh-cupfan-family-representative",
       "gallery": [
         "kh-cupfan-family-representative",

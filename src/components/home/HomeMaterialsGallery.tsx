@@ -22,6 +22,7 @@ const cards: MaterialCard[] = [
   { image: showcaseImages.foodDetail, figure: "Food-grade flute", figureZh: "食品级瓦楞", alt: "Food-grade fluted paper box detail", altZh: "食品级瓦楞纸盒细节" },
   { image: showcaseImages.pinkBox, figure: "Structural box", figureZh: "结构纸盒", alt: "Structural paper box sample", altZh: "结构纸盒样品" },
   { image: showcaseImages.displayOpen, figure: "Display box", figureZh: "开窗展示盒", alt: "Open display box sample", altZh: "开窗展示盒样品" },
+  { image: showcaseImages.webPaperCupsKraft, figure: "Cupstock & cups", figureZh: "纸杯与杯纸", alt: "Kraft paper cups and box", altZh: "牛皮纸纸杯与纸盒" },
 ];
 
 export default function HomeMaterialsGallery({ locale }: { locale: string }) {

@@ -1,0 +1,311 @@
+{
+ "removedCount": 61,
+ "policy": "customer-facing spec identical (ignoring sku/slug/id/source/productLink/sourceReferencePrice/sourceGroup); kept first occurrence",
+ "removed": [
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-002",
+   "slug": "kh-fd-cupfan-150350-pr-002-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-010",
+   "slug": "kh-fd-cupfan-150350-pr-010-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-012",
+   "slug": "kh-fd-cupfan-150350-pr-012-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-015",
+   "slug": "kh-fd-cupfan-150350-pr-015-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-016",
+   "slug": "kh-fd-cupfan-150350-pr-016-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-017",
+   "slug": "kh-fd-cupfan-150350-pr-017-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-018",
+   "slug": "kh-fd-cupfan-150350-pr-018-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-019",
+   "slug": "kh-fd-cupfan-150350-pr-019-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-020",
+   "slug": "kh-fd-cupfan-150350-pr-020-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-023",
+   "slug": "kh-fd-cupfan-150350-pr-023-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-028",
+   "slug": "kh-fd-cupfan-150350-pr-028-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-029",
+   "slug": "kh-fd-cupfan-150350-pr-029-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150350-PR-031",
+   "slug": "kh-fd-cupfan-150350-pr-031-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPROLL-150350-PR-035",
+   "slug": "kh-fd-cuproll-150350-pr-035-pe-coated-paper-roll-for-paper-cup",
+   "title": "PE Coated Paper Roll for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPROLL-150350-PR-036",
+   "slug": "kh-fd-cuproll-150350-pr-036-pe-coated-paper-roll-for-paper-cup",
+   "title": "PE Coated Paper Roll for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPROLL-150350-PR-038",
+   "slug": "kh-fd-cuproll-150350-pr-038-pe-coated-paper-roll-for-paper-cup",
+   "title": "PE Coated Paper Roll for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPROLL-150350-PR-039",
+   "slug": "kh-fd-cuproll-150350-pr-039-pe-coated-paper-roll-for-paper-cup",
+   "title": "PE Coated Paper Roll for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPROLL-150350-PR-041",
+   "slug": "kh-fd-cuproll-150350-pr-041-pe-coated-paper-roll-for-paper-cup",
+   "title": "PE Coated Paper Roll for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPSHEET-150350-PR-045",
+   "slug": "kh-fd-cupsheet-150350-pr-045-pe-coated-paper-sheet-for-paper-cup",
+   "title": "PE Coated Paper Sheet for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPSHEET-150350-PR-046",
+   "slug": "kh-fd-cupsheet-150350-pr-046-pe-coated-paper-sheet-for-paper-cup",
+   "title": "PE Coated Paper Sheet for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPROLL-150350-PR-051",
+   "slug": "kh-fd-cuproll-150350-pr-051-pe-coated-paper-roll-for-paper-cup",
+   "title": "PE Coated Paper Roll for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPROLL-150350-PE-053",
+   "slug": "kh-fd-cuproll-150350-pe-053-pe-coated-paper-roll-for-paper-cup",
+   "title": "PE Coated Paper Roll for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPROLL-150350-PR-055",
+   "slug": "kh-fd-cuproll-150350-pr-055-pe-coated-paper-roll-for-paper-cup",
+   "title": "PE Coated Paper Roll for Paper Cup"
+  },
+  {
+   "sku": "KH-FD-CUPBOT-150350-PR-057",
+   "slug": "kh-fd-cupbot-150350-pr-057-paper-cup-bottom-roll",
+   "title": "Paper Cup Bottom Roll"
+  },
+  {
+   "sku": "KH-FD-CUPBOT-150350-PR-058",
+   "slug": "kh-fd-cupbot-150350-pr-058-paper-cup-bottom-roll",
+   "title": "Paper Cup Bottom Roll"
+  },
+  {
+   "sku": "KH-FD-CUPBOT-150350-PR-060",
+   "slug": "kh-fd-cupbot-150350-pr-060-paper-cup-bottom-roll",
+   "title": "Paper Cup Bottom Roll"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-170-PR-133",
+   "slug": "kh-fd-cupfan-170-pr-133-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-180-PE-134",
+   "slug": "kh-fd-cupfan-180-pe-134-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-190-PR-135",
+   "slug": "kh-fd-cupfan-190-pr-135-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-210-PR-136",
+   "slug": "kh-fd-cupfan-210-pr-136-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-240-PR-138",
+   "slug": "kh-fd-cupfan-240-pr-138-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-170-PR-139",
+   "slug": "kh-fd-cupfan-170-pr-139-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-180-PE-140",
+   "slug": "kh-fd-cupfan-180-pe-140-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-190-PR-141",
+   "slug": "kh-fd-cupfan-190-pr-141-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-210-PR-142",
+   "slug": "kh-fd-cupfan-210-pr-142-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-230-PE-143",
+   "slug": "kh-fd-cupfan-230-pe-143-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-240-PR-144",
+   "slug": "kh-fd-cupfan-240-pr-144-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-300-PR-157",
+   "slug": "kh-fd-cupfan-300-pr-157-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-320-PE-158",
+   "slug": "kh-fd-cupfan-320-pe-158-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-350-PR-159",
+   "slug": "kh-fd-cupfan-350-pr-159-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150-PR-160",
+   "slug": "kh-fd-cupfan-150-pr-160-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-170-PE-161",
+   "slug": "kh-fd-cupfan-170-pe-161-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-180-PR-162",
+   "slug": "kh-fd-cupfan-180-pr-162-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-300-PR-163",
+   "slug": "kh-fd-cupfan-300-pr-163-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-320-PE-164",
+   "slug": "kh-fd-cupfan-320-pe-164-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-350-PR-165",
+   "slug": "kh-fd-cupfan-350-pr-165-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150-PR-166",
+   "slug": "kh-fd-cupfan-150-pr-166-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-180-PR-168",
+   "slug": "kh-fd-cupfan-180-pr-168-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-300-PR-185",
+   "slug": "kh-fd-cupfan-300-pr-185-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-350-PR-187",
+   "slug": "kh-fd-cupfan-350-pr-187-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-180-PR-190",
+   "slug": "kh-fd-cupfan-180-pr-190-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-300-PR-211",
+   "slug": "kh-fd-cupfan-300-pr-211-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-320-PE-212",
+   "slug": "kh-fd-cupfan-320-pe-212-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-350-PR-213",
+   "slug": "kh-fd-cupfan-350-pr-213-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-150-PR-214",
+   "slug": "kh-fd-cupfan-150-pr-214-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-170-PE-215",
+   "slug": "kh-fd-cupfan-170-pe-215-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-180-PR-216",
+   "slug": "kh-fd-cupfan-180-pr-216-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-180-PR-251",
+   "slug": "kh-fd-cupfan-180-pr-251-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-210-PR-253",
+   "slug": "kh-fd-cupfan-210-pr-253-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-250-PR-256",
+   "slug": "kh-fd-cupfan-250-pr-256-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  },
+  {
+   "sku": "KH-FD-CUPFAN-210-MC-287",
+   "slug": "kh-fd-cupfan-210-mc-287-paper-cup-fan",
+   "title": "Paper Cup Fan"
+  }
+ ]
+}

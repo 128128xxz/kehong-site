@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-16T06:52:32.524Z",
-  "totalProducts": 398,
-  "migratedProducts": 398,
-  "publishedProducts": 292,
+  "generatedAt": "2026-07-26T16:55:16.049Z",
+  "totalProducts": 337,
+  "migratedProducts": 337,
+  "publishedProducts": 231,
   "pendingProducts": 106,
   "unresolvedTaxonomyProducts": 0,
-  "oneToManySplits": 324,
+  "oneToManySplits": 266,
   "emptyFields": 0,
   "reports": {
     "taxonomy": "/Users/a369/Documents/Codex/2026-07-13/new-chat/kehong-site/src/data/taxonomy.json",

@@ -49,6 +49,10 @@ export const showcaseImages = {
   modelTechnicalPreview: "/models/orinscare/v2/orinscare_packaging_set_v2_ultra_preview.png",
   unsplashFoodPackaging: "/images/web/unsplash/paper-food-packaging.jpg",
   unsplashTakeawayPackaging: "/images/web/unsplash/paper-takeaway-packaging.jpg",
+  // 2026-07-27 补图:授权来源见 public/images/web/SOURCES.md(Pexels License,可商用免署名)
+  webKraftPaperBag: "/images/web/pexels-kraft-paper-bag.jpg",
+  webKraftHangTags: "/images/web/pexels-kraft-hang-tags.jpg",
+  webPaperCupsKraft: "/images/web/paper-cups.jpg",
   // 语义别名(按图片真实画面命名;历史键名与实际内容不符,alt 文案以这些为准)
   factoryHallWide: "/images/kehong/showcase/exhibition-booth-wide.webp",
   corrugatorHall: "/images/kehong/showcase/sample-room-boxes.webp",

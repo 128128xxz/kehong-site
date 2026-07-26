@@ -106,8 +106,8 @@ test.describe("Kehong production flows", () => {
   test("published product routes use one v2 template and expose group variants", async ({ page }) => {
     for (const path of [
       "/en/products/kh-fd-cupfan-150350-pr-001-paper-cup-fan",
-      "/en/products/kh-fd-cupfan-150350-pr-002-paper-cup-fan",
       "/en/products/kh-fd-cupfan-150350-pr-003-paper-cup-fan",
+      "/en/products/kh-fd-cupfan-210-pr-004-paper-cup-fan",
       "/en/products/kh-fd-kcup-150350-pr-048-kraft-cupstock-paper",
     ]) {
       await page.goto(path, { waitUntil: "networkidle" });

@@ -1,10 +1,10 @@
 # Kehong Product Data Cleaning Report
 
-Generated: 2026-07-26T16:37:11.247Z
+Generated: 2026-07-26T17:00:51.897Z
 
 ## Summary
 
-- SKUs: 398
+- SKUs: 337
 - Product groups: 6
 - Duplicate SKUs: 0
 - Duplicate slugs: 0

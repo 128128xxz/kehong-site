@@ -1,5 +1,7 @@
 Downloaded replacement imagery:
 
+- `pexels-kraft-paper-bag.jpg`: Pexels License (free commercial use, no attribution required), https://www.pexels.com/photo/11348488/ — added 2026-07-27 for the paper-bags category card (owner-approved web sourcing).
+- `pexels-kraft-hang-tags.jpg`: Pexels License (free commercial use, no attribution required), https://www.pexels.com/photo/8101480/ — added 2026-07-27 for the labels-stickers category card (owner-approved web sourcing).
 - `open-cardboard-box.jpg`: Unsplash, Harper Sunday, https://unsplash.com/photos/an-open-cardboard-box-sitting-on-top-of-a-table-fYH4ShNxuQ8
 - `white-paper-box.jpg`: Unsplash, https://unsplash.com/photos/white-box-on-white-table-GopRYASfsOc
 - `kraft-packaging-box.jpg`: Unsplash, https://unsplash.com/photos/brown-and-white-cardboard-box-g2oHJrqcJlQ
