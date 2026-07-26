@@ -481,6 +481,53 @@
     background: linear-gradient(180deg, transparent, rgba(10, 22, 18, .55));
   }
 
+  /* ---------- 内页统一 Cinema 头部 ---------- */
+  .kh-page-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--kh-forest) 0%, var(--kh-forest-strong) 100%);
+    color: #fffdf8;
+  }
+  .kh-page-hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+  .kh-page-hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(16, 42, 35, .62) 0%, rgba(10, 22, 18, .82) 100%);
+  }
+  .kh-page-hero-inner {
+    position: relative;
+    z-index: 1;
+    padding: clamp(4rem, 7vw, 6rem) 0 clamp(2.75rem, 5vw, 4rem);
+  }
+  .kh-page-hero h1 {
+    max-width: 24ch;
+    margin: 1rem 0 0;
+    font-size: clamp(2.3rem, 4.2vw, 3.6rem);
+    font-weight: 650;
+    letter-spacing: -.02em;
+    line-height: 1.08;
+    color: #fffdf8;
+  }
+  .kh-page-hero .kh-lede {
+    margin-top: 1.1rem;
+    color: rgba(255, 253, 248, .76);
+  }
+  .kh-page-hero .kh-actions {
+    margin-top: 1.75rem;
+  }
+  .kh-page-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.5rem;
+    margin: 2.25rem 0 0;
+    border-top: 1px solid rgba(255, 253, 248, .18);
+    padding-top: 1rem;
+    color: var(--kh-brass-soft);
+  }
+
   /* ---------- S1 Cinematic Hero ---------- */
   .kh-home-hero {
     position: relative;

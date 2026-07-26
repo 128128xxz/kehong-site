@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Header from "@/components/site/Header";
 import SiteFooter from "@/components/site/SiteFooter";
+import PageHero from "@/components/site/PageHero";
 import ProductCatalog from "@/components/site/ProductCatalog";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
@@ -162,46 +162,26 @@ export default async function ProductsPage({
       />
       <div className="kh-premium-site texture-paper min-h-screen">
       <Header />
-      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <section className="premium-depth kh-micro-grid texture-ink grid overflow-hidden rounded-xl lg:grid-cols-[.9fr_1.1fr]">
-          <div className="p-6 sm:p-8 lg:p-10">
-            <p className="kh-eyebrow kh-eyebrow-light">
-              {t("products.eyebrow")}
-            </p>
-            <h1 className="kh-editorial-heading mt-4 text-4xl sm:text-6xl">
-              {t("catalog.title")}
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-white/75">
-              {t("catalog.description")}
-            </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#catalog-list"
-                className="kh-button kh-button-light"
-              >
-                {locale === "zh" ? "查看产品规格" : "View specifications"}
-              </a>
-              <Link
-                href="/contact"
-                className="kh-button border border-white/35 text-(--kh-surface) hover:bg-white/10"
-              >
-                {locale === "zh" ? "索取目录 / 规格资料" : "Request catalog / data sheet"}
-              </Link>
-            </div>
-          </div>
-          <div className="relative min-h-[300px]">
-            <Image
-              src={showcaseImages.webOpenShippingBox}
-              alt="Kehong paper material swatches"
-              fill
-              priority
-              sizes="(min-width: 1024px) 54vw, 95vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-(--kh-ink)/55 to-(--kh-ink)/5" />
-          </div>
-        </section>
-        <div id="catalog-list" className="mt-10 scroll-mt-24">
+      <main>
+        <PageHero
+          index="01"
+          kicker={t("products.eyebrow")}
+          title={t("catalog.title")}
+          lede={t("catalog.description")}
+          meta={[
+            locale === "zh" ? `${allSkus.length} 个已发布 SKU` : `${allSkus.length} published SKUs`,
+            "OEM / ODM",
+            locale === "zh" ? "中国广东佛山" : "Foshan, Guangdong, China",
+          ]}
+        >
+          <a href="#catalog-list" className="kh-button kh-button-light">
+            {locale === "zh" ? "查看产品规格" : "View specifications"}
+          </a>
+          <Link href="/contact" className="kh-button kh-button-ghost">
+            {locale === "zh" ? "索取目录 / 规格资料" : "Request catalog / data sheet"}
+          </Link>
+        </PageHero>
+        <div id="catalog-list" className="kh-shell scroll-mt-24 py-10">
           <ProductCatalog
             skus={skus}
             initialQuery={value("search")}

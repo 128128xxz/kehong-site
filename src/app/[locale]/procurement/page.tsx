@@ -11,7 +11,7 @@ export default async function ProcurementPage({ params }: { params: Promise<{ lo
   const { locale } = await params;
   setRequestLocale(locale);
   return (
-    <div className="texture-paper min-h-screen text-(--kh-ink)">
+    <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">
       <Header />
       <main>
         <B2BProcurementSections />

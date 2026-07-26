@@ -8,6 +8,10 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { getLocale } from "next-intl/server";
+import PageHero from "@/components/site/PageHero";
+import { SectionKicker } from "@/components/home/annotations";
+import { Reveal } from "@/components/home/interactive";
+import { Link } from "@/i18n/navigation";
 
 const capabilityItems = [
   { icon: ClipboardCheck, title: "Quote requirements", zh: "报价资料", detail: "Share the product use, dimensions, material or GSM target, quantity, and destination market.", detailZh: "提供产品用途、尺寸、材质或克重目标、数量和目的市场。" },
@@ -33,27 +37,47 @@ export default async function B2BProcurementSections() {
   const isZh = locale === "zh";
 
   return (
-    <section data-visual-section="capability" className="texture-paper px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
-          <div className="kh-panel premium-depth p-5 sm:p-6">
-            <p className="kh-eyebrow">
-              {isZh ? "工厂与服务能力" : "Manufacturing and service capabilities"}
-            </p>
-            <h1 className="kh-editorial-heading mt-3 text-3xl text-(--kh-ink) sm:text-5xl">
-              {isZh ? "把采购要求整理成可确认的生产规格。" : "Turn your packaging brief into a quote-ready specification."}
-            </h1>
-            <p className="mt-4 text-sm leading-7 text-(--kh-muted)">
-              {isZh
-                ? "从材料匹配、结构打样到批量生产与出口包装，科宏为每个项目提供清晰、连贯的交付支持。"
-                : "Use this guide to prepare material, GSM, structure, sampling, quantity, destination, and document requirements before requesting a quote."}
-            </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+    <>
+      <PageHero
+        index="01"
+        kicker={isZh ? "工厂与服务能力" : "Manufacturing and service capabilities"}
+        title={isZh ? "把采购要求整理成可确认的生产规格。" : "Turn your packaging brief into a quote-ready specification."}
+        lede={
+          isZh
+            ? "从材料匹配、结构打样到批量生产与出口包装，科宏为每个项目提供清晰、连贯的交付支持。"
+            : "Use this guide to prepare material, GSM, structure, sampling, quantity, destination, and document requirements before requesting a quote."
+        }
+        meta={[
+          "OEM / ODM",
+          isZh ? "MOQ 按项目确认" : "MOQ by project",
+          isZh ? "中国广东佛山" : "Foshan, Guangdong, China",
+        ]}
+      >
+        <Link href="/contact" className="kh-button kh-button-light">
+          {isZh ? "提交询盘" : "Request a quote"}
+        </Link>
+        <Link href="/products" className="kh-button kh-button-ghost">
+          {isZh ? "浏览产品目录" : "Browse the catalog"}
+        </Link>
+      </PageHero>
+
+      <section data-visual-section="capability" className="kh-section kh-section-paper">
+        <div className="kh-shell">
+          <Reveal>
+            <div className="kh-section-heading">
+              <div>
+                <SectionKicker index="02" text={isZh ? "报价资料" : "Quote preparation"} />
+                <h2>{isZh ? "报价前，先备齐这四类信息。" : "Four inputs that make a quote move faster."}</h2>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {capabilityItems.map((item) => {
                 const Icon = item.icon;
 
                 return (
-                  <div key={item.title} className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
+                  <div key={item.title} className="kh-panel p-5">
                     <div className="flex items-center gap-3">
                       <span className="grid size-10 place-items-center rounded-md bg-(--kh-forest) text-(--kh-brass-soft)">
                         <Icon className="size-5" />
@@ -67,49 +91,63 @@ export default async function B2BProcurementSections() {
                 );
               })}
             </div>
-          </div>
-
-          <div className="grid gap-5">
-            <div className="premium-depth rounded-lg texture-ink p-5 sm:p-6">
-              <p className="kh-eyebrow kh-eyebrow-light">
-                {isZh ? "采购确认事项" : "Procurement checkpoints"}
-              </p>
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                {chooseItems.map((item) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <div key={item.title} className="rounded-md border border-white/12 bg-white/8 p-4">
-                      <div className="flex items-center gap-3">
-                        <Icon className="size-5 text-(--kh-brass-soft)" />
-                        <h3 className="text-sm font-bold text-white">{isZh ? item.zh : item.title}</h3>
-                      </div>
-                      <p className="mt-3 text-sm leading-6 text-white/80">{isZh ? item.detailZh : item.detail}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="kh-panel premium-depth p-5 sm:p-6">
-              <p className="kh-eyebrow">
-                {isZh ? "项目流程" : "Project process"}
-              </p>
-              <div className="mt-5 grid gap-3 md:grid-cols-5">
-                {(isZh ? processSteps.zh : processSteps.en).map((step, index) => (
-                  <div key={step} className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
-                    <span className="grid size-8 place-items-center rounded-full bg-(--kh-brass-soft) text-xs font-bold text-(--kh-ink)">
-                      {index + 1}
-                    </span>
-                    <p className="mt-3 text-sm font-bold text-(--kh-ink)">{step}</p>
-                    <CheckCircle2 className="mt-3 size-4 text-(--kh-brass)" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          </Reveal>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="kh-section kh-section-forest">
+        <div className="kh-shell">
+          <Reveal>
+            <div className="kh-section-heading">
+              <div>
+                <SectionKicker index="03" text={isZh ? "采购确认事项" : "Procurement checkpoints"} light />
+                <h2>{isZh ? "每个项目都会过一遍的确认清单。" : "The checklist every project runs through."}</h2>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {chooseItems.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div key={item.title} className="rounded-md border border-white/12 bg-white/8 p-5">
+                    <div className="flex items-center gap-3">
+                      <Icon className="size-5 text-(--kh-brass-soft)" />
+                      <h3 className="text-sm font-bold text-white">{isZh ? item.zh : item.title}</h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-white/80">{isZh ? item.detailZh : item.detail}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="kh-section kh-section-muted">
+        <div className="kh-shell">
+          <Reveal>
+            <div className="kh-section-heading">
+              <div>
+                <SectionKicker index="04" text={isZh ? "项目流程" : "Project process"} />
+                <h2>{isZh ? "从需求沟通到安排出货的五个节点。" : "Five stages from brief to shipment."}</h2>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-5">
+              {(isZh ? processSteps.zh : processSteps.en).map((step, index) => (
+                <div key={step} className="kh-panel p-4">
+                  <span className="kh-mono text-(--kh-brass)">{`0${index + 1}`}</span>
+                  <p className="mt-3 text-sm font-bold text-(--kh-ink)">{step}</p>
+                  <CheckCircle2 className="mt-3 size-4 text-(--kh-brass)" />
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </>
   );
 }

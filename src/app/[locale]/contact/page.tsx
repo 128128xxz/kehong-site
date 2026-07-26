@@ -4,6 +4,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Header from "@/components/site/Header";
 import GuidedQuoteForm from "@/components/site/GuidedQuoteForm";
 import SiteFooter from "@/components/site/SiteFooter";
+import PageHero from "@/components/site/PageHero";
+import { SectionKicker } from "@/components/home/annotations";
+import { Reveal } from "@/components/home/interactive";
 import { contact } from "@/data/company";
 import { showcaseImages } from "@/data/visuals";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
@@ -63,6 +66,7 @@ export default async function ContactPage({
   const query = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Site" });
+  const zh = locale === "zh";
   const initialProducts =
     query.sku || query.product || query.url
       ? [
@@ -74,75 +78,117 @@ export default async function ContactPage({
         ]
       : [];
 
-  return (
-    <div className="texture-ink min-h-screen">
-      <Header />
-      <main className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8">
-        <div>
-          <p className="kh-eyebrow kh-eyebrow-light">
-            {t("cta.quote")}
-          </p>
-          <h1 className="kh-editorial-heading mt-4 text-4xl sm:text-5xl">
-            {t("contact.title")}
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-8 text-(--kh-paper-deep)">
-            {t("contact.description")}
-          </p>
-          <div className="mt-8 grid gap-3 text-sm text-(--kh-paper-deep) sm:grid-cols-3 lg:grid-cols-1">
-            {[
-              `${locale === "zh" ? "海外销售 WhatsApp" : "Overseas Sales WhatsApp"}: ${contact.whatsapp}`,
-              `Email: ${contact.email}`,
-            ].map((item) => (
-              <p
-                key={item}
-                className="rounded-md border border-white/15 bg-white/8 px-4 py-2 font-semibold"
-              >
-                {item}
-              </p>
-            ))}
-          </div>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {[
-              locale === "zh" ? "报价所需资料：图片 / 尺寸 / 材质 / 数量" : "Quote details: photo / size / material / quantity",
-              locale === "zh" ? "可沟通：目录、规格与项目所需文件" : "Catalog, specifications and project documents can be reviewed per request",
-              locale === "zh" ? "支持：样品确认、OEM/ODM、出口包装" : "Support: sample approval, OEM/ODM and export packing",
-              locale === "zh" ? "回复路径：WhatsApp / Email / 电话" : "Response channels: WhatsApp / email / phone",
-            ].map((item) => (
-              <p
-                key={item}
-                className="rounded-md border border-white/15 bg-white/8 px-4 py-3 text-sm font-medium leading-6 text-(--kh-paper-deep)"
-              >
-                {item}
-              </p>
-            ))}
-          </div>
-          <div className="premium-depth relative mt-10 h-80 overflow-hidden rounded-lg border border-white/15">
-            <Image
-              src={showcaseImages.webBakeryWindowBox}
-              alt="Kehong food packaging sample"
-              fill
-              sizes="(min-width: 1024px) 42vw, 90vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(29,33,29,0),rgba(29,33,29,.62))]" />
-            <div className="absolute bottom-4 left-4 right-4 rounded-md border border-white/15 bg-[rgba(29,33,29,.72)] p-3 text-sm font-semibold text-(--kh-surface)">
-              {locale === "zh" ? "发送样品图、尺寸和数量，销售按配置报价。" : "Send sample photos, size and quantity for a tailored quotation."}
-            </div>
-          </div>
-        </div>
+  const channels = [
+    { label: zh ? "海外销售 WhatsApp" : "Overseas Sales WhatsApp", value: contact.whatsapp },
+    { label: "Email", value: contact.email },
+  ];
+  const checklist = [
+    {
+      index: "A",
+      label: zh ? "报价资料" : "Quote details",
+      body: zh ? "图片 / 尺寸 / 材质 / 数量" : "Photo / size / material / quantity",
+    },
+    {
+      index: "B",
+      label: zh ? "可沟通" : "On request",
+      body: zh ? "目录、规格与项目所需文件" : "Catalog, specifications and project documents",
+    },
+    {
+      index: "C",
+      label: zh ? "支持" : "Support",
+      body: zh ? "样品确认、OEM/ODM、出口包装" : "Sample approval, OEM/ODM and export packing",
+    },
+    {
+      index: "D",
+      label: zh ? "回复路径" : "Response channels",
+      body: zh ? "WhatsApp / Email / 电话" : "WhatsApp / email / phone",
+    },
+  ];
+  const serviceTags = [
+    zh ? "销售跟进" : "Sales follow-up",
+    zh ? "样品/打样" : "Sample support",
+    zh ? "出口服务" : "Export service",
+  ];
 
-        <div className="kh-panel p-5 text-(--kh-ink) sm:p-7">
-          <div className="mb-5 flex flex-wrap gap-2">
-            {[locale === "zh" ? "销售跟进" : "Sales follow-up", locale === "zh" ? "样品/打样" : "Sample support", locale === "zh" ? "出口服务" : "Export service"].map((item) => (
-              <span
-                key={item}
-                className="rounded-full bg-(--kh-paper-deep) px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-(--kh-brass)"
-              >
-                {item}
-              </span>
-            ))}
+  return (
+    <div className="kh-premium-site texture-paper min-h-screen">
+      <Header />
+      <main>
+        <PageHero
+          index="01"
+          kicker={t("cta.quote")}
+          title={t("contact.title")}
+          lede={t("contact.description")}
+          meta={[
+            `Email · ${contact.email}`,
+            `WhatsApp · ${contact.whatsapp}`,
+            zh ? "中国广东佛山" : "Foshan, Guangdong, China",
+          ]}
+        >
+          <a href="#quote-form" className="kh-button kh-button-light">
+            {zh ? "填写询价表单" : "Start the quote form"}
+          </a>
+          <a href={`mailto:${contact.email}`} className="kh-button kh-button-ghost">
+            {t("cta.email")}
+          </a>
+        </PageHero>
+
+        <div className="kh-shell py-[clamp(4rem,7vw,6.5rem)]">
+          <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr]">
+            <Reveal>
+              <SectionKicker index="02" text={zh ? "联系通道" : "Direct channels"} />
+              <h2 className="mt-3 max-w-[20ch] text-3xl font-semibold tracking-tight text-(--kh-ink) sm:text-4xl">
+                {zh ? "直接对接销售团队。" : "Talk directly to the sales team."}
+              </h2>
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                {channels.map((channel) => (
+                  <div key={channel.label} className="kh-panel p-4">
+                    <p className="kh-mono text-(--kh-brass)">{channel.label}</p>
+                    <p className="mt-2 text-sm font-semibold text-(--kh-ink)">{channel.value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                {checklist.map((item) => (
+                  <div key={item.index} className="kh-panel p-4">
+                    <p className="kh-mono text-(--kh-brass)">{`${item.index} · ${item.label}`}</p>
+                    <p className="mt-2 text-sm leading-6 text-(--kh-muted)">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="kh-media-shade premium-depth relative mt-8 h-80 overflow-hidden rounded-lg border border-(--kh-line)">
+                <Image
+                  src={showcaseImages.webBakeryWindowBox}
+                  alt={zh ? "科宏食品纸盒样品" : "Kehong food packaging sample"}
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 90vw"
+                  className="object-cover"
+                />
+                <span className="kh-fig-caption kh-mono">
+                  {`Fig.01 — ${zh ? "食品纸盒实拍" : "Food paper box sample"}`}
+                </span>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-(--kh-muted)">
+                {zh ? "发送样品图、尺寸和数量，销售按配置报价。" : "Send sample photos, size and quantity for a tailored quotation."}
+              </p>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <div id="quote-form" className="kh-panel scroll-mt-24 p-5 text-(--kh-ink) sm:p-7">
+                <div className="mb-5 flex flex-wrap gap-2">
+                  {serviceTags.map((item) => (
+                    <span
+                      key={item}
+                      className="kh-mono rounded-full border border-(--kh-line) bg-(--kh-paper) px-3 py-1.5 text-(--kh-forest)"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <GuidedQuoteForm locale={locale} initialProducts={initialProducts} />
+              </div>
+            </Reveal>
           </div>
-          <GuidedQuoteForm locale={locale} initialProducts={initialProducts} />
         </div>
       </main>
       <SiteFooter />
