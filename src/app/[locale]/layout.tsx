@@ -9,6 +9,7 @@ import {
   setRequestLocale,
 } from "next-intl/server";
 import { Metadata } from "next";
+import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import {
@@ -18,6 +19,11 @@ import {
   siteConfig,
 } from "@/lib/site";
 import "../globals.css";
+
+// 三层字体体系:展示(标题)/ 正文 / 工程注记;中文回落 Noto Sans SC 系统栈
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
+const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-plex-mono", display: "swap" });
 
 export default async function RootLayout({
   children,
@@ -41,7 +47,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir="ltr"
-      className="dark"
+      className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable}`}
       suppressHydrationWarning
     >
       <head>

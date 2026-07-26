@@ -28,7 +28,10 @@
   --kh-forest-deep: #0a1612;
   --kh-shadow-soft: 0 10px 30px rgba(29, 33, 29, .08);
   --kh-ease: cubic-bezier(.22, 1, .36, 1);
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* 三层字体体系:正文 / 展示标题 / 工程注记 */
+  --font-body: var(--font-inter, Inter), "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+  --font-display: var(--font-space-grotesk, "Space Grotesk"), var(--font-inter, Inter), "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: var(--font-plex-mono, "IBM Plex Mono"), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --background: var(--kh-paper);
   --foreground: var(--kh-ink);
   --primary: var(--kh-forest);
@@ -48,13 +51,16 @@
     margin: 0;
     background: var(--kh-paper);
     color: var(--kh-ink);
-    font-family: Inter, "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.65;
   }
   a {
     color: inherit;
     text-decoration: none;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
   }
   button, a, input, textarea, select, summary {
     -webkit-tap-highlight-color: transparent;
@@ -139,9 +145,10 @@
     display: block;
     margin-top: .1rem;
     color: var(--kh-muted);
-    font-size: .72rem;
+    font-family: var(--font-mono);
+    font-size: .7rem;
     font-weight: 600;
-    letter-spacing: .08em;
+    letter-spacing: .1em;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -221,8 +228,9 @@
   .kh-nav-panel-label {
     margin: .4rem .65rem .2rem;
     color: var(--kh-muted);
+    font-family: var(--font-mono);
     font-size: .72rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: .12em;
     text-transform: uppercase;
   }
@@ -291,9 +299,10 @@
   .kh-eyebrow, .kh-section-kicker {
     margin: 0;
     color: var(--kh-brass);
+    font-family: var(--font-mono);
     font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .16em;
+    font-weight: 600;
+    letter-spacing: .14em;
     line-height: 1.4;
     text-transform: uppercase;
   }
@@ -301,8 +310,9 @@
     color: var(--kh-brass-soft);
   }
   .kh-editorial-heading {
+    font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -.035em;
+    letter-spacing: -.02em;
     line-height: 1.1;
   }
   .kh-lede, .kh-section-lede {
@@ -437,8 +447,8 @@
   .kh-mono {
     font-family: var(--font-mono);
     font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .14em;
+    font-weight: 600;
+    letter-spacing: .12em;
     text-transform: uppercase;
     line-height: 1.5;
   }
@@ -532,7 +542,7 @@
     margin: 1rem 0 1.25rem;
     font-size: clamp(2.75rem, 6vw, 5.25rem);
     font-weight: 700;
-    letter-spacing: -.04em;
+    letter-spacing: -.025em;
     line-height: 1.04;
     color: #fffdf8;
   }
@@ -549,6 +559,7 @@
   }
   .kh-hero-stat b {
     display: block;
+    font-family: var(--font-display);
     font-size: clamp(2rem, 3.2vw, 3rem);
     font-weight: 700;
     font-variant-numeric: tabular-nums;
@@ -621,8 +632,11 @@
     gap: 2.5rem;
     margin-right: 2.5rem;
     color: rgba(255, 253, 248, .85);
-    font-size: .95rem;
+    font-family: var(--font-mono);
+    font-size: .8rem;
     font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
     white-space: nowrap;
     transition: color .12s ease;
   }
@@ -655,15 +669,19 @@
     align-items: end;
     justify-content: space-between;
     gap: 2rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.75rem;
+  }
+  .kh-section-heading .kh-text-link {
+    margin-bottom: .45rem;
+    white-space: nowrap;
   }
   .kh-section h2, .kh-section-cta h2 {
     max-width: 20ch;
-    margin: .7rem 0 0;
+    margin: .85rem 0 0;
     font-size: clamp(2.25rem, 4.5vw, 3.6rem);
     font-weight: 600;
-    letter-spacing: -.035em;
-    line-height: 1.06;
+    letter-spacing: -.02em;
+    line-height: 1.08;
   }
 
   /* ---------- S3 产品系统 Bento ---------- */
@@ -843,7 +861,7 @@
   }
   .kh-process-step h3 {
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 600;
   }
   .kh-process-step p {
@@ -1008,7 +1026,7 @@
   }
   .kh-industry-row h3 {
     margin: 0;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 600;
   }
   .kh-industry-row p {
@@ -1195,8 +1213,9 @@
   .kh-footer-links p, .kh-footer-quote > p {
     margin: 0 0 1rem;
     color: var(--kh-brass-soft);
-    font-size: .78rem;
-    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: .74rem;
+    font-weight: 600;
     letter-spacing: .12em;
     text-transform: uppercase;
   }
