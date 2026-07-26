@@ -8,7 +8,7 @@ test.describe("homepage manufacturing website", () => {
     await expect(page.getByRole("link", { name: /Explore products/i })).toBeVisible();
     await expect(page.getByRole("link", { name: /Request a quote/i }).first()).toBeVisible();
     await expect(page.locator(".production-portal")).toHaveCount(0);
-    await expect(page.locator(".kh-system-card")).toHaveCount(4);
+    await expect(page.locator(".kh-system-card")).toHaveCount(8);
     await expect(page.locator(".kh-marquee")).toBeVisible();
     await expect(page.locator(".kh-gallery-track")).toBeVisible();
     await expect(page.locator(".kh-section-forest")).toBeVisible();

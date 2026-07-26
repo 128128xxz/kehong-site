@@ -9,19 +9,31 @@ import { SectionKicker } from "@/components/home/annotations";
 export default function HomeFactoryProof({ locale }: { locale: string }) {
   const zh = locale === "zh";
   const proofItems = zh
-    ? [companyProfile.location.zh, companyProfile.productionCapability.zh, companyProfile.exportExperience.zh]
-    : [companyProfile.location.en, companyProfile.productionCapability.en, companyProfile.exportExperience.en];
+    ? [
+        companyProfile.location.zh,
+        "20+ 年纸品制造 · 8000+ 平方米厂房",
+        companyProfile.productionCapability.zh,
+        "OEM / ODM 定制与弹性起订量",
+        companyProfile.exportExperience.zh,
+      ]
+    : [
+        companyProfile.location.en,
+        "20+ years in paper converting · 8000+ m² factory",
+        companyProfile.productionCapability.en,
+        "OEM / ODM projects with flexible order volumes",
+        companyProfile.exportExperience.en,
+      ];
 
   return (
     <section className="kh-section kh-section-forest">
       <div className="kh-shell kh-factory-grid">
         <Reveal>
-          <SectionKicker index="05" text={zh ? "工厂与流程" : "Factory"} light />
+          <SectionKicker index="05" text={zh ? "公司与工厂" : "Company & factory"} light />
           <h2>{zh ? "看得见的加工能力，服务海外项目。" : "Converting capability you can verify."}</h2>
           <p className="kh-section-lede">
             {zh
-              ? "佛山工厂协调纸材加工、模切、分切、裱纸与定制打样，为海外 B2B 项目提供稳定的项目协同。"
-              : "Our Foshan operation coordinates paper converting, die-cutting, slitting, lamination and custom sampling for overseas B2B projects."}
+              ? "科宏纸品是佛山的纸材加工与定制包装制造商。自有生产线覆盖模切、分切、裱纸与瓦楞成型，从纸材到成品在同一座工厂内完成，为海外 B2B 项目提供稳定的打样与交付协同。"
+              : "Kehong Paper Products is a Foshan-based paper converting and custom packaging manufacturer. In-house lines cover die-cutting, slitting, lamination and corrugating, taking projects from raw board to finished packaging in one plant with dependable sampling and delivery coordination."}
           </p>
           <ul>
             {proofItems.map((item) => (

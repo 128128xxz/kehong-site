@@ -672,6 +672,18 @@
     gap: 1rem;
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
+  .kh-category-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .kh-category-grid .kh-system-copy p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.9rem;
+  }
   .kh-bento-a { grid-column: span 6; grid-row: span 2; }
   .kh-bento-b { grid-column: span 6; }
   .kh-bento-c, .kh-bento-d { grid-column: span 3; }
@@ -1232,6 +1244,9 @@
   .kh-bento {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
+  .kh-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .kh-bento-a, .kh-bento-b {
     grid-column: span 6;
     grid-row: auto;
@@ -1315,6 +1330,9 @@
     flex: 1 1 100%;
   }
   .kh-bento {
+    grid-template-columns: 1fr;
+  }
+  .kh-category-grid {
     grid-template-columns: 1fr;
   }
   .kh-bento-a, .kh-bento-b, .kh-bento-c, .kh-bento-d {
