@@ -26,9 +26,9 @@ const paths: BuyerPath[] = [
     body: "Boxes, boards and inserts for food and dessert workflows.",
     bodyZh: "餐盒、垫板与内托，适配餐饮和甜品的出品流程。",
     href: "/industries/bakery-packaging",
-    image: showcaseImages.foodDetail,
-    alt: "Food-grade fluted box detail",
-    altZh: "食品级瓦楞纸盒细节",
+    image: showcaseImages.bakeryDessertDisplay,
+    alt: "Bakery desserts presented on Kehong paper packaging",
+    altZh: "科宏纸品包装上的烘焙甜品陈列",
   },
   {
     title: "Retail & lifestyle",

@@ -90,7 +90,7 @@ export const packagingCategories: PackagingCategory[] = [
     title: { en: "Cake Boards & Cake Drums", zh: "蛋糕底托与蛋糕鼓" },
     shortDescription: { en: "Boards and drums for everyday cake support, display and heavier multi-layer transport.", zh: "用于日常蛋糕承托、展示以及较重多层蛋糕运输的底托与蛋糕鼓。" },
     description: { en: "Cake boards are generally used for everyday support and presentation. Cake drums are thicker and suited to heavier or multi-layer cakes. Cake base boards provide a stable foundation for transport and display; exact material and thickness remain project-confirmed.", zh: "Cake Board 通常用于日常承托与展示；Cake Drum 更厚，适合较重或多层蛋糕；Cake Base Board 用于运输和展示的基础承托，具体材料和厚度以项目确认为准。" },
-    image: showcaseImages.cakeBoardReal,
+    image: showcaseImages.rehnCakeBoardsStyled,
     subcategories: ["Cardboard cake board", "Cake drum", "Cake base board", "MDF / Masonite board", "Mini cake board", "Double-thick cake card"],
     applications: ["Cake support", "Bakery display", "Layered cake transport", "Dessert presentation"],
     filters: ["Shape", "Size", "Thickness", "Color", "Edge", "Finish", "Printing"],

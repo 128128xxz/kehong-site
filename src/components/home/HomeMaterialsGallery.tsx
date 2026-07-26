@@ -23,6 +23,7 @@ const cards: MaterialCard[] = [
   { image: showcaseImages.pinkBox, figure: "Structural box", figureZh: "结构纸盒", alt: "Structural paper box sample", altZh: "结构纸盒样品" },
   { image: showcaseImages.displayOpen, figure: "Display box", figureZh: "开窗展示盒", alt: "Open display box sample", altZh: "开窗展示盒样品" },
   { image: showcaseImages.webPaperCupsKraft, figure: "Cupstock & cups", figureZh: "纸杯与杯纸", alt: "Kraft paper cups and box", altZh: "牛皮纸纸杯与纸盒" },
+  { image: showcaseImages.colorPaperFan, figure: "Colored papers", figureZh: "彩色纸样", alt: "Fanned colored paper swatches", altZh: "扇形展开的彩色纸样" },
 ];
 
 export default function HomeMaterialsGallery({ locale }: { locale: string }) {
