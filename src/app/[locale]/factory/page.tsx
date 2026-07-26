@@ -10,4 +10,4 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { metadataBase: new URL(siteConfig.url), title: `${title} | ${siteConfig.name}`, description: locale === "zh" ? "了解 Kehong 的纸品包装生产与项目支持能力。" : "Review Kehong's paper packaging manufacturing and project support capabilities.", alternates: { canonical, languages: await getAlternateLanguages("/factory") } };
 }
 
-export default async function FactoryPage({ params }: { params: Promise<{ locale: string }> }) { const { locale } = await params; setRequestLocale(locale); return <div className="texture-paper min-h-screen bg-[#f6f4ec]"><Header /><main><FactoryOverview /></main><SiteFooter /></div>; }
+export default async function FactoryPage({ params }: { params: Promise<{ locale: string }> }) { const { locale } = await params; setRequestLocale(locale); return <div className="texture-paper min-h-screen"><Header /><main><FactoryOverview /></main><SiteFooter /></div>; }

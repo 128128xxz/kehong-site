@@ -33,7 +33,7 @@ test.describe("Production SSR/CDN consistency", () => {
     const html = await normal.text();
     expect(html).not.toContain("0 products");
     expect(html).toContain("Paper packaging,");
-    expect(html).toContain("Explore Kehong");
+    expect(html).toContain("kh-home-hero");
     expect(html).toContain("Paper materials");
     expect(html).not.toContain("Popular products");
   });

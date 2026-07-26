@@ -34,19 +34,19 @@ export default async function ProcessPreview() {
   ] as const;
 
   return (
-    <section id="process" className="texture-ink bg-[#171713] px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-18">
+    <section id="process" className="texture-ink px-4 py-16 sm:px-6 lg:px-8 lg:py-18">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.95fr_1.05fr]">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#e8c06c]">
+          <p className="kh-eyebrow kh-eyebrow-light">
             {isZh ? "受控生产" : "Controlled production"}
           </p>
-          <h1 className="kh-editorial-heading mt-4 text-4xl leading-tight tracking-[-.03em] sm:text-5xl">
+          <h1 className="kh-editorial-heading mt-4 text-4xl sm:text-5xl">
             {isZh ? "从材料确认到包装出货。" : "From material confirmation to finished packaging."}
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-8 text-[#f7f0df]/76">
+          <p className="mt-5 max-w-xl text-base leading-8 text-(--kh-paper-deep)">
             {isZh ? "每个项目将材料、结构、加工和检验要求对应到清晰的生产节点。" : "Each project connects material, structure, converting, and inspection requirements to a clear production stage."}
           </p>
-          <div className="premium-depth relative mt-8 h-[320px] overflow-hidden rounded-lg border border-white/12 bg-[#24231d] shadow-2xl shadow-black/30 sm:h-[420px]">
+          <div className="premium-depth relative mt-8 h-[320px] overflow-hidden rounded-lg border border-white/15 bg-white/5 sm:h-[420px]">
             <div className="grid h-full grid-cols-2 gap-1.5 p-1.5">
               {proofImages.map((item, index) => (
                 <div key={item.src} className="relative overflow-hidden rounded-md bg-white/8">
@@ -57,7 +57,7 @@ export default async function ProcessPreview() {
                     sizes="(min-width: 1024px) 320px, 45vw"
                     className={`object-cover ${index === 0 ? "object-[50%_20%]" : ""}`}
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,23,19,.04),rgba(23,23,19,.42))]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(29,33,29,.04),rgba(29,33,29,.42))]" />
                 </div>
               ))}
             </div>
@@ -68,9 +68,9 @@ export default async function ProcessPreview() {
                 return (
                   <span
                     key={item.label}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/16 bg-white/14 px-3 py-2 text-xs font-black text-white shadow-xl shadow-black/20 backdrop-blur-xl"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-[rgba(29,33,29,.65)] px-3 py-2 text-xs font-semibold text-(--kh-surface)"
                   >
-                    <Icon className="size-4 text-[#e8c06c]" />
+                    <Icon className="size-4 text-(--kh-brass-soft)" />
                     {item.label}
                   </span>
                 );
@@ -80,20 +80,20 @@ export default async function ProcessPreview() {
         </div>
 
         <div className="relative grid content-center gap-4">
-          <div className="absolute left-[27px] top-8 hidden h-[calc(100%-4rem)] w-px bg-gradient-to-b from-transparent via-[#e8c06c]/45 to-transparent sm:block" />
+          <div className="absolute left-[27px] top-8 hidden h-[calc(100%-4rem)] w-px bg-gradient-to-b from-transparent via-(--kh-brass-soft)/45 to-transparent sm:block" />
           {processSteps.map((step, index) => (
             <article
               key={step.title}
-              className="kh-panel grid grid-cols-[52px_1fr] gap-4 rounded-lg border border-white/12 bg-white/7 p-5 backdrop-blur-xl transition hover:border-[#e8c06c]/48 hover:bg-white/10"
+              className="grid grid-cols-[52px_1fr] gap-4 rounded-lg border border-white/15 bg-white/8 p-5 transition hover:border-(--kh-brass-soft)/50 hover:bg-white/12"
             >
-              <div className="flex size-11 items-center justify-center rounded-full bg-[#e8c06c] text-sm font-black text-[#171713]">
+              <div className="flex size-11 items-center justify-center rounded-full bg-(--kh-brass-soft) text-sm font-semibold text-(--kh-ink)">
                 {String(index + 1).padStart(2, "0")}
               </div>
               <div>
-                <h3 className="text-lg font-black text-white">
+                <h3 className="text-lg font-semibold text-(--kh-surface)">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-[#f7f0df]/72">
+                <p className="mt-2 text-sm leading-6 text-(--kh-paper-deep)">
                   {step.text}
                 </p>
               </div>

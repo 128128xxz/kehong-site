@@ -1,0 +1,71 @@
+{
+  "gitCommit": "249088f770e8786bcd9285a78707da200e23a1c5",
+  "branch": "codex/production-portal-release-fix-20260720-1703",
+  "buildTimestamp": "2026-07-26T10:16:05.686Z",
+  "baseURL": "http://127.0.0.1:3000",
+  "nodeVersion": "v24.18.0",
+  "packageManager": "pnpm",
+  "note": "Captured after takeover fixes: full-page with lazy-image settle (scroll-through + image completion).",
+  "screenshots": [
+    {
+      "file": "screenshots/design-redesign-20260725/en-390x844.png",
+      "sha256": "64bafc21922009a0aae09716fc8db924daf4250a463a6bde6a780db95e77a634"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/en-768x1024.png",
+      "sha256": "98a6f2374f76f23964ea53b6a7c478929be8ab5ea0ddd4275d0e61b9017264c4"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/en-1366x768.png",
+      "sha256": "e35a3c2b97acc4ff03a52f72a8d516ea3ba9bdb3eef20ed28c9566028d8382bd"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/en-1440x900.png",
+      "sha256": "7592136558b113b33a1a70e1fc31b41046ab877c0bc8add379e1d20773381666"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/en-1920x1080.png",
+      "sha256": "b6b4675bab742eaf6b9a8169e6468dbd6c7905063c76e78580d0e5cf24ac36b5"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/zh-390x844.png",
+      "sha256": "04de80fd069696043cdeff6c7e9de8bbc0204ba6ef2ce613bd962ce726604096"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/zh-768x1024.png",
+      "sha256": "045df44b8f882adb7ff5884d408e6cc8577b5ae5672835f3a138264edc03be91"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/zh-1366x768.png",
+      "sha256": "091f91f6e3e0e8a56705c85b90121253d9cfecdabf1ba327fa4120913fd1bbd8"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/zh-1440x900.png",
+      "sha256": "351173da82fd52be41a6292c8fef9a9419f688d0f6abb0dee5499327de491fd3"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/zh-1920x1080.png",
+      "sha256": "00d37547ebb68e8140da25e5b33efeb2df9469817bd0d359a4b796bfeab5056b"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/en_products-1440x900.png",
+      "sha256": "97a436a185106fc1f7a19f78c70127bc9abee1c4e4ee1f8fa6188c7abb48b737"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/en_products_cake-boxes-1440x900.png",
+      "sha256": "243f71255670bde17935b0238bbcc08d1ae4a24ae537f8b00105dfdb25744e83"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/en_product_detail-1440x900.png",
+      "sha256": "adb76e43eadbc89821ff5be26ac38038efddab8599d69f74f6a455ac0e45d29e"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/en_factory-1440x900.png",
+      "sha256": "278af85b171caeebd259acd1d1b8fa98f5b537c8df3d8291361d487b8e3edfeb"
+    },
+    {
+      "file": "screenshots/design-redesign-20260725/en_contact-1440x900.png",
+      "sha256": "20b4b712cefe235a848519a92f74100fc69f987990446ba093d11f3e04b7076a"
+    }
+  ]
+}

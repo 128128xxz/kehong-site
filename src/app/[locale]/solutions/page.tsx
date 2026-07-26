@@ -20,5 +20,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function SolutionsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <div className="kh-premium-site min-h-screen bg-[#f6f4ec] text-[#171713]"><Header /><main><SolutionsDirectory /></main><SiteFooter /></div>;
+  return (
+    <div className="kh-premium-site min-h-screen text-(--kh-ink)">
+      <Header />
+      <main>
+        <SolutionsDirectory />
+      </main>
+      <SiteFooter />
+    </div>
+  );
 }

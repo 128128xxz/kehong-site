@@ -1,131 +1,230 @@
 "use client";
 
-import { ClipboardCheck, Factory, ChevronDown, Menu, MessageCircle, PackageSearch, Rotate3D } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { Button } from "@/components/ui/button";
-import { contact } from "@/data/company";
 
 const headerCopy = {
-  zh: { home: "首页", studio: "3D 展厅", products: "产品", solutions: "解决方案", capabilities: "制造能力", buyerSupport: "买家支持", company: "公司", industries: "行业", resources: "资源", contact: "获取报价" },
-  en: { home: "Home", studio: "3D Studio", products: "Products", solutions: "Solutions", capabilities: "Capabilities", buyerSupport: "Buyer Support", company: "Company", industries: "Industries", resources: "Resources", contact: "Get a Quote" },
-  es: { home: "Inicio", studio: "Estudio 3D", products: "Productos", solutions: "Soluciones", capabilities: "Capacidades", buyerSupport: "Soporte al comprador", company: "Empresa", industries: "Industrias", resources: "Recursos", contact: "Solicitar cotización" },
-  th: { home: "หน้าแรก", studio: "3D", products: "สินค้า", solutions: "โซลูชัน", capabilities: "ความสามารถ", buyerSupport: "การสนับสนุนผู้ซื้อ", company: "บริษัท", industries: "อุตสาหกรรม", resources: "แหล่งข้อมูล", contact: "ขอใบเสนอราคา" },
-  vi: { home: "Trang chủ", studio: "3D Studio", products: "Sản phẩm", solutions: "Giải pháp", capabilities: "Năng lực", buyerSupport: "Hỗ trợ người mua", company: "Công ty", industries: "Ngành", resources: "Tài nguyên", contact: "Nhận báo giá" },
-  id: { home: "Beranda", studio: "Studio 3D", products: "Produk", solutions: "Solusi", capabilities: "Kemampuan", buyerSupport: "Dukungan pembeli", company: "Perusahaan", industries: "Industri", resources: "Sumber daya", contact: "Minta penawaran" },
-  ms: { home: "Utama", studio: "Studio 3D", products: "Produk", solutions: "Penyelesaian", capabilities: "Keupayaan", buyerSupport: "Sokongan pembeli", company: "Syarikat", industries: "Industri", resources: "Sumber", contact: "Dapatkan sebut harga" },
+  zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", resources: "资源", contact: "获取报价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
+  en: { products: "Products", solutions: "Solutions", capabilities: "Capabilities", factory: "Factory", resources: "Resources", contact: "Request a quote", menuOpen: "Open navigation menu", menuClose: "Close navigation menu", menuTitle: "Site navigation" },
+  es: { products: "Productos", solutions: "Soluciones", capabilities: "Capacidades", factory: "Fábrica", resources: "Recursos", contact: "Solicitar cotización", menuOpen: "Abrir menú", menuClose: "Cerrar menú", menuTitle: "Navegación" },
+  th: { products: "สินค้า", solutions: "โซลูชัน", capabilities: "ความสามารถ", factory: "โรงงาน", resources: "แหล่งข้อมูล", contact: "ขอใบเสนอราคา", menuOpen: "เปิดเมนู", menuClose: "ปิดเมนู", menuTitle: "เมนู" },
+  vi: { products: "Sản phẩm", solutions: "Giải pháp", capabilities: "Năng lực", factory: "Nhà máy", resources: "Tài nguyên", contact: "Nhận báo giá", menuOpen: "Mở menu", menuClose: "Đóng menu", menuTitle: "Điều hướng" },
+  id: { products: "Produk", solutions: "Solusi", capabilities: "Kemampuan", factory: "Pabrik", resources: "Sumber daya", contact: "Minta penawaran", menuOpen: "Buka menu", menuClose: "Tutup menu", menuTitle: "Navigasi" },
+  ms: { products: "Produk", solutions: "Penyelesaian", capabilities: "Keupayaan", factory: "Kilang", resources: "Sumber", contact: "Dapatkan sebut harga", menuOpen: "Buka menu", menuClose: "Tutup menu", menuTitle: "Navigasi" },
 } as const;
 
-function navLinkClass(active: boolean) {
-  return `group relative inline-flex h-10 items-center gap-2 overflow-hidden rounded-[.3rem] px-3.5 transition ${active ? "text-[#805716] after:absolute after:inset-x-3 after:bottom-1 after:h-px after:bg-[#805716]" : "text-[#4e4b42] hover:bg-[#171713]/5 hover:text-[#805716]"}`;
-}
+type NavItem = { href: string; zh: string; en: string };
 
-type ProductMenuGroup = { title: string; links: Array<readonly [string, string]> };
+const productLinks: NavItem[] = [
+  { href: "/products", zh: "全部产品", en: "All products" },
+  { href: "/packaging/cake-boxes", zh: "蛋糕盒", en: "Cake boxes" },
+  { href: "/packaging/takeout-boxes", zh: "外带食品盒", en: "Takeout & food boxes" },
+  { href: "/packaging/paper-bags", zh: "纸袋", en: "Paper bags" },
+  { href: "/packaging/corrugated-mailer-boxes", zh: "瓦楞快递盒", en: "Corrugated mailers" },
+  { href: "/packaging/labels-stickers", zh: "标签与贴纸", en: "Labels & stickers" },
+  { href: "/packaging/cake-boards-cake-drums", zh: "蛋糕底托", en: "Cake boards & drums" },
+];
+
+const capabilityLinks: NavItem[] = [
+  { href: "/capabilities", zh: "能力总览", en: "Capabilities overview" },
+  { href: "/process", zh: "生产流程", en: "Production process" },
+];
+
+const resourceLinks: NavItem[] = [
+  { href: "/resources", zh: "资源与设计中心", en: "Resources & design center" },
+  { href: "/resources/artwork-guidelines", zh: "印刷文件指南", en: "Artwork guidelines" },
+  { href: "/resources/dielines-templates", zh: "刀线模板申请", en: "Request a dieline" },
+  { href: "/model-preview", zh: "3D 结构展厅", en: "3D structure studio" },
+  { href: "/procurement", zh: "买家支持", en: "Buyer support" },
+];
 
 export default function Header() {
-  const t = useTranslations("Site");
   const locale = useLocale();
   const pathname = usePathname();
   const copy = headerCopy[locale as keyof typeof headerCopy] ?? headerCopy.en;
-  const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
-  const isProducts = pathname === "/products" || pathname.startsWith("/products/");
-  const isSolutionContext = pathname.startsWith("/solutions");
-  const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+  const isZh = locale === "zh";
+  const label = (item: NavItem) => (isZh ? item.zh : item.en);
 
-  const solutionLinks = [
-    { href: "/products?system=materials", label: locale === "zh" ? "材料 Materials" : "Materials" },
-    { href: "/products?system=packaging", label: locale === "zh" ? "成品包装 Finished packaging" : "Finished packaging" },
-    { href: "/products?search=food", label: locale === "zh" ? "食品与烘焙 Food & bakery" : "Food & bakery" },
-  ];
-  const productGroups: ProductMenuGroup[] = [
-    { title: locale === "zh" ? "烘焙包装" : "Bakery Packaging", links: [["Cake Boxes", "cake-boxes"], ["Pastry Boxes", "cake-boxes"], ["Cupcake Boxes", "cake-boxes"], ["Macaron Boxes", "cake-boxes"], ["Cake Boards & Cake Drums", "cake-boards-cake-drums"]] },
-    { title: locale === "zh" ? "食品与外带包装" : "Food & Takeaway Packaging", links: [["Food Packaging Boxes", "takeout-boxes"], ["Takeout Boxes", "takeout-boxes"], ["Pizza Boxes", "takeout-boxes"], ["Kraft Food Boxes", "takeout-boxes"], ["Beverage Packaging", "takeout-boxes"]] },
-    { title: locale === "zh" ? "纸包装" : "Paper Packaging", links: [["Paper Bags", "paper-bags"], ["Pillow Boxes", "pillow-boxes"], ["Corrugated Mailer Boxes", "corrugated-mailer-boxes"], ["Custom Packaging Boxes", "all-products"]] },
-    { title: locale === "zh" ? "品牌、内托与保护" : "Branding, Inserts & Protection", links: [["Labels & Stickers", "labels-stickers"], ["Custom Inserts", "all-products"], ["Custom Trays", "all-products"], ["Protective Packaging", "corrugated-mailer-boxes"]] },
-  ];
-  const capabilityLinks = [
-    { href: "/capabilities", label: locale === "zh" ? "能力总览 Capabilities" : "Capabilities overview" },
-    { href: "/factory", label: locale === "zh" ? "工厂 Factory" : "Factory" },
-    { href: "/process", label: locale === "zh" ? "生产流程 Production process" : "Production process" },
-  ];
-  const resourceLinks = [
-    { href: "/resources", label: locale === "zh" ? "资源中心 Design Center" : "Resources & Design Center" },
-    { href: "/resources/artwork-guidelines", label: locale === "zh" ? "Artwork 指南" : "Artwork guidelines" },
-    { href: "/resources/dielines-templates", label: locale === "zh" ? "Dieline 请求" : "Request a dieline" },
-  ];
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobilePanelRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [lastPathname, setLastPathname] = useState(pathname);
+
+  const closeDesktopDropdowns = () => {
+    headerRef.current?.querySelectorAll("details[open]").forEach((node) => node.removeAttribute("open"));
+  };
+
+  // 路由变化后收起所有菜单
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
+    setMenuOpen(false);
+  }
+  useEffect(() => {
+    closeDesktopDropdowns();
+  }, [pathname]);
+
+  // 点击外部或 Escape 关闭桌面下拉
+  useEffect(() => {
+    const onPointerDown = (event: PointerEvent) => {
+      const header = headerRef.current;
+      if (!header) return;
+      if (!header.contains(event.target as Node)) closeDesktopDropdowns();
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeDesktopDropdowns();
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
+
+  // 移动菜单:打开时聚焦关闭按钮,Escape 关闭并交还焦点,Tab 循环留在面板内
+  useEffect(() => {
+    if (!menuOpen) return;
+    const panel = mobilePanelRef.current;
+    panel?.querySelector<HTMLButtonElement>("button")?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+      if (event.key !== "Tab" || !panel) return;
+      const focusables = panel.querySelectorAll<HTMLElement>("a[href], button");
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      if (!panel) return;
+      const target = event.target as Node;
+      if (!panel.contains(target) && !menuButtonRef.current?.contains(target)) setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [menuOpen]);
+
+  const isProducts = pathname.startsWith("/products") || pathname.startsWith("/packaging");
+  const isCapabilities = pathname.startsWith("/capabilities") || pathname.startsWith("/process");
+  const isResources = pathname.startsWith("/resources") || pathname.startsWith("/model-preview") || pathname.startsWith("/procurement");
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const navLinkClass = (active: boolean) => `kh-nav-link${active ? " is-active" : ""}`;
 
   return (
-    <header className="kh-hairline sticky top-0 z-50 border-b border-[#d9d2be]/80 bg-[#f8f7f1]/94 text-[#171713] shadow-sm backdrop-blur-2xl">
-      <div className="kh-header-inner mx-auto flex h-[4.5rem] max-w-[90rem] items-center justify-between gap-5 px-4 sm:px-6 lg:px-12">
-        <Link href="/" className="kh-header-brand flex min-w-0 items-center gap-3">
-          <span className="premium-depth flex h-10 w-14 items-center justify-center rounded-lg border-2 border-[#171713]/80 bg-[#171713] text-sm font-black tracking-tight text-[#e8c06c] shadow-sm">KH</span>
+    <header ref={headerRef} className="kh-header">
+      <div className="kh-shell kh-header-bar">
+        <Link href="/" className="kh-header-brand">
+          <span className="kh-monogram" aria-hidden="true">KH</span>
           <span className="min-w-0">
-            <span className="block truncate text-sm font-black uppercase tracking-[0.18em] text-[#171713]">{t("brand")}</span>
-            <span className="hidden text-[10px] font-bold uppercase tracking-[0.16em] text-[#9a6b1f] sm:block">{locale === "zh" ? "纸质包装" : "Paper Packaging"}</span>
+            <span className="kh-brand-name">{isZh ? "科宏纸品" : "Kehong Paper Products"}</span>
+            <span className="kh-brand-tag">{isZh ? "纸质包装" : "Paper packaging"}</span>
           </span>
         </Link>
 
-        <nav className="kh-desktop-nav hidden items-center rounded-full border border-[#d9d2be] bg-white/72 p-1.5 text-sm font-bold shadow-sm backdrop-blur-xl" aria-label="Primary navigation">
-          <details className="group relative">
-            <summary className={`${navLinkClass(isProducts && !isSolutionContext)} list-none [&::-webkit-details-marker]:hidden`}><PackageSearch className="size-4" /><span>{copy.products}</span><ChevronDown className="size-3.5 transition group-open:rotate-180" /></summary>
-            <div className="absolute left-1/2 top-12 grid w-[min(92vw,62rem)] -translate-x-1/2 grid-cols-4 gap-5 rounded-lg border border-[#d9d2be] bg-[#171713] p-5 text-white shadow-2xl shadow-black/20">
-              {productGroups.map((group) => <div key={group.title}><p className="mb-2 px-2 text-[10px] font-black uppercase tracking-[.16em] text-[#e8c06c]">{group.title}</p><div className="grid gap-1">{group.links.map(([label, slug]) => <Link key={`${group.title}-${label}`} href={`/packaging/${slug}`} className="rounded-md px-2 py-2 text-xs font-bold text-white/78 transition hover:bg-white/10 hover:text-[#e8c06c]">{label}<span className="float-right">→</span></Link>)}</div></div>)}
+        <nav className="kh-desktop-nav" aria-label="Primary navigation">
+          <details className="relative">
+            <summary className={navLinkClass(isProducts)}>
+              <span>{copy.products}</span>
+              <ChevronDown className="kh-nav-chevron size-3.5" />
+            </summary>
+            <div className="kh-nav-panel">
+              {productLinks.map((item) => (
+                <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+              ))}
             </div>
           </details>
 
-          <details className="group relative">
-            <summary className={`${navLinkClass(isActive("/resources"))} list-none [&::-webkit-details-marker]:hidden`}><span>{copy.resources}</span><ChevronDown className="size-3.5 transition group-open:rotate-180" /></summary>
-            <div className="absolute left-0 top-12 grid w-72 gap-1 rounded-lg border border-[#d9d2be] bg-[#171713] p-2 text-sm font-black text-white shadow-2xl shadow-black/20">
-              {resourceLinks.map((item) => <Link key={item.href} href={item.href} className="rounded-md px-3 py-3 transition hover:bg-white/10 hover:text-[#e8c06c]">{item.label}<span className="float-right text-[#e8c06c]">→</span></Link>)}
+          <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>{copy.solutions}</Link>
+
+          <details className="relative">
+            <summary className={navLinkClass(isCapabilities)}>
+              <span>{copy.capabilities}</span>
+              <ChevronDown className="kh-nav-chevron size-3.5" />
+            </summary>
+            <div className="kh-nav-panel">
+              {capabilityLinks.map((item) => (
+                <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+              ))}
             </div>
           </details>
 
-          <details className="group relative">
-            <summary className={`${navLinkClass(isSolutionContext)} list-none [&::-webkit-details-marker]:hidden`}><span>{copy.solutions}</span><ChevronDown className="size-3.5 transition group-open:rotate-180" /></summary>
-            <div className="absolute left-0 top-12 grid w-64 gap-1 rounded-lg border border-[#d9d2be] bg-[#171713] p-2 text-sm font-black text-white shadow-2xl shadow-black/20">
-              {solutionLinks.map((item) => <Link key={item.href} href={item.href} className="rounded-md px-3 py-3 transition hover:bg-white/10 hover:text-[#e8c06c]">{item.label}<span className="float-right text-[#e8c06c]">→</span></Link>)}
+          <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}>{copy.factory}</Link>
+
+          <details className="relative">
+            <summary className={navLinkClass(isResources)}>
+              <span>{copy.resources}</span>
+              <ChevronDown className="kh-nav-chevron size-3.5" />
+            </summary>
+            <div className="kh-nav-panel">
+              {resourceLinks.map((item) => (
+                <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+              ))}
             </div>
           </details>
-
-          <details className="group relative">
-            <summary className={`${navLinkClass(isActive("/factory") || isActive("/process"))} list-none [&::-webkit-details-marker]:hidden`}><Factory className="size-4" /><span>{copy.capabilities}</span><ChevronDown className="size-3.5 transition group-open:rotate-180" /></summary>
-            <div className="absolute left-0 top-12 grid w-64 gap-1 rounded-lg border border-[#d9d2be] bg-[#171713] p-2 text-sm font-black text-white shadow-2xl shadow-black/20">
-              {capabilityLinks.map((item) => <Link key={item.href} href={item.href} className="rounded-md px-3 py-3 transition hover:bg-white/10 hover:text-[#e8c06c]">{item.label}<span className="float-right text-[#e8c06c]">→</span></Link>)}
-            </div>
-          </details>
-
-          <Link href="/model-preview" aria-current={isActive("/model-preview") ? "page" : undefined} className={navLinkClass(isActive("/model-preview"))}><Rotate3D className="size-4" /><span>{copy.studio}</span></Link>
-          <Link href="/procurement" aria-current={isActive("/procurement") ? "page" : undefined} className={navLinkClass(isActive("/procurement"))}><ClipboardCheck className="size-4" /><span>{copy.buyerSupport}</span></Link>
-          <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}><span>{copy.company}</span></Link>
-          <Link href="/industries" aria-current={isActive("/industries") ? "page" : undefined} className={navLinkClass(isActive("/industries"))}><span>{copy.industries}</span></Link>
         </nav>
 
-        <div className="kh-header-actions flex items-center gap-2">
+        <div className="kh-header-actions">
           <LanguageSwitcher />
-          <details className="kh-compact-nav group relative">
-            <summary aria-label={locale === "zh" ? "打开导航菜单" : "Open navigation menu"} className="grid size-10 cursor-pointer list-none place-items-center rounded-md border border-[#171713]/18 bg-white text-[#171713] shadow-sm [&::-webkit-details-marker]:hidden"><Menu className="size-5" /></summary>
-            <div className="kh-panel absolute right-0 top-12 w-[min(86vw,22rem)] overflow-hidden rounded-lg border border-white/12 bg-[#171713] p-2 shadow-2xl shadow-black/30">
-              <div className="grid gap-1">
-                <Link href="/products" className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-[#e8c06c]"><PackageSearch className="size-4 text-[#e8c06c]" />{copy.products}</Link>
-                <p className="px-3 pt-3 text-[10px] font-black uppercase tracking-[.18em] text-[#e8c06c]">{locale === "zh" ? "包装分类" : "Packaging ranges"}</p>
-                <div className="grid grid-cols-2 gap-1">{productGroups.flatMap((group) => group.links.slice(0, 3)).map(([label, slug]) => <Link key={`${label}-${slug}`} href={`/packaging/${slug}`} className="flex min-h-10 items-center justify-between rounded-md px-3 text-xs font-bold text-white/78 transition hover:bg-white/10 hover:text-[#e8c06c]">{label}<span>→</span></Link>)}</div>
-                <p className="px-3 pt-3 text-[10px] font-black uppercase tracking-[.18em] text-[#e8c06c]">{copy.solutions}</p>
-                {solutionLinks.map((item) => <Link key={item.href} href={item.href} className="flex min-h-10 items-center justify-between rounded-md px-3 pl-9 text-sm font-bold text-white/78 transition hover:bg-white/10 hover:text-[#e8c06c]">{item.label}<span>→</span></Link>)}
-                <p className="px-3 pt-3 text-[10px] font-black uppercase tracking-[.18em] text-[#e8c06c]">{copy.capabilities}</p>
-                {capabilityLinks.map((item) => <Link key={item.href} href={item.href} className="flex min-h-10 items-center justify-between rounded-md px-3 pl-9 text-sm font-bold text-white/78 transition hover:bg-white/10 hover:text-[#e8c06c]">{item.label}<span>→</span></Link>)}
-                <Link href="/model-preview" className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-[#e8c06c]"><Rotate3D className="size-4 text-[#e8c06c]" />{copy.studio}</Link>
-                <Link href="/procurement" className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-[#e8c06c]"><ClipboardCheck className="size-4 text-[#e8c06c]" />{copy.buyerSupport}</Link>
-                <Link href="/factory" className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-[#e8c06c]">{copy.company}</Link>
-                <Link href="/industries" className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-black text-white/88 transition hover:bg-white/10 hover:text-[#e8c06c]">{copy.industries}</Link>
-                <p className="px-3 pt-3 text-[10px] font-black uppercase tracking-[.18em] text-[#e8c06c]">{copy.resources}</p>
-                {resourceLinks.map((item) => <Link key={item.href} href={item.href} className="flex min-h-10 items-center justify-between rounded-md px-3 pl-9 text-sm font-bold text-white/78 transition hover:bg-white/10 hover:text-[#e8c06c]">{item.label}<span>→</span></Link>)}
-                <Link href="/contact" className="mt-1 flex min-h-11 items-center justify-center rounded-md bg-[#e8c06c] px-3 text-sm font-black text-[#171713]">{copy.contact}</Link>
+          <Link href="/contact" className="kh-button kh-button-primary kh-button-compact kh-header-cta">{copy.contact}</Link>
+          <div className="kh-compact-nav">
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className="kh-menu-toggle"
+              aria-label={menuOpen ? copy.menuClose : copy.menuOpen}
+              aria-expanded={menuOpen}
+              aria-controls="kh-mobile-menu"
+              onClick={() => setMenuOpen((value) => !value)}
+            >
+              <Menu className="size-5" />
+            </button>
+            {menuOpen ? (
+              <div ref={mobilePanelRef} id="kh-mobile-menu" className="kh-mobile-panel">
+                <div className="kh-mobile-head">
+                  <p className="kh-nav-panel-label m-0">{copy.menuTitle}</p>
+                  <button type="button" className="kh-menu-toggle" aria-label={copy.menuClose} onClick={() => { setMenuOpen(false); menuButtonRef.current?.focus(); }}>
+                    <X className="size-5" />
+                  </button>
+                </div>
+                <nav aria-label={copy.menuTitle}>
+                  <p className="kh-nav-panel-label">{copy.products}</p>
+                  {productLinks.slice(0, 5).map((item) => (
+                    <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+                  ))}
+                  <p className="kh-nav-panel-label">{copy.solutions}</p>
+                  <Link href="/solutions">{copy.solutions}<span aria-hidden="true">→</span></Link>
+                  <p className="kh-nav-panel-label">{copy.capabilities}</p>
+                  {capabilityLinks.map((item) => (
+                    <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+                  ))}
+                  <Link href="/factory">{copy.factory}<span aria-hidden="true">→</span></Link>
+                  <p className="kh-nav-panel-label">{copy.resources}</p>
+                  {resourceLinks.map((item) => (
+                    <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+                  ))}
+                  <Link href="/contact" className="kh-button kh-button-primary kh-button-compact mt-2 justify-center">{copy.contact}</Link>
+                </nav>
               </div>
-            </div>
-          </details>
-          <Button asChild size="sm" data-portal-whatsapp="true" variant="outline" className="hidden rounded-full border-[#171713]/18 bg-white text-[#171713] shadow-sm hover:bg-[#171713] hover:text-white xl:inline-flex"><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle className="size-4" />WhatsApp</a></Button>
-          <Button asChild size="sm" data-portal-quote="true" className="hidden rounded-full bg-[#e8c06c] text-[#171713] shadow-lg shadow-[#e8c06c]/20 hover:bg-[#f3d182] sm:inline-flex"><Link href="/contact">{copy.contact}</Link></Button>
+            ) : null}
+          </div>
         </div>
       </div>
     </header>

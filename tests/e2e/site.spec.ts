@@ -75,15 +75,14 @@ test.describe("Kehong production flows", () => {
   test("selected products persist when moving from catalog to contact", async ({ page }) => {
     await page.goto("/en/products", { waitUntil: "networkidle" });
     await page.getByRole("button", { name: /add to inquiry/i }).first().click();
+    await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("kehong-selected-products") || "")).toMatch(/KH-/);
     await page.goto("/en/contact", { waitUntil: "networkidle" });
     await expect(page.locator('textarea[name="products"]')).toHaveValue(/KH-/);
   });
 
   test("3D showroom is discoverable and has a working preview route", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
-    await expect(page.locator('[data-route-id="studio"]').first()).toHaveAttribute("href", "/en/model-preview");
-    await page.locator('[data-route-id="studio"]').first().hover();
-    await expect(page.getByRole("link", { name: /Open 3D Studio/i }).first()).toHaveAttribute("href", /model-preview/);
+    await expect(page.locator('footer a[href*="/model-preview"]')).toBeVisible();
     await page.goto("/en/model-preview", { waitUntil: "domcontentloaded" });
     await expect(page.locator("h1")).toHaveCount(1);
   });
@@ -95,12 +94,13 @@ test.describe("Kehong production flows", () => {
     await page.goto("/en/products", { waitUntil: "networkidle" });
     await page.locator('article a[href*="/products/"]').first().click();
     await expect(page.locator('textarea[name="products"]')).toHaveValue(/KH-/);
-    for (let index = 0; index < 4; index += 1) await page.getByRole("button", { name: /continue/i }).click();
+    const continueButton = page.getByRole("button", { name: /continue/i });
+    if (await continueButton.count()) for (let index = 0; index < 4; index += 1) await continueButton.click();
     await page.locator('input[name="name"]').fill("Playwright QA");
     await page.locator('input[name="email"]').fill("playwright@example.com");
     await page.locator('input[name="privacy"]').check();
     await page.getByRole("button", { name: /request a quote/i }).last().click();
-    await expect(page.getByText(/inquiry was accepted/i)).toBeVisible();
+    await expect(page.getByText(/inquiry.*(accepted|received)/i)).toBeVisible();
   });
 
   test("published product routes use one v2 template and expose group variants", async ({ page }) => {
@@ -114,7 +114,7 @@ test.describe("Kehong production flows", () => {
       await expect(page.locator('[data-product-template-version="v2"]')).toHaveCount(1);
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator('a[href*="/contact?product="]').first()).toHaveAttribute("href", /\/contact\?product=/);
-      await expect(page.locator('a[href*="wa.me"]').filter({ hasText: /WhatsApp/i }).first()).toBeVisible();
+      await expect(page.locator('footer a[href*="wa.me"]').filter({ hasText: /WhatsApp/i }).first()).toBeVisible();
     }
   });
 
@@ -129,15 +129,16 @@ test.describe("Kehong production flows", () => {
       }
     });
     await page.goto("/en/contact", { waitUntil: "networkidle" });
+    const products = page.locator('textarea[name="products"]');
+    await products.fill("KH-QA-001 | QA product");
     for (let index = 0; index < 4; index += 1) await page.getByRole("button", { name: /continue/i }).click();
     await page.locator('input[name="name"]').fill("Playwright QA");
     await page.locator('input[name="email"]').fill("playwright@example.com");
-    await page.locator('textarea[name="products"]').fill("KH-QA-001 | QA product");
     await page.locator('input[name="privacy"]').check();
-    const submit = page.getByRole("button", { name: /request a quote/i }).last();
+    const submit = page.getByRole("button", { name: /submit inquiry/i }).last();
     await submit.click();
-    await expect(page.getByText(/submission failed/i)).toBeVisible();
+    await expect(page.getByText(/could not be submitted|submission failed/i)).toBeVisible();
     await submit.click();
-    await expect(page.getByText(/inquiry was accepted/i)).toBeVisible();
+    await expect(page.getByText(/inquiry.*(accepted|received)/i)).toBeVisible();
   });
 });

@@ -6,7 +6,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { contact } from "@/data/company";
-import { Button } from "@/components/ui/button";
 import ProductImageWithStatus from "@/components/site/ProductImageWithStatus";
 import {
   getCommonGsmOptions,
@@ -123,12 +122,12 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
           aria-controls="catalog-filters"
           aria-expanded={mobileFiltersOpen}
           onClick={() => setMobileFiltersOpen(true)}
-          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#171713]/18 bg-white px-4 text-sm font-black text-[#171713] shadow-sm"
+          className="kh-button kh-button-secondary kh-button-compact bg-(--kh-surface)"
         >
           <Filter className="size-4" />
           {locale === "zh" ? "筛选产品" : "Filter products"}
         </button>
-        <span className="text-right text-xs font-bold leading-5 text-[#626156]">
+        <span className="text-right text-xs font-bold leading-5 text-(--kh-muted)">
           {(pagination?.totalGroups ?? groups.length) > 0
             ? `${pagination?.totalGroups ?? groups.length} ${locale === "zh" ? "个产品组" : "product groups"}`
             : (locale === "zh" ? "按项目确认" : "Available on request")}
@@ -140,29 +139,29 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
           type="button"
           aria-label={locale === "zh" ? "关闭筛选背景" : "Close filter backdrop"}
           onClick={() => setMobileFiltersOpen(false)}
-          className="fixed inset-0 z-40 bg-[#171713]/48 lg:hidden"
+          className="fixed inset-0 z-40 bg-(--kh-ink)/45 lg:hidden"
         />
       ) : null}
 
       <div className="grid min-w-0 gap-6 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
       <aside
         id="catalog-filters"
-        className={`kh-panel min-w-0 w-full max-w-full h-fit rounded-lg border border-[#d9d2be] bg-white/92 p-5 shadow-xl shadow-[#171713]/8 backdrop-blur-xl lg:sticky lg:top-20 ${mobileFiltersOpen ? "fixed inset-x-3 top-20 z-50 max-h-[calc(100vh-6rem)] overflow-y-auto" : "hidden lg:block"}`}
+        className={`kh-panel min-w-0 w-full max-w-full h-fit p-5 lg:sticky lg:top-20 ${mobileFiltersOpen ? "fixed inset-x-3 top-20 z-50 max-h-[calc(100vh-6rem)] overflow-y-auto" : "hidden lg:block"}`}
         aria-label={locale === "zh" ? "产品筛选" : "Product filters"}
       >
         <div className="mb-4 flex items-center justify-between lg:hidden">
-          <p className="text-sm font-black text-[#171713]">{locale === "zh" ? "筛选产品" : "Filter products"}</p>
+          <p className="text-sm font-bold text-(--kh-ink)">{locale === "zh" ? "筛选产品" : "Filter products"}</p>
           <button
             type="button"
             aria-label={locale === "zh" ? "关闭筛选" : "Close filters"}
             onClick={() => setMobileFiltersOpen(false)}
-            className="grid size-10 place-items-center rounded-full border border-[#171713]/14 bg-white text-[#171713]"
+            className="grid size-10 place-items-center rounded-full border border-(--kh-line) bg-(--kh-surface) text-(--kh-ink)"
           >
             <X className="size-4" />
           </button>
         </div>
         <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#626156]" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-(--kh-muted)" />
           <input
             value={draftQuery}
             onChange={(event) => setDraftQuery(event.target.value)}
@@ -170,7 +169,7 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
               if (event.key === "Enter") updateUrl("search", draftQuery.trim());
             }}
             placeholder={t("catalog.search")}
-            className="kh-input min-w-0 h-11 w-full max-w-full rounded-md pl-10 pr-3 text-sm outline-none"
+            className="kh-input min-w-0 h-11 w-full max-w-full pl-10 pr-3 text-sm"
           />
         </div>
 
@@ -185,8 +184,8 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
               }}
               className={`rounded-full border px-3 py-1.5 text-xs font-bold transition ${
                 query === filter.value
-                  ? "border-[#171713] bg-[#171713] text-white"
-                  : "border-[#d9d2be] bg-[#fbfaf5] text-[#626156] hover:border-[#171713]/40"
+                  ? "border-(--kh-forest) bg-(--kh-forest) text-(--kh-surface)"
+                  : "border-(--kh-line) bg-(--kh-surface) text-(--kh-muted) hover:border-(--kh-forest)/40"
               }`}
             >
               {filter.label}
@@ -244,55 +243,54 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
             allLabel={t("catalog.all")}
             formatOption={(value) => getLocalizedCatalogValue(value, locale)}
           />
-          <label className="flex items-center gap-3 rounded-md border border-[#d9d2be] bg-[#fbfaf5] px-3 py-3 text-sm font-semibold text-[#171713] shadow-inner shadow-white/40">
+          <label className="flex items-center gap-3 rounded-md border border-(--kh-line) bg-(--kh-surface) px-3 py-3 text-sm font-semibold text-(--kh-ink)">
             <input
               type="checkbox"
               checked={customOnly}
               onChange={(event) => updateUrl("customizable", event.target.checked ? "true" : "")}
-              className="size-4 accent-[#171713]"
+              className="size-4 accent-(--kh-forest)"
             />
             {t("catalog.customizable")}
           </label>
-          <Button
+          <button
             type="button"
-            variant="outline"
-            className="rounded-full border-[#171713]/30 text-[#171713]"
+            className="kh-button kh-button-secondary kh-button-compact"
             onClick={reset}
           >
             <X className="size-4" />
             {t("catalog.reset")}
-          </Button>
+          </button>
         </div>
 
-        <div className="premium-depth kh-micro-grid mt-6 rounded-lg border border-[#171713]/10 bg-[#171713] p-4 text-white">
+        <div className="premium-depth kh-micro-grid texture-ink mt-6 rounded-lg p-4">
           <div className="flex items-center justify-between gap-3">
             <p className="text-sm font-bold">{t("inquiry.selected")}</p>
-            <span className="kh-status-dot inline-flex items-center gap-2 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#e8c06c]">
+            <span className="kh-status-dot rounded-full bg-white/10 px-2.5 py-1 text-xs font-bold text-(--kh-brass-soft)">
               {selected.length}
             </span>
           </div>
           {selected.length === 0 ? (
             <div>
-              <p className="mt-2 text-sm text-[#f7f0df]/70">{t("inquiry.empty")}</p>
+              <p className="mt-2 text-sm text-white/75">{t("inquiry.empty")}</p>
               <a
                 href={`https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/18 px-4 py-2 text-sm font-bold text-white"
+                className="kh-button kh-button-light kh-button-compact mt-3"
               >
-                <MessageCircle className="size-4 text-[#e8c06c]" />
+                <MessageCircle className="size-4" />
                 {t("cta.whatsapp")}
               </a>
             </div>
           ) : (
             <div className="mt-3 space-y-2">
               {selected.map((sku) => (
-                <div key={sku.sku} className="flex items-center justify-between gap-2 rounded-md bg-white/8 px-2 py-1 text-xs leading-5 text-[#f7f0df]/78">
+                <div key={sku.sku} className="flex items-center justify-between gap-2 rounded-md bg-white/10 px-2 py-1 text-xs leading-5 text-white/80">
                   <span>{sku.sku}</span>
                   <button
                     type="button"
                     onClick={() => removeSku(sku)}
-                    className="grid size-6 shrink-0 place-items-center rounded-full text-[#f7f0df]/70 transition hover:bg-white/10 hover:text-white"
+                    className="grid size-6 shrink-0 place-items-center rounded-full text-white/70 transition hover:bg-white/10 hover:text-white"
                     aria-label={locale === "zh" ? `移除 ${sku.sku}` : `Remove ${sku.sku}`}
                   >
                     <X className="size-3.5" />
@@ -303,7 +301,7 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
                 href={whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#e8c06c] px-4 py-2 text-sm font-bold text-[#171713]"
+                className="kh-button kh-button-light kh-button-compact mt-3"
               >
                 <MessageCircle className="size-4" />
                 {t("cta.whatsapp")}
@@ -314,16 +312,16 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
       </aside>
 
       <section className="min-w-0 max-w-full">
-        <div className="mb-4 grid gap-3 rounded-lg border border-[#d9d2be] bg-white/86 p-4 shadow-sm lg:grid-cols-[1fr_auto] lg:items-center">
+        <div className="kh-panel mb-4 grid gap-3 p-4 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <p className="text-sm font-black text-[#171713]">
+            <p className="text-sm font-bold text-(--kh-ink)">
               {(pagination?.totalGroups ?? groups.length) > 0
                 ? (locale === "zh"
                   ? `${pagination?.totalGroups ?? groups.length} 个产品组 / ${pagination?.totalSkus ?? skus.length} 个产品`
                   : `${pagination?.totalGroups ?? groups.length} product groups / ${pagination?.totalSkus ?? skus.length} products`)
                 : (locale === "zh" ? "该范围可按项目确认" : "This range is available on request")}
             </p>
-            <p className="mt-1 text-sm leading-6 text-[#626156]">
+            <p className="mt-1 text-sm leading-6 text-(--kh-muted)">
               {locale === "zh"
                 ? "产品按系列展示，方便对比不同材质、克重、涂层和工艺选项。"
                 : "Products are grouped by range so you can compare material, GSM, coating and process options more easily."}
@@ -331,17 +329,17 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
           </div>
           <Link
             href="/contact"
-            className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#171713] px-4 text-sm font-black text-white"
+            className="kh-button kh-button-primary kh-button-compact"
           >
             {locale === "zh" ? "提交询价需求" : "Request a quote"}
           </Link>
         </div>
 
         {groups.length === 0 ? (
-          <div className="rounded-lg border border-[#d9d2be] bg-white p-8 text-center text-[#626156]">
+          <div className="kh-panel p-8 text-center text-(--kh-muted)">
             <p>{t("catalog.noResults")}</p>
             <p className="mt-2 text-sm">{locale === "zh" ? "如果您正在寻找定制包装结构，请直接提交需求。" : "If you are looking for a custom packaging structure, send the requirement directly."}</p>
-            <Link href="/contact" className="mt-5 inline-flex min-h-10 items-center rounded-full bg-[#171713] px-4 text-sm font-black text-white">{locale === "zh" ? "提交项目需求" : "Start a packaging project"}</Link>
+            <Link href="/contact" className="kh-button kh-button-primary kh-button-compact mt-5">{locale === "zh" ? "提交项目需求" : "Start a packaging project"}</Link>
           </div>
         ) : (
           <div className="grid min-w-0 gap-4 xl:grid-cols-[repeat(2,minmax(0,1fr))]">
@@ -351,7 +349,7 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
               return (
               <article
                 key={group.id}
-                className="premium-depth group min-w-0 max-w-full overflow-hidden rounded-lg border border-[#d9d2be] bg-white shadow-sm transition hover:-translate-y-1 hover:border-[#171713]/50 hover:shadow-xl hover:shadow-[#171713]/10"
+                className="premium-depth group min-w-0 max-w-full overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) transition hover:-translate-y-1 hover:border-(--kh-forest)/45 hover:shadow-lg"
               >
                 <div className="relative h-52 overflow-hidden">
                   <ProductImageWithStatus
@@ -361,23 +359,23 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
                     sizes="(min-width: 1280px) 420px, 92vw"
                     className="object-cover transition duration-200 group-hover:scale-[1.03]"
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0),rgba(23,23,19,.58))]" />
-                  <div className="absolute right-4 top-4 rounded-full border border-white/20 bg-white/18 px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-white shadow-lg shadow-black/12 backdrop-blur-xl">
+                  <div className="absolute inset-0 bg-gradient-to-t from-(--kh-ink)/60 to-transparent" />
+                  <div className="absolute right-4 top-4 rounded-full border border-white/25 bg-(--kh-ink)/55 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
                     {group.variants.length} {locale === "zh" ? "个变体" : group.variants.length === 1 ? "variant" : "variants"}
                   </div>
                   <div className="absolute bottom-4 left-4 right-4">
-                    <p className="text-xs font-black uppercase tracking-[0.16em] text-[#e8c06c]">
+                    <p className="kh-eyebrow kh-eyebrow-light">
                       {getProductTypeLabel(sku.productType, locale)}
                     </p>
-                    <h2 className="mt-2 text-xl font-black text-white">
+                    <h2 className="mt-2 text-xl font-semibold text-white">
                       {getLocalizedProductTitle(sku, locale)}
                     </h2>
                   </div>
                 </div>
                 <div className="p-5">
-                  <div className="grid gap-2 text-sm text-[#626156]">
+                  <div className="grid gap-2 text-sm text-(--kh-muted)">
                     <p className="inline-flex items-start gap-2">
-                      <Layers3 className="mt-0.5 size-4 shrink-0 text-[#9a6b1f]" />
+                      <Layers3 className="mt-0.5 size-4 shrink-0 text-(--kh-brass)" />
                       {getLocalizedProductMaterial(sku, locale) ||
                         (locale === "zh" ? "按项目确认" : "Custom material specification")}
                     </p>
@@ -396,21 +394,19 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
                     </p>
                     <p>{getLocalizedCatalogValue(sku.applications, locale, locale === "zh" ? "按项目确认" : "Custom application")}</p>
                   </div>
-                  <div className="mt-4 h-px bg-gradient-to-r from-[#171713]/16 via-[#e8c06c]/62 to-transparent" />
+                  <div className="mt-4 h-px bg-(--kh-line)" />
                   <div className="mt-5 flex flex-wrap gap-2">
-                    <Button
+                    <button
                       type="button"
-                      className="rounded-full bg-[#171713] text-white hover:bg-[#2b2b24]"
+                      className="kh-button kh-button-primary kh-button-compact"
                       onClick={() => addSku(sku)}
                     >
                       {t("cta.add")}
-                    </Button>
-                    <Button asChild variant="outline" className="rounded-full">
-                      <Link href={`/products/${sku.slug}`}>
-                        {locale === "zh" ? "查看产品规格" : "View product specifications"}
-                        <ArrowUpRight className="size-4" />
-                      </Link>
-                    </Button>
+                    </button>
+                    <Link href={`/products/${sku.slug}`} className="kh-button kh-button-secondary kh-button-compact">
+                      {locale === "zh" ? "查看产品规格" : "View product specifications"}
+                      <ArrowUpRight className="size-4" />
+                    </Link>
                   </div>
                 </div>
               </article>
@@ -430,8 +426,8 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
                   href={`${pathname}?${params.toString()}#catalog-list`}
                   className={`grid size-10 place-items-center rounded-full border text-sm font-bold transition ${
                     page === pagination.page
-                      ? "border-[#171713] bg-[#171713] text-white"
-                      : "border-[#d9d2be] bg-white text-[#626156] hover:border-[#171713]/40"
+                      ? "border-(--kh-forest) bg-(--kh-forest) text-(--kh-surface)"
+                      : "border-(--kh-line) bg-(--kh-surface) text-(--kh-muted) hover:border-(--kh-forest)/40"
                   }`}
                   aria-current={page === pagination.page ? "page" : undefined}
                 >
@@ -463,12 +459,12 @@ function FilterSelect({
   formatOption?: (value: string) => string;
 }) {
   return (
-    <label className="grid gap-2 text-sm font-semibold text-[#171713]">
+    <label className="grid gap-2 text-sm font-semibold text-(--kh-ink)">
       {label}
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-      className="kh-input min-w-0 h-11 w-full max-w-full rounded-md px-3 text-sm font-normal text-[#171713] outline-none"
+      className="kh-input min-w-0 h-11 w-full max-w-full px-3 text-sm font-normal"
       >
         <option value="">{allLabel}</option>
         {options.map((option) => (

@@ -122,9 +122,9 @@ function SceneContent({ mode, item }: { mode: PreviewMode; item: ModelItem }) {
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-[#d9d2be] bg-white/72 p-3 shadow-lg shadow-black/5">
-      <p className="text-[11px] font-black uppercase tracking-[0.14em] text-[#8f6b33]">{label}</p>
-      <p className="mt-1 text-lg font-black text-[#171713]">{value}</p>
+    <div className="kh-panel p-3">
+      <p className="text-xs font-bold uppercase tracking-[0.14em] text-(--kh-brass)">{label}</p>
+      <p className="mt-1 text-lg font-bold text-(--kh-ink)">{value}</p>
     </div>
   );
 }
@@ -139,22 +139,22 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
   const camera = cameraPresets[cameraPreset];
 
   return (
-    <main className="texture-paper min-h-screen bg-[#f6f4ec] px-4 py-8 text-[#171713] sm:px-6 lg:px-8">
+    <main className="texture-paper min-h-screen px-4 py-8 text-(--kh-ink) sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <section className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
-          <aside className="rounded-lg border border-[#d9d2be] bg-white/72 p-4 shadow-xl shadow-black/8 sm:p-5">
+          <aside className="kh-panel premium-depth p-4 sm:p-5">
             <div className="flex items-center gap-3">
-              <span className="grid size-11 place-items-center rounded-full bg-[#171713] text-[#e8c06c]">
+              <span className="grid size-11 place-items-center rounded-full bg-(--kh-ink) text-(--kh-brass-soft)">
                 <PackageOpen className="size-5" />
               </span>
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#9a6b1f]">OrinsCare v6 GLB</p>
-                <h1 className="text-2xl font-black sm:text-3xl">
+                <p className="kh-eyebrow">OrinsCare v6 GLB</p>
+                <h1 className="text-2xl font-semibold sm:text-3xl">
                   {locale === "zh" ? "模型资产检查页" : "Model asset review"}
                 </h1>
               </div>
             </div>
-            <p className="mt-4 text-sm leading-7 text-[#4c4b43]">
+            <p className="mt-4 text-sm leading-7 text-(--kh-muted)">
               {locale === "zh"
                 ? "这里直接加载 public/models 里的新版 GLB，用来检查纸板厚度、折痕、开窗、材质和披萨盒组合关系。"
                 : "This page loads the new GLB files directly from public/models for checking paper thickness, folds, windows, materials and pizza-box alignment."}
@@ -164,10 +164,10 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
               <button
                 type="button"
                 onClick={() => setMode("single")}
-                className={`min-h-11 rounded-full border px-4 text-sm font-black transition active:scale-[0.99] ${
+                className={`min-h-11 rounded-md border px-4 text-sm font-bold transition active:scale-[0.99] ${
                   mode === "single"
-                    ? "border-[#171713] bg-[#171713] text-white"
-                    : "border-[#d9d2be] bg-white text-[#171713] hover:border-[#8f6b33]"
+                    ? "border-(--kh-forest) bg-(--kh-forest) text-white"
+                    : "border-(--kh-line) bg-(--kh-surface) text-(--kh-ink) hover:border-(--kh-brass)"
                 }`}
               >
                 {locale === "zh" ? "单个模型" : "Single"}
@@ -175,10 +175,10 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
               <button
                 type="button"
                 onClick={() => setMode("all")}
-                className={`min-h-11 rounded-full border px-4 text-sm font-black transition active:scale-[0.99] ${
+                className={`min-h-11 rounded-md border px-4 text-sm font-bold transition active:scale-[0.99] ${
                   mode === "all"
-                    ? "border-[#171713] bg-[#171713] text-white"
-                    : "border-[#d9d2be] bg-white text-[#171713] hover:border-[#8f6b33]"
+                    ? "border-(--kh-forest) bg-(--kh-forest) text-white"
+                    : "border-(--kh-line) bg-(--kh-surface) text-(--kh-ink) hover:border-(--kh-brass)"
                 }`}
               >
                 {locale === "zh" ? "组合查看" : "All models"}
@@ -196,17 +196,17 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
                   }}
                   className={`grid min-h-14 grid-cols-[1fr_auto] items-center gap-3 rounded-lg border px-4 text-left transition active:scale-[0.99] ${
                     item.id === selected.id && mode === "single"
-                      ? "border-[#e8c06c] bg-[#171713] text-white"
-                      : "border-[#d9d2be] bg-white/78 text-[#171713] hover:border-[#8f6b33]"
+                      ? "border-(--kh-brass-soft) bg-(--kh-ink) text-white"
+                      : "border-(--kh-line) bg-(--kh-surface) text-(--kh-ink) hover:border-(--kh-brass)"
                   }`}
                 >
                   <span>
-                    <span className="block text-sm font-black">
+                    <span className="block text-sm font-bold">
                       {locale === "zh" ? zhLabels[item.id] : item.label}
                     </span>
                     <span className="mt-1 block text-xs font-semibold opacity-70">{item.webFilename}</span>
                   </span>
-                  <span className="rounded-full bg-[#e8c06c] px-3 py-1 text-xs font-black text-[#171713]">
+                  <span className="rounded-full bg-(--kh-brass-soft) px-3 py-1 text-xs font-bold text-(--kh-ink)">
                     {formatSize(item.webBytes)}
                   </span>
                 </button>
@@ -214,11 +214,11 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
             </div>
           </aside>
 
-          <section className="overflow-hidden rounded-lg border border-[#d9d2be] bg-[#171713] shadow-2xl shadow-black/16">
+          <section className="premium-depth overflow-hidden rounded-lg texture-ink">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/12 px-4 py-3 text-white">
               <div className="flex items-center gap-2">
-                <Eye className="size-4 text-[#e8c06c]" />
-                <span className="text-sm font-black">
+                <Eye className="size-4 text-(--kh-brass-soft)" />
+                <span className="text-sm font-bold">
                   {mode === "single"
                     ? locale === "zh"
                       ? zhLabels[selected.id]
@@ -234,9 +234,9 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
                     key={id}
                     type="button"
                     onClick={() => setCameraPreset(id as CameraPreset)}
-                    className={`min-h-9 rounded-full border px-3 text-xs font-black transition active:scale-[0.98] ${
+                    className={`min-h-9 rounded-md border px-3 text-xs font-bold transition active:scale-[0.98] ${
                       id === cameraPreset
-                        ? "border-[#e8c06c] bg-[#e8c06c] text-[#171713]"
+                        ? "border-(--kh-brass-soft) bg-(--kh-brass-soft) text-(--kh-ink)"
                         : "border-white/16 bg-white/8 text-white hover:bg-white/14"
                     }`}
                   >
@@ -262,13 +262,13 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
                   <SceneContent mode={mode} item={selected} />
                 </Suspense>
               </Canvas>
-              <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-white/12 bg-[#171713]/68 px-4 py-3 text-sm font-bold text-white shadow-xl shadow-black/20">
+              <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-white/12 bg-(--kh-ink)/70 px-4 py-3 text-sm font-bold text-white shadow-xl shadow-black/20">
                 <span className="inline-flex items-center gap-2">
-                  <Rotate3D className="size-4 text-[#e8c06c]" />
+                  <Rotate3D className="size-4 text-(--kh-brass-soft)" />
                   {locale === "zh" ? "鼠标拖拽旋转，滚轮缩放" : "Drag to rotate, wheel to zoom"}
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <Layers3 className="size-4 text-[#e8c06c]" />
+                  <Layers3 className="size-4 text-(--kh-brass-soft)" />
                   ACES / sRGB / soft shadow
                 </span>
               </div>
@@ -284,16 +284,16 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
           <StatCard label="Size XYZ" value={selected.size.join(" / ")} />
         </section>
 
-        <section className="mt-5 rounded-lg border border-[#d9d2be] bg-white/72 p-4 shadow-xl shadow-black/6">
+        <section className="kh-panel mt-5 p-4">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-full bg-[#171713] text-[#e8c06c]">
+            <span className="grid size-10 place-items-center rounded-full bg-(--kh-ink) text-(--kh-brass-soft)">
               <Gauge className="size-5" />
             </span>
             <div>
-              <p className="text-sm font-black">
+              <p className="text-sm font-bold">
                 {locale === "zh" ? "总压缩版体积" : "Total web-optimized size"}: {formatSize(totalWebSize)}
               </p>
-              <p className="text-sm text-[#4c4b43]">
+              <p className="text-sm text-(--kh-muted)">
                 {locale === "zh"
                   ? `七个模型合计 ${totalTriangles.toLocaleString()} triangles。压缩版使用兼容型量化优化，未强制依赖 Draco/Meshopt 解码器。`
                   : `${totalTriangles.toLocaleString()} triangles across seven assets. Web files use compatible quantization without requiring Draco/Meshopt decoders.`}

@@ -33,17 +33,17 @@ export default async function B2BProcurementSections() {
   const isZh = locale === "zh";
 
   return (
-    <section data-visual-section="capability" className="kh-capability-section bg-[#f6f4ec] px-4 py-12 sm:px-6 lg:px-8">
+    <section data-visual-section="capability" className="texture-paper px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
-          <div className="premium-depth rounded-lg border border-[#d9d2be] bg-white p-5 shadow-xl shadow-[#171713]/8 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#9a6b1f]">
-                {isZh ? "工厂与服务能力" : "Manufacturing and service capabilities"}
+          <div className="kh-panel premium-depth p-5 sm:p-6">
+            <p className="kh-eyebrow">
+              {isZh ? "工厂与服务能力" : "Manufacturing and service capabilities"}
             </p>
-            <h1 className="kh-editorial-heading mt-3 text-3xl leading-tight tracking-[-.025em] text-[#171713] sm:text-5xl">
+            <h1 className="kh-editorial-heading mt-3 text-3xl text-(--kh-ink) sm:text-5xl">
               {isZh ? "把采购要求整理成可确认的生产规格。" : "Turn your packaging brief into a quote-ready specification."}
             </h1>
-            <p className="mt-4 text-sm leading-7 text-[#626156]">
+            <p className="mt-4 text-sm leading-7 text-(--kh-muted)">
               {isZh
                 ? "从材料匹配、结构打样到批量生产与出口包装，科宏为每个项目提供清晰、连贯的交付支持。"
                 : "Use this guide to prepare material, GSM, structure, sampling, quantity, destination, and document requirements before requesting a quote."}
@@ -53,16 +53,16 @@ export default async function B2BProcurementSections() {
                 const Icon = item.icon;
 
                 return (
-                  <div key={item.title} className="rounded-md border border-[#d9d2be] bg-[#fbfaf5] p-4">
+                  <div key={item.title} className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
                     <div className="flex items-center gap-3">
-                      <span className="grid size-10 place-items-center rounded-md bg-[#171713] text-[#e8c06c]">
+                      <span className="grid size-10 place-items-center rounded-md bg-(--kh-forest) text-(--kh-brass-soft)">
                         <Icon className="size-5" />
                       </span>
-                      <h3 className="text-sm font-black text-[#171713]">
+                      <h3 className="text-sm font-bold text-(--kh-ink)">
                         {isZh ? item.zh : item.title}
                       </h3>
                     </div>
-                    <p className="mt-3 text-sm leading-6 text-[#626156]">{isZh ? item.detailZh : item.detail}</p>
+                    <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{isZh ? item.detailZh : item.detail}</p>
                   </div>
                 );
               })}
@@ -70,8 +70,8 @@ export default async function B2BProcurementSections() {
           </div>
 
           <div className="grid gap-5">
-            <div className="premium-depth rounded-lg border border-[#d9d2be] bg-[#171713] p-5 text-white shadow-xl shadow-[#171713]/10 sm:p-6">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#e8c06c]">
+            <div className="premium-depth rounded-lg texture-ink p-5 sm:p-6">
+              <p className="kh-eyebrow kh-eyebrow-light">
                 {isZh ? "采购确认事项" : "Procurement checkpoints"}
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -81,28 +81,28 @@ export default async function B2BProcurementSections() {
                   return (
                     <div key={item.title} className="rounded-md border border-white/12 bg-white/8 p-4">
                       <div className="flex items-center gap-3">
-                        <Icon className="size-5 text-[#e8c06c]" />
-                        <h3 className="text-sm font-black">{isZh ? item.zh : item.title}</h3>
+                        <Icon className="size-5 text-(--kh-brass-soft)" />
+                        <h3 className="text-sm font-bold text-white">{isZh ? item.zh : item.title}</h3>
                       </div>
-                      <p className="mt-3 text-sm leading-6 text-[#f7f0df]/78">{isZh ? item.detailZh : item.detail}</p>
+                      <p className="mt-3 text-sm leading-6 text-white/80">{isZh ? item.detailZh : item.detail}</p>
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            <div className="premium-depth rounded-lg border border-[#d9d2be] bg-white p-5 shadow-xl shadow-[#171713]/8 sm:p-6">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#9a6b1f]">
+            <div className="kh-panel premium-depth p-5 sm:p-6">
+              <p className="kh-eyebrow">
                 {isZh ? "项目流程" : "Project process"}
               </p>
               <div className="mt-5 grid gap-3 md:grid-cols-5">
                 {(isZh ? processSteps.zh : processSteps.en).map((step, index) => (
-                  <div key={step} className="rounded-md border border-[#d9d2be] bg-[#fbfaf5] p-4">
-                    <span className="grid size-8 place-items-center rounded-full bg-[#e8c06c] text-xs font-black text-[#171713]">
+                  <div key={step} className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
+                    <span className="grid size-8 place-items-center rounded-full bg-(--kh-brass-soft) text-xs font-bold text-(--kh-ink)">
                       {index + 1}
                     </span>
-                    <p className="mt-3 text-sm font-black text-[#171713]">{step}</p>
-                    <CheckCircle2 className="mt-3 size-4 text-[#9a6b1f]" />
+                    <p className="mt-3 text-sm font-bold text-(--kh-ink)">{step}</p>
+                    <CheckCircle2 className="mt-3 size-4 text-(--kh-brass)" />
                   </div>
                 ))}
               </div>

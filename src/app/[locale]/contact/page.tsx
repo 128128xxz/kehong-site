@@ -75,27 +75,27 @@ export default async function ContactPage({
       : [];
 
   return (
-    <div className="texture-ink min-h-screen bg-[#171713] text-white">
+    <div className="texture-ink min-h-screen">
       <Header />
       <main className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#e8c06c]">
+          <p className="kh-eyebrow kh-eyebrow-light">
             {t("cta.quote")}
           </p>
-          <h1 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
+          <h1 className="kh-editorial-heading mt-4 text-4xl sm:text-5xl">
             {t("contact.title")}
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-8 text-[#f7f0df]/78">
+          <p className="mt-5 max-w-xl text-base leading-8 text-(--kh-paper-deep)">
             {t("contact.description")}
           </p>
-          <div className="mt-8 grid gap-3 text-sm text-[#f7f0df]/82 sm:grid-cols-3 lg:grid-cols-1">
+          <div className="mt-8 grid gap-3 text-sm text-(--kh-paper-deep) sm:grid-cols-3 lg:grid-cols-1">
             {[
               `${locale === "zh" ? "海外销售 WhatsApp" : "Overseas Sales WhatsApp"}: ${contact.whatsapp}`,
               `Email: ${contact.email}`,
             ].map((item) => (
               <p
                 key={item}
-                className="rounded-full border border-white/12 bg-white/8 px-4 py-2 font-semibold shadow-lg shadow-black/10 backdrop-blur-xl"
+                className="rounded-md border border-white/15 bg-white/8 px-4 py-2 font-semibold"
               >
                 {item}
               </p>
@@ -110,13 +110,13 @@ export default async function ContactPage({
             ].map((item) => (
               <p
                 key={item}
-                className="rounded-md border border-white/12 bg-white/8 px-4 py-3 text-sm font-bold leading-6 text-[#f7f0df]/82"
+                className="rounded-md border border-white/15 bg-white/8 px-4 py-3 text-sm font-medium leading-6 text-(--kh-paper-deep)"
               >
                 {item}
               </p>
             ))}
           </div>
-          <div className="premium-depth relative mt-10 h-80 overflow-hidden rounded-lg border border-white/12 shadow-2xl shadow-black/20">
+          <div className="premium-depth relative mt-10 h-80 overflow-hidden rounded-lg border border-white/15">
             <Image
               src={showcaseImages.webBakeryWindowBox}
               alt="Kehong food packaging sample"
@@ -124,19 +124,19 @@ export default async function ContactPage({
               sizes="(min-width: 1024px) 42vw, 90vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0),rgba(23,23,19,.62))]" />
-            <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-white/16 bg-[#171713]/62 p-3 text-sm font-black text-white shadow-xl shadow-black/18 backdrop-blur-xl">
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(29,33,29,0),rgba(29,33,29,.62))]" />
+            <div className="absolute bottom-4 left-4 right-4 rounded-md border border-white/15 bg-[rgba(29,33,29,.72)] p-3 text-sm font-semibold text-(--kh-surface)">
               {locale === "zh" ? "发送样品图、尺寸和数量，销售按配置报价。" : "Send sample photos, size and quantity for a tailored quotation."}
             </div>
           </div>
         </div>
 
-        <div className="kh-panel rounded-lg border border-white/12 bg-white/92 p-5 text-[#171713] shadow-2xl shadow-black/20 backdrop-blur-xl sm:p-7">
+        <div className="kh-panel p-5 text-(--kh-ink) sm:p-7">
           <div className="mb-5 flex flex-wrap gap-2">
             {[locale === "zh" ? "销售跟进" : "Sales follow-up", locale === "zh" ? "样品/打样" : "Sample support", locale === "zh" ? "出口服务" : "Export service"].map((item) => (
               <span
                 key={item}
-                className="rounded-full bg-[#f1e7cf] px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-[#9a6b1f]"
+                className="rounded-full bg-(--kh-paper-deep) px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-(--kh-brass)"
               >
                 {item}
               </span>

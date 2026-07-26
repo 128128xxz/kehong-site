@@ -160,30 +160,30 @@ export default async function ProductsPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
       />
-      <div className="kh-premium-site texture-paper min-h-screen bg-[#f6f4ec]">
+      <div className="kh-premium-site texture-paper min-h-screen">
       <Header />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <section className="premium-depth kh-micro-grid grid overflow-hidden rounded-lg border border-[#d9d2be] bg-[#171713] text-white shadow-2xl shadow-[#171713]/12 lg:grid-cols-[.9fr_1.1fr]">
+        <section className="premium-depth kh-micro-grid texture-ink grid overflow-hidden rounded-xl lg:grid-cols-[.9fr_1.1fr]">
           <div className="p-6 sm:p-8 lg:p-10">
-            <p className="text-xs font-black uppercase tracking-[0.25em] text-[#e8c06c]">
+            <p className="kh-eyebrow kh-eyebrow-light">
               {t("products.eyebrow")}
             </p>
-            <h1 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
+            <h1 className="kh-editorial-heading mt-4 text-4xl sm:text-6xl">
               {t("catalog.title")}
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-[#f7f0df]/76">
+            <p className="mt-5 max-w-2xl text-base leading-8 text-white/75">
               {t("catalog.description")}
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#catalog-list"
-                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#e8c06c] px-5 text-sm font-black text-[#171713]"
+                className="kh-button kh-button-light"
               >
                 {locale === "zh" ? "查看产品规格" : "View specifications"}
               </a>
               <Link
                 href="/contact"
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/22 px-5 text-sm font-black text-white"
+                className="kh-button border border-white/35 text-(--kh-surface) hover:bg-white/10"
               >
                 {locale === "zh" ? "索取目录 / 规格资料" : "Request catalog / data sheet"}
               </Link>
@@ -198,7 +198,7 @@ export default async function ProductsPage({
               sizes="(min-width: 1024px) 54vw, 95vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(23,23,19,.52),rgba(23,23,19,.05))]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-(--kh-ink)/55 to-(--kh-ink)/5" />
           </div>
         </section>
         <div id="catalog-list" className="mt-10 scroll-mt-24">

@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckCircle2, MessageCircle, Send } from "lucide-react";
-import { type FormEvent, useEffect, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 
@@ -90,6 +90,7 @@ export default function InquiryForm({
   const isZh = locale === "zh";
   const text = isZh ? copy.zh : copy.en;
   const [storedProducts, setStoredProducts] = useState<InquiryProduct[]>([]);
+  const productsRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     try {
       const raw = window.sessionStorage.getItem("kehong-selected-products");
@@ -120,6 +121,9 @@ export default function InquiryForm({
     () => effectiveProducts.map(productLine).filter(Boolean).join("\n"),
     [effectiveProducts],
   );
+  useEffect(() => {
+    if (productsRef.current && initialProductText) productsRef.current.value = initialProductText;
+  }, [initialProductText]);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const whatsappMessage = encodeURIComponent(
@@ -192,61 +196,62 @@ export default function InquiryForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`kh-panel rounded-lg border border-[#d9d2be] bg-white/94 text-[#171713] shadow-2xl shadow-[#171713]/12 backdrop-blur-xl ${
+      className={`kh-panel text-(--kh-ink) ${
         compact ? "p-4 sm:p-5" : "p-5 sm:p-7"
       }`}
     >
       <div className="mb-5 flex flex-col gap-2">
-        <p className="text-xs font-black uppercase tracking-[0.22em] text-[#9a6b1f]">{text.eyebrow}</p>
-        <h2 className="text-2xl font-black text-[#171713]">{title ?? text.title}</h2>
-        <p className="text-sm leading-6 text-[#626156]">{description ?? text.description}</p>
+        <p className="kh-eyebrow">{text.eyebrow}</p>
+        <h2 className="kh-editorial-heading text-2xl text-(--kh-ink)">{title ?? text.title}</h2>
+        <p className="text-sm leading-6 text-(--kh-muted)">{description ?? text.description}</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        <input name="name" required className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.name} />
-        <input name="company" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.company} />
-        <input name="email" required type="email" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.email} />
-        <input name="phone" type="tel" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.phone} />
-        <input name="whatsapp" type="tel" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.whatsappField} />
-        <input name="country" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.country} />
+        <input name="name" required className="kh-input h-11 px-3 text-sm" placeholder={text.name} />
+        <input name="company" className="kh-input h-11 px-3 text-sm" placeholder={text.company} />
+        <input name="email" required type="email" className="kh-input h-11 px-3 text-sm" placeholder={text.email} />
+        <input name="phone" type="tel" className="kh-input h-11 px-3 text-sm" placeholder={text.phone} />
+        <input name="whatsapp" type="tel" className="kh-input h-11 px-3 text-sm" placeholder={text.whatsappField} />
+        <input name="country" className="kh-input h-11 px-3 text-sm" placeholder={text.country} />
       </div>
 
       <textarea
+        ref={productsRef}
         name="products"
         required
         defaultValue={initialProductText}
-        className="kh-input mt-3 min-h-24 w-full rounded-md px-3 py-3 text-sm font-semibold outline-none"
+        className="kh-input mt-3 min-h-24 w-full px-3 py-3 text-sm font-semibold"
         placeholder={text.products}
       />
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
-        <input name="quantity" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.quantity} />
-        <input name="size" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.size} />
-        <input name="material" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.material} />
-        <input name="gsm" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.gsm} />
-        <input name="printing" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.printing} />
-        <input name="process" className="kh-input h-11 rounded-md px-3 text-sm outline-none" placeholder={text.process} />
-        <input name="market" className="kh-input h-11 rounded-md px-3 text-sm outline-none sm:col-span-2" placeholder={text.market} />
+        <input name="quantity" className="kh-input h-11 px-3 text-sm" placeholder={text.quantity} />
+        <input name="size" className="kh-input h-11 px-3 text-sm" placeholder={text.size} />
+        <input name="material" className="kh-input h-11 px-3 text-sm" placeholder={text.material} />
+        <input name="gsm" className="kh-input h-11 px-3 text-sm" placeholder={text.gsm} />
+        <input name="printing" className="kh-input h-11 px-3 text-sm" placeholder={text.printing} />
+        <input name="process" className="kh-input h-11 px-3 text-sm" placeholder={text.process} />
+        <input name="market" className="kh-input h-11 px-3 text-sm sm:col-span-2" placeholder={text.market} />
       </div>
       <textarea
         name="message"
-        className="kh-input mt-3 min-h-28 w-full rounded-md px-3 py-3 text-sm outline-none"
+        className="kh-input mt-3 min-h-28 w-full px-3 py-3 text-sm"
         placeholder={text.message}
       />
-      <label className="mt-3 block text-sm font-semibold text-[#626156]">
+      <label className="mt-3 block text-sm font-semibold text-(--kh-muted)">
         <span className="mb-2 block">{text.file}</span>
-        <input name="attachment" type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" className="kh-input block w-full rounded-md px-3 py-2 text-sm" />
+        <input name="attachment" type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" className="kh-input block w-full px-3 py-2 text-sm" />
       </label>
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-px w-px opacity-0" />
-      <label className="mt-4 flex items-start gap-2 text-sm leading-6 text-[#626156]">
-        <input name="privacy" required type="checkbox" className="mt-1 size-4 accent-[#171713]" />
-        <span>{text.privacy} <Link href="/privacy" className="font-bold text-[#9a6b1f] underline">{isZh ? "查看隐私政策" : "Privacy Policy"}</Link></span>
+      <label className="mt-4 flex items-start gap-2 text-sm leading-6 text-(--kh-muted)">
+        <input name="privacy" required type="checkbox" className="mt-1 size-4 accent-(--kh-forest)" />
+        <span>{text.privacy} <Link href="/privacy" className="kh-inline-link">{isZh ? "查看隐私政策" : "Privacy Policy"}</Link></span>
       </label>
 
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full bg-[#171713] px-5 text-sm font-black text-white transition hover:bg-[#2b2b24] disabled:cursor-wait disabled:opacity-70"
+          className="kh-button kh-button-primary flex-1 disabled:cursor-wait disabled:opacity-70"
         >
           <Send className="size-4" />
           {status === "sending" ? (isZh ? "提交中..." : "Sending...") : text.submit}
@@ -255,15 +260,15 @@ export default function InquiryForm({
           href={whatsapp}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#171713]/16 bg-[#f6f4ec] px-5 text-sm font-black text-[#171713] transition hover:bg-[#f1e7cf]"
+          className="kh-button kh-button-secondary"
         >
-          <MessageCircle className="size-4 text-[#9a6b1f]" />
+          <MessageCircle className="size-4 text-(--kh-brass)" />
           {text.whatsapp}
         </a>
       </div>
 
       {status === "success" ? (
-        <p className="mt-4 flex items-center gap-2 rounded-md border border-emerald-500/20 bg-emerald-50 px-3 py-2 text-sm font-black text-emerald-900">
+        <p className="mt-4 flex items-center gap-2 rounded-md border border-emerald-500/20 bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-900">
           <CheckCircle2 className="size-4" />
           {text.success}
         </p>

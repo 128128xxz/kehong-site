@@ -16,7 +16,6 @@ import {
 import Header from "@/components/site/Header";
 import InquiryForm from "@/components/site/InquiryForm";
 import SiteFooter from "@/components/site/SiteFooter";
-import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { absoluteSiteUrl, getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
@@ -152,24 +151,24 @@ export default async function ProductDetailPage({
       const categorySkus = getAllSkus().filter((item) => item.productType === category.productType).slice(0, 12);
       const categoryUrl = `/products/${category.slug}` as SiteHref;
       return (
-        <div className="texture-paper min-h-screen bg-[#f6f4ec]">
+        <div className="texture-paper min-h-screen">
           <Header />
           <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <Link href="/products" className="text-sm font-bold text-[#171713]">{isZh ? "返回产品目录" : "Back to catalog"}</Link>
-            <section className="premium-depth mt-6 rounded-lg border border-[#d9d2be] bg-[#171713] p-8 text-white sm:p-12">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#e8c06c]">{isZh ? "产品分类" : "Product category"}</p>
-              <h1 className="mt-4 text-4xl font-black sm:text-6xl">{categoryTitle}</h1>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-[#f7f0df]/78">{categoryDescription}</p>
-              <Link href={categoryUrl} className="mt-7 inline-flex min-h-11 items-center rounded-full bg-[#e8c06c] px-5 text-sm font-black text-[#171713]">
+            <Link href="/products" className="kh-text-link">{isZh ? "返回产品目录" : "Back to catalog"}</Link>
+            <section className="premium-depth texture-ink mt-6 rounded-xl p-8 sm:p-12">
+              <p className="kh-eyebrow kh-eyebrow-light">{isZh ? "产品分类" : "Product category"}</p>
+              <h1 className="kh-editorial-heading mt-4 text-4xl sm:text-6xl">{categoryTitle}</h1>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-white/75">{categoryDescription}</p>
+              <Link href={categoryUrl} className="kh-button kh-button-light mt-7">
                 {isZh ? "查看全部规格" : "View all specifications"}
               </Link>
             </section>
             <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {categorySkus.map((item) => (
-                <Link key={item.sku} href={`/products/${item.slug}`} className="rounded-lg border border-[#d9d2be] bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-[#9a6b1f]">{item.sku}</p>
-                  <h2 className="mt-2 text-lg font-black text-[#171713]">{getLocalizedProductTitle(item, locale)}</h2>
-                  <p className="mt-2 text-sm leading-6 text-[#626156]">{getLocalizedProductMaterial(item, locale) || getLocalizedCatalogValue(item.gsmOrThickness, locale)}</p>
+                <Link key={item.sku} href={`/products/${item.slug}`} className="kh-panel p-5 transition hover:-translate-y-0.5 hover:shadow-lg">
+                  <p className="kh-eyebrow">{item.sku}</p>
+                  <h2 className="mt-2 text-lg font-semibold text-(--kh-ink)">{getLocalizedProductTitle(item, locale)}</h2>
+                  <p className="mt-2 text-sm leading-6 text-(--kh-muted)">{getLocalizedProductMaterial(item, locale) || getLocalizedCatalogValue(item.gsmOrThickness, locale)}</p>
                 </Link>
               ))}
             </section>
@@ -355,14 +354,14 @@ export default async function ProductDetailPage({
         data-product-data-revision={productDataRevision}
         data-product-group-id={getProductGroupId(sku)}
         data-product-sku={sku.sku}
-        className="kh-premium-product texture-paper min-h-screen bg-[#f6f4ec]"
+        className="kh-premium-product texture-paper min-h-screen"
       >
       <Header />
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
-        <Link href="/products" className="text-sm font-bold text-[#171713]">
+        <Link href="/products" className="kh-text-link">
           {t("detail.back")}
         </Link>
-        <div className="kh-detail-hero premium-depth mt-6 overflow-hidden rounded-lg border border-[#d9d2be] bg-white shadow-2xl shadow-[#171713]/10 lg:grid lg:grid-cols-[.95fr_1.05fr]">
+        <div className="kh-detail-hero mt-6 lg:grid lg:grid-cols-[.95fr_1.05fr]">
           <div className="relative min-h-[380px] lg:min-h-[720px]">
             <ProductImageWithStatus
               sku={sku}
@@ -371,38 +370,38 @@ export default async function ProductDetailPage({
               sizes="(min-width: 1024px) 48vw, 95vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0),rgba(23,23,19,.62))]" />
-            <div className="absolute right-5 top-5 rounded-full border border-white/20 bg-white/18 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-white shadow-xl shadow-black/16 backdrop-blur-xl">
+            <div className="absolute inset-0 bg-gradient-to-t from-(--kh-ink)/60 to-transparent" />
+            <div className="absolute right-5 top-5 rounded-full border border-white/25 bg-(--kh-ink)/55 px-3 py-2 text-xs font-semibold uppercase tracking-[.08em] text-white backdrop-blur-md">
               {sku.customizable ? "OEM / ODM" : isZh ? "产品" : "Product"}
             </div>
             <div className="absolute bottom-6 left-6 right-6 text-white">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#e8c06c]">
+              <p className="kh-eyebrow kh-eyebrow-light">
                 {getProductTypeLabel(sku.productType, locale)}
               </p>
-              <p className="mt-2 text-2xl font-black">{sku.sku}</p>
+              <p className="mt-2 text-2xl font-semibold">{sku.sku}</p>
             </div>
           </div>
           <div className="p-6 sm:p-8 lg:p-10">
             <div className="flex flex-wrap items-center gap-2">
-              <p className="rounded-full bg-[#f1e7cf] px-3 py-1.5 text-xs font-black uppercase tracking-[0.16em] text-[#9a6b1f]">
+              <p className="rounded-full bg-(--kh-paper-deep) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-forest)">
               {getCanonicalCategoryForSku(sku)?.localizedLabel[locale === "zh" ? "zh" : "en"] ?? getProductTypeLabel(sku.productType, locale)}
               </p>
-              <span className="rounded-full bg-[#f6f4ec] px-3 py-1.5 text-xs font-black uppercase tracking-[0.16em] text-[#626156]">
+              <span className="rounded-full bg-(--kh-paper) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                 {getProductTypeLabel(sku.productType, locale)}
               </span>
               {sku.customizable ? (
-                <span className="rounded-full bg-[#171713] px-3 py-1.5 text-xs font-black uppercase tracking-[0.16em] text-white">
+                <span className="rounded-full bg-(--kh-forest) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-surface)">
                   OEM / ODM
                 </span>
               ) : null}
-              <span className="rounded-full bg-[#f6f4ec] px-3 py-1.5 text-xs font-black uppercase tracking-[0.16em] text-[#626156]">
+              <span className="rounded-full bg-(--kh-paper) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                 {groupVariants.length} {isZh ? "个变体" : groupVariants.length === 1 ? "variant" : "variants"}
               </span>
             </div>
-            <h1 className="mt-4 text-3xl font-black leading-tight text-[#171713] sm:text-4xl lg:text-5xl">
+            <h1 className="kh-editorial-heading mt-4 text-3xl text-(--kh-ink) sm:text-4xl lg:text-5xl">
               {getLocalizedProductTitle(sku, locale)}
             </h1>
-            <p className="mt-4 text-base leading-8 text-[#626156]">
+            <p className="mt-4 text-base leading-8 text-(--kh-muted)">
               {getLocalizedProductMaterial(sku, locale) || getProductTypeLabel(sku.productType, locale)}
             </p>
 
@@ -411,16 +410,16 @@ export default async function ProductDetailPage({
                 const Icon = item.icon;
 
                 return (
-                  <div key={item.label} className="kh-panel rounded-md border border-[#d9d2be] bg-[#f6f4ec] p-4">
+                  <div key={item.label} className="kh-panel bg-(--kh-paper) p-4">
                     <div className="flex items-center gap-3">
-                      <span className="grid size-9 shrink-0 place-items-center rounded-md bg-[#171713] text-[#e8c06c]">
+                      <span className="grid size-9 shrink-0 place-items-center rounded-md bg-(--kh-forest) text-(--kh-brass-soft)">
                         <Icon className="size-4" />
                       </span>
                       <span>
-                        <span className="block text-xs font-black uppercase tracking-[0.14em] text-[#626156]">
+                        <span className="block text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                           {item.label}
                         </span>
-                        <span className="mt-1 block text-sm font-bold leading-5 text-[#171713]">
+                        <span className="mt-1 block text-sm font-semibold leading-5 text-(--kh-ink)">
                           {item.value}
                         </span>
                       </span>
@@ -432,16 +431,16 @@ export default async function ProductDetailPage({
 
             <div className="mt-8">
               <div className="mb-3 flex items-center gap-2">
-                <ClipboardCheck className="size-5 text-[#9a6b1f]" />
-                <h2 className="text-xl font-black text-[#171713]">{t("detail.specs")}</h2>
+                <ClipboardCheck className="size-5 text-(--kh-brass)" />
+                <h2 className="text-xl font-semibold text-(--kh-ink)">{t("detail.specs")}</h2>
               </div>
-              <dl className="grid overflow-hidden rounded-lg border border-[#d9d2be] bg-white text-sm sm:grid-cols-2">
+              <dl className="grid overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) text-sm sm:grid-cols-2">
                 {specs.map(([label, value]) => (
-                  <div key={label} className="border-b border-[#d9d2be] p-4 last:border-0">
-                    <dt className="text-xs font-black uppercase tracking-[0.12em] text-[#626156]">
+                  <div key={label} className="border-b border-(--kh-line) p-4 last:border-0">
+                    <dt className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                       {label}
                     </dt>
-                    <dd className="mt-2 font-semibold text-[#171713]">
+                    <dd className="mt-2 font-semibold text-(--kh-ink)">
                       {value}
                     </dd>
                   </div>
@@ -449,46 +448,42 @@ export default async function ProductDetailPage({
               </dl>
             </div>
 
-            <p className="mt-6 text-sm text-[#626156]">{t("detail.note")}</p>
+            <p className="mt-6 text-sm text-(--kh-muted)">{t("detail.note")}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild className="rounded-full bg-[#171713] text-white hover:bg-[#2b2b24]">
-                <a href={whatsapp} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="size-4" />
-                  {t("cta.whatsapp")}
-                </a>
-              </Button>
-              <Button asChild variant="outline" className="rounded-full">
-                <Link href={contactHref}>
-                  <FileText className="size-4" />
-                  {isZh ? "获取报价" : "Request a quote"}
-                </Link>
-              </Button>
+              <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-primary">
+                <MessageCircle className="size-4" />
+                {t("cta.whatsapp")}
+              </a>
+              <Link href={contactHref} className="kh-button kh-button-secondary">
+                <FileText className="size-4" />
+                {isZh ? "获取报价" : "Request a quote"}
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_.86fr]">
-          <section className="premium-depth rounded-lg border border-[#d9d2be] bg-white p-5 shadow-xl shadow-[#171713]/8 sm:p-6">
+          <section className="kh-panel p-5 sm:p-6">
             <div className="mb-5 flex items-center gap-3">
-              <ShieldCheck className="size-5 text-[#9a6b1f]" />
-              <h2 className="text-xl font-black text-[#171713]">
+              <ShieldCheck className="size-5 text-(--kh-brass)" />
+              <h2 className="text-xl font-semibold text-(--kh-ink)">
                 {isZh ? "应用、定制与质量保障" : "Applications, customization and quality assurance"}
               </h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-md border border-[#d9d2be] bg-[#fbfaf5] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#626156]">
+              <div className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
+                <p className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                   {isZh ? "适用场景" : "Application"}
                 </p>
-                <p className="mt-2 text-sm font-semibold leading-6 text-[#171713]">
+                <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">
                   {getLocalizedCatalogValue(sku.applications, locale) || getProductTypeLabel(sku.productType, locale)}
                 </p>
               </div>
-              <div className="rounded-md border border-[#d9d2be] bg-[#fbfaf5] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#626156]">
+              <div className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
+                <p className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                   {isZh ? "表面 / 后工艺" : "Surface / finishing"}
                 </p>
-                <p className="mt-2 text-sm font-semibold leading-6 text-[#171713]">
+                <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">
                   {[sku.surfaceProcess, sku.finishingProcess]
                     .map((value) => getLocalizedCatalogValue(value, locale))
                     .filter(Boolean)
@@ -498,38 +493,38 @@ export default async function ProductDetailPage({
             </div>
             <div className="mt-5 grid gap-3">
               {customNotes.map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-md border border-[#d9d2be] bg-[#f6f4ec] px-3 py-3 text-sm font-semibold leading-6 text-[#171713]">
-                  <CheckCircle2 className="mt-1 size-4 shrink-0 text-[#9a6b1f]" />
+                <div key={item} className="flex items-start gap-3 rounded-md border border-(--kh-line) bg-(--kh-paper) px-3 py-3 text-sm font-semibold leading-6 text-(--kh-ink)">
+                  <CheckCircle2 className="mt-1 size-4 shrink-0 text-(--kh-brass)" />
                   {item}
                 </div>
               ))}
             </div>
 
             {groupVariants.length > 1 ? (
-              <div className="mt-6 overflow-hidden rounded-lg border border-[#d9d2be]">
-                <div className="flex flex-col gap-3 bg-[#f6f4ec] px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mt-6 overflow-hidden rounded-lg border border-(--kh-line)">
+                <div className="flex flex-col gap-3 bg-(--kh-paper) px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <h3 className="text-sm font-black uppercase tracking-[0.14em] text-[#171713]">
+                    <h3 className="text-sm font-semibold uppercase tracking-[.08em] text-(--kh-ink)">
                       {isZh ? "产品选项" : "Product options"}
                     </h3>
-                    <p className="mt-1 text-xs text-[#626156]">
+                    <p className="mt-1 text-xs text-(--kh-muted)">
                       {isZh ? `显示 ${visibleVariants.length} / ${matchingVariants.length} 项` : `Showing ${visibleVariants.length} of ${matchingVariants.length} variants`}
                     </p>
                   </div>
                   <form method="get" className="flex min-w-0 items-center gap-2">
                     {query.variants === "all" ? <input type="hidden" name="variants" value="all" /> : null}
                     <label htmlFor="variant-search" className="sr-only">{isZh ? "搜索变体" : "Search variants"}</label>
-                    <div className="flex min-w-0 items-center gap-2 border border-[#d9d2be] bg-white px-3 py-2">
-                      <Search className="size-3.5 shrink-0 text-[#9a6b1f]" aria-hidden="true" />
-                      <input id="variant-search" name="variantSearch" defaultValue={variantSearch} placeholder={isZh ? "搜索尺寸 / 克重 / 涂层" : "Search size / GSM / coating"} className="min-w-0 w-full bg-transparent text-xs font-semibold text-[#171713] outline-none placeholder:text-[#626156]/70" />
+                    <div className="flex min-w-0 items-center gap-2 rounded-md border border-(--kh-line) bg-(--kh-surface) px-3 py-2">
+                      <Search className="size-3.5 shrink-0 text-(--kh-brass)" aria-hidden="true" />
+                      <input id="variant-search" name="variantSearch" defaultValue={variantSearch} placeholder={isZh ? "搜索尺寸 / 克重 / 涂层" : "Search size / GSM / coating"} className="min-w-0 w-full bg-transparent text-xs font-semibold text-(--kh-ink) outline-none placeholder:text-(--kh-muted)/80" />
                     </div>
-                    <button type="submit" className="min-h-9 border border-[#18372e] bg-[#18372e] px-3 text-xs font-black text-white">{isZh ? "搜索" : "Search"}</button>
+                    <button type="submit" className="kh-button kh-button-primary kh-button-compact">{isZh ? "搜索" : "Search"}</button>
                   </form>
                 </div>
                 <div className="overflow-x-auto">
-                  <table className="min-w-[720px] w-full border-collapse bg-white text-sm">
+                  <table className="min-w-[720px] w-full border-collapse bg-(--kh-surface) text-sm">
                     <thead>
-                      <tr className="border-b border-[#d9d2be] text-left text-xs font-black uppercase tracking-[0.12em] text-[#626156]">
+                      <tr className="border-b border-(--kh-line) text-left text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                         <th className="px-4 py-3">{isZh ? "产品编号" : "Product code"}</th>
                         <th className="px-4 py-3">{isZh ? "克重 / 厚度" : "GSM / thickness"}</th>
                         <th className="px-4 py-3">{isZh ? "涂层" : "Coating"}</th>
@@ -538,54 +533,54 @@ export default async function ProductDetailPage({
                     </thead>
                     <tbody>
                       {visibleVariants.map((variant) => (
-                        <tr key={variant.sku} className="border-b border-[#f1e7cf] last:border-0">
-                          <td className="px-4 py-3 font-black text-[#171713]">{variant.sku}</td>
-                          <td className="px-4 py-3 text-[#626156]">{getLocalizedCatalogValue(variant.gsmOrThickness, locale) || "-"}</td>
-                          <td className="px-4 py-3 text-[#626156]">{getLocalizedCatalogValue(variant.coating, locale) || "-"}</td>
-                          <td className="px-4 py-3 text-[#626156]">{getLocalizedCatalogValue(variant.commonSize, locale) || "-"}</td>
+                        <tr key={variant.sku} className="border-b border-(--kh-paper-deep) last:border-0">
+                          <td className="px-4 py-3 font-semibold text-(--kh-ink)">{variant.sku}</td>
+                          <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.gsmOrThickness, locale) || "-"}</td>
+                          <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.coating, locale) || "-"}</td>
+                          <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.commonSize, locale) || "-"}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
                 {matchingVariants.length === 0 ? (
-                  <p className="border-t border-[#d9d2be] bg-white px-4 py-4 text-sm text-[#626156]">{isZh ? "没有匹配的变体，请调整搜索条件。" : "No matching variants. Adjust the search terms and try again."}</p>
+                  <p className="border-t border-(--kh-line) bg-(--kh-surface) px-4 py-4 text-sm text-(--kh-muted)">{isZh ? "没有匹配的变体，请调整搜索条件。" : "No matching variants. Adjust the search terms and try again."}</p>
                 ) : null}
                 {hasMoreVariants ? (
-                  <div className="border-t border-[#d9d2be] bg-white px-4 py-3">
-                    <Link href={`${productHref}?variants=all${variantSearch ? `&variantSearch=${encodeURIComponent(variantSearch)}` : ""}`} className="text-sm font-black text-[#9a6b1f] hover:text-[#18372e]">
+                  <div className="border-t border-(--kh-line) bg-(--kh-surface) px-4 py-3">
+                    <Link href={`${productHref}?variants=all${variantSearch ? `&variantSearch=${encodeURIComponent(variantSearch)}` : ""}`} className="kh-text-link">
                       {isZh ? `查看全部 ${matchingVariants.length} 个变体` : `View all ${matchingVariants.length} variants`} →
                     </Link>
                   </div>
                 ) : showAllVariants && matchingVariants.length > 12 ? (
-                  <div className="border-t border-[#d9d2be] bg-white px-4 py-3">
-                    <Link href={productHref} className="text-sm font-black text-[#9a6b1f] hover:text-[#18372e]">{isZh ? "收起变体" : "Show fewer variants"} ↑</Link>
+                  <div className="border-t border-(--kh-line) bg-(--kh-surface) px-4 py-3">
+                    <Link href={productHref} className="kh-text-link">{isZh ? "收起变体" : "Show fewer variants"} ↑</Link>
                   </div>
                 ) : null}
               </div>
             ) : null}
           </section>
 
-          <aside className="kh-panel rounded-lg border border-[#d9d2be] bg-[#171713] p-5 text-white shadow-xl shadow-[#171713]/12 sm:p-6">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#e8c06c]">
+          <aside className="premium-depth texture-ink self-start rounded-xl p-5 sm:p-6">
+            <p className="kh-eyebrow kh-eyebrow-light">
               {isZh ? "报价所需信息" : "Quote checklist"}
             </p>
-            <h2 className="mt-3 text-2xl font-black leading-tight">
+            <h2 className="kh-editorial-heading mt-3 text-2xl">
               {isZh ? "发这些信息，报价会更快。" : "Send these details for a faster quote."}
             </h2>
             <div className="mt-5 grid gap-2">
               {rfqChecklist.map((item) => (
-                <span key={item} className="rounded-md border border-white/12 bg-white/8 px-3 py-2 text-sm font-bold text-[#f7f0df]/84">
+                <span key={item} className="rounded-md border border-white/15 bg-white/10 px-3 py-2 text-sm font-semibold text-white/85">
                   {item}
                 </span>
               ))}
             </div>
             <div className="mt-6 grid gap-2">
-              <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#e8c06c] px-4 text-sm font-black text-[#171713]">
+              <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-light">
                 <MessageCircle className="size-4" />
                 {isZh ? "咨询此产品" : "Discuss this product"}
               </a>
-              <Link href={contactHref} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/18 px-4 text-sm font-black text-white">
+              <Link href={contactHref} className="kh-button border border-white/35 text-(--kh-surface) hover:bg-white/10">
                 <FileText className="size-4" />
                 {isZh ? "获取报价" : "Request a quote"}
               </Link>
