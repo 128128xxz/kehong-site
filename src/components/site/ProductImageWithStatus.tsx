@@ -102,7 +102,7 @@ export default function ProductImageWithStatus({
       />
       {image.status !== "exact" ? (
         <span className="pointer-events-none absolute bottom-3 left-3 rounded-full border border-white/25 bg-(--kh-ink)/75 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-white">
-          {locale === "zh" ? "参考渲染图" : "Reference rendering"}
+          {locale === "zh" ? "图片仅供参考" : "For reference only"}
         </span>
       ) : null}
     </>

@@ -18,8 +18,6 @@ const categoryOrder = [
   "all-products",
 ];
 
-/** 使用 AI 渲染示意图的品类:图注追加 Render 标记,不冒充实拍 */
-const renderImageSlugs = new Set(["cake-boxes", "pillow-boxes", "corrugated-mailer-boxes"]);
 
 export default function HomeProductSystems({ locale }: { locale: string }) {
   const zh = locale === "zh";
@@ -59,7 +57,7 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
                     className="object-cover"
                   />
                   <span className="kh-fig-caption kh-mono">
-                    {`Fig.0${index + 1} — ${zh ? category.title.zh : category.title.en}${renderImageSlugs.has(category.slug) ? (zh ? " · 渲染示意" : " · Render") : ""}`}
+                    {`Fig.0${index + 1} — ${zh ? category.title.zh : category.title.en}`}
                   </span>
                 </div>
                 <div className="kh-system-copy">

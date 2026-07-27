@@ -22,7 +22,6 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
   const sourceSkus = getAllSkus().filter((sku) => matchesCategory(sku, category));
   const skus = sourceSkus.map((sku) => getLocalizedProductSku(sku, locale));
   const pagePath = `/packaging/${category.slug}`;
-  const isRenderImage = category.image.startsWith("/images/ai/");
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -57,8 +56,8 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           image={{ src: category.image, alt: `${category.title.en} packaging reference` }}
           meta={
             isZh
-              ? [`${category.subcategories.length} 个子类方向`, "OEM / ODM", isRenderImage ? "配图为渲染示意" : "中国广东佛山"]
-              : [`${category.subcategories.length} subcategory directions`, "OEM / ODM", isRenderImage ? "Hero image: render" : "Foshan, Guangdong, China"]
+              ? [`${category.subcategories.length} 个子类方向`, "OEM / ODM", "中国广东佛山"]
+              : [`${category.subcategories.length} subcategory directions`, "OEM / ODM", "Foshan, Guangdong, China"]
           }
         >
           <Link href="/contact" className="kh-button kh-button-light">

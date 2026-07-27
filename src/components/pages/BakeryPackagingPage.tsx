@@ -72,7 +72,7 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
                         className="object-cover"
                       />
                       <span className="kh-fig-caption kh-mono">
-                        {`Fig.0${index + 1} — ${isZh ? item!.title.zh : item!.title.en}${item!.image.startsWith("/images/ai/") ? (isZh ? " · 渲染示意" : " · Render") : ""}`}
+                        {`Fig.0${index + 1} — ${isZh ? item!.title.zh : item!.title.en}`}
                       </span>
                     </div>
                     <div className="kh-system-copy">

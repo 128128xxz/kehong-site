@@ -6,6 +6,16 @@ export const contact = {
 
 export const companyLegalName = "Foshan Kehong Paper Products Co., Ltd.";
 
+/** 社媒主页(预留转化入口:填入正式主页 URL 即自动生效;留空时页脚图标指向占位) */
+export const socialLinks = {
+  linkedin: "",
+  facebook: "",
+  instagram: "",
+  youtube: "",
+  x: "",
+  tiktok: "",
+} as const;
+
 export const companyProfile = {
   location: { en: "Foshan, Guangdong, China", zh: "中国广东佛山" },
   productionCapability: {

@@ -214,10 +214,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    min-height: 2.4rem;
-    padding: .45rem .65rem;
+    min-height: 2.6rem;
+    padding: .5rem .75rem;
     border-radius: 6px;
-    font-size: .92rem;
+    font-size: .95rem;
     font-weight: 600;
     color: var(--kh-ink);
   }
@@ -318,8 +318,8 @@
   .kh-lede, .kh-section-lede {
     max-width: 62ch;
     color: var(--kh-muted);
-    font-size: 1.08rem;
-    line-height: 1.7;
+    font-size: 1.1rem;
+    line-height: 1.75;
   }
   .kh-text-link {
     display: inline-flex;
@@ -446,11 +446,11 @@
   /* ---------- 工程注记语言 ---------- */
   .kh-mono {
     font-family: var(--font-mono);
-    font-size: .72rem;
+    font-size: .75rem;
     font-weight: 600;
-    letter-spacing: .12em;
+    letter-spacing: .1em;
     text-transform: uppercase;
-    line-height: 1.5;
+    line-height: 1.6;
   }
   .kh-kicker-row {
     display: flex;
@@ -521,7 +521,7 @@
   .kh-page-hero-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: .5rem 1.5rem;
+    gap: .6rem 1.8rem;
     margin: 2.25rem 0 0;
     border-top: 1px solid rgba(255, 253, 248, .18);
     padding-top: 1rem;
@@ -599,7 +599,7 @@
   .kh-hero-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem 2rem;
+    gap: 1.25rem 2.5rem;
     margin: 0;
     border-top: 1px solid rgba(255, 253, 248, .18);
     padding: 1.5rem 0 2rem;
@@ -614,7 +614,7 @@
   }
   .kh-hero-stat span {
     display: block;
-    margin-top: .35rem;
+    margin-top: .5rem;
     color: var(--kh-brass-soft);
   }
   .kh-scroll-cue {
@@ -734,12 +734,12 @@
   /* ---------- S3 产品系统 Bento ---------- */
   .kh-bento {
     display: grid;
-    gap: 1rem;
+    gap: 1.25rem;
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
   .kh-category-grid {
     display: grid;
-    gap: 1rem;
+    gap: 1.25rem;
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .kh-category-grid .kh-system-copy p {
@@ -779,7 +779,7 @@
     transform: scale(1.05);
   }
   .kh-system-copy {
-    padding: 1.25rem;
+    padding: 1.45rem;
   }
   .kh-system-copy h3 {
     position: relative;
@@ -805,10 +805,10 @@
     transform: scaleX(1);
   }
   .kh-system-copy p {
-    margin: .65rem 0 1.1rem;
+    margin: .7rem 0 1.15rem;
     color: var(--kh-muted);
-    font-size: .94rem;
-    line-height: 1.55;
+    font-size: .97rem;
+    line-height: 1.62;
   }
   .kh-system-copy span {
     display: inline-flex;
@@ -828,9 +828,9 @@
     position: relative;
     display: flex;
     align-items: baseline;
-    gap: .6rem;
-    padding: .95rem .6rem;
-    font-size: .88rem;
+    gap: .65rem;
+    padding: 1.1rem .75rem;
+    font-size: .92rem;
     font-weight: 600;
     color: var(--kh-ink);
   }
@@ -893,7 +893,7 @@
     grid-template-columns: 3.2rem 1fr;
     gap: 1rem;
     border-bottom: 1px solid var(--kh-line);
-    padding: 1.5rem 0;
+    padding: 1.7rem 0;
     opacity: .45;
     transition: opacity .3s ease;
   }
@@ -946,7 +946,7 @@
   /* ---------- S5 材料画廊(scroll-snap) ---------- */
   .kh-gallery-track {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
     overflow-x: auto;
     padding: .25rem .25rem .75rem;
     scroll-snap-type: x mandatory;
@@ -1058,7 +1058,7 @@
     gap: 1.5rem;
     grid-template-columns: 3rem 1fr auto;
     border-bottom: 1px solid var(--kh-line);
-    padding: 1.35rem 0;
+    padding: 1.5rem 0;
     transition: padding .2s ease, color .2s ease;
   }
   .kh-industry-row:hover {
@@ -1152,7 +1152,7 @@
     align-items: baseline;
     gap: 1rem;
     border-bottom: 1px dashed rgba(245, 241, 232, .18);
-    padding: .85rem .4rem;
+    padding: 1rem .5rem;
     transition: background-color .15s ease;
   }
   .kh-spec-row:hover {
@@ -1244,10 +1244,10 @@
   }
   .kh-footer-contact {
     display: grid;
-    gap: .35rem;
+    gap: .5rem;
     margin-top: 1.5rem;
     color: rgba(255, 253, 248, .78);
-    font-size: .92rem;
+    font-size: .95rem;
   }
   .kh-footer-contact a:hover, .kh-footer-links a:hover, .kh-footer-bottom a:hover {
     color: var(--kh-brass-soft);
@@ -1269,11 +1269,11 @@
   .kh-footer-links div {
     display: grid;
     align-content: start;
-    gap: .65rem;
+    gap: .8rem;
   }
   .kh-footer-links a {
     color: rgba(255, 253, 248, .75);
-    font-size: .93rem;
+    font-size: .95rem;
   }
   .kh-footer-actions {
     display: flex;
@@ -1287,6 +1287,27 @@
     gap: .35rem;
     color: rgba(255, 253, 248, .78);
     font-size: .88rem;
+  }
+  .kh-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 1.5rem;
+  }
+  .kh-social a {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid rgba(255, 253, 248, .28);
+    border-radius: 999px;
+    color: rgba(255, 253, 248, .78);
+    transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+  }
+  .kh-social a:hover {
+    border-color: var(--kh-brass-soft);
+    background: rgba(255, 253, 248, .06);
+    color: var(--kh-brass-soft);
   }
   .kh-footer-bottom {
     display: flex;

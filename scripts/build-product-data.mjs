@@ -189,8 +189,8 @@ const assets = [
     scope: "family",
     exactness: "ai-representative",
     alt: {
-      en: "Representative render of die-cut paper cup fan blanks",
-      zh: "纸杯扇形片渲染示意图",
+      en: "Die-cut paper cup fan blanks — reference image",
+      zh: "纸杯扇形片参考图",
     },
   },
   {
@@ -199,8 +199,8 @@ const assets = [
     scope: "family",
     exactness: "ai-representative",
     alt: {
-      en: "Representative render of kraft cupstock roll and paper cups",
-      zh: "牛皮杯纸卷与纸杯渲染示意图",
+      en: "Kraft cupstock roll and paper cups — reference image",
+      zh: "牛皮杯纸卷与纸杯参考图",
     },
   },
   {
@@ -219,8 +219,8 @@ const assets = [
     scope: "family",
     exactness: "ai-representative",
     alt: {
-      en: "Representative render of single, double and triple wall corrugated board cross-sections",
-      zh: "单/双/三层瓦楞纸板剖面渲染示意图",
+      en: "Single, double and triple wall corrugated cross-sections — reference image",
+      zh: "单/双/三层瓦楞纸板剖面参考图",
     },
   },
   {
@@ -229,8 +229,8 @@ const assets = [
     scope: "family",
     exactness: "ai-representative",
     alt: {
-      en: "Representative render of gold, silver and holographic specialty papers",
-      zh: "金卡、银卡与镭射特种纸渲染示意图",
+      en: "Gold, silver and holographic specialty papers — reference image",
+      zh: "金卡、银卡与镭射特种纸参考图",
     },
   },
   {
@@ -259,8 +259,8 @@ const assets = [
     scope: "family",
     exactness: "ai-representative",
     alt: {
-      en: "Representative render of a die-cut molded paper insert tray",
-      zh: "模切纸内托渲染示意图",
+      en: "Die-cut molded paper insert tray — reference image",
+      zh: "模切纸内托参考图",
     },
   },
   {
@@ -279,8 +279,8 @@ const assets = [
     scope: "family",
     exactness: "ai-representative",
     alt: {
-      en: "Representative render of a PE-coated paper roll",
-      zh: "PE 淋膜纸卷渲染示意图",
+      en: "PE-coated paper roll — reference image",
+      zh: "PE 淋膜纸卷参考图",
     },
   },
 ].map((asset) => ({
