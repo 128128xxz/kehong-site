@@ -185,22 +185,22 @@ const typeToImage = {
 const assets = [
   {
     assetId: "kh-cupfan-family-representative",
-    localPath: "/images/kehong/showcase/color-material-swatch.webp",
+    localPath: "/images/ai/ai-cup-fan-blanks.jpg",
     scope: "family",
-    exactness: "representative",
+    exactness: "ai-representative",
     alt: {
-      en: "Representative paper cup fan and coated paper material swatches",
-      zh: "纸杯扇形片与淋膜纸材料代表图",
+      en: "Representative render of die-cut paper cup fan blanks",
+      zh: "纸杯扇形片渲染示意图",
     },
   },
   {
     assetId: "kh-kraft-family-representative",
-    localPath: "/images/kehong/showcase/honeycomb-paper-roll.webp",
+    localPath: "/images/ai/ai-kraft-cupstock.jpg",
     scope: "family",
-    exactness: "representative",
+    exactness: "ai-representative",
     alt: {
-      en: "Representative kraft and honeycomb paper material roll",
-      zh: "牛皮纸与蜂窝纸材料代表图",
+      en: "Representative render of kraft cupstock roll and paper cups",
+      zh: "牛皮杯纸卷与纸杯渲染示意图",
     },
   },
   {
@@ -215,22 +215,22 @@ const assets = [
   },
   {
     assetId: "kh-corrugated-family-representative",
-    localPath: "/images/kehong/showcase/optimized/structure-material-real.jpg",
+    localPath: "/images/ai/ai-flute-types.jpg",
     scope: "family",
-    exactness: "representative",
+    exactness: "ai-representative",
     alt: {
-      en: "Representative corrugated and structured paper material texture",
-      zh: "瓦楞与结构纸材质代表图",
+      en: "Representative render of single, double and triple wall corrugated board cross-sections",
+      zh: "单/双/三层瓦楞纸板剖面渲染示意图",
     },
   },
   {
     assetId: "kh-specialty-family-representative",
-    localPath: "/images/kehong/showcase/gold-board-stack.webp",
+    localPath: "/images/ai/ai-specialty-papers.jpg",
     scope: "family",
-    exactness: "representative",
+    exactness: "ai-representative",
     alt: {
-      en: "Representative specialty paper and gold board stack",
-      zh: "特种纸与金银卡纸代表图",
+      en: "Representative render of gold, silver and holographic specialty papers",
+      zh: "金卡、银卡与镭射特种纸渲染示意图",
     },
   },
   {
@@ -255,12 +255,12 @@ const assets = [
   },
   {
     assetId: "kh-paper-insert-family-representative",
-    localPath: "/images/kehong/showcase/custom-box-display-open.webp",
+    localPath: "/images/ai/ai-paper-insert.jpg",
     scope: "family",
-    exactness: "representative",
+    exactness: "ai-representative",
     alt: {
-      en: "Representative open paper insert and custom box structure",
-      zh: "纸内托与定制盒结构代表图",
+      en: "Representative render of a die-cut molded paper insert tray",
+      zh: "模切纸内托渲染示意图",
     },
   },
   {
@@ -275,12 +275,12 @@ const assets = [
   },
   {
     assetId: "kh-material-family-representative",
-    localPath: "/images/kehong/showcase/precision-machine-closeup.webp",
+    localPath: "/images/ai/ai-pe-coated-roll.jpg",
     scope: "family",
-    exactness: "representative",
+    exactness: "ai-representative",
     alt: {
-      en: "Representative paper material converting and production proof",
-      zh: "纸品材料加工与生产能力代表图",
+      en: "Representative render of a PE-coated paper roll",
+      zh: "PE 淋膜纸卷渲染示意图",
     },
   },
 ].map((asset) => ({

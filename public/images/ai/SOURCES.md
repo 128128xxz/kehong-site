@@ -23,3 +23,20 @@ Reserved for future category/industry pages (pending SKU data):
 cake-boards-set, cosmetics-box, flute-macro, folding-carton, gift-box,
 labels-tags, packaging-family, paper-bag-branded, paper-insert, pet-box,
 pizza-box.
+
+## Batch 2 (2026-07-27, 27 images, prompt pack v2)
+
+Same provenance and policy as batch 1 (owner-commissioned GPT renders).
+`ai-tea-coffee-box` was corrupted in delivery and awaits regeneration.
+
+In use from this batch:
+
+- `ai-cup-fan-blanks.jpg` / `ai-kraft-cupstock.jpg` / `ai-pe-coated-roll.jpg` /
+  `ai-specialty-papers.jpg` / `ai-flute-types.jpg` / `ai-paper-insert.jpg` (batch 1) —
+  catalog family representative images (marked ai-representative; product UI
+  shows the "Reference rendering" badge)
+- `ai-og-backdrop.jpg` — backdrop of the composed `/og-image.png`
+
+Reserved: burger/meal boxes, cake pads, electronics insert, die-cut sheets,
+industry matrix (apparel/candle/electronics/toy/pharma/stationery/jewelry/
+home/sports/auto/eyewear), resource covers, empty-box 404, exhibition backdrop.
