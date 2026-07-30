@@ -6,6 +6,7 @@ import { Eye, Gauge, Layers3, PackageOpen, Rotate3D } from "lucide-react";
 import { Suspense, useMemo, useState } from "react";
 import { ACESFilmicToneMapping, Mesh, SRGBColorSpace, type Group } from "three";
 import manifest from "@/data/orinscareModelManifest.json";
+import { KehongPizzaBoxModel } from "./KehongPizzaBoxModel";
 
 const zhLabels: Record<string, string> = {
   box: "披萨盒",
@@ -15,6 +16,7 @@ const zhLabels: Record<string, string> = {
   "donut-box": "甜甜圈盒",
   "cosmetic-box": "化妆品彩盒",
   "cosmetic-tray": "化妆品内托",
+  "kehong-pizza-box": "科宏披萨外卖盒",
 };
 
 const cameraPresets = {
@@ -26,6 +28,28 @@ const cameraPresets = {
 type PreviewMode = "single" | "all";
 type CameraPreset = keyof typeof cameraPresets;
 type ModelItem = (typeof manifest)[number];
+type ProceduralModelItem = {
+  id: "kehong-pizza-box";
+  label: string;
+  webFilename: string;
+  bytes: number;
+  webBytes: number;
+  triangles: number;
+  vertices: number;
+  size: [number, number, number];
+};
+type PreviewItem = ModelItem | ProceduralModelItem;
+
+const proceduralPizzaBox: ProceduralModelItem = {
+  id: "kehong-pizza-box",
+  label: "Kehong Pizza Box (procedural)",
+  webFilename: "img2threejs / procedural",
+  bytes: 0,
+  webBytes: 0,
+  triangles: 0,
+  vertices: 0,
+  size: [4.8, 1.9, 4.2],
+};
 
 function formatSize(bytes: number) {
   if (bytes > 1024 * 1024) {
@@ -62,11 +86,11 @@ function ModelAsset({
   return <primitive object={scene} position={position} rotation={rotation} scale={scale} />;
 }
 
-function SinglePreview({ item }: { item: ModelItem }) {
+function SinglePreview({ item }: { item: PreviewItem }) {
   return (
     <Bounds fit clip observe margin={1.2}>
       <Center top>
-        <ModelAsset item={item} />
+        {item.id === "kehong-pizza-box" ? <KehongPizzaBoxModel /> : <ModelAsset item={item as ModelItem} />}
       </Center>
     </Bounds>
   );
@@ -98,7 +122,7 @@ function AllModelsPreview() {
   );
 }
 
-function SceneContent({ mode, item }: { mode: PreviewMode; item: ModelItem }) {
+function SceneContent({ mode, item }: { mode: PreviewMode; item: PreviewItem }) {
   return (
     <>
       <ambientLight intensity={0.55} />
@@ -130,10 +154,12 @@ function StatCard({ label, value }: { label: string; value: string }) {
 }
 
 export default function OrinscareModelPreview({ locale }: { locale: string }) {
-  const [selectedId, setSelectedId] = useState(manifest[0]?.id ?? "box");
+  const [selectedId, setSelectedId] = useState<string>(manifest[0]?.id ?? "box");
   const [mode, setMode] = useState<PreviewMode>("single");
   const [cameraPreset, setCameraPreset] = useState<CameraPreset>("front");
-  const selected = manifest.find((item) => item.id === selectedId) ?? manifest[0];
+  const selected: PreviewItem = selectedId === proceduralPizzaBox.id
+    ? proceduralPizzaBox
+    : manifest.find((item) => item.id === selectedId) ?? manifest[0];
   const totalTriangles = manifest.reduce((sum, item) => sum + item.triangles, 0);
   const totalWebSize = manifest.reduce((sum, item) => sum + item.webBytes, 0);
   const camera = cameraPresets[cameraPreset];
@@ -186,7 +212,7 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
             </div>
 
             <div className="mt-5 grid gap-2">
-              {manifest.map((item) => (
+              {[...manifest, proceduralPizzaBox].map((item) => (
                 <button
                   key={item.id}
                   type="button"
@@ -277,7 +303,7 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
         </section>
 
         <section className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          <StatCard label="GLB" value={formatSize(selected.bytes)} />
+          <StatCard label="GLB" value={selected.id === proceduralPizzaBox.id ? "Procedural" : formatSize(selected.bytes)} />
           <StatCard label="Web GLB" value={formatSize(selected.webBytes)} />
           <StatCard label="Triangles" value={selected.triangles.toLocaleString()} />
           <StatCard label="Vertices" value={selected.vertices.toLocaleString()} />
@@ -305,4 +331,3 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
     </main>
   );
 }
-

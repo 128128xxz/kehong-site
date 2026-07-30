@@ -5,6 +5,7 @@ import { packagingCategories } from "@/data/packagingCategories";
 import { productFamilies } from "@/data/company";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
+import { showcaseImages } from "@/data/visuals";
 
 /** 名片墙展示顺序:老板点名的烘焙类打头,末位收口到全部产品 */
 const categoryOrder = [
@@ -17,6 +18,13 @@ const categoryOrder = [
   "labels-stickers",
   "all-products",
 ];
+
+const representativeVisuals: Record<string, string> = {
+  "cake-boxes": showcaseImages.representativeBakeryPackaging,
+  "cake-boards-cake-drums": showcaseImages.representativeInserts,
+  "takeout-boxes": showcaseImages.representativeBoxRange,
+  "paper-bags": showcaseImages.representativeHeroStructure,
+};
 
 
 export default function HomeProductSystems({ locale }: { locale: string }) {
@@ -50,8 +58,8 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
               >
                 <div className="kh-card-media kh-media-shade">
                   <Image
-                    src={category.image}
-                    alt={zh ? category.title.zh : category.title.en}
+                    src={representativeVisuals[category.slug] ?? category.image}
+                    alt={`${zh ? category.title.zh : category.title.en} — representative visual only`}
                     fill
                     sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw"
                     className="object-cover"

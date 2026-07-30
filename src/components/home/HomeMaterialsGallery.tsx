@@ -19,11 +19,11 @@ const cards: MaterialCard[] = [
   { image: showcaseImages.honeycomb, figure: "Honeycomb core", figureZh: "蜂窝纸芯", alt: "Honeycomb paper core roll", altZh: "蜂窝纸芯纸卷" },
   { image: showcaseImages.swatch, figure: "Color flutes", figureZh: "彩色坑纸", alt: "Colored fluted paper swatches", altZh: "彩色坑纸样卡" },
   { image: showcaseImages.cakeBoardReal, figure: "Metallic boards", figureZh: "金银卡垫板", alt: "Metallic cake boards", altZh: "金银卡蛋糕垫板" },
-  { image: showcaseImages.foodDetail, figure: "Food-grade flute", figureZh: "食品级瓦楞", alt: "Food-grade fluted paper box detail", altZh: "食品级瓦楞纸盒细节" },
-  { image: showcaseImages.pinkBox, figure: "Structural box", figureZh: "结构纸盒", alt: "Structural paper box sample", altZh: "结构纸盒样品" },
-  { image: showcaseImages.displayOpen, figure: "Display box", figureZh: "开窗展示盒", alt: "Open display box sample", altZh: "开窗展示盒样品" },
+  { image: showcaseImages.representativeMaterialSamples, figure: "Paper layers", figureZh: "纸材层次", alt: "Representative paper material layers", altZh: "代表性纸材层次示意图" },
+  { image: showcaseImages.representativeBoxRange, figure: "Structural box", figureZh: "结构纸盒", alt: "Representative structural paper box range", altZh: "代表性结构纸盒示意图" },
+  { image: showcaseImages.representativeInserts, figure: "Paper inserts", figureZh: "纸质内托", alt: "Representative paper inserts and trays", altZh: "代表性纸质内托与纸托示意图" },
   { image: showcaseImages.webPaperCupsKraft, figure: "Cupstock & cups", figureZh: "纸杯与杯纸", alt: "Kraft paper cups and box", altZh: "牛皮纸纸杯与纸盒" },
-  { image: showcaseImages.colorPaperFan, figure: "Colored papers", figureZh: "彩色纸样", alt: "Fanned colored paper swatches", altZh: "扇形展开的彩色纸样" },
+  { image: showcaseImages.representativeProtectiveStructures, figure: "Protective structures", figureZh: "保护型纸结构", alt: "Representative protective paper structures", altZh: "代表性保护型纸结构示意图" },
 ];
 
 export default function HomeMaterialsGallery({ locale }: { locale: string }) {
