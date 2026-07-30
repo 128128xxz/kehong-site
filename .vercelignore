@@ -1,0 +1,8 @@
+.next
+node_modules
+reports
+.git
+.turbo
+coverage
+playwright-report
+test-results
