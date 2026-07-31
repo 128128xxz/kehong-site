@@ -68,6 +68,33 @@ function PunchedClosureRail({ width, position }: { width: number; position: Vec3
   );
 }
 
+/** Front panel with the shallow thumb notch shown in the reference turntable. */
+function NotchedFrontWall({ width, height, thickness, depth }: { width: number; height: number; thickness: number; depth: number }) {
+  const notchRadius = 0.32;
+  const panel = new Shape();
+  panel.moveTo(-width / 2, 0);
+  panel.lineTo(width / 2, 0);
+  panel.lineTo(width / 2, height);
+  panel.lineTo(notchRadius, height);
+  panel.quadraticCurveTo(0, height - notchRadius * 0.8, -notchRadius, height);
+  panel.lineTo(-width / 2, height);
+  panel.closePath();
+
+  const geometry = new ExtrudeGeometry(panel, {
+    depth: thickness,
+    bevelEnabled: true,
+    bevelSegments: 2,
+    bevelSize: 0.014,
+    bevelThickness: 0.014,
+  });
+
+  return (
+    <mesh geometry={geometry} position={[0, 0, depth / 2 - thickness / 2]} castShadow receiveShadow>
+      <meshPhysicalMaterial color={new Color(MAGENTA)} roughness={0.72} clearcoat={0.04} side={DoubleSide} />
+    </mesh>
+  );
+}
+
 function OpenLid({ width, depth }: { width: number; depth: number }) {
   return (
     <group name="opening-lid" position={[0, 0.62, -depth / 2 + 0.08]} rotation={[-1.08, 0, 0]}>
@@ -98,8 +125,8 @@ function Tray({ width, depth }: { width: number; depth: number }) {
       <Panel size={[width - 0.24, 0.014, depth - 0.28]} position={[0, 0.078, 0]} color="#fffdf8" radius={0.01} />
 
       {/* The reference has a coloured front exterior and a pale food-contact interior. */}
-      <Panel size={[width, wallHeight, wall]} position={[0, wallHeight / 2, depth / 2]} color={MAGENTA} radius={0.018} />
-      <Panel size={[width - 0.24, wallHeight - 0.08, 0.035]} position={[0, wallHeight / 2 + 0.02, depth / 2 - 0.075]} color={PAPER} radius={0.008} />
+      <NotchedFrontWall width={width} height={wallHeight} thickness={wall} depth={depth} />
+      <Panel size={[width - 0.24, 0.32, 0.035]} position={[0, 0.19, depth / 2 - 0.075]} color={PAPER} radius={0.008} />
       <Panel size={[width, wallHeight, wall]} position={[0, wallHeight / 2, -depth / 2]} color={PAPER} radius={0.018} />
       <Panel size={[wall, wallHeight, depth]} position={[-width / 2, wallHeight / 2, 0]} color={PAPER} radius={0.018} />
       <Panel size={[wall, wallHeight, depth]} position={[width / 2, wallHeight / 2, 0]} color={PAPER} radius={0.018} />
