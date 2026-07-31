@@ -3,6 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Bounds, Center, ContactShadows, Environment, OrbitControls, useGLTF } from "@react-three/drei";
 import { Eye, Gauge, Layers3, PackageOpen, Rotate3D } from "lucide-react";
+import Image from "next/image";
 import { Suspense, useMemo, useState } from "react";
 import { ACESFilmicToneMapping, Mesh, SRGBColorSpace, type Group } from "three";
 import manifest from "@/data/orinscareModelManifest.json";
@@ -27,6 +28,7 @@ const cameraPresets = {
 
 type PreviewMode = "single" | "all";
 type CameraPreset = keyof typeof cameraPresets;
+type PizzaPresentation = "visual" | "structure";
 type ModelItem = (typeof manifest)[number];
 type ProceduralModelItem = {
   id: "kehong-pizza-box";
@@ -159,12 +161,14 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
   const [selectedId, setSelectedId] = useState<string>(proceduralPizzaBox.id);
   const [mode, setMode] = useState<PreviewMode>("single");
   const [cameraPreset, setCameraPreset] = useState<CameraPreset>("front");
+  const [pizzaPresentation, setPizzaPresentation] = useState<PizzaPresentation>("visual");
   const selected: PreviewItem = selectedId === proceduralPizzaBox.id
     ? proceduralPizzaBox
     : manifest.find((item) => item.id === selectedId) ?? manifest[0];
   const totalTriangles = manifest.reduce((sum, item) => sum + item.triangles, 0);
   const totalWebSize = manifest.reduce((sum, item) => sum + item.webBytes, 0);
   const camera = cameraPresets[cameraPreset];
+  const showsReferenceVisual = mode === "single" && selected.id === proceduralPizzaBox.id && pizzaPresentation === "visual";
 
   return (
     <main className="texture-paper min-h-screen px-4 py-8 text-(--kh-ink) sm:px-6 lg:px-8">
@@ -221,6 +225,7 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
                   onClick={() => {
                     setSelectedId(item.id);
                     setMode("single");
+                    if (item.id !== proceduralPizzaBox.id) setPizzaPresentation("structure");
                   }}
                   className={`grid min-h-14 grid-cols-[1fr_auto] items-center gap-3 rounded-lg border px-4 text-left transition active:scale-[0.99] ${
                     item.id === selected.id && mode === "single"
@@ -247,7 +252,11 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
               <div className="flex items-center gap-2">
                 <Eye className="size-4 text-(--kh-brass-soft)" />
                 <span className="text-sm font-bold">
-                  {mode === "single"
+                  {showsReferenceVisual
+                    ? locale === "zh"
+                      ? "参考产品视觉 / 开盒状态"
+                      : "Reference product visual / Open carton"
+                    : mode === "single"
                     ? locale === "zh"
                       ? zhLabels[selected.id]
                       : selected.label
@@ -256,48 +265,92 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
                       : "Seven-model grouped preview"}
                 </span>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {Object.entries(cameraPresets).map(([id, preset]) => (
+              {mode === "single" && selected.id === proceduralPizzaBox.id ? (
+                <div className="flex flex-wrap gap-2">
                   <button
-                    key={id}
                     type="button"
-                    onClick={() => setCameraPreset(id as CameraPreset)}
+                    onClick={() => setPizzaPresentation("visual")}
                     className={`min-h-9 rounded-md border px-3 text-xs font-bold transition active:scale-[0.98] ${
-                      id === cameraPreset
+                      pizzaPresentation === "visual"
                         ? "border-(--kh-brass-soft) bg-(--kh-brass-soft) text-(--kh-ink)"
                         : "border-white/16 bg-white/8 text-white hover:bg-white/14"
                     }`}
                   >
-                    {preset.label}
+                    {locale === "zh" ? "参考视觉" : "Reference visual"}
                   </button>
-                ))}
-              </div>
+                  <button
+                    type="button"
+                    onClick={() => setPizzaPresentation("structure")}
+                    className={`min-h-9 rounded-md border px-3 text-xs font-bold transition active:scale-[0.98] ${
+                      pizzaPresentation === "structure"
+                        ? "border-(--kh-brass-soft) bg-(--kh-brass-soft) text-(--kh-ink)"
+                        : "border-white/16 bg-white/8 text-white hover:bg-white/14"
+                    }`}
+                  >
+                    {locale === "zh" ? "3D 结构" : "3D structure"}
+                  </button>
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(cameraPresets).map(([id, preset]) => (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => setCameraPreset(id as CameraPreset)}
+                      className={`min-h-9 rounded-md border px-3 text-xs font-bold transition active:scale-[0.98] ${
+                        id === cameraPreset
+                          ? "border-(--kh-brass-soft) bg-(--kh-brass-soft) text-(--kh-ink)"
+                          : "border-white/16 bg-white/8 text-white hover:bg-white/14"
+                      }`}
+                    >
+                      {preset.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="relative h-[560px] min-h-[70dvh]">
-              <Canvas
-                key={`${mode}-${selected.id}-${cameraPreset}`}
-                shadows
-                camera={{ position: camera.position, fov: cameraPreset === "top" ? 36 : 42, near: 0.1, far: 100 }}
-                gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
-                onCreated={({ gl }) => {
-                  gl.outputColorSpace = SRGBColorSpace;
-                  gl.toneMapping = ACESFilmicToneMapping;
-                  gl.toneMappingExposure = 1.02;
-                }}
-              >
-                <Suspense fallback={null}>
-                  <SceneContent mode={mode} item={selected} />
-                </Suspense>
-              </Canvas>
+              {showsReferenceVisual ? (
+                <Image
+                  src="/images/3d-preview/reference-pizza-box-open-v1.png"
+                  alt="Open paperboard takeaway box with a white interior and magenta exterior closure rail"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 65vw"
+                  className="object-cover"
+                />
+              ) : (
+                <Canvas
+                  key={`${mode}-${selected.id}-${cameraPreset}`}
+                  shadows
+                  camera={{ position: camera.position, fov: cameraPreset === "top" ? 36 : 42, near: 0.1, far: 100 }}
+                  gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+                  onCreated={({ gl }) => {
+                    gl.outputColorSpace = SRGBColorSpace;
+                    gl.toneMapping = ACESFilmicToneMapping;
+                    gl.toneMappingExposure = 1.02;
+                  }}
+                >
+                  <Suspense fallback={null}>
+                    <SceneContent mode={mode} item={selected} />
+                  </Suspense>
+                </Canvas>
+              )}
               <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-white/12 bg-(--kh-ink)/70 px-4 py-3 text-sm font-bold text-white shadow-xl shadow-black/20">
                 <span className="inline-flex items-center gap-2">
                   <Rotate3D className="size-4 text-(--kh-brass-soft)" />
-                  {locale === "zh" ? "鼠标拖拽旋转，滚轮缩放" : "Drag to rotate, wheel to zoom"}
+                  {showsReferenceVisual
+                    ? locale === "zh"
+                      ? "基于参考图生成的开盒视觉"
+                      : "Reference-matched open-carton visual"
+                    : locale === "zh"
+                      ? "鼠标拖拽旋转，滚轮缩放"
+                      : "Drag to rotate, wheel to zoom"}
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <Layers3 className="size-4 text-(--kh-brass-soft)" />
-                  ACES / sRGB / soft shadow
+                  {showsReferenceVisual ? "ImageGen / reference match" : "ACES / sRGB / soft shadow"}
                 </span>
               </div>
             </div>
