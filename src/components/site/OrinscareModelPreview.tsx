@@ -176,7 +176,7 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
                 <PackageOpen className="size-5" />
               </span>
               <div>
-                <p className="kh-eyebrow">OrinsCare v6 GLB</p>
+                <p className="kh-eyebrow">Kehong 3D structure review</p>
                 <h1 className="text-2xl font-semibold sm:text-3xl">
                   {locale === "zh" ? "模型资产检查页" : "Model asset review"}
                 </h1>
@@ -184,8 +184,8 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
             </div>
             <p className="mt-4 text-sm leading-7 text-(--kh-muted)">
               {locale === "zh"
-                ? "这里直接加载 public/models 里的新版 GLB，用来检查纸板厚度、折痕、开窗、材质和披萨盒组合关系。"
-                : "This page loads the new GLB files directly from public/models for checking paper thickness, folds, windows, materials and pizza-box alignment."}
+                ? "此页用于检查纸板厚度、折痕、开孔、内外层关系和包装结构。"
+                : "Use this page to inspect board thickness, folds, perforations, inner/outer layers and packaging structure."}
             </p>
 
             <div className="mt-5 grid grid-cols-2 gap-3">

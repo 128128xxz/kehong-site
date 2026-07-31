@@ -3,10 +3,10 @@
 import { Color, DoubleSide, ExtrudeGeometry, Path, Shape } from "three";
 import { RoundedBox } from "@react-three/drei";
 
-const PAPER = "#f8f4ed";
-const EDGE = "#d9cdbd";
-const MAGENTA = "#d71978";
-const INK = "#67224a";
+const PAPER = "#f7f3eb";
+const PAPER_EDGE = "#d6cbbd";
+const MAGENTA = "#d71878";
+const CREASE = "#b7a895";
 
 type Vec3 = [number, number, number];
 
@@ -15,7 +15,7 @@ function Panel({
   position,
   rotation = [0, 0, 0],
   color = PAPER,
-  radius = 0.035,
+  radius = 0.025,
 }: {
   size: Vec3;
   position: Vec3;
@@ -25,95 +25,109 @@ function Panel({
 }) {
   return (
     <RoundedBox args={size} radius={radius} smoothness={3} position={position} rotation={rotation} castShadow receiveShadow>
-      <meshPhysicalMaterial color={new Color(color)} roughness={0.82} clearcoat={0.03} />
+      <meshPhysicalMaterial color={new Color(color)} roughness={0.84} clearcoat={0.02} />
     </RoundedBox>
   );
 }
 
-function FoldLine({ position, rotation = [0, 0, 0], size = [3.8, 0.018, 0.018] as Vec3 }: { position: Vec3; rotation?: Vec3; size?: Vec3 }) {
-  return <Panel size={size} position={position} rotation={rotation} color={EDGE} radius={0.005} />;
+function Crease({ position, rotation = [0, 0, 0], size }: { position: Vec3; rotation?: Vec3; size: Vec3 }) {
+  return <Panel size={size} position={position} rotation={rotation} color={CREASE} radius={0.004} />;
 }
 
-function LidCard() {
-  const lidShape = new Shape();
-  lidShape.moveTo(-2.4, -1.9);
-  lidShape.lineTo(2.4, -1.9);
-  lidShape.lineTo(2.4, 1.9);
-  lidShape.lineTo(-2.4, 1.9);
-  lidShape.closePath();
-  // True punched handle openings, rather than dark decals over a solid lid.
-  for (const x of [-1.82, 1.82]) {
+/**
+ * The pink closure rail is a real perforated panel. Its two openings are actual
+ * mesh holes, rather than a pair of dark discs painted onto a solid strip.
+ */
+function PunchedClosureRail({ width, position }: { width: number; position: Vec3 }) {
+  const rail = new Shape();
+  const height = 0.42;
+  rail.moveTo(-width / 2, -height / 2);
+  rail.lineTo(width / 2, -height / 2);
+  rail.lineTo(width / 2, height / 2);
+  rail.lineTo(-width / 2, height / 2);
+  rail.closePath();
+
+  for (const x of [-1.67, 1.67]) {
     const hole = new Path();
-    hole.absarc(x, 1.35, 0.18, 0, Math.PI * 2, true);
-    lidShape.holes.push(hole);
+    hole.absarc(x, 0, 0.17, 0, Math.PI * 2, true);
+    rail.holes.push(hole);
   }
-  const lidGeometry = new ExtrudeGeometry(lidShape, {
+
+  const geometry = new ExtrudeGeometry(rail, {
     depth: 0.12,
     bevelEnabled: true,
     bevelSegments: 2,
-    bevelSize: 0.025,
-    bevelThickness: 0.02,
+    bevelSize: 0.018,
+    bevelThickness: 0.016,
   });
 
   return (
-    <group position={[0, 0, 0]}>
-      <mesh geometry={lidGeometry} position={[0, 1.9, 0]} rotation={[-Math.PI / 2, 0, 0]} castShadow receiveShadow>
-        <meshPhysicalMaterial color={new Color(PAPER)} roughness={0.82} clearcoat={0.03} side={DoubleSide} />
-      </mesh>
-      <Panel size={[4.72, 0.42, 0.16]} position={[0, 3.8, 0]} color={MAGENTA} radius={0.025} />
-      <Panel size={[0.16, 0.34, 3.45]} position={[-2.34, 1.94, 0]} color={PAPER} radius={0.018} />
-      <Panel size={[0.16, 0.34, 3.45]} position={[2.34, 1.94, 0]} color={MAGENTA} radius={0.018} />
-      <FoldLine position={[0, 0.12, -0.1]} size={[4.4, 0.02, 0.02]} />
-      <FoldLine position={[0, 3.55, -0.1]} size={[4.2, 0.02, 0.02]} />
-    </group>
+    <mesh geometry={geometry} position={position} rotation={[-Math.PI / 2, 0, 0]} castShadow receiveShadow>
+      <meshPhysicalMaterial color={new Color(MAGENTA)} roughness={0.72} clearcoat={0.04} side={DoubleSide} />
+    </mesh>
   );
 }
 
-function SideWing({ side }: { side: -1 | 1 }) {
+function OpenLid({ width, depth }: { width: number; depth: number }) {
   return (
-    <group position={[side * 2.42, 1.05, -1.42]} rotation={[0, side * 0.18, 0]}>
-      <Panel size={[0.13, 1.9, 2.45]} position={[0, 0, 0]} color={side === 1 ? MAGENTA : PAPER} radius={0.02} />
-      <Panel size={[0.16, 0.35, 0.52]} position={[0, -0.7, 0.92]} color={PAPER} radius={0.03} />
-      <mesh position={[side * 0.075, 1.0, 0.15]} rotation={[0, Math.PI / 2, 0]}>
-        <cylinderGeometry args={[0.18, 0.18, 0.035, 32]} />
-        <meshBasicMaterial color={INK} />
-      </mesh>
+    <group name="opening-lid" position={[0, 0.62, -depth / 2 + 0.08]} rotation={[-1.08, 0, 0]}>
+      {/* Inner white board, rooted at the rear hinge and extending upward when opened. */}
+      <Panel size={[width, 0.12, depth]} position={[0, 0, depth / 2]} color={PAPER} radius={0.02} />
+
+      {/* Folded pink outer shell visible at the free edge and both side returns. */}
+      <PunchedClosureRail width={width - 0.14} position={[0, -0.09, depth - 0.24]} />
+      <Panel size={[0.24, 0.12, depth - 0.5]} position={[-width / 2 + 0.12, -0.07, depth / 2 - 0.02]} color={MAGENTA} radius={0.012} />
+      <Panel size={[0.24, 0.12, depth - 0.5]} position={[width / 2 - 0.12, -0.07, depth / 2 - 0.02]} color={MAGENTA} radius={0.012} />
+
+      {/* Inner fold system and two locking tabs shown in the supplied open-box view. */}
+      <Crease position={[0, -0.072, 0.44]} size={[width - 0.45, 0.012, 0.024]} />
+      <Crease position={[0, -0.072, depth - 0.5]} size={[width - 0.38, 0.012, 0.024]} />
+      <Panel size={[0.32, 0.1, 0.44]} position={[-1.52, -0.1, 0.66]} rotation={[-0.35, 0, 0]} color={PAPER_EDGE} radius={0.016} />
+      <Panel size={[0.32, 0.1, 0.44]} position={[1.52, -0.1, 0.66]} rotation={[-0.35, 0, 0]} color={PAPER_EDGE} radius={0.016} />
     </group>
   );
 }
 
-/** Reference-guided pizza/takeaway box: tray, folded walls, hinge, side wings and cut-out handles. */
-export function KehongPizzaBoxModel() {
-  const width = 4.8;
-  const depth = 4.15;
+function Tray({ width, depth }: { width: number; depth: number }) {
   const wall = 0.15;
-  const rim = 0.52;
-  const lidTilt = -1.12;
+  const wallHeight = 0.62;
 
   return (
-    <group name="kehong-pizza-box" position={[0, -0.04, 0]}>
-      <Panel size={[width, wall, depth]} position={[0, 0, 0]} color={PAPER} radius={0.025} />
-      <Panel size={[width, rim, wall]} position={[0, rim / 2, depth / 2]} color={MAGENTA} />
-      <Panel size={[width, rim, wall]} position={[0, rim / 2, -depth / 2]} color={PAPER} />
-      <Panel size={[wall, rim, depth]} position={[-width / 2, rim / 2, 0]} color={PAPER} />
-      <Panel size={[wall, rim, depth]} position={[width / 2, rim / 2, 0]} color={MAGENTA} />
+    <group name="folded-tray">
+      <Panel size={[width, 0.14, depth]} position={[0, 0, 0]} color={PAPER} radius={0.022} />
+      <Panel size={[width - 0.24, 0.014, depth - 0.28]} position={[0, 0.078, 0]} color="#fffdf8" radius={0.01} />
 
-      <FoldLine position={[0, rim + 0.015, depth / 2 - 0.06]} size={[4.35, 0.02, 0.025]} />
-      <FoldLine position={[0, rim + 0.015, -depth / 2 + 0.06]} size={[4.35, 0.02, 0.025]} />
-      <FoldLine position={[-width / 2 + 0.06, rim + 0.015, 0]} rotation={[0, Math.PI / 2, 0]} size={[3.55, 0.02, 0.025]} />
-      <FoldLine position={[width / 2 - 0.06, rim + 0.015, 0]} rotation={[0, Math.PI / 2, 0]} size={[3.55, 0.02, 0.025]} />
+      {/* The reference has a coloured front exterior and a pale food-contact interior. */}
+      <Panel size={[width, wallHeight, wall]} position={[0, wallHeight / 2, depth / 2]} color={MAGENTA} radius={0.018} />
+      <Panel size={[width - 0.24, wallHeight - 0.08, 0.035]} position={[0, wallHeight / 2 + 0.02, depth / 2 - 0.075]} color={PAPER} radius={0.008} />
+      <Panel size={[width, wallHeight, wall]} position={[0, wallHeight / 2, -depth / 2]} color={PAPER} radius={0.018} />
+      <Panel size={[wall, wallHeight, depth]} position={[-width / 2, wallHeight / 2, 0]} color={PAPER} radius={0.018} />
+      <Panel size={[wall, wallHeight, depth]} position={[width / 2, wallHeight / 2, 0]} color={PAPER} radius={0.018} />
 
-      <group position={[0, rim + 0.08, -depth / 2 + wall / 2]} rotation={[lidTilt, 0, 0]}>
-        <LidCard />
-        <SideWing side={-1} />
-        <SideWing side={1} />
-      </group>
+      {/* Slim pink outer-return strips make the tray read as a folded carton, not a plain tray. */}
+      <Panel size={[0.12, wallHeight - 0.08, depth - 0.2]} position={[-width / 2 - 0.045, wallHeight / 2, 0]} color={MAGENTA} radius={0.01} />
+      <Panel size={[0.12, wallHeight - 0.08, depth - 0.2]} position={[width / 2 + 0.045, wallHeight / 2, 0]} color={MAGENTA} radius={0.01} />
 
-      <Panel size={[0.7, 0.06, 0.12]} position={[0, rim + 0.035, -depth / 2 - 0.02]} color={EDGE} radius={0.01} />
-      <mesh position={[0, rim + 0.02, depth / 2 + 0.03]} rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.22, 0.22, 0.035, 32, 1, false, 0, Math.PI]} />
-        <meshBasicMaterial color={INK} transparent opacity={0.85} />
-      </mesh>
+      <Crease position={[0, wallHeight + 0.012, depth / 2 - 0.07]} size={[width - 0.4, 0.018, 0.022]} />
+      <Crease position={[-width / 2 + 0.07, wallHeight + 0.012, 0]} rotation={[0, Math.PI / 2, 0]} size={[depth - 0.42, 0.018, 0.022]} />
+      <Crease position={[width / 2 - 0.07, wallHeight + 0.012, 0]} rotation={[0, Math.PI / 2, 0]} size={[depth - 0.42, 0.018, 0.022]} />
+    </group>
+  );
+}
+
+/**
+ * Reference-guided reconstruction of the supplied open takeaway/pizza box.
+ * It is an independently articulated carton: tray, hinge lid, pink closure rail,
+ * perforations, fold lines, returns, and locking tabs are individual 3D parts.
+ */
+export function KehongPizzaBoxModel() {
+  const width = 4.9;
+  const depth = 4.05;
+
+  return (
+    <group name="kehong-reference-pizza-box" position={[0, 0, 0]} rotation={[0, -0.08, 0]}>
+      <Tray width={width} depth={depth} />
+      <OpenLid width={width} depth={depth} />
     </group>
   );
 }
