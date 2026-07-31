@@ -1,6 +1,6 @@
 "use client";
 
-import { Color } from "three";
+import { Color, DoubleSide, ExtrudeGeometry, Path, Shape } from "three";
 import { RoundedBox } from "@react-three/drei";
 
 const PAPER = "#f8f4ed";
@@ -35,18 +35,34 @@ function FoldLine({ position, rotation = [0, 0, 0], size = [3.8, 0.018, 0.018] a
 }
 
 function LidCard() {
+  const lidShape = new Shape();
+  lidShape.moveTo(-2.4, -1.9);
+  lidShape.lineTo(2.4, -1.9);
+  lidShape.lineTo(2.4, 1.9);
+  lidShape.lineTo(-2.4, 1.9);
+  lidShape.closePath();
+  // True punched handle openings, rather than dark decals over a solid lid.
+  for (const x of [-1.82, 1.82]) {
+    const hole = new Path();
+    hole.absarc(x, 1.35, 0.18, 0, Math.PI * 2, true);
+    lidShape.holes.push(hole);
+  }
+  const lidGeometry = new ExtrudeGeometry(lidShape, {
+    depth: 0.12,
+    bevelEnabled: true,
+    bevelSegments: 2,
+    bevelSize: 0.025,
+    bevelThickness: 0.02,
+  });
+
   return (
     <group position={[0, 0, 0]}>
-      <Panel size={[4.8, 0.14, 3.8]} position={[0, 1.9, 0]} color={PAPER} radius={0.025} />
-      <mesh position={[-1.82, 3.48, -0.08]} rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.18, 0.18, 0.03, 32]} />
-        <meshBasicMaterial color={INK} />
+      <mesh geometry={lidGeometry} position={[0, 1.9, 0]} rotation={[-Math.PI / 2, 0, 0]} castShadow receiveShadow>
+        <meshPhysicalMaterial color={new Color(PAPER)} roughness={0.82} clearcoat={0.03} side={DoubleSide} />
       </mesh>
-      <mesh position={[1.82, 3.48, -0.08]} rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.18, 0.18, 0.03, 32]} />
-        <meshBasicMaterial color={INK} />
-      </mesh>
-      <Panel size={[4.8, 0.44, 0.14]} position={[0, 3.8, 0]} color={MAGENTA} radius={0.025} />
+      <Panel size={[4.72, 0.42, 0.16]} position={[0, 3.8, 0]} color={MAGENTA} radius={0.025} />
+      <Panel size={[0.16, 0.34, 3.45]} position={[-2.34, 1.94, 0]} color={PAPER} radius={0.018} />
+      <Panel size={[0.16, 0.34, 3.45]} position={[2.34, 1.94, 0]} color={MAGENTA} radius={0.018} />
       <FoldLine position={[0, 0.12, -0.1]} size={[4.4, 0.02, 0.02]} />
       <FoldLine position={[0, 3.55, -0.1]} size={[4.2, 0.02, 0.02]} />
     </group>
