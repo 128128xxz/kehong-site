@@ -42,8 +42,8 @@ type PreviewItem = ModelItem | ProceduralModelItem;
 
 const proceduralPizzaBox: ProceduralModelItem = {
   id: "kehong-pizza-box",
-  label: "Kehong Pizza Box (procedural)",
-  webFilename: "img2threejs / procedural",
+  label: "Reference pizza takeaway box",
+  webFilename: "Reference-guided 3D structure",
   bytes: 0,
   webBytes: 0,
   triangles: 0,
@@ -154,7 +154,9 @@ function StatCard({ label, value }: { label: string; value: string }) {
 }
 
 export default function OrinscareModelPreview({ locale }: { locale: string }) {
-  const [selectedId, setSelectedId] = useState<string>(manifest[0]?.id ?? "box");
+  // The reference-guided takeaway box is the current review target; do not land
+  // visitors on the unrelated legacy GLB asset by default.
+  const [selectedId, setSelectedId] = useState<string>(proceduralPizzaBox.id);
   const [mode, setMode] = useState<PreviewMode>("single");
   const [cameraPreset, setCameraPreset] = useState<CameraPreset>("front");
   const selected: PreviewItem = selectedId === proceduralPizzaBox.id
