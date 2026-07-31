@@ -39,7 +39,7 @@ function StructureScene() {
       <directionalLight position={[4, 7, 5]} intensity={1.7} castShadow />
       <Environment preset="warehouse" />
       <Bounds fit clip observe margin={1.2}>
-        <Center top>
+        <Center>
           <StructureAsset />
         </Center>
       </Bounds>
@@ -98,7 +98,7 @@ export default function OrinscareModelPreview({ locale }: { locale: string }) {
               <Layers3 className="size-5 text-(--kh-brass)" />
               <div>
                 <p className="text-sm font-bold text-(--kh-ink)">{locale === "zh" ? "真实 GLB 资产" : "GLB model asset"}</p>
-                <p className="text-xs font-semibold text-(--kh-muted)">kehong-reference-pizza-box.glb · 1.70 MB</p>
+                <p className="text-xs font-semibold text-(--kh-muted)">kehong-reference-pizza-box.glb · 2.54 MB</p>
               </div>
             </div>
 
