@@ -262,27 +262,14 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
           </button>
         </div>
 
-        <div className="premium-depth kh-micro-grid texture-ink mt-6 rounded-lg p-4">
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-sm font-bold">{t("inquiry.selected")}</p>
-            <span className="kh-status-dot rounded-full bg-white/10 px-2.5 py-1 text-xs font-bold text-(--kh-brass-soft)">
-              {selected.length}
-            </span>
-          </div>
-          {selected.length === 0 ? (
-            <div>
-              <p className="mt-2 text-sm text-white/75">{t("inquiry.empty")}</p>
-              <a
-                href={`https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="kh-button kh-button-light kh-button-compact mt-3"
-              >
-                <MessageCircle className="size-4" />
-                {t("cta.whatsapp")}
-              </a>
+        {selected.length > 0 ? (
+          <div className="premium-depth kh-micro-grid texture-ink mt-6 rounded-lg p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-bold">{t("inquiry.selected")}</p>
+              <span className="kh-status-dot rounded-full bg-white/10 px-2.5 py-1 text-xs font-bold text-(--kh-brass-soft)">
+                {selected.length}
+              </span>
             </div>
-          ) : (
             <div className="mt-3 space-y-2">
               {selected.map((sku) => (
                 <div key={sku.sku} className="flex items-center justify-between gap-2 rounded-md bg-white/10 px-2 py-1 text-xs leading-5 text-white/80">
@@ -307,8 +294,8 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
                 {t("cta.whatsapp")}
               </a>
             </div>
-          )}
-        </div>
+          </div>
+        ) : null}
       </aside>
 
       <section className="min-w-0 max-w-full">

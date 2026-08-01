@@ -77,7 +77,7 @@ test.describe("Kehong production flows", () => {
     await page.getByRole("button", { name: /add to inquiry/i }).first().click();
     await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("kehong-selected-products") || "")).toMatch(/KH-/);
     await page.goto("/en/contact", { waitUntil: "networkidle" });
-    await expect(page.locator('textarea[name="products"]')).toHaveValue(/KH-/);
+    await expect(page.locator('input[name="products"]').first()).toHaveValue(/KH-/);
   });
 
   test("3D showroom is discoverable and has a working preview route", async ({ page }) => {
@@ -93,13 +93,12 @@ test.describe("Kehong production flows", () => {
     });
     await page.goto("/en/products", { waitUntil: "networkidle" });
     await page.locator('article a[href*="/products/"]').first().click();
-    await expect(page.locator('textarea[name="products"]')).toHaveValue(/KH-/);
-    const continueButton = page.getByRole("button", { name: /continue/i });
-    if (await continueButton.count()) for (let index = 0; index < 4; index += 1) await continueButton.click();
-    await page.locator('input[name="name"]').fill("Playwright QA");
-    await page.locator('input[name="email"]').fill("playwright@example.com");
-    await page.locator('input[name="privacy"]').check();
-    await page.getByRole("button", { name: /request a quote/i }).last().click();
+    await page.locator('a[href*="/contact?product="]').first().click();
+    await expect(page.locator('input[name="products"]').first()).toHaveValue(/KH-/);
+    await page.locator('input[name="name"]').first().fill("Playwright QA");
+    await page.locator('input[name="email"]').first().fill("playwright@example.com");
+    await page.locator('input[name="privacy"]').first().check();
+    await page.getByRole("button", { name: /send quick quote/i }).click();
     await expect(page.getByText(/inquiry.*(accepted|received)/i)).toBeVisible();
   });
 
@@ -129,15 +128,14 @@ test.describe("Kehong production flows", () => {
       }
     });
     await page.goto("/en/contact", { waitUntil: "networkidle" });
-    const products = page.locator('textarea[name="products"]');
+    const products = page.locator('input[name="products"]').first();
     await products.fill("KH-QA-001 | QA product");
-    for (let index = 0; index < 4; index += 1) await page.getByRole("button", { name: /continue/i }).click();
-    await page.locator('input[name="name"]').fill("Playwright QA");
-    await page.locator('input[name="email"]').fill("playwright@example.com");
-    await page.locator('input[name="privacy"]').check();
-    const submit = page.getByRole("button", { name: /submit inquiry/i }).last();
+    await page.locator('input[name="name"]').first().fill("Playwright QA");
+    await page.locator('input[name="email"]').first().fill("playwright@example.com");
+    await page.locator('input[name="privacy"]').first().check();
+    const submit = page.getByRole("button", { name: /send quick quote/i });
     await submit.click();
-    await expect(page.getByText(/could not be submitted|submission failed/i)).toBeVisible();
+    await expect(page.getByText(/could not send the inquiry|submission failed/i)).toBeVisible();
     await submit.click();
     await expect(page.getByText(/inquiry.*(accepted|received)/i)).toBeVisible();
   });

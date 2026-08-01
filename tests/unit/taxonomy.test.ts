@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import catalog from "@/data/catalog.normalized.json";
 import taxonomy from "@/data/taxonomy.json";
 import { getAllSkus, getCatalogGroups, getFamilies, getFeaturedProductGroups, matchesGsmOption } from "@/lib/catalog";
-import { resolveTaxonomyMaterialAlias } from "@/lib/taxonomy";
+import { getCanonicalTaxonomyCategoryId, resolveTaxonomyMaterialAlias } from "@/lib/taxonomy";
 
 describe("product taxonomy and publication gate", () => {
   it("resolves approved aliases without treating a combined label as one material", () => {
@@ -39,8 +39,14 @@ describe("product taxonomy and publication gate", () => {
   it("uses canonical category IDs for family counts and diversifies homepage groups", () => {
     const families = getFamilies();
     expect(new Set(families.map((family) => family.categoryId)).size).toBe(families.length);
-    expect(families.find((family) => family.categoryId === "food-grade-paper")?.count).toBe(284);
-    expect(families.find((family) => family.categoryId === "kraft-paper")?.count).toBe(8);
+    const publishedCounts = getAllSkus().reduce((counts, sku) => {
+      const categoryId = getCanonicalTaxonomyCategoryId(sku.categoryId);
+      if (!categoryId) return counts;
+      counts.set(categoryId, (counts.get(categoryId) ?? 0) + 1);
+      return counts;
+    }, new Map<string, number>());
+    expect(families.find((family) => family.categoryId === "food-grade-paper")?.count).toBe(publishedCounts.get("food-grade-paper"));
+    expect(families.find((family) => family.categoryId === "kraft-paper")?.count).toBe(publishedCounts.get("kraft-paper"));
 
     const featured = getFeaturedProductGroups(8);
     const groupCounts = new Map<string, number>();

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import Header from "@/components/site/Header";
-import OrinscareModelPreview from "@/components/site/OrinscareModelPreview";
+import PackagingStructurePreview from "@/components/site/PackagingStructurePreview";
 import SiteFooter from "@/components/site/SiteFooter";
 import { getAlternateLanguages, getLocaleUrl, siteConfig } from "@/lib/site";
 
@@ -39,7 +39,7 @@ export default async function ModelPreviewPage({
   return (
     <div className="min-h-screen bg-[#f6f4ec]">
       <Header />
-      <OrinscareModelPreview locale={locale} />
+      <PackagingStructurePreview locale={locale} />
       <SiteFooter />
     </div>
   );

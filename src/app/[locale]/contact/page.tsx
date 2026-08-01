@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Header from "@/components/site/Header";
 import GuidedQuoteForm from "@/components/site/GuidedQuoteForm";
+import QuickQuoteForm from "@/components/site/QuickQuoteForm";
 import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
 import { SectionKicker } from "@/components/home/annotations";
@@ -185,7 +186,15 @@ export default async function ContactPage({
                     </span>
                   ))}
                 </div>
-                <GuidedQuoteForm locale={locale} initialProducts={initialProducts} />
+                <QuickQuoteForm locale={locale} initialProducts={initialProducts} />
+                <details className="mt-7 border-t border-(--kh-line) pt-5">
+                  <summary className="cursor-pointer text-sm font-bold text-(--kh-forest)">
+                    {zh ? "补充技术信息（材质、结构、印刷与交期）" : "Add technical details — material, structure, print and timing"}
+                  </summary>
+                  <div className="mt-6">
+                    <GuidedQuoteForm locale={locale} initialProducts={initialProducts} />
+                  </div>
+                </details>
               </div>
             </Reveal>
           </div>

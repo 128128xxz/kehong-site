@@ -61,19 +61,23 @@ export default function HomeHero({ locale }: { locale: string }) {
           </p>
           <h1 className="kh-rise kh-rise-3">
             {zh ? (
-              <>从一张纸材，到撑得起品牌的<span className="whitespace-nowrap">包装结构</span>。</>
+              <>纸材、半成品与<span className="whitespace-nowrap">定制纸包装</span>，制造于佛山。</>
             ) : (
-              "From raw paper to structures that carry brands."
+              "Paper Materials & Custom Packaging, Made in Foshan."
             )}
           </h1>
           <p className="kh-lede kh-rise kh-rise-4">
             {zh
               ? "纸材选择、结构打样、加工与出口协同在同一条项目流程里完成，服务海外品牌、经销商与采购团队。"
-              : "Material selection, structural sampling, converting and export coordination run in one project workflow for overseas brands, distributors and procurement teams."}
+              : "Cupstock, converting components and finished paper packaging supported by in-house converting, structural sampling and export coordination."}
           </p>
           <div className="kh-actions kh-rise kh-rise-5">
-            <Link className="kh-button kh-button-light" href="/products">
-              {zh ? "探索产品" : "Explore products"}
+            <Link className="kh-button kh-button-light" href="/products?category=food-grade-paper-series">
+              {zh ? "浏览纸材" : "Browse materials"}
+              <ArrowRight className="size-4" />
+            </Link>
+            <Link className="kh-button kh-button-ghost" href="/products?category=finished-paper-boxes">
+              {zh ? "浏览成品包装" : "Browse packaging"}
               <ArrowRight className="size-4" />
             </Link>
             <Link className="kh-button kh-button-ghost" href="/contact">

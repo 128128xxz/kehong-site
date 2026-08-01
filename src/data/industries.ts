@@ -30,7 +30,7 @@ export const industryGroups: IndustryGroup[] = [
   ] },
   { slug: "retail-lifestyle", title: "Retail & Lifestyle", description: "Brand-ready paper structures for retail presentation, gifting and lifestyle products.", applications: [
     application("apparel", "Apparel", "Carry bags, boxes and inserts for apparel presentation and retail dispatch.", showcaseImages.webKraftGiftBox, ["paper-bags", "paper-boxes"]),
-    application("cosmetics-skincare", "Cosmetics & Skincare", "Compact packaging structures and branded components for beauty products.", showcaseImages.pinkBox, ["pillow-boxes", "paper-boxes"]),
+    application("cosmetics-skincare", "Cosmetics & Skincare", "Compact packaging structures and branded components for beauty products.", showcaseImages.displayWide, ["pillow-boxes", "paper-boxes"]),
     application("candles", "Candles", "Protective and presentation packaging for candle formats and gift sets.", showcaseImages.webCorrugatedSheet, ["corrugated-mailer-boxes", "pillow-boxes"]),
     application("jewelry-watches", "Jewelry & Watches", "Small-format boxes, inserts and presentation components for retail products.", showcaseImages.goldBoard, ["pillow-boxes", "paper-inserts"]),
     application("gifts-holiday", "Gifts & Holiday", "Gift-ready bags, boxes and inserts for seasonal and promotional collections.", showcaseImages.webKraftGiftBox, ["paper-bags", "pillow-boxes"]),
@@ -43,9 +43,9 @@ export const industryGroups: IndustryGroup[] = [
     application("ecommerce-mailers", "E-commerce & Mailers", "Corrugated mailers and inserts for parcel dispatch and product protection.", showcaseImages.webCorrugatedSheet, ["corrugated-mailer-boxes", "paper-inserts"]),
     application("electronics", "Electronics", "Protective structures and inserts reviewed around devices, accessories and presentation.", showcaseImages.machineClose, ["paper-inserts", "corrugated-mailer-boxes"]),
     application("healthcare-pharmaceutical", "Healthcare & Pharmaceutical", "Project-specific paper packaging components for professional product handling.", showcaseImages.portalSwatch, ["paper-packaging-materials", "paper-inserts"]),
-    application("eyewear-medical-devices", "Eyewear & Medical Devices", "Compact protective and presentation formats for precision products.", showcaseImages.pinkBox, ["pillow-boxes", "paper-inserts"]),
+    application("eyewear-medical-devices", "Eyewear & Medical Devices", "Compact protective and presentation formats for precision products.", showcaseImages.displayWide, ["pillow-boxes", "paper-inserts"]),
     application("automotive-parts-tools", "Automotive Parts & Tools", "Protective inserts and mailers for parts, tools and technical products.", showcaseImages.machine, ["corrugated-mailer-boxes", "paper-inserts"]),
     application("stationery-office-supplies", "Stationery & Office Supplies", "Printed boxes, bags and inserts for stationery and office product ranges.", showcaseImages.goldBoard, ["paper-bags", "paper-boxes"]),
-    application("cbd-packaging", "CBD Packaging", "Packaging structures reviewed against the applicable product and market brief.", showcaseImages.pinkBox, ["pillow-boxes", "paper-boxes"]),
+    application("cbd-packaging", "CBD Packaging", "Packaging structures reviewed against the applicable product and market brief.", showcaseImages.displayWide, ["pillow-boxes", "paper-boxes"]),
   ] },
 ];

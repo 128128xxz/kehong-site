@@ -1,46 +1,56 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Layers3 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { packagingCategories } from "@/data/packagingCategories";
-import { productFamilies } from "@/data/company";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
 import { showcaseImages } from "@/data/visuals";
 
-/** 名片墙展示顺序:老板点名的烘焙类打头,末位收口到全部产品 */
-const categoryOrder = [
-  "cake-boxes",
-  "cake-boards-cake-drums",
-  "takeout-boxes",
-  "paper-bags",
-  "pillow-boxes",
-  "corrugated-mailer-boxes",
-  "labels-stickers",
-  "all-products",
-];
+const systems = [
+  {
+    id: "materials",
+    href: "/products?category=food-grade-paper-series",
+    title: "Paper Materials & Components",
+    titleZh: "纸材与半成品",
+    description: "Cupstock, cup fan blanks, coated rolls, kraft, corrugated board, specialty paper, inserts and pads.",
+    descriptionZh: "杯纸、扇形片、淋膜卷材、牛皮纸、瓦楞纸板、特种纸、内托与纸垫。",
+    details: ["Material grades", "GSM & coating", "Converting-ready formats"],
+    detailsZh: ["材料等级", "克重与涂层", "适配加工的规格"],
+    image: showcaseImages.structureMaterialReal,
+    alt: "Paperboard layers and material cross sections for packaging conversion",
+  },
+  {
+    id: "packaging",
+    href: "/products?category=finished-paper-boxes",
+    title: "Finished Packaging",
+    titleZh: "成品纸包装",
+    description: "Food boxes, cake boxes, paper bags, mailer boxes, trays and custom paperboard structures.",
+    descriptionZh: "食品盒、蛋糕盒、纸袋、邮寄盒、纸托与定制纸板结构。",
+    details: ["Structural sampling", "Print & finish", "Export packing support"],
+    detailsZh: ["结构打样", "印刷与后加工", "出口包装协同"],
+    image: showcaseImages.foodBoxReal,
+    alt: "Paper food packaging structures and board samples",
+  },
+] as const;
 
-const representativeVisuals: Record<string, string> = {
-  "cake-boxes": showcaseImages.representativeBakeryPackaging,
-  "cake-boards-cake-drums": showcaseImages.representativeInserts,
-  "takeout-boxes": showcaseImages.representativeBoxRange,
-  "paper-bags": showcaseImages.representativeHeroStructure,
-};
-
+const featured = [
+  { href: "/products?productType=paper-cup-fan", title: "Paper cup fan", note: "Die-cut blanks & cupstock components", code: "01" },
+  { href: "/products?productType=paper-packaging-material", title: "PE-coated paper roll", note: "Converting stock for food packaging", code: "02" },
+  { href: "/products?productType=kraft-paper", title: "Kraft paper", note: "Rolls, sheets & packaging grades", code: "03" },
+  { href: "/products?productType=food-packaging-box", title: "Food packaging box", note: "Takeaway and bakery structures", code: "04" },
+  { href: "/products?productType=corrugated-fluted-paper", title: "Corrugated board", note: "Protective board & mailer structures", code: "05" },
+  { href: "/products?productType=paper-insert", title: "Paper inserts & pads", note: "Fit, separation & protection", code: "06" },
+] as const;
 
 export default function HomeProductSystems({ locale }: { locale: string }) {
   const zh = locale === "zh";
-  const cards = categoryOrder
-    .map((slug) => packagingCategories.find((category) => category.slug === slug))
-    .filter((category): category is NonNullable<typeof category> => Boolean(category));
-
   return (
     <section className="kh-section kh-section-paper">
       <div className="kh-shell">
         <Reveal>
           <div className="kh-section-heading">
             <div>
-              <SectionKicker index="02" text={zh ? "产品品类" : "Product categories"} />
-              <h2>{zh ? "每个品类，都有自己的板块。" : "Every category gets its own stage."}</h2>
+              <SectionKicker index="02" text={zh ? "两类业务" : "Two ways to source"} />
+              <h2>{zh ? "纸材与成品包装，在同一条供应链内衔接。" : "Source materials and finished packaging from one converting partner."}</h2>
             </div>
             <Link className="kh-text-link" href="/products">
               {zh ? "查看全部产品" : "View all products"}
@@ -49,32 +59,26 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
           </div>
         </Reveal>
 
-        <div className="kh-category-grid">
-          {cards.map((category, index) => (
-            <Reveal key={category.slug} delay={(index % 4) * 80}>
-              <Link
-                href={category.slug === "all-products" ? "/products" : `/packaging/${category.slug}`}
-                className="kh-system-card h-full"
-              >
-                <div className="kh-card-media kh-media-shade">
-                  <Image
-                    src={representativeVisuals[category.slug] ?? category.image}
-                    alt={`${zh ? category.title.zh : category.title.en} — representative visual only`}
-                    fill
-                    sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw"
-                    className="object-cover"
-                  />
-                  <span className="kh-fig-caption kh-mono">
-                    {`Fig.0${index + 1} — ${zh ? category.title.zh : category.title.en}`}
-                  </span>
+        <div className="mt-8 grid gap-5 lg:grid-cols-2">
+          {systems.map((system, index) => (
+            <Reveal key={system.id} delay={index * 90}>
+              <Link href={system.href} className="group block overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) shadow-sm transition hover:-translate-y-1 hover:border-(--kh-forest)/45 hover:shadow-lg">
+                <div className="kh-media-shade relative aspect-[16/9] overflow-hidden">
+                  <Image src={system.image} alt={system.alt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover transition duration-300 group-hover:scale-[1.025]" />
+                  <span className="kh-fig-caption kh-mono">{`0${index + 1} · ${zh ? (index === 0 ? "纸材与半成品" : "成品纸包装") : system.id}`}</span>
                 </div>
-                <div className="kh-system-copy">
-                  <h3>{zh ? category.title.zh : category.title.en}</h3>
-                  <p>{zh ? category.shortDescription.zh : category.shortDescription.en}</p>
-                  <span>
-                    {zh ? "进入品类板块" : "Open category"}
-                    <ArrowUpRight className="size-4" />
-                  </span>
+                <div className="p-6 sm:p-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="kh-eyebrow">{zh ? "产品体系" : "Product system"}</p>
+                      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-(--kh-ink)">{zh ? system.titleZh : system.title}</h3>
+                    </div>
+                    <ArrowUpRight className="mt-1 size-5 shrink-0 text-(--kh-brass)" />
+                  </div>
+                  <p className="mt-3 max-w-[56ch] text-sm leading-6 text-(--kh-muted)">{zh ? system.descriptionZh : system.description}</p>
+                  <ul className="mt-5 grid gap-2 text-sm font-semibold text-(--kh-forest) sm:grid-cols-3">
+                    {(zh ? system.detailsZh : system.details).map((detail) => <li key={detail} className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-(--kh-brass)" />{detail}</li>)}
+                  </ul>
                 </div>
               </Link>
             </Reveal>
@@ -82,15 +86,19 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
         </div>
 
         <Reveal>
-          <nav className="kh-index-row" aria-label={zh ? "材料方向索引" : "Material family index"}>
-            {productFamilies.map((family, index) => (
-              <Link key={family} className="kh-index-item" href={`/products?search=${encodeURIComponent(family)}`}>
-                <b>0{index + 1}</b>
-                {family}
-              </Link>
-            ))}
-          </nav>
+          <div className="mt-12 flex flex-wrap items-end justify-between gap-4">
+            <div><SectionKicker index="03" text={zh ? "重点产品方向" : "Selected product directions"} /><h3 className="mt-2 text-2xl font-semibold text-(--kh-ink)">{zh ? "先按产品形态开始筛选。" : "Start with the product form you need."}</h3></div>
+            <p className="max-w-[46ch] text-sm leading-6 text-(--kh-muted)">{zh ? "以下入口按产品形态分开，避免将卷材、平张、扇形片与成品包装混在同一张视觉里。" : "These entries separate rolls, sheets, cup fan blanks and finished structures before you compare specifications."}</p>
+          </div>
         </Reveal>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {featured.map((item) => (
+            <Link key={item.code} href={item.href} className="group flex min-h-38 items-start gap-4 rounded-lg border border-(--kh-line) bg-(--kh-surface) p-5 transition hover:border-(--kh-forest)/45 hover:shadow-md">
+              <span className="kh-mono grid size-10 shrink-0 place-items-center rounded-md bg-(--kh-paper-deep) text-xs font-bold text-(--kh-brass)">{item.code}</span>
+              <span className="min-w-0"><span className="flex items-center gap-2 font-semibold text-(--kh-ink)"><Layers3 className="size-4 text-(--kh-brass)" />{item.title}</span><span className="mt-2 block text-sm leading-5 text-(--kh-muted)">{item.note}</span><span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-(--kh-forest)">{zh ? "查看范围" : "View range"}<ArrowRight className="size-4" /></span></span>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

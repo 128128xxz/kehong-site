@@ -32,8 +32,8 @@ const INNER_BOARD = new MeshPhysicalMaterial({ color: new Color("#fcfaf5"), roug
 INNER_BOARD.name = "white food-contact paperboard";
 const PAPER_EDGE = new MeshPhysicalMaterial({ color: new Color("#cabeb0"), roughness: 0.87 });
 PAPER_EDGE.name = "exposed paperboard edge";
-const PRINTED_BOARD = new MeshPhysicalMaterial({ color: new Color("#d91b78"), roughness: 0.6, clearcoat: 0.025 });
-PRINTED_BOARD.name = "magenta printed exterior board";
+const PRINTED_BOARD = new MeshPhysicalMaterial({ color: new Color("#1b473a"), roughness: 0.68, clearcoat: 0.015 });
+PRINTED_BOARD.name = "deep green printed exterior board";
 const SCORE = new MeshPhysicalMaterial({ color: new Color("#b5a897"), roughness: 0.92 });
 SCORE.name = "pressed score line";
 
@@ -103,7 +103,7 @@ function createTray(width, depth) {
   tray.add(
     box("lower tray substrate", [width, board, depth], [0, 0, 0], PAPER_EDGE, 0.025),
     box("food-contact base liner", [width - 0.22, 0.018, depth - 0.23], [0, 0.066, 0], INNER_BOARD, 0.012),
-    extrudedShape("front printed wall with thumb notch", frontPanelShape(width, wall), board, PRINTED_BOARD, [0, 0, frontZ]),
+    extrudedShape("front deep green wall with thumb notch", frontPanelShape(width, wall), board, PRINTED_BOARD, [0, 0, frontZ]),
     box("front white inner face", [width - 0.24, wall - 0.16, 0.025], [0, wall / 2 - 0.05, frontZ - 0.075], INNER_BOARD, 0.008),
     box("rear hinge wall", [width, wall, board], [0, wall / 2, rearZ], INNER_BOARD, 0.018),
     box("left inner tray wall", [board, wall, depth - 0.08], [-width / 2 + board / 2, wall / 2, 0], INNER_BOARD, 0.018),
@@ -140,7 +140,7 @@ function createLid(width, depth) {
     box("lid paperboard edge core", [width, board, depth], [0, 0, depth / 2], PAPER_EDGE, 0.025),
     box("lid white inner sheet", [width - 0.16, 0.018, depth - 0.16], [0, -0.062, depth / 2], INNER_BOARD, 0.014),
     // The closure strip has two true openings, not painted circles.
-    extrudedShape("perforated magenta closure flap", closureFlapShape(width - 0.12, flapHeight), 0.11, PRINTED_BOARD, [0, -0.12, depth - 0.2], [-Math.PI / 2, 0, 0]),
+    extrudedShape("perforated deep green closure flap", closureFlapShape(width - 0.12, flapHeight), 0.11, PRINTED_BOARD, [0, -0.12, depth - 0.2], [-Math.PI / 2, 0, 0]),
     score("free-edge fold score", [0, -0.073, depth - 0.48], [width - 0.5, 0.012, 0.025]),
     score("hinge score", [0, -0.073, 0.32], [width - 0.36, 0.012, 0.025]),
   );
@@ -148,8 +148,8 @@ function createLid(width, depth) {
   // Side returns are folded along the lid's two long edges, and must remain
   // attached to the lid-local plane when the hinge rotates.
   lid.add(
-    box("left folded magenta lid return", [0.2, 0.105, depth - 0.48], [-width / 2 + 0.1, -0.112, depth / 2 - 0.02], PRINTED_BOARD, 0.011),
-    box("right folded magenta lid return", [0.2, 0.105, depth - 0.48], [width / 2 - 0.1, -0.112, depth / 2 - 0.02], PRINTED_BOARD, 0.011),
+    box("left folded deep green lid return", [0.2, 0.105, depth - 0.48], [-width / 2 + 0.1, -0.112, depth / 2 - 0.02], PRINTED_BOARD, 0.011),
+    box("right folded deep green lid return", [0.2, 0.105, depth - 0.48], [width / 2 - 0.1, -0.112, depth / 2 - 0.02], PRINTED_BOARD, 0.011),
   );
 
   // Hinge and two inner locking tabs are separate meshes for inspection / future animation.
@@ -170,7 +170,7 @@ function createModel() {
     source: "two supplied reference views",
     fidelity: "image-guided procedural reconstruction",
     states: ["open"],
-    namedParts: ["folded lower tray", "hinged upper lid", "perforated magenta closure flap"],
+    namedParts: ["folded lower tray", "hinged upper lid", "perforated deep green closure flap"],
   };
   const width = 6.0;
   const depth = 4.32;

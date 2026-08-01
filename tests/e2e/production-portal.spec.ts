@@ -5,12 +5,11 @@ test.describe("homepage manufacturing website", () => {
     await page.goto("/en");
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator(".kh-home-hero")).toBeVisible();
-    await expect(page.getByRole("link", { name: /Explore products/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /Browse materials/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /Browse packaging/i })).toBeVisible();
     await expect(page.getByRole("link", { name: /Request a quote/i }).first()).toBeVisible();
     await expect(page.locator(".production-portal")).toHaveCount(0);
-    await expect(page.locator(".kh-system-card")).toHaveCount(8);
-    await expect(page.locator(".kh-marquee")).toBeVisible();
-    await expect(page.locator(".kh-gallery-track")).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Source materials and finished packaging/i })).toBeVisible();
     await expect(page.locator(".kh-section-forest")).toBeVisible();
     await expect(page.locator(".kh-spec-panel")).toBeVisible();
   });
@@ -31,9 +30,9 @@ test.describe("homepage manufacturing website", () => {
     await expect(page.getByRole("link", { name: "提交询盘" }).first()).toBeVisible();
   });
 
-  test("homepage keeps exactly eight top-level sections", async ({ page }) => {
+  test("homepage keeps a compact procurement-focused section stack", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.locator("main > section")).toHaveCount(8);
+    await expect(page.locator("main > section")).toHaveCount(6);
   });
 
   test("cinema header starts transparent and turns solid after the hero", async ({ page }) => {
@@ -51,7 +50,7 @@ test.describe("homepage manufacturing website", () => {
     await page.setViewportSize({ width: 1366, height: 768 });
     await page.goto("/en");
     const ctas = page.locator(".kh-home-hero .kh-actions a");
-    await expect(ctas).toHaveCount(2);
+    await expect(ctas).toHaveCount(3);
     for (const cta of await ctas.all()) {
       const box = await cta.boundingBox();
       expect(box).not.toBeNull();
@@ -64,7 +63,7 @@ test.describe("homepage manufacturing website", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/en");
     await expect(page.locator("h1")).toBeVisible();
-    const card = page.locator(".kh-system-card").first();
+    const card = page.locator('a[href*="productType=paper-cup-fan"]').first();
     await expect(card).toBeVisible();
     const transitionDuration = await card.evaluate((element) => getComputedStyle(element).transitionDuration);
     for (const duration of transitionDuration.split(",")) {

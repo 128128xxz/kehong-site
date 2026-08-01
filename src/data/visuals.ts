@@ -10,8 +10,7 @@ export function visualText(copy: VisualCopy, locale: string) {
 }
 
 export const showcaseImages = {
-  foodBox: "/images/kehong/showcase/orins-pizza-box-collage.webp",
-  pinkBox: "/images/kehong/showcase/pink-structural-box.webp",
+  foodBox: "/images/kehong/showcase/optimized/food-box-real-01.jpg",
   foodOpen: "/images/kehong/showcase/food-paper-box-open.webp",
   foodDetail: "/images/kehong/showcase/food-paper-box-detail.webp",
   machine: "/images/kehong/showcase/automatic-feeder-line.webp",
@@ -29,8 +28,6 @@ export const showcaseImages = {
   cakeBoardRealAlt: "/images/kehong/showcase/optimized/cake-board-real-02.jpg",
   foodBoxReal: "/images/kehong/showcase/optimized/food-box-real-01.jpg",
   foodBoxRealAlt: "/images/kehong/showcase/optimized/food-box-real-02.jpg",
-  orinsFoodBoxReal: "/images/kehong/showcase/optimized/orins-food-box-real-01.jpg",
-  orinsFoodBoxRealAlt: "/images/kehong/showcase/optimized/orins-food-box-real-03.jpg",
   structureMaterialReal: "/images/kehong/showcase/optimized/structure-material-real.jpg",
   webOpenBox: "/images/kehong/showcase/custom-box-display-open.webp",
   webWhiteBox: "/images/kehong/showcase/food-paper-box-open.webp",
@@ -38,15 +35,14 @@ export const showcaseImages = {
   webPaperCups: "/images/kehong/showcase/color-material-swatch.webp",
   webBakeryWindowBox: "/images/kehong/showcase/optimized/food-box-real-01.jpg",
   webBakeryCakeBox: "/images/kehong/showcase/optimized/cake-board-real.jpg",
-  webBakeryDisplayBox: "/images/kehong/showcase/orins-pizza-box-collage.webp",
+  webBakeryDisplayBox: "/images/kehong/showcase/optimized/food-box-real-02.jpg",
   webBakeryBlueBox: "/images/kehong/showcase/custom-box-display-wide.webp",
-  webDonutBoxes: "/images/kehong/showcase/optimized/orins-food-box-real-03.jpg",
+  webDonutBoxes: "/images/kehong/showcase/optimized/cake-board-real.jpg",
   webPaperCupStacks: "/images/kehong/showcase/color-material-swatch.webp",
   webCorrugatedSheet: "/images/kehong/showcase/optimized/structure-material-real.jpg",
   webOpenShippingBox: "/images/kehong/showcase/custom-box-display-open.webp",
   webKraftGiftBox: "/images/kehong/showcase/pink-structural-box.webp",
   webFactoryWorktable: "/images/kehong/showcase/precision-machine-closeup.webp",
-  modelTechnicalPreview: "/models/orinscare/v2/orinscare_packaging_set_v2_ultra_preview.png",
   unsplashFoodPackaging: "/images/web/unsplash/paper-food-packaging.jpg",
   unsplashTakeawayPackaging: "/images/web/unsplash/paper-takeaway-packaging.jpg",
   // 2026-07-27 新增科宏实拍(来源:业主提供的科宏图片文件夹)
@@ -54,7 +50,6 @@ export const showcaseImages = {
   kraftCartonsPallet: "/images/kehong/showcase/optimized/kraft-cartons-pallet.jpg",
   bakeryDessertDisplay: "/images/kehong/showcase/optimized/bakery-dessert-display.jpg",
   colorPaperFan: "/images/kehong/showcase/optimized/color-paper-fan.jpg",
-  orinsPizzaBoxOpen: "/images/kehong/showcase/optimized/orins-pizza-box-open.jpg",
   goldBoardPieces: "/images/kehong/showcase/optimized/gold-board-pieces.jpg",
   goldBoardSheets: "/images/kehong/showcase/optimized/gold-board-sheets.jpg",
   factorySamplesFloor: "/images/kehong/showcase/optimized/factory-samples-floor.jpg",
@@ -65,7 +60,6 @@ export const showcaseImages = {
   woodenDisplayRack: "/images/kehong/showcase/optimized/wooden-display-rack.jpg",
   woodenStructureRack: "/images/kehong/showcase/optimized/wooden-structure-rack.jpg",
   easelWhiteBox: "/images/kehong/showcase/optimized/easel-white-box.jpg",
-  orinsPinkBoxBranded: "/images/kehong/showcase/optimized/orins-pink-box-branded.jpg",
   kraftBoxesGoldLogo: "/images/kehong/showcase/optimized/kraft-boxes-gold-logo.jpg",
   textileLine: "/images/kehong/showcase/optimized/textile-line.jpg",
   // GPT-generated representative visuals received 2026-07-27; never presented as Kehong factory photography.
