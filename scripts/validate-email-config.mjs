@@ -24,7 +24,11 @@ if (from.value && !emailPattern.test(from.value)) invalid.push("EMAIL_FROM");
 if (recipients.some((email) => !emailPattern.test(email))) invalid.push("EMAIL_TO");
 if (process.env.EMAIL_REPLY_TO_FALLBACK && !emailPattern.test(process.env.EMAIL_REPLY_TO_FALLBACK.trim())) invalid.push("EMAIL_REPLY_TO_FALLBACK");
 
-const production = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+// Next.js always runs `next build` with NODE_ENV=production, including Vercel
+// Preview deployments. Only the Vercel deployment environment should make
+// email credentials mandatory at build time; preview builds can render the
+// site without exposing or duplicating production mail credentials.
+const production = process.env.VERCEL_ENV === "production";
 const result = {
   configured: missing.length === 0 && invalid.length === 0,
   production,
@@ -34,4 +38,3 @@ const result = {
 };
 console.log(JSON.stringify(result, null, 2));
 if (production && !result.configured) process.exit(1);
-
