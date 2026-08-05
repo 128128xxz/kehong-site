@@ -5,6 +5,8 @@ type LocalizedList = { en: string[]; zh: string[] };
 export type PackagingCategory = {
   slug: string;
   title: { en: string; zh: string };
+  /** Canonical value carried into every category-specific inquiry entry point. */
+  inquiryLabel: { en: string; zh: string };
   shortDescription: { en: string; zh: string };
   description: { en: string; zh: string };
   image: string;
@@ -17,10 +19,11 @@ export type PackagingCategory = {
   productTypes?: string[];
 };
 
-export const packagingCategories: PackagingCategory[] = [
+const allPackagingCategories: PackagingCategory[] = [
   {
     slug: "paper-bags",
     title: { en: "Paper Bags", zh: "纸袋" },
+    inquiryLabel: { en: "Paper Bags", zh: "纸袋" },
     shortDescription: { en: "Custom paper bags for retail, gifting and everyday carry applications.", zh: "适用于零售、礼品和日常携带场景的定制纸袋。" },
     description: { en: "Develop a paper bag around the product, handle style and brand finish you need. Kehong can review paper grade, dimensions, printing, surface treatment and packing requirements against the confirmed project brief.", zh: "围绕产品、手柄形式和品牌工艺开发纸袋。Kehong 可根据已确认的项目需求评估纸张、尺寸、印刷、表面处理和包装要求。" },
     image: showcaseImages.aiPaperBagBranded,
@@ -35,6 +38,7 @@ export const packagingCategories: PackagingCategory[] = [
   {
     slug: "labels-stickers",
     title: { en: "Labels & Stickers", zh: "标签与贴纸" },
+    inquiryLabel: { en: "Labels & Stickers", zh: "标签与贴纸" },
     shortDescription: { en: "Printed labels, tags and stickers kept separate from structural box products.", zh: "独立于纸盒结构产品的印刷标签、吊牌与贴纸。" },
     description: { en: "Use this range for labels, hang tags and stickers that support product identification and brand presentation. Final substrate, adhesive, finish and application are confirmed from the production brief.", zh: "用于产品识别和品牌展示的标签、吊牌与贴纸。最终基材、胶粘、工艺和应用需根据生产需求确认。" },
     image: showcaseImages.aiLabelsTags,
@@ -48,6 +52,7 @@ export const packagingCategories: PackagingCategory[] = [
   {
     slug: "pillow-boxes",
     title: { en: "Pillow Boxes", zh: "枕头盒" },
+    inquiryLabel: { en: "Pillow Boxes", zh: "枕头盒" },
     shortDescription: { en: "Curved-profile paper boxes for gifting, retail and compact product presentation.", zh: "适用于礼品、零售和小型产品展示的弧形纸盒。" },
     description: { en: "Pillow boxes can be developed in printed, kraft, window or special-finish directions. Confirm the product size, board, opening style and presentation requirement before quotation.", zh: "枕头盒可按印刷、牛皮、开窗或特殊工艺方向开发。报价前需确认产品尺寸、纸板、开启方式和展示要求。" },
     image: showcaseImages.aiPillowBox,
@@ -62,6 +67,7 @@ export const packagingCategories: PackagingCategory[] = [
   {
     slug: "takeout-boxes",
     title: { en: "Takeout Boxes", zh: "外带盒" },
+    inquiryLabel: { en: "Takeout Boxes", zh: "外带食品盒" },
     shortDescription: { en: "Paper takeaway structures for foodservice, bakery and delivery workflows.", zh: "适用于餐饮、烘焙和外卖配送流程的纸质外带结构。" },
     description: { en: "Review takeaway box dimensions, board, ventilation, closure and print requirements with a packaging partner. Food-contact, grease or barrier claims are confirmed only when supported by the project specification.", zh: "与包装合作方确认外带盒尺寸、纸板、通风、闭合和印刷要求。食品接触、防油或阻隔性能仅在项目规格支持时确认。" },
     image: showcaseImages.takeoutBoxesReference,
@@ -76,6 +82,7 @@ export const packagingCategories: PackagingCategory[] = [
   {
     slug: "cake-boxes",
     title: { en: "Cake Boxes", zh: "蛋糕盒" },
+    inquiryLabel: { en: "Cake Boxes", zh: "蛋糕盒" },
     shortDescription: { en: "Cake, cupcake and macaron boxes designed for presentation and transport.", zh: "面向展示与运输的蛋糕、纸杯蛋糕和马卡龙盒。" },
     description: { en: "Start with the product footprint, opening, window and carrying requirement. The OEM brief can cover color, size, design, shape, material, logo, window and insert decisions before sampling.", zh: "从产品尺寸、开启方式、开窗和携带需求开始。OEM 需求可覆盖颜色、尺寸、设计、形状、材料、Logo、开窗和内托，再进入打样。" },
     image: showcaseImages.aiCakeBoxWindow,
@@ -90,6 +97,7 @@ export const packagingCategories: PackagingCategory[] = [
   {
     slug: "cake-boards-cake-drums",
     title: { en: "Cake Boards & Cake Drums", zh: "蛋糕底托与蛋糕鼓" },
+    inquiryLabel: { en: "Cake Boards & Cake Drums", zh: "蛋糕底托与蛋糕鼓" },
     shortDescription: { en: "Boards and drums for everyday cake support, display and heavier multi-layer transport.", zh: "用于日常蛋糕承托、展示以及较重多层蛋糕运输的底托与蛋糕鼓。" },
     description: { en: "Cake boards are generally used for everyday support and presentation. Cake drums are thicker and suited to heavier or multi-layer cakes. Cake base boards provide a stable foundation for transport and display; exact material and thickness remain project-confirmed.", zh: "Cake Board 通常用于日常承托与展示；Cake Drum 更厚，适合较重或多层蛋糕；Cake Base Board 用于运输和展示的基础承托，具体材料和厚度以项目确认为准。" },
     image: showcaseImages.aiCakeBoardsSet,
@@ -104,6 +112,7 @@ export const packagingCategories: PackagingCategory[] = [
   {
     slug: "corrugated-mailer-boxes",
     title: { en: "Corrugated Mailer Boxes", zh: "瓦楞邮寄盒" },
+    inquiryLabel: { en: "Corrugated Mailer Boxes", zh: "瓦楞邮寄盒" },
     shortDescription: { en: "Protective corrugated structures for e-commerce dispatch and product presentation.", zh: "适用于电商发货和产品展示的保护性瓦楞结构。" },
     description: { en: "Develop mailer structures around the product footprint, board construction, closure and print requirement. Sampling confirms the final fit before a production quotation.", zh: "围绕产品尺寸、纸板结构、闭合方式和印刷需求开发邮寄盒，打样后确认最终匹配，再进入生产报价。" },
     image: showcaseImages.representativeProtectiveStructures,
@@ -117,6 +126,20 @@ export const packagingCategories: PackagingCategory[] = [
   },
 ];
 
+/**
+ * These descriptions remain as source material, but only the six approved
+ * current categories are exposed through routes, navigation, and sitemap.
+ */
+const retiredPackagingCategorySlugs = new Set(["pillow-boxes"]);
+
+export const packagingCategories = allPackagingCategories.filter(
+  (category) => !retiredPackagingCategorySlugs.has(category.slug),
+);
+
 export function getPackagingCategory(slug: string) {
   return packagingCategories.find((category) => category.slug === slug);
+}
+
+export function getPackagingInquiryLabel(category: PackagingCategory, locale: string) {
+  return locale === "zh" ? category.inquiryLabel.zh : category.inquiryLabel.en;
 }

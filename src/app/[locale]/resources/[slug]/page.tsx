@@ -12,8 +12,9 @@ import { getAlternateLanguages, getLocaleUrl, siteConfig } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
 import { resourceItems, resourceZhCopy } from "@/data/siteContent";
 import RelatedLinks from "@/components/site/RelatedLinks";
+import { locales } from "@/i18n/locales";
 
-export function generateStaticParams() { return ["en", "zh", "es", "th", "vi", "id", "ms"].flatMap((locale) => resourceItems.map((item) => ({ locale, slug: item.slug }))); }
+export function generateStaticParams() { return locales.flatMap((locale) => resourceItems.map((item) => ({ locale, slug: item.slug }))); }
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> { const { locale, slug } = await params; const item = resourceItems.find((resource) => resource.slug === slug); if (!item) return {}; const zh = locale === "zh"; const brand = getBrandConfig(locale); const copy = zh ? resourceZhCopy[item.slug] : item; const canonical = await getLocaleUrl(locale, `/resources/${slug}`); const title = `${copy.title} | ${brand.name}`; return { metadataBase: new URL(siteConfig.url), title, description: copy.summary, alternates: { canonical, languages: await getAlternateLanguages(`/resources/${slug}`) }, openGraph: { title, description: copy.summary, url: canonical, siteName: brand.name, type: "article" }, twitter: { card: "summary_large_image", title, description: copy.summary } }; }
 
 export default async function ResourceDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {

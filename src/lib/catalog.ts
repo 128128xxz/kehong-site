@@ -104,6 +104,18 @@ const catalogEnglishLabels: Record<string, string> = {
   "可定制": "Customizable",
 };
 
+/** Exact, display-only Chinese labels for legacy English source values. */
+const catalogChineseDisplayLabels: Record<string, string> = {
+  "1–5 metric tons (typical)": "通常为 1–5 公吨",
+  "PE coating": "PE 淋膜",
+  "PLA coating": "PLA 淋膜",
+  "PE / PLA coating options": "可选 PE / PLA 淋膜",
+  "PE coating options": "可选 PE 淋膜",
+  "PLA coating options": "可选 PLA 淋膜",
+  piece: "件",
+  sheet: "张",
+};
+
 const catalogEnglishReplacements: [string, string][] = [
   ["食品级", "food-grade"],
   ["杯纸", "cupstock"],
@@ -322,6 +334,8 @@ export function getLocalizedCatalogValue(
     return locale === "zh" ? "餐饮食品包装" : "Foodservice packaging";
   }
   if (locale === "zh") {
+    const exact = catalogChineseDisplayLabels[value];
+    if (exact) return exact;
     const parts = value.split(" /");
     const last = parts.at(-1)?.trim() ?? "";
     return parts.length > 1 && last && !containsCjk(last) ? parts.slice(0, -1).join(" /").trim() : value;

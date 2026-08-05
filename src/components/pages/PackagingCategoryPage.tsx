@@ -9,7 +9,7 @@ import { Reveal } from "@/components/home/interactive";
 import { Link } from "@/i18n/navigation";
 import RelatedLinks from "@/components/site/RelatedLinks";
 import { getAllSkus, getCatalogFilterOptions, getLocalizedProductSku, getProductGroupId, type ProductSku } from "@/lib/catalog";
-import type { PackagingCategory } from "@/data/packagingCategories";
+import { getPackagingInquiryLabel, type PackagingCategory } from "@/data/packagingCategories";
 
 const packagingSectionNumbers = {
   hero: "01",
@@ -39,6 +39,8 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
   const applications = isZh ? category.applications.zh : category.applications.en;
   const filters = isZh ? category.filters.zh : category.filters.en;
   const pagePath = `/packaging/${category.slug}`;
+  const inquiryLabel = getPackagingInquiryLabel(category, locale);
+  const contactHref = `/contact?product=${encodeURIComponent(inquiryLabel)}`;
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -67,7 +69,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               : [`${subcategories.length} subcategory directions`, "OEM / ODM", "Foshan, Guangdong, China"]
           }
         >
-          <Link href="/contact" className="kh-button kh-button-light">
+          <Link href={contactHref} className="kh-button kh-button-light">
             {isZh ? "获取定制报价" : "Get a custom quote"}
             <ArrowRight className="size-4" />
           </Link>
@@ -128,9 +130,8 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               <ProductCatalog skus={skus} filterOptions={getCatalogFilterOptions(locale)} siteOrigin="https://www.kehong.tech" pagination={{ page: 1, totalPages: 1, totalGroups: new Set(skus.map((sku) => getProductGroupId(sku))).size, totalSkus: skus.length, pageSize: 24 }} />
             ) : (
               <div className="kh-panel max-w-3xl p-7">
-                <p className="text-lg font-semibold text-(--kh-ink)">{isTakeoutBoxes ? (isZh ? "成品结构按项目确认" : "Finished structures confirmed by project") : (isZh ? "该产品方向按项目需求确认。" : "This product direction is confirmed per project.")}</p>
-                <p className="mt-2 text-sm leading-6 text-(--kh-muted)">{isTakeoutBoxes ? (isZh ? "外带盒结构、尺寸、材料和印刷根据项目需求确认。请提交参考图、尺寸与目标数量，以便评估和报价。" : "Takeout box structures, sizes, materials and printing are confirmed against the project brief. Send a reference image, dimensions and target quantity for evaluation.") : (isZh ? "当前公开目录没有可直接比较的 SKU。请发送尺寸、用途、数量和参考资料，我们会确认合适的材料或结构方向。" : "There are no public SKUs to compare for this direction. Send dimensions, application, quantity and a reference so the suitable material or structure can be reviewed.")}</p>
-                <Link href={`/contact?product=${encodeURIComponent(isZh ? "外带食品盒" : "Takeout Boxes")}`} className="kh-button kh-button-primary mt-5">{isZh ? "提交项目需求" : "Discuss this requirement"}<ArrowRight className="size-4" /></Link>
+                <p className="text-sm leading-6 text-(--kh-muted)">{isTakeoutBoxes ? (isZh ? "请提交参考图、尺寸与目标数量，以便开始结构评估和报价。" : "Send a reference image, dimensions and target quantity to start the structure review and quotation.") : (isZh ? "当前公开目录没有可直接比较的 SKU。请发送尺寸、用途、数量和参考资料，我们会确认合适的材料或结构方向。" : "There are no public SKUs to compare for this direction. Send dimensions, application, quantity and a reference so the suitable material or structure can be reviewed.")}</p>
+                <Link href={contactHref} className="kh-button kh-button-primary mt-5">{isZh ? "提交项目需求" : "Discuss this requirement"}<ArrowRight className="size-4" /></Link>
               </div>
             )}
           </div>
@@ -203,7 +204,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               </p>
             </Reveal>
             <Reveal delay={120}>
-              <Link href="/contact" className="kh-button kh-button-light">
+              <Link href={contactHref} className="kh-button kh-button-light">
                 {isZh ? "提交询盘" : "Request a quote"}
                 <ArrowRight className="size-4" />
               </Link>

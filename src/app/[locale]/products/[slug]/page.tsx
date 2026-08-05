@@ -213,13 +213,13 @@ export default async function ProductDetailPage({
     [t("detail.surface"), getLocalizedCatalogValue(sku.surfaceProcess, locale)],
     [t("detail.finishing"), getLocalizedCatalogValue(sku.finishingProcess, locale)],
     [t("detail.size"), getLocalizedCatalogValue(sku.commonSize, locale)],
-    [t("detail.moq"), getLocalizedCatalogValue(sku.moq, locale)],
-    [t("detail.unit"), getLocalizedCatalogValue(sku.unit, locale)],
+    [isZh ? "常规起订量" : "Typical MOQ", getLocalizedCatalogValue(sku.moq, locale)],
+    [isZh ? "报价单位" : "Quotation unit", getLocalizedCatalogValue(sku.unit, locale)],
   ].filter(([, value]) => value);
   const procurementCards = [
     {
       icon: PackageCheck,
-      label: "MOQ",
+      label: isZh ? "常规起订量" : "Typical MOQ",
       value: getLocalizedCatalogValue(sku.moq, locale) || (isZh ? "按项目确认" : "Confirmed by project"),
     },
     {

@@ -6,7 +6,10 @@ import { getPublicProductType } from "@/lib/catalog";
 export type ProductImageStatus = "exact" | "representative" | "ai-representative" | "pending";
 export type ProductDataStatus = "complete" | "partial" | "pending-source";
 
-type LocalizedLabel = { en: string; zh: string } & Partial<Record<AppLocale, string>>;
+// Keep archived translation source available without reintroducing it to the
+// public locale registry.
+type ArchivedLocale = "es" | "id" | "ms" | "th" | "vi";
+type LocalizedLabel = { en: string; zh: string } & Partial<Record<AppLocale | ArchivedLocale, string>>;
 type ProductImageAsset = (typeof productImages.assets)[number] & {
   sourceType?: string;
   productionUsageAllowed?: boolean;
@@ -47,7 +50,7 @@ export type ProductImageMeta = {
 };
 
 function pickLabel(label: LocalizedLabel, locale: string) {
-  return label[locale as AppLocale] ?? label.en;
+  return label[locale as AppLocale | ArchivedLocale] ?? label.en;
 }
 
 function normalizeImageStatus(status: ProductImageStatus | string | undefined): ProductImageStatus {

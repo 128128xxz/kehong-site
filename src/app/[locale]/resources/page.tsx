@@ -3,8 +3,9 @@ import { setRequestLocale } from "next-intl/server";
 import ResourcesPage from "@/components/pages/ResourcesPage";
 import { getAlternateLanguages, getLocaleUrl, siteConfig } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
+import { locales } from "@/i18n/locales";
 
-export function generateStaticParams() { return ["en", "zh", "es", "th", "vi", "id", "ms"].map((locale) => ({ locale })); }
+export function generateStaticParams() { return locales.map((locale) => ({ locale })); }
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const zh = locale === "zh";

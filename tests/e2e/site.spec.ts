@@ -71,6 +71,31 @@ test.describe("Kehong production flows", () => {
     }
   });
 
+  test("retired locales permanently redirect to their active English route without losing inquiry or UTM query", async ({ request }) => {
+    const cases = [
+      ["/id", "/en"],
+      ["/id/products", "/en/products"],
+      ["/id/packaging/takeout-boxes", "/en/packaging/takeout-boxes"],
+      ["/id/packaging/pillow-boxes", "/en/packaging"],
+      ["/id/resources/not-a-public-resource", "/en/resources"],
+    ] as const;
+    for (const [from, target] of cases) {
+      const response = await request.get(`${from}?product=Paper%20Bags&utm_source=qa`, { maxRedirects: 0 });
+      expect(response.status()).toBe(308);
+      const location = new URL(response.headers().location!, "https://www.kehong.tech");
+      expect(location.pathname).toBe(target);
+      expect(location.searchParams.get("product")).toBe("Paper Bags");
+      expect(location.searchParams.get("utm_source")).toBe("qa");
+    }
+
+    const sitemap = await request.get("/sitemap.xml");
+    expect(sitemap.status()).toBe(200);
+    const sitemapXml = await sitemap.text();
+    expect(sitemapXml).not.toContain("/id/");
+    expect(sitemapXml).toContain("/en/");
+    expect(sitemapXml).toContain("/zh/");
+  });
+
   test("core pages load without console or hydration errors", async ({ page }) => {
     const errors = await expectNoConsoleErrors(page);
     for (const path of ["/en", "/en/products", "/en/contact"]) {
@@ -397,9 +422,38 @@ test.describe("Kehong production flows", () => {
       await page.goto(`/${locale}/packaging/takeout-boxes`, { waitUntil: "networkidle" });
       const catalog = page.locator("#catalog-list");
       await expect(catalog).toContainText(locale === "zh" ? "成品结构按项目确认" : "Finished structures confirmed by project");
+      await expect(catalog.getByRole("heading", { name: locale === "zh" ? "成品结构按项目确认" : "Finished structures confirmed by project" })).toHaveCount(1);
+      await expect(catalog.getByText(locale === "zh" ? "外带盒结构、尺寸、材料和印刷根据项目需求确认。请提交参考图、尺寸与目标数量，以便评估和报价。" : "Takeout box structures, sizes, materials and printing are confirmed against the project brief. Send a reference image, dimensions and target quantity for evaluation.", { exact: true })).toHaveCount(1);
       await expect(catalog).not.toContainText("Food Tray Paper Material");
       await expect(page.locator("#packaging-related")).toContainText(locale === "zh" ? "食品纸托材料" : "Food Tray Paper Material");
       await expect(catalog.locator('a[href*="/contact?product="]')).toHaveAttribute("href", locale === "zh" ? /%E5%A4%96%E5%B8%A6%E9%A3%9F%E5%93%81%E7%9B%92/ : /Takeout%20Boxes/);
+    }
+  });
+
+  test("each packaging category uses one canonical inquiry value across quote entries", async ({ request }) => {
+    const categories = [
+      ["paper-bags", "Paper Bags", "纸袋"],
+      ["labels-stickers", "Labels & Stickers", "标签与贴纸"],
+      ["takeout-boxes", "Takeout Boxes", "外带食品盒"],
+      ["cake-boxes", "Cake Boxes", "蛋糕盒"],
+      ["cake-boards-cake-drums", "Cake Boards & Cake Drums", "蛋糕底托与蛋糕鼓"],
+      ["corrugated-mailer-boxes", "Corrugated Mailer Boxes", "瓦楞邮寄盒"],
+    ] as const;
+
+    for (const locale of ["en", "zh"] as const) {
+      for (const [slug, englishLabel, chineseLabel] of categories) {
+        const label = locale === "zh" ? chineseLabel : englishLabel;
+        const expectedHref = `/contact?product=${encodeURIComponent(label)}`;
+        const response = await request.get(`/${locale}/packaging/${slug}`);
+        expect(response.status()).toBe(200);
+        const html = await response.text();
+        const escapedHref = `/${locale}${expectedHref}`.replaceAll("&", "&amp;");
+        expect(html.split(escapedHref).length - 1, `${locale}/${slug}: ${escapedHref}`).toBeGreaterThanOrEqual(2);
+
+        const contact = await request.get(`/${locale}${expectedHref}&utm_source=qa`);
+        expect(contact.status()).toBe(200);
+        expect(await contact.text()).toContain(label.replaceAll("&", "&amp;"));
+      }
     }
   });
 

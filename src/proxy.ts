@@ -16,6 +16,49 @@ const buildId = (
 ).slice(0, 80);
 const commitSha = (process.env.VERCEL_GIT_COMMIT_SHA || "local").slice(0, 80);
 const productDataRevision = String(catalog.generatedAt ?? "catalog-unknown");
+const retiredPublicLocales = new Set(["es", "id", "ms", "th", "vi"]);
+const activePackagingSlugs = new Set([
+  "paper-bags",
+  "labels-stickers",
+  "takeout-boxes",
+  "cake-boxes",
+  "cake-boards-cake-drums",
+  "corrugated-mailer-boxes",
+]);
+const staticRoutePaths = new Set([
+  "",
+  "products",
+  "industries",
+  "industries/bakery-packaging",
+  "industries/retail-lifestyle",
+  "industries/ecommerce-industrial-professional",
+  "capabilities",
+  "resources",
+  "contact",
+  "paper-cup-fan-manufacturer",
+  "paper-packaging-supplier",
+  "custom-paper-products",
+  "factory",
+  "process",
+  "procurement",
+  "privacy",
+  "terms",
+  "solutions",
+  "model-preview",
+  "packaging",
+]);
+const resourceSlugs = new Set([
+  "artwork-guidelines",
+  "materials-guide",
+  "finishes-guide",
+  "dielines-templates",
+  "packaging-selection-guide",
+  "proofing-samples",
+]);
+const publicProductSlugs = new Set([
+  ...catalog.skus.filter((sku) => sku.published && sku.sourceStatus === "confirmed").map((sku) => sku.slug),
+  ...catalog.groups.map((group) => group.slug),
+]);
 
 function withDiagnostics(response: NextResponse) {
   response.headers.set("x-kehong-build", buildId);
@@ -27,10 +70,49 @@ function withDiagnostics(response: NextResponse) {
   return response;
 }
 
+function getRetiredLocaleDestination(pathname: string) {
+  const [, locale, ...segments] = pathname.split("/");
+  if (!retiredPublicLocales.has(locale)) return null;
+
+  const routePath = segments.join("/").replace(/\/$/u, "");
+  if (staticRoutePaths.has(routePath)) return `/en${routePath ? `/${routePath}` : ""}`;
+
+  const [section, slug] = segments;
+  if (section === "packaging") {
+    return slug && activePackagingSlugs.has(slug) && segments.length === 2
+      ? `/en/packaging/${slug}`
+      : "/en/packaging";
+  }
+  if (section === "products") {
+    return slug && publicProductSlugs.has(slug) && segments.length === 2
+      ? `/en/products/${slug}`
+      : "/en/products";
+  }
+  if (section === "resources") {
+    return slug && resourceSlugs.has(slug) && segments.length === 2
+      ? `/en/resources/${slug}`
+      : "/en/resources";
+  }
+  if (section === "industries") return "/en/industries";
+
+  return "/en";
+}
+
 export default function proxy(request: NextRequest) {
   const hostname = request.nextUrl.hostname.toLowerCase();
   const isProductionHost = hostname === canonicalHost || hostname === apexHost;
+  const retiredLocaleDestination = getRetiredLocaleDestination(request.nextUrl.pathname);
   const legacyAllProducts = request.nextUrl.pathname.match(/^\/(en|zh|es|th|vi|id|ms)\/packaging\/all-products\/?$/u);
+
+  // Retired public locales are permanently consolidated into an active English
+  // route. Valid routes keep their path; unsupported legacy paths use the
+  // closest live parent so a withdrawn page cannot become a soft 404.
+  if (retiredLocaleDestination) {
+    const url = isProductionHost ? new URL(retiredLocaleDestination, canonicalOrigin) : request.nextUrl.clone();
+    url.pathname = retiredLocaleDestination;
+    url.search = request.nextUrl.search;
+    return withDiagnostics(NextResponse.redirect(url, 308));
+  }
 
   // This redirect belongs at the edge, rather than in the statically generated
   // packaging route, so the original query string is preserved without making
