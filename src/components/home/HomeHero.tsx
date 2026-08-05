@@ -53,8 +53,8 @@ export default function HomeHero({ locale }: { locale: string }) {
 
       <div className="kh-shell kh-hero-inner">
         <p className="kh-mono kh-hero-index kh-rise kh-rise-1">
-          <span>Foshan Kehong Paper Products</span>
-          <span>Est. 20+ yrs</span>
+          <span>{zh ? "佛山科宏纸品" : "Foshan Kehong Paper Products"}</span>
+          <span>{zh ? "20+ 年" : "Est. 20+ yrs"}</span>
           <span>OEM / ODM</span>
         </p>
 

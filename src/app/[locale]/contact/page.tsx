@@ -185,7 +185,7 @@ export default async function ContactPage({
                   className="object-cover"
                 />
                 <span className="kh-fig-caption kh-mono">
-                  {`Fig.01 — ${zh ? "食品纸盒实拍" : "Food paper box sample"}`}
+                  {zh ? "图01 — 食品纸盒实拍" : "Fig.01 — Food paper box sample"}
                 </span>
               </div>
               <p className="mt-3 text-sm leading-6 text-(--kh-muted)">

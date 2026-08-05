@@ -96,6 +96,23 @@ test.describe("Kehong production flows", () => {
     expect(sitemapXml).toContain("/zh/");
   });
 
+  test("every retired public locale keeps representative routes permanently consolidated", async ({ request }) => {
+    const routes = [
+      ["", "/en"], ["products", "/en/products"], ["products/kh-fd-cupfan-150350-pr-001-paper-cup-fan", "/en/products/kh-fd-cupfan-150350-pr-001-paper-cup-fan"],
+      ["packaging", "/en/packaging"], ["packaging/paper-bags", "/en/packaging/paper-bags"], ["packaging/pillow-boxes", "/en/packaging"],
+      ["resources", "/en/resources"], ["contact", "/en/contact"], ["privacy", "/en/privacy"], ["terms", "/en/terms"],
+    ] as const;
+    for (const locale of ["es", "id", "vi", "th", "ms"]) {
+      for (const [route, expectedPath] of routes) {
+        const response = await request.get(`/${locale}${route ? `/${route}` : ""}?utm_source=qa`, { maxRedirects: 0 });
+        expect(response.status()).toBe(308);
+        const location = new URL(response.headers().location!, "https://www.kehong.tech");
+        expect(location.pathname).toBe(expectedPath);
+        expect(location.searchParams.get("utm_source")).toBe("qa");
+      }
+    }
+  });
+
   test("core pages load without console or hydration errors", async ({ page }) => {
     const errors = await expectNoConsoleErrors(page);
     for (const path of ["/en", "/en/products", "/en/contact"]) {
@@ -298,6 +315,49 @@ test.describe("Kehong production flows", () => {
 
     await page.goto("/en", { waitUntil: "networkidle" });
     await expect(page.locator('a[href="/en/resources"]')).not.toHaveCount(0);
+  });
+
+  test("Chinese metadata and visible copy consistently use the Chinese brand and labels", async ({ page }) => {
+    await page.goto("/zh/packaging", { waitUntil: "networkidle" });
+    await expect(page).toHaveTitle("成品纸包装分类总览 | 科宏纸品");
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", "成品纸包装分类总览 | 科宏纸品");
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", "成品纸包装分类总览 | 科宏纸品");
+
+    await page.goto("/zh/model-preview", { waitUntil: "networkidle" });
+    await expect(page).toHaveTitle("3D 包装结构预览 | 科宏纸品");
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /科宏/u);
+    await expect(page.locator('html')).toHaveAttribute("lang", "zh");
+
+    await page.goto("/zh", { waitUntil: "networkidle" });
+    await expect(page.locator(".kh-hero-index")).toContainText("佛山科宏纸品");
+    await expect(page.locator(".kh-hero-index")).toContainText("20+ 年");
+
+    await page.goto("/zh/contact", { waitUntil: "networkidle" });
+    await expect(page.locator(".kh-fig-caption").filter({ hasText: "图01 — 食品纸盒实拍" }).first()).toBeVisible();
+  });
+
+  test("product detail formatting is consistent in English and Chinese", async ({ page }) => {
+    const slug = "kh-fd-cuproll-230-pe-181-pe-coated-paper-roll-for-paper-cup";
+    const moqSlug = "kh-fd-cupfan-150350-pr-001-paper-cup-fan";
+    await page.goto(`/en/products/${moqSlug}`, { waitUntil: "networkidle" });
+    await expect(page.getByText("1–5 metric tons", { exact: true }).first()).toBeVisible();
+    await expect(page.locator("main")).not.toContainText("1–5 metric tons (typical)");
+
+    await page.goto(`/en/products/${slug}?variants=all`, { waitUntil: "networkidle" });
+    await expect(page.getByText("230 GSM", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("Max width: 1200 mm", { exact: true }).first()).toBeVisible();
+
+    await page.goto(`/zh/products/${slug}?variants=all`, { waitUntil: "networkidle" });
+    await expect(page.getByText("230 GSM", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("最大宽度：1200 mm", { exact: true }).first()).toBeVisible();
+    await expect(page.locator("main")).not.toContainText("Max width");
+    await expect(page.locator("main")).not.toContainText("Current SKU:");
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expectNoHorizontalOverflow(page);
+    await expect(page.getByRole("region", { name: "产品选项表格，可横向滚动" })).toBeVisible();
+
+    await page.goto(`/zh/products/${moqSlug}`, { waitUntil: "networkidle" });
+    await expect(page.getByText("1–5 公吨", { exact: true }).first()).toBeVisible();
   });
 
   test("packaging category pages render a server-side range or explicit empty state", async ({ request }) => {

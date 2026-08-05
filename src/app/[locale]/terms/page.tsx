@@ -4,12 +4,16 @@ import Header from "@/components/site/Header";
 import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
 import { siteConfig, getLocaleUrl, getAlternateLanguages, type SiteHref } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const brand = getBrandConfig(locale);
   const title = locale === "zh" ? "使用条款" : "Terms of Use";
+  const description = locale === "zh" ? "科宏网站使用条款。" : "Terms for using the Kehong website and inquiry service.";
   const canonical = await getLocaleUrl(locale, "/terms" as SiteHref);
-  return { metadataBase: new URL(siteConfig.url), title: `${title} | ${siteConfig.name}`, description: locale === "zh" ? "Kehong 网站使用条款。" : "Terms for using the Kehong website and inquiry service.", alternates: { canonical, languages: await getAlternateLanguages("/terms") } };
+  const metadataTitle = `${title} | ${brand.name}`;
+  return { metadataBase: new URL(siteConfig.url), title: metadataTitle, description, alternates: { canonical, languages: await getAlternateLanguages("/terms") }, openGraph: { title: metadataTitle, description, url: canonical, siteName: brand.name, type: "website" }, twitter: { card: "summary_large_image", title: metadataTitle, description } };
 }
 
 export default async function TermsPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -24,7 +28,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           index="§"
           kicker={isZh ? "法律信息" : "Legal information"}
           title={isZh ? "使用条款" : "Terms of Use"}
-          lede={isZh ? "Kehong 网站使用条款。" : "Terms for using the Kehong website and inquiry service."}
+          lede={isZh ? "科宏网站使用条款。" : "Terms for using the Kehong website and inquiry service."}
         />
         <div className="kh-shell py-12 lg:py-16">
         <div className="prose prose-stone max-w-3xl">

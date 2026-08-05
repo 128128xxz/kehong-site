@@ -5,6 +5,7 @@ import { type FormEvent, type ReactNode, useEffect, useMemo, useState } from "re
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { appendAttribution, captureAttribution, trackKehongEvent } from "@/lib/attribution";
+import { formatProductSkuSummary } from "@/lib/productPresentation";
 
 type ProductSeed = { productGroupId?: string; productGroupTitle?: string; sku?: string; skuTitle?: string; name?: string; url?: string; interestId?: string; interestLabel?: string; interestProductType?: string };
 type GuidedQuoteFormProps = { locale: string; initialProducts?: ProductSeed[] };
@@ -47,7 +48,7 @@ export default function GuidedQuoteForm({ locale, initialProducts = [] }: Guided
       if (raw) setStoredProducts(JSON.parse(raw) as ProductSeed[]);
     } catch { /* storage is optional */ }
   }, []);
-  const initialProductText = useMemo(() => [...initialProducts, ...storedProducts].map((item) => [item.productGroupTitle ?? item.name, item.sku ? `Current SKU: ${item.sku}` : "", item.url].filter(Boolean).join(" | ")).filter(Boolean).join("\n"), [initialProducts, storedProducts]);
+  const initialProductText = useMemo(() => [...initialProducts, ...storedProducts].map((item) => [item.productGroupTitle ?? item.name, item.sku ? formatProductSkuSummary(item.sku, locale) : "", item.url].filter(Boolean).join(" | ")).filter(Boolean).join("\n"), [initialProducts, locale, storedProducts]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

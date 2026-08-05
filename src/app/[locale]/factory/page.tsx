@@ -8,10 +8,11 @@ import { Link } from "@/i18n/navigation";
 import { companyProfile } from "@/data/company";
 import { showcaseImages } from "@/data/visuals";
 import { siteConfig, getLocaleUrl, getAlternateLanguages, type SiteHref } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params; const title = locale === "zh" ? "工厂与服务能力" : "Factory and capabilities"; const canonical = await getLocaleUrl(locale, "/factory" as SiteHref);
-  return { metadataBase: new URL(siteConfig.url), title: `${title} | ${siteConfig.name}`, description: locale === "zh" ? "了解 Kehong 的纸品包装生产与项目支持能力。" : "Review Kehong's paper packaging manufacturing and project support capabilities.", alternates: { canonical, languages: await getAlternateLanguages("/factory") } };
+  const { locale } = await params; const brand = getBrandConfig(locale); const title = locale === "zh" ? "工厂与服务能力" : "Factory and capabilities"; const description = locale === "zh" ? "了解科宏的纸品包装生产与项目支持能力。" : "Review Kehong's paper packaging manufacturing and project support capabilities."; const canonical = await getLocaleUrl(locale, "/factory" as SiteHref); const metadataTitle = `${title} | ${brand.name}`;
+  return { metadataBase: new URL(siteConfig.url), title: metadataTitle, description, alternates: { canonical, languages: await getAlternateLanguages("/factory") }, openGraph: { title: metadataTitle, description, url: canonical, siteName: brand.name, type: "website" }, twitter: { card: "summary_large_image", title: metadataTitle, description } };
 }
 
 export default async function FactoryPage({ params }: { params: Promise<{ locale: string }> }) {

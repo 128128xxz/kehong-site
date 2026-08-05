@@ -4,6 +4,7 @@ import { CheckCircle2, Send, Upload } from "lucide-react";
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { appendAttribution, captureAttribution, trackKehongEvent } from "@/lib/attribution";
+import { formatProductSkuSummary } from "@/lib/productPresentation";
 
 type ProductSeed = { productGroupId?: string; productGroupTitle?: string; sku?: string; skuTitle?: string; name?: string; url?: string; interestId?: string; interestLabel?: string; interestProductType?: string };
 
@@ -23,8 +24,8 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
     }
   }, []);
   const initialProductText = useMemo(
-    () => [...initialProducts, ...storedProducts].map((item) => [item.productGroupTitle ?? item.name, item.sku ? `Current SKU: ${item.sku}` : "", item.url].filter(Boolean).join(" | ")).filter(Boolean).join("\n"),
-    [initialProducts, storedProducts],
+    () => [...initialProducts, ...storedProducts].map((item) => [item.productGroupTitle ?? item.name, item.sku ? formatProductSkuSummary(item.sku, locale) : "", item.url].filter(Boolean).join(" | ")).filter(Boolean).join("\n"),
+    [initialProducts, locale, storedProducts],
   );
 
   async function submit(event: FormEvent<HTMLFormElement>) {

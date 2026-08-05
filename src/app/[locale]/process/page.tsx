@@ -6,8 +6,9 @@ import PageHero from "@/components/site/PageHero";
 import ProcessPreview from "@/components/site/ProcessPreview";
 import { Link } from "@/i18n/navigation";
 import { siteConfig, getLocaleUrl, getAlternateLanguages, type SiteHref } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> { const { locale } = await params; const title = locale === "zh" ? "生产流程" : "Production process"; const canonical = await getLocaleUrl(locale, "/process" as SiteHref); return { metadataBase: new URL(siteConfig.url), title: `${title} | ${siteConfig.name}`, description: locale === "zh" ? "从规格确认、打样到生产与交付的 Kehong 项目流程。" : "Kehong's project process from specification and sampling through production and delivery.", alternates: { canonical, languages: await getAlternateLanguages("/process") } }; }
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> { const { locale } = await params; const brand = getBrandConfig(locale); const title = locale === "zh" ? "生产流程" : "Production process"; const description = locale === "zh" ? "从规格确认、打样到生产与交付的科宏项目流程。" : "Kehong's project process from specification and sampling through production and delivery."; const canonical = await getLocaleUrl(locale, "/process" as SiteHref); const metadataTitle = `${title} | ${brand.name}`; return { metadataBase: new URL(siteConfig.url), title: metadataTitle, description, alternates: { canonical, languages: await getAlternateLanguages("/process") }, openGraph: { title: metadataTitle, description, url: canonical, siteName: brand.name, type: "website" }, twitter: { card: "summary_large_image", title: metadataTitle, description } }; }
 
 export default async function ProcessPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

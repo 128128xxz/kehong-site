@@ -13,16 +13,21 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const brand = getBrandConfig(locale);
+  const zh = locale === "zh";
   const canonical = await getLocaleUrl(locale, "/model-preview");
+  const title = `${zh ? "3D 包装结构预览" : "3D product preview"} | ${brand.name}`;
+  const description = zh ? "用于科宏包装结构的交互式 3D 预览。" : "Interactive 3D product preview for Kehong packaging structures.";
 
   return {
     metadataBase: new URL(siteConfig.url),
-    title: `3D product preview | ${brand.name}`,
-    description: "Interactive 3D product preview for Kehong packaging structures.",
+    title,
+    description,
     alternates: {
       canonical,
       languages: await getAlternateLanguages("/model-preview"),
     },
+    openGraph: { title, description, url: canonical, siteName: brand.name, type: "website" },
+    twitter: { card: "summary_large_image", title, description },
     robots: {
       index: false,
       follow: false,

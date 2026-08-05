@@ -9,6 +9,7 @@ import {
 } from "@/lib/taxonomy";
 import { getCollectionForCategory, getProductCollection } from "@/data/productCollections";
 import { getProductFamily } from "@/data/productFamilies";
+import { formatProductDisplayValue } from "@/lib/productPresentation";
 
 export type ProductSku = (typeof catalog.skus)[number];
 export type ProductFamily = (typeof catalog.families)[number];
@@ -106,14 +107,17 @@ const catalogEnglishLabels: Record<string, string> = {
 
 /** Exact, display-only Chinese labels for legacy English source values. */
 const catalogChineseDisplayLabels: Record<string, string> = {
-  "1–5 metric tons (typical)": "通常为 1–5 公吨",
+  "1–5 metric tons (typical)": "1–5 公吨",
   "PE coating": "PE 淋膜",
   "PLA coating": "PLA 淋膜",
   "PE / PLA coating options": "可选 PE / PLA 淋膜",
   "PE coating options": "可选 PE 淋膜",
   "PLA coating options": "可选 PLA 淋膜",
+  "按客户杯型/尺寸定制": "按杯型 / 尺寸定制",
   piece: "件",
   sheet: "张",
+  roll: "卷筒",
+  ton: "吨",
 };
 
 const catalogEnglishReplacements: [string, string][] = [
@@ -335,27 +339,27 @@ export function getLocalizedCatalogValue(
   }
   if (locale === "zh") {
     const exact = catalogChineseDisplayLabels[value];
-    if (exact) return exact;
+    if (exact) return formatProductDisplayValue(exact, locale);
     const parts = value.split(" /");
     const last = parts.at(-1)?.trim() ?? "";
-    return parts.length > 1 && last && !containsCjk(last) ? parts.slice(0, -1).join(" /").trim() : value;
+    return formatProductDisplayValue(parts.length > 1 && last && !containsCjk(last) ? parts.slice(0, -1).join(" /").trim() : value, locale);
   }
 
   const exact = catalogEnglishLabels[value];
-  if (exact) return exact;
+  if (exact) return formatProductDisplayValue(exact, locale);
 
-  if (/\d/u.test(value) && !containsCjk(value)) return value;
+  if (/\d/u.test(value) && !containsCjk(value)) return formatProductDisplayValue(value, locale);
 
   const parts = value.split(" /");
   const last = parts.at(-1)?.trim() ?? "";
-  if (parts.length > 1 && last && !containsCjk(last)) return last;
+  if (parts.length > 1 && last && !containsCjk(last)) return formatProductDisplayValue(last, locale);
 
   const translated = catalogEnglishReplacements.reduce(
     (result, [from, to]) => result.replaceAll(from, to),
   value,
   );
   const normalized = normalizeEnglishSpacing(translated);
-  return containsCjk(normalized) ? fallback : normalized;
+  return containsCjk(normalized) ? fallback : formatProductDisplayValue(normalized, locale);
 }
 
 export type HomepageProductFamily = Omit<ProductFamily, "categoryId"> & { categoryId: string };

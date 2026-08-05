@@ -38,7 +38,7 @@ describe("public packaging and locale governance", () => {
   });
 
   it("localizes only exact legacy Chinese display values without changing English", () => {
-    expect(getLocalizedCatalogValue("1–5 metric tons (typical)", "zh")).toBe("通常为 1–5 公吨");
+    expect(getLocalizedCatalogValue("1–5 metric tons (typical)", "zh")).toBe("1–5 公吨");
     expect(getLocalizedCatalogValue("PE coating", "zh")).toBe("PE 淋膜");
     expect(getLocalizedCatalogValue("PLA coating", "zh")).toBe("PLA 淋膜");
     expect(getLocalizedCatalogValue("PE / PLA coating options", "zh")).toBe("可选 PE / PLA 淋膜");

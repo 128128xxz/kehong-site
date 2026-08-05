@@ -62,12 +62,14 @@ export async function generateMetadata({
       const title = locale === "zh" ? category.title.zh : category.title.en;
       const description = locale === "zh" ? category.description.zh : category.description.en;
       const canonical = await getLocaleUrl(locale, `/products/${category.slug}` as SiteHref);
+      const metadataTitle = `${title} | ${brand.name}`;
       return {
         metadataBase: new URL(siteConfig.url),
-        title: `${title} | ${brand.name}`,
+        title: metadataTitle,
         description,
         alternates: { canonical, languages: await getAlternateLanguages(`/products/${category.slug}` as SiteHref) },
-        openGraph: { title, description, url: canonical, siteName: brand.name, type: "website" },
+        openGraph: { title: metadataTitle, description, url: canonical, siteName: brand.name, type: "website" },
+        twitter: { card: "summary_large_image", title: metadataTitle, description },
       };
     }
     return {
@@ -79,7 +81,7 @@ export async function generateMetadata({
   const canonical = await getLocaleUrl(locale, href);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
   const groupSummary = buildProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
-  const title = groupSummary.metadata.title;
+  const title = `${groupSummary.title} | ${brand.name}`;
   const description = groupSummary.metadata.description;
   const imageMeta = getSkuImageMeta(sku, locale);
   const socialImage = imageMeta.status === "exact" ? imageMeta.src : "/og-image.png";
@@ -476,7 +478,7 @@ export default async function ProductDetailPage({
         </div>
 
         <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_.86fr]">
-          <section className="kh-panel p-5 sm:p-6">
+          <section className="kh-panel min-w-0 p-5 sm:p-6">
             <div className="mb-5 flex items-center gap-3">
               <ShieldCheck className="size-5 text-(--kh-brass)" />
               <h2 className="text-xl font-semibold text-(--kh-ink)">
@@ -534,7 +536,7 @@ export default async function ProductDetailPage({
                     <button type="submit" className="kh-button kh-button-primary kh-button-compact">{isZh ? "搜索" : "Search"}</button>
                   </form>
                 </div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto" role="region" aria-label={isZh ? "产品选项表格，可横向滚动" : "Product options table, horizontally scrollable"} tabIndex={0}>
                   <table className="min-w-[720px] w-full border-collapse bg-(--kh-surface) text-sm">
                     <thead>
                       <tr className="border-b border-(--kh-line) text-left text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">

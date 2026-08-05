@@ -5,6 +5,7 @@ import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { appendAttribution, captureAttribution, trackKehongEvent } from "@/lib/attribution";
+import { formatProductSkuSummary } from "@/lib/productPresentation";
 
 type InquiryProduct = {
   productGroupId?: string;
@@ -80,8 +81,8 @@ const copy = {
   },
 } as const;
 
-function productLine(product: InquiryProduct) {
-  return [product.productGroupTitle ?? product.name, product.sku ? `Current SKU: ${product.sku}` : "", product.url].filter(Boolean).join(" | ");
+function productLine(product: InquiryProduct, locale: string) {
+  return [product.productGroupTitle ?? product.name, product.sku ? formatProductSkuSummary(product.sku, locale) : "", product.url].filter(Boolean).join(" | ");
 }
 
 export default function InquiryForm({
@@ -126,8 +127,8 @@ export default function InquiryForm({
     });
   }, [initialProducts, storedProducts]);
   const initialProductText = useMemo(
-    () => effectiveProducts.map(productLine).filter(Boolean).join("\n"),
-    [effectiveProducts],
+    () => effectiveProducts.map((product) => productLine(product, locale)).filter(Boolean).join("\n"),
+    [effectiveProducts, locale],
   );
   useEffect(() => {
     if (productsRef.current && initialProductText) productsRef.current.value = initialProductText;

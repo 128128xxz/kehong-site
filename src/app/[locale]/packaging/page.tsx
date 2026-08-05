@@ -8,6 +8,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 import { Link } from "@/i18n/navigation";
 import { packagingCategories } from "@/data/packagingCategories";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
 
 // The overview is intentionally limited to the six core packaging directions
 // used throughout the site navigation. Pillow boxes remain available as a
@@ -24,10 +25,12 @@ const overviewCategorySlugs = new Set([
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const zh = locale === "zh";
+  const brand = getBrandConfig(locale);
   const title = zh ? "成品纸包装分类总览" : "Finished Paper Packaging";
   const description = zh ? "浏览蛋糕盒、外带盒、纸袋、瓦楞邮寄盒、标签贴纸与蛋糕底托等包装方向。" : "Browse cake boxes, takeout boxes, paper bags, corrugated mailers, labels and cake boards by packaging direction.";
   const canonical = await getLocaleUrl(locale, "/packaging");
-  return { metadataBase: new URL(siteConfig.url), title: `${title} | ${siteConfig.name}`, description, alternates: { canonical, languages: await getAlternateLanguages("/packaging") }, openGraph: { title, description, url: canonical, siteName: siteConfig.name, locale: openGraphLocales[locale] ?? locale, type: "website" } };
+  const metadataTitle = `${title} | ${brand.name}`;
+  return { metadataBase: new URL(siteConfig.url), title: metadataTitle, description, alternates: { canonical, languages: await getAlternateLanguages("/packaging") }, openGraph: { title: metadataTitle, description, url: canonical, siteName: brand.name, locale: openGraphLocales[locale] ?? locale, type: "website" }, twitter: { card: "summary_large_image", title: metadataTitle, description } };
 }
 
 export default async function PackagingOverviewPage({ params }: { params: Promise<{ locale: string }> }) {
