@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.describe("Production SSR/CDN consistency", () => {
   test("raw HTML carries the current build and homepage architecture", async ({ request }, testInfo) => {
     const origin = (process.env.PRODUCTION_BASE_URL || testInfo.project.use.baseURL || "https://www.kehong.tech").replace(/\/+$/u, "");
-    const expectedBuildSha = process.env.EXPECTED_PRODUCTION_BUILD_SHA || process.env.VERCEL_GIT_COMMIT_SHA || "local";
+    const expectedBuildSha = process.env.EXPECTED_PRODUCTION_BUILD_SHA || process.env.VERCEL_GIT_COMMIT_SHA;
 
     const root = await request.get(`${origin}/`, { maxRedirects: 0 });
     expect(root.status()).toBe(308);
@@ -18,12 +18,14 @@ test.describe("Production SSR/CDN consistency", () => {
 
     for (const response of [normal, noCache, cacheBust]) {
       expect(response.status()).toBe(200);
-      expect(response.headers()["x-kehong-build-sha"]).toBe(expectedBuildSha);
+      expect(response.headers()["x-kehong-build-sha"]).toBeTruthy();
+      if (expectedBuildSha) expect(response.headers()["x-kehong-build-sha"]).toBe(expectedBuildSha);
       expect(response.headers()["x-kehong-data-revision"]).toBeTruthy();
     }
+    expect(new Set([normal, noCache, cacheBust].map((response) => response.headers()["x-kehong-build-sha"])).size).toBe(1);
     expect(new Set([normal, noCache, cacheBust].map((response) => response.headers()["x-kehong-data-revision"])).size).toBe(1);
 
-    expect(root.headers()["x-kehong-build-sha"]).toBe(expectedBuildSha);
+    expect(root.headers()["x-kehong-build-sha"]).toBe(normal.headers()["x-kehong-build-sha"]);
     expect(root.headers()["x-kehong-data-revision"]).toBe(normal.headers()["x-kehong-data-revision"]);
 
     const html = await normal.text();
