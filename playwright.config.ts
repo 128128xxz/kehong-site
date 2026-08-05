@@ -1,5 +1,8 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3000";
+const serverPort = new URL(baseURL).port || (baseURL.startsWith("https:") ? "443" : "80");
+
 export default defineConfig({
   testDir: "./tests/e2e",
   timeout: 45_000,
@@ -9,7 +12,7 @@ export default defineConfig({
   workers: 1,
   reporter: process.env.CI ? [["html", { outputFolder: "test-results/playwright-report", open: "never" }], ["line"]] : "list",
   use: {
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3000",
+    baseURL,
     ...devices["Desktop Chrome"],
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
@@ -17,10 +20,9 @@ export default defineConfig({
     actionTimeout: 15_000,
   },
   webServer: {
-    command: process.env.PLAYWRIGHT_SERVER_COMMAND || "pnpm start",
-    url: `${process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3000"}/en`,
+    command: process.env.PLAYWRIGHT_SERVER_COMMAND || `pnpm exec next start --port ${serverPort}`,
+    url: `${baseURL}/en`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
 });
-

@@ -51,11 +51,7 @@ export default async function RootLayout({
       className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        <link rel="icon" href="/brand/kehong-mark-32.png" sizes="32x32" type="image/png" />
-        <link rel="apple-touch-icon" href="/brand/kehong-mark-180.png" />
-        <meta name="theme-color" content="#171713" />
-      </head>
+      <head><meta name="theme-color" content="#171713" /></head>
       <body
         className="antialiased"
         suppressHydrationWarning

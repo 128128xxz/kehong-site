@@ -34,6 +34,33 @@ test.describe("Kehong production flows", () => {
     await expect(page.locator(".kh-brand-tag")).toHaveText("纸材、半成品与定制纸包装");
   });
 
+  test("all public routes inherit the versioned Kehong mark-only favicon configuration", async ({ request }) => {
+    for (const path of ["/en", "/zh", "/en/products", "/zh/contact", "/en/packaging/takeout-boxes", "/zh/resources", "/en/model-preview"]) {
+      const response = await request.get(path);
+      expect(response.status()).toBe(200);
+      const html = await response.text();
+      expect(html).toContain("/brand/kehong-favicon-v2.ico");
+      expect(html).toContain("/brand/kehong-tab-icon-v2-32.png");
+      expect(html).toContain("/brand/kehong-apple-touch-icon-v2.png");
+      expect(html).toContain("/site.webmanifest");
+      expect(html).not.toContain("/brand/kehong-mark-32.png");
+      expect(html).not.toMatch(/vercel\.svg|vercel\.com\/favicon/i);
+    }
+
+    const manifest = await request.get("/site.webmanifest");
+    expect(manifest.status()).toBe(200);
+    expect(await manifest.json()).toMatchObject({
+      icons: expect.arrayContaining([
+        expect.objectContaining({ src: "/brand/kehong-pwa-icon-v2-192.png", sizes: "192x192" }),
+        expect.objectContaining({ src: "/brand/kehong-pwa-icon-v2-512.png", sizes: "512x512" }),
+      ]),
+    });
+
+    const favicon = await request.get("/favicon.ico");
+    expect(favicon.status()).toBe(200);
+    expect(favicon.headers()["content-type"]).toMatch(/image\/(?:x-icon|vnd\.microsoft\.icon)/);
+  });
+
   test("legacy all-products route permanently redirects to the canonical directory and preserves filters", async ({ request }) => {
     for (const locale of ["en", "zh"]) {
       const response = await request.get(`/${locale}/packaging/all-products?category=food-grade-paper&productType=paper-cup-fan`, {
