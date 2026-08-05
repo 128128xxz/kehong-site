@@ -525,11 +525,12 @@ test.describe("Kehong production flows", () => {
       await expect(catalog.getByText(locale === "zh" ? "外带盒结构、尺寸、材料和印刷根据项目需求确认。请提交参考图、尺寸与目标数量，以便评估和报价。" : "Takeout box structures, sizes, materials and printing are confirmed against the project brief. Send a reference image, dimensions and target quantity for evaluation.", { exact: true })).toHaveCount(1);
       await expect(catalog).not.toContainText("Food Tray Paper Material");
       await expect(page.locator("#packaging-related")).toContainText(locale === "zh" ? "食品纸托材料" : "Food Tray Paper Material");
-      await expect(catalog.locator('a[href*="/contact?product="]')).toHaveAttribute("href", locale === "zh" ? /%E5%A4%96%E5%B8%A6%E9%A3%9F%E5%93%81%E7%9B%92/ : /Takeout%20Boxes/);
+      const quoteHref = await catalog.locator('[data-testid="packaging-scope-quote"]').getAttribute("href");
+      expect(new URL(quoteHref!, "https://www.kehong.tech").searchParams.get("product")).toBe(locale === "zh" ? "外带食品盒" : "Takeout Boxes");
     }
   });
 
-  test("each packaging category uses one canonical inquiry value across quote entries", async ({ request }) => {
+  test("each packaging category CTA opens the correct prefilled contact form", async ({ page }) => {
     const categories = [
       ["paper-bags", "Paper Bags", "纸袋"],
       ["labels-stickers", "Labels & Stickers", "标签与贴纸"],
@@ -542,18 +543,44 @@ test.describe("Kehong production flows", () => {
     for (const locale of ["en", "zh"] as const) {
       for (const [slug, englishLabel, chineseLabel] of categories) {
         const label = locale === "zh" ? chineseLabel : englishLabel;
-        const expectedHref = `/contact?product=${encodeURIComponent(label)}`;
-        const response = await request.get(`/${locale}/packaging/${slug}`);
-        expect(response.status()).toBe(200);
-        const html = await response.text();
-        const escapedHref = `/${locale}${expectedHref}`.replaceAll("&", "&amp;");
-        expect(html.split(escapedHref).length - 1, `${locale}/${slug}: ${escapedHref}`).toBeGreaterThanOrEqual(2);
+        await page.goto(`/${locale}/packaging/${slug}`, { waitUntil: "networkidle" });
+        for (const ctaId of ["packaging-hero-quote", "packaging-scope-quote", "packaging-project-quote"] as const) {
+          const cta = page.getByTestId(ctaId);
+          const href = await cta.getAttribute("href");
+          expect(href, `${locale}/${slug}:${ctaId}`).toBeTruthy();
+          const destination = new URL(href!, "https://www.kehong.tech");
+          expect(destination.pathname).toBe(`/${locale}/contact`);
+          expect(destination.searchParams.get("product")).toBe(label);
+          expect(destination.searchParams.getAll("product")).toEqual([label]);
+          expect(destination.searchParams.get("qa")).toBeNull();
 
-        const contact = await request.get(`/${locale}${expectedHref}&utm_source=qa`);
-        expect(contact.status()).toBe(200);
-        expect(await contact.text()).toContain(label.replaceAll("&", "&amp;"));
+          await Promise.all([
+            page.waitForURL((url) => url.pathname === `/${locale}/contact` && url.searchParams.get("product") === label),
+            cta.click(),
+          ]);
+          await expect(page.getByText(`${locale === "zh" ? "已选产品方向：" : "Selected product direction: "}${label}`, { exact: true })).toHaveCount(2);
+          await expect(page.locator('input[name="products"]').first()).toHaveValue(label);
+          await expect(page.locator('textarea[name="products"]')).toHaveValue(label);
+          await page.goBack({ waitUntil: "networkidle" });
+          await expect(page.getByTestId(ctaId)).toBeVisible();
+        }
       }
     }
+  });
+
+  test("header and footer quotes remain generic while category project briefs retain their purpose", async ({ page }) => {
+    await page.goto("/en/packaging/labels-stickers", { waitUntil: "networkidle" });
+    for (const ctaId of ["site-header-quote", "site-footer-quote"] as const) {
+      const href = await page.getByTestId(ctaId).getAttribute("href");
+      const url = new URL(href!, "https://www.kehong.tech");
+      expect(url.pathname).toBe("/en/contact");
+      expect(url.searchParams.get("product")).toBeNull();
+    }
+    const brief = page.getByRole("link", { name: "Start your project brief" });
+    const briefUrl = new URL((await brief.getAttribute("href"))!, "https://www.kehong.tech");
+    expect(briefUrl.pathname).toBe("/en/contact");
+    expect(briefUrl.searchParams.get("interest")).toBe("structure-review");
+    expect(briefUrl.searchParams.get("product")).toBeNull();
   });
 
   test("first-touch is retained and latest-touch only changes on a new tagged entry", async ({ page }) => {

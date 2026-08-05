@@ -219,7 +219,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
         <div className="kh-header-actions">
           <LanguageSwitcher />
-          <Link href="/contact" onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "header" })} className="kh-button kh-button-primary kh-button-compact kh-header-cta">{copy.contact}</Link>
+          <Link href="/contact" data-testid="site-header-quote" onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "header" })} className="kh-button kh-button-primary kh-button-compact kh-header-cta">{copy.contact}</Link>
           <div className="kh-compact-nav">
             <button
               ref={menuButtonRef}

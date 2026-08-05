@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { getPackagingCategory, getPackagingInquiryLabel, packagingCategories } from "@/data/packagingCategories";
+import { getPackagingCategory, getPackagingInquiryLabel, PACKAGING_INQUIRY_LABELS, packagingCategories, packagingCategorySlugs } from "@/data/packagingCategories";
+import { buildPackagingContactHref } from "@/lib/packagingInquiry";
 import { getLocalizedCatalogValue } from "@/lib/catalog";
 import { localeConfig, locales } from "@/i18n/locales";
 
@@ -14,7 +15,9 @@ describe("public packaging and locale governance", () => {
       "corrugated-mailer-boxes",
     ]);
     expect(getPackagingCategory("pillow-boxes")).toBeUndefined();
-    expect(packagingCategories.map((category) => getPackagingInquiryLabel(category, "en"))).toEqual([
+    expect(packagingCategorySlugs).toEqual(packagingCategories.map((category) => category.slug));
+    expect(Object.keys(PACKAGING_INQUIRY_LABELS)).toEqual(packagingCategorySlugs);
+    expect(packagingCategories.map((category) => getPackagingInquiryLabel(category.slug, "en"))).toEqual([
       "Paper Bags",
       "Labels & Stickers",
       "Takeout Boxes",
@@ -22,7 +25,7 @@ describe("public packaging and locale governance", () => {
       "Cake Boards & Cake Drums",
       "Corrugated Mailer Boxes",
     ]);
-    expect(packagingCategories.map((category) => getPackagingInquiryLabel(category, "zh"))).toEqual([
+    expect(packagingCategories.map((category) => getPackagingInquiryLabel(category.slug, "zh"))).toEqual([
       "纸袋",
       "标签与贴纸",
       "外带食品盒",
@@ -30,6 +33,26 @@ describe("public packaging and locale governance", () => {
       "蛋糕底托与蛋糕鼓",
       "瓦楞邮寄盒",
     ]);
+  });
+
+  it("builds category contact URLs without a Takeout fallback or ampersand loss", () => {
+    const labelsHref = buildPackagingContactHref("en", "labels-stickers", {
+      interest: "structure-review",
+      utm_source: "catalog",
+      utm_campaign: "labels",
+      qa: "not-for-public-links",
+    });
+    const labelsUrl = new URL(labelsHref, "https://www.kehong.tech");
+    expect(labelsUrl.pathname).toBe("/contact");
+    expect(labelsUrl.searchParams.get("product")).toBe("Labels & Stickers");
+    expect(labelsUrl.searchParams.get("interest")).toBe("structure-review");
+    expect(labelsUrl.searchParams.get("utm_source")).toBe("catalog");
+    expect(labelsUrl.searchParams.get("utm_campaign")).toBe("labels");
+    expect(labelsUrl.searchParams.get("qa")).toBeNull();
+    expect(labelsHref).toContain("Labels+%26+Stickers");
+    expect(buildPackagingContactHref("en", "cake-boards-cake-drums")).toContain("Cake+Boards+%26+Cake+Drums");
+    expect(buildPackagingContactHref("en", "retired-or-unknown-category")).toBe("/contact");
+    expect(getPackagingInquiryLabel("retired-or-unknown-category", "en")).toBeUndefined();
   });
 
   it("keeps only complete English and Chinese public locales", () => {

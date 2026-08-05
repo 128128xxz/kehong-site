@@ -9,7 +9,8 @@ import { Reveal } from "@/components/home/interactive";
 import { Link } from "@/i18n/navigation";
 import RelatedLinks from "@/components/site/RelatedLinks";
 import { getAllSkus, getCatalogFilterOptions, getLocalizedProductSku, getProductGroupId, type ProductSku } from "@/lib/catalog";
-import { getPackagingInquiryLabel, type PackagingCategory } from "@/data/packagingCategories";
+import { type PackagingCategory } from "@/data/packagingCategories";
+import { buildPackagingContactHref } from "@/lib/packagingInquiry";
 
 const packagingSectionNumbers = {
   hero: "01",
@@ -39,8 +40,12 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
   const applications = isZh ? category.applications.zh : category.applications.en;
   const filters = isZh ? category.filters.zh : category.filters.en;
   const pagePath = `/packaging/${category.slug}`;
-  const inquiryLabel = getPackagingInquiryLabel(category, locale);
-  const contactHref = `/contact?product=${encodeURIComponent(inquiryLabel)}`;
+  const contactHref = buildPackagingContactHref(locale, category.slug);
+  const scopeQuote = (
+    <Link href={contactHref} data-testid="packaging-scope-quote" className="kh-button kh-button-primary mt-5">
+      {isZh ? "提交项目需求" : "Discuss this requirement"}<ArrowRight className="size-4" />
+    </Link>
+  );
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -69,7 +74,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               : [`${subcategories.length} subcategory directions`, "OEM / ODM", "Foshan, Guangdong, China"]
           }
         >
-          <Link href={contactHref} className="kh-button kh-button-light">
+          <Link href={contactHref} data-testid="packaging-hero-quote" className="kh-button kh-button-light">
             {isZh ? "获取定制报价" : "Get a custom quote"}
             <ArrowRight className="size-4" />
           </Link>
@@ -127,11 +132,14 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               </div>
             </Reveal>
             {skus.length > 0 ? (
-              <ProductCatalog skus={skus} filterOptions={getCatalogFilterOptions(locale)} siteOrigin="https://www.kehong.tech" pagination={{ page: 1, totalPages: 1, totalGroups: new Set(skus.map((sku) => getProductGroupId(sku))).size, totalSkus: skus.length, pageSize: 24 }} />
+              <>
+                <ProductCatalog skus={skus} filterOptions={getCatalogFilterOptions(locale)} siteOrigin="https://www.kehong.tech" pagination={{ page: 1, totalPages: 1, totalGroups: new Set(skus.map((sku) => getProductGroupId(sku))).size, totalSkus: skus.length, pageSize: 24 }} />
+                {scopeQuote}
+              </>
             ) : (
               <div className="kh-panel max-w-3xl p-7">
                 <p className="text-sm leading-6 text-(--kh-muted)">{isTakeoutBoxes ? (isZh ? "请提交参考图、尺寸与目标数量，以便开始结构评估和报价。" : "Send a reference image, dimensions and target quantity to start the structure review and quotation.") : (isZh ? "当前公开目录没有可直接比较的 SKU。请发送尺寸、用途、数量和参考资料，我们会确认合适的材料或结构方向。" : "There are no public SKUs to compare for this direction. Send dimensions, application, quantity and a reference so the suitable material or structure can be reviewed.")}</p>
-                <Link href={contactHref} className="kh-button kh-button-primary mt-5">{isZh ? "提交项目需求" : "Discuss this requirement"}<ArrowRight className="size-4" /></Link>
+                {scopeQuote}
               </div>
             )}
           </div>
@@ -204,7 +212,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               </p>
             </Reveal>
             <Reveal delay={120}>
-              <Link href={contactHref} className="kh-button kh-button-light">
+              <Link href={contactHref} data-testid="packaging-project-quote" className="kh-button kh-button-light">
                 {isZh ? "提交询盘" : "Request a quote"}
                 <ArrowRight className="size-4" />
               </Link>
