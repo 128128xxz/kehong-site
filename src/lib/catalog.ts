@@ -9,7 +9,7 @@ import {
 } from "@/lib/taxonomy";
 import { getCollectionForCategory, getProductCollection } from "@/data/productCollections";
 import { getProductFamily } from "@/data/productFamilies";
-import { formatProductDisplayValue } from "@/lib/productPresentation";
+import { formatProductDisplayList, formatProductDisplayValue } from "@/lib/productPresentation";
 
 export type ProductSku = (typeof catalog.skus)[number];
 export type ProductFamily = (typeof catalog.families)[number];
@@ -712,7 +712,7 @@ export function buildProductGroupSummary(group: { id: string; representative: Pr
     .map((value) => getLocalizedCatalogValue(value, locale))
     .filter(Boolean)))];
   const relatedGroupIds = family?.productGroupIds.filter((id) => id !== group.id) ?? [];
-  const description = [familyLabel, gsm, coating, applications.slice(0, 2).join(", ")].filter(Boolean).join(" · ");
+  const description = [familyLabel, gsm, coating, formatProductDisplayList(applications.slice(0, 2), locale)].filter(Boolean).join(" · ");
   return {
     id: group.id,
     slug: group.representative.slug,

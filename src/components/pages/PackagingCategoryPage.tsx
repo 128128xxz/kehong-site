@@ -62,7 +62,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           kicker={isZh ? "科宏 · B2B 纸品包装" : "Kehong · B2B paper packaging"}
           title={isZh ? category.title.zh : category.title.en}
           lede={isZh ? category.shortDescription.zh : category.shortDescription.en}
-          image={{ src: category.image, alt: `${category.title.en} packaging reference` }}
+          image={{ src: category.image, alt: isZh ? `${category.title.zh}包装参考图` : `${category.title.en} packaging reference` }}
           meta={
             isZh
               ? [`${subcategories.length} 个子类方向`, "OEM / ODM", "中国广东佛山"]
@@ -109,7 +109,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           </div>
         </section>
 
-        <section id="catalog-list" aria-labelledby="packaging-catalog-title" className="kh-section kh-section-paper scroll-mt-24 border-y border-(--kh-line)">
+        <section id="catalog-list" aria-labelledby="packaging-catalog-title" tabIndex={-1} className="kh-section kh-section-paper scroll-mt-24 border-y border-(--kh-line)">
           <div className="kh-shell">
             <Reveal>
               <div className="mb-9 max-w-3xl">
@@ -221,7 +221,7 @@ function getCategoryFaq(slug: string, isZh: boolean): [string, string][] {
   const categorySpecific: Record<string, { en: [string, string][]; zh: [string, string][] }> = {
     "cake-boards-cake-drums": {
       en: [["How do cake boards and cake drums differ?", "Cake boards are commonly selected for everyday support and display. Cake drums are reviewed when a project needs a thicker support format."], ["What should be confirmed before quoting?", "Share the cake footprint, target support requirement, quantity, finish direction and destination."], ["Can the shape and edge be customized?", "Shape, diameter, edge and finish are reviewed against the approved project brief."]],
-      zh: [["Cake Board 与 Cake Drum 有什么区别？", "Cake Board 通常用于日常承托与展示；项目需要更厚承托时会评审 Cake Drum 方向。"], ["报价前需要确认什么？", "请提供蛋糕尺寸、承托需求、数量、表面效果和目的地。"], ["形状和边缘可以定制吗？", "形状、直径、边缘与表面效果会按确认后的项目需求评审。"]],
+      zh: [["蛋糕托板（Cake Board）与蛋糕鼓（Cake Drum）有什么区别？", "蛋糕托板（Cake Board）通常用于日常承托与展示；项目需要更厚承托时会评审蛋糕鼓（Cake Drum）方向。"], ["报价前需要确认什么？", "请提供蛋糕尺寸、承托需求、数量、表面效果和目的地。"], ["形状和边缘可以定制吗？", "形状、直径、边缘与表面效果会按确认后的项目需求评审。"]],
     },
     "corrugated-mailer-boxes": {
       en: [["What is needed to review a mailer structure?", "Share the product dimensions, protective points, quantity and dispatch workflow."], ["Can inserts be included with a mailer?", "Paper inserts and dividers can be reviewed together with the mailer structure."], ["When is sampling needed?", "Sampling is considered when fit, closure or protection needs to be confirmed before production."]],

@@ -14,8 +14,8 @@ export function formatProductDisplayValue(value: string, locale: string) {
   const singleGsm = trimmed.match(/^(\d+(?:\.\d+)?)gsm$/iu);
   if (singleGsm) return `${singleGsm[1]} GSM`;
 
-  if (/^\d+(?:\.\d+)?oz(?:\/\d+(?:\.\d+)?oz)*$/iu.test(trimmed)) {
-    return trimmed.replaceAll(/(\d+(?:\.\d+)?)oz/giu, "$1 oz");
+  if (/^\d+(?:\.\d+)?\s*oz(?:\/\d+(?:\.\d+)?\s*oz)*$/iu.test(trimmed)) {
+    return trimmed.split("/").map((token) => token.trim().replace(/^(\d+(?:\.\d+)?)\s*oz$/iu, "$1 oz")).join(" / ");
   }
 
   const maxWidth = trimmed.match(/^Max width\s+(\d+(?:\.\d+)?)mm$/iu);
@@ -23,8 +23,25 @@ export function formatProductDisplayValue(value: string, locale: string) {
 
   if (trimmed === "Custom L*W") return locale === "zh" ? "按长 × 宽定制" : "Custom L × W";
   if (trimmed === "Custom by cup size / dimensions") return locale === "zh" ? "按杯型 / 尺寸定制" : trimmed;
+  if (locale === "zh") {
+    const chineseValues: Record<string, string> = {
+      "Custom width": "定制宽度",
+      "Jumbo roll": "大卷规格",
+      "Cupstock roll": "杯纸卷",
+      "Sheet for flexo": "柔印用平张纸",
+      "Sheet for digital": "数码印刷用平张纸",
+    };
+    return chineseValues[trimmed] ?? trimmed;
+  }
 
   return trimmed;
+}
+
+/** Locale-aware display list formatting without changing the source arrays. */
+export function formatProductDisplayList(values: readonly string[], locale: string) {
+  const items = values.map((value) => value.trim()).filter(Boolean);
+  if (locale === "zh") return items.join("、");
+  return new Intl.ListFormat("en", { style: "long", type: "conjunction" }).format(items);
 }
 
 /** Shared buyer-facing product context for forms and message summaries. */

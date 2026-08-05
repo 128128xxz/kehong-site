@@ -20,6 +20,7 @@ import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { absoluteSiteUrl, getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
+import { formatProductDisplayList } from "@/lib/productPresentation";
 import {
   getAllSkus,
   getProductCategoryBySlug,
@@ -204,7 +205,7 @@ export default async function ProductDetailPage({
     [isZh ? "可选材料" : "Material options", groupSummary.materials.join(isZh ? "、" : " / ")],
     [isZh ? "可选涂层 / 淋膜" : "Coating options", groupSummary.coating],
     [isZh ? "变体数量" : "Variant count", isZh ? `${groupSummary.variantCount} 个变体` : `${groupSummary.variantCount} ${groupSummary.variantCount === 1 ? "variant" : "variants"}`],
-    [isZh ? "适用方向" : "Applications", groupSummary.applications.join(" / ")],
+    [isZh ? "适用方向" : "Applications", formatProductDisplayList(groupSummary.applications, locale)],
   ].filter(([, value]) => value);
   const currentSkuSpecs = [
     [isZh ? "当前 SKU" : "Current SKU", sku.sku],

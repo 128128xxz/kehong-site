@@ -140,7 +140,10 @@ export default function proxy(request: NextRequest) {
     return withDiagnostics(NextResponse.redirect(url, 308));
   }
 
-  return withDiagnostics(intlMiddleware(request));
+  const locale = request.nextUrl.pathname.split("/")[1] === "zh" ? "zh" : "en";
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-kehong-locale", locale);
+  return withDiagnostics(intlMiddleware(new NextRequest(request, { headers: requestHeaders })));
 }
 
 export const config = {

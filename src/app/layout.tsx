@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en" dir="ltr" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable}`} suppressHydrationWarning><head><meta name="theme-color" content="#171713" /></head><body className="antialiased" suppressHydrationWarning>{children}</body></html>;
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const documentLocale = (await headers()).get("x-kehong-locale") === "zh" ? "zh" : "en";
+  return <html lang={documentLocale} dir="ltr" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable}`} suppressHydrationWarning><head><meta name="theme-color" content="#171713" /></head><body className="antialiased" suppressHydrationWarning>{children}</body></html>;
 }

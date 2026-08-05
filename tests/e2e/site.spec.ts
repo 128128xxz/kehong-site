@@ -158,7 +158,7 @@ test.describe("Kehong production flows", () => {
     await page.goto("/en/products", { waitUntil: "networkidle" });
     const category = page.locator("select").first();
     const optionCount = await category.locator("option").count();
-    test.skip(optionCount < 2, "No taxonomy category option is available");
+    expect(optionCount).toBeGreaterThan(1);
     await category.selectOption({ index: 1 });
     await expect(page).toHaveURL(/category=/);
     await page.reload({ waitUntil: "networkidle" });
@@ -334,6 +334,45 @@ test.describe("Kehong production flows", () => {
 
     await page.goto("/zh/contact", { waitUntil: "networkidle" });
     await expect(page.locator(".kh-fig-caption").filter({ hasText: "图01 — 食品纸盒实拍" }).first()).toBeVisible();
+
+    for (const [path, title] of [
+      ["/zh/resources/artwork-guidelines", "设计稿指南 | 科宏纸品"],
+      ["/zh/resources/dielines-templates", "刀模图与模板 | 科宏纸品"],
+      ["/zh/factory", "工厂与服务能力 | 科宏纸品"],
+      ["/zh/products", "产品目录 | 科宏纸品"],
+      ["/zh/privacy", "隐私政策 | 科宏纸品"],
+      ["/zh/terms", "使用条款 | 科宏纸品"],
+    ]) {
+      await page.goto(path, { waitUntil: "networkidle" });
+      await expect(page).toHaveTitle(title);
+      await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", title);
+      await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", title);
+    }
+  });
+
+  test("every packaging category Browse products control targets its in-page product scope", async ({ page }) => {
+    const categories = ["paper-bags", "labels-stickers", "takeout-boxes", "cake-boxes", "cake-boards-cake-drums", "corrugated-mailer-boxes"];
+    for (const locale of ["en", "zh"]) {
+      for (const slug of categories) {
+        await page.goto(`/${locale}/packaging/${slug}`, { waitUntil: "networkidle" });
+        const link = page.getByRole("link", { name: locale === "zh" ? "浏览产品" : "Browse products" });
+        await expect(link).toHaveAttribute("href", "#catalog-list");
+        await link.focus();
+        await page.keyboard.press("Enter");
+        await expect(page).toHaveURL(/#catalog-list$/);
+        await expect(page.locator("#catalog-list")).toBeVisible();
+        await expect(page.locator("#catalog-list")).toBeFocused();
+      }
+    }
+  });
+
+  test("Chinese packaging copy prefers Chinese names while preserving technical terms", async ({ page }) => {
+    await page.goto("/zh/packaging/paper-bags", { waitUntil: "networkidle" });
+    await expect(page.locator("main")).toContainText("科宏可根据已确认的项目需求评估");
+    await expect(page.locator("main")).not.toContainText("Kehong 可");
+    await page.goto("/zh/packaging/cake-boards-cake-drums", { waitUntil: "networkidle" });
+    await expect(page.locator("main")).toContainText("蛋糕托板（Cake Board）");
+    await expect(page.locator("main")).toContainText("蛋糕鼓（Cake Drum）");
   });
 
   test("product detail formatting is consistent in English and Chinese", async ({ page }) => {
