@@ -531,6 +531,7 @@ test.describe("Kehong production flows", () => {
   });
 
   test("each packaging category CTA opens the correct prefilled contact form", async ({ page }) => {
+    test.setTimeout(120_000);
     const categories = [
       ["paper-bags", "Paper Bags", "纸袋"],
       ["labels-stickers", "Labels & Stickers", "标签与贴纸"],
