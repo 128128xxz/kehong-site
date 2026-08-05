@@ -1,6 +1,7 @@
 import productImages from "@/data/productImages.json";
 import type { AppLocale } from "@/i18n/locales";
 import type { ProductSku } from "@/lib/catalog";
+import { getPublicProductType } from "@/lib/catalog";
 
 export type ProductImageStatus = "exact" | "representative" | "ai-representative" | "pending";
 export type ProductDataStatus = "complete" | "partial" | "pending-source";
@@ -20,6 +21,21 @@ type SkuImageMapEntry = {
 
 const assetsById = new Map(productImages.assets.map((asset) => [asset.assetId, asset]));
 const skuImagesBySku = productImages.skuImages as Record<string, SkuImageMapEntry | undefined>;
+
+/**
+ * The confirmed public catalogue currently has six cupstock-related groups.
+ * Their source records once inherited a single family image, making distinct
+ * roll, sheet and tray directions look like duplicates. These are approved
+ * representative assets, selected by stable group ID rather than by position.
+ */
+const publicGroupVisualAssets: Record<string, string> = {
+  "paper-cup-fan-paper-cup-fan": "kh-cupfan-family-representative",
+  "paper-cup-fan-paper-cup-bottom-roll": "kh-cup-bottom-family-representative",
+  "paper-cup-fan-pe-coated-paper-roll-for-paper-cup": "kh-material-family-representative",
+  "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup": "kh-coated-sheet-family-concept",
+  "paper-cup-fan-kraft-cupstock-paper": "kh-kraft-family-representative",
+  "paper-cup-fan-food-tray-paper-material": "kh-food-tray-family-concept",
+};
 
 export type ProductImageMeta = {
   src: string;
@@ -50,10 +66,14 @@ function getSkuImageMapping(sku: ProductSku): SkuImageMapEntry {
   return skuImagesBySku[sku.sku] ?? {};
 }
 
+function getGroupVisualAssetId(sku: Pick<ProductSku, "groupId" | "canonicalGroupId">) {
+  return publicGroupVisualAssets[sku.groupId ?? sku.canonicalGroupId ?? ""];
+}
+
 const imageStatusLabels: Record<ProductImageStatus, LocalizedLabel> = {
   exact: {
     en: "Verified Product Photo",
-    zh: "Verified Product Photo",
+    zh: "已核验产品照片",
     es: "Verified Product Photo",
     id: "Verified Product Photo",
     vi: "Verified Product Photo",
@@ -80,7 +100,7 @@ const imageStatusLabels: Record<ProductImageStatus, LocalizedLabel> = {
   },
   pending: {
     en: "Image Pending Confirmation",
-    zh: "Image Pending Confirmation",
+    zh: "图片待确认",
     es: "Image Pending Confirmation",
     id: "Image Pending Confirmation",
     vi: "Image Pending Confirmation",
@@ -133,14 +153,19 @@ export function getDataStatusLabel(status: ProductDataStatus | string, locale: s
 
 const productTypeLabels: Record<string, LocalizedLabel> = {
   "paper-cup-fan": {
-    en: "Paper cup fan & cupstock",
-    zh: "纸杯扇形片 / 杯纸",
-    es: "Paper cup fan y cartulina para vasos",
-    id: "Paper cup fan & cupstock",
-    vi: "Phôi quạt ly giấy & giấy làm ly",
-    th: "แผ่นพัดแก้วกระดาษและกระดาษทำแก้ว",
-    ms: "Paper cup fan & cupstock",
+    en: "Cupstock components",
+    zh: "杯纸组件",
+    es: "Componentes de cupstock",
+    id: "Cupstock components",
+    vi: "Thành phần giấy làm ly",
+    th: "ส่วนประกอบกระดาษทำแก้ว",
+    ms: "Komponen cupstock",
   },
+  "pe-coated-paper-roll": { en: "PE coated paper roll", zh: "PE 淋膜纸卷" },
+  "pe-coated-paper-sheet": { en: "Coated paper sheet", zh: "淋膜平张纸" },
+  "paper-cup-bottom-roll": { en: "Paper cup bottom roll", zh: "纸杯底卷" },
+  "cupstock-paper": { en: "Cupstock paper", zh: "杯纸" },
+  "food-tray-paper-material": { en: "Food tray paper material", zh: "食品纸托材料" },
   "kraft-paper": {
     en: "Kraft paper",
     zh: "牛皮纸",
@@ -229,6 +254,19 @@ export function getProductTypeLabel(productType: string, locale: string) {
   return label ? pickLabel(label, locale) : productType;
 }
 
+export function getPublicProductTypeLabel(sku: ProductSku, locale: string) {
+  const publicType = getPublicProductType(sku);
+  const labels: Record<string, LocalizedLabel> = {
+    "paper-cup-fan": { en: "Paper cup fan", zh: "纸杯扇形片" },
+    "pe-coated-paper-roll": { en: "PE coated paper roll", zh: "PE 淋膜纸卷" },
+    "pe-coated-paper-sheet": { en: "Coated paper sheet", zh: "淋膜平张纸" },
+    "paper-cup-bottom-roll": { en: "Paper cup bottom roll", zh: "纸杯底卷" },
+    "cupstock-paper": { en: "Cupstock paper", zh: "杯纸" },
+    "food-tray-paper-material": { en: "Food tray paper material", zh: "食品纸托材料" },
+  };
+  return labels[publicType] ? pickLabel(labels[publicType], locale) : getProductTypeLabel(publicType, locale);
+}
+
 function statusTone(status: ProductImageStatus): ProductImageMeta["statusTone"] {
   if (status === "exact") return "success";
   if (status === "representative" || status === "ai-representative") return "warning";
@@ -255,7 +293,7 @@ function isAssetDisplayAllowed(asset: ProductImageAsset) {
 export function getSkuEffectiveImageStatus(sku: ProductSku): ProductImageStatus {
   const mapping = getSkuImageMapping(sku);
   const requestedStatus = normalizeImageStatus(mapping.imageStatus ?? sku.imageMappingStatus);
-  const mainImageAssetId = mapping.main ?? sku.mainImageAssetId;
+  const mainImageAssetId = getGroupVisualAssetId(sku) ?? mapping.main ?? sku.mainImageAssetId;
   const asset = mainImageAssetId ? assetsById.get(mainImageAssetId) : undefined;
 
   if (!asset || !isAssetDisplayAllowed(asset)) return "pending";
@@ -268,10 +306,21 @@ export function getSkuEffectiveImageStatus(sku: ProductSku): ProductImageStatus 
   return requestedStatus;
 }
 
-function fallbackImage(locale: string): ProductImageMeta {
+const productTypeFallbacks: Record<string, { src: string; en: string; zh: string }> = {
+  "paper-cup-fan": { src: "/images/ai/ai-cup-fan-blanks.jpg", en: "Paper cup fan blanks for cup converting", zh: "用于纸杯加工的纸杯扇形片" },
+  "paper-packaging-material": { src: "/images/ai/ai-pe-coated-roll.jpg", en: "PE-coated paper roll for packaging conversion", zh: "用于包装加工的 PE 淋膜纸卷" },
+  "kraft-paper": { src: "/images/ai/ai-kraft-cupstock.jpg", en: "Kraft paper and cupstock material reference", zh: "牛皮纸与杯纸材料参考图" },
+  "food-packaging-box": { src: "/images/kehong/showcase/optimized/food-box-real-01.jpg", en: "Food packaging box structure reference", zh: "食品包装盒结构参考图" },
+  "corrugated-fluted-paper": { src: "/images/ai/ai-flute-types.jpg", en: "Corrugated board material structure reference", zh: "瓦楞纸板材料结构参考图" },
+  "paper-insert": { src: "/images/ai/ai-paper-insert.jpg", en: "Paper insert and protective tray reference", zh: "纸内托与保护纸托参考图" },
+  "paper-pad": { src: "/images/ai/ai-cake-pads.jpg", en: "Paper pad and cake board reference", zh: "纸垫片与蛋糕垫板参考图" },
+};
+
+function fallbackImage(sku: ProductSku, locale: string): ProductImageMeta {
+  const fallback = productTypeFallbacks[sku.productType];
   return {
-    src: "/images/kehong/showcase/precision-machine-closeup.webp",
-    alt: locale === "zh" ? "纸品生产能力代表图" : "Representative paper production capability",
+    src: fallback?.src ?? "/images/kehong/showcase/precision-machine-closeup.webp",
+    alt: locale === "zh" ? (fallback?.zh ?? "纸品生产能力代表图") : (fallback?.en ?? "Representative paper production capability"),
     status: "pending",
     statusLabel: getImageStatusLabel("pending", locale),
     statusTone: statusTone("pending"),
@@ -280,11 +329,11 @@ function fallbackImage(locale: string): ProductImageMeta {
 
 export function getSkuImageMeta(sku: ProductSku, locale: string): ProductImageMeta {
   const mapping = getSkuImageMapping(sku);
-  const mainImageAssetId = mapping.main ?? sku.mainImageAssetId;
+  const mainImageAssetId = getGroupVisualAssetId(sku) ?? mapping.main ?? sku.mainImageAssetId;
   const asset = mainImageAssetId ? assetsById.get(mainImageAssetId) : undefined;
   const approvedAsset = asset && isAssetDisplayAllowed(asset) ? asset : undefined;
 
-  if (!approvedAsset) return fallbackImage(locale);
+  if (!approvedAsset) return fallbackImage(sku, locale);
 
   const safeStatus = getSkuEffectiveImageStatus(sku);
   const alt = locale === "zh" ? approvedAsset.alt.zh : approvedAsset.alt.en;
@@ -313,8 +362,11 @@ function getSafeGalleryStatus(sku: ProductSku, asset: ProductImageAsset): Produc
 
 export function getSkuGalleryMeta(sku: ProductSku, locale: string): ProductImageMeta[] {
   const mapping = getSkuImageMapping(sku);
-  const ids = mapping.gallery?.length
-    ? mapping.gallery
+  const groupVisualAssetId = getGroupVisualAssetId(sku);
+  const ids = groupVisualAssetId
+    ? [groupVisualAssetId, ...(mapping.gallery ?? []).filter((assetId) => assetId !== groupVisualAssetId)]
+    : mapping.gallery?.length
+      ? mapping.gallery
     : sku.galleryAssetIds?.length
       ? sku.galleryAssetIds
       : [mapping.main ?? sku.mainImageAssetId].filter(Boolean);

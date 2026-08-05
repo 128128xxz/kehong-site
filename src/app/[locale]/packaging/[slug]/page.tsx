@@ -4,6 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import PackagingCategoryPage from "@/components/pages/PackagingCategoryPage";
 import { getPackagingCategory, packagingCategories } from "@/data/packagingCategories";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
 import { locales } from "@/i18n/locales";
 
 export function generateStaticParams() {
@@ -15,17 +16,25 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const category = getPackagingCategory(slug);
   if (!category) return {};
   const canonical = await getLocaleUrl(locale, `/packaging/${slug}`);
+  const zh = locale === "zh";
+  const brand = getBrandConfig(locale);
+  const title = zh ? `${category.title.zh} | ${brand.name}` : category.seoTitle;
+  const description = zh ? category.shortDescription.zh : category.seoDescription;
   return {
     metadataBase: new URL(siteConfig.url),
-    title: category.seoTitle,
-    description: category.seoDescription,
+    title,
+    description,
     alternates: { canonical, languages: await getAlternateLanguages(`/packaging/${slug}`) },
-    openGraph: { title: category.seoTitle, description: category.seoDescription, url: canonical, siteName: siteConfig.name, locale: openGraphLocales[locale] ?? locale, type: "website", images: [{ url: category.image, width: 1200, height: 630, alt: category.title.en }] },
-    twitter: { card: "summary_large_image", title: category.seoTitle, description: category.seoDescription, images: [category.image] },
+    openGraph: { title, description, url: canonical, siteName: brand.name, locale: openGraphLocales[locale] ?? locale, type: "website", images: [{ url: category.image, width: 1200, height: 630, alt: zh ? category.title.zh : category.title.en }] },
+    twitter: { card: "summary_large_image", title, description, images: [category.image] },
   };
 }
 
-export default async function PackagingCategoryRoute({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+export default async function PackagingCategoryRoute({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
   const { locale, slug } = await params;
   const category = getPackagingCategory(slug);
   if (!category) notFound();

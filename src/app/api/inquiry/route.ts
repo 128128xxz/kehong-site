@@ -27,7 +27,36 @@ type InquiryPayload = {
   utmSource?: unknown;
   utmMedium?: unknown;
   utmCampaign?: unknown;
+  utmContent?: unknown;
+  utmTerm?: unknown;
+  gclid?: unknown;
+  fbclid?: unknown;
+  firstLandingPath?: unknown;
+  conversionPath?: unknown;
+  referrer?: unknown;
+  ctaLocation?: unknown;
+  locale?: unknown;
+  productGroupId?: unknown;
+  productGroupTitle?: unknown;
+  sku?: unknown;
+  skuTitle?: unknown;
+  firstTouchSource?: unknown;
+  firstTouchMedium?: unknown;
+  firstTouchCampaign?: unknown;
+  firstTouchContent?: unknown;
+  firstTouchTerm?: unknown;
+  firstTouchPath?: unknown;
+  latestTouchSource?: unknown;
+  latestTouchMedium?: unknown;
+  latestTouchCampaign?: unknown;
+  latestTouchContent?: unknown;
+  latestTouchTerm?: unknown;
+  latestTouchPath?: unknown;
+  inquiryType?: unknown;
   privacy?: unknown;
+  interestId?: unknown;
+  interestLabel?: unknown;
+  interestProductType?: unknown;
 };
 
 type Attachment = { filename: string; content: string };
@@ -143,7 +172,36 @@ export async function POST(request: Request) {
     utmSource: canonicalizePublicText(toText(payload.utmSource)),
     utmMedium: canonicalizePublicText(toText(payload.utmMedium)),
     utmCampaign: canonicalizePublicText(toText(payload.utmCampaign)),
+    utmContent: canonicalizePublicText(toText(payload.utmContent)),
+    utmTerm: canonicalizePublicText(toText(payload.utmTerm)),
+    gclid: canonicalizePublicText(toText(payload.gclid)),
+    fbclid: canonicalizePublicText(toText(payload.fbclid)),
+    firstLandingPath: canonicalizePublicText(toText(payload.firstLandingPath)),
+    conversionPath: canonicalizePublicText(toText(payload.conversionPath)),
+    referrer: canonicalizePublicText(toText(payload.referrer)),
+    ctaLocation: canonicalizePublicText(toText(payload.ctaLocation)),
+    locale: canonicalizePublicText(toText(payload.locale)),
+    productGroupId: canonicalizePublicText(toText(payload.productGroupId)),
+    productGroupTitle: canonicalizePublicText(toText(payload.productGroupTitle)),
+    sku: canonicalizePublicText(toText(payload.sku)),
+    skuTitle: canonicalizePublicText(toText(payload.skuTitle)),
+    firstTouchSource: canonicalizePublicText(toText(payload.firstTouchSource)),
+    firstTouchMedium: canonicalizePublicText(toText(payload.firstTouchMedium)),
+    firstTouchCampaign: canonicalizePublicText(toText(payload.firstTouchCampaign)),
+    firstTouchContent: canonicalizePublicText(toText(payload.firstTouchContent)),
+    firstTouchTerm: canonicalizePublicText(toText(payload.firstTouchTerm)),
+    firstTouchPath: canonicalizePublicText(toText(payload.firstTouchPath)),
+    latestTouchSource: canonicalizePublicText(toText(payload.latestTouchSource)),
+    latestTouchMedium: canonicalizePublicText(toText(payload.latestTouchMedium)),
+    latestTouchCampaign: canonicalizePublicText(toText(payload.latestTouchCampaign)),
+    latestTouchContent: canonicalizePublicText(toText(payload.latestTouchContent)),
+    latestTouchTerm: canonicalizePublicText(toText(payload.latestTouchTerm)),
+    latestTouchPath: canonicalizePublicText(toText(payload.latestTouchPath)),
+    inquiryType: canonicalizePublicText(toText(payload.inquiryType)),
     privacy: toText(payload.privacy),
+    interestId: canonicalizePublicText(toText(payload.interestId)),
+    interestLabel: canonicalizePublicText(toText(payload.interestLabel)),
+    interestProductType: canonicalizePublicText(toText(payload.interestProductType)),
   };
 
   if (!inquiry.name || !isValidEmail(inquiry.email) || inquiry.products.length === 0 || inquiry.privacy !== "on") {

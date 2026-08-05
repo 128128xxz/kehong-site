@@ -165,6 +165,70 @@
         "en": "PE-coated paper roll — reference image",
         "zh": "PE 淋膜纸卷参考图"
       }
+    },
+    {
+      "sourcePageUrl": "local://user-provided-kehong-image-pack",
+      "directImageUrl": "/images/ai/ai-cup-bottom-rolls.jpg",
+      "sourceOwner": "Kehong / user-provided project asset",
+      "licenseOrPermission": "authorized",
+      "permissionStatus": "approved",
+      "notes": "Representative visual only. Not verified as exact SKU photography.",
+      "assetId": "kh-cup-bottom-family-representative",
+      "localPath": "/images/ai/ai-cup-bottom-rolls.jpg",
+      "scope": "family",
+      "exactness": "ai-representative",
+      "alt": {
+        "en": "Paper cup bottom rolls — reference image",
+        "zh": "纸杯底卷参考图"
+      }
+    },
+    {
+      "sourcePageUrl": "local://user-provided-kehong-image-pack",
+      "directImageUrl": "/images/ai/ai-diecut-sheets.jpg",
+      "sourceOwner": "Kehong / user-provided project asset",
+      "licenseOrPermission": "authorized",
+      "permissionStatus": "approved",
+      "notes": "Representative visual only. Not verified as exact SKU photography.",
+      "assetId": "kh-coated-sheet-family-representative",
+      "localPath": "/images/ai/ai-diecut-sheets.jpg",
+      "scope": "family",
+      "exactness": "ai-representative",
+      "alt": {
+        "en": "Coated paper sheet — reference image",
+        "zh": "淋膜纸片参考图"
+      }
+    },
+    {
+      "sourcePageUrl": "local://user-provided-kehong-image-pack",
+      "directImageUrl": "/images/ai-generated/category/ai-category-pe-coated-paper-sheet.webp",
+      "sourceOwner": "Kehong / user-provided project asset",
+      "licenseOrPermission": "authorized",
+      "permissionStatus": "approved",
+      "notes": "Concept visualization only. It represents stacked PE-coated flat paper sheets and is not exact SKU photography.",
+      "assetId": "kh-coated-sheet-family-concept",
+      "localPath": "/images/ai-generated/category/ai-category-pe-coated-paper-sheet.webp",
+      "scope": "family",
+      "exactness": "ai-representative",
+      "alt": {
+        "en": "Stacked PE-coated paper sheets with a lifted coated surface — concept visualization",
+        "zh": "叠放的 PE 淋膜纸片及表面涂层概念示意图"
+      }
+    },
+    {
+      "sourcePageUrl": "local://user-provided-kehong-image-pack",
+      "directImageUrl": "/images/ai-generated/category/ai-category-paper-insert.webp",
+      "sourceOwner": "Kehong / user-provided project asset",
+      "licenseOrPermission": "authorized",
+      "permissionStatus": "approved",
+      "notes": "Concept visualization only. It represents paper tray and insert material formats and is not exact SKU photography.",
+      "assetId": "kh-food-tray-family-concept",
+      "localPath": "/images/ai-generated/category/ai-category-paper-insert.webp",
+      "scope": "family",
+      "exactness": "ai-representative",
+      "alt": {
+        "en": "Paper tray and insert material formats — concept visualization",
+        "zh": "纸托与纸内托材料形态概念示意图"
+      }
     }
   ],
   "skuImages": {

@@ -19,37 +19,29 @@ import SiteFooter from "@/components/site/SiteFooter";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { absoluteSiteUrl, getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
 import {
   getAllSkus,
-  getCanonicalCategoryForSku,
   getProductCategoryBySlug,
-  getProductCategoryForSku,
   getLocalizedCatalogValue,
   getLocalizedProductMaterial,
   getLocalizedProductTitle,
   getProductGroupId,
   getSkuBySlug,
   getSkusByGroupId,
+  buildProductGroupSummary,
   productDataRevision,
 } from "@/lib/catalog";
 import ProductImageWithStatus from "@/components/site/ProductImageWithStatus";
+import RelatedLinks from "@/components/site/RelatedLinks";
 import {
   getProductTypeLabel,
+  getPublicProductTypeLabel,
   getSkuImageMeta,
 } from "@/lib/productImages";
 
 function serializeJsonLd(data: Record<string, unknown>) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
-}
-
-function productDescription(sku: ReturnType<typeof getAllSkus>[number], locale: string) {
-  const title = getLocalizedProductTitle(sku, locale);
-  const details = [getLocalizedProductMaterial(sku, locale), sku.gsmOrThickness, sku.coating, sku.structureOrFlute, sku.applications]
-    .map((value) => getLocalizedCatalogValue(value, locale))
-    .filter(Boolean)
-    .join(" / ");
-
-  return details ? `${title}. ${details}.` : title;
 }
 
 export const dynamic = "force-dynamic";
@@ -61,6 +53,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
+  const brand = getBrandConfig(locale);
   const sku = getSkuBySlug(slug);
   const category = getProductCategoryBySlug(slug);
 
@@ -71,21 +64,23 @@ export async function generateMetadata({
       const canonical = await getLocaleUrl(locale, `/products/${category.slug}` as SiteHref);
       return {
         metadataBase: new URL(siteConfig.url),
-        title: `${title} | ${siteConfig.name}`,
+        title: `${title} | ${brand.name}`,
         description,
         alternates: { canonical, languages: await getAlternateLanguages(`/products/${category.slug}` as SiteHref) },
-        openGraph: { title, description, url: canonical, siteName: siteConfig.name, type: "website" },
+        openGraph: { title, description, url: canonical, siteName: brand.name, type: "website" },
       };
     }
     return {
-      title: siteConfig.name,
+      title: brand.name,
     };
   }
 
   const href = `/products/${sku.slug}` as SiteHref;
   const canonical = await getLocaleUrl(locale, href);
-  const title = `${getLocalizedProductTitle(sku, locale)} | ${sku.sku}`;
-  const description = productDescription(sku, locale);
+  const groupVariants = getSkusByGroupId(getProductGroupId(sku));
+  const groupSummary = buildProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
+  const title = groupSummary.metadata.title;
+  const description = groupSummary.metadata.description;
   const imageMeta = getSkuImageMeta(sku, locale);
   const socialImage = imageMeta.status === "exact" ? imageMeta.src : "/og-image.png";
 
@@ -109,7 +104,7 @@ export async function generateMetadata({
       title,
       description,
       url: canonical,
-      siteName: siteConfig.name,
+      siteName: brand.name,
       images: [
         {
           url: socialImage,
@@ -183,13 +178,14 @@ export default async function ProductDetailPage({
 
   const t = await getTranslations({ locale, namespace: "Site" });
   const isZh = locale === "zh";
+  const brand = getBrandConfig(locale);
   const productHref = `/products/${sku.slug}` as SiteHref;
   const productUrl = await getLocaleUrl(locale, productHref);
-  const contactHref = `/contact?product=${encodeURIComponent(sku.slug)}&sku=${encodeURIComponent(sku.sku)}&url=${encodeURIComponent(productUrl)}` as SiteHref;
-  const productCategory = getProductCategoryForSku(sku);
-  const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(`${t("inquiry.message")}\n- ${isZh ? "产品编号" : "Product code"}: ${sku.sku} ${getLocalizedProductTitle(sku, locale)}\n- URL: ${productUrl}`)}`;
-  const imageMeta = getSkuImageMeta(sku, locale);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
+  const groupSummary = buildProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
+  const contactHref = `/contact?product=${encodeURIComponent(sku.slug)}&sku=${encodeURIComponent(sku.sku)}&url=${encodeURIComponent(productUrl)}` as SiteHref;
+  const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(`${t("inquiry.message")}\n- ${isZh ? "产品组" : "Product group"}: ${groupSummary.title}\n- ${isZh ? "当前 SKU" : "Current SKU"}: ${sku.sku}\n- URL: ${productUrl}`)}`;
+  const imageMeta = getSkuImageMeta(sku, locale);
   const variantSearch = typeof query.variantSearch === "string" ? query.variantSearch.trim().toLowerCase() : "";
   const matchingVariants = variantSearch
     ? groupVariants.filter((variant) => [variant.sku, variant.gsmOrThickness, variant.coating, variant.commonSize]
@@ -200,17 +196,24 @@ export default async function ProductDetailPage({
   const visibleVariants = showAllVariants ? matchingVariants : matchingVariants.slice(0, 12);
   const hasMoreVariants = matchingVariants.length > visibleVariants.length;
 
-  const specs = [
-    [isZh ? "产品类型" : "Product type", getProductTypeLabel(sku.productType, locale)],
+  const groupSpecs = [
+    [isZh ? "产品家族" : "Product family", groupSummary.familyLabel],
+    [isZh ? "可用克重范围" : "Available GSM range", groupSummary.gsm || (isZh ? "按规格确认" : "Confirmed by specification")],
+    [isZh ? "可选材料" : "Material options", groupSummary.materials.join(isZh ? "、" : " / ")],
+    [isZh ? "可选涂层 / 淋膜" : "Coating options", groupSummary.coating],
+    [isZh ? "变体数量" : "Variant count", isZh ? `${groupSummary.variantCount} 个变体` : `${groupSummary.variantCount} ${groupSummary.variantCount === 1 ? "variant" : "variants"}`],
+    [isZh ? "适用方向" : "Applications", groupSummary.applications.join(" / ")],
+  ].filter(([, value]) => value);
+  const currentSkuSpecs = [
+    [isZh ? "当前 SKU" : "Current SKU", sku.sku],
     [t("detail.material"), getLocalizedProductMaterial(sku, locale)],
-    [t("detail.gsm"), getLocalizedCatalogValue(sku.gsmOrThickness, locale)],
-    [isZh ? "涂层 / 淋膜" : "Coating", getLocalizedCatalogValue(sku.coating, locale)],
+    [isZh ? "当前克重 / 厚度" : "Current GSM / thickness", getLocalizedCatalogValue(sku.gsmOrThickness, locale)],
+    [isZh ? "当前涂层 / 淋膜" : "Current coating", getLocalizedCatalogValue(sku.coating, locale)],
     [t("detail.structure"), getLocalizedCatalogValue(sku.structureOrFlute, locale)],
     [t("detail.surface"), getLocalizedCatalogValue(sku.surfaceProcess, locale)],
     [t("detail.finishing"), getLocalizedCatalogValue(sku.finishingProcess, locale)],
     [t("detail.size"), getLocalizedCatalogValue(sku.commonSize, locale)],
     [t("detail.moq"), getLocalizedCatalogValue(sku.moq, locale)],
-    [t("detail.application"), getLocalizedCatalogValue(sku.applications, locale)],
     [t("detail.unit"), getLocalizedCatalogValue(sku.unit, locale)],
   ].filter(([, value]) => value);
   const procurementCards = [
@@ -246,9 +249,9 @@ export default async function ProductDetailPage({
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: siteConfig.name,
+    name: brand.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/kehong/factory.webp`,
+    logo: `${siteConfig.url}/brand/kehong-logo-full-transparent.png`,
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
@@ -259,24 +262,24 @@ export default async function ProductDetailPage({
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: isZh ? sku.title.zh : sku.title.en,
+    name: groupSummary.title,
     alternateName: isZh ? sku.title.en : undefined,
     sku: sku.sku,
-    category: getProductTypeLabel(sku.productType, locale),
+    category: groupSummary.familyLabel,
     material: getLocalizedProductMaterial(sku, locale) || undefined,
-    description: productDescription(sku, locale),
+    description: groupSummary.metadata.description,
     url: productUrl,
     image: imageMeta.status === "exact" ? absoluteSiteUrl(imageMeta.src) : undefined,
     brand: {
       "@type": "Brand",
-      name: siteConfig.author.alias,
+      name: brand.name,
     },
     manufacturer: {
       "@type": "Organization",
       name: siteConfig.author.name,
       url: siteConfig.url,
     },
-    additionalProperty: specs.map(([name, value]) => ({
+    additionalProperty: [...groupSpecs, ...currentSkuSpecs].map(([name, value]) => ({
       "@type": "PropertyValue",
       name: String(name),
       value: String(value),
@@ -326,8 +329,8 @@ export default async function ProductDetailPage({
     itemListElement: [
       { "@type": "ListItem", position: 1, name: isZh ? "首页" : "Home", item: await getLocaleUrl(locale, "/" as SiteHref) },
       { "@type": "ListItem", position: 2, name: isZh ? "产品目录" : "Products", item: await getLocaleUrl(locale, "/products" as SiteHref) },
-      { "@type": "ListItem", position: 3, name: isZh ? productCategory.title.zh : productCategory.title.en, item: await getLocaleUrl(locale, `/products/${productCategory.slug}` as SiteHref) },
-      { "@type": "ListItem", position: 4, name: getLocalizedProductTitle(sku, locale), item: productUrl },
+      { "@type": "ListItem", position: 3, name: groupSummary.familyLabel, item: await getLocaleUrl(locale, `/products?group=${encodeURIComponent(groupSummary.id)}` as SiteHref) },
+      { "@type": "ListItem", position: 4, name: groupSummary.title, item: productUrl },
     ],
   };
 
@@ -376,7 +379,7 @@ export default async function ProductDetailPage({
             </div>
             <div className="absolute bottom-6 left-6 right-6 text-white">
               <p className="kh-eyebrow kh-eyebrow-light">
-                {getProductTypeLabel(sku.productType, locale)}
+                {groupSummary.familyLabel}
               </p>
               <p className="mt-2 text-2xl font-semibold">{sku.sku}</p>
             </div>
@@ -384,10 +387,10 @@ export default async function ProductDetailPage({
           <div className="p-6 sm:p-8 lg:p-10">
             <div className="flex flex-wrap items-center gap-2">
               <p className="rounded-full bg-(--kh-paper-deep) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-forest)">
-              {getCanonicalCategoryForSku(sku)?.localizedLabel[locale === "zh" ? "zh" : "en"] ?? getProductTypeLabel(sku.productType, locale)}
+              {groupSummary.familyLabel}
               </p>
               <span className="rounded-full bg-(--kh-paper) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
-                {getProductTypeLabel(sku.productType, locale)}
+                {getPublicProductTypeLabel(sku, locale)}
               </span>
               {sku.customizable ? (
                 <span className="rounded-full bg-(--kh-forest) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-surface)">
@@ -395,14 +398,14 @@ export default async function ProductDetailPage({
                 </span>
               ) : null}
               <span className="rounded-full bg-(--kh-paper) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
-                {groupVariants.length} {isZh ? "个变体" : groupVariants.length === 1 ? "variant" : "variants"}
+                {groupSummary.variantCount} {isZh ? "个变体" : groupSummary.variantCount === 1 ? "variant" : "variants"}
               </span>
             </div>
             <h1 className="kh-editorial-heading mt-4 text-3xl text-(--kh-ink) sm:text-4xl lg:text-5xl">
-              {getLocalizedProductTitle(sku, locale)}
+              {groupSummary.title}
             </h1>
             <p className="mt-4 text-base leading-8 text-(--kh-muted)">
-              {getLocalizedProductMaterial(sku, locale) || getProductTypeLabel(sku.productType, locale)}
+              {groupSummary.description || getLocalizedProductMaterial(sku, locale) || getProductTypeLabel(sku.productType, locale)}
             </p>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -429,13 +432,14 @@ export default async function ProductDetailPage({
               })}
             </div>
 
-            <div className="mt-8">
+              <section aria-labelledby="product-specifications-title" className="mt-8">
               <div className="mb-3 flex items-center gap-2">
                 <ClipboardCheck className="size-5 text-(--kh-brass)" />
-                <h2 className="text-xl font-semibold text-(--kh-ink)">{t("detail.specs")}</h2>
+                <h2 id="product-specifications-title" className="text-xl font-semibold text-(--kh-ink)">{isZh ? "产品组与可选规格" : "Product group and available specifications"}</h2>
               </div>
-              <dl className="grid overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) text-sm sm:grid-cols-2">
-                {specs.map(([label, value]) => (
+              <p id="product-group-summary-title" className="mb-2 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">{isZh ? "产品组摘要" : "Product group summary"}</p>
+              <dl aria-labelledby="product-group-summary-title" className="grid overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) text-sm sm:grid-cols-2">
+                {groupSpecs.map(([label, value]) => (
                   <div key={label} className="border-b border-(--kh-line) p-4 last:border-0">
                     <dt className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                       {label}
@@ -446,7 +450,16 @@ export default async function ProductDetailPage({
                   </div>
                 ))}
               </dl>
-            </div>
+              <p id="current-specification-title" className="mb-2 mt-5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">{isZh ? "当前规格" : "Current specification"}</p>
+              <dl aria-labelledby="current-specification-title" className="grid overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) text-sm sm:grid-cols-2">
+                {currentSkuSpecs.map(([label, value]) => (
+                  <div key={label} className="border-b border-(--kh-line) p-4 last:border-0">
+                    <dt className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">{label}</dt>
+                    <dd className="mt-2 font-semibold text-(--kh-ink)">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              </section>
 
             <p className="mt-6 text-sm text-(--kh-muted)">{t("detail.note")}</p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -593,8 +606,11 @@ export default async function ProductDetailPage({
             locale={locale}
             initialProducts={[
               {
+                productGroupId: groupSummary.id,
+                productGroupTitle: groupSummary.title,
                 sku: sku.sku,
-                name: isZh ? sku.title.zh : sku.title.en,
+                skuTitle: isZh ? sku.title.zh : sku.title.en,
+                name: groupSummary.title,
                 url: productUrl,
               },
             ]}
@@ -606,6 +622,17 @@ export default async function ProductDetailPage({
             }
           />
         </section>
+        <RelatedLinks
+          locale={locale}
+          index="06"
+          title={{ en: "Related product paths", zh: "相关产品路径" }}
+          links={[
+            { href: "/products?collection=materials", en: "Related material groups", zh: "相关材料产品组" },
+            { href: "/packaging", en: "Related packaging formats", zh: "相关成品包装" },
+            { href: "/industries", en: "Related industries", zh: "相关行业" },
+            { href: "/contact?interest=structure-review", en: "Need structure review?", zh: "需要结构评审？" },
+          ]}
+        />
       </main>
         <SiteFooter />
       </div>

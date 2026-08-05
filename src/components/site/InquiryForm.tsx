@@ -4,9 +4,13 @@ import { CheckCircle2, MessageCircle, Send } from "lucide-react";
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
+import { appendAttribution, captureAttribution, trackKehongEvent } from "@/lib/attribution";
 
 type InquiryProduct = {
+  productGroupId?: string;
+  productGroupTitle?: string;
   sku?: string;
+  skuTitle?: string;
   name?: string;
   url?: string;
 };
@@ -40,7 +44,7 @@ const copy = {
     market: "目标市场",
     file: "附件（图纸、样品图或规格表）",
     message: "尺寸、材质、数量、印刷、交期或目标市场",
-    privacy: "我同意 Kehong 根据隐私政策处理本次询盘信息。",
+    privacy: "我同意科宏纸品根据隐私政策处理我提交的信息，以便回复本次询盘。",
     submit: "提交询盘",
     whatsapp: "WhatsApp",
     success: "询盘已被系统接收，科宏团队会尽快联系你。",
@@ -77,7 +81,7 @@ const copy = {
 } as const;
 
 function productLine(product: InquiryProduct) {
-  return [product.sku, product.name, product.url].filter(Boolean).join(" | ");
+  return [product.productGroupTitle ?? product.name, product.sku ? `Current SKU: ${product.sku}` : "", product.url].filter(Boolean).join(" | ");
 }
 
 export default function InquiryForm({
@@ -92,6 +96,7 @@ export default function InquiryForm({
   const [storedProducts, setStoredProducts] = useState<InquiryProduct[]>([]);
   const productsRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
+    captureAttribution();
     try {
       const raw = window.sessionStorage.getItem("kehong-selected-products");
       if (!raw) return;
@@ -99,7 +104,10 @@ export default function InquiryForm({
       if (Array.isArray(parsed)) {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setStoredProducts(parsed.map((product) => ({
+          productGroupId: product.productGroupId,
+          productGroupTitle: product.productGroupTitle,
           sku: product.sku,
+          skuTitle: product.skuTitle,
           name: product.name ?? product.title?.en,
           url: product.url ?? (product.slug ? `https://www.kehong.tech/${locale}/products/${product.slug}` : undefined),
         })));
@@ -173,10 +181,12 @@ export default function InquiryForm({
         body: (() => {
           formData.set("products", products.join("\n"));
           formData.set("sourceUrl", window.location.href);
-          const params = new URLSearchParams(window.location.search);
-          formData.set("utmSource", params.get("utm_source") ?? "");
-          formData.set("utmMedium", params.get("utm_medium") ?? "");
-          formData.set("utmCampaign", params.get("utm_campaign") ?? "");
+          const selected = effectiveProducts[0];
+          formData.set("productGroupId", selected?.productGroupId ?? "");
+          formData.set("productGroupTitle", selected?.productGroupTitle ?? selected?.name ?? "");
+          formData.set("sku", selected?.sku ?? "");
+          formData.set("skuTitle", selected?.skuTitle ?? "");
+          appendAttribution(formData, compact ? "compact_inquiry" : "inquiry_form", locale);
           return formData;
         })(),
       });
@@ -186,6 +196,7 @@ export default function InquiryForm({
       }
 
       setStatus("success");
+      trackKehongEvent("inquiry_submit", { locale, ctaLocation: compact ? "compact_inquiry" : "inquiry_form", productGroupId: effectiveProducts[0]?.productGroupId });
       form.reset();
     } catch {
       setStatus("error");

@@ -23,6 +23,21 @@ const categoryAliases: Record<string, string> = {
   "finished-paper-boxes": "paper-boxes",
 };
 
+/**
+ * Public links have accumulated a few spellings over time (for example
+ * `food_grade_paper`, `food grade paper` and the earlier `food-paper`).
+ * Normalize the input once at the taxonomy boundary so every caller emits and
+ * filters by the same canonical category ID.
+ */
+export function normalizeTaxonomyKey(value: string | undefined) {
+  return value
+    ?.trim()
+    .toLocaleLowerCase()
+    .replaceAll(/[_\s]+/gu, "-")
+    .replaceAll(/-+/gu, "-")
+    .replaceAll(/^-|-$/gu, "");
+}
+
 const canonicalCategoryIds = [
   "kraft-paper",
   "white-cardboard",
@@ -56,9 +71,14 @@ const canonicalCategoryRecords = new Map(
 );
 
 export function getCanonicalTaxonomyCategoryId(value: string | undefined) {
-  if (!value) return undefined;
-  const canonicalValue = value as typeof canonicalCategoryIds[number];
-  return (categoryAliases[value] ?? (canonicalCategoryRecords.has(canonicalValue) ? canonicalValue : undefined)) as typeof canonicalCategoryIds[number] | undefined;
+  const normalized = normalizeTaxonomyKey(value);
+  if (!normalized) return undefined;
+  const canonicalValue = normalized as typeof canonicalCategoryIds[number];
+  const taxonomyCategory = taxonomy.categories.find(
+    (category) => normalizeTaxonomyKey(category.id) === normalized || normalizeTaxonomyKey(category.slug) === normalized,
+  );
+  const resolved = categoryAliases[normalized] ?? taxonomyCategory?.id ?? canonicalValue;
+  return (categoryAliases[resolved] ?? (canonicalCategoryRecords.has(resolved as typeof canonicalCategoryIds[number]) ? resolved : undefined)) as typeof canonicalCategoryIds[number] | undefined;
 }
 
 export function getTaxonomyCategories() {

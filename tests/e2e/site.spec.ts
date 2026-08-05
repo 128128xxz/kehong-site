@@ -20,6 +20,30 @@ test.describe("Kehong production flows", () => {
     expect(response.headers().location).toBe("/en");
   });
 
+  test("header and footer use the shared supplied official logo asset", async ({ page }) => {
+    await page.goto("/en", { waitUntil: "networkidle" });
+    const headerLogo = page.locator(".kh-header-brand-mark");
+    await expect(headerLogo).toBeVisible();
+    await expect(headerLogo).toHaveAttribute("src", /kehong-mark-transparent\.png/);
+    await expect(page.locator(".kh-brand-name")).toHaveText("Kehong Paper Products");
+    await expect(page.locator(".kh-brand-tag")).toHaveText("Paper materials & custom packaging");
+    await expect(page.locator(".kh-monogram")).toHaveCount(0);
+    await expect(page.locator(".kh-footer-brand")).toHaveAttribute("src", /kehong-logo-full-transparent\.png/);
+    await page.goto("/zh", { waitUntil: "networkidle" });
+    await expect(page.locator(".kh-brand-name")).toHaveText("科宏纸品");
+    await expect(page.locator(".kh-brand-tag")).toHaveText("纸材、半成品与定制纸包装");
+  });
+
+  test("legacy all-products route permanently redirects to the canonical directory and preserves filters", async ({ request }) => {
+    for (const locale of ["en", "zh"]) {
+      const response = await request.get(`/${locale}/packaging/all-products?category=food-grade-paper&productType=paper-cup-fan`, {
+        maxRedirects: 0,
+      });
+      expect([301, 308]).toContain(response.status());
+      expect(response.headers().location).toBe(`/${locale}/products?category=food-grade-paper&productType=paper-cup-fan`);
+    }
+  });
+
   test("core pages load without console or hydration errors", async ({ page }) => {
     const errors = await expectNoConsoleErrors(page);
     for (const path of ["/en", "/en/products", "/en/contact"]) {
@@ -72,6 +96,44 @@ test.describe("Kehong production flows", () => {
     await expect(page).toHaveURL(/category=/);
   });
 
+  test("query product direction is server-filtered and remains filtered after hydration", async ({ page, request }) => {
+    for (const locale of ["en", "zh"]) {
+      const path = `/${locale}/products?productType=paper-cup-fan`;
+      const response = await request.get(path);
+      expect(response.status()).toBe(200);
+      const html = await response.text();
+      expect(html).toContain(locale === "zh" ? "纸杯扇形片" : "Paper Cup Fan");
+      expect(html).toContain('data-product-group-id="paper-cup-fan-paper-cup-fan"');
+      expect(html).not.toContain('data-product-group-id="paper-cup-fan-paper-cup-bottom-roll"');
+      await page.goto(path, { waitUntil: "networkidle" });
+      await expect(page.locator("article")).toHaveCount(1);
+    }
+  });
+
+  test("materials entry includes cupstock and packaging entry reaches the overview", async ({ page }) => {
+    await page.goto("/en/products?collection=materials", { waitUntil: "networkidle" });
+    await expect(page.getByText("Cupstock Paper", { exact: true }).first()).toBeVisible();
+    const overview = await page.goto("/en/packaging", { waitUntil: "networkidle" });
+    expect(overview?.ok()).toBe(true);
+    await expect(page.locator('main a[href="/en/packaging/cake-boxes"]').last()).toBeVisible();
+  });
+
+  test("interest query pre-fills both inquiry forms and is included in the submitted payload", async ({ page }) => {
+    let payload = "";
+    await page.route("**/api/inquiry", async (route) => {
+      payload = route.request().postData() ?? "";
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+    });
+    await page.goto("/en/contact?interest=pe-coated-paper-roll", { waitUntil: "networkidle" });
+    await expect(page.locator('input[name="products"]').first()).toHaveValue(/PE coated paper roll/i);
+    await page.locator('input[name="name"]').first().fill("Playwright QA");
+    await page.locator('input[name="email"]').first().fill("qa@example.com");
+    await page.locator('input[name="privacy"]').first().check();
+    await page.getByRole("button", { name: /send quick quote/i }).click();
+    expect(payload).toContain("pe-coated-paper-roll");
+    expect(payload).toContain("PE coated paper roll");
+  });
+
   test("selected products persist when moving from catalog to contact", async ({ page }) => {
     await page.goto("/en/products", { waitUntil: "networkidle" });
     await page.getByRole("button", { name: /add to inquiry/i }).first().click();
@@ -85,6 +147,129 @@ test.describe("Kehong production flows", () => {
     await expect(page.locator('footer a[href*="/model-preview"]')).toBeVisible();
     await page.goto("/en/model-preview", { waitUntil: "domcontentloaded" });
     await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.getByText("kehong-reference-pizza-box.glb")).toHaveCount(0);
+    await expect(page.getByText("GLB / ACES / sRGB / soft shadow")).toHaveCount(0);
+  });
+
+  test("3D public server HTML has no asset or renderer implementation labels", async ({ request }) => {
+    for (const locale of ["en", "zh"]) {
+      const response = await request.get(`/${locale}/model-preview`);
+      expect(response.status()).toBe(200);
+      const html = await response.text();
+      for (const forbidden of [".glb", " MB", "ACES", "sRGB", "soft shadow", "third-party marks"]) {
+        expect(html).not.toContain(forbidden);
+      }
+    }
+  });
+
+  test("homepage product entries do not link buyers to unsupported empty filters", async ({ page }) => {
+    await page.goto("/en", { waitUntil: "networkidle" });
+    await expect(page.getByText("Scroll", { exact: true })).toHaveCount(0);
+    const productLinks = page.getByTestId("homepage-product-directions").locator("a");
+    await expect(productLinks).toHaveCount(6);
+  });
+
+  test("English and Chinese product entry links resolve to a real range, category or inquiry", async ({ page }) => {
+    for (const locale of ["en", "zh"]) {
+      await page.goto(`/${locale}`, { waitUntil: "networkidle" });
+      const entries = page.getByTestId("homepage-product-directions").locator("a");
+      await expect(entries).toHaveCount(6);
+      const hrefs = await entries.evaluateAll((links) => links.map((link) => link.getAttribute("href") || ""));
+      for (const href of hrefs) {
+        const response = await page.goto(href, { waitUntil: "networkidle" });
+        expect(response?.ok()).toBe(true);
+        await expect(page.getByText(/no matching products/i)).toHaveCount(0);
+      }
+    }
+  });
+
+  test("Chinese buyer pages do not expose English form or 3D control residue", async ({ page }) => {
+    const prohibited = [
+      "Scroll",
+      "Paper cup fan",
+      "Die-cut blanks & cupstock components",
+      "Reference image, dieline or brief (optional)",
+      "Request a quote",
+      "Project",
+      "Size & quantity",
+      "Material & structure",
+      "Printing & finish",
+      "Delivery & contact",
+      "Front",
+      "Side",
+      "Top",
+      "Asset",
+      "No third-party marks",
+      "soft shadow",
+    ];
+    for (const path of ["/zh", "/zh/products", "/zh/contact", "/zh/model-preview"]) {
+      await page.goto(path, { waitUntil: "networkidle" });
+      const visibleText = await page.locator("body").innerText();
+      for (const text of prohibited) expect(visibleText).not.toContain(text);
+    }
+  });
+
+  test("homepage section sequence stays unique after the hero", async ({ page }) => {
+    await page.goto("/en", { waitUntil: "networkidle" });
+    await expect(page.locator(".kh-kicker-index")).toHaveText(["02", "03", "04", "05", "06", "07", "08"]);
+  });
+
+  test("home CTA has no residual visual layer and buyer support links render", async ({ page }) => {
+    await page.goto("/en", { waitUntil: "networkidle" });
+    await expect(page.locator(".kh-cta-watermark")).toHaveCount(0);
+    await expect(page.getByText("Buyer-ready quote checklist", { exact: true })).toBeVisible();
+    await expect(page.locator('a[href="/en/resources"]').last()).toBeVisible();
+  });
+
+  test("language changes preserve contact product and interest prefill", async ({ page }) => {
+    await page.goto("/en/contact?interest=pe-coated-paper-roll&product=kh-fd-cupfan-150350-pr-001-paper-cup-fan", { waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "English" }).click();
+    await page.getByText("中文", { exact: true }).click();
+    await expect(page).toHaveURL(/\/zh\/contact\?interest=pe-coated-paper-roll&product=kh-fd-cupfan-150350-pr-001-paper-cup-fan/);
+    await expect(page.locator('input[name="products"]').first()).toHaveValue(/KH-/);
+  });
+
+  test("Chinese industry pages and metadata use Chinese copy", async ({ page }) => {
+    for (const path of ["/zh/industries", "/zh/industries/bakery-packaging", "/zh/industries/retail-lifestyle", "/zh/industries/ecommerce-industrial-professional"]) {
+      await page.goto(path, { waitUntil: "networkidle" });
+      await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /[\u3400-\u9fff]/u);
+    }
+    await page.goto("/zh/industries", { waitUntil: "networkidle" });
+    const content = await page.locator("main").innerText();
+    for (const residue of ["food bakery beverage", "retail lifestyle", "ecommerce industrial professional", "Buyer-ready brief"]) expect(content.toLowerCase()).not.toContain(residue);
+  });
+
+  test("resource metadata follows the active locale and buyer support exposes the resource entry", async ({ page }) => {
+    await page.goto("/zh/resources", { waitUntil: "networkidle" });
+    await expect(page).toHaveTitle(/纸包装资源与设计支持 \| 科宏纸品/u);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /印刷文件/u);
+
+    await page.goto("/en", { waitUntil: "networkidle" });
+    await expect(page.locator('a[href="/en/resources"]')).not.toHaveCount(0);
+  });
+
+  test("packaging category pages render a server-side range or explicit empty state", async ({ request }) => {
+    const slugs = ["cake-boxes", "takeout-boxes", "paper-bags", "corrugated-mailer-boxes", "labels-stickers", "cake-boards-cake-drums"];
+    for (const locale of ["en", "zh"]) {
+      for (const slug of slugs) {
+        const response = await request.get(`/${locale}/packaging/${slug}`);
+        expect(response.status()).toBe(200);
+        const html = await response.text();
+        expect(html).not.toContain("Loading product range");
+        expect(html).toMatch(/No confirmed public products in this range yet|该分类暂未发布公开产品|Product(?:<!-- -->)? range|产品范围|Finished structures confirmed by project|成品结构按项目确认/);
+        const catalogLabel = slug === "takeout-boxes"
+          ? (locale === "zh" ? "项目确认" : "Project confirmation")
+          : (locale === "zh" ? "已确认目录" : "Confirmed catalog");
+        for (const label of locale === "zh" ? ["快速选择", catalogLabel, "定制与生产", "答疑", "相关材料、行业与资料", "项目协作"] : ["Quick selection", catalogLabel, "Customization &amp; production", "FAQ", "Related materials, industries &amp; resources", "Project collaboration"]) {
+          expect(html).toContain(label);
+        }
+        for (const index of ["02", "03", "04", "05", "07"]) expect(html).toContain(`kh-kicker-index\">${index}</span>`);
+        expect(html).toMatch(/06(?:<!-- -->)? ·/);
+        for (const id of ["packaging-selection", "catalog-list", "packaging-production", "packaging-faq", "packaging-related", "packaging-project"]) {
+          expect((html.match(new RegExp(`id=\\"${id}\\"`, "g")) ?? []).length).toBe(1);
+        }
+      }
+    }
   });
 
   test("product details prefill inquiry and mock success state", async ({ page }) => {
@@ -115,6 +300,93 @@ test.describe("Kehong production flows", () => {
       await expect(page.locator('a[href*="/contact?product="]').first()).toHaveAttribute("href", /\/contact\?product=/);
       await expect(page.locator('footer a[href*="wa.me"]').filter({ hasText: /WhatsApp/i }).first()).toBeVisible();
     }
+  });
+
+  test("product detail presents the canonical family rather than the legacy source bucket", async ({ page, request }) => {
+    const path = "/en/products/kh-fd-cupfan-150350-pr-001-paper-cup-fan";
+    const response = await request.get(path);
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+    expect(html).toContain("Cupstock &amp; Cup Components");
+    expect(html).not.toContain("Paper cup fan &amp; cupstock");
+    await page.goto(path, { waitUntil: "networkidle" });
+    await expect(page.getByText("Paper Cup Fan", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("Current SKU", { exact: true })).toHaveCount(1);
+    const whatsapp = page.locator('a[href*="wa.me"]').first();
+    await expect(whatsapp).toHaveAttribute("href", /Product%20group%3A%20Paper%20Cup%20Fan/);
+  });
+
+  test("product group inquiry retains canonical group, current SKU and first-touch attribution", async ({ page }) => {
+    let payload = "";
+    await page.route("**/api/inquiry", async (route) => {
+      payload = route.request().postData() ?? "";
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+    });
+    await page.goto("/en/products/kh-fd-cupfan-150350-pr-001-paper-cup-fan?utm_source=google&utm_medium=cpc&utm_campaign=cupstock", { waitUntil: "networkidle" });
+    await page.locator('a[href*="/contact?product="]').first().click();
+    await page.locator('input[name="products"]').first().fill("Paper Cup Fan | Current SKU: KH-FD-CUPFAN-150350-PR-001");
+    await page.locator('input[name="name"]').first().fill("Playwright QA");
+    await page.locator('input[name="email"]').first().fill("qa@example.com");
+    await page.locator('input[name="privacy"]').first().check();
+    await page.getByRole("button", { name: /send quick quote/i }).click();
+    expect(payload).toMatch(/name="productGroupId"\s+paper-cup-fan-paper-cup-fan/);
+    expect(payload).toMatch(/name="productGroupTitle"\s+Paper Cup Fan/);
+    expect(payload).toMatch(/name="sku"\s+KH-FD-CUPFAN-150350-PR-001/);
+    expect(payload).toMatch(/name="utmSource"\s+google/);
+    expect(payload).toMatch(/name="utmMedium"\s+cpc/);
+    expect(payload).toMatch(/name="utmCampaign"\s+cupstock/);
+    expect(payload).toMatch(/name="firstTouchSource"\s+google/);
+    expect(payload).toMatch(/name="latestTouchCampaign"\s+cupstock/);
+  });
+
+  test("six canonical cupstock product groups render one current SKU and aligned metadata in both locales", async ({ page, request }) => {
+    const groups = [
+      ["kh-fd-cupfan-150350-pr-001-paper-cup-fan", "Paper Cup Fan", "纸杯扇形片"],
+      ["kh-fd-cuproll-150350-pr-032-pe-coated-paper-roll-for-paper-cup", "Coated Paper Roll for Paper Cup", "纸杯淋膜纸卷"],
+      ["kh-fd-cupsheet-150350-pe-043-pe-coated-paper-sheet-for-paper-cup", "Coated Paper Sheet for Paper Cup", "纸杯淋膜平张纸"],
+      ["kh-fd-cupbot-150350-pe-025-paper-cup-bottom-roll", "Paper Cup Bottom Roll", "纸杯底纸卷"],
+      ["kh-fd-kcup-150350-pr-048-kraft-cupstock-paper", "Cupstock Paper", "杯纸原纸"],
+      ["kh-fd-trayp-150350-pe-290-food-tray-paper-material", "Food Tray Paper Material", "食品纸托材料"],
+    ] as const;
+    for (const [slug, enTitle, zhTitle] of groups) {
+      for (const [locale, title, specification] of [["en", enTitle, "Current specification"], ["zh", zhTitle, "当前规格"]] as const) {
+        const path = `/${locale}/products/${slug}`;
+        const response = await request.get(path);
+        expect(response.status()).toBe(200);
+        const html = await response.text();
+        expect(html).toContain(title);
+        expect(html).toContain(specification);
+        await page.goto(path, { waitUntil: "networkidle" });
+        await expect(page.locator("h1")).toHaveText(title);
+        await expect(page.getByText(locale === "en" ? "Current SKU" : "当前 SKU", { exact: true })).toHaveCount(1);
+        await expect(page.locator("#product-group-summary-title")).toHaveCount(1);
+        await expect(page.locator("#current-specification-title")).toHaveCount(1);
+      }
+    }
+  });
+
+  test("takeout boxes keeps a project-confirmed finished-structure boundary and a material related link", async ({ page }) => {
+    for (const locale of ["en", "zh"]) {
+      await page.goto(`/${locale}/packaging/takeout-boxes`, { waitUntil: "networkidle" });
+      const catalog = page.locator("#catalog-list");
+      await expect(catalog).toContainText(locale === "zh" ? "成品结构按项目确认" : "Finished structures confirmed by project");
+      await expect(catalog).not.toContainText("Food Tray Paper Material");
+      await expect(page.locator("#packaging-related")).toContainText(locale === "zh" ? "食品纸托材料" : "Food Tray Paper Material");
+      await expect(catalog.locator('a[href*="/contact?product="]')).toHaveAttribute("href", locale === "zh" ? /%E5%A4%96%E5%B8%A6%E9%A3%9F%E5%93%81%E7%9B%92/ : /Takeout%20Boxes/);
+    }
+  });
+
+  test("first-touch is retained and latest-touch only changes on a new tagged entry", async ({ page }) => {
+    await page.goto("/en?utm_source=linkedin&utm_medium=social&utm_campaign=production_test&utm_content=hero", { waitUntil: "networkidle" });
+    await page.goto("/en/resources", { waitUntil: "networkidle" });
+    let attribution = await page.evaluate(() => JSON.parse(window.sessionStorage.getItem("kehong-attribution-v1") || "{}"));
+    expect(attribution.firstLandingPath).toContain("utm_source=linkedin");
+    expect(attribution.firstTouch.source).toBe("linkedin");
+    expect(attribution.latestTouch.source).toBe("linkedin");
+    await page.goto("/en/products?utm_source=google&utm_medium=cpc&utm_campaign=cupstock", { waitUntil: "networkidle" });
+    attribution = await page.evaluate(() => JSON.parse(window.sessionStorage.getItem("kehong-attribution-v1") || "{}"));
+    expect(attribution.firstTouch.source).toBe("linkedin");
+    expect(attribution.latestTouch.source).toBe("google");
   });
 
   test("inquiry failure can be retried with a mocked provider", async ({ page }) => {

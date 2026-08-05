@@ -7,6 +7,7 @@ import { Reveal } from "@/components/home/interactive";
 import { contact } from "@/data/company";
 import type { IndustrySeoPageData } from "@/data/industrySeoPages";
 import { Link } from "@/i18n/navigation";
+import RelatedLinks from "@/components/site/RelatedLinks";
 
 type Props = {
   locale: string;
@@ -17,6 +18,11 @@ export default function IndustrySeoPage({ locale, page }: Props) {
   const isZh = locale === "zh";
   const title = isZh ? page.zhTitle : page.title;
   const description = isZh ? page.zhDescription : page.description;
+  const eyebrow = isZh ? page.zhEyebrow : page.eyebrow;
+  const buyerFocus = isZh ? page.zhBuyerFocus : page.buyerFocus;
+  const capabilities = isZh ? page.zhCapabilities : page.capabilities;
+  const applications = isZh ? page.zhApplications : page.applications;
+  const faq = isZh ? page.zhFaq : page.faq;
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
     isZh
       ? `你好科宏，我想咨询${page.zhTitle}。`
@@ -29,7 +35,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
       <main>
         <PageHero
           index="01"
-          kicker={page.eyebrow}
+          kicker={eyebrow}
           title={title}
           lede={description}
           meta={["OEM / ODM", isZh ? "中国广东佛山" : "Foshan, Guangdong, China", contact.email]}
@@ -55,7 +61,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
               </div>
             </Reveal>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {page.buyerFocus.map((item, index) => (
+              {buyerFocus.map((item, index) => (
                 <Reveal key={item} className="h-full" delay={(index % 4) * 80}>
                   <div className="kh-panel h-full p-5">
                     <CheckCircle2 className="size-5 text-(--kh-brass)" />
@@ -85,7 +91,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
                     <h3 className="text-2xl font-semibold">{isZh ? "工厂与服务能力" : "Manufacturing and service capabilities"}</h3>
                   </div>
                   <div className="mt-5 grid gap-3">
-                    {page.capabilities.map((item) => (
+                    {capabilities.map((item) => (
                       <p key={item} className="rounded-md border border-white/12 bg-white/8 px-4 py-3 text-sm font-medium text-white/85">
                         {item}
                       </p>
@@ -100,7 +106,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
                     <h3 className="text-2xl font-semibold">{isZh ? "应用场景" : "Applications"}</h3>
                   </div>
                   <div className="mt-5 grid gap-3">
-                    {page.applications.map((item) => (
+                    {applications.map((item) => (
                       <p key={item} className="rounded-md border border-white/12 bg-white/8 px-4 py-3 text-sm font-medium text-white/85">
                         {item}
                       </p>
@@ -123,7 +129,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
               </div>
             </Reveal>
             <div className="grid gap-4 md:grid-cols-2">
-              {page.faq.map((item, index) => (
+              {faq.map((item, index) => (
                 <Reveal key={item.question} className="h-full" delay={(index % 2) * 80}>
                   <div className="kh-panel h-full p-5">
                     <h3 className="text-sm font-bold text-(--kh-ink)">{item.question}</h3>
@@ -134,6 +140,17 @@ export default function IndustrySeoPage({ locale, page }: Props) {
             </div>
           </div>
         </section>
+        <RelatedLinks
+          locale={locale}
+          index="05"
+          title={{ en: "Recommended next steps", zh: "推荐下一步" }}
+          links={[
+            { href: "/packaging", en: "Recommended packaging types", zh: "推荐包装类型" },
+            { href: "/products?collection=materials", en: "Recommended paper materials", zh: "推荐纸材" },
+            { href: "/resources/packaging-selection-guide", en: "Packaging selection guide", zh: "包装选型指南" },
+            { href: "/contact", en: "Request a quote", zh: "获取报价" },
+          ]}
+        />
       </main>
       <SiteFooter />
     </div>

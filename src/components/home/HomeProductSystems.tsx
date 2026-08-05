@@ -4,11 +4,11 @@ import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
 import { showcaseImages } from "@/data/visuals";
+import { getHomepageProductEntries, getProductEntry } from "@/lib/product-routing";
 
-const systems = [
+const systemVisuals = [
   {
     id: "materials",
-    href: "/products?category=food-grade-paper-series",
     title: "Paper Materials & Components",
     titleZh: "纸材与半成品",
     description: "Cupstock, cup fan blanks, coated rolls, kraft, corrugated board, specialty paper, inserts and pads.",
@@ -20,29 +20,21 @@ const systems = [
   },
   {
     id: "packaging",
-    href: "/products?category=finished-paper-boxes",
     title: "Finished Packaging",
     titleZh: "成品纸包装",
     description: "Food boxes, cake boxes, paper bags, mailer boxes, trays and custom paperboard structures.",
     descriptionZh: "食品盒、蛋糕盒、纸袋、邮寄盒、纸托与定制纸板结构。",
     details: ["Structural sampling", "Print & finish", "Export packing support"],
     detailsZh: ["结构打样", "印刷与后加工", "出口包装协同"],
-    image: showcaseImages.foodBoxReal,
-    alt: "Paper food packaging structures and board samples",
+    image: showcaseImages.representativeBakeryPackaging,
+    alt: "Representative unbranded food and bakery paper packaging structures",
   },
-] as const;
-
-const featured = [
-  { href: "/products?productType=paper-cup-fan", title: "Paper cup fan", note: "Die-cut blanks & cupstock components", code: "01" },
-  { href: "/products?productType=paper-packaging-material", title: "PE-coated paper roll", note: "Converting stock for food packaging", code: "02" },
-  { href: "/products?productType=kraft-paper", title: "Kraft paper", note: "Rolls, sheets & packaging grades", code: "03" },
-  { href: "/products?productType=food-packaging-box", title: "Food packaging box", note: "Takeaway and bakery structures", code: "04" },
-  { href: "/products?productType=corrugated-fluted-paper", title: "Corrugated board", note: "Protective board & mailer structures", code: "05" },
-  { href: "/products?productType=paper-insert", title: "Paper inserts & pads", note: "Fit, separation & protection", code: "06" },
 ] as const;
 
 export default function HomeProductSystems({ locale }: { locale: string }) {
   const zh = locale === "zh";
+  const systems = systemVisuals.map((system) => ({ ...system, href: getProductEntry(system.id).href }));
+  const featured = getHomepageProductEntries();
   return (
     <section className="kh-section kh-section-paper">
       <div className="kh-shell">
@@ -91,11 +83,12 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
             <p className="max-w-[46ch] text-sm leading-6 text-(--kh-muted)">{zh ? "以下入口按产品形态分开，避免将卷材、平张、扇形片与成品包装混在同一张视觉里。" : "These entries separate rolls, sheets, cup fan blanks and finished structures before you compare specifications."}</p>
           </div>
         </Reveal>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {featured.map((item) => (
-            <Link key={item.code} href={item.href} className="group flex min-h-38 items-start gap-4 rounded-lg border border-(--kh-line) bg-(--kh-surface) p-5 transition hover:border-(--kh-forest)/45 hover:shadow-md">
-              <span className="kh-mono grid size-10 shrink-0 place-items-center rounded-md bg-(--kh-paper-deep) text-xs font-bold text-(--kh-brass)">{item.code}</span>
-              <span className="min-w-0"><span className="flex items-center gap-2 font-semibold text-(--kh-ink)"><Layers3 className="size-4 text-(--kh-brass)" />{item.title}</span><span className="mt-2 block text-sm leading-5 text-(--kh-muted)">{item.note}</span><span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-(--kh-forest)">{zh ? "查看范围" : "View range"}<ArrowRight className="size-4" /></span></span>
+        <div data-testid="homepage-product-directions" className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {featured.map((item, index) => (
+            <Link key={item.id} href={item.href} className="group flex min-h-38 items-start gap-4 rounded-lg border border-(--kh-line) bg-(--kh-surface) p-5 transition hover:border-(--kh-forest)/45 hover:shadow-md">
+              <span className="kh-mono grid size-10 shrink-0 place-items-center rounded-md bg-(--kh-paper-deep) text-xs font-bold text-(--kh-brass)">{String(index + 1).padStart(2, "0")}</span>
+              <span className="min-w-0 flex-1"><span className="flex items-center gap-2 font-semibold text-(--kh-ink)"><Layers3 className="size-4 text-(--kh-brass)" />{zh ? item.title.zh : item.title.en}</span><span className="mt-2 block text-sm leading-5 text-(--kh-muted)">{zh ? item.note.zh : item.note.en}</span><span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-(--kh-forest)">{item.hasPublicSku ? (zh ? "查看范围" : "View range") : (zh ? "提交需求" : "Explore options")}<ArrowRight className="size-4" /></span></span>
+              <span className="relative hidden size-18 shrink-0 overflow-hidden rounded-md border border-(--kh-line) bg-(--kh-paper-deep) sm:block"><Image src={item.image} alt={zh ? item.alt.zh : item.alt.en} fill sizes="72px" className="object-cover" /></span>
             </Link>
           ))}
         </div>

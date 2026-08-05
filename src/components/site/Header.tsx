@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import SiteLogo from "@/components/site/SiteLogo";
+import { captureAttribution, trackKehongEvent } from "@/lib/attribution";
 
 const headerCopy = {
   zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", resources: "资源", contact: "获取报价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
@@ -95,6 +97,11 @@ export default function Header({ variant = "solid" }: HeaderProps) {
     closeDesktopDropdowns();
   }, [pathname]);
 
+  // Capture the first landing URL before a visitor reaches a quote form.
+  useEffect(() => {
+    captureAttribution();
+  }, [pathname]);
+
   // 点击外部或 Escape 关闭桌面下拉
   useEffect(() => {
     const onPointerDown = (event: PointerEvent) => {
@@ -165,11 +172,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
     >
       <div className="kh-shell kh-header-bar">
         <Link href="/" className="kh-header-brand">
-          <span className="kh-monogram" aria-hidden="true">KH</span>
-          <span className="min-w-0">
-            <span className="kh-brand-name">{isZh ? "科宏纸品" : "Kehong Paper Products"}</span>
-            <span className="kh-brand-tag">{isZh ? "纸质包装" : "Paper packaging"}</span>
-          </span>
+          <SiteLogo locale={locale} placement="header" />
         </Link>
 
         <nav className="kh-desktop-nav" aria-label="Primary navigation">
@@ -216,7 +219,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
         <div className="kh-header-actions">
           <LanguageSwitcher />
-          <Link href="/contact" className="kh-button kh-button-primary kh-button-compact kh-header-cta">{copy.contact}</Link>
+          <Link href="/contact" onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "header" })} className="kh-button kh-button-primary kh-button-compact kh-header-cta">{copy.contact}</Link>
           <div className="kh-compact-nav">
             <button
               ref={menuButtonRef}
@@ -253,7 +256,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                   {resourceLinks.map((item) => (
                     <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
                   ))}
-                  <Link href="/contact" className="kh-button kh-button-primary kh-button-compact mt-2 justify-center">{copy.contact}</Link>
+                  <Link href="/contact" onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "mobile_navigation" })} className="kh-button kh-button-primary kh-button-compact mt-2 justify-center">{copy.contact}</Link>
                 </nav>
               </div>
             ) : null}

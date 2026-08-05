@@ -11,6 +11,9 @@ import { Reveal } from "@/components/home/interactive";
 import { contact } from "@/data/company";
 import { showcaseImages } from "@/data/visuals";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
+import { getInterest } from "@/data/interests";
+import { buildProductGroupSummary, getLocalizedProductTitle, getProductGroupId, getSkuBySlug, getSkusByGroupId } from "@/lib/catalog";
 
 export async function generateMetadata({
   params,
@@ -19,7 +22,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Site" });
-  const title = `${t("contact.title")} | ${siteConfig.name}`;
+  const zh = locale === "zh";
+  const brand = getBrandConfig(locale);
+  const title = zh ? "联系科宏纸品 | 获取纸材与定制包装报价" : `${t("contact.title")} | ${brand.name}`;
   const description = t("contact.description");
   const canonical = await getLocaleUrl(locale, "/contact");
 
@@ -35,7 +40,7 @@ export async function generateMetadata({
       title,
       description,
       url: canonical,
-      siteName: siteConfig.name,
+      siteName: brand.name,
       images: [
         {
           url: showcaseImages.webBakeryWindowBox,
@@ -61,20 +66,34 @@ export default async function ContactPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ sku?: string; product?: string; url?: string }>;
+  searchParams: Promise<{ sku?: string; product?: string; url?: string; interest?: string }>;
 }) {
   const { locale } = await params;
   const query = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Site" });
   const zh = locale === "zh";
+  const interest = getInterest(query.interest);
+  const selectedSku = query.product ? getSkuBySlug(query.product) : undefined;
+  const selectedGroup = selectedSku
+    ? buildProductGroupSummary({ id: getProductGroupId(selectedSku), representative: selectedSku, variants: getSkusByGroupId(getProductGroupId(selectedSku)) }, locale)
+    : undefined;
+  const selectedName = selectedSku
+    ? selectedGroup?.title ?? getLocalizedProductTitle(selectedSku, locale)
+    : query.product || (interest ? (zh ? interest.label.zh : interest.label.en) : undefined);
   const initialProducts =
-    query.sku || query.product || query.url
+    query.sku || query.product || query.url || interest
       ? [
           {
-            sku: query.sku,
-            name: query.product,
+            productGroupId: selectedGroup?.id,
+            productGroupTitle: selectedGroup?.title,
+            sku: query.sku || selectedSku?.sku,
+            skuTitle: selectedSku ? getLocalizedProductTitle(selectedSku, locale) : undefined,
+            name: selectedName,
             url: query.url,
+            interestId: interest?.id,
+            interestLabel: interest ? (zh ? interest.label.zh : interest.label.en) : undefined,
+            interestProductType: interest?.formProductType,
           },
         ]
       : [];

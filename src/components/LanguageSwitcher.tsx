@@ -28,7 +28,18 @@ const LanguageSwitcher = () => {
         {routing.locales.map((locale) => (
           <DropdownMenuItem
             key={locale}
-            onClick={() => router.replace(pathname, { locale })}
+            onClick={() => {
+              // Keep an RFQ/product prefill intact when a buyer changes language.
+              // next-intl's pathname switch intentionally omits search params.
+              const current = new URL(window.location.href);
+              const localePattern = new RegExp(`^/(${routing.locales.join("|")})(?=/|$)`);
+              const nextPath = current.pathname.replace(localePattern, `/${locale}`);
+              if (nextPath !== current.pathname || current.search || current.hash) {
+                window.location.assign(`${nextPath}${current.search}${current.hash}`);
+                return;
+              }
+              router.replace(pathname, { locale });
+            }}
           >
             {localeConfig[locale].label}
           </DropdownMenuItem>

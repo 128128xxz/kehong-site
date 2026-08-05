@@ -1,10 +1,12 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Bounds, Center, ContactShadows, Environment, OrbitControls, useGLTF } from "@react-three/drei";
-import { Eye, Layers3, PackageOpen, Rotate3D } from "lucide-react";
-import { Suspense, useMemo, useState } from "react";
+import { Bounds, Center, ContactShadows, OrbitControls, useGLTF } from "@react-three/drei";
+import { Eye, PackageOpen, Rotate3D } from "lucide-react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { ACESFilmicToneMapping, Mesh, SRGBColorSpace, type Group } from "three";
+import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 
 const cameraPresets = {
   front: { label: "Front", position: [7, 4.8, 8] as [number, number, number] },
@@ -37,7 +39,6 @@ function StructureScene() {
       <ambientLight intensity={0.55} />
       <hemisphereLight intensity={0.85} color="#fff3dd" groundColor="#4f4637" />
       <directionalLight position={[4, 7, 5]} intensity={1.7} castShadow />
-      <Environment preset="warehouse" />
       <Bounds fit clip observe margin={1.2}>
         <Center>
           <StructureAsset />
@@ -69,7 +70,15 @@ function InfoCard({ label, value }: { label: string; value: string }) {
 /** This page intentionally exposes only Kehong's reference visual and its matching structure model. */
 export default function PackagingStructurePreview({ locale }: { locale: string }) {
   const [cameraPreset, setCameraPreset] = useState<CameraPreset>("front");
+  const [canRender3d, setCanRender3d] = useState(true);
   const camera = cameraPresets[cameraPreset];
+  const zh = locale === "zh";
+
+  useEffect(() => {
+    const canvas = document.createElement("canvas");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only WebGL capability check.
+    setCanRender3d(Boolean(canvas.getContext("webgl") || canvas.getContext("experimental-webgl")));
+  }, []);
 
   return (
     <main className="texture-paper min-h-screen px-4 py-8 text-(--kh-ink) sm:px-6 lg:px-8">
@@ -81,37 +90,32 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
                 <PackageOpen className="size-5" />
               </span>
               <div>
-                <p className="kh-eyebrow">Kehong structure studio</p>
+                <p className="kh-eyebrow">{zh ? "科宏包装结构工作室" : "Kehong packaging studio"}</p>
                 <h1 className="text-2xl font-semibold sm:text-3xl">
-                  {locale === "zh" ? "包装结构预览" : "Packaging structure preview"}
+                  {zh ? "包装结构预览" : "Packaging structure preview"}
                 </h1>
               </div>
             </div>
 
             <p className="mt-4 text-sm leading-7 text-(--kh-muted)">
-              {locale === "zh"
-                ? "这是直接加载的 GLB 模型，用于检查盖板、开孔、折线、锁扣与内外层关系。"
-                : "This page loads a GLB model directly for inspecting the lid, perforations, folds, locking tabs and inner/outer layers."}
+              {zh
+                ? "用于查看开盖纸盒的盖板、折线、锁扣与内外层关系。该视图支持结构沟通，不替代最终生产刀线。"
+                : "Review the lid, folds, locking tabs and inner/outer board relationship of an open carton. This view supports structural discussion; it does not replace a production dieline."}
             </p>
-
-            <div className="kh-panel mt-5 flex items-center gap-3 p-4">
-              <Layers3 className="size-5 text-(--kh-brass)" />
-              <div>
-                <p className="text-sm font-bold text-(--kh-ink)">{locale === "zh" ? "真实 GLB 资产" : "GLB model asset"}</p>
-                <p className="text-xs font-semibold text-(--kh-muted)">kehong-reference-pizza-box.glb · 2.8 MB</p>
-              </div>
-            </div>
 
             <dl className="mt-6 space-y-4 border-t border-(--kh-line) pt-5 text-sm leading-6 text-(--kh-muted)">
               <div>
-                <dt className="font-bold text-(--kh-ink)">{locale === "zh" ? "当前盒型" : "Current carton"}</dt>
-                <dd>{locale === "zh" ? "开盖式披萨／外卖纸盒" : "Open-lid pizza / takeaway paperboard carton"}</dd>
+                <dt className="font-bold text-(--kh-ink)">{zh ? "当前盒型" : "Current carton"}</dt>
+                <dd>{zh ? "开盖式披萨／外带纸板盒" : "Open-lid pizza / takeaway paperboard carton"}</dd>
               </div>
               <div>
-                <dt className="font-bold text-(--kh-ink)">{locale === "zh" ? "结构模式" : "Structure mode"}</dt>
-                <dd>{locale === "zh" ? "可旋转查看；为沟通结构而设，不替代生产刀模。" : "Rotatable for structure discussion; it is not a production dieline."}</dd>
+                <dt className="font-bold text-(--kh-ink)">{zh ? "结构查看" : "Structure review"}</dt>
+                <dd>{zh ? "检查面板、折线、闭合方式与内衬适配。" : "Inspect panel layout, folds, closure and liner fit."}</dd>
               </div>
             </dl>
+            <Link href="/contact?interest=structure-review" className="kh-button kh-button-primary mt-6 w-full">
+              {zh ? "申请结构 / 刀线评审" : "Request a structure / dieline review"}
+            </Link>
           </aside>
 
           <section className="premium-depth overflow-hidden rounded-lg texture-ink">
@@ -119,7 +123,7 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
               <div className="flex items-center gap-2">
                 <Eye className="size-4 text-(--kh-brass-soft)" />
                 <span className="text-sm font-bold">
-                  {locale === "zh" ? "3D 结构 / 开盒状态" : "3D structure / Open carton"}
+                  {zh ? "3D 结构 / 开盒状态" : "3D structure / Open carton"}
                 </span>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -134,14 +138,14 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
                         : "border-white/16 bg-white/8 text-white hover:bg-white/14"
                     }`}
                   >
-                    {preset.label}
+                    {zh ? ({ front: "正面", side: "侧面", top: "顶部" } as const)[id as CameraPreset] : preset.label}
                   </button>
                 ))}
               </div>
             </div>
 
             <div className="relative h-[560px] min-h-[70dvh]">
-              <Canvas
+              {canRender3d ? <Canvas
                 key={cameraPreset}
                 shadows
                 camera={{ position: camera.position, fov: cameraPreset === "top" ? 36 : 42, near: 0.1, far: 100 }}
@@ -155,25 +159,22 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
                 <Suspense fallback={null}>
                   <StructureScene />
                 </Suspense>
-              </Canvas>
+              </Canvas> : <div className="grid h-full place-items-center p-6 text-center"><Image src="/images/3d-preview/reference-pizza-box-open-v1.png" alt={zh ? "开盖式纸盒结构参考图" : "Open carton structure reference"} width={1600} height={1200} className="max-h-full max-w-full rounded-md object-contain" /><p className="sr-only">{zh ? "当前浏览器不支持 3D 查看器，已显示结构参考图。" : "Your browser does not support the 3D viewer. A structure reference is shown instead."}</p></div>}
               <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-white/12 bg-(--kh-ink)/70 px-4 py-3 text-sm font-bold text-white shadow-xl shadow-black/20">
                 <span className="inline-flex items-center gap-2">
                   <Rotate3D className="size-4 text-(--kh-brass-soft)" />
-                  {locale === "zh" ? "鼠标拖拽旋转，滚轮缩放" : "Drag to rotate, wheel to zoom"}
+                  {zh ? "旋转与缩放" : "Drag to rotate, wheel to zoom"}
                 </span>
-                <span className="inline-flex items-center gap-2">
-                  <Layers3 className="size-4 text-(--kh-brass-soft)" />
-                  GLB / ACES / sRGB / soft shadow
-                </span>
+                <span>{zh ? "结构沟通参考" : "Structure review reference"}</span>
               </div>
             </div>
           </section>
         </section>
 
         <section className="mt-5 grid gap-3 sm:grid-cols-3">
-          <InfoCard label="Asset" value="kehong-reference-pizza-box.glb" />
-          <InfoCard label={locale === "zh" ? "交互" : "Interaction"} value={locale === "zh" ? "旋转与缩放" : "Rotate and zoom"} />
-          <InfoCard label={locale === "zh" ? "品牌素材" : "Brand assets"} value={locale === "zh" ? "不含第三方标识" : "No third-party marks"} />
+          <InfoCard label={zh ? "包装结构" : "Packaging structure"} value={zh ? "开盖式纸板盒" : "Open-lid paperboard carton"} />
+          <InfoCard label={zh ? "交互" : "Interaction"} value={zh ? "旋转与缩放" : "Rotate and zoom"} />
+          <InfoCard label={zh ? "下一步" : "Next step"} value={zh ? "提交结构、刀线或定制需求" : "Share a structure, dieline or customization brief"} />
         </section>
       </div>
     </main>

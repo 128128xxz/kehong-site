@@ -42,7 +42,6 @@ const packagingRoutes = [
   "cake-boxes",
   "cake-boards-cake-drums",
   "corrugated-mailer-boxes",
-  "all-products",
 ];
 const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"];
 

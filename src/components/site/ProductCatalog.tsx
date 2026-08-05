@@ -4,13 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import { ArrowUpRight, Filter, Layers3, MessageCircle, Search, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { useSearchParams } from "next/navigation";
 import { contact } from "@/data/company";
 import ProductImageWithStatus from "@/components/site/ProductImageWithStatus";
 import {
   getCommonGsmOptions,
   getCanonicalCategoryBySlug,
   getCatalogGroups,
+  getProductGroupSummary,
   getLocalizedCatalogValue,
   getLocalizedProductMaterial,
   getLocalizedProductTitle,
@@ -22,25 +22,26 @@ import { getProductTypeLabel } from "@/lib/productImages";
 type Props = {
   skus: ProductSku[];
   initialQuery?: string;
+  initialFilters?: Record<string, string>;
   filterOptions?: CatalogFilterOptions;
   siteOrigin?: string;
   pagination?: { page: number; totalPages: number; totalGroups: number; totalSkus: number; pageSize: number };
+  invalidFilters?: boolean;
 };
 
-export default function ProductCatalog({ skus, initialQuery = "", filterOptions, pagination, siteOrigin = "https://www.kehong.tech" }: Props) {
+export default function ProductCatalog({ skus, initialQuery = "", initialFilters = {}, filterOptions, pagination, siteOrigin = "https://www.kehong.tech", invalidFilters = false }: Props) {
   const t = useTranslations("Site");
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const query = searchParams.get("search") ?? initialQuery;
-  const category = searchParams.get("category") ?? "";
-  const productType = searchParams.get("productType") ?? "";
-  const material = searchParams.get("material") ?? "";
-  const coating = searchParams.get("coating") ?? "";
-  const process = searchParams.get("process") ?? "";
-  const gsm = searchParams.get("gsm") ?? "";
-  const customOnly = searchParams.get("customizable") === "true";
+  const query = initialFilters.search ?? initialQuery;
+  const category = initialFilters.category ?? "";
+  const productType = initialFilters.productType ?? "";
+  const material = initialFilters.material ?? "";
+  const coating = initialFilters.coating ?? "";
+  const process = initialFilters.process ?? "";
+  const gsm = initialFilters.gsm ?? "";
+  const customOnly = initialFilters.customizable === "true";
   const [draftQuery, setDraftQuery] = useState(query);
   const [selected, setSelected] = useState<ProductSku[]>([]);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -77,7 +78,7 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
   }, [selected]);
 
   const updateUrl = (key: string, value: string, resetPage = true) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(initialFilters);
     if (value) params.set(key, value);
     else params.delete(key);
     if (resetPage) params.delete("page");
@@ -325,17 +326,21 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
         {groups.length === 0 ? (
           <div className="kh-panel p-8 text-center text-(--kh-muted)">
             <p>{t("catalog.noResults")}</p>
+            {invalidFilters ? <p className="mt-2 text-sm font-semibold text-(--kh-ink)">{locale === "zh" ? "筛选参数无效。请清除筛选后重新浏览。" : "This filter is not valid. Clear filters to browse the current range."}</p> : null}
             <p className="mt-2 text-sm">{locale === "zh" ? "如果您正在寻找定制包装结构，请直接提交需求。" : "If you are looking for a custom packaging structure, send the requirement directly."}</p>
+            <button type="button" onClick={reset} className="kh-button kh-button-secondary kh-button-compact mt-5">{locale === "zh" ? "清除筛选" : "Clear filters"}</button>
             <Link href="/contact" className="kh-button kh-button-primary kh-button-compact mt-5">{locale === "zh" ? "提交项目需求" : "Start a packaging project"}</Link>
           </div>
         ) : (
           <div className="grid min-w-0 gap-4 xl:grid-cols-[repeat(2,minmax(0,1fr))]">
             {groups.map((group, index) => {
               const sku = group.representative;
+              const summary = getProductGroupSummary(group, locale);
 
               return (
               <article
                 key={group.id}
+                data-product-group-id={group.id}
                 className="premium-depth group min-w-0 max-w-full overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) transition hover:-translate-y-1 hover:border-(--kh-forest)/45 hover:shadow-lg"
               >
                 <div className="relative h-52 overflow-hidden">
@@ -348,14 +353,14 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-(--kh-ink)/60 to-transparent" />
                   <div className="absolute right-4 top-4 rounded-full border border-white/25 bg-(--kh-ink)/55 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
-                    {group.variants.length} {locale === "zh" ? "个变体" : group.variants.length === 1 ? "variant" : "variants"}
+                    {summary.variantCount} {locale === "zh" ? "个变体" : summary.variantCount === 1 ? "variant" : "variants"}
                   </div>
                   <div className="absolute bottom-4 left-4 right-4">
                     <p className="kh-eyebrow kh-eyebrow-light">
-                      {getProductTypeLabel(sku.productType, locale)}
+                      {summary.familyLabel || getProductTypeLabel(sku.productType, locale)}
                     </p>
                     <h2 className="mt-2 text-xl font-semibold text-white">
-                      {getLocalizedProductTitle(sku, locale)}
+                      {summary.title}
                     </h2>
                   </div>
                 </div>
@@ -363,13 +368,13 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
                   <div className="grid gap-2 text-sm text-(--kh-muted)">
                     <p className="inline-flex items-start gap-2">
                       <Layers3 className="mt-0.5 size-4 shrink-0 text-(--kh-brass)" />
-                      {getLocalizedProductMaterial(sku, locale) ||
+                      {summary.materials[0] || getLocalizedProductMaterial(sku, locale) ||
                         (locale === "zh" ? "按项目确认" : "Custom material specification")}
                     </p>
                     <p>
                       {[
-                        getLocalizedCatalogValue(sku.gsmOrThickness, locale),
-                        getLocalizedCatalogValue(sku.coating, locale),
+                        summary.gsm,
+                        summary.coating,
                       ]
                         .filter(Boolean)
                         .join(" / ") ||
@@ -379,7 +384,7 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
                           locale === "zh" ? "按项目确认" : "Custom structure",
                         )}
                     </p>
-                    <p>{getLocalizedCatalogValue(sku.applications, locale, locale === "zh" ? "按项目确认" : "Custom application")}</p>
+                    <p>{summary.applications[0] || getLocalizedCatalogValue(sku.applications, locale, locale === "zh" ? "按项目确认" : "Custom application")}</p>
                   </div>
                   <div className="mt-4 h-px bg-(--kh-line)" />
                   <div className="mt-5 flex flex-wrap gap-2">
@@ -404,7 +409,7 @@ export default function ProductCatalog({ skus, initialQuery = "", filterOptions,
         {pagination && pagination.totalPages > 1 ? (
           <nav className="mt-8 flex flex-wrap items-center justify-center gap-2" aria-label={locale === "zh" ? "产品分页" : "Product pagination"}>
             {Array.from({ length: pagination.totalPages }, (_, index) => index + 1).map((page) => {
-              const params = new URLSearchParams(searchParams.toString());
+              const params = new URLSearchParams(initialFilters);
               if (page === 1) params.delete("page");
               else params.set("page", String(page));
               return (

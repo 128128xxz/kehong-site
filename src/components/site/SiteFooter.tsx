@@ -2,6 +2,7 @@ import { Mail, MessageCircle, ArrowRight } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { companyLegalName, companyProfile, contact, socialLinks } from "@/data/company";
+import SiteLogo from "@/components/site/SiteLogo";
 
 type IconProps = { className?: string };
 
@@ -82,7 +83,7 @@ export default async function SiteFooter() {
     <footer className="kh-footer">
       <div className="kh-shell kh-footer-grid">
         <div>
-          <p className="kh-footer-brand">KH</p>
+          <SiteLogo locale={locale} placement="footer" />
           <h2>{zh ? companyLegalNameZh : companyLegalName}</h2>
           <p className="kh-footer-note">
             {zh
@@ -132,9 +133,9 @@ export default async function SiteFooter() {
             {socialEntries.map(({ key, label, href, Icon }) => (
               <a
                 key={key}
-                href={href || "#"}
+                href={href || `/${locale}`}
                 aria-label={label}
-                title={href ? label : `${label}${zh ? " · 即将上线" : " · Coming soon"}`}
+                title={href ? label : `${label}${zh ? " · 返回首页" : " · Return home"}`}
                 {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
                 <Icon className="size-4" />

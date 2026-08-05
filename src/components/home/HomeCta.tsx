@@ -1,8 +1,6 @@
-import Image from "next/image";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { contact, companyProfile } from "@/data/company";
-import { showcaseImages } from "@/data/visuals";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
 
@@ -22,13 +20,9 @@ export default function HomeCta({ locale }: { locale: string }) {
       <Reveal mode="none">
         <div className="kh-keyline" aria-hidden="true" />
       </Reveal>
-      <div className="kh-cta-watermark" aria-hidden="true">
-        <Image src={showcaseImages.honeycomb} alt="" width={340} height={425} className="object-cover" />
-      </div>
-
       <div className="kh-shell kh-cta-grid">
         <Reveal>
-          <SectionKicker index="07" text={zh ? "开始一个包装项目" : "Start a packaging project"} light />
+          <SectionKicker index="08" text={zh ? "开始一个包装项目" : "Start a packaging project"} light />
           <h2>
             {zh
               ? "把尺寸、材料和目标市场，交给一张规格单。"

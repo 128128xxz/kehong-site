@@ -7,6 +7,8 @@ import {
   getTaxonomyCategories,
   getTaxonomyMaterialLabel,
 } from "@/lib/taxonomy";
+import { getCollectionForCategory, getProductCollection } from "@/data/productCollections";
+import { getProductFamily } from "@/data/productFamilies";
 
 export type ProductSku = (typeof catalog.skus)[number];
 export type ProductFamily = (typeof catalog.families)[number];
@@ -314,6 +316,11 @@ export function getLocalizedCatalogValue(
   fallback = "Custom paper packaging specification",
 ) {
   if (!value) return "";
+  // Display-only exceptions for legacy source labels. IDs, URLs and SKU codes
+  // are intentionally never passed through this mapping.
+  if (value.trim().toLocaleLowerCase() === "foodservicepackaging") {
+    return locale === "zh" ? "餐饮食品包装" : "Foodservice packaging";
+  }
   if (locale === "zh") {
     const parts = value.split(" /");
     const last = parts.at(-1)?.trim() ?? "";
@@ -389,6 +396,21 @@ export function getProductGroupId(sku: Pick<ProductSku, "groupId" | "canonicalGr
   return sku.groupId ?? sku.canonicalGroupId ?? sku.sku;
 }
 
+/** Public filter types are stable group directions, not the source import's
+ * broad `paper-cup-fan` bucket (which contains rolls, sheets and tray stock). */
+const publicProductTypesByGroup: Record<string, string> = {
+  "paper-cup-fan-paper-cup-fan": "paper-cup-fan",
+  "paper-cup-fan-pe-coated-paper-roll-for-paper-cup": "pe-coated-paper-roll",
+  "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup": "pe-coated-paper-sheet",
+  "paper-cup-fan-paper-cup-bottom-roll": "paper-cup-bottom-roll",
+  "paper-cup-fan-kraft-cupstock-paper": "cupstock-paper",
+  "paper-cup-fan-food-tray-paper-material": "food-tray-paper-material",
+};
+
+export function getPublicProductType(sku: Pick<ProductSku, "groupId" | "canonicalGroupId" | "sku" | "productType">) {
+  return publicProductTypesByGroup[getProductGroupId(sku)] ?? sku.productType;
+}
+
 export function getProductGroupVariants(sku: ProductSku): ProductSku[] {
   return getSkusByGroupId(getProductGroupId(sku));
 }
@@ -422,6 +444,7 @@ export function getSkusByCanonicalGroup(canonicalGroupId: string): ProductSku[] 
 }
 
 export type CatalogFilters = {
+  collection?: string;
   category?: string;
   group?: string;
   productType?: string;
@@ -432,6 +455,13 @@ export type CatalogFilters = {
   customizable?: boolean;
   search?: string;
 };
+
+export const catalogFilterKeys = ["collection", "category", "group", "productType", "material", "gsm", "coating", "process", "customizable", "search", "page"] as const;
+
+export function getQueryValue(value: string | string[] | undefined) {
+  if (Array.isArray(value)) return value.find((item) => item.trim())?.trim() ?? "";
+  return typeof value === "string" ? value.trim() : "";
+}
 
 export type CatalogFilterOptions = {
   categories: string[];
@@ -513,6 +543,185 @@ export function getCatalogGroups(skus: ProductSku[]): Array<{ id: string; repres
     return a.representative.title.en.localeCompare(b.representative.title.en);
   });
 }
+
+export type CatalogView = {
+  filters: CatalogFilters;
+  initialFilters: Record<string, string>;
+  initialQuery: string;
+  allSkus: ProductSku[];
+  filteredSkus: ProductSku[];
+  skus: ProductSku[];
+  invalidFilters: boolean;
+  page: number;
+  totalPages: number;
+  totalGroups: number;
+  pageSize: number;
+};
+
+/**
+ * The only server-side catalogue view builder. It deliberately handles the
+ * unfiltered directory and every query variation through the same data,
+ * filters, product-group summaries and localized SKU mapping.
+ */
+export function buildProductCatalogView(
+  query: Record<string, string | string[] | undefined>,
+  locale: string,
+): CatalogView {
+  const value = (key: string) => getQueryValue(query[key]);
+  const filters: CatalogFilters = {
+    collection: value("collection"),
+    category: value("category"),
+    group: value("group"),
+    productType: value("productType"),
+    material: value("material"),
+    gsm: value("gsm"),
+    coating: value("coating"),
+    process: value("process"),
+    customizable: value("customizable") === "true",
+    search: value("search"),
+  };
+  const allSkus = getAllSkus();
+  const invalidFilters = hasInvalidCatalogFilters(filters);
+  const filteredSkus = invalidFilters ? [] : filterCatalogSkus(filters, allSkus);
+  const groups = getCatalogGroups(filteredSkus);
+  const pageSize = 24;
+  const requestedPage = Math.max(1, Number.parseInt(value("page") || "1", 10) || 1);
+  const totalPages = Math.max(1, Math.ceil(groups.length / pageSize));
+  const page = Math.min(requestedPage, totalPages);
+  const visibleGroupIds = new Set(groups.slice((page - 1) * pageSize, page * pageSize).map((group) => group.id));
+
+  return {
+    filters,
+    initialFilters: {
+      collection: filters.collection ?? "",
+      category: filters.category ?? "",
+      group: filters.group ?? "",
+      productType: filters.productType ?? "",
+      material: filters.material ?? "",
+      gsm: filters.gsm ?? "",
+      coating: filters.coating ?? "",
+      process: filters.process ?? "",
+      customizable: value("customizable"),
+      search: filters.search ?? "",
+    },
+    initialQuery: filters.search ?? "",
+    allSkus,
+    filteredSkus,
+    skus: filteredSkus.filter((sku) => visibleGroupIds.has(getProductGroupId(sku))).map((sku) => getLocalizedProductSku(sku, locale)),
+    invalidFilters,
+    page,
+    totalPages,
+    totalGroups: groups.length,
+    pageSize,
+  };
+}
+
+function numericRangeFromValues(values: Array<string | undefined>) {
+  const numericValues = values.flatMap((value) => (value?.match(/\d+(?:\.\d+)?/g) ?? []).map(Number)).filter(Number.isFinite);
+  if (!numericValues.length) return undefined;
+  const min = Math.min(...numericValues);
+  const max = Math.max(...numericValues);
+  return { min, max };
+}
+
+function normalizeCoating(value: string | undefined) {
+  const lower = value?.toLocaleLowerCase() ?? "";
+  if (/\bpe\b/u.test(lower)) return "PE";
+  if (/\bpla\b/u.test(lower)) return "PLA";
+  if (/water[ -]?based/u.test(lower)) return "Water-based";
+  return "";
+}
+
+const canonicalGroupTitles: Record<string, { en: string; zh: string }> = {
+  "paper-cup-fan-paper-cup-fan": { en: "Paper Cup Fan", zh: "纸杯扇形片" },
+  "paper-cup-fan-pe-coated-paper-roll-for-paper-cup": { en: "Coated Paper Roll for Paper Cup", zh: "纸杯淋膜纸卷" },
+  "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup": { en: "Coated Paper Sheet for Paper Cup", zh: "纸杯淋膜平张纸" },
+  "paper-cup-fan-paper-cup-bottom-roll": { en: "Paper Cup Bottom Roll", zh: "纸杯底纸卷" },
+  // The normalized group contains both white-board/cupstock and kraft variants.
+  // Keep the historical slug, but never present it as a kraft-only range.
+  "paper-cup-fan-kraft-cupstock-paper": { en: "Cupstock Paper", zh: "杯纸原纸" },
+  "paper-cup-fan-food-tray-paper-material": { en: "Food Tray Paper Material", zh: "食品纸托材料" },
+};
+
+export type ProductGroupSummary = {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  family?: ReturnType<typeof getProductFamily>;
+  familyLabel: string;
+  gsm: string;
+  gsmMin?: number;
+  gsmMax?: number;
+  coating: string;
+  coatingOptions: string[];
+  variantCount: number;
+  representative: ProductSku;
+  visual: ProductSku;
+  materials: string[];
+  applications: string[];
+  relatedGroupIds: string[];
+  metadata: { title: string; description: string };
+};
+
+/**
+ * Canonical group data for catalog cards, query routes and detail pages.
+ * A group-level coating or GSM summary always derives from every variant,
+ * while the detail page keeps the selected SKU's attributes separate.
+ */
+export function buildProductGroupSummary(group: { id: string; representative: ProductSku; variants: ProductSku[] }, locale: string): ProductGroupSummary {
+  const family = getProductFamily(group.id);
+  const coatings = [...new Set(group.variants.map((variant) => normalizeCoating(variant.coating)).filter(Boolean))];
+  const isMixedPePla = coatings.includes("PE") && coatings.includes("PLA");
+  const canonicalTitle = canonicalGroupTitles[group.id];
+  const title = canonicalTitle
+    ? (locale === "zh" ? canonicalTitle.zh : canonicalTitle.en)
+    : getLocalizedProductTitle(group.representative, locale);
+  const coating = coatings.length === 1
+    ? (locale === "zh" ? `${coatings[0]} 淋膜` : `${coatings[0]} coating`)
+    : isMixedPePla
+      ? (locale === "zh" ? "可选 PE / PLA 淋膜" : "PE / PLA coating options")
+      : (locale === "zh" ? "淋膜类型按规格确认" : "Coating confirmed by specification");
+  const gsmRange = numericRangeFromValues(group.variants.map((variant) => variant.gsm ?? variant.gsmOrThickness));
+  const gsm = gsmRange
+    ? (gsmRange.min === gsmRange.max ? `${gsmRange.min} GSM` : `${gsmRange.min}–${gsmRange.max} GSM`)
+    : "";
+  const familyLabel = family ? (locale === "zh" ? family.title.zh : family.title.en) : getPublicProductType(group.representative);
+  const materials = group.id === "paper-cup-fan-kraft-cupstock-paper"
+    ? [locale === "zh" ? "可选白色杯纸与牛皮杯纸" : "White and kraft cupstock options"]
+    : [...new Set(group.variants.map((variant) => getLocalizedProductMaterial(variant, locale)).filter(Boolean))];
+  const applications = [...new Set(group.variants.flatMap((variant) => (variant.applicationsList ?? [variant.applications])
+    .map((value) => getLocalizedCatalogValue(value, locale))
+    .filter(Boolean)))];
+  const relatedGroupIds = family?.productGroupIds.filter((id) => id !== group.id) ?? [];
+  const description = [familyLabel, gsm, coating, applications.slice(0, 2).join(", ")].filter(Boolean).join(" · ");
+  return {
+    id: group.id,
+    slug: group.representative.slug,
+    title,
+    family,
+    familyLabel,
+    coating,
+    coatingOptions: coatings,
+    gsm,
+    gsmMin: gsmRange?.min,
+    gsmMax: gsmRange?.max,
+    variantCount: group.variants.length,
+    representative: group.representative,
+    visual: group.representative,
+    materials,
+    applications,
+    relatedGroupIds,
+    description,
+    metadata: {
+      title: `${title} | ${familyLabel}`,
+      description: description || title,
+    },
+  };
+}
+
+/** @deprecated Use buildProductGroupSummary for all new consumers. */
+export const getProductGroupSummary = buildProductGroupSummary;
 
 export type FeaturedProductGroup = {
   id: string;
@@ -628,14 +837,21 @@ function searchableSkuText(sku: ProductSku): string {
 
 export function filterCatalogSkus(filters: CatalogFilters = {}, skus: ProductSku[] = catalog.skus): ProductSku[] {
   const query = filters.search?.trim().toLocaleLowerCase();
+  const canonicalCategory = getCanonicalTaxonomyCategoryId(filters.category);
   const matchesLocalizedValue = (raw: string | undefined, selected: string | undefined) => {
     if (!raw || !selected) return false;
     return raw === selected || getLocalizedCatalogValue(raw, "en") === selected;
   };
   return skus.filter((sku) => {
-    if (filters.category && getCanonicalCategoryForSku(sku)?.slug !== filters.category) return false;
+    const collection = getProductCollection(filters.collection) ?? getCollectionForCategory(canonicalCategory);
+    if (filters.collection && !collection) return false;
+    if (collection && !collection.productGroupIds.includes(getProductGroupId(sku) as never)) return false;
+    // A configured collection alias (currently food-grade-paper) is a public
+    // range, not a source-category constraint. This keeps Cupstock in the
+    // established material route without mutating its source category.
+    if (filters.category && !getCollectionForCategory(canonicalCategory) && (!canonicalCategory || getCanonicalCategoryForSku(sku)?.slug !== canonicalCategory)) return false;
     if (filters.group && getProductGroupId(sku) !== filters.group) return false;
-    if (filters.productType && sku.productType !== filters.productType) return false;
+    if (filters.productType && getPublicProductType(sku) !== filters.productType) return false;
     if (filters.material && !(sku.materialIds ?? []).includes(filters.material)) return false;
     if (filters.gsm && !matchesGsmOption(sku.gsm ?? sku.gsmOrThickness, filters.gsm)) return false;
     if (filters.coating && !matchesLocalizedValue(sku.coating, filters.coating)) return false;
@@ -646,13 +862,27 @@ export function filterCatalogSkus(filters: CatalogFilters = {}, skus: ProductSku
   });
 }
 
+/** Invalid recognized filters must not silently become the unfiltered catalogue. */
+export function hasInvalidCatalogFilters(filters: CatalogFilters, options = getCatalogFilterOptions("en")) {
+  const inList = (value: string | undefined, items: readonly string[]) => !value || items.includes(value);
+  if (filters.collection && !getProductCollection(filters.collection)) return true;
+  if (filters.category && !getCanonicalTaxonomyCategoryId(filters.category)) return true;
+  return !inList(filters.group, getCatalogGroups(getAllSkus()).map((group) => group.id))
+    || !inList(filters.productType, options.productTypes)
+    || !inList(filters.material, options.materials)
+    || !inList(filters.gsm, options.gsm)
+    || !inList(filters.coating, options.coatings)
+    || !inList(filters.process, options.processes)
+    || (filters.customizable !== undefined && typeof filters.customizable !== "boolean");
+}
+
 export function getCatalogFilterOptions(locale = "zh"): CatalogFilterOptions {
   const publishedSkus = getAllSkus();
   const localize = (value: string) => locale === "en" ? getLocalizedCatalogValue(value, "en") : value;
   const values = (getter: (sku: ProductSku) => string[]) => [...new Set(publishedSkus.flatMap(getter).filter(Boolean).map(localize))].sort((a, b) => a.localeCompare(b));
   return {
     categories: getTaxonomyCategories().map((category) => category.slug),
-    productTypes: values((sku) => [sku.productType]),
+    productTypes: values((sku) => [getPublicProductType(sku)]),
     materials: values((sku) => sku.materialIds ?? []),
     gsm: getCommonGsmOptions(),
     coatings: values((sku) => [sku.coating]),

@@ -5,7 +5,7 @@ import PageHero from "@/components/site/PageHero";
 import { SectionKicker } from "@/components/home/annotations";
 import { Reveal } from "@/components/home/interactive";
 import { Link } from "@/i18n/navigation";
-import { finishOptions, resourceItems } from "@/data/siteContent";
+import { finishOptions, finishOptionsZh, resourceItems, resourceZhCopy } from "@/data/siteContent";
 
 const icons = [Palette, FileText, Scissors, Ruler, FileText, FileText];
 
@@ -19,11 +19,11 @@ export default function ResourcesPage({ locale }: { locale: string }) {
       <main>
         <PageHero
           index="01"
-          kicker="Kehong · Design Center"
+          kicker={isZh ? "科宏 · 设计中心" : "Kehong · Design Center"}
           title={isZh ? "让文件、材料和结构更容易被确认" : "Resources for a cleaner packaging handoff."}
           lede={
             isZh
-              ? "从 artwork、材料和工艺，到 dieline、选型和打样，先把采购问题整理清楚。"
+              ? "从设计稿（artwork）、材料和工艺，到刀模图（dieline）、选型和打样，先把采购问题整理清楚。"
               : "Use the Design Center to prepare artwork, compare materials and finishes, request a dieline and understand the sample path before production."
           }
           meta={[
@@ -51,7 +51,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                   <SectionKicker index="02" text={isZh ? "指南与申请" : "Guides & requests"} />
                   <h2>
                     {isZh
-                      ? "覆盖 artwork、材料与结构的工作指南。"
+                      ? "覆盖设计稿、材料与结构的工作指南。"
                       : "Working guides for artwork, materials and structure."}
                   </h2>
                 </div>
@@ -61,35 +61,29 @@ export default function ResourcesPage({ locale }: { locale: string }) {
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {resourceItems.map((item, index) => {
                   const Icon = icons[index] ?? FileText;
+                  const copy = isZh ? resourceZhCopy[item.slug] : item;
                   return (
                     <article key={item.slug} className="kh-panel p-5">
                       <div className="flex items-center justify-between gap-3">
                         <span className="grid size-10 place-items-center rounded-full bg-(--kh-brass-soft)/35 text-(--kh-brass)">
                           <Icon className="size-5" />
                         </span>
-                        <span className="kh-mono text-(--kh-brass)">{item.type === "request" ? "Request" : "Guide"}</span>
+                        <span className="kh-mono text-(--kh-brass)">{item.type === "request" ? (isZh ? "申请" : "Request") : (isZh ? "指南" : "Guide")}</span>
                       </div>
-                      <h3 className="mt-4 text-xl font-bold">{item.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{item.summary}</p>
+                      <h3 className="mt-4 text-xl font-bold">{copy.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{copy.summary}</p>
                       <ul className="mt-4 grid gap-2">
-                        {item.topics.map((topic) => (
+                        {copy.topics.map((topic) => (
                           <li key={topic} className="flex gap-2 text-sm text-(--kh-muted)">
                             <span className="mt-2 size-1.5 shrink-0 rounded-full bg-(--kh-brass)" />
                             {topic}
                           </li>
                         ))}
                       </ul>
-                      {item.type === "request" ? (
-                        <Link href="/contact" className="kh-text-link mt-5">
-                          {isZh ? "申请 dieline" : "Request a dieline"}
-                          <ArrowRight className="size-4" />
-                        </Link>
-                      ) : (
-                        <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-(--kh-forest)">
-                          <FileText className="size-4" />
-                          {isZh ? "指南内容见本页" : "Read guide on this page"}
-                        </span>
-                      )}
+                      <Link href={item.type === "request" ? "/contact" : `/resources/${item.slug}`} className="kh-text-link mt-5">
+                        {item.type === "request" ? (isZh ? "提交申请" : "Send a request") : (isZh ? "阅读指南" : "Read guide")}
+                        <ArrowRight className="size-4" />
+                      </Link>
                     </article>
                   );
                 })}
@@ -113,7 +107,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                 <div className="kh-panel h-full p-7">
                   <p className="kh-mono text-(--kh-brass)">{isZh ? "工艺方向" : "Finish directions"}</p>
                   <div className="mt-5 grid gap-2 sm:grid-cols-2">
-                    {finishOptions.map((finish) => (
+                    {(isZh ? finishOptionsZh : finishOptions).map((finish) => (
                       <p key={finish} className="rounded-md bg-(--kh-paper) px-4 py-3 text-sm font-medium text-(--kh-ink)">
                         {finish}
                       </p>

@@ -18,6 +18,7 @@ import {
   openGraphLocales,
   siteConfig,
 } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
 import "../globals.css";
 
 // 三层字体体系:展示(标题)/ 正文 / 工程注记;中文回落 Noto Sans SC 系统栈
@@ -51,7 +52,8 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/brand/kehong-mark-32.png" sizes="32x32" type="image/png" />
+        <link rel="apple-touch-icon" href="/brand/kehong-mark-180.png" />
         <meta name="theme-color" content="#171713" />
       </head>
       <body
@@ -83,6 +85,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
+  const brand = getBrandConfig(locale);
   const canonical = await getLocaleUrl(locale);
   const languages = await getAlternateLanguages();
 
@@ -93,12 +96,12 @@ export async function generateMetadata({
     keywords: t("keywords"),
     authors: [{ name: siteConfig.author.name, url: siteConfig.author.url }],
     creator: siteConfig.author.name,
-    applicationName: siteConfig.name,
+    applicationName: brand.name,
     openGraph: {
       title: t("title"),
       description: t("description"),
       url: canonical,
-      siteName: siteConfig.name,
+      siteName: brand.name,
       images: [
         {
           url: "/og-image.png",

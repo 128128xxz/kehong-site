@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 import catalog from "@/data/catalog.normalized.json";
 import taxonomy from "@/data/taxonomy.json";
-import { getAllSkus, getCatalogGroups, getFamilies, getFeaturedProductGroups, matchesGsmOption } from "@/lib/catalog";
+import { buildProductCatalogView, getAllSkus, getCatalogGroups, getFamilies, getFeaturedProductGroups, matchesGsmOption } from "@/lib/catalog";
 import { getCanonicalTaxonomyCategoryId, resolveTaxonomyMaterialAlias } from "@/lib/taxonomy";
+import { getHomepageProductEntries } from "@/lib/product-routing";
 
 describe("product taxonomy and publication gate", () => {
   it("resolves approved aliases without treating a combined label as one material", () => {
@@ -55,5 +56,29 @@ describe("product taxonomy and publication gate", () => {
     expect([...groupCounts.values()].every((count) => count <= 2)).toBe(true);
     expect(new Set(featured.map((group) => group.categoryId)).size).toBeGreaterThanOrEqual(5);
     expect(featured.filter((group) => group.representative).length).toBeGreaterThan(0);
+  });
+
+  it("normalizes legacy category spellings and keeps homepage links out of empty catalog states", () => {
+    expect(getCanonicalTaxonomyCategoryId("food_grade_paper")).toBe("food-grade-paper");
+    expect(getCanonicalTaxonomyCategoryId(" Food Grade Paper ")).toBe("food-grade-paper");
+    expect(getCanonicalTaxonomyCategoryId("food-grade-paper-series")).toBe("food-grade-paper");
+
+    const entries = getHomepageProductEntries();
+    expect(entries).toHaveLength(6);
+    expect(entries.every((entry) => !entry.href.includes("productType=paper-packaging-material"))).toBe(true);
+    expect(entries.every((entry) => entry.hasPublicSku || !entry.href.startsWith("/products?"))).toBe(true);
+  });
+
+  it("builds the unfiltered and query-filtered catalog from one server-side view", () => {
+    const unfiltered = buildProductCatalogView({}, "en");
+    const cupFan = buildProductCatalogView({ productType: "paper-cup-fan" }, "en");
+    const invalid = buildProductCatalogView({ category: "not-a-category" }, "en");
+
+    expect(unfiltered.allSkus).toEqual(getAllSkus());
+    expect(unfiltered.totalGroups).toBe(getCatalogGroups(getAllSkus()).length);
+    expect(cupFan.skus).not.toHaveLength(0);
+    expect(cupFan.skus.every((sku) => sku.productType === "paper-cup-fan")).toBe(true);
+    expect(invalid.invalidFilters).toBe(true);
+    expect(invalid.skus).toEqual([]);
   });
 });

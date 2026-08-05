@@ -71,6 +71,9 @@ export const showcaseImages = {
   representativeProtectiveStructures: "/images/ai/20260727-gpt/representative-protective-structures.png",
   representativeInserts: "/images/ai/20260727-gpt/representative-inserts.png",
   representativeBakeryPackaging: "/images/ai/20260727-gpt/representative-bakery-packaging.png",
+  // Unbranded local representative visual for the Takeout Boxes route.
+  // It replaces legacy collage imagery and is not presented as factory photography.
+  takeoutBoxesReference: "/images/ai/20260727-gpt/representative-box-range.png",
   representativeMaterialSamples: "/images/ai/20260727-gpt/representative-material-samples.png",
   representativeHeroMaterials: "/images/ai/20260727-gpt/representative-hero-materials.png",
   // AI 渲染 v2(2026-07-27 第二批,27 张;tea-coffee 源文件损坏待重出)

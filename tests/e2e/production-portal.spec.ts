@@ -32,7 +32,7 @@ test.describe("homepage manufacturing website", () => {
 
   test("homepage keeps a compact procurement-focused section stack", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.locator("main > section")).toHaveCount(6);
+    await expect(page.locator("main > section")).toHaveCount(7);
   });
 
   test("cinema header starts transparent and turns solid after the hero", async ({ page }) => {
@@ -63,7 +63,7 @@ test.describe("homepage manufacturing website", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/en");
     await expect(page.locator("h1")).toBeVisible();
-    const card = page.locator('a[href*="productType=paper-cup-fan"]').first();
+    const card = page.locator('a[href*="group=paper-cup-fan-paper-cup-fan"]').first();
     await expect(card).toBeVisible();
     const transitionDuration = await card.evaluate((element) => getComputedStyle(element).transitionDuration);
     for (const duration of transitionDuration.split(",")) {

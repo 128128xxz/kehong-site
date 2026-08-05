@@ -9,10 +9,12 @@ import { SectionKicker } from "@/components/home/annotations";
 import { Reveal } from "@/components/home/interactive";
 import { Link } from "@/i18n/navigation";
 import { getAlternateLanguages, getLocaleUrl, siteConfig } from "@/lib/site";
-import { resourceItems } from "@/data/siteContent";
+import { getBrandConfig } from "@/lib/site-config";
+import { resourceItems, resourceZhCopy } from "@/data/siteContent";
+import RelatedLinks from "@/components/site/RelatedLinks";
 
 export function generateStaticParams() { return ["en", "zh", "es", "th", "vi", "id", "ms"].flatMap((locale) => resourceItems.map((item) => ({ locale, slug: item.slug }))); }
-export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> { const { locale, slug } = await params; const item = resourceItems.find((resource) => resource.slug === slug); if (!item) return {}; const canonical = await getLocaleUrl(locale, `/resources/${slug}`); return { metadataBase: new URL(siteConfig.url), title: `${item.title} | Kehong`, description: item.summary, alternates: { canonical, languages: await getAlternateLanguages(`/resources/${slug}`) }, openGraph: { title: `${item.title} | Kehong`, description: item.summary, url: canonical, siteName: siteConfig.name, type: "article" } }; }
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> { const { locale, slug } = await params; const item = resourceItems.find((resource) => resource.slug === slug); if (!item) return {}; const zh = locale === "zh"; const brand = getBrandConfig(locale); const copy = zh ? resourceZhCopy[item.slug] : item; const canonical = await getLocaleUrl(locale, `/resources/${slug}`); const title = `${copy.title} | ${brand.name}`; return { metadataBase: new URL(siteConfig.url), title, description: copy.summary, alternates: { canonical, languages: await getAlternateLanguages(`/resources/${slug}`) }, openGraph: { title, description: copy.summary, url: canonical, siteName: brand.name, type: "article" }, twitter: { card: "summary_large_image", title, description: copy.summary } }; }
 
 export default async function ResourceDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
@@ -20,24 +22,25 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
   if (!item) notFound();
   setRequestLocale(locale);
   const isZh = locale === "zh";
+  const copy = isZh ? resourceZhCopy[item.slug] : item;
   return (
     <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">
       <Header />
       <main>
         <PageHero
           index="01"
-          kicker={`Kehong · ${item.type === "request" ? "Request" : "Guide"}`}
-          title={item.title}
-          lede={item.summary}
+          kicker={isZh ? `科宏 · ${item.type === "request" ? "申请" : "指南"}` : `Kehong · ${item.type === "request" ? "Request" : "Guide"}`}
+          title={copy.title}
+          lede={copy.summary}
           meta={[
-            isZh ? `${item.topics.length} 个确认要点` : `${item.topics.length} checkpoints`,
+            isZh ? `${copy.topics.length} 个确认要点` : `${copy.topics.length} checkpoints`,
             "OEM / ODM",
             isZh ? "中国广东佛山" : "Foshan, Guangdong, China",
           ]}
         >
           <Link href="/contact" className="kh-button kh-button-light">
             {item.type === "request"
-              ? isZh ? "申请 dieline" : "Request a dieline"
+              ? isZh ? "申请刀模图" : "Request a dieline"
               : isZh ? "咨询包装专家" : "Discuss this with a packaging expert"}
             <ArrowRight className="size-4" />
           </Link>
@@ -55,7 +58,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                 <h2>{isZh ? "需要准备的内容" : "What to prepare"}</h2>
                 <div className="kh-panel mt-8 p-6 sm:p-8">
                   <ul className="grid gap-3">
-                    {item.topics.map((topic) => (
+                    {copy.topics.map((topic) => (
                       <li key={topic} className="flex gap-3 text-sm leading-6 text-(--kh-muted)">
                         <span className="mt-2 size-2 shrink-0 rounded-full bg-(--kh-brass)" />
                         {topic}
@@ -70,7 +73,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
                 </div>
                 <Link href="/contact" className="kh-button kh-button-primary mt-8">
                   {item.type === "request"
-                    ? isZh ? "申请 dieline" : "Request a dieline"
+                    ? isZh ? "申请刀模图" : "Request a dieline"
                     : isZh ? "咨询包装专家" : "Discuss this with a packaging expert"}
                   <ArrowRight className="size-4" />
                 </Link>
@@ -78,6 +81,17 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
             </Reveal>
           </div>
         </section>
+        <RelatedLinks
+          locale={locale}
+          index="03"
+          title={{ en: "Related products & project support", zh: "相关产品与项目支持" }}
+          links={[
+            { href: "/products?collection=materials", en: "Related paper materials", zh: "相关纸材" },
+            { href: "/packaging", en: "Packaging formats", zh: "成品包装类型" },
+            { href: "/industries", en: "Industry applications", zh: "行业应用" },
+            { href: "/contact?interest=structure-review", en: "Send this brief", zh: "提交这份需求" },
+          ]}
+        />
       </main>
       <SiteFooter />
     </div>

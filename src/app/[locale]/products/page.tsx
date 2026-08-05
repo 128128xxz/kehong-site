@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Header from "@/components/site/Header";
 import SiteFooter from "@/components/site/SiteFooter";
@@ -6,10 +7,15 @@ import PageHero from "@/components/site/PageHero";
 import ProductCatalog from "@/components/site/ProductCatalog";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
-import { filterCatalogSkus, getAllSkus, getCatalogFilterOptions, getCatalogGroups, getLocalizedProductSku, getProductGroupId } from "@/lib/catalog";
+import { buildProductCatalogView, getCatalogFilterOptions, getQueryValue } from "@/lib/catalog";
 import { getCanonicalTaxonomyCategoryId } from "@/lib/taxonomy";
 import { showcaseImages } from "@/data/visuals";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
+
+// Only the query-sensitive catalogue opts out of static data reuse. Other
+// routes keep their normal rendering strategy.
+export const revalidate = 0;
 
 function serializeJsonLd(data: Record<string, unknown>) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -24,7 +30,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Site" });
-  const title = `${t("catalog.title")} | ${siteConfig.name}`;
+  const brand = getBrandConfig(locale);
+  const title = `${t("catalog.title")} | ${brand.name}`;
   const description = t("catalog.description");
   const canonical = await getLocaleUrl(locale, "/products");
   const query = searchParams ? await searchParams : {};
@@ -43,7 +50,7 @@ export async function generateMetadata({
       title,
       description,
       url: canonical,
-      siteName: siteConfig.name,
+      siteName: brand.name,
       images: [
         {
           url: showcaseImages.webOpenShippingBox,
@@ -76,42 +83,26 @@ export default async function ProductsPage({
   const query = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Site" });
-  const value = (key: string) => (typeof query[key] === "string" ? query[key] : "");
-  const system = value("system");
-  const page = Math.max(1, Number.parseInt(value("page") || "1", 10) || 1);
-  const allSkus = getAllSkus();
-  const materialCategories = new Set(["kraft-paper", "kraft-paper-series", "white-cardboard", "white-cardboard-series", "food-grade-paper", "food-grade-paper-series", "corrugated-paper", "corrugated-fluted-paper-series", "specialty-paper", "specialty-paper-series"]);
-  const packagingCategories = new Set(["food-packaging-boxes", "paper-pads", "paper-inserts", "paper-boxes", "paper-box-components", "finished-paper-boxes"]);
-  const systemSkus = system === "materials"
-    ? allSkus.filter((sku) => materialCategories.has(sku.categoryId) || materialCategories.has(getCanonicalTaxonomyCategoryId(sku.categoryId) ?? ""))
-    : system === "packaging"
-      ? allSkus.filter((sku) => packagingCategories.has(sku.categoryId) || packagingCategories.has(getCanonicalTaxonomyCategoryId(sku.categoryId) ?? ""))
-      : allSkus;
-  const filteredSkus = filterCatalogSkus({
-    category: value("category"),
-    group: value("group"),
-    productType: value("productType"),
-    material: value("material"),
-    gsm: value("gsm"),
-    coating: value("coating"),
-    process: value("process"),
-    customizable: value("customizable") === "true",
-    search: value("search"),
-  }, systemSkus);
-  const allGroups = getCatalogGroups(filteredSkus);
-  const pageSize = 24;
-  const totalPages = Math.max(1, Math.ceil(allGroups.length / pageSize));
-  const safePage = Math.min(page, totalPages);
-  const visibleGroupIds = new Set(allGroups.slice((safePage - 1) * pageSize, safePage * pageSize).map((group) => group.id));
-  const skus = filteredSkus
-    .filter((sku) => visibleGroupIds.has(getProductGroupId(sku)))
-    .map((sku) => getLocalizedProductSku(sku, locale));
+  const brand = getBrandConfig(locale);
+  const value = (key: string) => getQueryValue(query[key]);
+  const rawCategory = value("category");
+  const canonicalCategory = getCanonicalTaxonomyCategoryId(rawCategory);
+  if (rawCategory && canonicalCategory && canonicalCategory !== rawCategory) {
+    const normalized = new URLSearchParams();
+    Object.entries(query).forEach(([key, rawValue]) => {
+      if (typeof rawValue === "string" && rawValue) normalized.set(key, key === "category" ? (canonicalCategory ?? "") : rawValue);
+    });
+    if (!canonicalCategory) normalized.delete("category");
+    const suffix = normalized.toString();
+    redirect(`/${locale}/products${suffix ? `?${suffix}` : ""}`);
+  }
+  const catalogView = buildProductCatalogView(query, locale);
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: siteConfig.name,
+    name: brand.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/kehong/factory.webp`,
+    logo: `${siteConfig.url}/brand/kehong-logo-full-transparent.png`,
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
@@ -169,7 +160,7 @@ export default async function ProductsPage({
           title={t("catalog.title")}
           lede={t("catalog.description")}
           meta={[
-            locale === "zh" ? `${allSkus.length} 个已发布 SKU` : `${allSkus.length} published SKUs`,
+            locale === "zh" ? `${catalogView.allSkus.length} 个已发布 SKU` : `${catalogView.allSkus.length} published SKUs`,
             "OEM / ODM",
             locale === "zh" ? "中国广东佛山" : "Foshan, Guangdong, China",
           ]}
@@ -183,11 +174,13 @@ export default async function ProductsPage({
         </PageHero>
         <div id="catalog-list" className="kh-shell scroll-mt-24 py-10">
           <ProductCatalog
-            skus={skus}
-            initialQuery={value("search")}
+            skus={catalogView.skus}
+            initialQuery={catalogView.initialQuery}
+            initialFilters={catalogView.initialFilters}
             filterOptions={getCatalogFilterOptions(locale)}
             siteOrigin={siteConfig.url}
-            pagination={{ page: safePage, totalPages, totalGroups: allGroups.length, totalSkus: filteredSkus.length, pageSize }}
+            pagination={{ page: catalogView.page, totalPages: catalogView.totalPages, totalGroups: catalogView.totalGroups, totalSkus: catalogView.filteredSkus.length, pageSize: catalogView.pageSize }}
+            invalidFilters={catalogView.invalidFilters}
           />
         </div>
       </main>

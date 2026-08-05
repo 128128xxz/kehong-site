@@ -15,19 +15,27 @@ const comparisonRows = [
   ["MDF / Masonite", "Rigid board direction when offered", "Rigid or repeat-use requirements", "Only recommend when included in the confirmed range"],
   ["Mini Board", "Small-format board", "Single portions and small desserts", "Shape and finish confirmed by project"],
 ];
+const comparisonRowsZh = [
+  ["蛋糕底托", "纸板承托方向", "日常单层蛋糕与展示", "形状、表面与边缘按项目确认"],
+  ["蛋糕鼓", "更厚的承托方向", "较重或多层蛋糕展示", "表面与边缘方案按项目确认"],
+  ["MDF / 硬质纤维板", "可提供时的硬质板方向", "硬质或重复使用需求", "仅在确认产品范围内推荐"],
+  ["迷你底托", "小尺寸承托板", "单人份与小型甜品", "形状与表面按项目确认"],
+];
 
 export default function BakeryPackagingPage({ locale }: { locale: string }) {
   const isZh = locale === "zh";
   const cakeBoxes = packagingCategories.find((item) => item.slug === "cake-boxes");
   const cakeBoards = packagingCategories.find((item) => item.slug === "cake-boards-cake-drums");
-  const subcategoryCount = (cakeBoxes?.subcategories.length ?? 0) + (cakeBoards?.subcategories.length ?? 0);
+  const subcategoryCount =
+    ((isZh ? cakeBoxes?.subcategories.zh.length : cakeBoxes?.subcategories.en.length) ?? 0) +
+    ((isZh ? cakeBoards?.subcategories.zh.length : cakeBoards?.subcategories.en.length) ?? 0);
   return (
     <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">
       <Header />
       <main>
         <PageHero
           index="01"
-          kicker="Kehong · Bakery Packaging"
+          kicker={isZh ? "科宏 · 烘焙包装" : "Kehong · Bakery Packaging"}
           title={isZh ? "从蛋糕盒到承托底板，按烘焙场景选择" : "Bakery packaging built around presentation, support and transport."}
           lede={
             isZh
@@ -41,11 +49,11 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
               : [`${subcategoryCount} subcategory directions`, "OEM / ODM", "Foshan, Guangdong, China"]
           }
         >
-          <Link href="/products/cake-boxes" className="kh-button kh-button-light">
-            Explore cake boxes <ArrowRight className="size-4" />
+          <Link href="/packaging/cake-boxes" className="kh-button kh-button-light">
+            {isZh ? "浏览蛋糕盒" : "Explore cake boxes"} <ArrowRight className="size-4" />
           </Link>
-          <Link href="/products/cake-boards-and-drums" className="kh-button kh-button-ghost">
-            Compare cake boards
+          <Link href="/packaging/cake-boards-cake-drums" className="kh-button kh-button-ghost">
+            {isZh ? "对比蛋糕底托" : "Compare cake boards"}
           </Link>
         </PageHero>
 
@@ -76,10 +84,10 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
                       </span>
                     </div>
                     <div className="kh-system-copy">
-                      <h3>{item!.title.en}</h3>
-                      <p>{item!.description.en}</p>
+                      <h3>{isZh ? item!.title.zh : item!.title.en}</h3>
+                      <p>{isZh ? item!.description.zh : item!.description.en}</p>
                       <ul className="grid gap-2">
-                        {item!.subcategories.slice(0, 7).map((sub) => (
+                        {(isZh ? item!.subcategories.zh : item!.subcategories.en).slice(0, 7).map((sub) => (
                           <li key={sub} className="flex gap-2 text-sm font-medium text-(--kh-ink)">
                             <Check className="mt-1 size-4 shrink-0 text-(--kh-brass)" />
                             {sub}
@@ -87,10 +95,10 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
                         ))}
                       </ul>
                       <Link
-                        href={item!.slug === "cake-boxes" ? "/products/cake-boxes" : "/products/cake-boards-and-drums"}
+                        href={item!.slug === "cake-boxes" ? "/packaging/cake-boxes" : "/packaging/cake-boards-cake-drums"}
                         className="kh-text-link mt-6"
                       >
-                        View range <ArrowRight className="size-4" />
+                        {isZh ? "查看范围" : "View range"} <ArrowRight className="size-4" />
                       </Link>
                     </div>
                   </article>
@@ -113,17 +121,17 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
             <Reveal>
               <div className="overflow-x-auto rounded-lg border border-(--kh-line) bg-(--kh-surface)">
                 <table className="min-w-[760px] w-full text-left text-sm">
-                  <caption className="sr-only">Cake Board vs Cake Drum vs MDF / Masonite vs Mini Board</caption>
+                  <caption className="sr-only">{isZh ? "蛋糕底托、蛋糕鼓、MDF 硬质板和迷你底托对比" : "Cake Board vs Cake Drum vs MDF / Masonite vs Mini Board"}</caption>
                   <thead className="bg-(--kh-paper) text-(--kh-brass)">
                     <tr>
-                      <th className="kh-mono px-5 py-3">Type</th>
-                      <th className="kh-mono px-5 py-3">Construction</th>
-                      <th className="kh-mono px-5 py-3">Best use</th>
-                      <th className="kh-mono px-5 py-3">Surface / edge</th>
+                      <th className="kh-mono px-5 py-3">{isZh ? "类型" : "Type"}</th>
+                      <th className="kh-mono px-5 py-3">{isZh ? "结构" : "Construction"}</th>
+                      <th className="kh-mono px-5 py-3">{isZh ? "适用场景" : "Best use"}</th>
+                      <th className="kh-mono px-5 py-3">{isZh ? "表面 / 边缘" : "Surface / edge"}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {comparisonRows.map((row) => (
+                    {(isZh ? comparisonRowsZh : comparisonRows).map((row) => (
                       <tr key={row[0]} className="border-t border-(--kh-line)">
                         <th className="px-5 py-4 font-bold">{row[0]}</th>
                         {row.slice(1).map((cell) => (
@@ -139,9 +147,9 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
             </Reveal>
             <Reveal delay={100}>
               <div className="mt-6 rounded-lg border border-(--kh-line) bg-(--kh-brass-soft) p-6">
-                <h3 className="text-2xl font-semibold text-(--kh-ink)">How to choose</h3>
+                <h3 className="text-2xl font-semibold text-(--kh-ink)">{isZh ? "如何选择" : "How to choose"}</h3>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-(--kh-ink)">
-                  Everyday single-layer cake: start with a Cake Board. Heavier or multi-layer presentation: review a Cake Drum. Rigid or repeat-use directions: ask whether MDF/Masonite is part of the confirmed range. Small desserts: consider a Mini Board.
+                  {isZh ? "日常单层蛋糕可先从蛋糕底托开始；较重或多层展示可评审蛋糕鼓方向；硬质或重复使用需求请确认 MDF / 硬质纤维板是否属于当前可供范围；小型甜品可考虑迷你底托。" : "Everyday single-layer cake: start with a Cake Board. Heavier or multi-layer presentation: review a Cake Drum. Rigid or repeat-use directions: ask whether MDF/Masonite is part of the confirmed range. Small desserts: consider a Mini Board."}
                 </p>
               </div>
             </Reveal>

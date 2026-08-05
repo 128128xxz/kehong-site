@@ -4,9 +4,12 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import { CountUp } from "@/components/home/interactive";
+import { getProductEntry } from "@/lib/product-routing";
 
 export default function HomeHero({ locale }: { locale: string }) {
   const zh = locale === "zh";
+  const materialEntry = getProductEntry("materials");
+  const packagingEntry = getProductEntry("packaging");
   const alt = zh
     ? "科宏工厂车间:成排模切设备与纸板堆垛"
     : "Kehong factory hall with die-cutting lines and stacked board";
@@ -72,12 +75,12 @@ export default function HomeHero({ locale }: { locale: string }) {
               : "Cupstock, converting components and finished paper packaging supported by in-house converting, structural sampling and export coordination."}
           </p>
           <div className="kh-actions kh-rise kh-rise-5">
-            <Link className="kh-button kh-button-light" href="/products?category=food-grade-paper-series">
-              {zh ? "浏览纸材" : "Browse materials"}
+            <Link className="kh-button kh-button-light" href={materialEntry.href}>
+              {zh ? materialEntry.title.zh : materialEntry.title.en}
               <ArrowRight className="size-4" />
             </Link>
-            <Link className="kh-button kh-button-ghost" href="/products?category=finished-paper-boxes">
-              {zh ? "浏览成品包装" : "Browse packaging"}
+            <Link className="kh-button kh-button-ghost" href={packagingEntry.href}>
+              {zh ? packagingEntry.title.zh : packagingEntry.title.en}
               <ArrowRight className="size-4" />
             </Link>
             <Link className="kh-button kh-button-ghost" href="/contact">
@@ -94,11 +97,6 @@ export default function HomeHero({ locale }: { locale: string }) {
             </div>
           ))}
         </dl>
-      </div>
-
-      <div className="kh-scroll-cue" aria-hidden="true">
-        <i />
-        <span className="kh-mono">Scroll</span>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import Header from "@/components/site/Header";
 import PackagingStructurePreview from "@/components/site/PackagingStructurePreview";
 import SiteFooter from "@/components/site/SiteFooter";
 import { getAlternateLanguages, getLocaleUrl, siteConfig } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
 
 export async function generateMetadata({
   params,
@@ -11,11 +12,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const brand = getBrandConfig(locale);
   const canonical = await getLocaleUrl(locale, "/model-preview");
 
   return {
     metadataBase: new URL(siteConfig.url),
-    title: `3D product preview | ${siteConfig.name}`,
+    title: `3D product preview | ${brand.name}`,
     description: "Interactive 3D product preview for Kehong packaging structures.",
     alternates: {
       canonical,

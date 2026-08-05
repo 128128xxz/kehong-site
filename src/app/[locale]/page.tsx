@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import HomeIndex from "@/components/pages/HomeIndex";
 import { getLocaleUrl, siteConfig } from "@/lib/site";
+import { getBrandConfig } from "@/lib/site-config";
 
 function serializeJsonLd(data: Record<string, unknown>) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -15,15 +16,16 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "Metadata" });
+  const brand = getBrandConfig(locale);
   const canonical = await getLocaleUrl(locale);
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: siteConfig.name,
+    name: brand.name,
     description: t("description"),
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/kehong/factory.webp`,
+    logo: `${siteConfig.url}/brand/kehong-logo-full-transparent.png`,
     inLanguage: locale,
     contactPoint: {
       "@type": "ContactPoint",
@@ -35,13 +37,13 @@ export default async function HomePage({
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: siteConfig.name,
+    name: brand.name,
     description: t("description"),
     url: canonical,
     inLanguage: locale,
     publisher: {
       "@type": "Organization",
-      name: siteConfig.author.name,
+      name: brand.name,
       url: siteConfig.author.url,
     },
   };

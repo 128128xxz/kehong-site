@@ -30,6 +30,19 @@ function withDiagnostics(response: NextResponse) {
 export default function proxy(request: NextRequest) {
   const hostname = request.nextUrl.hostname.toLowerCase();
   const isProductionHost = hostname === canonicalHost || hostname === apexHost;
+  const legacyAllProducts = request.nextUrl.pathname.match(/^\/(en|zh|es|th|vi|id|ms)\/packaging\/all-products\/?$/u);
+
+  // This redirect belongs at the edge, rather than in the statically generated
+  // packaging route, so the original query string is preserved without making
+  // an otherwise static category route fail with DYNAMIC_SERVER_USAGE.
+  if (legacyAllProducts) {
+    const locale = legacyAllProducts[1];
+    const url = isProductionHost ? new URL(`/${locale}/products`, canonicalOrigin) : request.nextUrl.clone();
+    url.pathname = `/${locale}/products`;
+    url.search = request.nextUrl.search;
+    return withDiagnostics(NextResponse.redirect(url, 308));
+  }
+
   const needsCanonicalRedirect = isProductionHost && (
     hostname !== canonicalHost
     || request.nextUrl.protocol !== "https:"
