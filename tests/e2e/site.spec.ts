@@ -323,7 +323,7 @@ test.describe("Kehong production flows", () => {
       await expect(entries).toHaveCount(6);
       const hrefs = await entries.evaluateAll((links) => links.map((link) => link.getAttribute("href") || ""));
       for (const href of hrefs) {
-        const response = await page.goto(href, { waitUntil: "networkidle" });
+        const response = await page.goto(href, { waitUntil: "domcontentloaded" });
         expect(response?.ok()).toBe(true);
         await expect(page.getByText(/no matching products/i)).toHaveCount(0);
       }
