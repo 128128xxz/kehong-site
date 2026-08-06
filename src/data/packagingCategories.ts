@@ -4,7 +4,6 @@ type LocalizedList = { en: string[]; zh: string[] };
 
 export const packagingCategorySlugs = [
   "paper-bags",
-  "labels-stickers",
   "takeout-boxes",
   "cake-boxes",
   "cake-boards-cake-drums",
@@ -16,7 +15,6 @@ export type PackagingCategorySlug = (typeof packagingCategorySlugs)[number];
 /** The sole public product-direction mapping for packaging-category inquiries. */
 export const PACKAGING_INQUIRY_LABELS = {
   "paper-bags": { en: "Paper Bags", zh: "纸袋" },
-  "labels-stickers": { en: "Labels & Stickers", zh: "标签与贴纸" },
   "takeout-boxes": { en: "Takeout Boxes", zh: "外带食品盒" },
   "cake-boxes": { en: "Cake Boxes", zh: "蛋糕盒" },
   "cake-boards-cake-drums": { en: "Cake Boards & Cake Drums", zh: "蛋糕底托与蛋糕鼓" },
@@ -52,19 +50,6 @@ const allPackagingCategories: PackagingCategory[] = [
     seoDescription: "Custom paper bag development with paper, handle, printing and finish options for overseas B2B packaging projects.",
     searchTerms: ["paper bag", "kraft bag"],
     productTypes: ["kraft-paper"],
-  },
-  {
-    slug: "labels-stickers",
-    title: { en: "Labels & Stickers", zh: "标签与贴纸" },
-    shortDescription: { en: "Printed labels, tags and stickers kept separate from structural box products.", zh: "独立于纸盒结构产品的印刷标签、吊牌与贴纸。" },
-    description: { en: "Use this range for labels, hang tags and stickers that support product identification and brand presentation. Final substrate, adhesive, finish and application are confirmed from the production brief.", zh: "用于产品识别和品牌展示的标签、吊牌与贴纸。最终基材、胶粘、工艺和应用需根据生产需求确认。" },
-    image: showcaseImages.aiLabelsTags,
-    subcategories: { en: ["Hang tags", "Carton labels", "Clear labels", "Waterproof labels", "Die-cut stickers", "Roll labels"], zh: ["吊牌", "纸箱标签", "透明标签", "防水标签", "模切贴纸", "卷装标签"] },
-    applications: { en: ["Retail labeling", "Carton identification", "Product branding", "Promotional packaging"], zh: ["零售标识", "纸箱识别", "产品品牌展示", "促销包装"] },
-    filters: { en: ["Substrate", "Printing", "Shape", "Adhesive", "Finish"], zh: ["基材", "印刷", "形状", "胶粘", "表面工艺"] },
-    seoTitle: "Labels & Stickers | Custom Packaging Components",
-    seoDescription: "Explore custom labels, hang tags and stickers for product identification and packaging presentation.",
-    searchTerms: ["label", "sticker", "hang tag"],
   },
   {
     slug: "pillow-boxes",
@@ -139,7 +124,7 @@ const allPackagingCategories: PackagingCategory[] = [
 ];
 
 /**
- * These descriptions remain as source material, but only the six approved
+ * These descriptions remain as source material, but only the five approved
  * current categories are exposed through routes, navigation, and sitemap.
  */
 const retiredPackagingCategorySlugs = new Set(["pillow-boxes"]);

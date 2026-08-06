@@ -69,7 +69,7 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
                   </div>
                   <p className="mt-3 max-w-[56ch] text-sm leading-6 text-(--kh-muted)">{zh ? system.descriptionZh : system.description}</p>
                   <ul className="mt-5 grid gap-2 text-sm font-semibold text-(--kh-forest) sm:grid-cols-3">
-                    {(zh ? system.detailsZh : system.details).map((detail) => <li key={detail} className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-(--kh-brass)" />{detail}</li>)}
+                    {(zh ? system.detailsZh : system.details).map((detail) => <li key={detail} className={`flex items-center gap-2 ${detail === "Converting-ready formats" ? "whitespace-nowrap text-[.82rem]" : ""}`}><span className="size-1.5 shrink-0 rounded-full bg-(--kh-brass)" />{detail}</li>)}
                   </ul>
                 </div>
               </Link>

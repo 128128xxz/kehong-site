@@ -19,12 +19,12 @@ const productDataRevision = String(catalog.generatedAt ?? "catalog-unknown");
 const retiredPublicLocales = new Set(["es", "id", "ms", "th", "vi"]);
 const activePackagingSlugs = new Set([
   "paper-bags",
-  "labels-stickers",
   "takeout-boxes",
   "cake-boxes",
   "cake-boards-cake-drums",
   "corrugated-mailer-boxes",
 ]);
+const retiredPackagingSlugs = new Set(["labels-stickers"]);
 const staticRoutePaths = new Set([
   "",
   "products",
@@ -103,6 +103,7 @@ export default function proxy(request: NextRequest) {
   const isProductionHost = hostname === canonicalHost || hostname === apexHost;
   const retiredLocaleDestination = getRetiredLocaleDestination(request.nextUrl.pathname);
   const legacyAllProducts = request.nextUrl.pathname.match(/^\/(en|zh|es|th|vi|id|ms)\/packaging\/all-products\/?$/u);
+  const retiredPackagingRoute = request.nextUrl.pathname.match(/^\/(en|zh)\/packaging\/([^/]+)\/?$/u);
 
   // Retired public locales are permanently consolidated into an active English
   // route. Valid routes keep their path; unsupported legacy paths use the
@@ -110,6 +111,16 @@ export default function proxy(request: NextRequest) {
   if (retiredLocaleDestination) {
     const url = isProductionHost ? new URL(retiredLocaleDestination, canonicalOrigin) : request.nextUrl.clone();
     url.pathname = retiredLocaleDestination;
+    url.search = request.nextUrl.search;
+    return withDiagnostics(NextResponse.redirect(url, 308));
+  }
+
+  // Labels & Stickers is not a Kehong public offering. Keep previously shared
+  // URLs useful without retaining a page, metadata, or inquiry prefill for it.
+  if (retiredPackagingRoute && retiredPackagingSlugs.has(retiredPackagingRoute[2])) {
+    const locale = retiredPackagingRoute[1];
+    const url = isProductionHost ? new URL(`/${locale}/packaging`, canonicalOrigin) : request.nextUrl.clone();
+    url.pathname = `/${locale}/packaging`;
     url.search = request.nextUrl.search;
     return withDiagnostics(NextResponse.redirect(url, 308));
   }

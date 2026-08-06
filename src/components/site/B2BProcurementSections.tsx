@@ -138,10 +138,10 @@ export default async function B2BProcurementSections() {
           <Reveal delay={80}>
             <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-5">
               {(isZh ? processSteps.zh : processSteps.en).map((step, index) => (
-                <div key={step} className="kh-panel p-4">
+                <div key={step} className="kh-procurement-process-step kh-panel p-3">
                   <span className="kh-mono text-(--kh-brass)">{`0${index + 1}`}</span>
-                  <p className="mt-3 text-sm font-bold text-(--kh-ink)">{step}</p>
-                  <CheckCircle2 className="mt-3 size-4 text-(--kh-brass)" />
+                  <p className="mt-2 text-sm font-bold leading-5 text-(--kh-ink)">{step}</p>
+                  <CheckCircle2 className="mt-2 size-4 text-(--kh-brass)" />
                 </div>
               ))}
             </div>

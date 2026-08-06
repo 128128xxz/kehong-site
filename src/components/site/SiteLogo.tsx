@@ -32,12 +32,18 @@ export default function SiteLogo({ locale, placement }: SiteLogoProps) {
     );
   }
   return (
-    <Image
-      src="/brand/kehong-logo-full-transparent.png"
-      alt={zh ? "科宏纸品" : "Kehong Paper Products"}
-      width={900}
-      height={850}
-      className="kh-footer-brand"
-    />
+    <div className="kh-footer-brand" aria-label={zh ? "科宏纸品" : "Kehong Paper Products"}>
+      <Image
+        src="/brand/kehong-mark-transparent.png"
+        alt=""
+        width={523}
+        height={535}
+        className="kh-footer-brand-mark"
+      />
+      <span className="kh-footer-brand-copy">
+        <span className="kh-footer-brand-name">{zh ? "科宏纸品" : "Kehong"}</span>
+        <span className="kh-footer-brand-tag">{zh ? "纸品加工与定制包装" : "Paper products & custom packaging"}</span>
+      </span>
+    </div>
   );
 }

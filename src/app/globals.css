@@ -28,6 +28,7 @@
   --kh-forest-deep: #0a1612;
   --kh-shadow-soft: 0 10px 30px rgba(29, 33, 29, .08);
   --kh-ease: cubic-bezier(.22, 1, .36, 1);
+  --kh-header-height: 85px;
   /* 三层字体体系:正文 / 展示标题 / 工程注记 */
   --font-body: var(--font-inter, Inter), "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
   --font-display: var(--font-space-grotesk, "Space Grotesk"), var(--font-inter, Inter), "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -102,6 +103,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
+    height: var(--kh-header-height);
     border-bottom: 1px solid var(--kh-line);
     background: rgba(255, 253, 248, .94);
     /* 页面根容器(如 texture-ink)可能改写继承色,页头必须固定为墨色 */
@@ -113,7 +115,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1.25rem;
-    height: 84px;
+    height: calc(var(--kh-header-height) - 1px);
   }
   .kh-header-brand {
     display: flex;
@@ -528,7 +530,7 @@
     display: flex;
     flex-direction: column;
     /* 上提到透明页头之下,hero 画面直达页面顶端 */
-    margin-top: -72px;
+    margin-top: calc(-1 * var(--kh-header-height));
     min-height: 100svh;
     overflow: hidden;
     background: var(--kh-forest-deep);
@@ -936,6 +938,12 @@
     background: var(--kh-forest);
     color: var(--kh-surface);
   }
+  .kh-procurement-process-step {
+    display: flex;
+    min-height: 7.5rem;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   /* ---------- S5 材料画廊(scroll-snap) ---------- */
   .kh-gallery-track {
@@ -1208,10 +1216,37 @@
     grid-template-columns: 1.1fr 1fr .8fr;
   }
   .kh-footer-brand {
-    display: block;
-    width: 12rem;
-    height: auto;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: .7rem;
     margin: 0;
+  }
+  .kh-footer-brand-mark {
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: contain;
+  }
+  .kh-footer-brand-copy {
+    display: grid;
+    gap: .18rem;
+  }
+  .kh-footer-brand-name {
+    color: var(--kh-surface);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .kh-footer-brand-tag {
+    color: var(--kh-brass-soft);
+    font-family: var(--font-mono);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1.35;
+    text-transform: uppercase;
   }
   .kh-footer h2 {
     max-width: 22ch;

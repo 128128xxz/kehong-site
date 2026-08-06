@@ -5,6 +5,7 @@ import Header from "@/components/site/Header";
 import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
 import ProductCatalog from "@/components/site/ProductCatalog";
+import ProductDirectory from "@/components/site/ProductDirectory";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { buildProductCatalogView, getCatalogFilterOptions, getQueryValue } from "@/lib/catalog";
@@ -172,6 +173,7 @@ export default async function ProductsPage({
             {locale === "zh" ? "索取目录 / 规格资料" : "Request catalog / data sheet"}
           </Link>
         </PageHero>
+        <ProductDirectory locale={locale} />
         <div id="catalog-list" className="kh-shell scroll-mt-24 py-10">
           <ProductCatalog
             skus={catalogView.skus}

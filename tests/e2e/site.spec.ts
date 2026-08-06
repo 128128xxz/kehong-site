@@ -20,7 +20,7 @@ test.describe("Kehong production flows", () => {
     expect(response.headers().location).toBe("/en");
   });
 
-  test("header and footer use the shared supplied official logo asset", async ({ page }) => {
+  test("header and footer use the clean supplied transparent mark asset", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
     const headerLogo = page.locator(".kh-header-brand-mark");
     await expect(headerLogo).toBeVisible();
@@ -28,7 +28,9 @@ test.describe("Kehong production flows", () => {
     await expect(page.locator(".kh-brand-name")).toHaveText("Kehong Paper Products");
     await expect(page.locator(".kh-brand-tag")).toHaveText("Paper materials & custom packaging");
     await expect(page.locator(".kh-monogram")).toHaveCount(0);
-    await expect(page.locator(".kh-footer-brand")).toHaveAttribute("src", /kehong-logo-full-transparent\.png/);
+    await expect(page.locator(".kh-footer-brand-mark")).toHaveAttribute("src", /kehong-mark-transparent\.png/);
+    await expect(page.locator(".kh-footer-brand-name")).toHaveText("Kehong");
+    await expect(page.locator(".kh-footer-brand-tag")).toHaveText("Paper products & custom packaging");
     await page.goto("/zh", { waitUntil: "networkidle" });
     await expect(page.locator(".kh-brand-name")).toHaveText("科宏纸品");
     await expect(page.locator(".kh-brand-tag")).toHaveText("纸材、半成品与定制纸包装");
@@ -68,6 +70,14 @@ test.describe("Kehong production flows", () => {
       });
       expect([301, 308]).toContain(response.status());
       expect(response.headers().location).toBe(`/${locale}/products?category=food-grade-paper&productType=paper-cup-fan`);
+    }
+  });
+
+  test("retired Labels & Stickers URLs permanently resolve to the finished-packaging parent", async ({ request }) => {
+    for (const locale of ["en", "zh"]) {
+      const response = await request.get(`/${locale}/packaging/labels-stickers?utm_source=legacy`, { maxRedirects: 0 });
+      expect(response.status()).toBe(308);
+      expect(response.headers().location).toBe(`/${locale}/packaging?utm_source=legacy`);
     }
   });
 
@@ -428,8 +438,18 @@ test.describe("Kehong production flows", () => {
     }
   });
 
+  test("products directory separates published materials from finished packaging without exposing Labels & Stickers", async ({ page }) => {
+    for (const [locale, materials, packaging] of [["en", "Paper materials & semi-finished components", "Finished packaging"], ["zh", "纸材与半成品", "成品包装"]] as const) {
+      await page.goto(`/${locale}/products`, { waitUntil: "networkidle" });
+      const directory = page.locator('section[aria-labelledby="product-directory-title"]');
+      await expect(directory).toContainText(materials);
+      await expect(directory).toContainText(packaging);
+      await expect(directory).not.toContainText(/Labels\s*&\s*Stickers|标签与贴纸/u);
+    }
+  });
+
   test("every packaging category Browse products control targets its in-page product scope", async ({ page }) => {
-    const categories = ["paper-bags", "labels-stickers", "takeout-boxes", "cake-boxes", "cake-boards-cake-drums", "corrugated-mailer-boxes"];
+    const categories = ["paper-bags", "takeout-boxes", "cake-boxes", "cake-boards-cake-drums", "corrugated-mailer-boxes"];
     for (const locale of ["en", "zh"]) {
       for (const slug of categories) {
         await page.goto(`/${locale}/packaging/${slug}`, { waitUntil: "networkidle" });
@@ -478,7 +498,7 @@ test.describe("Kehong production flows", () => {
   });
 
   test("packaging category pages render a server-side range or explicit empty state", async ({ request }) => {
-    const slugs = ["cake-boxes", "takeout-boxes", "paper-bags", "corrugated-mailer-boxes", "labels-stickers", "cake-boards-cake-drums"];
+    const slugs = ["cake-boxes", "takeout-boxes", "paper-bags", "corrugated-mailer-boxes", "cake-boards-cake-drums"];
     for (const locale of ["en", "zh"]) {
       for (const slug of slugs) {
         const response = await request.get(`/${locale}/packaging/${slug}`);
@@ -612,7 +632,6 @@ test.describe("Kehong production flows", () => {
     test.setTimeout(120_000);
     const categories = [
       ["paper-bags", "Paper Bags", "纸袋"],
-      ["labels-stickers", "Labels & Stickers", "标签与贴纸"],
       ["takeout-boxes", "Takeout Boxes", "外带食品盒"],
       ["cake-boxes", "Cake Boxes", "蛋糕盒"],
       ["cake-boards-cake-drums", "Cake Boards & Cake Drums", "蛋糕底托与蛋糕鼓"],
@@ -648,7 +667,7 @@ test.describe("Kehong production flows", () => {
   });
 
   test("header and footer quotes remain generic while category project briefs retain their purpose", async ({ page }) => {
-    await page.goto("/en/packaging/labels-stickers", { waitUntil: "networkidle" });
+    await page.goto("/en/packaging/paper-bags", { waitUntil: "networkidle" });
     for (const ctaId of ["site-header-quote", "site-footer-quote"] as const) {
       const href = await page.getByTestId(ctaId).getAttribute("href");
       const url = new URL(href!, "https://www.kehong.tech");
