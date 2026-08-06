@@ -47,7 +47,7 @@ export default async function FactoryOverview() {
             <h2>{isZh ? "从纸材到成品，同一座工厂完成。" : "From raw board to finished packaging in one plant."}</h2>
             <p className="kh-section-lede mt-5">
               {isZh
-                ? "科宏围绕纸材选择、结构打样、纸材加工、后工艺和出货准备协同纸包装项目，自有产线覆盖模切、分切、裱纸与瓦楞成型。"
+                ? "从选材、结构打样到加工和出货准备，科宏按项目规格跟进纸包装项目；模切、分切、裱纸和瓦楞成型能力以具体项目确认为准。"
                 : `${companyLegalName} runs in-house lines for die-cutting, slitting, lamination, and corrugating, coordinating each project from material selection through shipment preparation.`}
             </p>
             <dl className="mt-8 grid gap-4 border-y border-(--kh-line) py-5 text-sm sm:grid-cols-2">
@@ -110,7 +110,7 @@ export default async function FactoryOverview() {
             <div className="grid gap-6 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
               <div>
                 <SectionKicker index="03" text={isZh ? "可核对的能力" : "Verified workflow points"} light />
-                <h2>{isZh ? "把每个要求落到生产节点。" : "Requirements tied to production stages."}</h2>
+                <h2>{isZh ? "逐项确认材料、加工、检验和包装要求。" : "Confirm material, converting, inspection and packing requirements step by step."}</h2>
               </div>
               <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
                 {isZh

@@ -35,6 +35,52 @@ test.describe("homepage manufacturing website", () => {
     await expect(page.locator("main > section")).toHaveCount(7);
   });
 
+  test("homepage metrics keep a shared value baseline and label start", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/en");
+    const stats = page.locator(".kh-hero-stat");
+    await expect(stats).toHaveCount(4);
+    const boxes = await stats.locator(".kh-hero-stat-value").evaluateAll((values) => values.map((value) => {
+      const valueBox = value.getBoundingClientRect();
+      const labelBox = value.parentElement?.querySelector("span.kh-mono")?.getBoundingClientRect();
+      return { valueBottom: valueBox.bottom, labelTop: labelBox?.top, whiteSpace: getComputedStyle(value).whiteSpace };
+    }));
+    expect(Math.max(...boxes.map((item) => item.valueBottom)) - Math.min(...boxes.map((item) => item.valueBottom))).toBeLessThanOrEqual(1);
+    expect(Math.max(...boxes.map((item) => item.labelTop ?? 0)) - Math.min(...boxes.map((item) => item.labelTop ?? 0))).toBeLessThanOrEqual(1);
+    expect(boxes.every((item) => item.whiteSpace === "nowrap")).toBe(true);
+  });
+
+  test("homepage process tabs change the matching fixed media panel", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/en");
+    const section = page.getByTestId("home-process");
+    const tabs = section.getByRole("tab");
+    const panel = section.getByRole("tabpanel");
+    await expect(tabs).toHaveCount(4);
+    await tabs.nth(1).hover();
+    await expect(panel).toHaveAttribute("data-active-step", "paper-board-converting");
+    await tabs.nth(2).focus();
+    await expect(panel).toHaveAttribute("data-active-step", "printing-finishing");
+    await tabs.nth(3).click();
+    await expect(panel).toHaveAttribute("data-active-step", "forming-packing");
+    await tabs.nth(3).press("ArrowUp");
+    await expect(panel).toHaveAttribute("data-active-step", "printing-finishing");
+    await expect(section.getByTestId("process-caption")).toContainText("Colour and material swatches");
+  });
+
+  test("homepage process remains tappable without a media layout shift on mobile", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/en");
+    const section = page.getByTestId("home-process");
+    const panel = section.getByRole("tabpanel");
+    const before = await panel.boundingBox();
+    await section.getByRole("tab").nth(1).click();
+    await expect(panel).toHaveAttribute("data-active-step", "paper-board-converting");
+    const after = await panel.boundingBox();
+    expect(after?.height).toBe(before?.height);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+  });
+
   test("cinema header starts transparent and turns solid after the hero", async ({ page }) => {
     await page.goto("/en");
     const header = page.locator("header.kh-header");
@@ -63,7 +109,7 @@ test.describe("homepage manufacturing website", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/en");
     await expect(page.locator("h1")).toBeVisible();
-    const card = page.locator('a[href*="group=paper-cup-fan-paper-cup-fan"]').first();
+    const card = page.locator('a[href*="group=paper-cup-fan-paper-cup-fan"]:visible').first();
     await expect(card).toBeVisible();
     const transitionDuration = await card.evaluate((element) => getComputedStyle(element).transitionDuration);
     for (const duration of transitionDuration.split(",")) {

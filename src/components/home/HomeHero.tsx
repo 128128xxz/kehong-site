@@ -32,11 +32,11 @@ export default function HomeHero({ locale }: { locale: string }) {
     quality: 78,
   });
 
-  const stats: Array<{ value: ReactNode; label: string }> = [
-    { value: <CountUp to={20} suffix="+" />, label: zh ? "年纸品制造经验" : "Years in paper converting" },
-    { value: <CountUp to={8000} suffix="+" />, label: zh ? "平方米厂房面积" : "m² of factory floor" },
-    { value: "OEM / ODM", label: zh ? "定制项目模式" : "Custom project models" },
-    { value: "MOQ", label: zh ? "弹性起订量" : "Flexible order volumes" },
+  const stats: Array<{ value: ReactNode; label: string; compact?: boolean }> = [
+    { value: <CountUp to={20} suffix="+" />, label: zh ? "纸品加工经验" : "Years in paper converting" },
+    { value: <><CountUp to={8000} suffix="+" /> <small>㎡</small></>, label: zh ? "生产场地" : "Production floor area" },
+    { value: "OEM / ODM", label: zh ? "定制开发支持" : "Custom development support", compact: true },
+    { value: "MOQ", label: zh ? "支持灵活起订" : "Flexible order quantities" },
   ];
 
   return (
@@ -71,7 +71,7 @@ export default function HomeHero({ locale }: { locale: string }) {
           </h1>
           <p className="kh-lede kh-rise kh-rise-4">
             {zh
-              ? "纸材选择、结构打样、加工与出口协同在同一条项目流程里完成，服务海外品牌、经销商与采购团队。"
+              ? "从纸材选择、结构打样到加工和出货，由同一团队跟进海外品牌、经销商与采购团队的项目。"
               : "Cupstock, converting components and finished paper packaging supported by in-house converting, structural sampling and export coordination."}
           </p>
           <div className="kh-actions kh-rise kh-rise-5">
@@ -91,8 +91,8 @@ export default function HomeHero({ locale }: { locale: string }) {
 
         <dl className="kh-hero-stats kh-rise kh-rise-6">
           {stats.map((stat) => (
-            <div className="kh-hero-stat" key={stat.label}>
-              <b>{stat.value}</b>
+            <div className={`kh-hero-stat${stat.compact ? " is-compact" : ""}`} key={stat.label}>
+              <b className="kh-hero-stat-value">{stat.value}</b>
               <span className="kh-mono">{stat.label}</span>
             </div>
           ))}

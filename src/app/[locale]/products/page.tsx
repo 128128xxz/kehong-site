@@ -161,20 +161,25 @@ export default async function ProductsPage({
           title={t("catalog.title")}
           lede={t("catalog.description")}
           meta={[
-            locale === "zh" ? `${catalogView.allSkus.length} 个已发布 SKU` : `${catalogView.allSkus.length} published SKUs`,
+            locale === "zh" ? `${catalogView.allSkus.length} 个纸材与半成品 SKU` : `${catalogView.allSkus.length} material & semi-finished SKUs`,
             "OEM / ODM",
             locale === "zh" ? "中国广东佛山" : "Foshan, Guangdong, China",
           ]}
         >
-          <a href="#catalog-list" className="kh-button kh-button-light">
+          <a href="#materials-and-components" className="kh-button kh-button-light">
             {locale === "zh" ? "查看产品规格" : "View specifications"}
           </a>
           <Link href="/contact" className="kh-button kh-button-ghost">
             {locale === "zh" ? "索取目录 / 规格资料" : "Request catalog / data sheet"}
           </Link>
         </PageHero>
-        <ProductDirectory locale={locale} />
-        <div id="catalog-list" className="kh-shell scroll-mt-24 py-10">
+        <ProductDirectory locale={locale} section="materials" />
+        <section id="catalog-list" aria-labelledby="material-catalog-title" className="kh-shell scroll-mt-24 py-10">
+          <div className="mb-7 max-w-3xl">
+            <p className="kh-eyebrow">{locale === "zh" ? "规格筛选" : "Specification catalog"}</p>
+            <h2 id="material-catalog-title" className="mt-2 text-3xl font-semibold tracking-tight">{locale === "zh" ? "纸材与半成品 SKU 规格" : "Material & semi-finished SKU specifications"}</h2>
+            <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{locale === "zh" ? "筛选器和 231 个已发布 SKU 仅对应纸材、卷材、平张和加工部件；成品包装项目请见下方目录。" : "Filters and the 231 published SKUs cover paper materials, rolls, sheets and converting components only. See the project-led finished packaging directory below."}</p>
+          </div>
           <ProductCatalog
             skus={catalogView.skus}
             initialQuery={catalogView.initialQuery}
@@ -184,7 +189,8 @@ export default async function ProductsPage({
             pagination={{ page: catalogView.page, totalPages: catalogView.totalPages, totalGroups: catalogView.totalGroups, totalSkus: catalogView.filteredSkus.length, pageSize: catalogView.pageSize }}
             invalidFilters={catalogView.invalidFilters}
           />
-        </div>
+        </section>
+        <ProductDirectory locale={locale} section="finished" />
       </main>
       <SiteFooter />
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
@@ -19,94 +19,76 @@ type ProcessStep = {
   figureZh: string;
   alt: string;
   altZh: string;
-  /** goldBoard 实为分切产线,画面偏亮,叠深绿色罩保证图注可读 */
-  veil?: boolean;
 };
 
-const steps: ProcessStep[] = [
+const steps: readonly ProcessStep[] = [
   {
-    id: "die-cutting",
-    title: "Die-cutting & forming",
-    titleZh: "模切与成型",
-    body: "Precision die-cutting turns approved drawings into repeatable structures.",
-    bodyZh: "精密模切把确认后的图纸变成可重复生产的结构。",
+    id: "structure-dieline",
+    title: "Structure & dieline confirmation",
+    titleZh: "结构与刀模确认",
+    body: "Confirm the box style, dimensions, dieline and sample against the intended use and load requirements.",
+    bodyZh: "根据尺寸、用途和承重要求，确认盒型、刀模和样品。",
     image: showcaseImages.machineClose,
-    figure: "Fig.01 — Die-cutting line",
-    figureZh: "图01 — 模切产线",
-    alt: "Close-up of the automatic feeder on a die-cutting line",
-    altZh: "模切产线自动飞达近景",
+    figure: "Fig.01 — Die-cutting equipment",
+    figureZh: "图01 — 模切设备",
+    alt: "Close-up of automatic feeding equipment used for die-cutting preparation",
+    altZh: "用于模切准备的自动送料设备近景",
   },
   {
-    id: "corrugated",
-    title: "Corrugating & board",
-    titleZh: "瓦楞与纸板",
-    body: "Fluted and laminated board built for strength, weight and finish.",
-    bodyZh: "坑纸与复合纸板兼顾强度、克重与表面效果。",
+    id: "paper-board-converting",
+    title: "Paper & board converting",
+    titleZh: "纸材与纸板加工",
+    body: "Prepare paper and board to the confirmed grade, width, construction and surface specification.",
+    bodyZh: "按确认的纸张等级、幅宽、纸板结构和表面要求进行加工准备。",
     image: showcaseImages.structureMaterialReal,
-    figure: "Fig.02 — Slitting line",
-    figureZh: "图02 — 分切产线",
-    alt: "White paper web running through a slitting line",
-    altZh: "分切产线上的白色纸幅",
+    figure: "Fig.02 — Paperboard material",
+    figureZh: "图02 — 纸板材料",
+    alt: "Paperboard material used to review structure and surface requirements",
+    altZh: "用于核对结构与表面要求的纸板材料",
   },
   {
-    id: "dyeing",
-    title: "Color & surface",
-    titleZh: "染色与印面",
-    body: "Dyed papers and surface treatments matched against approved samples.",
-    bodyZh: "染色纸与表面处理按封样逐批对色。",
+    id: "printing-finishing",
+    title: "Printing & surface finishing",
+    titleZh: "印刷与表面处理",
+    body: "Check artwork, color and surface finish against the approved sample before the relevant production stage.",
+    bodyZh: "根据确认样稿，核对颜色、图文内容和表面效果。",
     image: showcaseImages.swatch,
-    figure: "Fig.03 — Color library",
-    figureZh: "图03 — 色卡样库",
-    alt: "Colored fluted paper swatch library",
-    altZh: "彩色坑纸样卡库",
+    figure: "Fig.03 — Colour and material swatches",
+    figureZh: "图03 — 色样与材料样卡",
+    alt: "Colour and material swatches used to review print and surface finish",
+    altZh: "用于核对印刷颜色与表面效果的色样和材料样卡",
   },
   {
-    id: "laminating",
-    title: "Lamination & finishing",
-    titleZh: "裱纸与后加工",
-    body: "Lamination, mounting and finishing prepared for export packing.",
-    bodyZh: "裱纸、复合与后加工，按出口包装要求收尾。",
-    image: showcaseImages.slittingLinePink,
-    figure: "Fig.04 — Converting hall",
-    figureZh: "图04 — 加工车间",
-    alt: "Converting hall with slitting equipment and paper rolls",
-    altZh: "配备分切设备与纸卷的加工车间",
-    veil: true,
+    id: "forming-packing",
+    title: "Die-cutting, forming & packing",
+    titleZh: "模切、成型与出货",
+    body: "Complete die-cutting, creasing, mounting and forming, then inspect and pack for shipment.",
+    bodyZh: "完成模切、压痕、裱贴和成型，检验后按项目要求包装出货。",
+    image: showcaseImages.kraftCartonsPallet,
+    figure: "Fig.04 — Cartons prepared for dispatch",
+    figureZh: "图04 — 待出货纸箱",
+    alt: "Kraft cartons staged on a pallet for dispatch",
+    altZh: "码放在托盘上、等待出货的牛皮纸箱",
   },
 ];
 
 export default function HomeProcess({ locale }: { locale: string }) {
   const zh = locale === "zh";
   const [active, setActive] = useState(0);
-  const stepRefs = useRef<Array<HTMLLIElement | null>>([]);
+  const current = steps[active];
 
-  // 桌面端:滚动经过步骤时切换左侧媒体(原生滚动,非劫持)
-  useEffect(() => {
-    if (!window.matchMedia("(min-width: 1101px)").matches) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          const index = stepRefs.current.indexOf(entry.target as HTMLLIElement);
-          if (index >= 0) setActive(index);
-        }
-      },
-      { rootMargin: "-40% 0px -40% 0px" },
-    );
-    for (const node of stepRefs.current) {
-      if (node) observer.observe(node);
-    }
-    return () => observer.disconnect();
-  }, []);
+  const move = (direction: 1 | -1) => {
+    setActive((index) => (index + direction + steps.length) % steps.length);
+  };
 
   return (
-    <section className="kh-section kh-section-muted">
+    <section className="kh-section kh-section-muted" data-testid="home-process">
       <div className="kh-shell">
         <Reveal>
           <div className="kh-section-heading">
             <div>
-              <SectionKicker index="04" text={zh ? "工艺流程" : "Process"} />
-              <h2>{zh ? "把规格变成可执行的生产方案。" : "Turn a packaging brief into a production-ready plan."}</h2>
+              <SectionKicker index="04" text={zh ? "生产流程" : "Process"} />
+              <h2>{zh ? "从结构确认到出货，每一步都对应明确的生产事项。" : "From structure confirmation to dispatch, each step has a clear production purpose."}</h2>
             </div>
             <Link className="kh-text-link" href="/capabilities">
               {zh ? "查看制造能力" : "View manufacturing capabilities"}
@@ -116,58 +98,68 @@ export default function HomeProcess({ locale }: { locale: string }) {
         </Reveal>
 
         <div className="kh-process-grid">
-          <div className="kh-process-media kh-media-shade">
+          <div
+            id="home-process-panel"
+            role="tabpanel"
+            aria-labelledby={`home-process-tab-${current.id}`}
+            className="kh-process-media kh-media-shade"
+            data-active-step={current.id}
+          >
             {steps.map((step, index) => (
-              <div key={step.id} className={`kh-process-img${index === active ? " is-active" : ""}`}>
+              <div key={step.id} className={`kh-process-img${index === active ? " is-active" : ""}`} aria-hidden={index !== active}>
                 <Image
                   src={step.image}
-                  alt={zh ? step.altZh : step.alt}
+                  alt={index === active ? (zh ? step.altZh : step.alt) : ""}
                   fill
+                  priority={index === 0}
                   sizes="(max-width: 1100px) 100vw, 52vw"
                   className="object-cover"
                 />
-                {step.veil ? <div className="absolute inset-0 bg-(--kh-forest)/25" aria-hidden="true" /> : null}
               </div>
             ))}
-            <span className="kh-fig-caption kh-mono">{zh ? steps[active].figureZh : steps[active].figure}</span>
+            <span className="kh-fig-caption kh-mono" data-testid="process-caption">{zh ? current.figureZh : current.figure}</span>
           </div>
 
-          <div>
-            <ol className="kh-process-steps">
-              {steps.map((step, index) => (
-                <li
-                  key={step.id}
-                  ref={(node) => {
-                    stepRefs.current[index] = node;
-                  }}
-                  className={`kh-process-step${index === active ? " is-active" : ""}`}
-                >
-                  <b>0{index + 1}</b>
-                  <div>
-                    <h3>{zh ? step.titleZh : step.title}</h3>
-                    <p>{zh ? step.bodyZh : step.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-
-            <div className="kh-process-tabs" role="tablist" aria-label={zh ? "工艺步骤" : "Process steps"}>
-              {steps.map((step, index) => (
-                <button
-                  key={step.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={index === active}
-                  className={index === active ? "is-active" : ""}
-                  onClick={() => setActive(index)}
-                >
-                  {`0${index + 1} ${zh ? step.titleZh : step.title}`}
-                </button>
-              ))}
-            </div>
-            <p className="kh-process-mobile-copy hidden">
-              {zh ? steps[active].bodyZh : steps[active].body}
-            </p>
+          <div role="tablist" aria-label={zh ? "首页生产步骤" : "Homepage production steps"} className="kh-process-steps">
+            {steps.map((step, index) => (
+              <button
+                key={step.id}
+                id={`home-process-tab-${step.id}`}
+                type="button"
+                role="tab"
+                aria-selected={index === active}
+                aria-controls="home-process-panel"
+                tabIndex={index === active ? 0 : -1}
+                className={`kh-process-step${index === active ? " is-active" : ""}`}
+                onMouseEnter={() => setActive(index)}
+                onFocus={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onKeyDown={(event) => {
+                  if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+                    event.preventDefault();
+                    move(1);
+                  }
+                  if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+                    event.preventDefault();
+                    move(-1);
+                  }
+                  if (event.key === "Home") {
+                    event.preventDefault();
+                    setActive(0);
+                  }
+                  if (event.key === "End") {
+                    event.preventDefault();
+                    setActive(steps.length - 1);
+                  }
+                }}
+              >
+                <b>0{index + 1}</b>
+                <span>
+                  <span className="kh-process-step-title">{zh ? step.titleZh : step.title}</span>
+                  <span className="kh-process-step-copy">{zh ? step.bodyZh : step.body}</span>
+                </span>
+              </button>
+            ))}
           </div>
         </div>
       </div>

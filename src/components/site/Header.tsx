@@ -7,6 +7,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SiteLogo from "@/components/site/SiteLogo";
 import { captureAttribution, trackKehongEvent } from "@/lib/attribution";
+import { finishedPackagingDirectoryGroups, materialDirectoryGroups, type DirectoryGroup } from "@/data/productDirectory";
 
 const headerCopy = {
   zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", resources: "资源", contact: "获取报价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
@@ -19,15 +20,6 @@ const headerCopy = {
 } as const;
 
 type NavItem = { href: string; zh: string; en: string };
-
-const productLinks: NavItem[] = [
-  { href: "/products", zh: "全部产品", en: "All products" },
-  { href: "/packaging/cake-boxes", zh: "蛋糕盒", en: "Cake boxes" },
-  { href: "/packaging/takeout-boxes", zh: "外带食品盒", en: "Takeout & food boxes" },
-  { href: "/packaging/paper-bags", zh: "纸袋", en: "Paper bags" },
-  { href: "/packaging/corrugated-mailer-boxes", zh: "瓦楞邮寄盒", en: "Corrugated mailers" },
-  { href: "/packaging/cake-boards-cake-drums", zh: "蛋糕底托", en: "Cake boards & drums" },
-];
 
 const capabilityLinks: NavItem[] = [
   { href: "/capabilities", zh: "能力总览", en: "Capabilities overview" },
@@ -46,6 +38,64 @@ type HeaderProps = {
   /** cinema = 首页暗场:透明起始,滚过 Hero 后过渡为实底 */
   variant?: "solid" | "cinema";
 };
+
+function directoryLabel(item: { en: string; zh: string }, zh: boolean) {
+  return zh ? item.zh : item.en;
+}
+
+function ProductMegaMenu({ zh, close }: { zh: boolean; close: () => void }) {
+  const sections: Array<{ id: string; title: { en: string; zh: string }; groups: readonly DirectoryGroup[]; href: string }> = [
+    { id: "materials", title: { en: "Paper materials & semi-finished components", zh: "纸材与半成品" }, groups: materialDirectoryGroups, href: "/products#materials-and-components" },
+    { id: "packaging", title: { en: "Finished packaging", zh: "成品包装" }, groups: finishedPackagingDirectoryGroups, href: "/products#finished-packaging" },
+  ];
+
+  return (
+    <div className="kh-nav-panel kh-product-mega" data-testid="header-product-mega-menu">
+      {sections.map((section) => (
+        <section key={section.id} className="kh-product-mega-section" aria-labelledby={`header-${section.id}-title`}>
+          <div className="kh-product-mega-head">
+            <p id={`header-${section.id}-title`}>{directoryLabel(section.title, zh)}</p>
+            <Link href={section.href} onClick={close}>{zh ? "查看目录" : "View directory"}<span aria-hidden="true">→</span></Link>
+          </div>
+          {section.groups.map((group) => (
+            <div key={group.id} className="kh-product-mega-group">
+              <p>{directoryLabel(group, zh)}</p>
+              <div>
+                {group.links.map((item) => (
+                  <Link key={item.id} href={item.href} onClick={close}>{directoryLabel(item, zh)}</Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      ))}
+      <Link className="kh-product-mega-all" href="/products" onClick={close}>{zh ? "查看完整产品目录" : "View the complete product directory"}<span aria-hidden="true">→</span></Link>
+    </div>
+  );
+}
+
+function MobileProductDirectory({ zh, close }: { zh: boolean; close: () => void }) {
+  const sections: Array<{ id: string; title: { en: string; zh: string }; groups: readonly DirectoryGroup[] }> = [
+    { id: "materials", title: { en: "Paper materials & semi-finished components", zh: "纸材与半成品" }, groups: materialDirectoryGroups },
+    { id: "packaging", title: { en: "Finished packaging", zh: "成品包装" }, groups: finishedPackagingDirectoryGroups },
+  ];
+  return (
+    <div className="kh-mobile-product-directory" data-testid="mobile-product-directory">
+      {sections.map((section) => (
+        <details key={section.id}>
+          <summary>{directoryLabel(section.title, zh)}<ChevronDown className="size-4" /></summary>
+          {section.groups.map((group) => (
+            <div key={group.id} className="kh-mobile-product-group">
+              <p>{directoryLabel(group, zh)}</p>
+              {group.links.map((item) => <Link key={item.id} href={item.href} onClick={close}>{directoryLabel(item, zh)}</Link>)}
+            </div>
+          ))}
+        </details>
+      ))}
+      <Link href="/products" onClick={close}>{zh ? "查看完整产品目录" : "View the complete product directory"}<span aria-hidden="true">→</span></Link>
+    </div>
+  );
+}
 
 export default function Header({ variant = "solid" }: HeaderProps) {
   const locale = useLocale();
@@ -175,16 +225,12 @@ export default function Header({ variant = "solid" }: HeaderProps) {
         </Link>
 
         <nav className="kh-desktop-nav" aria-label="Primary navigation">
-          <details className="relative">
+          <details className="relative" onMouseEnter={(event) => { event.currentTarget.open = true; }} onMouseLeave={(event) => { event.currentTarget.open = false; }}>
             <summary className={navLinkClass(isProducts)}>
               <span>{copy.products}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </summary>
-            <div className="kh-nav-panel">
-              {productLinks.map((item) => (
-                <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
-              ))}
-            </div>
+            <ProductMegaMenu zh={isZh} close={closeDesktopDropdowns} />
           </details>
 
           <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>{copy.solutions}</Link>
@@ -241,9 +287,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                 </div>
                 <nav aria-label={copy.menuTitle}>
                   <p className="kh-nav-panel-label">{copy.products}</p>
-                  {productLinks.slice(0, 5).map((item) => (
-                    <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
-                  ))}
+                  <MobileProductDirectory zh={isZh} close={() => setMenuOpen(false)} />
                   <p className="kh-nav-panel-label">{copy.solutions}</p>
                   <Link href="/solutions">{copy.solutions}<span aria-hidden="true">→</span></Link>
                   <p className="kh-nav-panel-label">{copy.capabilities}</p>

@@ -441,14 +441,52 @@ test.describe("Kehong production flows", () => {
   test("products directory separates published materials from finished packaging without exposing Labels & Stickers", async ({ page }) => {
     for (const [locale, materials, packaging] of [["en", "Paper materials & semi-finished components", "Finished packaging"], ["zh", "纸材与半成品", "成品包装"]] as const) {
       await page.goto(`/${locale}/products`, { waitUntil: "networkidle" });
-      const directory = page.locator('section[aria-labelledby="product-directory-title"]');
-      await expect(directory).toContainText(materials);
-      await expect(directory).toContainText(packaging);
-      await expect(directory).not.toContainText(/Labels\s*&\s*Stickers|标签与贴纸/u);
-      await expect(directory).not.toContainText(/Concept visualization|概念示意/u);
+      const materialsDirectory = page.locator("#materials-and-components");
+      const finishedDirectory = page.locator("#finished-packaging");
+      await expect(materialsDirectory).toContainText(materials);
+      await expect(finishedDirectory).toContainText(packaging);
+      await expect(materialsDirectory).not.toContainText(/Labels\s*&\s*Stickers|标签与贴纸/u);
+      await expect(finishedDirectory).not.toContainText(/Labels\s*&\s*Stickers|标签与贴纸/u);
+      await expect(page.locator("main")).not.toContainText(/Concept visualization|概念示意/u);
       await page.goto(`/${locale}/packaging/takeout-boxes`, { waitUntil: "networkidle" });
       await expect(page.locator("main")).not.toContainText(/Concept visualization|概念示意/u);
     }
+  });
+
+  test("product navigation uses the same three-level material and finished taxonomy on desktop and mobile", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/en", { waitUntil: "networkidle" });
+    const trigger = page.getByText("Products", { exact: true }).first();
+    await trigger.hover();
+    const mega = page.getByTestId("header-product-mega-menu");
+    await expect(mega).toBeVisible();
+    await expect(mega).toContainText("Paper materials & semi-finished components");
+    await expect(mega).toContainText("Finished packaging");
+    await expect(mega).toContainText("Cupstock & cup components");
+    await expect(mega).toContainText("Paper cup fan");
+    await expect(mega).toContainText("Food & bakery packaging");
+    await expect(mega).not.toContainText(/Labels\s*&\s*Stickers/u);
+    await expect(mega.getByRole("link", { name: "Paper cup fan" })).toHaveAttribute("href", /group=paper-cup-fan-paper-cup-fan/);
+    await page.keyboard.press("Escape");
+    await expect(mega).not.toBeVisible();
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    const menu = page.locator('button[aria-controls="kh-mobile-menu"]');
+    await menu.click();
+    const mobileDirectory = page.getByTestId("mobile-product-directory");
+    await expect(mobileDirectory).toBeVisible();
+    await mobileDirectory.getByText("Paper materials & semi-finished components", { exact: true }).click();
+    await expect(mobileDirectory.getByRole("link", { name: "Paper cup fan" })).toHaveAttribute("href", /group=paper-cup-fan-paper-cup-fan/);
+    await expect(page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).resolves.toBe(true);
+  });
+
+  test("products page scopes SKU filters to materials and keeps finished packaging project-led", async ({ page }) => {
+    await page.goto("/en/products", { waitUntil: "networkidle" });
+    await expect(page.locator("#materials-and-components")).toContainText("Paper materials & semi-finished components");
+    await expect(page.locator("#catalog-list")).toContainText("231 published SKUs");
+    await expect(page.locator("#finished-packaging")).toContainText("Finished packaging project directory");
+    await expect(page.locator("#finished-packaging")).not.toContainText(/231|published SKU/u);
+    await expect(page.locator("#finished-packaging").getByRole("link", { name: "Takeout boxes" })).toHaveAttribute("href", "/en/packaging/takeout-boxes");
   });
 
   test("every packaging category Browse products control targets its in-page product scope", async ({ page }) => {
