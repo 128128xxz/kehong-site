@@ -14,6 +14,16 @@ export const interests = {
     label: { en: "Packaging structure review", zh: "包装结构评审" },
     formProductType: "custom-packaging",
   },
+  "artwork-review": {
+    id: "artwork-review",
+    label: { en: "Artwork review", zh: "设计稿评审" },
+    formProductType: "custom-packaging",
+  },
+  "dieline-request": {
+    id: "dieline-request",
+    label: { en: "Dieline request", zh: "刀模图申请" },
+    formProductType: "custom-packaging",
+  },
 } as const;
 
 export type InterestId = keyof typeof interests;

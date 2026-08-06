@@ -80,7 +80,7 @@ export default async function ContactPage({
     : undefined;
   const selectedName = selectedSku
     ? selectedGroup?.title ?? getLocalizedProductTitle(selectedSku, locale)
-    : query.product || (interest ? (zh ? interest.label.zh : interest.label.en) : undefined);
+    : query.product;
   const initialProducts =
     query.sku || query.product || query.url || interest
       ? [
@@ -89,6 +89,7 @@ export default async function ContactPage({
             productGroupTitle: selectedGroup?.title,
             sku: query.sku || selectedSku?.sku,
             skuTitle: selectedSku ? getLocalizedProductTitle(selectedSku, locale) : undefined,
+            // An interest is context, never a product value. It must not prefill Products or SKUs.
             name: selectedName,
             url: query.url,
             interestId: interest?.id,
@@ -98,9 +99,11 @@ export default async function ContactPage({
         ]
       : [];
 
+  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? "科宏纸品询盘" : "Kehong packaging inquiry")}`;
+  const whatsappHref = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
   const channels = [
-    { label: zh ? "海外销售 WhatsApp" : "Overseas Sales WhatsApp", value: contact.whatsapp },
-    { label: "Email", value: contact.email },
+    { label: zh ? "海外销售 WhatsApp" : "Overseas Sales WhatsApp", value: contact.whatsapp, href: whatsappHref, external: true },
+    { label: zh ? "邮箱" : "Email", value: contact.email, href: emailHref, external: false },
   ];
   const checklist = [
     {
@@ -148,7 +151,7 @@ export default async function ContactPage({
           <a href="#quote-form" className="kh-button kh-button-light">
             {zh ? "填写询价表单" : "Start the quote form"}
           </a>
-          <a href={`mailto:${contact.email}`} className="kh-button kh-button-ghost">
+          <a href={emailHref} className="kh-button kh-button-ghost">
             {t("cta.email")}
           </a>
         </PageHero>
@@ -164,7 +167,7 @@ export default async function ContactPage({
                 {channels.map((channel) => (
                   <div key={channel.label} className="kh-panel p-4">
                     <p className="kh-mono text-(--kh-brass)">{channel.label}</p>
-                    <p className="mt-2 text-sm font-semibold text-(--kh-ink)">{channel.value}</p>
+                    <a href={channel.href} {...(channel.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="mt-2 block text-sm font-semibold text-(--kh-ink) underline-offset-4 hover:underline">{channel.value}</a>
                   </div>
                 ))}
               </div>

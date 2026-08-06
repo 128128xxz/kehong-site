@@ -3,6 +3,7 @@ import { getPackagingCategory, getPackagingInquiryLabel, PACKAGING_INQUIRY_LABEL
 import { buildPackagingContactHref } from "@/lib/packagingInquiry";
 import { getLocalizedCatalogValue } from "@/lib/catalog";
 import { localeConfig, locales } from "@/i18n/locales";
+import { buildInquiryContactHref } from "@/lib/inquiryContext";
 
 describe("public packaging and locale governance", () => {
   it("exposes only the six approved packaging categories with canonical inquiry labels", () => {
@@ -53,6 +54,14 @@ describe("public packaging and locale governance", () => {
     expect(buildPackagingContactHref("en", "cake-boards-cake-drums")).toContain("Cake+Boards+%26+Cake+Drums");
     expect(buildPackagingContactHref("en", "retired-or-unknown-category")).toBe("/contact");
     expect(getPackagingInquiryLabel("retired-or-unknown-category", "en")).toBeUndefined();
+  });
+
+  it("keeps an approved inquiry direction distinct and discards an unknown one", () => {
+    const valid = new URL(buildInquiryContactHref({ product: "Cake Boxes", interest: "artwork-review", utm_source: "resource" }), "https://www.kehong.tech");
+    expect(valid.searchParams.get("product")).toBe("Cake Boxes");
+    expect(valid.searchParams.get("interest")).toBe("artwork-review");
+    expect(valid.searchParams.get("utm_source")).toBe("resource");
+    expect(buildInquiryContactHref({ interest: "unknown-interest" })).toBe("/contact");
   });
 
   it("keeps only complete English and Chinese public locales", () => {

@@ -20,7 +20,8 @@ import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { absoluteSiteUrl, getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
-import { formatProductDisplayList } from "@/lib/productPresentation";
+import { formatProductDisplayList, formatProductFieldValue, type ProductDisplayField } from "@/lib/productPresentation";
+import { buildInquiryContactHref } from "@/lib/inquiryContext";
 import {
   getAllSkus,
   getProductCategoryBySlug,
@@ -186,7 +187,7 @@ export default async function ProductDetailPage({
   const productUrl = await getLocaleUrl(locale, productHref);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
   const groupSummary = buildProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
-  const contactHref = `/contact?product=${encodeURIComponent(sku.slug)}&sku=${encodeURIComponent(sku.sku)}&url=${encodeURIComponent(productUrl)}` as SiteHref;
+  const contactHref = buildInquiryContactHref({ product: sku.slug, sku: sku.sku, url: productUrl }) as SiteHref;
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(`${t("inquiry.message")}\n- ${isZh ? "产品组" : "Product group"}: ${groupSummary.title}\n- ${isZh ? "当前 SKU" : "Current SKU"}: ${sku.sku}\n- URL: ${productUrl}`)}`;
   const imageMeta = getSkuImageMeta(sku, locale);
   const variantSearch = typeof query.variantSearch === "string" ? query.variantSearch.trim().toLowerCase() : "";
@@ -207,15 +208,16 @@ export default async function ProductDetailPage({
     [isZh ? "变体数量" : "Variant count", isZh ? `${groupSummary.variantCount} 个变体` : `${groupSummary.variantCount} ${groupSummary.variantCount === 1 ? "variant" : "variants"}`],
     [isZh ? "适用方向" : "Applications", formatProductDisplayList(groupSummary.applications, locale)],
   ].filter(([, value]) => value);
+  const displayField = (field: ProductDisplayField, value: string | undefined) => formatProductFieldValue(getLocalizedCatalogValue(value, locale), field, locale);
   const currentSkuSpecs = [
     [isZh ? "当前 SKU" : "Current SKU", sku.sku],
-    [t("detail.material"), getLocalizedProductMaterial(sku, locale)],
+    [t("detail.material"), formatProductFieldValue(getLocalizedProductMaterial(sku, locale), "material", locale)],
     [isZh ? "当前克重 / 厚度" : "Current GSM / thickness", getLocalizedCatalogValue(sku.gsmOrThickness, locale)],
     [isZh ? "当前涂层 / 淋膜" : "Current coating", getLocalizedCatalogValue(sku.coating, locale)],
-    [t("detail.structure"), getLocalizedCatalogValue(sku.structureOrFlute, locale)],
-    [t("detail.surface"), getLocalizedCatalogValue(sku.surfaceProcess, locale)],
-    [t("detail.finishing"), getLocalizedCatalogValue(sku.finishingProcess, locale)],
-    [t("detail.size"), getLocalizedCatalogValue(sku.commonSize, locale)],
+    [t("detail.structure"), displayField("structure", sku.structureOrFlute)],
+    [t("detail.surface"), displayField("surface", sku.surfaceProcess)],
+    [t("detail.finishing"), displayField("finishing", sku.finishingProcess)],
+    [t("detail.size"), displayField("size", sku.commonSize)],
     [isZh ? "常规起订量" : "Typical MOQ", getLocalizedCatalogValue(sku.moq, locale)],
     [isZh ? "报价单位" : "Quotation unit", getLocalizedCatalogValue(sku.unit, locale)],
   ].filter(([, value]) => value);
@@ -492,7 +494,7 @@ export default async function ProductDetailPage({
                   {isZh ? "适用场景" : "Application"}
                 </p>
                 <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">
-                  {getLocalizedCatalogValue(sku.applications, locale) || getProductTypeLabel(sku.productType, locale)}
+                  {displayField("application", sku.applications) || getProductTypeLabel(sku.productType, locale)}
                 </p>
               </div>
               <div className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
@@ -500,8 +502,7 @@ export default async function ProductDetailPage({
                   {isZh ? "表面 / 后工艺" : "Surface / finishing"}
                 </p>
                 <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">
-                  {[sku.surfaceProcess, sku.finishingProcess]
-                    .map((value) => getLocalizedCatalogValue(value, locale))
+                  {[displayField("surface", sku.surfaceProcess), displayField("finishing", sku.finishingProcess)]
                     .filter(Boolean)
                     .join(" / ") || (isZh ? "按项目确认" : "Confirmed by project")}
                 </p>
@@ -633,7 +634,7 @@ export default async function ProductDetailPage({
             { href: "/products?collection=materials", en: "Related material groups", zh: "相关材料产品组" },
             { href: "/packaging", en: "Related packaging formats", zh: "相关成品包装" },
             { href: "/industries", en: "Related industries", zh: "相关行业" },
-            { href: "/contact?interest=structure-review", en: "Need structure review?", zh: "需要结构评审？" },
+            { href: buildInquiryContactHref({ interest: "structure-review" }), en: "Need structure review?", zh: "需要结构评审？" },
           ]}
         />
       </main>

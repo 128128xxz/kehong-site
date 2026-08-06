@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { buildInquiryEmail } from "@/lib/inquiryEmail";
 import { getInquiryEmailConfig, isValidEmail } from "@/lib/emailConfig";
 import { absoluteSiteUrl } from "@/lib/site-config";
+import { getInterest } from "@/data/interests";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -106,7 +107,7 @@ function inquiryError(code: string, status: number, message: string) {
 
 function makeInquiryKey(inquiry: Record<string, unknown>, idempotencyHeader: string) {
   if (idempotencyHeader) return `header:${idempotencyHeader}`;
-  const content = [inquiry.email, ...(inquiry.products as string[]), inquiry.message, inquiry.quantity, inquiry.sourceUrl]
+  const content = [inquiry.email, ...(inquiry.products as string[]), inquiry.interestId, inquiry.message, inquiry.quantity, inquiry.sourceUrl]
     .map((value) => String(value ?? "").toLocaleLowerCase())
     .join("|");
   return `content:${createHash("sha256").update(content).digest("hex")}`;
@@ -152,6 +153,8 @@ export async function POST(request: Request) {
     return inquiryError(code, 400, code === "INVALID_PAYLOAD" ? "Invalid inquiry payload" : "Attachment validation failed");
   }
 
+  const requestedInterest = toText(payload.interestId);
+  const approvedInterest = getInterest(requestedInterest);
   const inquiry = {
     name: canonicalizePublicText(toText(payload.name)),
     company: canonicalizePublicText(toText(payload.company)),
@@ -199,13 +202,15 @@ export async function POST(request: Request) {
     latestTouchPath: canonicalizePublicText(toText(payload.latestTouchPath)),
     inquiryType: canonicalizePublicText(toText(payload.inquiryType)),
     privacy: toText(payload.privacy),
-    interestId: canonicalizePublicText(toText(payload.interestId)),
-    interestLabel: canonicalizePublicText(toText(payload.interestLabel)),
-    interestProductType: canonicalizePublicText(toText(payload.interestProductType)),
+    // Do not trust client labels. Unknown interests are ignored instead of
+    // being remapped to a default product direction or causing a 500.
+    interestId: approvedInterest?.id ?? "",
+    interestLabel: approvedInterest ? approvedInterest.label.en : "",
+    interestProductType: approvedInterest?.formProductType ?? "",
   };
 
-  if (!inquiry.name || !isValidEmail(inquiry.email) || inquiry.products.length === 0 || inquiry.privacy !== "on") {
-    return inquiryError("VALIDATION_FAILED", 400, "Name, valid email and at least one product are required");
+  if (!inquiry.name || !isValidEmail(inquiry.email) || (inquiry.products.length === 0 && !inquiry.interestId) || inquiry.privacy !== "on") {
+    return inquiryError("VALIDATION_FAILED", 400, "Name, valid email and at least one product or inquiry direction are required");
   }
 
   const inquiryKey = makeInquiryKey(inquiry, request.headers.get("idempotency-key")?.trim() ?? "");

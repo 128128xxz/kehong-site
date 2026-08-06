@@ -59,4 +59,29 @@ describe("inquiry API provider contract", () => {
       expect(JSON.stringify(body)).not.toContain("provider detail");
     });
   }
+
+  it("keeps an approved interest separate from products and accepts an interest-only brief", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({ id: "email-interest-1" }), { status: 200, headers: { "content-type": "application/json" } }));
+    const request = new Request("https://www.kehong.tech/api/inquiry", {
+      method: "POST",
+      headers: { "content-type": "application/json", "idempotency-key": "qa-interest-only", "x-forwarded-for": "qa-interest-only" },
+      body: JSON.stringify({ name: "QA Buyer", email: "interest@example.com", products: [], interestId: "artwork-review", interestLabel: "untrusted label", privacy: "on" }),
+    });
+    const response = await POST(request);
+    expect(response.status).toBe(200);
+    const body = JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body));
+    expect(body.html).toContain("Artwork review");
+    expect(body.html).not.toContain("untrusted label");
+    expect(body.text).toContain("Products / product code: -");
+  });
+
+  it("drops an unknown interest without falling back to a different product or throwing", async () => {
+    const response = await POST(new Request("https://www.kehong.tech/api/inquiry", {
+      method: "POST",
+      headers: { "content-type": "application/json", "idempotency-key": "qa-unknown-interest", "x-forwarded-for": "qa-unknown-interest" },
+      body: JSON.stringify({ name: "QA Buyer", email: "unknown-interest@example.com", products: [], interestId: "unknown-interest", privacy: "on" }),
+    }));
+    expect(response.status).toBe(400);
+    expect(await response.json()).toMatchObject({ code: "VALIDATION_FAILED" });
+  });
 });

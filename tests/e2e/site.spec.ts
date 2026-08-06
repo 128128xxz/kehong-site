@@ -187,20 +187,98 @@ test.describe("Kehong production flows", () => {
     await expect(page.locator('main a[href="/en/packaging/cake-boxes"]').last()).toBeVisible();
   });
 
-  test("interest query pre-fills both inquiry forms and is included in the submitted payload", async ({ page }) => {
+  test("interest-only inquiry stays out of products and is included separately in the submitted payload", async ({ page }) => {
     let payload = "";
     await page.route("**/api/inquiry", async (route) => {
       payload = route.request().postData() ?? "";
       await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
     });
-    await page.goto("/en/contact?interest=pe-coated-paper-roll", { waitUntil: "networkidle" });
-    await expect(page.locator('input[name="products"]').first()).toHaveValue(/PE coated paper roll/i);
+    await page.goto("/en/contact?interest=artwork-review", { waitUntil: "networkidle" });
+    await expect(page.getByText("Selected inquiry direction: Artwork review", { exact: true }).first()).toBeVisible();
+    await expect(page.locator('input[name="products"]').first()).toHaveValue("");
     await page.locator('input[name="name"]').first().fill("Playwright QA");
     await page.locator('input[name="email"]').first().fill("qa@example.com");
     await page.locator('input[name="privacy"]').first().check();
     await page.getByRole("button", { name: /send quick quote/i }).click();
-    expect(payload).toContain("pe-coated-paper-roll");
-    expect(payload).toContain("PE coated paper roll");
+    expect(payload).toMatch(/name="interestId"[\s\S]*?artwork-review/);
+    expect(payload).toMatch(/name="products"\s*\r?\n\r?\n\s*\r?\n/);
+  });
+
+  test("product and interest remain visible and separate through a quick quote payload", async ({ page }) => {
+    let payload = "";
+    await page.route("**/api/inquiry", async (route) => {
+      payload = route.request().postData() ?? "";
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+    });
+    await page.goto("/en/contact?product=kh-fd-cupfan-150350-pr-001-paper-cup-fan&interest=dieline-request", { waitUntil: "networkidle" });
+    await expect(page.getByText(/Selected product direction:/).first()).toBeVisible();
+    await expect(page.getByText("Selected inquiry direction: Dieline request", { exact: true }).first()).toBeVisible();
+    await expect(page.locator('input[name="products"]').first()).toHaveValue(/Current SKU: KH-FD-CUPFAN-150350-PR-001/);
+    await page.locator('input[name="name"]').first().fill("Playwright QA");
+    await page.locator('input[name="email"]').first().fill("qa-product-interest@example.com");
+    await page.locator('input[name="privacy"]').first().check();
+    await page.getByRole("button", { name: /send quick quote/i }).click();
+    expect(payload).toMatch(/name="interestId"[\s\S]*?dieline-request/);
+    expect(payload).toMatch(/name="productGroupId"[\s\S]*?paper-cup-fan-paper-cup-fan/);
+    expect(payload).toMatch(/name="products"[\s\S]*?Paper Cup Fan/);
+  });
+
+  test("resource CTAs preserve their distinct inquiry directions in both locales", async ({ page }) => {
+    const resourceCases = [
+      { slug: "artwork-guidelines", interest: "artwork-review" },
+      { slug: "dielines-templates", interest: "dieline-request" },
+    ];
+    for (const locale of ["en", "zh"]) {
+      for (const item of resourceCases) {
+        await page.goto(`/${locale}/resources/${item.slug}`, { waitUntil: "networkidle" });
+        await page.locator("main a[href*='/contact']").first().click();
+        await expect(page).toHaveURL(new RegExp(`/contact\\?interest=${item.interest}`));
+      }
+      await page.goto(`/${locale}/model-preview`, { waitUntil: "networkidle" });
+      await page.locator("main a[href*='/contact']").first().click();
+      await expect(page).toHaveURL(/\/contact\?interest=structure-review/);
+    }
+  });
+
+  test("contact, footer and legal email links use localized subjects and WhatsApp is a safe external link", async ({ page }) => {
+    for (const locale of ["en", "zh"]) {
+      await page.goto(`/${locale}/contact`, { waitUntil: "networkidle" });
+      const expectedSubject = locale === "zh" ? "%E7%A7%91%E5%AE%8F%E7%BA%B8%E5%93%81%E8%AF%A2%E7%9B%98" : "Kehong%20packaging%20inquiry";
+      await expect(page.locator('main a[href^="mailto:"]').first()).toHaveAttribute("href", new RegExp(`subject=${expectedSubject}`));
+      await expect(page.locator('main a[href^="https://wa.me/"]').first()).toHaveAttribute("rel", "noopener noreferrer");
+      await expect(page.locator('footer a[href^="mailto:"]').first()).toHaveAttribute("href", new RegExp(`subject=${expectedSubject}`));
+
+      for (const legal of ["privacy", "terms"]) {
+        await page.goto(`/${locale}/${legal}`, { waitUntil: "networkidle" });
+        await expect(page.locator('main a[href^="mailto:"]')).toHaveCount(1);
+        await expect(page.locator('main a[href^="mailto:"]')).toHaveAttribute("aria-label", /Email|发送邮件/);
+      }
+    }
+  });
+
+  test("all quick and guided consent labels keep only the privacy policy link interactive", async ({ page }) => {
+    for (const locale of ["en", "zh"]) {
+      await page.goto(`/${locale}/contact`, { waitUntil: "networkidle" });
+      const quickCheckbox = page.locator("#quick-quote-privacy");
+      const quickLabel = page.locator('label[for="quick-quote-privacy"]');
+      await expect(quickLabel).toContainText(locale === "zh" ? "隐私政策" : "Privacy Policy");
+      const quickLink = quickLabel.locator("a");
+      await expect(quickLink).toHaveCount(1);
+      await quickLink.evaluate((anchor) => anchor.addEventListener("click", (event) => event.preventDefault(), { once: true }));
+      await quickLink.click();
+      await expect(quickCheckbox).not.toBeChecked();
+
+      await page.locator("#quote-form details > summary").click();
+      for (let step = 0; step < 4; step += 1) await page.getByRole("button", { name: locale === "zh" ? "下一步" : "Continue" }).click();
+      const guidedCheckbox = page.locator("#guided-quote-privacy");
+      const guidedLabel = page.locator('label[for="guided-quote-privacy"]');
+      await expect(guidedLabel).toContainText(locale === "zh" ? "隐私政策" : "Privacy Policy");
+      const guidedLink = guidedLabel.locator("a");
+      await expect(guidedLink).toHaveCount(1);
+      await guidedLink.evaluate((anchor) => anchor.addEventListener("click", (event) => event.preventDefault(), { once: true }));
+      await guidedLink.click();
+      await expect(guidedCheckbox).not.toBeChecked();
+    }
   });
 
   test("selected products persist when moving from catalog to contact", async ({ page }) => {

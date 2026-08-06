@@ -5,6 +5,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
 import { siteConfig, getLocaleUrl, getAlternateLanguages, type SiteHref } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
+import { contact } from "@/data/company";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -20,6 +21,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
   const { locale } = await params;
   setRequestLocale(locale);
   const isZh = locale === "zh";
+  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(isZh ? "科宏纸品条款咨询" : "Kehong terms question")}`;
   return (
     <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">
       <Header />
@@ -36,7 +38,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <h2>{isZh ? "产品信息" : "Product information"}</h2>
           <p>{isZh ? "图片用于展示材料或结构方向，除非明确标注为精确产品图片，否则不应视为特定 SKU 的承诺。" : "Images may illustrate a material or structure direction. Unless explicitly identified as exact product photography, they are not a commitment for a specific SKU."}</p>
           <h2>{isZh ? "联系我们" : "Contact"}</h2>
-          <p><a className="kh-inline-link" href={`mailto:${"info@kehong.tech"}`}>info@kehong.tech</a></p>
+          <p><a className="kh-inline-link" href={emailHref} aria-label={isZh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>{contact.email}</a></p>
         </div>
         </div>
       </main>

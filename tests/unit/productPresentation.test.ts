@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import catalog from "@/data/catalog.normalized.json";
 import { getLocalizedCatalogValue } from "@/lib/catalog";
-import { formatProductDisplayList, formatProductDisplayValue, formatProductSkuSummary } from "@/lib/productPresentation";
+import { formatProductDisplayList, formatProductDisplayValue, formatProductFieldValue, formatProductSkuSummary } from "@/lib/productPresentation";
 
 describe("product presentation formatter", () => {
   it("normalizes only recognized English and Chinese buyer-facing specifications", () => {
@@ -20,6 +20,8 @@ describe("product presentation formatter", () => {
     expect(formatProductDisplayValue("Cupstock roll", "zh")).toBe("杯纸卷");
     expect(formatProductDisplayValue("Sheet for flexo", "zh")).toBe("柔印用平张纸");
     expect(formatProductDisplayValue("Sheet for digital", "zh")).toBe("数码印刷用平张纸");
+    expect(formatProductFieldValue("Custom paper packaging specification", "finishing", "en")).toBe("");
+    expect(formatProductFieldValue("Custom L*W", "size", "en")).toBe("Custom L × W");
     expect(formatProductDisplayList(["纸杯", "纸碗"], "zh")).toBe("纸杯、纸碗");
     expect(formatProductDisplayList(["Paper cup", "Paper bowl"], "en")).toBe("Paper cup and Paper bowl");
   });
@@ -36,6 +38,7 @@ describe("product presentation formatter", () => {
     expect(getLocalizedCatalogValue("sheet", "zh")).toBe("张");
     expect(getLocalizedCatalogValue("piece", "zh")).toBe("件");
     expect(getLocalizedCatalogValue("ton", "zh")).toBe("吨");
+    expect(getLocalizedCatalogValue("Custom paper packaging specification", "en")).toBe("");
     expect(formatProductSkuSummary("KH-001", "en")).toBe("Current SKU: KH-001");
     expect(formatProductSkuSummary("KH-001", "zh")).toBe("当前 SKU：KH-001");
   });
@@ -53,6 +56,8 @@ describe("product presentation formatter", () => {
         expect(chinese).not.toMatch(/Custom width|Jumbo roll|Cupstock roll|Sheet for flexo|Sheet for digital|metric tons \(typical\)/iu);
         expect(chinese).not.toContain("Current SKU");
         expect(english.includes("Typical MOQ") && english.includes("(typical)")).toBe(false);
+        expect(english).not.toContain("Custom paper packaging specification");
+        expect(chinese).not.toContain("Custom paper packaging specification");
       }
     }
   });

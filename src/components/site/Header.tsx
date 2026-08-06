@@ -25,7 +25,7 @@ const productLinks: NavItem[] = [
   { href: "/packaging/cake-boxes", zh: "蛋糕盒", en: "Cake boxes" },
   { href: "/packaging/takeout-boxes", zh: "外带食品盒", en: "Takeout & food boxes" },
   { href: "/packaging/paper-bags", zh: "纸袋", en: "Paper bags" },
-  { href: "/packaging/corrugated-mailer-boxes", zh: "瓦楞快递盒", en: "Corrugated mailers" },
+  { href: "/packaging/corrugated-mailer-boxes", zh: "瓦楞邮寄盒", en: "Corrugated mailers" },
   { href: "/packaging/labels-stickers", zh: "标签与贴纸", en: "Labels & stickers" },
   { href: "/packaging/cake-boards-cake-drums", zh: "蛋糕底托", en: "Cake boards & drums" },
 ];

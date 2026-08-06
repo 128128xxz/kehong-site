@@ -37,6 +37,20 @@ export function formatProductDisplayValue(value: string, locale: string) {
   return trimmed;
 }
 
+export type ProductDisplayField = "application" | "finishing" | "surface" | "structure" | "size" | "material";
+
+/** Field-aware display pass. It deliberately operates after catalogue
+ * localization so buyer text is normalized without changing source records. */
+export function formatProductFieldValue(value: string, field: ProductDisplayField, locale: string) {
+  const display = formatProductDisplayValue(value, locale);
+  if (display.trim().toLocaleLowerCase() === "custom paper packaging specification") return "";
+  if (!display) return "";
+
+  if (field === "size" && display === "Custom L*W") return locale === "zh" ? "按长 × 宽定制" : "Custom L × W";
+  if (field === "application" && display === "Foodservice packaging") return locale === "zh" ? "餐饮食品包装" : display;
+  return display;
+}
+
 /** Locale-aware display list formatting without changing the source arrays. */
 export function formatProductDisplayList(values: readonly string[], locale: string) {
   const items = values.map((value) => value.trim()).filter(Boolean);

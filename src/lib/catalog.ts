@@ -329,9 +329,10 @@ export function getLocalizedProductSku(sku: ProductSku, locale: string): Product
 export function getLocalizedCatalogValue(
   value: string | undefined,
   locale: string,
-  fallback = "Custom paper packaging specification",
+  fallback = "Confirmed by project",
 ) {
   if (!value) return "";
+  if (value.trim().toLocaleLowerCase() === "custom paper packaging specification") return "";
   // Display-only exceptions for legacy source labels. IDs, URLs and SKU codes
   // are intentionally never passed through this mapping.
   if (value.trim().toLocaleLowerCase() === "foodservicepackaging") {

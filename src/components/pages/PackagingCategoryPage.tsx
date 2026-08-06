@@ -7,6 +7,7 @@ import ProductCatalog from "@/components/site/ProductCatalog";
 import { SectionKicker } from "@/components/home/annotations";
 import { Reveal } from "@/components/home/interactive";
 import { Link } from "@/i18n/navigation";
+import { buildInquiryContactHref } from "@/lib/inquiryContext";
 import RelatedLinks from "@/components/site/RelatedLinks";
 import { getAllSkus, getCatalogFilterOptions, getLocalizedProductSku, getProductGroupId, type ProductSku } from "@/lib/catalog";
 import { type PackagingCategory } from "@/data/packagingCategories";
@@ -198,7 +199,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
             { href: "/products?collection=materials", en: "Related paper materials", zh: "相关纸材" },
             { href: "/industries", en: "Recommended industries", zh: "推荐行业" },
             { href: "/resources/packaging-selection-guide", en: "Packaging selection guide", zh: "包装选型指南" },
-            { href: "/contact?interest=structure-review", en: "Start your project brief", zh: "提交项目需求" },
+            { href: buildInquiryContactHref({ interest: "structure-review" }), en: "Start your project brief", zh: "提交项目需求" },
           ]}
         />
 

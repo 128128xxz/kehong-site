@@ -7,6 +7,7 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 import { ACESFilmicToneMapping, Mesh, SRGBColorSpace, type Group } from "three";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { buildInquiryContactHref } from "@/lib/inquiryContext";
 
 const cameraPresets = {
   front: { label: "Front", position: [7, 4.8, 8] as [number, number, number] },
@@ -113,7 +114,7 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
                 <dd>{zh ? "检查面板、折线、闭合方式与内衬适配。" : "Inspect panel layout, folds, closure and liner fit."}</dd>
               </div>
             </dl>
-            <Link href="/contact?interest=structure-review" className="kh-button kh-button-primary mt-6 w-full">
+            <Link href={buildInquiryContactHref({ interest: "structure-review" })} className="kh-button kh-button-primary mt-6 w-full">
               {zh ? "申请结构 / 刀线评审" : "Request a structure / dieline review"}
             </Link>
           </aside>

@@ -78,6 +78,7 @@ export default async function SiteFooter() {
   const locale = await getLocale();
   const zh = locale === "zh";
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
+  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? "科宏纸品询盘" : "Kehong packaging inquiry")}`;
 
   return (
     <footer className="kh-footer">
@@ -92,8 +93,8 @@ export default async function SiteFooter() {
           </p>
           <div className="kh-footer-contact">
             <span>{zh ? companyProfile.location.zh : companyProfile.location.en}</span>
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-            <a href={whatsapp} target="_blank" rel="noopener noreferrer">
+            <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>{contact.email}</a>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={zh ? "通过 WhatsApp 联系科宏" : "Contact Kehong on WhatsApp"}>
               WhatsApp
             </a>
           </div>
@@ -120,11 +121,11 @@ export default async function SiteFooter() {
             <ArrowRight className="size-4" />
           </Link>
           <div className="kh-footer-actions">
-            <a href={whatsapp} target="_blank" rel="noopener noreferrer">
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={zh ? "通过 WhatsApp 联系科宏" : "Contact Kehong on WhatsApp"}>
               <MessageCircle className="size-4" />
               WhatsApp
             </a>
-            <a href={`mailto:${contact.email}`}>
+            <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>
               <Mail className="size-4" />
               {zh ? "邮箱" : "Email"}
             </a>
