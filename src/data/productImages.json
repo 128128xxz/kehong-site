@@ -210,8 +210,8 @@
       "scope": "family",
       "exactness": "ai-representative",
       "alt": {
-        "en": "Stacked PE-coated paper sheets with a lifted coated surface — concept visualization",
-        "zh": "叠放的 PE 淋膜纸片及表面涂层概念示意图"
+        "en": "Stacked PE-coated paper sheets with a lifted coated surface",
+        "zh": "叠放的 PE 淋膜纸片及表面涂层"
       }
     },
     {
@@ -226,8 +226,8 @@
       "scope": "family",
       "exactness": "ai-representative",
       "alt": {
-        "en": "Paper tray and insert material formats — concept visualization",
-        "zh": "纸托与纸内托材料形态概念示意图"
+        "en": "Paper tray and insert material formats",
+        "zh": "纸托与纸内托材料形态"
       }
     }
   ],

@@ -73,7 +73,7 @@ const productEntries: readonly ProductEntry[] = [
     title: { en: "PE-coated paper sheet", zh: "PE 淋膜纸片" },
     note: { en: "Sheet formats for converting and forming", zh: "适用于加工与成型的平张规格" },
     image: "/images/ai-generated/category/ai-category-pe-coated-paper-sheet.webp",
-    alt: { en: "Stacked PE-coated paper sheets — concept visualization", zh: "叠放的 PE 淋膜纸片概念示意图" },
+    alt: { en: "Stacked PE-coated paper sheets", zh: "叠放的 PE 淋膜纸片" },
   },
   {
     id: "paper-cup-bottom-roll",
@@ -100,7 +100,7 @@ const productEntries: readonly ProductEntry[] = [
     title: { en: "Food tray material", zh: "食品纸托材料" },
     note: { en: "Forming material and structure direction", zh: "成型材料与结构方向" },
     image: "/images/ai-generated/category/ai-category-paper-insert.webp",
-    alt: { en: "Paper tray and insert material formats — concept visualization", zh: "纸托与纸内托材料形态概念示意图" },
+    alt: { en: "Paper tray and insert material formats", zh: "纸托与纸内托材料形态" },
   },
 ] as const;
 

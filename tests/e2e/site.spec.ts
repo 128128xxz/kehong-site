@@ -445,6 +445,9 @@ test.describe("Kehong production flows", () => {
       await expect(directory).toContainText(materials);
       await expect(directory).toContainText(packaging);
       await expect(directory).not.toContainText(/Labels\s*&\s*Stickers|标签与贴纸/u);
+      await expect(directory).not.toContainText(/Concept visualization|概念示意/u);
+      await page.goto(`/${locale}/packaging/takeout-boxes`, { waitUntil: "networkidle" });
+      await expect(page.locator("main")).not.toContainText(/Concept visualization|概念示意/u);
     }
   });
 

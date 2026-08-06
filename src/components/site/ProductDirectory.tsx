@@ -72,7 +72,6 @@ export default function ProductDirectory({ locale }: Props) {
                 <Link key={category.slug} href={`/packaging/${category.slug}`} className="group grid min-h-38 grid-cols-[5rem_1fr] gap-3 overflow-hidden rounded-md border border-(--kh-line) bg-(--kh-paper) p-3 transition hover:border-(--kh-forest)/45 hover:bg-(--kh-surface)">
                   <span className="relative block h-20 overflow-hidden rounded-sm">
                     <Image src={category.image} alt="" fill sizes="80px" className="object-cover transition duration-200 group-hover:scale-[1.03]" />
-                    {category.image.includes("/images/ai/") ? <span className="absolute inset-x-1 bottom-1 rounded bg-(--kh-ink)/75 px-1.5 py-0.5 text-center text-[.56rem] font-semibold leading-none text-white">{zh ? "概念示意图" : "Concept visualization"}</span> : null}
                   </span>
                   <span className="min-w-0">
                     <span className="kh-mono block text-xs font-bold text-(--kh-brass)">{`0${index + 1} · ${zh ? "第二层 · 成品大类" : "Level 2 · Finished category"}`}</span>

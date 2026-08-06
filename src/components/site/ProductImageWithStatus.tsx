@@ -32,7 +32,7 @@ export default function ProductImageWithStatus({
         sizes={sizes}
         className={className}
       />
-      {image.status !== "exact" ? (
+      {image.status !== "exact" && image.status !== "ai-representative" ? (
         <span className="pointer-events-none absolute bottom-3 left-3 rounded-full border border-white/25 bg-(--kh-ink)/75 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-white">
           {image.statusLabel}
         </span>

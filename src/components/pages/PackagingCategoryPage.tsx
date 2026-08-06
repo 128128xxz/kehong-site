@@ -82,7 +82,6 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           <a href="#catalog-list" className="kh-button kh-button-ghost">
             {isZh ? "浏览产品" : "Browse products"}
           </a>
-          {isTakeoutBoxes ? <span className="text-xs font-semibold tracking-[.08em] text-white/80">{isZh ? "概念示意" : "Concept visualization"}</span> : null}
         </PageHero>
 
         <div className="kh-shell pt-7">
