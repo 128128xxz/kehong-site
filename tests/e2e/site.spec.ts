@@ -585,7 +585,7 @@ test.describe("Kehong production flows", () => {
         const html = await response.text();
         expect(html).toContain(title);
         expect(html).toContain(specification);
-        await page.goto(path, { waitUntil: "networkidle" });
+        await page.goto(path, { waitUntil: "domcontentloaded" });
         await expect(page.locator("h1")).toHaveText(title);
         await expect(page.getByText(locale === "en" ? "Current SKU" : "当前 SKU", { exact: true })).toHaveCount(1);
         await expect(page.locator("#product-group-summary-title")).toHaveCount(1);
