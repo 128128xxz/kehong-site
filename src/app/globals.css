@@ -160,12 +160,17 @@
     font-size: .95rem;
     font-weight: 600;
   }
-  .kh-desktop-nav summary {
-    list-style: none;
-    cursor: pointer;
+  .kh-desktop-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
   }
-  .kh-desktop-nav summary::-webkit-details-marker {
-    display: none;
+  .kh-desktop-nav button.kh-nav-link {
+    border: 0;
+    background: transparent;
+    font: inherit;
+    text-align: inherit;
+    cursor: pointer;
   }
   .kh-nav-link {
     display: inline-flex;
@@ -188,12 +193,12 @@
   .kh-nav-chevron {
     transition: transform .2s ease;
   }
-  details[open] > summary .kh-nav-chevron {
+  .kh-desktop-menu > [aria-expanded="true"] .kh-nav-chevron {
     transform: rotate(180deg);
   }
   .kh-nav-panel {
     position: absolute;
-    top: calc(100% + .4rem);
+    top: calc(100% - 1px);
     left: 0;
     z-index: 60;
     display: grid;

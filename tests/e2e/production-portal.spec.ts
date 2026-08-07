@@ -5,11 +5,11 @@ test.describe("homepage manufacturing website", () => {
     await page.goto("/en");
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator(".kh-home-hero")).toBeVisible();
-    await expect(page.getByRole("link", { name: /Browse materials/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /Browse packaging/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Paper materials & semi-finished components" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Finished packaging" })).toBeVisible();
     await expect(page.getByRole("link", { name: /Request a quote/i }).first()).toBeVisible();
     await expect(page.locator(".production-portal")).toHaveCount(0);
-    await expect(page.getByRole("heading", { name: /Source materials and finished packaging/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Choose paper materials or finished packaging/i })).toBeVisible();
     await expect(page.locator(".kh-section-forest")).toBeVisible();
     await expect(page.locator(".kh-spec-panel")).toBeVisible();
   });

@@ -35,7 +35,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
     const data = new FormData(form);
     const interest = initialProducts.find((item) => item.interestId);
     if (!String(data.get("name") ?? "").trim() || !String(data.get("email") ?? "").trim() || (!String(data.get("products") ?? "").trim() && !interest?.interestId) || data.get("privacy") !== "on") {
-      setError(zh ? "请填写姓名、邮箱、产品或需求方向并同意隐私政策。" : "Please add your name, email, a product or inquiry direction, and privacy consent.");
+      setError(zh ? "请填写姓名、邮箱、产品或服务需求并同意隐私政策。" : "Please add your name, email, a product or request type, and privacy consent.");
       setStatus("error");
       return;
     }

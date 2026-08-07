@@ -72,7 +72,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           meta={
             isZh
               ? [`${subcategories.length} 个子类方向`, "OEM / ODM", "中国广东佛山"]
-              : [`${subcategories.length} subcategory directions`, "OEM / ODM", "Foshan, Guangdong, China"]
+              : [`${subcategories.length} packaging categories`, "OEM / ODM", "Foshan, Guangdong, China"]
           }
         >
           <Link href={contactHref} data-testid="packaging-hero-quote" className="kh-button kh-button-light">
@@ -138,7 +138,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               </>
             ) : (
               <div className="kh-panel max-w-3xl p-7">
-                <p className="text-sm leading-6 text-(--kh-muted)">{isTakeoutBoxes ? (isZh ? "请提交参考图、尺寸与目标数量，以便开始结构评估和报价。" : "Send a reference image, dimensions and target quantity to start the structure review and quotation.") : (isZh ? "当前公开目录没有可直接比较的 SKU。请发送尺寸、用途、数量和参考资料，我们会确认合适的材料或结构方向。" : "There are no public SKUs to compare for this direction. Send dimensions, application, quantity and a reference so the suitable material or structure can be reviewed.")}</p>
+                <p className="text-sm leading-6 text-(--kh-muted)">{isTakeoutBoxes ? (isZh ? "请提交参考图、尺寸与目标数量，以便开始结构评估和报价。" : "Send a reference image, dimensions and target quantity to start the structure review and quotation.") : (isZh ? "当前公开目录没有可直接比较的 SKU。请发送尺寸、用途、数量和参考资料，我们会评估合适的材料与结构。" : "There are no public SKUs to compare in this category. Send dimensions, application, quantity and a reference so the suitable material and structure can be reviewed.")}</p>
                 {scopeQuote}
               </div>
             )}

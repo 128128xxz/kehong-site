@@ -204,7 +204,7 @@ test.describe("Kehong production flows", () => {
       await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
     });
     await page.goto("/en/contact?interest=artwork-review", { waitUntil: "networkidle" });
-    await expect(page.getByText("Selected inquiry direction: Artwork review", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("Selected request: Artwork review", { exact: true }).first()).toBeVisible();
     await expect(page.locator('input[name="products"]').first()).toHaveValue("");
     await page.locator('input[name="name"]').first().fill("Playwright QA");
     await page.locator('input[name="email"]').first().fill("qa@example.com");
@@ -221,8 +221,8 @@ test.describe("Kehong production flows", () => {
       await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
     });
     await page.goto("/en/contact?product=kh-fd-cupfan-150350-pr-001-paper-cup-fan&interest=dieline-request", { waitUntil: "networkidle" });
-    await expect(page.getByText(/Selected product direction:/).first()).toBeVisible();
-    await expect(page.getByText("Selected inquiry direction: Dieline request", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText(/Selected product:/).first()).toBeVisible();
+    await expect(page.getByText("Selected request: Dieline request", { exact: true }).first()).toBeVisible();
     await expect(page.locator('input[name="products"]').first()).toHaveValue(/Current SKU: KH-FD-CUPFAN-150350-PR-001/);
     await page.locator('input[name="name"]').first().fill("Playwright QA");
     await page.locator('input[name="email"]').first().fill("qa-product-interest@example.com");
@@ -322,15 +322,15 @@ test.describe("Kehong production flows", () => {
   test("homepage product entries do not link buyers to unsupported empty filters", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
     await expect(page.getByText("Scroll", { exact: true })).toHaveCount(0);
-    const productLinks = page.getByTestId("homepage-product-directions").locator("a");
-    await expect(productLinks).toHaveCount(6);
+    const productLinks = page.getByTestId("homepage-product-entry");
+    await expect(productLinks).toHaveCount(11);
   });
 
   test("English and Chinese product entry links resolve to a real range, category or inquiry", async ({ page }) => {
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}`, { waitUntil: "networkidle" });
-      const entries = page.getByTestId("homepage-product-directions").locator("a");
-      await expect(entries).toHaveCount(6);
+      const entries = page.getByTestId("homepage-product-entry");
+      await expect(entries).toHaveCount(11);
       const hrefs = await entries.evaluateAll((links) => links.map((link) => link.getAttribute("href") || ""));
       for (const href of hrefs) {
         const response = await page.goto(href, { waitUntil: "domcontentloaded" });
@@ -368,7 +368,7 @@ test.describe("Kehong production flows", () => {
 
   test("homepage section sequence stays unique after the hero", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
-    await expect(page.locator(".kh-kicker-index")).toHaveText(["02", "03", "04", "05", "06", "07", "08"]);
+    await expect(page.locator(".kh-kicker-index")).toHaveText(["02", "04", "05", "06", "07", "08"]);
   });
 
   test("home CTA has no residual visual layer and buyer support links render", async ({ page }) => {
@@ -453,12 +453,54 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("product navigation uses the same three-level material and finished taxonomy on desktop and mobile", async ({ page }) => {
+  test("factory address card uses the shared Chinese Google Maps query in both locales", async ({ page }) => {
+    const mapsQuery = encodeURIComponent("佛山市南海区布新工业区7号科宏坑纸厂");
+    for (const locale of ["en", "zh"]) {
+      await page.goto(`/${locale}/factory`, { waitUntil: "networkidle" });
+      const mapLink = page.locator(`a[href="https://www.google.com/maps/search/?api=1&query=${mapsQuery}"]`);
+      await expect(mapLink).toBeVisible();
+      await expect(mapLink).toHaveAttribute("target", "_blank");
+      await expect(mapLink).toHaveAttribute("rel", "noopener noreferrer");
+      await expect(mapLink).toContainText(locale === "zh" ? "佛山市南海区布新工业区7号科宏坑纸厂" : "Kehong Corrugated Paper Factory");
+    }
+  });
+
+  test("Products Mega Menu Escape keeps focus return closed and requires an explicit reopen action", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto("/en", { waitUntil: "networkidle" });
-    const trigger = page.getByText("Products", { exact: true }).first();
-    await trigger.hover();
+    const trigger = page.getByRole("button", { name: "Products", exact: true });
     const mega = page.getByTestId("header-product-mega-menu");
+    await trigger.focus();
+    await expect(mega).toHaveCount(0);
+    await page.keyboard.press("Enter");
+    await expect(mega).toBeVisible();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await page.keyboard.press("Tab");
+    await expect(mega.getByRole("link").first()).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(mega).toHaveCount(0);
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await expect(trigger).toBeFocused();
+    await page.waitForTimeout(220);
+    await expect(mega).toHaveCount(0);
+    await page.keyboard.press("Enter");
+    await expect(mega).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(mega).toHaveCount(0);
+    await trigger.focus();
+    await page.keyboard.press("ArrowDown");
+    await expect(mega).toBeVisible();
+    await expect(mega.getByRole("link").first()).toBeFocused();
+    await page.keyboard.press("Escape");
+
+    await trigger.hover();
+    await expect(mega).toBeVisible();
+    const triggerBox = await trigger.boundingBox();
+    const megaBox = await mega.boundingBox();
+    expect(triggerBox).toBeTruthy();
+    expect(megaBox).toBeTruthy();
+    await page.mouse.move(triggerBox!.x + triggerBox!.width / 2, triggerBox!.y + triggerBox!.height / 2);
+    await page.mouse.move(megaBox!.x + Math.min(40, megaBox!.width / 4), megaBox!.y + 16, { steps: 8 });
     await expect(mega).toBeVisible();
     await expect(mega).toContainText("Paper materials & semi-finished components");
     await expect(mega).toContainText("Finished packaging");
@@ -469,6 +511,11 @@ test.describe("Kehong production flows", () => {
     await expect(mega.getByRole("link", { name: "Paper cup fan" })).toHaveAttribute("href", /group=paper-cup-fan-paper-cup-fan/);
     await page.keyboard.press("Escape");
     await expect(mega).not.toBeVisible();
+    await expect(trigger).toBeFocused();
+    await trigger.focus();
+    await page.keyboard.press("Enter");
+    await expect(mega).toBeVisible();
+    await page.keyboard.press("Escape");
 
     await page.setViewportSize({ width: 390, height: 844 });
     const menu = page.locator('button[aria-controls="kh-mobile-menu"]');
@@ -484,7 +531,7 @@ test.describe("Kehong production flows", () => {
     await page.goto("/en/products", { waitUntil: "networkidle" });
     await expect(page.locator("#materials-and-components")).toContainText("Paper materials & semi-finished components");
     await expect(page.locator("#catalog-list")).toContainText("231 published SKUs");
-    await expect(page.locator("#finished-packaging")).toContainText("Finished packaging project directory");
+    await expect(page.locator("#finished-packaging")).toContainText("Finished packaging");
     await expect(page.locator("#finished-packaging")).not.toContainText(/231|published SKU/u);
     await expect(page.locator("#finished-packaging").getByRole("link", { name: "Takeout boxes" })).toHaveAttribute("href", "/en/packaging/takeout-boxes");
   });
@@ -697,7 +744,7 @@ test.describe("Kehong production flows", () => {
             page.waitForURL((url) => url.pathname === `/${locale}/contact` && url.searchParams.get("product") === label),
             cta.click(),
           ]);
-          await expect(page.getByText(`${locale === "zh" ? "已选产品方向：" : "Selected product direction: "}${label}`, { exact: true })).toHaveCount(2);
+          await expect(page.getByText(`${locale === "zh" ? "已选产品：" : "Selected product: "}${label}`, { exact: true })).toHaveCount(2);
           await expect(page.locator('input[name="products"]').first()).toHaveValue(label);
           await expect(page.locator('textarea[name="products"]')).toHaveValue(label);
           await page.goBack({ waitUntil: "networkidle" });

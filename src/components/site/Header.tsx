@@ -1,13 +1,13 @@
 "use client";
 
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SiteLogo from "@/components/site/SiteLogo";
 import { captureAttribution, trackKehongEvent } from "@/lib/attribution";
-import { finishedPackagingDirectoryGroups, materialDirectoryGroups, type DirectoryGroup } from "@/data/productDirectory";
+import { productCatalogSections } from "@/data/productDirectory";
 
 const headerCopy = {
   zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", resources: "资源", contact: "获取报价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
@@ -43,19 +43,14 @@ function directoryLabel(item: { en: string; zh: string }, zh: boolean) {
   return zh ? item.zh : item.en;
 }
 
-function ProductMegaMenu({ zh, close }: { zh: boolean; close: () => void }) {
-  const sections: Array<{ id: string; title: { en: string; zh: string }; groups: readonly DirectoryGroup[]; href: string }> = [
-    { id: "materials", title: { en: "Paper materials & semi-finished components", zh: "纸材与半成品" }, groups: materialDirectoryGroups, href: "/products#materials-and-components" },
-    { id: "packaging", title: { en: "Finished packaging", zh: "成品包装" }, groups: finishedPackagingDirectoryGroups, href: "/products#finished-packaging" },
-  ];
-
+function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () => void; firstLinkRef?: RefObject<HTMLAnchorElement | null> }) {
   return (
-    <div className="kh-nav-panel kh-product-mega" data-testid="header-product-mega-menu">
-      {sections.map((section) => (
+    <div id="header-products-menu" className="kh-nav-panel kh-product-mega" data-testid="header-product-mega-menu">
+      {productCatalogSections.map((section) => (
         <section key={section.id} className="kh-product-mega-section" aria-labelledby={`header-${section.id}-title`}>
           <div className="kh-product-mega-head">
-            <p id={`header-${section.id}-title`}>{directoryLabel(section.title, zh)}</p>
-            <Link href={section.href} onClick={close}>{zh ? "查看目录" : "View directory"}<span aria-hidden="true">→</span></Link>
+            <p id={`header-${section.id}-title`}>{directoryLabel(section.label, zh)}</p>
+            <Link ref={section.id === "materials" ? firstLinkRef : undefined} href={section.href} onClick={close}>{directoryLabel(section.cta, zh)}<span aria-hidden="true">→</span></Link>
           </div>
           {section.groups.map((group) => (
             <div key={group.id} className="kh-product-mega-group">
@@ -75,15 +70,11 @@ function ProductMegaMenu({ zh, close }: { zh: boolean; close: () => void }) {
 }
 
 function MobileProductDirectory({ zh, close }: { zh: boolean; close: () => void }) {
-  const sections: Array<{ id: string; title: { en: string; zh: string }; groups: readonly DirectoryGroup[] }> = [
-    { id: "materials", title: { en: "Paper materials & semi-finished components", zh: "纸材与半成品" }, groups: materialDirectoryGroups },
-    { id: "packaging", title: { en: "Finished packaging", zh: "成品包装" }, groups: finishedPackagingDirectoryGroups },
-  ];
   return (
     <div className="kh-mobile-product-directory" data-testid="mobile-product-directory">
-      {sections.map((section) => (
+      {productCatalogSections.map((section) => (
         <details key={section.id}>
-          <summary>{directoryLabel(section.title, zh)}<ChevronDown className="size-4" /></summary>
+          <summary>{directoryLabel(section.label, zh)}<ChevronDown className="size-4" /></summary>
           {section.groups.map((group) => (
             <div key={group.id} className="kh-mobile-product-group">
               <p>{directoryLabel(group, zh)}</p>
@@ -105,9 +96,16 @@ export default function Header({ variant = "solid" }: HeaderProps) {
   const label = (item: NavItem) => (isZh ? item.zh : item.en);
 
   const headerRef = useRef<HTMLElement>(null);
+  const desktopNavRef = useRef<HTMLElement>(null);
+  const productsButtonRef = useRef<HTMLButtonElement>(null);
+  const desktopCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const keyboardProductsActivationRef = useRef<"Enter" | " " | null>(null);
+  const focusFirstProductLinkRef = useRef(false);
+  const firstProductMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<"products" | "capabilities" | "resources" | null>(null);
   const [scrolled, setScrolled] = useState(variant !== "cinema");
   const [lastPathname, setLastPathname] = useState(pathname);
 
@@ -133,18 +131,51 @@ export default function Header({ variant = "solid" }: HeaderProps) {
     return () => observer.disconnect();
   }, [variant]);
 
-  const closeDesktopDropdowns = () => {
-    headerRef.current?.querySelectorAll("details[open]").forEach((node) => node.removeAttribute("open"));
+  const clearDesktopCloseTimer = () => {
+    if (desktopCloseTimerRef.current) {
+      clearTimeout(desktopCloseTimerRef.current);
+      desktopCloseTimerRef.current = null;
+    }
+  };
+
+  const closeDesktopDropdowns = (restoreProductsFocus = false) => {
+    clearDesktopCloseTimer();
+    setOpenMenu(null);
+    if (restoreProductsFocus) requestAnimationFrame(() => productsButtonRef.current?.focus());
+  };
+
+  const openDesktopMenu = (menu: "products" | "capabilities" | "resources") => {
+    clearDesktopCloseTimer();
+    setOpenMenu(menu);
+  };
+
+  const scheduleDesktopClose = (menu: "products" | "capabilities" | "resources") => {
+    clearDesktopCloseTimer();
+    desktopCloseTimerRef.current = setTimeout(() => {
+      setOpenMenu((current) => current === menu ? null : current);
+      desktopCloseTimerRef.current = null;
+    }, 180);
   };
 
   // 路由变化后收起所有菜单
   if (pathname !== lastPathname) {
     setLastPathname(pathname);
     setMenuOpen(false);
+    setOpenMenu(null);
   }
+  useEffect(() => () => {
+    if (desktopCloseTimerRef.current) clearTimeout(desktopCloseTimerRef.current);
+  }, []);
+
   useEffect(() => {
-    closeDesktopDropdowns();
-  }, [pathname]);
+    if (openMenu !== "products") {
+      focusFirstProductLinkRef.current = false;
+      return;
+    }
+    if (!focusFirstProductLinkRef.current || !firstProductMenuLinkRef.current) return;
+    focusFirstProductLinkRef.current = false;
+    firstProductMenuLinkRef.current.focus({ preventScroll: true });
+  }, [openMenu]);
 
   // Capture the first landing URL before a visitor reaches a quote form.
   useEffect(() => {
@@ -154,12 +185,23 @@ export default function Header({ variant = "solid" }: HeaderProps) {
   // 点击外部或 Escape 关闭桌面下拉
   useEffect(() => {
     const onPointerDown = (event: PointerEvent) => {
-      const header = headerRef.current;
-      if (!header) return;
-      if (!header.contains(event.target as Node)) closeDesktopDropdowns();
+      if (!desktopNavRef.current?.contains(event.target as Node)) {
+        if (desktopCloseTimerRef.current) clearTimeout(desktopCloseTimerRef.current);
+        desktopCloseTimerRef.current = null;
+        setOpenMenu(null);
+      }
     };
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeDesktopDropdowns();
+      if (event.key !== "Escape") return;
+      const expanded = desktopNavRef.current?.querySelector<HTMLButtonElement>('button[aria-expanded="true"]');
+      if (!expanded) return;
+      event.preventDefault();
+      if (desktopCloseTimerRef.current) clearTimeout(desktopCloseTimerRef.current);
+      desktopCloseTimerRef.current = null;
+      setOpenMenu(null);
+      if (expanded === productsButtonRef.current) {
+        requestAnimationFrame(() => productsButtonRef.current?.focus());
+      }
     };
     document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
@@ -217,49 +259,49 @@ export default function Header({ variant = "solid" }: HeaderProps) {
       ref={headerRef}
       className="kh-header"
       data-variant={variant}
-      data-scrolled={String(variant !== "cinema" || scrolled || menuOpen)}
+      data-scrolled={String(Boolean(variant !== "cinema" || scrolled || menuOpen || openMenu))}
     >
       <div className="kh-shell kh-header-bar">
         <Link href="/" className="kh-header-brand">
           <SiteLogo locale={locale} placement="header" />
         </Link>
 
-        <nav className="kh-desktop-nav" aria-label="Primary navigation">
-          <details className="relative" onMouseEnter={(event) => { event.currentTarget.open = true; }} onMouseLeave={(event) => { event.currentTarget.open = false; }}>
-            <summary className={navLinkClass(isProducts)}>
+        <nav ref={desktopNavRef} className="kh-desktop-nav" aria-label="Primary navigation">
+          <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("products")} onPointerLeave={() => scheduleDesktopClose("products")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("products"); }}>
+            <button ref={productsButtonRef} type="button" className={navLinkClass(isProducts)} aria-expanded={openMenu === "products"} aria-controls="header-products-menu" aria-haspopup="true" onClick={(event) => { if (keyboardProductsActivationRef.current) { event.preventDefault(); event.stopPropagation(); keyboardProductsActivationRef.current = null; return; } if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); }} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); if (event.repeat) return; keyboardProductsActivationRef.current = event.key; if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); return; } if (event.key !== "ArrowDown") return; event.preventDefault(); event.stopPropagation(); focusFirstProductLinkRef.current = true; openDesktopMenu("products"); }} onKeyUp={(event) => { if (event.key !== keyboardProductsActivationRef.current) return; event.preventDefault(); event.stopPropagation(); requestAnimationFrame(() => { keyboardProductsActivationRef.current = null; }); }}>
               <span>{copy.products}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
-            </summary>
-            <ProductMegaMenu zh={isZh} close={closeDesktopDropdowns} />
-          </details>
+            </button>
+            {openMenu === "products" ? <ProductMegaMenu zh={isZh} close={closeDesktopDropdowns} firstLinkRef={firstProductMenuLinkRef} /> : null}
+          </div>
 
           <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>{copy.solutions}</Link>
 
-          <details className="relative">
-            <summary className={navLinkClass(isCapabilities)}>
+          <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("capabilities")} onPointerLeave={() => scheduleDesktopClose("capabilities")} onFocusCapture={() => openDesktopMenu("capabilities")} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("capabilities"); }}>
+            <button type="button" className={navLinkClass(isCapabilities)} aria-expanded={openMenu === "capabilities"} aria-controls="header-capabilities-menu" aria-haspopup="true" onClick={() => openMenu === "capabilities" ? closeDesktopDropdowns() : openDesktopMenu("capabilities")}>
               <span>{copy.capabilities}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
-            </summary>
-            <div className="kh-nav-panel">
+            </button>
+            {openMenu === "capabilities" ? <div id="header-capabilities-menu" className="kh-nav-panel">
               {capabilityLinks.map((item) => (
-                <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+                <Link key={item.href} href={item.href} onClick={() => closeDesktopDropdowns()}>{label(item)}<span aria-hidden="true">→</span></Link>
               ))}
-            </div>
-          </details>
+            </div> : null}
+          </div>
 
           <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}>{copy.factory}</Link>
 
-          <details className="relative">
-            <summary className={navLinkClass(isResources)}>
+          <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("resources")} onPointerLeave={() => scheduleDesktopClose("resources")} onFocusCapture={() => openDesktopMenu("resources")} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("resources"); }}>
+            <button type="button" className={navLinkClass(isResources)} aria-expanded={openMenu === "resources"} aria-controls="header-resources-menu" aria-haspopup="true" onClick={() => openMenu === "resources" ? closeDesktopDropdowns() : openDesktopMenu("resources")}>
               <span>{copy.resources}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
-            </summary>
-            <div className="kh-nav-panel">
+            </button>
+            {openMenu === "resources" ? <div id="header-resources-menu" className="kh-nav-panel">
               {resourceLinks.map((item) => (
-                <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+                <Link key={item.href} href={item.href} onClick={() => closeDesktopDropdowns()}>{label(item)}<span aria-hidden="true">→</span></Link>
               ))}
-            </div>
-          </details>
+            </div> : null}
+          </div>
         </nav>
 
         <div className="kh-header-actions">

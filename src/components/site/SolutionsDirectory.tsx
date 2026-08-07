@@ -58,15 +58,15 @@ export default function SolutionsDirectory() {
         <Reveal>
           <div className="kh-section-heading">
             <div>
-              <SectionKicker index="02" text={isZh ? "方案方向" : "Solution directions"} />
-              <h2>{isZh ? "四个方向，覆盖主要生产需求。" : "Four directions for the main production needs."}</h2>
+              <SectionKicker index="02" text={isZh ? "解决方案" : "Solutions"} />
+              <h2>{isZh ? "四类应用，覆盖主要生产需求。" : "Four applications for common production needs."}</h2>
             </div>
           </div>
         </Reveal>
 
         <Reveal delay={80}>
           <div className="grid gap-4 lg:grid-cols-[.82fr_1.18fr]">
-            <div className="grid content-start gap-2" role="list" aria-label={isZh ? "解决方案方向" : "Solution directions"}>
+            <div className="grid content-start gap-2" role="list" aria-label={isZh ? "解决方案分类" : "Solution categories"}>
               {solutions.map((solution, index) => {
                 const item = isZh ? solution.zh : solution.en;
                 const selected = active.id === solution.id;

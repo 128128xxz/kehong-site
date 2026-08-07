@@ -3,13 +3,13 @@ import { getImageProps } from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
+import { productCatalogSections } from "@/data/productDirectory";
 import { CountUp } from "@/components/home/interactive";
-import { getProductEntry } from "@/lib/product-routing";
 
 export default function HomeHero({ locale }: { locale: string }) {
   const zh = locale === "zh";
-  const materialEntry = getProductEntry("materials");
-  const packagingEntry = getProductEntry("packaging");
+  const materialEntry = productCatalogSections[0];
+  const packagingEntry = productCatalogSections[1];
   const alt = zh
     ? "科宏工厂车间:成排模切设备与纸板堆垛"
     : "Kehong factory hall with die-cutting lines and stacked board";
@@ -76,11 +76,11 @@ export default function HomeHero({ locale }: { locale: string }) {
           </p>
           <div className="kh-actions kh-rise kh-rise-5">
             <Link className="kh-button kh-button-light" href={materialEntry.href}>
-              {zh ? materialEntry.title.zh : materialEntry.title.en}
+              {zh ? materialEntry.label.zh : materialEntry.label.en}
               <ArrowRight className="size-4" />
             </Link>
             <Link className="kh-button kh-button-ghost" href={packagingEntry.href}>
-              {zh ? packagingEntry.title.zh : packagingEntry.title.en}
+              {zh ? packagingEntry.label.zh : packagingEntry.label.en}
               <ArrowRight className="size-4" />
             </Link>
             <Link className="kh-button kh-button-ghost" href="/contact">

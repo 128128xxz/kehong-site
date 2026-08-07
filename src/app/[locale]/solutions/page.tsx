@@ -37,13 +37,13 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
               : "Start with the application and protection requirement, then move into a focused product range for sampling and quotation."
           }
           meta={[
-            isZh ? "4 个应用方向" : "4 application directions",
+            isZh ? "4 类应用" : "4 applications",
             "OEM / ODM",
             isZh ? "中国广东佛山" : "Foshan, Guangdong, China",
           ]}
         >
           <a href="#solutions-directory" className="kh-button kh-button-light">
-            {isZh ? "浏览方案方向" : "Browse solution directions"}
+            {isZh ? "浏览解决方案" : "Browse solutions"}
           </a>
           <Link href="/contact" className="kh-button kh-button-ghost">
             {isZh ? "获取报价" : "Request a quote"}

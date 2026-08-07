@@ -32,7 +32,7 @@ test.describe("Production SSR/CDN consistency", () => {
     expect(html).not.toContain("0 products");
     expect(html).toContain("Paper Materials &amp; Custom Packaging, Made in Foshan.");
     expect(html).toContain("kh-home-hero");
-    expect(html).toContain("Paper Materials &amp; Components");
+    expect(html).toContain("Paper materials &amp; semi-finished components");
     expect(html).not.toContain("Popular products");
 
     const productPath = "/zh/products/kh-fd-cuproll-150350-pr-032-pe-coated-paper-roll-for-paper-cup";

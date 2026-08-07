@@ -4,6 +4,7 @@ import taxonomy from "@/data/taxonomy.json";
 import { buildProductCatalogView, getAllSkus, getCatalogGroups, getFamilies, getFeaturedProductGroups, matchesGsmOption } from "@/lib/catalog";
 import { getCanonicalTaxonomyCategoryId, resolveTaxonomyMaterialAlias } from "@/lib/taxonomy";
 import { getHomepageProductEntries } from "@/lib/product-routing";
+import { productCatalogSections } from "@/data/productDirectory";
 
 describe("product taxonomy and publication gate", () => {
   it("resolves approved aliases without treating a combined label as one material", () => {
@@ -67,6 +68,18 @@ describe("product taxonomy and publication gate", () => {
     expect(entries).toHaveLength(6);
     expect(entries.every((entry) => !entry.href.includes("productType=paper-packaging-material"))).toBe(true);
     expect(entries.every((entry) => entry.hasPublicSku || !entry.href.startsWith("/products?"))).toBe(true);
+  });
+
+  it("keeps the buyer-facing materials and finished-packaging taxonomy complete and separate", () => {
+    expect(productCatalogSections.map((section) => section.id)).toEqual(["materials", "finished-packaging"]);
+    const materials = productCatalogSections[0];
+    const finished = productCatalogSections[1];
+    expect(materials.groups.flatMap((group) => group.links)).toHaveLength(6);
+    expect(finished.groups.flatMap((group) => group.links)).toHaveLength(5);
+    expect(materials.label.en).toBe("Paper materials & semi-finished components");
+    expect(finished.label.zh).toBe("成品包装");
+    expect(materials.groups.flatMap((group) => group.links).every((link) => link.href.startsWith("/products?group="))).toBe(true);
+    expect(finished.groups.flatMap((group) => group.links).every((link) => link.href.startsWith("/packaging/"))).toBe(true);
   });
 
   it("builds the unfiltered and query-filtered catalog from one server-side view", () => {
