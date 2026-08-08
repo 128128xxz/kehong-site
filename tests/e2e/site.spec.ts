@@ -554,7 +554,7 @@ test.describe("Kehong production flows", () => {
 
   test("Chinese packaging copy prefers Chinese names while preserving technical terms", async ({ page }) => {
     await page.goto("/zh/packaging/paper-bags", { waitUntil: "networkidle" });
-    await expect(page.locator("main")).toContainText("科宏可根据已确认的项目需求评估");
+    await expect(page.locator("main")).toContainText("科宏可根据已提交的项目资料评估");
     await expect(page.locator("main")).not.toContainText("Kehong 可");
     await page.goto("/zh/packaging/cake-boards-cake-drums", { waitUntil: "networkidle" });
     await expect(page.locator("main")).toContainText("蛋糕托板（Cake Board）");
@@ -593,7 +593,7 @@ test.describe("Kehong production flows", () => {
         expect(response.status()).toBe(200);
         const html = await response.text();
         expect(html).not.toContain("Loading product range");
-        expect(html).toMatch(/No confirmed public products in this range yet|该分类暂未发布公开产品|Product(?:<!-- -->)? range|产品范围|Finished structures confirmed by project|成品结构按项目确认/);
+        expect(html).toMatch(/No confirmed public products in this range yet|该分类暂未发布公开产品|Product(?:<!-- -->)? range|产品范围|Takeout structure review from project scope|外带盒结构待提交规格评估/);
         const catalogLabel = slug === "takeout-boxes"
           ? (locale === "zh" ? "项目确认" : "Project confirmation")
           : (locale === "zh" ? "已确认目录" : "Confirmed catalog");
@@ -702,12 +702,12 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("takeout boxes keeps a project-confirmed finished-structure boundary and a material related link", async ({ page }) => {
+  test("takeout boxes keeps a project-scope structure boundary and a material related link", async ({ page }) => {
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/packaging/takeout-boxes`, { waitUntil: "networkidle" });
       const catalog = page.locator("#catalog-list");
-      await expect(catalog).toContainText(locale === "zh" ? "成品结构按项目确认" : "Finished structures confirmed by project");
-      await expect(catalog.getByRole("heading", { name: locale === "zh" ? "成品结构按项目确认" : "Finished structures confirmed by project" })).toHaveCount(1);
+      await expect(catalog).toContainText(locale === "zh" ? "外带盒结构待提交规格评估" : "Takeout structure review from project scope");
+      await expect(catalog.getByRole("heading", { name: locale === "zh" ? "外带盒结构待提交规格评估" : "Takeout structure review from project scope" })).toHaveCount(1);
       await expect(catalog.getByText(locale === "zh" ? "外带盒结构、尺寸、材料和印刷根据项目需求确认。请提交参考图、尺寸与目标数量，以便评估和报价。" : "Takeout box structures, sizes, materials and printing are confirmed against the project brief. Send a reference image, dimensions and target quantity for evaluation.", { exact: true })).toHaveCount(1);
       await expect(catalog).not.toContainText("Food Tray Paper Material");
       await expect(page.locator("#packaging-related")).toContainText(locale === "zh" ? "食品纸托材料" : "Food Tray Paper Material");

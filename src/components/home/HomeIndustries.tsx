@@ -75,7 +75,7 @@ export default function HomeIndustries({ locale }: { locale: string }) {
           <div className="kh-section-heading">
             <div>
               <SectionKicker index="06" text={zh ? "行业与采购路径" : "Industries & buyer paths"} />
-              <h2>{zh ? "从应用场景开始，找到合适的包装方向。" : "Start with the application, then shape the packaging."}</h2>
+              <h2>{zh ? "从应用场景开始，找到合适的包装形式。" : "Start with the application, then shape the packaging."}</h2>
             </div>
           </div>
         </Reveal>

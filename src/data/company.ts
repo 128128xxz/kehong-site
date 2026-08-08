@@ -32,7 +32,7 @@ export const companyProfile = {
   },
   exportExperience: {
     en: "Export-ready packing and project support for overseas B2B orders",
-    zh: "支持海外 B2B 订单的出口包装与项目协同",
+    zh: "支持海外 B2B 订单的出口包装与资料准备",
   },
 } as const;
 

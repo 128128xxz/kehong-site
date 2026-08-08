@@ -11,25 +11,25 @@ const capabilityRows = [
   {
     title: "Material handling",
     titleZh: "材料处理",
-    body: "Paper grade, board construction, coating, and converting requirements are reviewed against the intended packaging structure.",
-    bodyZh: "按目标包装结构核对纸张等级、纸板结构、涂层与加工要求。",
+    body: "Material, structure, converting, inspection and packing requirements are reviewed against the approved specification.",
+    bodyZh: "按确认规格逐项核对材料、结构、加工、检验和包装要求。",
   },
   {
     title: "Converting equipment",
     titleZh: "加工设备",
-    body: "Paper feeding, slitting, die-cutting, creasing, and lamination are coordinated around the approved specification.",
+    body: "Equipment and workflows are coordinated for each confirmed order.",
     bodyZh: "围绕已确认规格协调送料、分切、模切、压痕与裱纸。",
   },
   {
     title: "Structural sampling",
     titleZh: "结构打样",
-    body: "Drawings, dimensions, folds, and insert fit are checked through samples before batch production.",
-    bodyZh: "批量生产前，通过样品核对图纸、尺寸、折线与内衬贴合。",
+    body: "Drawings, dimensions, folds and insert fit are reviewed through samples.",
+    bodyZh: "批量生产前通过样品核对图纸、尺寸、折线与内衬贴合。",
   },
   {
     title: "Quality checkpoints",
     titleZh: "质检节点",
-    body: "Key dimensions, finish, packing method, and shipment preparation are confirmed at the relevant production stages.",
+    body: "Key dimensions, finish, packing method and shipment preparation are confirmed step by step.",
     bodyZh: "在相应生产阶段确认关键尺寸、表面效果、装箱方式与出货准备。",
   },
 ] as const;
@@ -44,10 +44,10 @@ export default async function FactoryOverview() {
         <div className="kh-shell grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center lg:gap-16">
           <Reveal>
             <SectionKicker index="02" text={isZh ? "厂区与设备" : "Site & equipment"} />
-            <h2>{isZh ? "从纸材到成品，同一座工厂完成。" : "From raw board to finished packaging in one plant."}</h2>
+            <h2>{isZh ? "纸材加工、结构打样与成品包装，一体化交付。" : "From raw board to finished packaging in one plant."}</h2>
             <p className="kh-section-lede mt-5">
               {isZh
-                ? "从选材、结构打样到加工和出货准备，科宏按项目规格跟进纸包装项目；模切、分切、裱纸和瓦楞成型能力以具体项目确认为准。"
+                ? "科宏可根据项目规格进行材料、结构、加工、检验与包装要求的核对与推进。"
                 : `${companyLegalName} runs in-house lines for die-cutting, slitting, lamination, and corrugating, coordinating each project from material selection through shipment preparation.`}
             </p>
             <dl className="mt-8 grid gap-4 border-y border-(--kh-line) py-5 text-sm sm:grid-cols-2">
@@ -118,12 +118,12 @@ export default async function FactoryOverview() {
             <div className="grid gap-6 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
               <div>
                 <SectionKicker index="03" text={isZh ? "可核对的能力" : "Verified workflow points"} light />
-                <h2>{isZh ? "逐项确认材料、加工、检验和包装要求。" : "Confirm material, converting, inspection and packing requirements step by step."}</h2>
+                               <h2>{isZh ? "我们按确认规格逐项核对材料、加工、检验和包装要求。" : "We review material, structure, converting, inspection and packing requirements against the approved specification."}</h2>
               </div>
               <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
                 {isZh
-                  ? "我们不展示未经证实的产能数字。项目确认基于材料、结构、加工与检验要求。"
-                  : "Project review is based on the material, structure, converting, and inspection requirements that can be confirmed for the order, without unsupported capacity claims."}
+                  ? "不展示未经核实的产能数据。我们按确认规格逐项核对材料、结构、加工与检验要求。"
+                  : "We do not publish unverified capacity figures. We review material, structure, converting, inspection and packing requirements step by step against the confirmed specification."}
               </p>
             </div>
           </Reveal>

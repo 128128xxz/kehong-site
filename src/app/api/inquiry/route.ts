@@ -210,7 +210,7 @@ export async function POST(request: Request) {
   };
 
   if (!inquiry.name || !isValidEmail(inquiry.email) || (inquiry.products.length === 0 && !inquiry.interestId) || inquiry.privacy !== "on") {
-    return inquiryError("VALIDATION_FAILED", 400, "Name, valid email and at least one product or inquiry direction are required");
+    return inquiryError("VALIDATION_FAILED", 400, "Name, valid email and at least one product or inquiry type are required");
   }
 
   const inquiryKey = makeInquiryKey(inquiry, request.headers.get("idempotency-key")?.trim() ?? "");

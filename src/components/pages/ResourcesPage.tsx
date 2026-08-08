@@ -19,17 +19,17 @@ export default function ResourcesPage({ locale }: { locale: string }) {
       <main>
         <PageHero
           index="01"
-          kicker={isZh ? "科宏 · 设计中心" : "Kehong · Design Center"}
-          title={isZh ? "让文件、材料和结构更容易被确认" : "Resources for a cleaner packaging handoff."}
+          kicker={isZh ? "科宏 · 资源中心" : "Kehong · Packaging resources"}
+          title={isZh ? "包装设计、材料与结构准备指南" : "Packaging guides for artwork, materials, structure and sampling."}
           lede={
             isZh
-              ? "从设计稿（artwork）、材料和工艺，到刀模图（dieline）、选型和打样，先把采购问题整理清楚。"
-              : "Use the Design Center to prepare artwork, compare materials and finishes, request a dieline and understand the sample path before production."
+              ? "用于准备设计稿、材料选择、刀模图、表面工艺和打样资料。"
+              : "Use these guides to prepare artwork, compare materials and finishes, request a dieline and organize sampling information before production."
           }
           meta={[
             isZh
               ? `${guideCount} 份指南 · ${requestCount} 项申请通道`
-              : `${guideCount} guides · ${requestCount} request path`,
+              : `${guideCount} guides · ${requestCount} request channels`,
             "OEM / ODM",
             isZh ? "中国广东佛山" : "Foshan, Guangdong, China",
           ]}
@@ -50,9 +50,9 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                 <div>
                   <SectionKicker index="02" text={isZh ? "指南与申请" : "Guides & requests"} />
                   <h2>
-                    {isZh
-                      ? "覆盖设计稿、材料与结构的工作指南。"
-                      : "Working guides for artwork, materials and structure."}
+                  {isZh
+                    ? "包装设计、材料与结构准备指南"
+                    : "Working guides for artwork, materials and structure."}
                   </h2>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
             <div className="grid gap-6 lg:grid-cols-2">
               <Reveal>
                 <div className="kh-panel h-full p-7">
-                  <p className="kh-mono text-(--kh-brass)">{isZh ? "工艺方向" : "Finish directions"}</p>
+                  <p className="kh-mono text-(--kh-brass)">{isZh ? "可选工艺" : "Finishing requirements"}</p>
                   <div className="mt-5 grid gap-2 sm:grid-cols-2">
                     {(isZh ? finishOptionsZh : finishOptions).map((finish) => (
                       <p key={finish} className="rounded-md bg-(--kh-paper) px-4 py-3 text-sm font-medium text-(--kh-ink)">
@@ -122,8 +122,8 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-white/75">
                     {isZh
-                      ? "把产品、尺寸、数量和目的市场发给我们，无需先掌握所有包装术语，我们会一起确认结构方向。"
-                      : "Send the product, dimensions, quantity and destination. We will review the brief without forcing you to know every packaging term."}
+                      ? "在打样前，请先发送产品、尺寸、克重和搬运要求。"
+                      : "Prepare the product, handling and specification details needed to select a food-packaging material."}
                   </p>
                   <Link href="/contact" className="kh-button kh-button-light mt-5">
                     {isZh ? "发起引导式询盘" : "Start guided RFQ"}

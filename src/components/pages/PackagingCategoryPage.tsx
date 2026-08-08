@@ -33,9 +33,9 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
   const isZh = locale === "zh";
   const sourceSkus = getAllSkus().filter((sku) => matchesCategory(sku, category));
   const isTakeoutBoxes = category.slug === "takeout-boxes";
-  // A raw paper material can support a takeout project, but is not itself a
+  // A raw paper material can support takeout projects, but is not itself a
   // finished takeout-box SKU. This category currently has no approved public
-  // finished structures, so show the project-confirmed state instead.
+  // finished structures, so show project-scope requirements instead.
   const skus = (isTakeoutBoxes ? [] : sourceSkus).map((sku) => getLocalizedProductSku(sku, locale));
   const subcategories = isZh ? category.subcategories.zh : category.subcategories.en;
   const applications = isZh ? category.applications.zh : category.applications.en;
@@ -71,7 +71,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           image={{ src: category.image, alt: isZh ? `${category.title.zh}包装参考图` : `${category.title.en} packaging reference` }}
           meta={
             isZh
-              ? [`${subcategories.length} 个子类方向`, "OEM / ODM", "中国广东佛山"]
+              ? [`${subcategories.length} 个子类`, "OEM / ODM", "中国广东佛山"]
               : [`${subcategories.length} packaging categories`, "OEM / ODM", "Foshan, Guangdong, China"]
           }
         >
@@ -119,7 +119,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
             <Reveal>
               <div className="mb-9 max-w-3xl">
                 <SectionKicker index={packagingSectionNumbers.catalog} text={isTakeoutBoxes ? (isZh ? "项目确认" : "Project confirmation") : (isZh ? "已确认目录" : "Confirmed catalog")} />
-                <h2 id="packaging-catalog-title">{isTakeoutBoxes ? (isZh ? "成品结构按项目确认" : "Finished structures confirmed by project") : (isZh ? "产品范围" : "Product range")}</h2>
+                <h2 id="packaging-catalog-title">{isTakeoutBoxes ? (isZh ? "外带盒结构待提交规格评估" : "Takeout structure review from project scope") : (isZh ? "产品范围" : "Product range")}</h2>
                 <p className="kh-section-lede mt-4">
                   {isTakeoutBoxes
                     ? (isZh
@@ -228,8 +228,8 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
 function getCategoryFaq(slug: string, isZh: boolean): [string, string][] {
   const categorySpecific: Record<string, { en: [string, string][]; zh: [string, string][] }> = {
     "cake-boards-cake-drums": {
-      en: [["How do cake boards and cake drums differ?", "Cake boards are commonly selected for everyday support and display. Cake drums are reviewed when a project needs a thicker support format."], ["What should be confirmed before quoting?", "Share the cake footprint, target support requirement, quantity, finish direction and destination."], ["Can the shape and edge be customized?", "Shape, diameter, edge and finish are reviewed against the approved project brief."]],
-      zh: [["蛋糕托板（Cake Board）与蛋糕鼓（Cake Drum）有什么区别？", "蛋糕托板（Cake Board）通常用于日常承托与展示；项目需要更厚承托时会评审蛋糕鼓（Cake Drum）方向。"], ["报价前需要确认什么？", "请提供蛋糕尺寸、承托需求、数量、表面效果和目的地。"], ["形状和边缘可以定制吗？", "形状、直径、边缘与表面效果会按确认后的项目需求评审。"]],
+      en: [["How do cake boards and cake drums differ?", "Cake boards are commonly selected for everyday support and display. Cake drums are reviewed when a project needs a thicker support format."], ["What should be confirmed before quoting?", "Share the cake footprint, target support requirement, quantity, finish requirements and destination."], ["Can the shape and edge be customized?", "Shape, diameter, edge and finish are reviewed against the approved project brief."]],
+      zh: [["蛋糕托板（Cake Board）与蛋糕鼓（Cake Drum）有什么区别？", "蛋糕托板（Cake Board）通常用于日常承托与展示；项目需要更厚承托时会评审蛋糕鼓（Cake Drum）规格。"], ["报价前需要确认什么？", "请提供蛋糕尺寸、承托需求、数量、表面效果和目的地。"], ["形状和边缘可以定制吗？", "形状、直径、边缘与表面效果会按确认后的项目需求评审。"]],
     },
     "corrugated-mailer-boxes": {
       en: [["What is needed to review a mailer structure?", "Share the product dimensions, protective points, quantity and dispatch workflow."], ["Can inserts be included with a mailer?", "Paper inserts and dividers can be reviewed together with the mailer structure."], ["When is sampling needed?", "Sampling is considered when fit, closure or protection needs to be confirmed before production."]],

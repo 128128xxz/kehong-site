@@ -18,6 +18,7 @@ import {
   type ProductSku,
 } from "@/lib/catalog";
 import { getProductTypeLabel } from "@/lib/productImages";
+import { formatProductFieldValue } from "@/lib/productPresentation";
 
 type Props = {
   skus: ProductSku[];
@@ -131,7 +132,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
         <span className="text-right text-xs font-bold leading-5 text-(--kh-muted)">
           {(pagination?.totalGroups ?? groups.length) > 0
             ? `${pagination?.totalGroups ?? groups.length} ${locale === "zh" ? "个产品组" : "product groups"}`
-            : (locale === "zh" ? "按项目确认" : "Available on request")}
+            : (locale === "zh" ? "暂无可显示目录" : "No public catalog yet")}
         </span>
       </div>
 
@@ -307,7 +308,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
                 ? (locale === "zh"
                   ? `${pagination?.totalGroups ?? groups.length} 个产品组 / ${pagination?.totalSkus ?? skus.length} 个产品`
                   : `${pagination?.totalGroups ?? groups.length} product groups / ${pagination?.totalSkus ?? skus.length} products`)
-                : (locale === "zh" ? "该范围可按项目确认" : "This range is available on request")}
+                : (locale === "zh" ? "该分类目前暂无公开 SKU" : "No public SKUs in this range yet")}
             </p>
             <p className="mt-1 text-sm leading-6 text-(--kh-muted)">
               {locale === "zh"
@@ -334,8 +335,13 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
         ) : (
           <div className="grid min-w-0 gap-4 xl:grid-cols-[repeat(2,minmax(0,1fr))]">
             {groups.map((group, index) => {
-              const sku = group.representative;
-              const summary = getProductGroupSummary(group, locale);
+                const sku = group.representative;
+                const summary = getProductGroupSummary(group, locale);
+                const summaryMaterial = summary.materials[0] || getLocalizedProductMaterial(sku, locale);
+                const summaryStructure = [summary.gsm, summary.coating]
+                  .filter((item): item is string => Boolean(item))
+                  .join(" / ");
+                const summaryApplication = formatProductFieldValue(summary.applications[0] || "", "application", locale);
 
               return (
               <article
@@ -366,25 +372,18 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
                 </div>
                 <div className="p-5">
                   <div className="grid gap-2 text-sm text-(--kh-muted)">
-                    <p className="inline-flex items-start gap-2">
-                      <Layers3 className="mt-0.5 size-4 shrink-0 text-(--kh-brass)" />
-                      {summary.materials[0] || getLocalizedProductMaterial(sku, locale) ||
-                        (locale === "zh" ? "按项目确认" : "Custom material specification")}
-                    </p>
+                    {summaryMaterial ? (
+                      <p className="inline-flex items-start gap-2">
+                        <Layers3 className="mt-0.5 size-4 shrink-0 text-(--kh-brass)" />
+                        {summaryMaterial}
+                      </p>
+                    ) : null}
                     <p>
-                      {[
-                        summary.gsm,
-                        summary.coating,
-                      ]
-                        .filter(Boolean)
-                        .join(" / ") ||
-                        getLocalizedCatalogValue(
-                          sku.structureOrFlute,
-                          locale,
-                          locale === "zh" ? "按项目确认" : "Custom structure",
-                        )}
+                      {[summaryStructure, getLocalizedCatalogValue(sku.structureOrFlute, locale)]
+                        .filter((item): item is string => Boolean(item))
+                        .join(" / ") || "-"}
                     </p>
-                    <p>{summary.applications[0] || getLocalizedCatalogValue(sku.applications, locale, locale === "zh" ? "按项目确认" : "Custom application")}</p>
+                    {summaryApplication ? <p>{summaryApplication}</p> : null}
                   </div>
                   <div className="mt-4 h-px bg-(--kh-line)" />
                   <div className="mt-5 flex flex-wrap gap-2">

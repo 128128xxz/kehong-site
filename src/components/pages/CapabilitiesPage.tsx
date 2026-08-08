@@ -22,12 +22,12 @@ const capabilityZh: Record<string, { title: string; summary: string; buyerValue:
   "prototyping": {
     title: "打样",
     summary: "通过结构样核对尺寸、贴合、开合与手感后再投产。",
-    buyerValue: "样品把包装想法变成可评审的实物方向。",
+    buyerValue: "样品把包装想法变成可评审的实物样品。",
     input: "目标尺寸、产品样或参考结构。",
   },
   "printing-finishing": {
     title: "印刷与后工艺",
-    summary: "围绕材料与结构确认印刷方向与可用表面处理。",
+    summary: "围绕材料与结构确认印刷要求与可用表面处理。",
     buyerValue: "工艺决定与基材、稿件和使用场景保持一致。",
     input: "印刷颜色、参考工艺与应用优先级。",
   },
@@ -53,7 +53,7 @@ const capabilityZh: Record<string, { title: string; summary: string; buyerValue:
 
 const processZh: Record<string, { title: string; body: string }> = {
   "01": { title: "询盘", body: "提供产品、尺寸、数量与目标市场。" },
-  "02": { title: "结构评审", body: "确认材料方向、形式、开合、贴合与项目约束。" },
+  "02": { title: "结构评审", body: "确认材料、形式、开合、贴合与项目约束。" },
   "03": { title: "打样", body: "按项目需要评审结构样或项目样。" },
   "04": { title: "生产", body: "把已确认规格投入印刷、加工与组装。" },
   "05": { title: "质量检验", body: "装箱与出货前核对既定检验节点。" },

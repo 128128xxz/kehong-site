@@ -172,9 +172,12 @@ export default function Header({ variant = "solid" }: HeaderProps) {
       focusFirstProductLinkRef.current = false;
       return;
     }
-    if (!focusFirstProductLinkRef.current || !firstProductMenuLinkRef.current) return;
+    if (!focusFirstProductLinkRef.current) return;
+    const firstLink = firstProductMenuLinkRef.current
+      ?? desktopNavRef.current?.querySelector<HTMLAnchorElement>("#header-products-menu a");
+    if (!firstLink) return;
     focusFirstProductLinkRef.current = false;
-    firstProductMenuLinkRef.current.focus({ preventScroll: true });
+    firstLink.focus({ preventScroll: true });
   }, [openMenu]);
 
   // Capture the first landing URL before a visitor reaches a quote form.

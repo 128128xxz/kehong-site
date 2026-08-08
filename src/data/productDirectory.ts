@@ -72,8 +72,8 @@ export const productCatalogSections: readonly ProductCatalogSection[] = [
     id: "finished-packaging",
     label: { en: "Finished packaging", zh: "成品包装" },
     description: {
-      en: "Food boxes, paper bags and mailer boxes developed to the required dimensions, material, print and structure.",
-      zh: "食品盒、纸袋和邮寄盒按项目开发，尺寸、材料、印刷和结构根据需求确认。",
+      en: "Food boxes, paper bags and mailer boxes developed to your required dimensions, material, print and structure.",
+      zh: "食品盒、纸袋和邮寄盒基于明确项目参数开发，尺寸、材料、印刷和结构按提交资料确认。",
     },
     cta: { en: "View packaging types", zh: "查看包装类型" },
     href: "/products#finished-packaging",

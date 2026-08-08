@@ -10,16 +10,16 @@ import { packagingCategories } from "@/data/packagingCategories";
 import { showcaseImages } from "@/data/visuals";
 
 const comparisonRows = [
-  ["Cake Board", "Paperboard support", "Everyday single-layer cakes and display", "Shape, surface and edge confirmed by project"],
-  ["Cake Drum", "Thicker support direction", "Heavier or multi-layer presentation", "Finish and edge options confirmed by project"],
-  ["MDF / Masonite", "Rigid board direction when offered", "Rigid or repeat-use requirements", "Only recommend when included in the confirmed range"],
-  ["Mini Board", "Small-format board", "Single portions and small desserts", "Shape and finish confirmed by project"],
+  ["Cake Board", "Paperboard support", "Everyday single-layer cakes and display", "Shape, surface and edge are confirmed after requirements review"],
+  ["Cake Drum", "Higher-stack support", "Heavier or multi-layer presentation", "Finish and edge options are confirmed after requirements review"],
+  ["MDF / Masonite", "Rigid board option when available", "Rigid or repeat-use requirements", "Only recommend when it is within the available scope"],
+  ["Mini Board", "Small-format board", "Single portions and small desserts", "Shape and finish are confirmed after requirements review"],
 ];
 const comparisonRowsZh = [
-  ["蛋糕底托", "纸板承托方向", "日常单层蛋糕与展示", "形状、表面与边缘按项目确认"],
-  ["蛋糕鼓", "更厚的承托方向", "较重或多层蛋糕展示", "表面与边缘方案按项目确认"],
-  ["MDF / 硬质纤维板", "可提供时的硬质板方向", "硬质或重复使用需求", "仅在确认产品范围内推荐"],
-  ["迷你底托", "小尺寸承托板", "单人份与小型甜品", "形状与表面按项目确认"],
+  ["蛋糕底托", "纸板承托类型", "日常单层蛋糕与展示", "形状、表面与边缘会在项目资料内确认"],
+  ["蛋糕鼓", "更高承托结构", "较重或多层蛋糕展示", "表面与边缘会在项目资料内确认"],
+  ["MDF / 硬质纤维板", "可提供时的硬质板选型", "硬质或重复使用需求", "仅在当前可供范围内推荐"],
+  ["迷你底托", "小尺寸承托板", "单人份与小型甜品", "形状与表面会在项目资料内确认"],
 ];
 
 export default function BakeryPackagingPage({ locale }: { locale: string }) {
@@ -45,8 +45,8 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
           image={{ src: showcaseImages.cakeBoardReal, alt: "Cake board and bakery packaging reference" }}
           meta={
             isZh
-              ? [`${subcategoryCount} 个子类方向`, "OEM / ODM", "中国广东佛山"]
-              : [`${subcategoryCount} subcategory directions`, "OEM / ODM", "Foshan, Guangdong, China"]
+              ? [`${subcategoryCount} 个子类`, "OEM / ODM", "中国广东佛山"]
+              : [`${subcategoryCount} subcategories`, "OEM / ODM", "Foshan, Guangdong, China"]
           }
         >
           <Link href="/packaging/cake-boxes" className="kh-button kh-button-light">
@@ -63,7 +63,7 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="02" text={isZh ? "烘焙品类" : "Bakery categories"} />
-                  <h2>{isZh ? "展示与承托，两条主线。" : "Presentation and support, two directions."}</h2>
+                  <h2>{isZh ? "展示与承托，两条用途。" : "Presentation and support, two use cases."}</h2>
                 </div>
               </div>
             </Reveal>
@@ -149,7 +149,7 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
               <div className="mt-6 rounded-lg border border-(--kh-line) bg-(--kh-brass-soft) p-6">
                 <h3 className="text-2xl font-semibold text-(--kh-ink)">{isZh ? "如何选择" : "How to choose"}</h3>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-(--kh-ink)">
-                  {isZh ? "日常单层蛋糕可先从蛋糕底托开始；较重或多层展示可评审蛋糕鼓方向；硬质或重复使用需求请确认 MDF / 硬质纤维板是否属于当前可供范围；小型甜品可考虑迷你底托。" : "Everyday single-layer cake: start with a Cake Board. Heavier or multi-layer presentation: review a Cake Drum. Rigid or repeat-use directions: ask whether MDF/Masonite is part of the confirmed range. Small desserts: consider a Mini Board."}
+                  {isZh ? "日常单层蛋糕可先从蛋糕底托开始；较重或多层展示可评估蛋糕鼓；硬质或重复使用需求请确认 MDF / 硬质纤维板是否属于当前可供范围；小型甜品可考虑迷你底托。" : "Everyday single-layer cake: start with a Cake Board. For heavier or multi-layer presentation, evaluate a Cake Drum option. For rigid or repeat-use needs, confirm whether MDF/Masonite is within the available scope. Small desserts can consider a Mini Board."}
                 </p>
               </div>
             </Reveal>

@@ -39,11 +39,19 @@ export function formatProductDisplayValue(value: string, locale: string) {
 
 export type ProductDisplayField = "application" | "finishing" | "surface" | "structure" | "size" | "material";
 
+const nonBuyerFacingPlaceholders = /^(?:custom paper packaging specification|confirmed by project|project[- ]confirmed|按项目确认|按项目资料确认|按项目确认为准)$/iu;
+
+export function isBuyerVisibleProductValue(value: string | undefined) {
+  if (!value) return false;
+  const trimmed = value.trim();
+  return Boolean(trimmed) && !nonBuyerFacingPlaceholders.test(trimmed);
+}
+
 /** Field-aware display pass. It deliberately operates after catalogue
  * localization so buyer text is normalized without changing source records. */
 export function formatProductFieldValue(value: string, field: ProductDisplayField, locale: string) {
+  if (!isBuyerVisibleProductValue(value)) return "";
   const display = formatProductDisplayValue(value, locale);
-  if (display.trim().toLocaleLowerCase() === "custom paper packaging specification") return "";
   if (!display) return "";
 
   if (field === "size" && display === "Custom L*W") return locale === "zh" ? "按长 × 宽定制" : "Custom L × W";
@@ -53,7 +61,7 @@ export function formatProductFieldValue(value: string, field: ProductDisplayFiel
 
 /** Locale-aware display list formatting without changing the source arrays. */
 export function formatProductDisplayList(values: readonly string[], locale: string) {
-  const items = values.map((value) => value.trim()).filter(Boolean);
+  const items = values.map((value) => value.trim()).filter(isBuyerVisibleProductValue);
   if (locale === "zh") return items.join("、");
   return new Intl.ListFormat("en", { style: "long", type: "conjunction" }).format(items);
 }

@@ -27,16 +27,16 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
         <PageHero
           index="01"
           kicker={isZh ? "佛山工厂" : "Foshan production site"}
-          title={isZh ? "真实生产能力，支持清晰的项目交付。" : "Production capability you can inspect."}
+          title={isZh ? "佛山纸品加工与包装生产。" : "Paper converting and packaging production in Foshan."}
           lede={
             isZh
-              ? "科宏位于广东佛山，围绕纸材选择、结构打样、纸材加工、后工艺和出货准备协同纸包装项目。"
-              : "Kehong is based in Foshan, Guangdong. The team coordinates material selection, structural sampling, paper converting, finishing, and shipment preparation for paper packaging projects."
+              ? "科宏位于广东佛山，可根据项目需要完成选材、结构打样、纸材加工、后道工艺和出货准备。"
+              : "Kehong is based in Foshan, Guangdong. Our team handles material selection, structural sampling, paper converting, finishing and shipment preparation for paper packaging projects."
           }
           meta={
             isZh
-              ? [companyProfile.location.zh, "20+ 年纸品制造", "8000+ 平方米厂房"]
-              : [companyProfile.location.en, "20+ years in paper converting", "8000+ m2 factory"]
+              ? [companyProfile.location.zh, "20+ 年纸品制造", "8,000+ ㎡"]
+              : [companyProfile.location.en, "20+ years in paper converting", "8,000+ m²"]
           }
           image={{
             src: showcaseImages.factoryHallWide,

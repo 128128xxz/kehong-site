@@ -25,13 +25,13 @@ export default function HomeCta({ locale }: { locale: string }) {
           <SectionKicker index="08" text={zh ? "开始一个包装项目" : "Start a packaging project"} light />
           <h2>
             {zh
-              ? "把尺寸、材料和目标市场，交给一张规格单。"
-              : "Put dimensions, material and market on one spec sheet."}
+              ? "提交尺寸、材料、数量和目的地，便于我们评估打样与报价。"
+              : "Send the dimensions, material, quantity and destination in one brief."}
           </h2>
           <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
             {zh
-              ? "发来基础参数，科宏团队按项目流程回复打样与报价的下一步。"
-              : "Send the basics and the Kehong team replies with the next step for sampling or a quotation."}
+              ? "提交基础规格后，我们会确认打样或报价所需的下一步信息。"
+              : "Send the basic specifications and our team will confirm the next step for sampling or quotation."}
           </p>
           <p className="kh-cta-note kh-mono">
             {contact.email} · {zh ? companyProfile.location.zh : companyProfile.location.en}

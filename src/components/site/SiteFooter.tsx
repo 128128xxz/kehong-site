@@ -88,8 +88,8 @@ export default async function SiteFooter() {
           <h2>{zh ? companyLegalNameZh : companyLegalName}</h2>
           <p className="kh-footer-note">
             {zh
-              ? "纸材加工、结构打样与定制包装，由佛山团队协调支持海外项目。"
-              : "Paper converting, structural sampling and custom packaging coordinated by one Foshan team."}
+              ? "纸材加工、结构打样与定制包装服务。"
+              : "Paper converting, structural sampling and custom packaging from our Foshan team."}
           </p>
           <div className="kh-footer-contact">
             <span>{zh ? companyProfile.location.zh : companyProfile.location.en}</span>

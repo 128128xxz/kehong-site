@@ -9,7 +9,7 @@ import {
 } from "@/lib/taxonomy";
 import { getCollectionForCategory, getProductCollection } from "@/data/productCollections";
 import { getProductFamily } from "@/data/productFamilies";
-import { formatProductDisplayList, formatProductDisplayValue } from "@/lib/productPresentation";
+import { formatProductDisplayList, formatProductDisplayValue, formatProductFieldValue } from "@/lib/productPresentation";
 
 export type ProductSku = (typeof catalog.skus)[number];
 export type ProductFamily = (typeof catalog.families)[number];
@@ -89,7 +89,6 @@ const catalogEnglishLabels: Record<string, string> = {
   "分切": "Slitting",
   "柔印 / 定制印刷": "Flexographic / custom printing",
   "按客户杯型/尺寸定制": "Custom by cup size / dimensions",
-  "按项目确认": "Confirmed by project",
   "未公开/询价": "To be confirmed by quotation",
   "询价；阿里常见1-5吨起": "Quoted to order; typical MOQ 1–5 tons",
   "吨 / ton": "ton",
@@ -329,10 +328,10 @@ export function getLocalizedProductSku(sku: ProductSku, locale: string): Product
 export function getLocalizedCatalogValue(
   value: string | undefined,
   locale: string,
-  fallback = "Confirmed by project",
+  fallback = "",
 ) {
   if (!value) return "";
-  if (value.trim().toLocaleLowerCase() === "custom paper packaging specification") return "";
+  if (/^(?:custom paper packaging specification|confirmed by project|project[- ]confirmed|按项目确认|按项目资料确认|按项目确认为准)$/iu.test(value.trim())) return "";
   // Display-only exceptions for legacy source labels. IDs, URLs and SKU codes
   // are intentionally never passed through this mapping.
   if (value.trim().toLocaleLowerCase() === "foodservicepackaging") {
@@ -710,7 +709,7 @@ export function buildProductGroupSummary(group: { id: string; representative: Pr
     ? [locale === "zh" ? "可选白色杯纸与牛皮杯纸" : "White and kraft cupstock options"]
     : [...new Set(group.variants.map((variant) => getLocalizedProductMaterial(variant, locale)).filter(Boolean))];
   const applications = [...new Set(group.variants.flatMap((variant) => (variant.applicationsList ?? [variant.applications])
-    .map((value) => getLocalizedCatalogValue(value, locale))
+    .map((value) => formatProductFieldValue(getLocalizedCatalogValue(value, locale), "application", locale))
     .filter(Boolean)))];
   const relatedGroupIds = family?.productGroupIds.filter((id) => id !== group.id) ?? [];
   const description = [familyLabel, gsm, coating, formatProductDisplayList(applications.slice(0, 2), locale)].filter(Boolean).join(" · ");

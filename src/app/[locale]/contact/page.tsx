@@ -113,24 +113,24 @@ export default async function ContactPage({
     },
     {
       index: "B",
-      label: zh ? "可沟通" : "On request",
-      body: zh ? "目录、规格与项目所需文件" : "Catalog, specifications and project documents",
+      label: zh ? "可提供资料" : "Available documents",
+      body: zh ? "产品目录、规格资料及项目文件" : "Reference images, dimensions, material and quantity",
     },
     {
       index: "C",
       label: zh ? "支持" : "Support",
-      body: zh ? "样品确认、OEM/ODM、出口包装" : "Sample approval, OEM/ODM and export packing",
+      body: zh ? "样品与打样、OEM/ODM 和出口包装" : "Samples, OEM / ODM and export packing",
     },
     {
       index: "D",
       label: zh ? "回复路径" : "Response channels",
-      body: zh ? "WhatsApp / Email / 电话" : "WhatsApp / email / phone",
+      body: zh ? "WhatsApp / 邮箱" : "WhatsApp / email",
     },
   ];
   const serviceTags = [
     zh ? "销售跟进" : "Sales follow-up",
-    zh ? "样品/打样" : "Sample support",
-    zh ? "出口服务" : "Export service",
+    zh ? "样品与打样" : "Samples & prototyping",
+    zh ? "出口包装" : "Export packing",
   ];
 
   return (
@@ -192,7 +192,7 @@ export default async function ContactPage({
                 </span>
               </div>
               <p className="mt-3 text-sm leading-6 text-(--kh-muted)">
-                {zh ? "发送样品图、尺寸和数量，销售按配置报价。" : "Send sample photos, size and quantity for a tailored quotation."}
+                {zh ? "发送参考图片、尺寸和数量，销售将确认报价所需信息。" : "Send reference images, dimensions, and quantity, and our sales team will confirm the quotation requirements."}
               </p>
             </Reveal>
 

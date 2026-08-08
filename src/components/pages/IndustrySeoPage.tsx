@@ -56,7 +56,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="02" text={isZh ? "采购要点" : "Buyer focus"} />
-                  <h2>{isZh ? "买家优先确认的方向" : "What buyers confirm first"}</h2>
+                  <h2>{isZh ? "买家优先确认的要点" : "What buyers confirm first"}</h2>
                 </div>
               </div>
             </Reveal>

@@ -30,7 +30,7 @@ export default function HomeMarquee({ locale }: { locale: string }) {
   const zh = locale === "zh";
 
   return (
-    <section className="kh-marquee" aria-label={zh ? "产品材料方向" : "Product material families"}>
+    <section className="kh-marquee" aria-label={zh ? "产品材料系列" : "Product material families"}>
       <div className="kh-marquee-track">
         <TrackItems zh={zh} />
         <span aria-hidden="true" className="contents">

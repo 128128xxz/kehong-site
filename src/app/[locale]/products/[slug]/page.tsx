@@ -202,13 +202,14 @@ export default async function ProductDetailPage({
 
   const groupSpecs = [
     [isZh ? "产品家族" : "Product family", groupSummary.familyLabel],
-    [isZh ? "可用克重范围" : "Available GSM range", groupSummary.gsm || (isZh ? "按规格确认" : "Confirmed by specification")],
+    [isZh ? "可用克重范围" : "Available GSM range", groupSummary.gsm || "-"],
     [isZh ? "可选材料" : "Material options", groupSummary.materials.join(isZh ? "、" : " / ")],
     [isZh ? "可选涂层 / 淋膜" : "Coating options", groupSummary.coating],
     [isZh ? "变体数量" : "Variant count", isZh ? `${groupSummary.variantCount} 个变体` : `${groupSummary.variantCount} ${groupSummary.variantCount === 1 ? "variant" : "variants"}`],
-    [isZh ? "适用方向" : "Applications", formatProductDisplayList(groupSummary.applications, locale)],
+    [isZh ? "适用场景" : "Applications", formatProductDisplayList(groupSummary.applications, locale)],
   ].filter(([, value]) => value);
   const displayField = (field: ProductDisplayField, value: string | undefined) => formatProductFieldValue(getLocalizedCatalogValue(value, locale), field, locale);
+  const displayApplication = displayField("application", sku.applications);
   const currentSkuSpecs = [
     [isZh ? "当前 SKU" : "Current SKU", sku.sku],
     [t("detail.material"), formatProductFieldValue(getLocalizedProductMaterial(sku, locale), "material", locale)],
@@ -225,7 +226,7 @@ export default async function ProductDetailPage({
     {
       icon: PackageCheck,
       label: isZh ? "常规起订量" : "Typical MOQ",
-      value: getLocalizedCatalogValue(sku.moq, locale) || (isZh ? "按项目确认" : "Confirmed by project"),
+      value: getLocalizedCatalogValue(sku.moq, locale) || "-",
     },
     {
       icon: Ruler,
@@ -489,23 +490,23 @@ export default async function ProductDetailPage({
               </h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
-                <p className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
-                  {isZh ? "适用场景" : "Application"}
-                </p>
-                <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">
-                  {displayField("application", sku.applications) || getProductTypeLabel(sku.productType, locale)}
-                </p>
-              </div>
+              {displayApplication ? (
+                <div className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
+                    {isZh ? "适用场景" : "Application"}
+                  </p>
+                  <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">{displayApplication}</p>
+                </div>
+              ) : null}
               <div className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
                 <p className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                   {isZh ? "表面 / 后工艺" : "Surface / finishing"}
                 </p>
-                <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">
-                  {[displayField("surface", sku.surfaceProcess), displayField("finishing", sku.finishingProcess)]
-                    .filter(Boolean)
-                    .join(" / ") || (isZh ? "按项目确认" : "Confirmed by project")}
-                </p>
+                  <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">
+                    {[displayField("surface", sku.surfaceProcess), displayField("finishing", sku.finishingProcess)]
+                      .filter(Boolean)
+                      .join(" / ") || "-"}
+                  </p>
               </div>
             </div>
             <div className="mt-5 grid gap-3">
