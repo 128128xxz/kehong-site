@@ -110,6 +110,11 @@ export default function Header({ variant = "solid" }: HeaderProps) {
   const [scrolled, setScrolled] = useState(variant !== "cinema");
   const [lastPathname, setLastPathname] = useState(pathname);
 
+  const closeMobileMenu = () => {
+    setMenuOpen(false);
+    requestAnimationFrame(() => menuButtonRef.current?.focus());
+  };
+
   // cinema 变体:观察 Hero 底部哨兵,离开视口上沿即切换实底(IO,无 scroll 抖动)
   useEffect(() => {
     if (variant !== "cinema") return;
@@ -220,14 +225,17 @@ export default function Header({ variant = "solid" }: HeaderProps) {
     if (!menuOpen) return;
     const panel = mobilePanelRef.current;
     panel?.querySelector<HTMLButtonElement>("button")?.focus();
+    const previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setMenuOpen(false);
-        menuButtonRef.current?.focus();
+        event.preventDefault();
+        event.stopPropagation();
+        closeMobileMenu();
         return;
       }
       if (event.key !== "Tab" || !panel) return;
-      const focusables = panel.querySelectorAll<HTMLElement>("a[href], button");
+      const focusables = panel.querySelectorAll<HTMLElement>("a[href], button, summary");
       if (!focusables.length) return;
       const first = focusables[0];
       const last = focusables[focusables.length - 1];
@@ -242,13 +250,14 @@ export default function Header({ variant = "solid" }: HeaderProps) {
     const onPointerDown = (event: PointerEvent) => {
       if (!panel) return;
       const target = event.target as Node;
-      if (!panel.contains(target) && !menuButtonRef.current?.contains(target)) setMenuOpen(false);
+      if (!panel.contains(target) && !menuButtonRef.current?.contains(target)) closeMobileMenu();
     };
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("pointerdown", onPointerDown);
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("pointerdown", onPointerDown);
+      document.body.style.overflow = previousBodyOverflow;
     };
   }, [menuOpen]);
 
@@ -324,16 +333,18 @@ export default function Header({ variant = "solid" }: HeaderProps) {
               <Menu className="size-5" />
             </button>
             {menuOpen ? (
-              <div ref={mobilePanelRef} id="kh-mobile-menu" className="kh-mobile-panel">
+              <>
+                <button type="button" tabIndex={-1} className="kh-mobile-backdrop" aria-label={copy.menuClose} onClick={closeMobileMenu} />
+              <div ref={mobilePanelRef} id="kh-mobile-menu" className="kh-mobile-panel" role="dialog" aria-modal="true" aria-label={copy.menuTitle}>
                 <div className="kh-mobile-head">
                   <p className="kh-nav-panel-label m-0">{copy.menuTitle}</p>
-                  <button type="button" className="kh-menu-toggle" aria-label={copy.menuClose} onClick={() => { setMenuOpen(false); menuButtonRef.current?.focus(); }}>
+                  <button type="button" className="kh-menu-toggle" aria-label={copy.menuClose} onClick={closeMobileMenu}>
                     <X className="size-5" />
                   </button>
                 </div>
                 <nav aria-label={copy.menuTitle}>
                   <p className="kh-nav-panel-label">{copy.products}</p>
-                  <MobileProductDirectory zh={isZh} close={() => setMenuOpen(false)} />
+                  <MobileProductDirectory zh={isZh} close={closeMobileMenu} />
                   <p className="kh-nav-panel-label">{copy.solutions}</p>
                   <Link href="/solutions">{copy.solutions}<span aria-hidden="true">→</span></Link>
                   <p className="kh-nav-panel-label">{copy.capabilities}</p>
@@ -348,6 +359,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                   <Link href="/contact" onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "mobile_navigation" })} className="kh-button kh-button-primary kh-button-compact mt-2 justify-center">{copy.contact}</Link>
                 </nav>
               </div>
+              </>
             ) : null}
           </div>
         </div>

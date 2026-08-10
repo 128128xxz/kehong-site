@@ -105,18 +105,17 @@ export default function HomeProcess({ locale }: { locale: string }) {
             className="kh-process-media kh-media-shade"
             data-active-step={current.id}
           >
-            {steps.map((step, index) => (
-              <div key={step.id} className={`kh-process-img${index === active ? " is-active" : ""}`} aria-hidden={index !== active}>
-                <Image
-                  src={step.image}
-                  alt={index === active ? (zh ? step.altZh : step.alt) : ""}
-                  fill
-                  priority={index === 0}
-                  sizes="(max-width: 1100px) 100vw, 52vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
+            <div key={current.id} className="kh-process-img is-active">
+              <Image
+                src={current.image}
+                alt={zh ? current.altZh : current.alt}
+                fill
+                priority={active === 0}
+                loading={active === 0 ? "eager" : "lazy"}
+                sizes="(max-width: 1100px) 100vw, 52vw"
+                className="object-cover"
+              />
+            </div>
             <span className="kh-fig-caption kh-mono" data-testid="process-caption">{zh ? current.figureZh : current.figure}</span>
           </div>
 

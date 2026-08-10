@@ -100,19 +100,23 @@ export default async function SiteFooter() {
           </div>
         </div>
         <div className="kh-footer-links">
-          <div>
-            <p>{zh ? "产品与解决方案" : "Products & solutions"}</p>
-            <Link href="/products">{zh ? "产品目录" : "All products"}</Link>
-            <Link href="/solutions">{zh ? "解决方案" : "Solutions"}</Link>
-            <Link href="/industries">{zh ? "行业应用" : "Industries"}</Link>
-          </div>
-          <div>
-            <p>{zh ? "能力与资源" : "Capabilities & resources"}</p>
-            <Link href="/capabilities">{zh ? "制造能力" : "Capabilities"}</Link>
-            <Link href="/factory">{zh ? "工厂和流程" : "Factory & process"}</Link>
-            <Link href="/resources">{zh ? "资源中心" : "Design center"}</Link>
-            <Link href="/model-preview">{zh ? "3D 结构预览" : "3D structure studio"}</Link>
-          </div>
+            <details className="kh-footer-group" open>
+            <summary>{zh ? "产品与解决方案" : "Products & solutions"}</summary>
+            <div>
+              <Link href="/products">{zh ? "产品目录" : "All products"}</Link>
+              <Link href="/solutions">{zh ? "解决方案" : "Solutions"}</Link>
+              <Link href="/industries">{zh ? "行业应用" : "Industries"}</Link>
+            </div>
+          </details>
+            <details className="kh-footer-group" open>
+            <summary>{zh ? "能力与资源" : "Capabilities & resources"}</summary>
+            <div>
+              <Link href="/capabilities">{zh ? "制造能力" : "Capabilities"}</Link>
+              <Link href="/factory">{zh ? "工厂和流程" : "Factory & process"}</Link>
+              <Link href="/resources">{zh ? "资源中心" : "Design center"}</Link>
+              <Link href="/model-preview">{zh ? "3D 结构预览" : "3D structure studio"}</Link>
+            </div>
+          </details>
         </div>
         <div className="kh-footer-quote">
           <p>{zh ? "准备启动项目？" : "Ready to discuss a project?"}</p>

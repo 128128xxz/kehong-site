@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 import { siteConfig } from "./lib/site-config";
 import catalog from "./data/catalog.normalized.json";
+import { getRootLocale } from "./lib/localeRouting";
 
 const intlMiddleware = createMiddleware(routing);
 const canonicalOrigin = siteConfig.url;
@@ -139,15 +140,27 @@ export default function proxy(request: NextRequest) {
   const needsCanonicalRedirect = isProductionHost && (
     hostname !== canonicalHost
     || request.nextUrl.protocol !== "https:"
-    || request.nextUrl.pathname === "/"
   );
   const needsRootRedirect = request.nextUrl.pathname === "/";
 
-  if (needsCanonicalRedirect || needsRootRedirect) {
-    const pathname = needsRootRedirect ? "/en" : request.nextUrl.pathname;
+  if (needsRootRedirect) {
+    const locale = getRootLocale({
+      cookieLocale: request.cookies.get("kehong_locale")?.value,
+      country: request.headers.get("x-vercel-ip-country"),
+      acceptLanguage: request.headers.get("accept-language"),
+    });
+    const pathname = `/${locale}`;
     const url = isProductionHost ? new URL(pathname, canonicalOrigin) : request.nextUrl.clone();
     url.pathname = pathname;
     url.search = request.nextUrl.search;
+    const response = withDiagnostics(NextResponse.redirect(url, 307));
+    response.headers.set("Cache-Control", "private, no-store, max-age=0, must-revalidate");
+    response.headers.set("Vary", "Cookie, Accept-Language, X-Vercel-IP-Country");
+    return response;
+  }
+
+  if (needsCanonicalRedirect) {
+    const url = new URL(request.nextUrl.pathname + request.nextUrl.search, canonicalOrigin);
     return withDiagnostics(NextResponse.redirect(url, 308));
   }
 

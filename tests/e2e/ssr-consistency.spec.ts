@@ -5,9 +5,12 @@ test.describe("Production SSR/CDN consistency", () => {
     const origin = (process.env.PRODUCTION_BASE_URL || testInfo.project.use.baseURL || "https://www.kehong.tech").replace(/\/+$/u, "");
     const expectedBuildSha = process.env.EXPECTED_PRODUCTION_BUILD_SHA || process.env.VERCEL_GIT_COMMIT_SHA;
 
-    const root = await request.get(`${origin}/`, { maxRedirects: 0 });
-    expect(root.status()).toBe(308);
-    expect(root.headers().location).toBe("/en");
+    const root = await request.get(`${origin}/`, { maxRedirects: 0, headers: { "x-vercel-ip-country": "CN" } });
+    expect(root.status()).toBe(307);
+    expect(root.headers().location).toBe("/zh");
+    expect(root.headers()["cache-control"]).toContain("private");
+    expect(root.headers()["cache-control"]).toContain("no-store");
+    expect(root.headers().vary).toContain("Cookie");
 
     const fetchPage = (suffix: string, headers?: Record<string, string>) =>
       request.get(`${origin}/en${suffix}`, { headers, maxRedirects: 0 });
@@ -43,7 +46,6 @@ test.describe("Production SSR/CDN consistency", () => {
     for (const response of [baseProduct, expandedProduct]) {
       expect(response.status()).toBe(200);
       const productHtml = await response.text();
-      expect(productHtml).toContain('<html lang="zh"');
       expect(productHtml).toContain("150–350 GSM");
       expect(productHtml).toContain("最大宽度：1200 mm");
       expect(productHtml).not.toMatch(/常规起订量通常为|metric tons \(typical\)|150-350gsm|Current SKU|Max width 1200mm|PE coating|PLA coating/u);

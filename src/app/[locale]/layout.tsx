@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
@@ -8,7 +10,6 @@ import {
   getTranslations,
   setRequestLocale,
 } from "next-intl/server";
-import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import {
@@ -19,6 +20,12 @@ import {
 } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
 import LocaleDocumentLanguage from "@/components/site/LocaleDocumentLanguage";
+import MobileStickyActions from "@/components/site/MobileStickyActions";
+import "../globals.css";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
+const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-plex-mono", display: "swap" });
 
 export default async function RootLayout({
   children,
@@ -38,13 +45,17 @@ export default async function RootLayout({
   const timeZone = await getTimeZone();
   const now = await getNow();
 
-  return <>
-    <LocaleDocumentLanguage locale={locale} />
-    <NextIntlClientProvider messages={messages} timeZone={timeZone} now={now}>
-      {children}
-    </NextIntlClientProvider>
-    {process.env.VERCEL === "1" ? <><Analytics /><SpeedInsights /></> : null}
-  </>;
+  return <html lang={locale} dir="ltr" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable}`}>
+    <head><meta name="theme-color" content="#171713" /></head>
+    <body className="antialiased">
+      <LocaleDocumentLanguage locale={locale} />
+      <NextIntlClientProvider messages={messages} timeZone={timeZone} now={now}>
+        {children}
+        <MobileStickyActions />
+      </NextIntlClientProvider>
+      {process.env.VERCEL === "1" ? <><Analytics /><SpeedInsights /></> : null}
+    </body>
+  </html>;
 }
 
 export function generateStaticParams() {
@@ -64,6 +75,17 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(siteConfig.url),
+    icons: {
+      icon: [
+        { url: "/brand/kehong-favicon-v2.ico", type: "image/x-icon", sizes: "any" },
+        { url: "/brand/kehong-tab-icon-v2-16.png", type: "image/png", sizes: "16x16" },
+        { url: "/brand/kehong-tab-icon-v2-32.png", type: "image/png", sizes: "32x32" },
+        { url: "/brand/kehong-tab-icon-v2-48.png", type: "image/png", sizes: "48x48" },
+      ],
+      shortcut: "/brand/kehong-favicon-v2.ico",
+      apple: [{ url: "/brand/kehong-apple-touch-icon-v2.png", type: "image/png", sizes: "180x180" }],
+    },
+    manifest: "/site.webmanifest",
     title: t("title"),
     description: t("description"),
     keywords: t("keywords"),

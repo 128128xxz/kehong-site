@@ -29,6 +29,8 @@ const LanguageSwitcher = () => {
           <DropdownMenuItem
             key={locale}
             onClick={() => {
+              const secure = window.location.protocol === "https:" ? "; Secure" : "";
+              document.cookie = `kehong_locale=${locale}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;
               // Keep an RFQ/product prefill intact when a buyer changes language.
               // next-intl's pathname switch intentionally omits search params.
               const current = new URL(window.location.href);

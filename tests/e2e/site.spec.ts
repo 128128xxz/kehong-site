@@ -14,10 +14,14 @@ async function expectNoHorizontalOverflow(page: import("@playwright/test").Page)
 }
 
 test.describe("Kehong production flows", () => {
-  test("root resolves permanently to the canonical English homepage", async ({ request }) => {
-    const response = await request.get("/", { maxRedirects: 0 });
-    expect(response.status()).toBe(308);
-    expect(response.headers().location).toBe("/en");
+  test("root selects a locale without caching a visitor-specific redirect", async ({ request }) => {
+    const zh = await request.get("/?utm_source=qa", { maxRedirects: 0, headers: { "x-vercel-ip-country": "CN" } });
+    expect(zh.status()).toBe(307);
+    expect(zh.headers().location).toBe("/zh?utm_source=qa");
+    expect(zh.headers()["cache-control"]).toContain("private");
+    const english = await request.get("/", { maxRedirects: 0, headers: { cookie: "kehong_locale=en" } });
+    expect(english.status()).toBe(307);
+    expect(english.headers().location).toBe("/en");
   });
 
   test("header and footer use the clean supplied transparent mark asset", async ({ page }) => {
