@@ -38,7 +38,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           <h2>{isZh ? "信息使用" : "Use of information"}</h2>
           <p>{isZh ? "询盘信息不会出售给第三方。为完成邮件发送、网站托管或安全防护，信息可能由必要的服务提供商按其职责处理。" : "We do not sell inquiry information. Information may be processed by service providers that are necessary for email delivery, hosting or security."}</p>
           <h2>{isZh ? "来源归因" : "Attribution"}</h2>
-          <p>{isZh ? "当访问链接包含 UTM 参数或广告点击标识时，网站会将首触和最近一次来源信息保存在本次浏览器会话的 sessionStorage 中（不使用 Cookie），并在您提交询盘时随表单发送。当前实现不保存归因时间戳，也没有代码定义的过期期限。网站使用 Vercel Analytics 记录站内事件。" : "When a visit contains UTM parameters or ad-click identifiers, the site keeps first-touch and latest-touch attribution in this browser session's sessionStorage (not a cookie) and includes it with an inquiry submission. The current implementation stores no attribution timestamp and defines no expiry period in code. The site uses Vercel Analytics for on-site event measurement."}</p>
+          <p>{isZh ? "访问链接包含 UTM 参数或广告点击标识时，网站将首触和最近一次来源信息保存在本次浏览器会话的 sessionStorage 中（不使用 Cookie），在提交询盘时随表单发送。当前实现不保存归因时间戳，也没有代码定义的过期期限。网站使用 Vercel Analytics 记录站内事件。" : "When a visit contains UTM parameters or ad-click identifiers, the site keeps first-touch and latest-touch attribution in this browser session's sessionStorage (not a cookie) and includes it with an inquiry submission. The current implementation stores no attribution timestamp and defines no expiry period in code. The site uses Vercel Analytics for on-site event measurement."}</p>
           <h2>{isZh ? "联系我们" : "Contact"}</h2>
           <p><a className="kh-inline-link" href={emailHref} aria-label={isZh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>{contact.email}</a></p>
         </div>
