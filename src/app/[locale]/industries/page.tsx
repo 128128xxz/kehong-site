@@ -34,7 +34,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
         <PageHero
           index="01"
           kicker={isZh ? "科宏 · 行业应用" : "Kehong · Industry applications"}
-          title={isZh ? "按行业找到更合适的纸包装路径" : "Find the right paper packaging path by industry."}
+          title={isZh ? "按行业选择纸包装" : "Choose paper packaging by industry."}
           lede={
             isZh
               ? "按应用场景浏览材料、结构、内托和成品包装，再把明确的尺寸和图纸带入询价。"

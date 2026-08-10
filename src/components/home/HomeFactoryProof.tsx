@@ -29,11 +29,11 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
       <div className="kh-shell kh-factory-grid">
         <Reveal>
           <SectionKicker index="05" text={zh ? "公司与工厂" : "Company & factory"} light />
-          <h2>{zh ? "看得见的加工能力，服务海外项目。" : "Converting capability you can verify."}</h2>
+          <h2>{zh ? "佛山工厂完成纸材加工、结构打样与成品包装。" : "Paper converting and packaging production in Foshan."}</h2>
           <p className="kh-section-lede">
             {zh
-              ? "科宏纸品是佛山的纸材加工与定制包装制造商。自有生产线覆盖模切、分切、裱纸与瓦楞成型，从纸材到成品在同一座工厂内完成，为海外 B2B 项目提供稳定的打样与交付协同。"
-              : "Kehong Paper Products is a Foshan-based paper converting and custom packaging manufacturer. In-house lines cover die-cutting, slitting, lamination and corrugating, taking projects from raw board to finished packaging in one plant with dependable sampling and delivery coordination."}
+              ? "科宏在佛山完成模切、分切、裱纸和瓦楞成型，并根据项目要求安排结构打样、质量检验和出货准备。"
+              : "Kehong operates die-cutting, slitting, paper mounting and corrugated converting lines in Foshan. The same team handles sampling, inspection and shipment preparation."}
           </p>
           <ul>
             {proofItems.map((item) => (

@@ -11,26 +11,26 @@ const capabilityRows = [
   {
     title: "Material handling",
     titleZh: "材料处理",
-    body: "Material, structure, converting, inspection and packing requirements are reviewed against the approved specification.",
-    bodyZh: "按确认规格逐项核对材料、结构、加工、检验和包装要求。",
+    body: "Prepare material, structure, converting, inspection and packing against the approved specification.",
+    bodyZh: "按确认的材料、结构、加工、检验和包装要求组织生产。",
   },
   {
     title: "Converting equipment",
     titleZh: "加工设备",
-    body: "Equipment and workflows are coordinated for each confirmed order.",
-    bodyZh: "围绕已确认规格协调送料、分切、模切、压痕与裱纸。",
+    body: "Arrange feeding, slitting, die-cutting, creasing and paper mounting for the required structure.",
+    bodyZh: "根据产品结构安排送料、分切、模切、压痕和裱纸。",
   },
   {
     title: "Structural sampling",
     titleZh: "结构打样",
-    body: "Drawings, dimensions, folds and insert fit are reviewed through samples.",
-    bodyZh: "批量生产前通过样品核对图纸、尺寸、折线与内衬贴合。",
+    body: "Check drawings, dimensions, fold lines and insert fit before mass production.",
+    bodyZh: "批量生产前通过样品核对图纸、尺寸、折线和内托配合。",
   },
   {
     title: "Quality checkpoints",
     titleZh: "质检节点",
-    body: "Key dimensions, finish, packing method and shipment preparation are confirmed step by step.",
-    bodyZh: "在相应生产阶段确认关键尺寸、表面效果、装箱方式与出货准备。",
+    body: "Inspect key dimensions, surface finish, forming and packing at the relevant production stages.",
+    bodyZh: "在模切、成型和装箱等阶段检查关键尺寸、表面效果和包装方式。",
   },
 ] as const;
 
@@ -44,11 +44,11 @@ export default async function FactoryOverview() {
         <div className="kh-shell grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center lg:gap-16">
           <Reveal>
             <SectionKicker index="02" text={isZh ? "厂区与设备" : "Site & equipment"} />
-            <h2>{isZh ? "纸材加工、结构打样与成品包装，一体化交付。" : "From raw board to finished packaging in one plant."}</h2>
+            <h2>{isZh ? "从纸材加工到成品包装，关键工序在佛山工厂完成。" : "Key paper-converting and packaging stages are handled in our Foshan factory."}</h2>
             <p className="kh-section-lede mt-5">
               {isZh
-                ? "科宏可根据项目规格进行材料、结构、加工、检验与包装要求的核对与推进。"
-                : `${companyLegalName} runs in-house lines for die-cutting, slitting, lamination, and corrugating, coordinating each project from material selection through shipment preparation.`}
+                ? "科宏位于广东佛山，可根据产品和规格要求完成选材、结构打样、纸材加工、后道工艺和出货准备。"
+                : `${companyLegalName} runs in-house die-cutting, slitting, paper-mounting and corrugated-converting lines, with sampling, inspection and shipment preparation arranged to the approved specification.`}
             </p>
             <dl className="mt-8 grid gap-4 border-y border-(--kh-line) py-5 text-sm sm:grid-cols-2">
               <div>
@@ -117,13 +117,13 @@ export default async function FactoryOverview() {
           <Reveal>
             <div className="grid gap-6 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
               <div>
-                <SectionKicker index="03" text={isZh ? "可核对的能力" : "Verified workflow points"} light />
-                               <h2>{isZh ? "我们按确认规格逐项核对材料、加工、检验和包装要求。" : "We review material, structure, converting, inspection and packing requirements against the approved specification."}</h2>
+                <SectionKicker index="03" text={isZh ? "生产与质量控制" : "Production & quality control"} light />
+                <h2>{isZh ? "按图纸和规格组织加工，并在关键工序完成检查。" : "Production follows the approved drawing and specification, with checks at key stages."}</h2>
               </div>
               <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
                 {isZh
-                  ? "不展示未经核实的产能数据。我们按确认规格逐项核对材料、结构、加工与检验要求。"
-                  : "We do not publish unverified capacity figures. We review material, structure, converting, inspection and packing requirements step by step against the confirmed specification."}
+                  ? "生产过程中检查材料、尺寸、表面效果、成型状态和装箱方式。"
+                  : "Inspect material, dimensions, surface finish, forming and packing at the relevant production stages."}
               </p>
             </div>
           </Reveal>

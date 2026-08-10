@@ -64,6 +64,7 @@ type CountUpProps = {
 /** 服务端直接渲染终值;挂载后若允许动效,则从 0 数到终值(进入视口触发一次)。 */
 export function CountUp({ to, suffix = "", durationMs = 900 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
+  const startedRef = useRef(false);
 
   useEffect(() => {
     const element = ref.current;
@@ -71,13 +72,14 @@ export function CountUp({ to, suffix = "", durationMs = 900 }: CountUpProps) {
     let raf = 0;
     const observer = new IntersectionObserver(
       (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
+        if (startedRef.current || !entries.some((entry) => entry.isIntersecting)) return;
+        startedRef.current = true;
         observer.disconnect();
         const startedAt = performance.now();
         const tick = (now: number) => {
           const progress = Math.min(1, (now - startedAt) / durationMs);
           const eased = 1 - Math.pow(1 - progress, 3);
-          element.textContent = `${Math.round(to * eased)}${suffix}`;
+          element.textContent = `${Math.round(to * eased).toLocaleString("en-US")}${suffix}`;
           if (progress < 1) raf = requestAnimationFrame(tick);
         };
         raf = requestAnimationFrame(tick);
@@ -91,7 +93,56 @@ export function CountUp({ to, suffix = "", durationMs = 900 }: CountUpProps) {
     };
   }, [to, suffix, durationMs]);
 
-  return <span ref={ref}>{`${to}${suffix}`}</span>;
+  return <span ref={ref}>{`${to.toLocaleString("en-US")}${suffix}`}</span>;
+}
+
+type MetricRevealProps = {
+  children: ReactNode;
+  className?: string;
+};
+
+/** One-shot reveal for the homepage metric row; final text remains in the SSR DOM. */
+export function MetricReveal({ children, className = "" }: MetricRevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [state, setState] = useState<"idle" | "armed" | "in">("idle");
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || prefersReducedMotion()) return;
+    let raf = 0;
+    let started = false;
+    const reveal = () => {
+      if (started) return;
+      started = true;
+      setState("in");
+    };
+    if (element.getBoundingClientRect().top < window.innerHeight * 0.94) {
+      raf = requestAnimationFrame(reveal);
+      return () => cancelAnimationFrame(raf);
+    }
+    setState("armed");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect();
+          reveal();
+        }
+      },
+      { threshold: 0.25, rootMargin: "0px 0px -8% 0px" },
+    );
+    observer.observe(element);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  const motionClass = state === "idle" ? "" : `kh-metric-motion kh-metric-motion-${state}`;
+  return (
+    <div ref={ref} className={`${className} ${motionClass}`.trim()}>
+      {children}
+    </div>
+  );
 }
 
 type ParallaxProps = {

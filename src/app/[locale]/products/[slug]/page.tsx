@@ -630,7 +630,7 @@ export default async function ProductDetailPage({
         <RelatedLinks
           locale={locale}
           index="06"
-          title={{ en: "Related product paths", zh: "相关产品路径" }}
+          title={{ en: "Related products", zh: "相关产品" }}
           links={[
             { href: "/products?collection=materials", en: "Related material groups", zh: "相关材料产品组" },
             { href: "/packaging", en: "Related packaging formats", zh: "相关成品包装" },

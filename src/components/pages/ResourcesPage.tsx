@@ -28,7 +28,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
           }
           meta={[
             isZh
-              ? `${guideCount} 份指南 · ${requestCount} 项申请通道`
+              ? `${guideCount} 份指南 · ${requestCount} 个申请入口`
               : `${guideCount} guides · ${requestCount} request channels`,
             "OEM / ODM",
             isZh ? "中国广东佛山" : "Foshan, Guangdong, China",
@@ -52,7 +52,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                   <h2>
                   {isZh
                     ? "包装设计、材料与结构准备指南"
-                    : "Working guides for artwork, materials and structure."}
+                    : "Practical guides for artwork, materials and packaging structure."}
                   </h2>
                 </div>
               </div>
@@ -122,8 +122,8 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-white/75">
                     {isZh
-                      ? "在打样前，请先发送产品、尺寸、克重和搬运要求。"
-                      : "Prepare the product, handling and specification details needed to select a food-packaging material."}
+                      ? "如需结构建议，请提供产品尺寸、重量、使用方式和运输要求。"
+                      : "Share the product use, contact conditions and specification details needed to select a suitable food-packaging material."}
                   </p>
                   <Link href="/contact" className="kh-button kh-button-light mt-5">
                     {isZh ? "发起引导式询盘" : "Start guided RFQ"}

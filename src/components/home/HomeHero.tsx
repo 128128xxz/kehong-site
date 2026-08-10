@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import { productCatalogSections } from "@/data/productDirectory";
-import { CountUp } from "@/components/home/interactive";
+import { CountUp, MetricReveal } from "@/components/home/interactive";
 
 export default function HomeHero({ locale }: { locale: string }) {
   const zh = locale === "zh";
@@ -32,11 +32,15 @@ export default function HomeHero({ locale }: { locale: string }) {
     quality: 78,
   });
 
-  const stats: Array<{ value: ReactNode; label: string; compact?: boolean }> = [
-    { value: <CountUp to={20} suffix="+" />, label: zh ? "纸品加工经验" : "Years in paper converting" },
-    { value: <><CountUp to={8000} suffix="+" /> <small>㎡</small></>, label: zh ? "生产场地" : "Production floor area" },
-    { value: "OEM / ODM", label: zh ? "定制开发支持" : "Custom development support", compact: true },
-    { value: "MOQ", label: zh ? "支持灵活起订" : "Flexible order quantities" },
+  const stats: Array<{ value: ReactNode; ariaValue: string; label: string; long?: boolean }> = [
+    { value: <CountUp to={20} suffix="+" />, ariaValue: "20+", label: zh ? "纸品加工经验" : "Years in paper converting" },
+    {
+      value: <><CountUp to={8000} suffix="+" /><span className="kh-hero-stat-unit">{zh ? "㎡" : "m²"}</span></>,
+      ariaValue: zh ? "8,000+ ㎡" : "8,000+ m²",
+      label: zh ? "生产场地" : "Production floor area",
+    },
+    { value: "OEM / ODM", ariaValue: "OEM / ODM", label: zh ? "定制开发" : "Custom development", long: true },
+    { value: "MOQ", ariaValue: "MOQ", label: zh ? "灵活起订" : "Flexible order quantities" },
   ];
 
   return (
@@ -72,7 +76,7 @@ export default function HomeHero({ locale }: { locale: string }) {
           <p className="kh-lede kh-rise kh-rise-4">
             {zh
               ? "从纸材选择、结构打样到加工和出货，由同一团队跟进海外品牌、经销商与采购团队的项目。"
-              : "Cupstock, converting components and finished paper packaging supported by in-house converting, structural sampling and export coordination."}
+              : "Cupstock, paper-converting components and finished packaging from our Foshan factory, with structural sampling and export packing support."}
           </p>
           <div className="kh-actions kh-rise kh-rise-5">
             <Link className="kh-button kh-button-light" href={materialEntry.href}>
@@ -91,10 +95,12 @@ export default function HomeHero({ locale }: { locale: string }) {
 
         <dl className="kh-hero-stats kh-rise kh-rise-6">
           {stats.map((stat) => (
-            <div className={`kh-hero-stat${stat.compact ? " is-compact" : ""}`} key={stat.label}>
-              <b className="kh-hero-stat-value">{stat.value}</b>
-              <span className="kh-mono">{stat.label}</span>
-            </div>
+            <MetricReveal className={`kh-hero-stat${stat.long ? " is-long" : ""}`} key={stat.label}>
+              <b className="kh-hero-stat-value" aria-label={stat.ariaValue}>
+                <span aria-hidden="true" className="kh-hero-stat-number">{stat.value}</span>
+              </b>
+              <span className="kh-mono kh-hero-stat-label">{stat.label}</span>
+            </MetricReveal>
           ))}
         </dl>
       </div>

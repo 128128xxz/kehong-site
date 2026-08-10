@@ -28,7 +28,7 @@ export const industryGroups: IndustryGroup[] = [
     application("tea-coffee-specialty-beverage", "Tea, Coffee & Specialty Beverage", "Material and packaging paths for dry goods, takeaway drinks and specialty beverage brands.", showcaseImages.portalSwatch, ["paper-bags", "paper-packaging-materials"]),
     application("beverage-packaging", "Beverage Packaging", "Paper components and structures reviewed around beverage handling and presentation needs.", showcaseImages.foodBox, ["food-packaging-boxes", "paper-packaging-materials"]),
   ] },
-  { slug: "retail-lifestyle", title: "Retail & Lifestyle", description: "Brand-ready paper structures for retail presentation, gifting and lifestyle products.", applications: [
+  { slug: "retail-lifestyle", title: "Retail & Brand Packaging", description: "Brand-ready paper structures for retail presentation, gifting and lifestyle products.", applications: [
     application("apparel", "Apparel", "Carry bags, boxes and inserts for apparel presentation and retail dispatch.", showcaseImages.webKraftGiftBox, ["paper-bags", "paper-boxes"]),
     application("cosmetics-skincare", "Cosmetics & Skincare", "Compact packaging structures and branded components for beauty products.", showcaseImages.displayWide, ["pillow-boxes", "paper-boxes"]),
     application("candles", "Candles", "Protective and presentation packaging for candle formats and gift sets.", showcaseImages.webCorrugatedSheet, ["corrugated-mailer-boxes", "pillow-boxes"]),
@@ -39,7 +39,7 @@ export const industryGroups: IndustryGroup[] = [
     application("toys", "Toys", "Paper packaging structures that support product presentation, handling and dispatch.", showcaseImages.aiToyBox, ["paper-boxes", "corrugated-mailer-boxes"]),
     application("sports-outdoor", "Sports & Outdoor", "Protective packaging and inserts for equipment, accessories and outdoor goods.", showcaseImages.machine, ["corrugated-mailer-boxes", "paper-inserts"]),
   ] },
-  { slug: "ecommerce-industrial-professional", title: "E-commerce, Industrial & Professional", description: "Protective and presentation packaging for dispatch, devices, parts and professional supply chains.", applications: [
+  { slug: "ecommerce-industrial-professional", title: "E-commerce & Distribution", description: "Protective and presentation packaging for dispatch, devices, parts and distribution operations.", applications: [
     application("ecommerce-mailers", "E-commerce & Mailers", "Corrugated mailers and inserts for parcel dispatch and product protection.", showcaseImages.webCorrugatedSheet, ["corrugated-mailer-boxes", "paper-inserts"]),
     application("electronics", "Electronics", "Protective structures and inserts reviewed around devices, accessories and presentation.", showcaseImages.machineClose, ["paper-inserts", "corrugated-mailer-boxes"]),
     application("healthcare-pharmaceutical", "Healthcare & Pharmaceutical", "Project-specific paper packaging components for professional product handling.", showcaseImages.portalSwatch, ["paper-packaging-materials", "paper-inserts"]),
@@ -59,13 +59,13 @@ export const industryZhCopy: Record<string, { title: string; description: string
     applications: { "food-packaging": "食品包装", "bakery-dessert": "烘焙与甜品", "tea-coffee-specialty-beverage": "茶、咖啡与特色饮品", "beverage-packaging": "饮品包装" },
   },
   "retail-lifestyle": {
-    title: "零售与生活方式",
+    title: "零售与品牌包装",
     description: "面向零售展示、礼赠与生活方式产品的品牌纸包装结构。",
     applications: { apparel: "服装", "cosmetics-skincare": "化妆品与护肤", candles: "蜡烛", "jewelry-watches": "珠宝与腕表", "gifts-holiday": "礼品与节庆", "home-kitchen": "家居与厨房", "pet-supplies": "宠物用品", toys: "玩具", "sports-outdoor": "运动与户外" },
   },
   "ecommerce-industrial-professional": {
-    title: "电商、工业与专业供应链",
-    description: "适用于发货、设备、零部件及专业供应链的保护性与展示型纸包装。",
+    title: "电商与运输包装",
+    description: "适用于电商发货、运输与仓储的保护性和展示型纸包装。",
     applications: { "ecommerce-mailers": "电商与邮寄盒", electronics: "电子产品", "healthcare-pharmaceutical": "医疗与制药", "eyewear-medical-devices": "眼镜与医疗设备", "automotive-parts-tools": "汽车零部件与工具", "stationery-office-supplies": "文具与办公用品", "cbd-packaging": "CBD 包装" },
   },
 };

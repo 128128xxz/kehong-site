@@ -55,7 +55,18 @@ export function formatProductFieldValue(value: string, field: ProductDisplayFiel
   if (!display) return "";
 
   if (field === "size" && display === "Custom L*W") return locale === "zh" ? "按长 × 宽定制" : "Custom L × W";
-  if (field === "application" && display === "Foodservice packaging") return locale === "zh" ? "餐饮食品包装" : display;
+  if (field === "application") {
+    if (display === "Foodservice packaging") return locale === "zh" ? "餐饮食品包装" : display;
+    if (locale === "en") {
+      const applicationLabels: Record<string, string> = {
+        "hot drink cup": "Hot-drink cups",
+        "paper cup": "Paper cups",
+        "kraft paper cup": "Kraft paper cups",
+        "food container": "Food containers",
+      };
+      return applicationLabels[display.toLocaleLowerCase()] ?? display;
+    }
+  }
   return display;
 }
 

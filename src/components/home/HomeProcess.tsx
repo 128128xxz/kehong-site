@@ -88,7 +88,7 @@ export default function HomeProcess({ locale }: { locale: string }) {
           <div className="kh-section-heading">
             <div>
               <SectionKicker index="04" text={zh ? "生产流程" : "Process"} />
-              <h2>{zh ? "从结构确认到出货，每一步都对应明确的生产事项。" : "From structure confirmation to dispatch, each step has a clear production purpose."}</h2>
+              <h2>{zh ? "从结构确认到成品出货，逐步完成打样、加工、检验和包装。" : "From structure approval to shipment, each stage covers a specific production task."}</h2>
             </div>
             <Link className="kh-text-link" href="/capabilities">
               {zh ? "查看制造能力" : "View manufacturing capabilities"}

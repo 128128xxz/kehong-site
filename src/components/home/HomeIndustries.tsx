@@ -23,8 +23,8 @@ const paths: BuyerPath[] = [
   {
     title: "Foodservice & bakery",
     titleZh: "餐饮与烘焙",
-    body: "Boxes, boards and inserts for food and dessert workflows.",
-    bodyZh: "餐盒、垫板与内托，适配餐饮和甜品的出品流程。",
+    body: "Boxes, cake boards and paper inserts for takeaway food, bakery and foodservice packaging.",
+    bodyZh: "餐盒、蛋糕托和纸内托，用于外带、烘焙与餐饮包装。",
     href: "/industries/bakery-packaging",
     image: showcaseImages.bakeryDessertDisplay,
     alt: "Bakery desserts presented on Kehong paper packaging",
@@ -32,19 +32,19 @@ const paths: BuyerPath[] = [
   },
   {
     title: "Retail & lifestyle",
-    titleZh: "零售与生活方式",
-    body: "Carry bags, presentation boxes and branded paper components.",
-    bodyZh: "手提袋、展示盒与品牌纸品部件，支持零售陈列与品牌呈现。",
+    titleZh: "零售与品牌包装",
+    body: "Paper bags, presentation boxes and paper components for retail display and branded carry packaging.",
+    bodyZh: "纸袋、展示盒和纸质配件，用于零售陈列与品牌手提包装。",
     href: "/industries/retail-lifestyle",
     image: showcaseImages.displayWide,
     alt: "Retail display boxes",
     altZh: "零售展示纸盒",
   },
   {
-    title: "E-commerce & professional",
-    titleZh: "电商与专业供应链",
-    body: "Mailers and protective structures for dispatch and handling.",
-    bodyZh: "快递纸盒与保护性纸结构，应对运输、分拣和仓储环节。",
+    title: "E-commerce & distribution",
+    titleZh: "电商与运输包装",
+    body: "Corrugated mailers and protective paper structures for e-commerce dispatch, transport and storage.",
+    bodyZh: "瓦楞邮寄盒和保护性纸结构，用于电商发货、运输与仓储。",
     href: "/industries/ecommerce-industrial-professional",
     image: showcaseImages.structureMaterialReal,
     alt: "Slitting line with white paper web",
@@ -74,8 +74,8 @@ export default function HomeIndustries({ locale }: { locale: string }) {
         <Reveal>
           <div className="kh-section-heading">
             <div>
-              <SectionKicker index="06" text={zh ? "行业与采购路径" : "Industries & buyer paths"} />
-              <h2>{zh ? "从应用场景开始，找到合适的包装形式。" : "Start with the application, then shape the packaging."}</h2>
+              <SectionKicker index="06" text={zh ? "按用途选择包装" : "Packaging by application"} />
+              <h2>{zh ? "按产品用途选择合适的包装类型。" : "Choose packaging by product use."}</h2>
             </div>
           </div>
         </Reveal>

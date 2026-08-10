@@ -50,6 +50,76 @@ test.describe("homepage manufacturing website", () => {
     expect(boxes.every((item) => item.whiteSpace === "nowrap")).toBe(true);
   });
 
+  test("homepage metrics use locale-correct values, units and labels", async ({ page }) => {
+    for (const [locale, values, labels, unit] of [
+      ["en", ["20+", "8,000+", "OEM / ODM", "MOQ"], ["Years in paper converting", "Production floor area", "Custom development", "Flexible order quantities"], "m²"],
+      ["zh", ["20+", "8,000+", "OEM / ODM", "MOQ"], ["纸品加工经验", "生产场地", "定制开发", "灵活起订"], "㎡"],
+    ] as const) {
+      await page.goto(`/${locale}`);
+      const stats = page.locator(".kh-hero-stat");
+      await expect(stats).toHaveCount(4);
+      for (let index = 0; index < values.length; index += 1) {
+        await expect(stats.nth(index).locator(".kh-hero-stat-value")).toHaveAttribute("aria-label", index === 1 ? `${values[index]} ${unit}` : values[index]);
+        await expect(stats.nth(index).locator(".kh-hero-stat-label")).toHaveText(labels[index]);
+      }
+      await expect(page.locator(".kh-home-hero")).toContainText("8,000+");
+      if (locale === "en") await expect(page.locator(".kh-home-hero")).not.toContainText("㎡");
+      await expect(page.locator(".kh-hero-stat-value").nth(1)).toContainText(unit);
+      const nowrap = await stats.locator(".kh-hero-stat-value").evaluateAll((nodes) => nodes.every((node) => getComputedStyle(node).whiteSpace === "nowrap"));
+      expect(nowrap).toBe(true);
+    }
+  });
+
+  test("homepage metrics reveal and count up once without layout shift", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/en");
+    const stats = page.locator(".kh-hero-stat");
+    await expect(stats.first()).toHaveClass(/kh-metric-motion-in/, { timeout: 3000 });
+    await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("20+");
+    await expect(stats.nth(1).locator(".kh-hero-stat-value")).toContainText("8,000+");
+    const before = await stats.evaluateAll((nodes) => nodes.map((node) => ({ top: (node as HTMLElement).offsetTop, height: node.getBoundingClientRect().height })));
+    await page.waitForTimeout(250);
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(250);
+    const after = await stats.evaluateAll((nodes) => nodes.map((node) => ({ top: (node as HTMLElement).offsetTop, height: node.getBoundingClientRect().height })));
+    expect(after).toEqual(before);
+    await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("20+");
+    await expect(stats.nth(1).locator(".kh-hero-stat-value")).toContainText("8,000+");
+  });
+
+  test("homepage metrics honor reduced motion and remain final immediately", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/zh");
+    const stats = page.locator(".kh-hero-stat");
+    await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("20+");
+    await expect(stats.nth(1).locator(".kh-hero-stat-value")).toContainText("8,000+");
+    const styles = await stats.evaluateAll((nodes) => nodes.map((node) => {
+      const value = node.querySelector(".kh-hero-stat-value")!;
+      return { transition: getComputedStyle(node).transitionDuration, transform: getComputedStyle(node).transform, valueTransition: getComputedStyle(value).transitionDuration };
+    }));
+    expect(styles.every((style) => parseFloat(style.transition) <= 0.01 && parseFloat(style.valueTransition) <= 0.01 && style.transform === "none")).toBe(true);
+  });
+
+  test("homepage metric grid stays aligned at desktop widths and fits mobile", async ({ page }) => {
+    for (const viewport of [{ width: 1280, height: 900 }, { width: 1440, height: 1000 }, { width: 1850, height: 1000 }]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/en");
+      const stats = page.locator(".kh-hero-stat");
+      const boxes = await stats.evaluateAll((nodes) => nodes.map((node) => {
+        const value = node.querySelector(".kh-hero-stat-value")!.getBoundingClientRect();
+        const label = node.querySelector(".kh-hero-stat-label")!.getBoundingClientRect();
+        return { valueBottom: value.bottom, labelTop: label.top };
+      }));
+      expect(Math.max(...boxes.map((item) => item.valueBottom)) - Math.min(...boxes.map((item) => item.valueBottom))).toBeLessThanOrEqual(1);
+      expect(Math.max(...boxes.map((item) => item.labelTop)) - Math.min(...boxes.map((item) => item.labelTop))).toBeLessThanOrEqual(1);
+    }
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/en");
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+    await expect(page.locator(".kh-hero-stat")).toHaveCount(4);
+  });
+
   test("homepage process tabs change the matching fixed media panel", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto("/en");

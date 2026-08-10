@@ -108,8 +108,8 @@ export default async function ContactPage({
   const checklist = [
     {
       index: "A",
-      label: zh ? "报价资料" : "Quote details",
-      body: zh ? "图片 / 尺寸 / 材质 / 数量" : "Photo / size / material / quantity",
+      label: zh ? "询价信息" : "Quote information",
+      body: zh ? "参考图片、尺寸、材质和数量" : "Reference image, dimensions, material and quantity",
     },
     {
       index: "B",
@@ -118,12 +118,12 @@ export default async function ContactPage({
     },
     {
       index: "C",
-      label: zh ? "支持" : "Support",
+      label: zh ? "服务内容" : "Services",
       body: zh ? "样品与打样、OEM/ODM 和出口包装" : "Samples, OEM / ODM and export packing",
     },
     {
       index: "D",
-      label: zh ? "回复路径" : "Response channels",
+      label: zh ? "回复方式" : "Response channels",
       body: zh ? "WhatsApp / 邮箱" : "WhatsApp / email",
     },
   ];

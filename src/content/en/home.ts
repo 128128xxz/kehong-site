@@ -31,14 +31,14 @@ export const homeEnglish = {
   },
   solutions: {
     heading: "Packaging solutions for real production needs.",
-    intro: "Start with the application, then narrow the choice by material, structure, and process.",
+    intro: "Choose packaging by product use, then review material, structure and process requirements.",
     food: "Boxes, pads, and paperboard structures developed around product size, ventilation, grease resistance, and delivery stability.",
     cupstock: "Paper grades and converted blanks selected by GSM, coating, print, forming, and end-use requirements.",
     corrugated: "Board and specialty paper options selected by strength, surface, converting method, and intended application.",
     inserts: "Die-cut paper components designed to hold, separate, present, or protect products in transit and display.",
   },
   manufacturing: {
-    body: "A Foshan-based production team coordinating paper materials, structural development, converting, finishing, inspection, and shipment preparation.",
+    body: "A Foshan-based production team handling paper materials, structural development, converting, finishing, inspection and shipment preparation.",
   },
   studio: {
     title: "Review the structure before production.",

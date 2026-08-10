@@ -22,6 +22,10 @@ describe("product presentation formatter", () => {
     expect(formatProductDisplayValue("Sheet for digital", "zh")).toBe("数码印刷用平张纸");
     expect(formatProductFieldValue("Custom paper packaging specification", "finishing", "en")).toBe("");
     expect(formatProductFieldValue("Custom L*W", "size", "en")).toBe("Custom L × W");
+    expect(formatProductFieldValue("hot drink cup", "application", "en")).toBe("Hot-drink cups");
+    expect(formatProductFieldValue("paper cup", "application", "en")).toBe("Paper cups");
+    expect(formatProductFieldValue("kraft paper cup", "application", "en")).toBe("Kraft paper cups");
+    expect(formatProductFieldValue("food container", "application", "en")).toBe("Food containers");
     expect(formatProductDisplayList(["纸杯", "纸碗"], "zh")).toBe("纸杯、纸碗");
     expect(formatProductDisplayList(["Paper cup", "Paper bowl"], "en")).toBe("Paper cup and Paper bowl");
   });

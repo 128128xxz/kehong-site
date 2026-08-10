@@ -16,7 +16,7 @@ const capabilityZh: Record<string, { title: string; summary: string; buyerValue:
   "artwork-prepress": {
     title: "稿件与印前",
     summary: "对照已确认结构核对稿件、印刷区域与版本记录。",
-    buyerValue: "生产文件推进前，团队清楚哪些点需要确认。",
+    buyerValue: "生产文件准备前，团队明确需要确认的内容。",
     input: "稿件、品牌色、Logo 文件与目标印刷方式。",
   },
   "prototyping": {
@@ -76,8 +76,8 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
           title={isZh ? "把包装需求拆成可确认的制造步骤" : "Capabilities that turn a packaging brief into a production path."}
           lede={
             isZh
-              ? "从结构、文件和打样，到印刷、后加工、质检和出口协作，按项目需求确认每个环节。"
-              : "From structure, artwork and sampling through printing, finishing, quality checks and export coordination, each capability is reviewed around the project brief."
+              ? "从结构、文件和打样，到印刷、后加工、质检和出货准备，按项目需求确认每个环节。"
+              : "From structure, artwork and sampling through printing, finishing, quality checks and shipment preparation, each capability follows the project brief."
           }
           meta={
             isZh
