@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -43,7 +43,7 @@ function directoryLabel(item: { en: string; zh: string }, zh: boolean) {
   return zh ? item.zh : item.en;
 }
 
-function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () => void; firstLinkRef?: RefObject<HTMLAnchorElement | null> }) {
+function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () => void; firstLinkRef?: (node: HTMLAnchorElement | null) => void }) {
   return (
     <div id="header-products-menu" className="kh-nav-panel kh-product-mega" data-testid="header-product-mega-menu">
       {productCatalogSections.map((section) => (
@@ -102,6 +102,12 @@ export default function Header({ variant = "solid" }: HeaderProps) {
   const keyboardProductsActivationRef = useRef<"Enter" | " " | null>(null);
   const focusFirstProductLinkRef = useRef(false);
   const firstProductMenuLinkRef = useRef<HTMLAnchorElement>(null);
+  const setFirstProductMenuLinkRef = (node: HTMLAnchorElement | null) => {
+    firstProductMenuLinkRef.current = node;
+    if (!node || !focusFirstProductLinkRef.current) return;
+    focusFirstProductLinkRef.current = false;
+    node.focus({ preventScroll: true });
+  };
   const [firstProductFocusRequest, setFirstProductFocusRequest] = useState(0);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
@@ -285,7 +291,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
               <span>{copy.products}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
-            {openMenu === "products" ? <ProductMegaMenu zh={isZh} close={closeDesktopDropdowns} firstLinkRef={firstProductMenuLinkRef} /> : null}
+            {openMenu === "products" ? <ProductMegaMenu zh={isZh} close={closeDesktopDropdowns} firstLinkRef={setFirstProductMenuLinkRef} /> : null}
           </div>
 
           <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>{copy.solutions}</Link>
