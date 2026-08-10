@@ -81,7 +81,7 @@ export default async function ResourceDetailPage({ params, searchParams }: { par
                   </ul>
                   <p className="mt-6 border-t border-(--kh-line) pt-5 text-sm leading-6 text-(--kh-muted)">
                     {isZh
-                      ? "科宏按双方确认的项目要求核对具体技术参数，在获得可公开的公司文件之前，本页不展示公开下载。"
+                      ? "科宏按双方确认的项目要求核对技术参数。在获得可公开的公司文件之前，本页不提供公开下载。"
                       : "Kehong confirms project-specific technical parameters against the approved brief. No public download is shown until a verified company file is available."}
                   </p>
                 </div>
@@ -103,7 +103,7 @@ export default async function ResourceDetailPage({ params, searchParams }: { par
             { href: "/products?collection=materials", en: "Related paper materials", zh: "相关纸材" },
             { href: "/packaging", en: "Packaging formats", zh: "成品包装类型" },
             { href: "/industries", en: "Industry applications", zh: "行业应用" },
-            { href: contactHref, en: "Send this brief", zh: "提交这份需求" },
+            { href: contactHref, en: "Send this brief", zh: "提交需求" },
           ]}
         />
       </main>

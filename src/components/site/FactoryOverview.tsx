@@ -30,7 +30,7 @@ const capabilityRows = [
     title: "Quality checkpoints",
     titleZh: "质检节点",
     body: "Inspect key dimensions, surface finish, forming and packing at the relevant production stages.",
-    bodyZh: "在模切、成型和装箱等阶段检查关键尺寸、表面效果和包装方式。",
+    bodyZh: "在模切、成型和装箱阶段检查关键尺寸、表面效果和包装方式。",
   },
 ] as const;
 
@@ -60,7 +60,7 @@ export default async function FactoryOverview() {
                 <dd className="mt-1 text-(--kh-muted)">{isZh ? companyProfile.productionCapability.zh : companyProfile.productionCapability.en}</dd>
               </div>
             </dl>
-            <a href={FACTORY_GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="kh-panel mt-4 flex items-start gap-3 p-4 transition hover:border-(--kh-forest)/45" aria-label={isZh ? "在 Google Maps 中查看科宏工厂位置" : "View Kehong factory location in Google Maps"}>
+            <a href={FACTORY_GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="kh-panel mt-4 flex items-start gap-3 p-4 transition hover:border-(--kh-forest)/45" aria-label={isZh ? "在 Google Maps 中查看工厂位置" : "View Kehong factory location in Google Maps"}>
               <MapPin className="mt-0.5 size-5 shrink-0 text-(--kh-brass)" aria-hidden="true" />
               <span>
                 <span className="block font-semibold text-(--kh-ink)">{isZh ? "工厂地址" : "Factory address"}</span>

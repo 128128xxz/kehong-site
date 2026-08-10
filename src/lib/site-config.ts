@@ -20,7 +20,7 @@ export const brandConfig = {
   },
   zh: {
     name: "科宏纸品",
-    tagline: "纸材、半成品与定制纸包装",
+    tagline: "纸材、半成品和定制纸包装",
   },
 } as const;
 

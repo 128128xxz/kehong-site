@@ -30,7 +30,7 @@ export default function HomeCta({ locale }: { locale: string }) {
           </h2>
           <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
             {zh
-              ? "提交基础规格后，我们会确认打样或报价所需的下一步信息。"
+              ? "提交基础规格后，科宏确认打样或报价还需要哪些信息。"
               : "Send the basic specifications and our team will confirm the next step for sampling or quotation."}
           </p>
           <p className="kh-cta-note kh-mono">
@@ -40,7 +40,7 @@ export default function HomeCta({ locale }: { locale: string }) {
 
         <Reveal delay={120}>
           <div className="kh-spec-panel">
-            <p className="kh-eyebrow kh-eyebrow-light">{zh ? "报价所需信息" : "Quote checklist"}</p>
+            <p className="kh-eyebrow kh-eyebrow-light">{zh ? "报价需要哪些信息" : "Quote checklist"}</p>
             <div role="list">
               {specRows.map((row) => (
                 <div role="listitem" className="kh-spec-row" key={row.index}>

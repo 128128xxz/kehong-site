@@ -28,7 +28,7 @@ describe("public packaging and locale governance", () => {
       "纸袋",
       "外带食品盒",
       "蛋糕盒",
-      "蛋糕底托与蛋糕鼓",
+      "蛋糕底托和蛋糕鼓",
       "瓦楞邮寄盒",
     ]);
   });

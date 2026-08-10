@@ -88,7 +88,7 @@ export default async function ProcessPreview() {
             <h2>{isZh ? "把规格与目标市场交给同一条产线。" : "Put your spec and market on the same line."}</h2>
             <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
               {isZh
-                ? "发来尺寸、材料与数量，科宏团队按流程回复打样与报价的下一步。"
+                ? "发送尺寸、材料和数量，科宏按流程回复打样和报价的下一步。"
                 : "Send dimensions, material, and quantity, and the Kehong team replies with the next step for sampling or a quotation."}
             </p>
             <div className="kh-actions mt-7 flex flex-wrap gap-3">

@@ -23,7 +23,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
           title={isZh ? "包装设计、材料与结构准备指南" : "Packaging guides for artwork, materials, structure and sampling."}
           lede={
             isZh
-              ? "用于准备设计稿、材料选择、刀模图、表面工艺和打样资料。"
+              ? "用于准备设计稿、选择材料、获取刀模图、确认表面工艺和打样资料。"
               : "Use these guides to prepare artwork, compare materials and finishes, request a dieline and organize sampling information before production."
           }
           meta={[

@@ -33,7 +33,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
           title={isZh ? "按应用选择结构。" : "Choose the structure by application."}
           lede={
             isZh
-              ? "从食品、杯纸到瓦楞和内托，先确认应用与保护要求，再进入匹配的产品范围。"
+              ? "从食品、杯纸到瓦楞和内托，先确认应用和保护要求，再进入匹配的产品范围。"
               : "Start with the application and protection requirement, then move into a focused product range for sampling and quotation."
           }
           meta={[

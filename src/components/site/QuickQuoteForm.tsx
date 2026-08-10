@@ -35,7 +35,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
     const data = new FormData(form);
     const interest = initialProducts.find((item) => item.interestId);
     if (!String(data.get("name") ?? "").trim() || !String(data.get("email") ?? "").trim() || (!String(data.get("products") ?? "").trim() && !interest?.interestId) || data.get("privacy") !== "on") {
-      setError(zh ? "请填写姓名、邮箱、产品或服务需求并同意隐私政策。" : "Please add your name, email, a product or request type, and privacy consent.");
+      setError(zh ? "请填写姓名、Email、产品或服务需求并同意隐私政策。" : "Please add your name, email, a product or request type, and privacy consent.");
       setStatus("error");
       return;
     }
@@ -58,7 +58,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
       trackKehongEvent("inquiry_submit", { locale, ctaLocation: "quick_quote", productGroupId: product?.productGroupId });
       form.reset();
     } catch {
-      setError(zh ? "暂时无法发送询盘，请稍后重试或使用页面上的邮箱联系。" : "We could not send the inquiry just now. Please retry or use the email shown on this page.");
+      setError(zh ? "暂时无法发送询盘，请稍后重试或使用页面上的Email联系。" : "We could not send the inquiry just now. Please retry or use the email shown on this page.");
       setStatus("error");
     }
   }
@@ -68,7 +68,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
       <p className="kh-eyebrow">{zh ? "快速询盘" : "Quick quote"}</p>
       <h2 className="mt-2 text-2xl font-semibold tracking-tight">{zh ? "先提交基础需求。" : "Start with the essentials."}</h2>
       <p className="mt-2 max-w-2xl text-sm leading-6 text-(--kh-muted)">
-        {zh ? "上传参考图或填写产品、尺寸和数量；技术细节可以随后补充。" : "Share a product, reference image, size and quantity now. Technical details can follow when you have them."}
+        {zh ? "上传参考图或填写产品、尺寸和数量。技术细节可以随后补充。" : "Share a product, reference image, size and quantity now. Technical details can follow when you have them."}
       </p>
       <InquiryContext locale={locale} seeds={initialProducts} />
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -86,7 +86,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
         <button type="submit" disabled={status === "sending"} className="kh-button kh-button-primary disabled:opacity-60">
           <Send className="size-4" />{status === "sending" ? (zh ? "发送中…" : "Sending…") : (zh ? "提交快速询盘" : "Send quick quote")}
         </button>
-        <span className="text-xs leading-5 text-(--kh-muted)">{zh ? "后续可补充材质、结构、印刷和交期。" : "Material, structure, print and timing can be added next."}</span>
+        <span className="text-xs leading-5 text-(--kh-muted)">{zh ? "后续可补充材质、结构、印刷和交期" : "Material, structure, print and timing can be added next."}</span>
       </div>
       {status === "success" ? <p className="mt-4 flex items-center gap-2 rounded-md border border-emerald-500/20 bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-900"><CheckCircle2 className="size-4" />{zh ? "询盘已接收，团队会尽快回复。" : "Your inquiry was received. The team will follow up shortly."}</p> : null}
       {status === "error" ? <p className="mt-4 rounded-md border border-red-500/20 bg-red-50 px-3 py-2 text-sm font-semibold text-red-900">{error}</p> : null}

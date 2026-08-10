@@ -37,7 +37,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
           title={isZh ? "按行业选择纸包装" : "Choose paper packaging by industry."}
           lede={
             isZh
-              ? "按应用场景浏览材料、结构、内托和成品包装，再把明确的尺寸和图纸带入询价。"
+              ? "按应用场景浏览材料、结构、内托和成品包装。确定尺寸和图纸后，再发起询价。"
               : "Browse materials, structures, inserts and finished packaging by application, then bring clear dimensions and drawings into the quotation process."
           }
           meta={
@@ -81,7 +81,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
                       ))}
                     </ul>
                     <Link href="/products" className="kh-text-link mt-6">
-                      {isZh ? "浏览产品范围" : "Explore product ranges"} <ArrowRight className="size-4" />
+                      {isZh ? "浏览产品" : "Explore product ranges"} <ArrowRight className="size-4" />
                     </Link>
                   </article>
                 </Reveal>
@@ -96,7 +96,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
           title={{ en: "Project resources", zh: "询盘资料" }}
           links={[
             { href: "/packaging", en: "Packaging overview", zh: "成品包装总览" },
-            { href: "/products?collection=materials", en: "Paper materials", zh: "纸材与半成品" },
+            { href: "/products?collection=materials", en: "Paper materials", zh: "纸材和半成品" },
             { href: "/resources", en: "Buyer resources", zh: "买家资料中心" },
             { href: "/contact", en: "Send a project brief", zh: "提交项目需求" },
           ]}

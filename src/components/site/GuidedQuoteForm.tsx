@@ -30,7 +30,7 @@ const copy = {
     size: "尺寸与数量", dimensionType: "内尺寸或外尺寸", dimensionTypePlaceholder: "内尺寸 / 外尺寸", dimensions: "长 × 宽 × 高", dimensionsPlaceholder: "例如：20 × 15 × 8 cm", quantity: "数量", quantityPlaceholder: "预计采购数量", repeat: "采购频率", repeatPlaceholder: "一次性 / 常规 / 季节性", orderDate: "计划下单日期", deliveryDate: "期望交付日期", known: "如已知",
     material: "材料与结构", preferredMaterial: "偏好材料", preferredMaterialPlaceholder: "纸张、纸板、瓦楞纸…", board: "纸板 / 坑型 / 纸张类型", structure: "盒型 / 结构", structurePlaceholder: "邮寄盒、折叠盒、托盘…", features: "开窗 / 提手 / 内托 / 隔板", featuresPlaceholder: "可选功能", recommend: "需要我们推荐", recommendPlaceholder: "您的产品与优先事项",
     print: "印刷与后处理", colors: "印刷颜色", colorsPlaceholder: "CMYK / Pantone / 参考图", printSide: "内侧或外侧印刷", printSidePlaceholder: "外侧 / 内侧 / 双面", finish: "覆膜 / 烫印 / 压纹 / 涂层", finishPlaceholder: "后处理要求", artwork: "设计文件状态", artworkPlaceholder: "已准备 / 制作中 / 暂不确定", upload: "设计文件或参考资料（可选）", uploadNote: "浏览器会显示文件选择状态。较大或不支持的文件可在首次询盘后补充。",
-    delivery: "交付与联系信息", destination: "目的国家 / 邮编", shipping: "运输方式 / 贸易术语", company: "公司", companyPlaceholder: "公司名称", name: "姓名", namePlaceholder: "您的姓名", email: "邮箱", phone: "电话 / WhatsApp", optional: "可选", notes: "备注", notesPlaceholder: "交期、目的地或其他项目说明", privacyPrefix: "我同意科宏纸品根据", privacy: "隐私政策", privacySuffix: "处理我提交的信息，以便回复本次询盘",
+    delivery: "交付与联系信息", destination: "目的国家 / 邮编", shipping: "运输方式 / 贸易术语", company: "公司", companyPlaceholder: "公司名称", name: "姓名", namePlaceholder: "您的姓名", email: "Email", phone: "电话 / WhatsApp", optional: "可选", notes: "备注", notesPlaceholder: "交期、目的地或其他项目说明", privacyPrefix: "我同意科宏纸品根据", privacy: "隐私政策", privacySuffix: "处理我提交的信息，以便回复本次询盘",
   },
 } as const;
 

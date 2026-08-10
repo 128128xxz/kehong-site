@@ -102,6 +102,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
   const keyboardProductsActivationRef = useRef<"Enter" | " " | null>(null);
   const focusFirstProductLinkRef = useRef(false);
   const firstProductMenuLinkRef = useRef<HTMLAnchorElement>(null);
+  const [firstProductFocusRequest, setFirstProductFocusRequest] = useState(0);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -178,7 +179,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
     if (!firstLink) return;
     focusFirstProductLinkRef.current = false;
     firstLink.focus({ preventScroll: true });
-  }, [openMenu]);
+  }, [openMenu, firstProductFocusRequest]);
 
   // Capture the first landing URL before a visitor reaches a quote form.
   useEffect(() => {
@@ -271,7 +272,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
         <nav ref={desktopNavRef} className="kh-desktop-nav" aria-label="Primary navigation">
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("products")} onPointerLeave={() => scheduleDesktopClose("products")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("products"); }}>
-            <button ref={productsButtonRef} type="button" className={navLinkClass(isProducts)} aria-expanded={openMenu === "products"} aria-controls="header-products-menu" aria-haspopup="true" onClick={(event) => { if (keyboardProductsActivationRef.current) { event.preventDefault(); event.stopPropagation(); keyboardProductsActivationRef.current = null; return; } if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); }} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); if (event.repeat) return; keyboardProductsActivationRef.current = event.key; if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); return; } if (event.key !== "ArrowDown") return; event.preventDefault(); event.stopPropagation(); focusFirstProductLinkRef.current = true; openDesktopMenu("products"); }} onKeyUp={(event) => { if (event.key !== keyboardProductsActivationRef.current) return; event.preventDefault(); event.stopPropagation(); requestAnimationFrame(() => { keyboardProductsActivationRef.current = null; }); }}>
+            <button ref={productsButtonRef} type="button" className={navLinkClass(isProducts)} aria-expanded={openMenu === "products"} aria-controls="header-products-menu" aria-haspopup="true" onClick={(event) => { if (keyboardProductsActivationRef.current) { event.preventDefault(); event.stopPropagation(); keyboardProductsActivationRef.current = null; return; } if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); }} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); if (event.repeat) return; keyboardProductsActivationRef.current = event.key; if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); return; } if (event.key !== "ArrowDown") return; event.preventDefault(); event.stopPropagation(); focusFirstProductLinkRef.current = true; setFirstProductFocusRequest((request) => request + 1); openDesktopMenu("products"); }} onKeyUp={(event) => { if (event.key !== keyboardProductsActivationRef.current) return; event.preventDefault(); event.stopPropagation(); requestAnimationFrame(() => { keyboardProductsActivationRef.current = null; }); }}>
               <span>{copy.products}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>

@@ -27,7 +27,7 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
           <div className="kh-section-heading">
             <div>
               <SectionKicker index="02" text={zh ? "产品体系" : "Product range"} />
-              <h2>{zh ? "先选择纸材与半成品，或成品包装，再查看对应产品和规格。" : "Choose paper materials or finished packaging, then review the relevant products and specifications."}</h2>
+              <h2>{zh ? "先选择纸材和半成品，或成品包装，再查看对应产品和规格。" : "Choose paper materials or finished packaging, then review the relevant products and specifications."}</h2>
             </div>
             <Link className="kh-text-link" href="/products">
               {zh ? "查看全部产品" : "View all products"}

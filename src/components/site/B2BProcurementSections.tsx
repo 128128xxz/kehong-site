@@ -15,8 +15,8 @@ import { Link } from "@/i18n/navigation";
 
 const capabilityItems = [
   { icon: ClipboardCheck, title: "Quote requirements", zh: "报价资料", detail: "Share the product use, dimensions, material or GSM target, quantity, and destination market.", detailZh: "提供产品用途、尺寸、材质或克重目标、数量和目的市场。" },
-  { icon: Layers3, title: "Material and GSM", zh: "材质与克重", detail: "Paper grade, coating, board construction, and converting requirements are reviewed together.", detailZh: "结合纸张等级、涂层、纸板结构和加工要求进行确认。" },
-  { icon: Boxes, title: "Sampling and OEM / ODM", zh: "打样与 OEM / ODM", detail: "Drawings, dimensions, folds, printing, and finishing can be confirmed through project samples.", detailZh: "可通过项目样品确认图纸、尺寸、折线、印刷与后工艺。" },
+  { icon: Layers3, title: "Material and GSM", zh: "材质与克重", detail: "Paper grade, coating, board construction, and converting requirements are reviewed together.", detailZh: "结合纸张等级、涂层、纸板结构和加工要求确认。" },
+  { icon: Boxes, title: "Sampling and OEM / ODM", zh: "打样与 OEM / ODM", detail: "Drawings, dimensions, folds, printing, and finishing can be confirmed through project samples.", detailZh: "通过项目样品确认图纸、尺寸、折线、印刷和后工艺。" },
   { icon: Globe2, title: "Export packing and documents", zh: "出口包装与文件", detail: "Packing method, shipment preparation, and available project documents are confirmed before dispatch.", detailZh: "出货前确认包装方式、出货准备和可提供的项目文件。" },
 ];
 
@@ -24,7 +24,7 @@ const chooseItems = [
   { icon: PackageCheck, title: "MOQ by specification", zh: "按规格确认 MOQ", detail: "MOQ depends on the material, structure, converting method, and production setup.", detailZh: "MOQ 按材质、结构、加工方式和生产设置核算确认。" },
   { icon: ClipboardCheck, title: "Sample review", zh: "样品确认", detail: "Structural fit and key specifications are reviewed before batch production.", detailZh: "批量生产前确认结构贴合和关键规格。" },
   { icon: ShieldCheck, title: "Quality checkpoints", zh: "质量检查节点", detail: "Material, dimensions, finish, and packing requirements are checked at relevant stages.", detailZh: "在相应节点检查材料、尺寸、表面效果和包装要求。" },
-  { icon: Globe2, title: "Destination requirements", zh: "目的市场要求", detail: "Tell us the destination market and any food-contact or documentation requirements for review.", detailZh: "请提供目的市场及食品接触或文件要求，以便核对。" },
+  { icon: Globe2, title: "Destination requirements", zh: "目的市场要求", detail: "Tell us the destination market and any food-contact or documentation requirements for review.", detailZh: "请提供目的市场、食品接触或文件要求，以便核对。" },
 ];
 
 const processSteps = {
@@ -44,7 +44,7 @@ export default async function B2BProcurementSections() {
         title={isZh ? "把采购要求整理成可确认的生产规格。" : "Turn your packaging brief into a quote-ready specification."}
         lede={
           isZh
-            ? "从材料匹配、结构打样到批量生产与出口包装，科宏为每个项目提供清晰、连贯的交付支持。"
+            ? "从材料匹配、结构打样到批量生产和出口包装，科宏为每个项目提供清晰的交付服务。"
             : "Use this guide to prepare material, GSM, structure, sampling, quantity, destination, and document requirements before requesting a quote."
         }
         meta={[

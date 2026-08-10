@@ -123,10 +123,10 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
                 <p className="kh-section-lede mt-4">
                   {isTakeoutBoxes
                     ? (isZh
-                      ? "外带盒结构、尺寸、材料和印刷根据项目需求确认。请提交参考图、尺寸与目标数量，以便评估和报价。"
+                      ? "外带盒的结构、尺寸、材料和印刷按项目需求确认。请提交参考图、尺寸和目标数量，以便评估和报价。"
                       : "Takeout box structures, sizes, materials and printing are confirmed against the project brief. Send a reference image, dimensions and target quantity for evaluation.")
                     : isZh
-                    ? "只展示当前公开目录中已确认的产品记录；定制结构可直接提交项目需求。"
+                    ? "目录展示已确认的产品。定制结构请直接提交项目需求。"
                     : "Only confirmed public product records are shown here. Send a project brief for a custom structure or an unlisted format."}
                 </p>
               </div>
@@ -138,7 +138,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               </>
             ) : (
               <div className="kh-panel max-w-3xl p-7">
-                <p className="text-sm leading-6 text-(--kh-muted)">{isTakeoutBoxes ? (isZh ? "请提交参考图、尺寸与目标数量，以便开始结构评估和报价。" : "Send a reference image, dimensions and target quantity to start the structure review and quotation.") : (isZh ? "当前公开目录没有可直接比较的 SKU。请发送尺寸、用途、数量和参考资料，我们会评估合适的材料与结构。" : "There are no public SKUs to compare in this category. Send dimensions, application, quantity and a reference so the suitable material and structure can be reviewed.")}</p>
+                <p className="text-sm leading-6 text-(--kh-muted)">{isTakeoutBoxes ? (isZh ? "请提交参考图、尺寸和目标数量，开始结构评估和报价。" : "Send a reference image, dimensions and target quantity to start the structure review and quotation.") : (isZh ? "当前公开目录没有可直接比较的 SKU。请发送尺寸、用途、数量和参考资料，我们会评估合适的材料与结构。" : "There are no public SKUs to compare in this category. Send dimensions, application, quantity and a reference so the suitable material and structure can be reviewed.")}</p>
                 {scopeQuote}
               </div>
             )}
@@ -208,7 +208,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               <SectionKicker index={packagingSectionNumbers.project} text={isZh ? "项目协作" : "Project collaboration"} light />
               <h2 id="packaging-project-title">{isZh ? "把尺寸、图纸和目标市场发给我们" : "Send dimensions, drawings and target market"}</h2>
               <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
-                {isZh ? "我们会围绕材料、结构、印刷与交付要求确认下一步。" : "Kehong will review material, structure, print and delivery requirements before recommending the next step."}
+                {isZh ? "科宏根据材料、结构、印刷和交付要求，确认下一步动作。" : "Kehong will review material, structure, print and delivery requirements before recommending the next step."}
               </p>
             </Reveal>
             <Reveal delay={120}>

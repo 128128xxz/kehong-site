@@ -581,7 +581,7 @@ export default async function ProductDetailPage({
 
           <aside className="premium-depth texture-ink self-start rounded-xl p-5 sm:p-6">
             <p className="kh-eyebrow kh-eyebrow-light">
-              {isZh ? "报价所需信息" : "Quote checklist"}
+              {isZh ? "报价需要哪些信息" : "Quote checklist"}
             </p>
             <h2 className="kh-editorial-heading mt-3 text-2xl">
               {isZh ? "发这些信息，报价会更快。" : "Send these details for a faster quote."}

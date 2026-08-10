@@ -55,17 +55,17 @@ export const industryGroups: IndustryGroup[] = [
 export const industryZhCopy: Record<string, { title: string; description: string; applications: Record<string, string> }> = {
   "food-bakery-beverage": {
     title: "食品、烘焙与饮品",
-    description: "适用于餐饮、烘焙、饮品与特色饮品流程的纸材、纸盒和纸内托。",
+    description: "纸材、纸盒和纸内托，面向餐饮、烘焙和饮品场景。",
     applications: { "food-packaging": "食品包装", "bakery-dessert": "烘焙与甜品", "tea-coffee-specialty-beverage": "茶、咖啡与特色饮品", "beverage-packaging": "饮品包装" },
   },
   "retail-lifestyle": {
     title: "零售与品牌包装",
-    description: "面向零售展示、礼赠与生活方式产品的品牌纸包装结构。",
+    description: "品牌纸包装结构，面向零售展示、礼赠和生活方式产品。",
     applications: { apparel: "服装", "cosmetics-skincare": "化妆品与护肤", candles: "蜡烛", "jewelry-watches": "珠宝与腕表", "gifts-holiday": "礼品与节庆", "home-kitchen": "家居与厨房", "pet-supplies": "宠物用品", toys: "玩具", "sports-outdoor": "运动与户外" },
   },
   "ecommerce-industrial-professional": {
     title: "电商与运输包装",
-    description: "适用于电商发货、运输与仓储的保护性和展示型纸包装。",
+    description: "保护和展示型纸包装，面向电商发货、运输和仓储。",
     applications: { "ecommerce-mailers": "电商与邮寄盒", electronics: "电子产品", "healthcare-pharmaceutical": "医疗与制药", "eyewear-medical-devices": "眼镜与医疗设备", "automotive-parts-tools": "汽车零部件与工具", "stationery-office-supplies": "文具与办公用品", "cbd-packaging": "CBD 包装" },
   },
 };

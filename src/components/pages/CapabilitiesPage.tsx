@@ -9,55 +9,55 @@ import { capabilities, complianceDocuments, processSteps } from "@/data/siteCont
 const capabilityZh: Record<string, { title: string; summary: string; buyerValue: string; input: string }> = {
   "structural-design": {
     title: "结构设计",
-    summary: "报价前核对产品占位、开合、支撑与装箱顺序。",
-    buyerValue: "更清晰的结构简报，减少贴合与组装意外。",
+    summary: "报价前核对产品占位、开合、支撑和装箱顺序。",
+    buyerValue: "结构简报更清晰时，贴合和组装意外更少。",
     input: "产品尺寸、参考图或现有刀线图。",
   },
   "artwork-prepress": {
     title: "稿件与印前",
-    summary: "对照已确认结构核对稿件、印刷区域与版本记录。",
-    buyerValue: "生产文件准备前，团队明确需要确认的内容。",
-    input: "稿件、品牌色、Logo 文件与目标印刷方式。",
+    summary: "对照已确认结构，核对稿件、印刷区域和版本记录。",
+    buyerValue: "生产文件准备前，明确需要确认的内容。",
+    input: "稿件、品牌色、Logo 文件和目标印刷方式",
   },
   "prototyping": {
     title: "打样",
-    summary: "通过结构样核对尺寸、贴合、开合与手感后再投产。",
-    buyerValue: "样品把包装想法变成可评审的实物样品。",
-    input: "目标尺寸、产品样或参考结构。",
+    summary: "通过结构样核对尺寸、贴合、开合和手感后再投产。",
+    buyerValue: "用样品把包装想法变成可评审的实物。",
+    input: "目标尺寸、产品样或参考结构",
   },
   "printing-finishing": {
     title: "印刷与后工艺",
-    summary: "围绕材料与结构确认印刷要求与可用表面处理。",
-    buyerValue: "工艺决定与基材、稿件和使用场景保持一致。",
-    input: "印刷颜色、参考工艺与应用优先级。",
+    summary: "根据材料和结构，确认印刷要求和可用表面处理。",
+    buyerValue: "工艺选择与基材、稿件和使用场景保持一致。",
+    input: "印刷颜色、参考工艺和应用优先级",
   },
   "die-cutting-assembly": {
     title: "模切与组装",
-    summary: "把版面、折线、切线、粘合与组装要求当作一个流程核对。",
-    buyerValue: "清晰的结构交接支撑可重复的加工与装箱。",
-    input: "刀线图、结构图或实物参考。",
+    summary: "将版面、折线、切线、粘合和组装要求作为完整流程逐项核对。",
+    buyerValue: "清晰的结构交接能让加工和装箱过程可重复。",
+    input: "刀线图、结构图或实物参考",
   },
   "quality-control": {
     title: "质量控制",
-    summary: "贯穿项目的规格、稿件、尺寸、后工艺与终检核对。",
-    buyerValue: "质检节点对应项目简报，而非泛泛承诺。",
-    input: "已确认规格、稿件与检验优先级。",
+    summary: "贯穿项目的规格、稿件、尺寸、后工艺和终检核对。",
+    buyerValue: "质检节点对应项目简报要求，不做泛泛承诺。",
+    input: "已确认规格、稿件和检验优先级",
   },
   "packing-export-support": {
     title: "包装与出口支持",
-    summary: "为海外 B2B 项目协调装箱信息与目的地要求。",
+    summary: "为海外 B2B 项目协调装箱信息和目的地要求。",
     buyerValue: "产品、装箱与目的地信息保持对齐交接。",
-    input: "目的国、装箱偏好与运输简报。",
+    input: "目的国、装箱偏好和运输简报",
   },
 };
 
 const processZh: Record<string, { title: string; body: string }> = {
-  "01": { title: "询盘", body: "提供产品、尺寸、数量与目标市场。" },
-  "02": { title: "结构评审", body: "确认材料、形式、开合、贴合与项目约束。" },
+  "01": { title: "询盘", body: "提供产品、尺寸、数量和目标市场。" },
+  "02": { title: "结构评审", body: "确认材料、形式、开合、贴合和项目约束。" },
   "03": { title: "打样", body: "按项目需要评审结构样或项目样。" },
-  "04": { title: "生产", body: "把已确认规格投入印刷、加工与组装。" },
-  "05": { title: "质量检验", body: "装箱与出货前核对既定检验节点。" },
-  "06": { title: "出口交接", body: "对齐装箱、目的地与单证细节后发货。" },
+  "04": { title: "生产", body: "将已确认规格投入印刷、加工和组装。" },
+  "05": { title: "质量检验", body: "装箱和出货前核对既定检验节点。" },
+  "06": { title: "出口交接", body: "确认装箱、目的地和单证细节后发货。" },
 };
 
 export default function CapabilitiesPage({ locale }: { locale: string }) {
@@ -76,7 +76,7 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
           title={isZh ? "把包装需求拆成可确认的制造步骤" : "Capabilities that turn a packaging brief into a production path."}
           lede={
             isZh
-              ? "从结构、文件和打样，到印刷、后加工、质检和出货准备，按项目需求确认每个环节。"
+              ? "从结构设计、文件准备到打样、印刷、后加工、质检和出货，每个环节按项目需求逐项确认。"
               : "From structure, artwork and sampling through printing, finishing, quality checks and shipment preparation, each capability follows the project brief."
           }
           meta={
@@ -168,7 +168,7 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
                 </div>
                 <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
                   {isZh
-                    ? "合规文件可按需提供。分享前将根据项目记录确认检测范围、出具机构与日期。"
+                    ? "合规文件可按需提供。提供前根据项目记录确认检测范围、出具机构和日期。"
                     : "Compliance documents are available upon request. Test scope, issuing body and date are confirmed against relevant project records before sharing."}
                 </p>
               </div>
@@ -201,7 +201,7 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
               <h2>{isZh ? "准备好评审一个结构了吗？" : "Ready to review a structure?"}</h2>
               <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
                 {isZh
-                  ? "发来尺寸、图纸、材料偏好与目的地信息，科宏会确认下一步的实际动作。"
+                  ? "发送尺寸、图纸、材料偏好和目的地信息，科宏确认下一步具体动作。"
                   : "Send dimensions, drawings, material preferences and destination details. Kehong will confirm the next practical step."}
               </p>
               <div className="kh-actions mt-7 flex flex-wrap gap-3">

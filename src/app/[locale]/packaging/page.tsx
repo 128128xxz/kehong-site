@@ -45,7 +45,7 @@ export default async function PackagingOverviewPage({ params }: { params: Promis
           kicker={zh ? "科宏 · 成品纸包装" : "Kehong · Finished packaging"}
           title={zh ? "成品纸包装分类总览" : "Finished paper packaging"}
           lede={zh
-            ? "按包装结构与应用场景浏览，公开目录与项目化需求分开展示。"
+            ? "按包装结构或应用场景浏览。目录展示现有产品，定制需求请直接提交项目资料。"
             : "Browse packaging by structure and use case, with public catalog options and project-based requirements separated."}
           meta={[zh ? "公开目录" : "Public catalog", "OEM / ODM", zh ? "中国广东佛山" : "Foshan, Guangdong, China"]}
         />

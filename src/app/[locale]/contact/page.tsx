@@ -103,7 +103,7 @@ export default async function ContactPage({
   const whatsappHref = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
   const channels = [
     { label: zh ? "海外销售 WhatsApp" : "Overseas Sales WhatsApp", value: contact.whatsapp, href: whatsappHref, external: true },
-    { label: zh ? "邮箱" : "Email", value: contact.email, href: emailHref, external: false },
+    { label: zh ? "Email" : "Email", value: contact.email, href: emailHref, external: false },
   ];
   const checklist = [
     {
@@ -124,7 +124,7 @@ export default async function ContactPage({
     {
       index: "D",
       label: zh ? "回复方式" : "Response channels",
-      body: zh ? "WhatsApp / 邮箱" : "WhatsApp / email",
+      body: zh ? "WhatsApp/Email" : "WhatsApp / email",
     },
   ];
   const serviceTags = [
@@ -192,7 +192,7 @@ export default async function ContactPage({
                 </span>
               </div>
               <p className="mt-3 text-sm leading-6 text-(--kh-muted)">
-                {zh ? "发送参考图片、尺寸和数量，销售将确认报价所需信息。" : "Send reference images, dimensions, and quantity, and our sales team will confirm the quotation requirements."}
+                {zh ? "发送参考图片、尺寸和数量，销售确认报价需要哪些信息。" : "Send reference images, dimensions, and quantity, and our sales team will confirm the quotation requirements."}
               </p>
             </Reveal>
 

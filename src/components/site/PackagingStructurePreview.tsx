@@ -100,22 +100,22 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
 
             <p className="mt-4 text-sm leading-7 text-(--kh-muted)">
               {zh
-                ? "用于查看开盖纸盒的盖板、折线、锁扣与内外层关系。该视图支持结构沟通，不替代最终生产刀线。"
+                ? "查看开盖纸盒的盖板、折线、锁扣和内外层关系。此视图用于结构沟通，不替代最终生产刀线。"
                 : "Review the lid, folds, locking tabs and inner/outer board relationship of an open carton. This view supports structural discussion; it does not replace a production dieline."}
             </p>
 
             <dl className="mt-6 space-y-4 border-t border-(--kh-line) pt-5 text-sm leading-6 text-(--kh-muted)">
               <div>
                 <dt className="font-bold text-(--kh-ink)">{zh ? "当前盒型" : "Current carton"}</dt>
-                <dd>{zh ? "开盖式披萨／外带纸板盒" : "Open-lid pizza / takeaway paperboard carton"}</dd>
+                <dd>{zh ? "开盖式披萨/外带纸板盒" : "Open-lid pizza / takeaway paperboard carton"}</dd>
               </div>
               <div>
                 <dt className="font-bold text-(--kh-ink)">{zh ? "结构查看" : "Structure review"}</dt>
-                <dd>{zh ? "检查面板、折线、闭合方式与内衬适配。" : "Inspect panel layout, folds, closure and liner fit."}</dd>
+                <dd>{zh ? "检查面板、折线、闭合方式和内衬适配。" : "Inspect panel layout, folds, closure and liner fit."}</dd>
               </div>
             </dl>
             <Link href={buildInquiryContactHref({ interest: "structure-review" })} className="kh-button kh-button-primary mt-6 w-full">
-              {zh ? "申请结构 / 刀线评审" : "Request a structure / dieline review"}
+              {zh ? "申请结构/刀线评审" : "Request a structure / dieline review"}
             </Link>
           </aside>
 
@@ -124,7 +124,7 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
               <div className="flex items-center gap-2">
                 <Eye className="size-4 text-(--kh-brass-soft)" />
                 <span className="text-sm font-bold">
-                  {zh ? "3D 结构 / 开盒状态" : "3D structure / Open carton"}
+                  {zh ? "3D 结构/开盒状态" : "3D structure / Open carton"}
                 </span>
               </div>
               <div className="flex flex-wrap gap-2">

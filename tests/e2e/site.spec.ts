@@ -33,7 +33,7 @@ test.describe("Kehong production flows", () => {
     await expect(page.locator(".kh-footer-brand-tag")).toHaveText("Paper products & custom packaging");
     await page.goto("/zh", { waitUntil: "networkidle" });
     await expect(page.locator(".kh-brand-name")).toHaveText("科宏纸品");
-    await expect(page.locator(".kh-brand-tag")).toHaveText("纸材、半成品与定制纸包装");
+    await expect(page.locator(".kh-brand-tag")).toHaveText("纸材、半成品和定制纸包装");
   });
 
   test("all public routes inherit the versioned Kehong mark-only favicon configuration", async ({ request }) => {
@@ -439,7 +439,7 @@ test.describe("Kehong production flows", () => {
   });
 
   test("products directory separates published materials from finished packaging without exposing Labels & Stickers", async ({ page }) => {
-    for (const [locale, materials, packaging] of [["en", "Paper materials & semi-finished components", "Finished packaging"], ["zh", "纸材与半成品", "成品包装"]] as const) {
+    for (const [locale, materials, packaging] of [["en", "Paper materials & semi-finished components", "Finished packaging"], ["zh", "纸材和半成品", "成品包装"]] as const) {
       await page.goto(`/${locale}/products`, { waitUntil: "networkidle" });
       const materialsDirectory = page.locator("#materials-and-components");
       const finishedDirectory = page.locator("#finished-packaging");
@@ -554,11 +554,11 @@ test.describe("Kehong production flows", () => {
 
   test("Chinese packaging copy prefers Chinese names while preserving technical terms", async ({ page }) => {
     await page.goto("/zh/packaging/paper-bags", { waitUntil: "networkidle" });
-    await expect(page.locator("main")).toContainText("科宏可根据已提交的项目资料评估");
+    await expect(page.locator("main")).toContainText("科宏根据已提交的项目资料评估");
     await expect(page.locator("main")).not.toContainText("Kehong 可");
     await page.goto("/zh/packaging/cake-boards-cake-drums", { waitUntil: "networkidle" });
-    await expect(page.locator("main")).toContainText("蛋糕托板（Cake Board）");
-    await expect(page.locator("main")).toContainText("蛋糕鼓（Cake Drum）");
+    await expect(page.locator("main")).toContainText("蛋糕托板用于日常承托和展示");
+    await expect(page.locator("main")).toContainText("蛋糕鼓更厚");
   });
 
   test("product detail formatting is consistent in English and Chinese", async ({ page }) => {
@@ -708,7 +708,7 @@ test.describe("Kehong production flows", () => {
       const catalog = page.locator("#catalog-list");
       await expect(catalog).toContainText(locale === "zh" ? "外带盒结构待提交规格评估" : "Takeout structure review from project scope");
       await expect(catalog.getByRole("heading", { name: locale === "zh" ? "外带盒结构待提交规格评估" : "Takeout structure review from project scope" })).toHaveCount(1);
-      await expect(catalog.getByText(locale === "zh" ? "外带盒结构、尺寸、材料和印刷根据项目需求确认。请提交参考图、尺寸与目标数量，以便评估和报价。" : "Takeout box structures, sizes, materials and printing are confirmed against the project brief. Send a reference image, dimensions and target quantity for evaluation.", { exact: true })).toHaveCount(1);
+      await expect(catalog.getByText(locale === "zh" ? "外带盒的结构、尺寸、材料和印刷按项目需求确认。请提交参考图、尺寸和目标数量，以便评估和报价。" : "Takeout box structures, sizes, materials and printing are confirmed against the project brief. Send a reference image, dimensions and target quantity for evaluation.", { exact: true })).toHaveCount(1);
       await expect(catalog).not.toContainText("Food Tray Paper Material");
       await expect(page.locator("#packaging-related")).toContainText(locale === "zh" ? "食品纸托材料" : "Food Tray Paper Material");
       const quoteHref = await catalog.locator('[data-testid="packaging-scope-quote"]').getAttribute("href");
@@ -722,7 +722,7 @@ test.describe("Kehong production flows", () => {
       ["paper-bags", "Paper Bags", "纸袋"],
       ["takeout-boxes", "Takeout Boxes", "外带食品盒"],
       ["cake-boxes", "Cake Boxes", "蛋糕盒"],
-      ["cake-boards-cake-drums", "Cake Boards & Cake Drums", "蛋糕底托与蛋糕鼓"],
+      ["cake-boards-cake-drums", "Cake Boards & Cake Drums", "蛋糕底托和蛋糕鼓"],
       ["corrugated-mailer-boxes", "Corrugated Mailer Boxes", "瓦楞邮寄盒"],
     ] as const;
 

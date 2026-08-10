@@ -28,11 +28,11 @@ export const companyProfile = {
   location: { en: "Foshan, Guangdong, China", zh: "中国广东佛山" },
   productionCapability: {
     en: "Paper converting, die-cutting, slitting, lamination and custom sampling",
-    zh: "纸材加工、模切、分切、裱纸与定制打样",
+    zh: "纸材加工、模切、分切、裱纸和定制打样",
   },
   exportExperience: {
     en: "Export-ready packing and project support for overseas B2B orders",
-    zh: "支持海外 B2B 订单的出口包装与资料准备",
+    zh: "支持海外 B2B 订单的出口包装和资料准备",
   },
 } as const;
 

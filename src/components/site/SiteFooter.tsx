@@ -88,7 +88,7 @@ export default async function SiteFooter() {
           <h2>{zh ? companyLegalNameZh : companyLegalName}</h2>
           <p className="kh-footer-note">
             {zh
-              ? "纸材加工、结构打样与定制包装服务。"
+              ? "纸材加工、结构打样和定制包装服务"
               : "Paper converting, structural sampling and custom packaging from our Foshan team."}
           </p>
           <div className="kh-footer-contact">
@@ -109,13 +109,13 @@ export default async function SiteFooter() {
           <div>
             <p>{zh ? "能力与资源" : "Capabilities & resources"}</p>
             <Link href="/capabilities">{zh ? "制造能力" : "Capabilities"}</Link>
-            <Link href="/factory">{zh ? "工厂与流程" : "Factory & process"}</Link>
+            <Link href="/factory">{zh ? "工厂和流程" : "Factory & process"}</Link>
             <Link href="/resources">{zh ? "资源中心" : "Design center"}</Link>
             <Link href="/model-preview">{zh ? "3D 结构预览" : "3D structure studio"}</Link>
           </div>
         </div>
         <div className="kh-footer-quote">
-          <p>{zh ? "准备开始一个项目？" : "Ready to discuss a project?"}</p>
+          <p>{zh ? "准备启动项目？" : "Ready to discuss a project?"}</p>
           <Link data-testid="site-footer-quote" className="kh-button kh-button-light" href="/contact">
             {zh ? "提交询盘" : "Request a quote"}
             <ArrowRight className="size-4" />
@@ -127,7 +127,7 @@ export default async function SiteFooter() {
             </a>
             <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>
               <Mail className="size-4" />
-              {zh ? "邮箱" : "Email"}
+              {zh ? "Email" : "Email"}
             </a>
           </div>
           <div className="kh-social" aria-label={zh ? "社交媒体" : "Social media"}>

@@ -161,7 +161,7 @@ export default async function ProductsPage({
           title={t("catalog.title")}
           lede={t("catalog.description")}
           meta={[
-            locale === "zh" ? `${catalogView.allSkus.length} 个纸材与半成品 SKU` : `${catalogView.allSkus.length} material & semi-finished SKUs`,
+            locale === "zh" ? `${catalogView.allSkus.length} 个纸材和半成品 SKU` : `${catalogView.allSkus.length} material & semi-finished SKUs`,
             "OEM / ODM",
             locale === "zh" ? "中国广东佛山" : "Foshan, Guangdong, China",
           ]}
@@ -177,7 +177,7 @@ export default async function ProductsPage({
         <section id="catalog-list" aria-labelledby="material-catalog-title" className="kh-shell scroll-mt-24 py-10">
           <div className="mb-7 max-w-3xl">
             <p className="kh-eyebrow">{locale === "zh" ? "规格筛选" : "Specification catalog"}</p>
-            <h2 id="material-catalog-title" className="mt-2 text-3xl font-semibold tracking-tight">{locale === "zh" ? "纸材与半成品 SKU 规格" : "Material & semi-finished SKU specifications"}</h2>
+            <h2 id="material-catalog-title" className="mt-2 text-3xl font-semibold tracking-tight">{locale === "zh" ? "纸材和半成品 SKU 规格" : "Material & semi-finished SKU specifications"}</h2>
             <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{locale === "zh" ? "筛选器和 231 个已发布 SKU 仅对应纸材、卷材、平张和加工部件；成品包装项目请见下方目录。" : "Filters and the 231 published SKUs cover paper materials, rolls, sheets and converting components only. See the project-led finished packaging directory below."}</p>
           </div>
           <ProductCatalog

@@ -16,7 +16,7 @@ const solutions = [
     image: showcaseImages.foodOpen,
     imageAlt: "Food and bakery paper boxes prepared for delivery",
     en: { title: "Food & bakery packaging", body: "Oil-resistant boxes, pads and bakery structures for practical food programs.", tags: ["Food contact", "Oil resistance"] },
-    zh: { title: "食品与烘焙包装", body: "面向食品项目的防油纸盒、纸垫与烘焙包装结构。", tags: ["食品接触", "防油结构"] },
+    zh: { title: "食品与烘焙包装", body: "防油纸盒、纸垫和烘焙包装结构", tags: ["食品接触", "防油结构"] },
   },
   {
     id: "cupstock",
@@ -24,7 +24,7 @@ const solutions = [
     image: showcaseImages.webPaperCupStacks,
     imageAlt: "Paper cup fan blanks and cupstock material",
     en: { title: "Cupstock & cup fan blanks", body: "Cupstock matched by GSM, coating, print area and forming requirement.", tags: ["GSM selection", "Coating"] },
-    zh: { title: "杯纸与纸杯扇形片", body: "按克重、涂层、印刷区域与成型要求匹配杯纸。", tags: ["克重选择", "涂层"] },
+    zh: { title: "杯纸与纸杯扇形片", body: "按克重、涂层、印刷区域和成型要求匹配杯纸", tags: ["克重选择", "涂层"] },
   },
   {
     id: "corrugated",
@@ -32,7 +32,7 @@ const solutions = [
     image: showcaseImages.swatch,
     imageAlt: "Corrugated board edge and paperboard layers",
     en: { title: "Corrugated board & specialty paper", body: "Board sections and specialty stocks for protection, display and converting.", tags: ["Board structure", "Material match"] },
-    zh: { title: "瓦楞纸板与特种纸", body: "用于防护、展示与加工的纸板结构和特种纸。", tags: ["坑型结构", "材料匹配"] },
+    zh: { title: "瓦楞纸板与特种纸", body: "防护、展示和加工用纸板结构和特种纸", tags: ["坑型结构", "材料匹配"] },
   },
   {
     id: "inserts",
@@ -40,7 +40,7 @@ const solutions = [
     image: showcaseImages.cakeBoardReal,
     imageAlt: "Die-cut paper insert and bakery pad structure",
     en: { title: "Inserts, pads & custom structures", body: "Die-cut pads and inserts that keep products fitted and protected in transit.", tags: ["Die-cut", "Dimensional fit"] },
-    zh: { title: "内托、纸垫与定制结构", body: "通过模切纸垫与内托，让产品在运输中保持稳定。", tags: ["模切", "尺寸贴合"] },
+    zh: { title: "内托、纸垫与定制结构", body: "通过模切纸垫和内托让产品在运输中保持稳定", tags: ["模切", "尺寸贴合"] },
   },
 ] as const;
 
@@ -110,7 +110,7 @@ export default function SolutionsDirectory() {
                 </span>
               </div>
               <div className="kh-system-copy p-6 sm:p-7">
-                <p className="kh-eyebrow">{isZh ? "应用与生产需求" : "Application & production need"}</p>
+                <p className="kh-eyebrow">{isZh ? "应用和生产需求" : "Application & production need"}</p>
                 <h3 className="mt-3 text-2xl font-semibold text-(--kh-ink)">{copy.title}</h3>
                 <p className="mt-3 max-w-xl text-base leading-7 text-(--kh-muted)">{copy.body}</p>
                 <div className="mt-2 flex flex-wrap gap-2">

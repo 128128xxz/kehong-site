@@ -11,7 +11,7 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
   const proofItems = zh
     ? [
         companyProfile.location.zh,
-        "20+ 年纸品制造 · 8000+ 平方米厂房",
+        "20+ 年纸品制造 · 8,000+ 平方米厂房",
         companyProfile.productionCapability.zh,
         "OEM / ODM 定制与弹性起订量",
         companyProfile.exportExperience.zh,
@@ -28,11 +28,11 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
     <section className="kh-section kh-section-forest">
       <div className="kh-shell kh-factory-grid">
         <Reveal>
-          <SectionKicker index="05" text={zh ? "公司与工厂" : "Company & factory"} light />
+          <SectionKicker index="05" text={zh ? "公司和工厂" : "Company & factory"} light />
           <h2>{zh ? "佛山工厂完成纸材加工、结构打样与成品包装。" : "Paper converting and packaging production in Foshan."}</h2>
           <p className="kh-section-lede">
             {zh
-              ? "科宏在佛山完成模切、分切、裱纸和瓦楞成型，并根据项目要求安排结构打样、质量检验和出货准备。"
+              ? "科宏在佛山工厂完成模切、分切、裱纸和瓦楞成型，按项目要求安排结构打样、质量检验和出货准备。"
               : "Kehong operates die-cutting, slitting, paper mounting and corrugated converting lines in Foshan. The same team handles sampling, inspection and shipment preparation."}
           </p>
           <ul>
@@ -44,7 +44,7 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
             ))}
           </ul>
           <Link className="kh-button kh-button-light" href="/factory">
-            {zh ? "了解工厂与流程" : "See factory & process"}
+            {zh ? "了解工厂和流程" : "See factory & process"}
             <ArrowRight className="size-4" />
           </Link>
         </Reveal>

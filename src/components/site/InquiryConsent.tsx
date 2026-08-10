@@ -13,7 +13,7 @@ export default function InquiryConsent({ locale, id }: { locale: string; id: str
         <Link href="/privacy" className="kh-inline-link" onClick={(event) => event.stopPropagation()}>
           {zh ? "隐私政策" : "Privacy Policy"}
         </Link>
-        {zh ? "处理我提交的信息，以便回复本次询盘。" : "."}
+        {zh ? "处理我提交的信息，以便回复本次询盘" : "."}
       </label>
     </div>
   );

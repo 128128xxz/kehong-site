@@ -145,7 +145,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
           index="05"
           title={{ en: "Recommended next steps", zh: "推荐下一步" }}
           links={[
-            { href: "/packaging", en: "Recommended packaging types", zh: "推荐包装类型" },
+            { href: "/packaging", en: "Recommended packaging types", zh: "推荐包装" },
             { href: "/products?collection=materials", en: "Recommended paper materials", zh: "推荐纸材" },
             { href: "/resources/packaging-selection-guide", en: "Packaging selection guide", zh: "包装选型指南" },
             { href: "/contact", en: "Request a quote", zh: "获取报价" },

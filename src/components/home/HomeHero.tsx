@@ -64,7 +64,7 @@ export default function HomeHero({ locale }: { locale: string }) {
 
         <div className="kh-hero-copy">
           <p className="kh-eyebrow kh-eyebrow-light kh-rise kh-rise-2">
-            {zh ? "佛山 · 纸材加工与定制包装工厂" : "Foshan paper converting & custom packaging"}
+            {zh ? "佛山工厂，专注纸材加工和定制包装。" : "Foshan paper converting & custom packaging"}
           </p>
           <h1 className="kh-rise kh-rise-3">
             {zh ? (
@@ -75,7 +75,7 @@ export default function HomeHero({ locale }: { locale: string }) {
           </h1>
           <p className="kh-lede kh-rise kh-rise-4">
             {zh
-              ? "从纸材选择、结构打样到加工和出货，由同一团队跟进海外品牌、经销商与采购团队的项目。"
+              ? "从选纸材、做结构打样到加工、出货，同一团队直接对接海外品牌、经销商和采购方。"
               : "Cupstock, paper-converting components and finished packaging from our Foshan factory, with structural sampling and export packing support."}
           </p>
           <div className="kh-actions kh-rise kh-rise-5">
