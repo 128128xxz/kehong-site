@@ -15,7 +15,7 @@ async function expectNoHorizontalOverflow(page: import("@playwright/test").Page)
 
 test.describe("Kehong production flows", () => {
   test("root selects a locale without caching a visitor-specific redirect", async ({ request }) => {
-    const zh = await request.get("/?utm_source=qa", { maxRedirects: 0, headers: { "x-vercel-ip-country": "CN" } });
+    const zh = await request.get("/?utm_source=qa", { maxRedirects: 0, headers: { "accept-language": "zh-CN,zh;q=0.9" } });
     expect(zh.status()).toBe(307);
     expect(zh.headers().location).toBe("/zh?utm_source=qa");
     expect(zh.headers()["cache-control"]).toContain("private");

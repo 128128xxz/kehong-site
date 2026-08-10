@@ -4,7 +4,7 @@ test.describe("locale routing and dedicated mobile shell", () => {
   test("root locale precedence preserves UTM and bypasses explicit/static routes", async ({ request }) => {
     const cn = await request.get("/?utm_source=cn", {
       maxRedirects: 0,
-      headers: { "x-vercel-ip-country": "CN", "accept-language": "en-US,en;q=0.9" },
+      headers: { "accept-language": "zh-CN,zh;q=0.9,en;q=0.8" },
     });
     expect(cn.status()).toBe(307);
     expect(cn.headers().location).toBe("/zh?utm_source=cn");
@@ -18,7 +18,7 @@ test.describe("locale routing and dedicated mobile shell", () => {
 
     const cookieWins = await request.get("/", {
       maxRedirects: 0,
-      headers: { "x-vercel-ip-country": "CN", cookie: "kehong_locale=en" },
+      headers: { "accept-language": "zh-CN,zh;q=0.9", cookie: "kehong_locale=en" },
     });
     expect(cookieWins.headers().location).toBe("/en");
 
@@ -37,9 +37,9 @@ test.describe("locale routing and dedicated mobile shell", () => {
       expect(explicit.headers().location).toBeUndefined();
     }
 
-    const api = await request.get("/api/health", { maxRedirects: 0, headers: { "x-vercel-ip-country": "CN" } });
+    const api = await request.get("/api/health", { maxRedirects: 0, headers: { "accept-language": "zh-CN,zh;q=0.9" } });
     expect(api.status()).not.toBe(307);
-    const asset = await request.get("/brand/kehong-favicon-v2.ico", { maxRedirects: 0, headers: { "x-vercel-ip-country": "CN" } });
+    const asset = await request.get("/brand/kehong-favicon-v2.ico", { maxRedirects: 0, headers: { "accept-language": "zh-CN,zh;q=0.9" } });
     expect(asset.status()).toBe(200);
   });
 

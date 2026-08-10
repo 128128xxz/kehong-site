@@ -5,7 +5,7 @@ test.describe("Production SSR/CDN consistency", () => {
     const origin = (process.env.PRODUCTION_BASE_URL || testInfo.project.use.baseURL || "https://www.kehong.tech").replace(/\/+$/u, "");
     const expectedBuildSha = process.env.EXPECTED_PRODUCTION_BUILD_SHA || process.env.VERCEL_GIT_COMMIT_SHA;
 
-    const root = await request.get(`${origin}/`, { maxRedirects: 0, headers: { "x-vercel-ip-country": "CN" } });
+    const root = await request.get(`${origin}/`, { maxRedirects: 0, headers: { "accept-language": "zh-CN,zh;q=0.9" } });
     expect(root.status()).toBe(307);
     expect(root.headers().location).toBe("/zh");
     expect(root.headers()["cache-control"]).toContain("private");
