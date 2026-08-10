@@ -5,11 +5,11 @@ test.describe("homepage manufacturing website", () => {
     await page.goto("/en");
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator(".kh-home-hero")).toBeVisible();
-    await expect(page.getByRole("link", { name: "Paper materials & semi-finished components" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Finished packaging" })).toBeVisible();
-    await expect(page.getByRole("link", { name: /Request a quote/i }).first()).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Paper materials & semi-finished components" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Finished packaging" })).toBeVisible();
+    await expect(page.getByRole("link", { name: /Submit a brief/i }).first()).toBeVisible();
     await expect(page.locator(".production-portal")).toHaveCount(0);
-    await expect(page.getByRole("heading", { name: /Choose paper materials or finished packaging/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Choose a product system/i })).toBeVisible();
     await expect(page.locator(".kh-section-forest")).toBeVisible();
     await expect(page.locator(".kh-spec-panel")).toBeVisible();
   });
@@ -32,7 +32,9 @@ test.describe("homepage manufacturing website", () => {
 
   test("homepage keeps a compact procurement-focused section stack", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.locator("main > section")).toHaveCount(7);
+    await expect(page.locator("main > section")).toHaveCount(6);
+    await expect(page.locator('[data-testid="homepage-product-entry"]')).toHaveCount(6);
+    await expect(page.locator('[data-testid="home-buyer-support"]')).toHaveCount(0);
   });
 
   test("homepage metrics keep a shared value baseline and label start", async ({ page }) => {
@@ -166,7 +168,7 @@ test.describe("homepage manufacturing website", () => {
     await page.setViewportSize({ width: 1366, height: 768 });
     await page.goto("/en");
     const ctas = page.locator(".kh-home-hero .kh-actions a");
-    await expect(ctas).toHaveCount(3);
+    await expect(ctas).toHaveCount(2);
     for (const cta of await ctas.all()) {
       const box = await cta.boundingBox();
       expect(box).not.toBeNull();

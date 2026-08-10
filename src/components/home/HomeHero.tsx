@@ -64,31 +64,28 @@ export default function HomeHero({ locale }: { locale: string }) {
 
         <div className="kh-hero-copy">
           <p className="kh-eyebrow kh-eyebrow-light kh-rise kh-rise-2">
-            {zh ? "佛山工厂，专注纸材加工和定制包装。" : "Foshan paper converting & custom packaging"}
+            {zh ? "佛山" : "Foshan paper converting"}
           </p>
           <h1 className="kh-rise kh-rise-3">
             {zh ? (
-              <>纸材、半成品与<span className="whitespace-nowrap">定制纸包装</span>，制造于佛山。</>
+              <>纸材、半成品与<span className="whitespace-nowrap">定制包装</span>，制造于佛山。</>
             ) : (
               "Paper Materials & Custom Packaging, Made in Foshan."
             )}
           </h1>
           <p className="kh-lede kh-rise kh-rise-4">
             {zh
-              ? "从选纸材、做结构打样到加工、出货，同一团队直接对接海外品牌、经销商和采购方。"
-              : "Cupstock, paper-converting components and finished packaging from our Foshan factory, with structural sampling and export packing support."}
+              ? "纸材到包装，按项目对接。"
+              : "Paper materials, semi-finished components and finished packaging, made for your brief."}
           </p>
           <div className="kh-actions kh-rise kh-rise-5">
             <Link className="kh-button kh-button-light" href={materialEntry.href}>
-              {zh ? materialEntry.label.zh : materialEntry.label.en}
+              {zh ? "查看纸材与半成品" : "Explore materials"}
               <ArrowRight className="size-4" />
             </Link>
             <Link className="kh-button kh-button-ghost" href={packagingEntry.href}>
-              {zh ? packagingEntry.label.zh : packagingEntry.label.en}
+              {zh ? "查看成品包装" : "Explore packaging"}
               <ArrowRight className="size-4" />
-            </Link>
-            <Link className="kh-button kh-button-ghost" href="/contact">
-              {zh ? "提交询盘" : "Request a quote"}
             </Link>
           </div>
         </div>

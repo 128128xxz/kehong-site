@@ -4,30 +4,66 @@ import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
 import { showcaseImages } from "@/data/visuals";
-import { productCatalogSections } from "@/data/productDirectory";
+import { productCatalogSections, type DirectoryLink } from "@/data/productDirectory";
 
-const sectionVisuals = {
-  materials: {
-    image: showcaseImages.structureMaterialReal,
-    alt: "Paperboard layers and material cross sections for packaging conversion",
-  },
-  "finished-packaging": {
-    image: showcaseImages.representativeBakeryPackaging,
-    alt: "Representative unbranded food and bakery paper packaging structures",
-  },
-} as const;
+type ProductVisual = DirectoryLink & { image: string; alt: string; altZh: string };
+
+const materialVisuals: Record<string, Pick<ProductVisual, "image" | "alt" | "altZh">> = {
+  "paper-cup-fan": { image: showcaseImages.colorPaperFan, alt: "Paper cup fan blanks ready for converting", altZh: "待加工的纸杯扇形片" },
+  "pe-coated-paper-roll": { image: showcaseImages.goldBoardSheets, alt: "Coated paper sheets for packaging conversion", altZh: "用于包装加工的淋膜纸张" },
+  "food-tray-material": { image: showcaseImages.goldBoardPieces, alt: "Paper tray material pieces", altZh: "纸托材料片" },
+};
+
+const finishedVisuals: Record<string, Pick<ProductVisual, "image" | "alt" | "altZh">> = {
+  "takeout-boxes": { image: showcaseImages.foodBoxRealAlt, alt: "Unbranded takeaway paper boxes", altZh: "外带食品纸盒" },
+  "cake-boxes": { image: showcaseImages.cakeBoardRealAlt, alt: "Cake packaging components", altZh: "蛋糕包装组件" },
+  "corrugated-mailer-boxes": { image: showcaseImages.kraftCartonsTall, alt: "Corrugated mailer cartons prepared for dispatch", altZh: "待出货的瓦楞邮寄盒" },
+};
+
+const shortZhDescriptions: Record<string, string> = {
+  "paper-cup-fan": "纸杯杯身扇形片。",
+  "pe-coated-paper-roll": "食品容器淋膜卷材。",
+  "food-tray-material": "纸托内托用纸材。",
+  "takeout-boxes": "外带餐饮纸盒。",
+  "cake-boxes": "蛋糕甜点纸盒。",
+  "corrugated-mailer-boxes": "电商发货邮寄盒。",
+};
+
+const pickLinks = (sectionId: "materials" | "finished-packaging", ids: string[]) => {
+  const section = productCatalogSections.find((item) => item.id === sectionId)!;
+  const links = section.groups.flatMap((group) => group.links);
+  return ids.map((id) => links.find((link) => link.id === id)!).filter(Boolean);
+};
 
 export default function HomeProductSystems({ locale }: { locale: string }) {
   const zh = locale === "zh";
+  const materials = productCatalogSections[0];
+  const finished = productCatalogSections[1];
+  const systems = [
+    {
+      ...materials,
+      label: zh ? "纸材和半成品" : "Paper materials & semi-finished components",
+      intro: zh ? "先从纸材、杯纸组件和成型材料入手。" : "Start with paper grades, cup components and forming materials.",
+      links: pickLinks("materials", ["paper-cup-fan", "pe-coated-paper-roll", "food-tray-material"]),
+      visuals: materialVisuals,
+    },
+    {
+      ...finished,
+      label: zh ? "成品包装" : "Finished packaging",
+      intro: zh ? "按用途查看餐饮、烘焙和运输包装。" : "Review food, bakery and shipping packaging by use.",
+      links: pickLinks("finished-packaging", ["takeout-boxes", "cake-boxes", "corrugated-mailer-boxes"]),
+      visuals: finishedVisuals,
+    },
+  ];
 
   return (
-    <section className="kh-section kh-section-paper">
+    <section className="kh-section kh-section-paper kh-product-systems">
       <div className="kh-shell">
         <Reveal>
           <div className="kh-section-heading">
             <div>
-              <SectionKicker index="02" text={zh ? "产品体系" : "Product range"} />
-              <h2>{zh ? "先选择纸材和半成品，或成品包装，再查看对应产品和规格。" : "Choose paper materials or finished packaging, then review the relevant products and specifications."}</h2>
+              <SectionKicker index="02" text={zh ? "产品" : "Product range"} />
+              <h2>{zh ? "按产品体系进入分类。" : "Choose a product system, then go deeper by category."}</h2>
             </div>
             <Link className="kh-text-link" href="/products">
               {zh ? "查看全部产品" : "View all products"}
@@ -36,43 +72,44 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
           </div>
         </Reveal>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-2" data-testid="homepage-product-systems">
-          {productCatalogSections.map((section, index) => {
-            const visual = sectionVisuals[section.id];
-            const label = zh ? section.label.zh : section.label.en;
-            const description = zh ? section.description.zh : section.description.en;
-            const cta = zh ? section.cta.zh : section.cta.en;
-
-            return (
-              <Reveal key={section.id} delay={index * 90}>
-                <article className="overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) shadow-sm">
-                  <div className="kh-media-shade relative aspect-[16/9] overflow-hidden">
-                    <Image src={visual.image} alt={visual.alt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
-                    <span className="kh-fig-caption kh-mono">{`0${index + 1} · ${label}`}</span>
-                  </div>
-                  <div className="p-6 sm:p-7">
-                    <p className="kh-eyebrow">{zh ? "产品范围" : "Product range"}</p>
-                    <h3 className="mt-2 text-2xl font-semibold tracking-tight text-(--kh-ink)">{label}</h3>
-                    <p className="mt-3 max-w-[56ch] text-sm leading-6 text-(--kh-muted)">{description}</p>
-                    <div className="mt-5 grid gap-2">
-                      {section.groups.flatMap((group) => group.links).map((item) => (
-                        <Link key={item.id} href={item.href} data-testid="homepage-product-entry" className="group flex items-center justify-between gap-3 rounded-sm border border-(--kh-line) bg-(--kh-paper) px-3 py-2.5 transition hover:border-(--kh-forest)/45">
-                          <span>
-                            <span className="block text-sm font-semibold text-(--kh-ink)">{zh ? item.zh : item.en}</span>
-                            <span className="mt-1 block text-xs leading-5 text-(--kh-muted)">{zh ? item.description.zh : item.description.en}</span>
+        <div className="kh-product-system-grid" data-testid="homepage-product-systems">
+          {systems.map((system, index) => (
+            <Reveal key={system.id} delay={index * 90}>
+              <article className="kh-product-system">
+                <div className="kh-product-system-media kh-media-shade">
+                  <Image
+                    src={index === 0 ? showcaseImages.structureMaterialReal : showcaseImages.foodBoxReal}
+                    alt={index === 0 ? (zh ? "纸材与纸板材料" : "Paper materials and board") : (zh ? "成品包装样品" : "Finished packaging samples")}
+                    fill
+                    sizes="(max-width: 760px) 100vw, 50vw"
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="kh-product-system-copy">
+                  <h3>{system.label}</h3>
+                  <p>{zh ? (index === 0 ? "纸材与成型材料。" : "餐饮与运输包装。") : system.intro}</p>
+                  <div className="kh-product-card-grid">
+                    {system.links.map((item) => {
+                      const visual = system.visuals[item.id];
+                      return (
+                        <Link key={item.id} href={item.href} data-testid="homepage-product-entry" className="kh-product-card">
+                          <span className="kh-product-card-media">
+                            <Image src={visual.image} alt={zh ? visual.altZh : visual.alt} fill sizes="(max-width: 760px) 42vw, (max-width: 1100px) 22vw, 16vw" className="object-cover" loading="lazy" />
                           </span>
-                          <ArrowRight className="size-4 shrink-0 text-(--kh-forest) transition group-hover:translate-x-0.5" />
+                          <span className="kh-product-card-copy">
+                            <span className="kh-product-card-title">{zh ? item.zh : item.en}</span>
+                            <span className="kh-product-card-description">{zh ? shortZhDescriptions[item.id] : item.description.en}</span>
+                            <ArrowRight className="size-4" aria-hidden="true" />
+                          </span>
                         </Link>
-                      ))}
-                    </div>
-                    <Link href={section.href} className="kh-text-link mt-6 inline-flex">
-                      {cta}<ArrowRight className="size-4" />
-                    </Link>
+                      );
+                    })}
                   </div>
-                </article>
-              </Reveal>
-            );
-          })}
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

@@ -327,14 +327,15 @@ test.describe("Kehong production flows", () => {
     await page.goto("/en", { waitUntil: "networkidle" });
     await expect(page.getByText("Scroll", { exact: true })).toHaveCount(0);
     const productLinks = page.getByTestId("homepage-product-entry");
-    await expect(productLinks).toHaveCount(11);
+    await expect(productLinks).toHaveCount(6);
+    expect(new Set(await productLinks.evaluateAll((links) => links.map((link) => link.getAttribute("href")))).size).toBe(6);
   });
 
   test("English and Chinese product entry links resolve to a real range, category or inquiry", async ({ page }) => {
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}`, { waitUntil: "networkidle" });
       const entries = page.getByTestId("homepage-product-entry");
-      await expect(entries).toHaveCount(11);
+      await expect(entries).toHaveCount(6);
       const hrefs = await entries.evaluateAll((links) => links.map((link) => link.getAttribute("href") || ""));
       for (const href of hrefs) {
         const response = await page.goto(href, { waitUntil: "domcontentloaded" });
@@ -372,14 +373,15 @@ test.describe("Kehong production flows", () => {
 
   test("homepage section sequence stays unique after the hero", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
-    await expect(page.locator(".kh-kicker-index")).toHaveText(["02", "04", "05", "06", "07", "08"]);
+    await expect(page.locator(".kh-kicker-index")).toHaveText(["02", "03", "04", "05", "06"]);
   });
 
-  test("home CTA has no residual visual layer and buyer support links render", async ({ page }) => {
+  test("home CTA keeps a compact brief and resource links", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
     await expect(page.locator(".kh-cta-watermark")).toHaveCount(0);
-    await expect(page.getByText("Buyer-ready quote checklist", { exact: true })).toBeVisible();
+    await expect(page.getByText("Inquiry checklist", { exact: true })).toBeVisible();
     await expect(page.locator('a[href="/en/resources"]').last()).toBeVisible();
+    await expect(page.locator(".kh-spec-row")).toHaveCount(5);
   });
 
   test("language changes preserve contact product and interest prefill", async ({ page }) => {

@@ -104,9 +104,6 @@ export default function Header({ variant = "solid" }: HeaderProps) {
   const firstProductMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const setFirstProductMenuLinkRef = (node: HTMLAnchorElement | null) => {
     firstProductMenuLinkRef.current = node;
-    if (!node || !focusFirstProductLinkRef.current) return;
-    focusFirstProductLinkRef.current = false;
-    node.focus({ preventScroll: true });
   };
   const [firstProductFocusRequest, setFirstProductFocusRequest] = useState(0);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -185,11 +182,14 @@ export default function Header({ variant = "solid" }: HeaderProps) {
       return;
     }
     if (!focusFirstProductLinkRef.current) return;
-    const firstLink = firstProductMenuLinkRef.current
-      ?? desktopNavRef.current?.querySelector<HTMLAnchorElement>("#header-products-menu a");
-    if (!firstLink) return;
-    focusFirstProductLinkRef.current = false;
-    firstLink.focus({ preventScroll: true });
+    const frame = requestAnimationFrame(() => {
+      const firstLink = firstProductMenuLinkRef.current
+        ?? desktopNavRef.current?.querySelector<HTMLAnchorElement>("#header-products-menu a");
+      if (!firstLink || !focusFirstProductLinkRef.current) return;
+      focusFirstProductLinkRef.current = false;
+      firstLink.focus({ preventScroll: true });
+    });
+    return () => cancelAnimationFrame(frame);
   }, [openMenu, firstProductFocusRequest]);
 
   // Capture the first landing URL before a visitor reaches a quote form.

@@ -954,6 +954,89 @@
     font-size: .88rem;
     font-weight: 700;
   }
+
+  /* ---------- Homepage product systems ---------- */
+  .kh-product-system-grid {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kh-product-system {
+    overflow: hidden;
+    border: 1px solid var(--kh-line);
+    border-radius: 12px;
+    background: var(--kh-paper);
+  }
+  .kh-product-system-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .kh-product-system-copy {
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+  }
+  .kh-product-system-copy h3 {
+    margin: .45rem 0 0;
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    line-height: 1.15;
+  }
+  .kh-product-system-copy > p:not(.kh-eyebrow) {
+    margin: .55rem 0 1.25rem;
+    color: var(--kh-muted);
+  }
+  .kh-product-card-grid {
+    display: grid;
+    gap: .7rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .kh-product-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--kh-line);
+    background: var(--kh-surface);
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .kh-product-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--kh-brass);
+  }
+  .kh-product-card-media {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .kh-product-card-copy {
+    position: relative;
+    display: flex;
+    min-height: 8.3rem;
+    flex: 1;
+    flex-direction: column;
+    gap: .3rem;
+    padding: .75rem;
+  }
+  .kh-product-card-title {
+    display: block;
+    color: var(--kh-ink);
+    font-size: .9rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .kh-product-card-description {
+    display: block;
+    color: var(--kh-muted);
+    font-size: .76rem;
+    line-height: 1.45;
+  }
+  .kh-product-card-copy > svg {
+    margin-top: auto;
+    color: var(--kh-forest);
+  }
+  .kh-product-system-link {
+    margin-top: 1.1rem;
+  }
   .kh-index-row {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -1160,9 +1243,9 @@
   }
   .kh-factory-main {
     position: relative;
-    max-width: 440px;
-    aspect-ratio: 3 / 4;
-    margin-left: auto;
+    max-width: none;
+    aspect-ratio: 16 / 10;
+    margin-left: 0;
     overflow: hidden;
     border: 1px solid rgba(255, 253, 248, .2);
     border-radius: 12px;
@@ -1179,7 +1262,56 @@
     box-shadow: 0 24px 48px rgba(10, 22, 18, .4);
   }
 
-  /* ---------- S7 行业路径(hover 预览) ---------- */
+  /* ---------- S5 行业卡片 ---------- */
+  .kh-industry-cards {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .kh-industry-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--kh-line);
+    background: var(--kh-paper);
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .kh-industry-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--kh-brass);
+  }
+  .kh-industry-card-media {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .kh-industry-card-copy {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .4rem 1rem;
+    padding: 1.15rem 1.2rem 1.25rem;
+  }
+  .kh-industry-card-title {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+  .kh-industry-card-body {
+    display: block;
+    color: var(--kh-muted);
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+  .kh-industry-card-copy > svg {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    color: var(--kh-forest);
+  }
+
+  /* ---------- Legacy industry list (kept for non-home surfaces) ---------- */
   .kh-industry-wrap {
     position: relative;
   }
@@ -1317,6 +1449,19 @@
     margin-top: 2rem;
     color: rgba(255, 253, 248, .55);
   }
+  .kh-final-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem 1.25rem;
+    margin-top: 1.25rem;
+    color: rgba(255, 253, 248, .7);
+    font-size: .84rem;
+  }
+  .kh-final-links a {
+    text-decoration: underline;
+    text-underline-offset: .2em;
+  }
+  .kh-final-links a:hover { color: var(--kh-brass-soft); }
 
   /* ---------- 滚动 Reveal 原语 ---------- */
   .kh-reveal-armed {
@@ -1650,6 +1795,19 @@
   .kh-bento {
     grid-template-columns: 1fr;
   }
+  .kh-product-system-grid,
+  .kh-industry-cards {
+    grid-template-columns: 1fr;
+  }
+  .kh-product-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .kh-product-card-copy {
+    min-height: 7.8rem;
+    padding: .65rem;
+  }
+  .kh-product-card-title { font-size: .84rem; }
+  .kh-product-card-description { font-size: .72rem; }
   .kh-category-grid {
     grid-template-columns: 1fr;
   }
@@ -1673,6 +1831,8 @@
     right: 0;
     bottom: -1.25rem;
   }
+  .kh-factory-grid { gap: 2.5rem; }
+  .kh-factory-main { aspect-ratio: 16 / 10; }
   .kh-industry-row {
     gap: .75rem;
   }

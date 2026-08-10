@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
@@ -26,11 +24,11 @@ const steps: readonly ProcessStep[] = [
     id: "structure-dieline",
     title: "Structure & dieline confirmation",
     titleZh: "结构与刀模确认",
-    body: "Confirm the box style, dimensions, dieline and sample against the intended use and load requirements.",
-    bodyZh: "根据尺寸、用途和承重要求确认盒型、刀模和样品",
+    body: "Confirm the box style, dimensions and dieline before sampling.",
+    bodyZh: "确认盒型、刀模。",
     image: showcaseImages.machineClose,
     figure: "Fig.01 — Die-cutting equipment",
-    figureZh: "图01 — 模切设备",
+    figureZh: "图01 — 模切",
     alt: "Close-up of automatic feeding equipment used for die-cutting preparation",
     altZh: "用于模切准备的自动送料设备近景",
   },
@@ -38,11 +36,11 @@ const steps: readonly ProcessStep[] = [
     id: "paper-board-converting",
     title: "Paper & board converting",
     titleZh: "纸材与纸板加工",
-    body: "Prepare paper and board to the confirmed grade, width, construction and surface specification.",
-    bodyZh: "按确认的纸张等级、幅宽、纸板结构和表面要求准备",
-    image: showcaseImages.structureMaterialReal,
+    body: "Prepare paper and board to the confirmed specification.",
+    bodyZh: "按纸张要求备料。",
+    image: showcaseImages.honeycomb,
     figure: "Fig.02 — Paperboard material",
-    figureZh: "图02 — 纸板材料",
+    figureZh: "图02 — 纸材",
     alt: "Paperboard material used to review structure and surface requirements",
     altZh: "用于核对结构与表面要求的纸板材料",
   },
@@ -50,11 +48,11 @@ const steps: readonly ProcessStep[] = [
     id: "printing-finishing",
     title: "Printing & surface finishing",
     titleZh: "印刷与表面处理",
-    body: "Check artwork, color and surface finish against the approved sample before the relevant production stage.",
-    bodyZh: "根据确认样稿核对颜色、图文内容和表面效果",
+    body: "Check artwork, colour and surface finish against the sample.",
+    bodyZh: "核对颜色和效果。",
     image: showcaseImages.swatch,
     figure: "Fig.03 — Colour and material swatches",
-    figureZh: "图03 — 色样与材料样卡",
+    figureZh: "图03 — 色样",
     alt: "Colour and material swatches used to review print and surface finish",
     altZh: "用于核对印刷颜色与表面效果的色样和材料样卡",
   },
@@ -62,11 +60,11 @@ const steps: readonly ProcessStep[] = [
     id: "forming-packing",
     title: "Die-cutting, forming & packing",
     titleZh: "模切、成型与出货",
-    body: "Complete die-cutting, creasing, mounting and forming, then inspect and pack for shipment.",
-    bodyZh: "完成模切、压痕、裱贴和成型，检验后按项目要求包装出货",
+    body: "Complete converting, inspect the result and pack for dispatch.",
+    bodyZh: "加工、检验、出货。",
     image: showcaseImages.kraftCartonsPallet,
     figure: "Fig.04 — Cartons prepared for dispatch",
-    figureZh: "图04 — 待出货纸箱",
+    figureZh: "图04 — 出货",
     alt: "Kraft cartons staged on a pallet for dispatch",
     altZh: "码放在托盘上、等待出货的牛皮纸箱",
   },
@@ -87,13 +85,9 @@ export default function HomeProcess({ locale }: { locale: string }) {
         <Reveal>
           <div className="kh-section-heading">
             <div>
-              <SectionKicker index="04" text={zh ? "生产流程" : "Process"} />
-              <h2>{zh ? "从结构确认到成品出货，逐步完成打样、加工、检验和包装。" : "From structure approval to shipment, each stage covers a specific production task."}</h2>
+              <SectionKicker index="03" text={zh ? "流程" : "Process"} />
+              <h2>{zh ? "确认结构，完成加工。" : "Four clear steps from structure approval to dispatch."}</h2>
             </div>
-            <Link className="kh-text-link" href="/capabilities">
-              {zh ? "查看制造能力" : "View manufacturing capabilities"}
-              <ArrowRight className="size-4" />
-            </Link>
           </div>
         </Reveal>
 
@@ -110,8 +104,7 @@ export default function HomeProcess({ locale }: { locale: string }) {
                 src={current.image}
                 alt={zh ? current.altZh : current.alt}
                 fill
-                priority={active === 0}
-                loading={active === 0 ? "eager" : "lazy"}
+                loading="lazy"
                 sizes="(max-width: 1100px) 100vw, 52vw"
                 className="object-cover"
               />

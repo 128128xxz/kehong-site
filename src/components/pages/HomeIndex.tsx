@@ -6,7 +6,6 @@ import HomeProcess from "@/components/home/HomeProcess";
 import HomeFactoryProof from "@/components/home/HomeFactoryProof";
 import HomeIndustries from "@/components/home/HomeIndustries";
 import HomeCta from "@/components/home/HomeCta";
-import HomeBuyerSupport from "@/components/home/HomeBuyerSupport";
 import { getLocale } from "next-intl/server";
 
 export default async function HomeIndex() {
@@ -23,7 +22,6 @@ export default async function HomeIndex() {
         <HomeProcess locale={locale} />
         <HomeFactoryProof locale={locale} />
         <HomeIndustries locale={locale} />
-        <HomeBuyerSupport locale={locale} />
         <HomeCta locale={locale} />
       </main>
       <SiteFooter />
