@@ -1892,7 +1892,8 @@
 @media (max-width: 760px) {
   .kh-mobile-sticky-actions { display: grid; }
   .kh-mobile-sticky-actions .kh-button { min-height: 44px; pointer-events: auto; }
-  .kh-footer { padding-bottom: 6rem; }
+  /* Keep the final footer controls above the fixed mobile CTA at max scroll. */
+  .kh-footer { padding-bottom: calc(9rem + env(safe-area-inset-bottom)); }
 }
 
 /* Let content remain tappable beneath the sticky header's empty surface on touch screens.
