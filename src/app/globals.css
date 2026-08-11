@@ -1890,6 +1890,14 @@
   .kh-footer { padding-bottom: 6rem; }
 }
 
+/* Let content remain tappable beneath the sticky header's empty surface on touch screens.
+   Header controls keep their own hit areas; the translucent shell must not intercept cards. */
+@media (max-width: 1024px) {
+  .kh-header,
+  .kh-header-bar { pointer-events: none; }
+  .kh-header-bar > * { pointer-events: auto; }
+}
+
 /* ---------- Cinema 页头变体(首页暗场,未分层以压过工具类) ---------- */
 .kh-header[data-variant="cinema"] {
   transition: background-color .3s ease, border-color .3s ease, color .3s ease;
