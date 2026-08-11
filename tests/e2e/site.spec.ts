@@ -244,11 +244,11 @@ test.describe("Kehong production flows", () => {
     ];
     for (const locale of ["en", "zh"]) {
       for (const item of resourceCases) {
-        await page.goto(`/${locale}/resources/${item.slug}`, { waitUntil: "networkidle" });
+        await page.goto(`/${locale}/resources/${item.slug}`, { waitUntil: "domcontentloaded" });
         await page.locator("main a[href*='/contact']").first().click();
         await expect(page).toHaveURL(new RegExp(`/contact\\?interest=${item.interest}`));
       }
-      await page.goto(`/${locale}/model-preview`, { waitUntil: "networkidle" });
+      await page.goto(`/${locale}/model-preview`, { waitUntil: "domcontentloaded" });
       await page.locator("main a[href*='/contact']").first().click();
       await expect(page).toHaveURL(/\/contact\?interest=structure-review/);
     }
@@ -365,7 +365,7 @@ test.describe("Kehong production flows", () => {
       "soft shadow",
     ];
     for (const path of ["/zh", "/zh/products", "/zh/contact", "/zh/model-preview"]) {
-      await page.goto(path, { waitUntil: "networkidle" });
+      await page.goto(path, { waitUntil: "domcontentloaded" });
       const visibleText = await page.locator("body").innerText();
       for (const text of prohibited) expect(visibleText).not.toContain(text);
     }
@@ -412,21 +412,21 @@ test.describe("Kehong production flows", () => {
   });
 
   test("Chinese metadata and visible copy consistently use the Chinese brand and labels", async ({ page }) => {
-    await page.goto("/zh/packaging", { waitUntil: "networkidle" });
+    await page.goto("/zh/packaging", { waitUntil: "domcontentloaded" });
     await expect(page).toHaveTitle("成品纸包装分类总览 | 科宏纸品");
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", "成品纸包装分类总览 | 科宏纸品");
     await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", "成品纸包装分类总览 | 科宏纸品");
 
-    await page.goto("/zh/model-preview", { waitUntil: "networkidle" });
+    await page.goto("/zh/model-preview", { waitUntil: "domcontentloaded" });
     await expect(page).toHaveTitle("3D 包装结构预览 | 科宏纸品");
     await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /科宏/u);
     await expect(page.locator('html')).toHaveAttribute("lang", "zh");
 
-    await page.goto("/zh", { waitUntil: "networkidle" });
+    await page.goto("/zh", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".kh-hero-index")).toContainText("佛山科宏纸品");
     await expect(page.locator(".kh-hero-index")).toContainText("20+ 年");
 
-    await page.goto("/zh/contact", { waitUntil: "networkidle" });
+    await page.goto("/zh/contact", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".kh-fig-caption").filter({ hasText: "图01 — 食品纸盒实拍" }).first()).toBeVisible();
 
     for (const [path, title] of [
