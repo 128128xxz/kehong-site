@@ -32,7 +32,8 @@ test.describe("homepage manufacturing website", () => {
 
   test("homepage keeps a compact procurement-focused section stack", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.locator("main > section")).toHaveCount(6);
+    await expect(page.locator("main > section")).toHaveCount(7);
+    await expect(page.getByTestId("home-latest-insights")).toBeVisible();
     await expect(page.locator('[data-testid="homepage-product-entry"]')).toHaveCount(6);
     await expect(page.locator('[data-testid="home-buyer-support"]')).toHaveCount(0);
   });

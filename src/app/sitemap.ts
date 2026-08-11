@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { getAllSkus, getProductCategories } from "@/lib/catalog";
 import { getAlternateLanguages, getLocaleUrl, type SiteHref } from "@/lib/site";
 import { packagingCategories } from "@/data/packagingCategories";
+import { getNewsSlugs } from "@/content/news";
 
 const staticRoutes = [
   { href: "/", changeFrequency: "weekly", priority: 1 },
@@ -10,6 +11,7 @@ const staticRoutes = [
   { href: "/industries/bakery-packaging", changeFrequency: "monthly", priority: 0.84 },
   { href: "/capabilities", changeFrequency: "monthly", priority: 0.82 },
   { href: "/resources", changeFrequency: "monthly", priority: 0.76 },
+  { href: "/news", changeFrequency: "weekly", priority: 0.78 },
   { href: "/contact", changeFrequency: "monthly", priority: 0.8 },
   { href: "/paper-cup-fan-manufacturer", changeFrequency: "monthly", priority: 0.82 },
   { href: "/paper-packaging-supplier", changeFrequency: "monthly", priority: 0.82 },
@@ -64,8 +66,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
   const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"].map((slug) => ({ href: `/resources/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.65 }));
   const bakeryProductRoutes = ["cake-boxes", "cake-boards-and-drums"].map((slug) => ({ href: `/products/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.78 }));
+  const newsRoutes = getNewsSlugs().map((slug) => ({ href: `/news/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.66 }));
 
-  const routes = [...staticRoutes, ...resourceRoutes, ...bakeryProductRoutes, ...packagingRoutes, ...categoryRoutes, ...productRoutes];
+  const routes = [...staticRoutes, ...resourceRoutes, ...bakeryProductRoutes, ...newsRoutes, ...packagingRoutes, ...categoryRoutes, ...productRoutes];
   const entries = await Promise.all(
     routes.map((route) => sitemapEntry({ ...route, lastModified })),
   );

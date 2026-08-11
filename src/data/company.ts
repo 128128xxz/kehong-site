@@ -6,13 +6,14 @@ export const contact = {
 
 export const companyLegalName = "Foshan Kehong Paper Products Co., Ltd.";
 
-export const FACTORY_ADDRESS = {
-  zh: "佛山市南海区布新工业区7号科宏坑纸厂",
-  en: "Kehong Corrugated Paper Factory, No. 7 Buxin Industrial Zone, Nanhai District, Foshan, Guangdong, China",
-} as const;
-
-export const FACTORY_GOOGLE_MAPS_URL =
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(FACTORY_ADDRESS.zh)}`;
+export {
+  FACTORY_ADDRESS,
+  FACTORY_AMAP_URL,
+  FACTORY_GOOGLE_MAPS_URL,
+  FACTORY_MAP_LABEL,
+  FACTORY_MAP_QUERY_ZH,
+  getFactoryMapUrl,
+} from "./companyLocation";
 
 /** 社媒主页(预留转化入口:填入正式主页 URL 即自动生效;留空时页脚图标指向占位) */
 export const socialLinks = {

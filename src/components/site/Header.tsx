@@ -28,6 +28,7 @@ const capabilityLinks: NavItem[] = [
 
 const resourceLinks: NavItem[] = [
   { href: "/resources", zh: "资源与设计中心", en: "Resources & design center" },
+  { href: "/news", zh: "新闻与洞察", en: "News & Insights" },
   { href: "/resources/artwork-guidelines", zh: "印刷文件指南", en: "Artwork guidelines" },
   { href: "/resources/dielines-templates", zh: "刀线模板申请", en: "Request a dieline" },
   { href: "/model-preview", zh: "3D 结构展厅", en: "3D structure studio" },
@@ -108,14 +109,15 @@ export default function Header({ variant = "solid" }: HeaderProps) {
   const [firstProductFocusRequest, setFirstProductFocusRequest] = useState(0);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
+  const restoreMobileFocusRef = useRef(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<"products" | "capabilities" | "resources" | null>(null);
   const [scrolled, setScrolled] = useState(variant !== "cinema");
   const [lastPathname, setLastPathname] = useState(pathname);
 
   const closeMobileMenu = () => {
+    restoreMobileFocusRef.current = true;
     setMenuOpen(false);
-    requestAnimationFrame(() => menuButtonRef.current?.focus());
   };
 
   // cinema 变体:观察 Hero 底部哨兵,离开视口上沿即切换实底(IO,无 scroll 抖动)
@@ -267,9 +269,19 @@ export default function Header({ variant = "solid" }: HeaderProps) {
     };
   }, [menuOpen]);
 
+  // Restore focus after the drawer has actually unmounted. A touch click can
+  // otherwise leave focus on the dismissed backdrop between the state update
+  // and the next paint.
+  useEffect(() => {
+    if (menuOpen || !restoreMobileFocusRef.current) return;
+    restoreMobileFocusRef.current = false;
+    const frame = requestAnimationFrame(() => menuButtonRef.current?.focus({ preventScroll: true }));
+    return () => cancelAnimationFrame(frame);
+  }, [menuOpen]);
+
   const isProducts = pathname.startsWith("/products") || pathname.startsWith("/packaging");
   const isCapabilities = pathname.startsWith("/capabilities") || pathname.startsWith("/process");
-  const isResources = pathname.startsWith("/resources") || pathname.startsWith("/model-preview") || pathname.startsWith("/procurement");
+  const isResources = pathname.startsWith("/resources") || pathname.startsWith("/news") || pathname.startsWith("/model-preview") || pathname.startsWith("/procurement");
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const navLinkClass = (active: boolean) => `kh-nav-link${active ? " is-active" : ""}`;
 

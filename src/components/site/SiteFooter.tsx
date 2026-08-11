@@ -2,6 +2,7 @@ import { Mail, MessageCircle, ArrowRight } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { companyLegalName, companyProfile, contact, socialLinks } from "@/data/company";
+import { getFactoryMapUrl } from "@/data/companyLocation";
 import SiteLogo from "@/components/site/SiteLogo";
 
 type IconProps = { className?: string };
@@ -113,6 +114,7 @@ export default async function SiteFooter() {
             <div>
               <Link href="/capabilities">{zh ? "制造能力" : "Capabilities"}</Link>
               <Link href="/factory">{zh ? "工厂和流程" : "Factory & process"}</Link>
+              <Link href="/news">{zh ? "新闻与洞察" : "News & Insights"}</Link>
               <Link href="/resources">{zh ? "资源中心" : "Design center"}</Link>
               <Link href="/model-preview">{zh ? "3D 结构预览" : "3D structure studio"}</Link>
             </div>
@@ -132,6 +134,9 @@ export default async function SiteFooter() {
             <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>
               <Mail className="size-4" />
               {zh ? "Email" : "Email"}
+            </a>
+            <a href={getFactoryMapUrl(locale)} target="_blank" rel="noopener noreferrer" aria-label={zh ? "在高德地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}>
+              {zh ? "高德地图" : "Google Maps"}
             </a>
           </div>
           <div className="kh-social" aria-label={zh ? "社交媒体" : "Social media"}>

@@ -459,14 +459,17 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("factory address card uses the shared Chinese Google Maps query in both locales", async ({ page }) => {
-    const mapsQuery = encodeURIComponent("佛山市南海区布新工业区7号科宏坑纸厂");
+  test("factory address card routes Chinese visitors to AMap and English visitors to Google Maps", async ({ page }) => {
+    const mapQuery = "佛山市布新工业区科宏纸品";
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/factory`, { waitUntil: "networkidle" });
-      const mapLink = page.locator(`a[href="https://www.google.com/maps/search/?api=1&query=${mapsQuery}"]`);
+      const mapLink = page.locator("main").locator(locale === "zh" ? 'a[href*="uri.amap.com/search"]' : 'a[href*="www.google.com/maps/search"]').first();
       await expect(mapLink).toBeVisible();
       await expect(mapLink).toHaveAttribute("target", "_blank");
       await expect(mapLink).toHaveAttribute("rel", "noopener noreferrer");
+      const href = await mapLink.getAttribute("href");
+      const url = new URL(href!);
+      expect(url.searchParams.get(locale === "zh" ? "keyword" : "query")).toBe(mapQuery);
       await expect(mapLink).toContainText(locale === "zh" ? "佛山市南海区布新工业区7号科宏坑纸厂" : "Kehong Corrugated Paper Factory");
     }
   });

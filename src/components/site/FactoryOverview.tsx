@@ -2,7 +2,8 @@ import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { companyLegalName, companyProfile, FACTORY_ADDRESS, FACTORY_GOOGLE_MAPS_URL } from "@/data/company";
+import { companyLegalName, companyProfile } from "@/data/company";
+import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryMapUrl } from "@/data/companyLocation";
 import { showcaseImages } from "@/data/visuals";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
@@ -60,12 +61,13 @@ export default async function FactoryOverview() {
                 <dd className="mt-1 text-(--kh-muted)">{isZh ? companyProfile.productionCapability.zh : companyProfile.productionCapability.en}</dd>
               </div>
             </dl>
-            <a href={FACTORY_GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="kh-panel mt-4 flex items-start gap-3 p-4 transition hover:border-(--kh-forest)/45" aria-label={isZh ? "在 Google Maps 中查看工厂位置" : "View Kehong factory location in Google Maps"}>
+            <a href={getFactoryMapUrl(locale)} target="_blank" rel="noopener noreferrer" className="kh-panel mt-4 flex min-h-11 items-start gap-3 p-4 transition hover:border-(--kh-forest)/45" aria-label={isZh ? "在高德地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}>
               <MapPin className="mt-0.5 size-5 shrink-0 text-(--kh-brass)" aria-hidden="true" />
               <span>
                 <span className="block font-semibold text-(--kh-ink)">{isZh ? "工厂地址" : "Factory address"}</span>
+                <span className="mt-1 block text-xs font-medium text-(--kh-brass)">{isZh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}</span>
                 <span className="mt-1 block text-sm leading-6 text-(--kh-muted)">{isZh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
-                <span className="mt-2 inline-flex text-sm font-semibold text-(--kh-forest)">{isZh ? "在 Google Maps 中查看" : "View in Google Maps"} <ArrowRight className="ml-1 size-4" /></span>
+                <span className="mt-2 inline-flex text-sm font-semibold text-(--kh-forest)">{isZh ? "在高德地图中查看" : "View on Google Maps"} <ArrowRight className="ml-1 size-4" /></span>
               </span>
             </a>
             <Link href="/process" className="kh-text-link mt-6 min-h-11 px-1">

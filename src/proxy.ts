@@ -35,6 +35,7 @@ const staticRoutePaths = new Set([
   "industries/ecommerce-industrial-professional",
   "capabilities",
   "resources",
+  "news",
   "contact",
   "paper-cup-fan-manufacturer",
   "paper-packaging-supplier",
@@ -55,6 +56,14 @@ const resourceSlugs = new Set([
   "dielines-templates",
   "packaging-selection-guide",
   "proofing-samples",
+]);
+const newsSlugs = new Set([
+  "paper-cup-fans-coated-rolls-sheets-difference",
+  "takeout-box-quotation-six-details",
+  "corrugated-mailer-dimensions-board-inserts",
+  "paper-bag-quotation-paper-handles-printing-quantity",
+  "cake-boxes-boards-drums-match",
+  "artwork-to-dielines-packaging-sampling",
 ]);
 const publicProductSlugs = new Set([
   ...catalog.skus.filter((sku) => sku.published && sku.sourceStatus === "confirmed").map((sku) => sku.slug),
@@ -93,6 +102,9 @@ function getRetiredLocaleDestination(pathname: string) {
     return slug && resourceSlugs.has(slug) && segments.length === 2
       ? `/en/resources/${slug}`
       : "/en/resources";
+  }
+  if (section === "news") {
+    return slug && newsSlugs.has(slug) && segments.length === 2 ? `/en/news/${slug}` : "/en/news";
   }
   if (section === "industries") return "/en/industries";
 

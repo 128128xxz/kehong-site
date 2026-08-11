@@ -1931,6 +1931,78 @@
   color: var(--kh-ink);
 }
 
+/* ---------- News & Insights ---------- */
+.kh-news-card-media {
+  position: relative;
+  aspect-ratio: 1200 / 630;
+  overflow: hidden;
+  border-radius: .5rem;
+  background: var(--kh-paper);
+}
+.kh-news-card-media img {
+  transition: transform .45s ease;
+}
+.kh-news-card:hover .kh-news-card-media img,
+.kh-news-card:focus-visible .kh-news-card-media img {
+  transform: scale(1.04);
+}
+.kh-news-share {
+  display: grid;
+  gap: .75rem;
+  border-top: 1px solid var(--kh-line);
+  border-bottom: 1px solid var(--kh-line);
+  padding: 1rem 0;
+}
+.kh-news-share-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: var(--kh-brass);
+  font-size: .72rem;
+  text-transform: uppercase;
+}
+.kh-news-share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.kh-news-share-button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  border: 1px solid var(--kh-line);
+  border-radius: 999px;
+  padding: .55rem .8rem;
+  color: var(--kh-ink);
+  font-size: .78rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: border-color .2s ease, background-color .2s ease, color .2s ease;
+}
+.kh-news-share-button:hover,
+.kh-news-share-button:focus-visible {
+  border-color: var(--kh-forest);
+  background: var(--kh-forest);
+  color: #fffdf8;
+}
+.kh-news-article h2 {
+  margin-top: 2.25rem;
+  font-size: clamp(1.45rem, 2vw, 2rem);
+}
+.kh-news-article p {
+  margin-top: .8rem;
+  color: var(--kh-muted);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+@media (max-width: 640px) {
+  .kh-news-share-button {
+    flex: 1 1 calc(50% - .5rem);
+  }
+}
+
 /* ---------- 关键帧 ---------- */
 @keyframes kh-rise {
   from {
