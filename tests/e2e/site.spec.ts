@@ -437,7 +437,7 @@ test.describe("Kehong production flows", () => {
       ["/zh/privacy", "隐私政策 | 科宏纸品"],
       ["/zh/terms", "使用条款 | 科宏纸品"],
     ]) {
-      await page.goto(path, { waitUntil: "networkidle" });
+      await page.goto(path, { waitUntil: "domcontentloaded" });
       await expect(page).toHaveTitle(title);
       await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", title);
       await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", title);
