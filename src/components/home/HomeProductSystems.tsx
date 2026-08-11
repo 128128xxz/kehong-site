@@ -88,7 +88,7 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
                 </div>
                 <div className="kh-product-system-copy">
                   <h3>{system.label}</h3>
-                  <p>{zh ? (index === 0 ? "纸材与成型材料。" : "餐饮与运输包装。") : system.intro}</p>
+                  <p>{zh ? "先选择纸材与半成品或成品包装，再查看对应产品和规格。" : system.intro}</p>
                   <div className="kh-product-card-grid">
                     {system.links.map((item) => {
                       const visual = system.visuals[item.id];

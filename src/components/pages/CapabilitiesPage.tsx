@@ -86,7 +86,7 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
           }
         >
           <Link href="/contact" className="kh-button kh-button-light">
-            {isZh ? "获取定制报价" : "Get a custom quote"}
+            {isZh ? "提交询价" : "Get a custom quote"}
           </Link>
           <Link href="/process" className="kh-button kh-button-ghost">
             {isZh ? "查看生产流程" : "View production process"}
@@ -209,7 +209,7 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
                   {isZh ? "提交项目需求" : "Start a packaging project"}
                 </Link>
                 <Link href="/products" className="kh-button kh-button-ghost">
-                  {isZh ? "查看产品规格" : "Browse products"}
+                  {isZh ? "查看规格" : "Browse products"}
                 </Link>
               </div>
             </Reveal>

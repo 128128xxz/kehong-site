@@ -17,7 +17,7 @@ export const PACKAGING_INQUIRY_LABELS = {
   "paper-bags": { en: "Paper Bags", zh: "纸袋" },
   "takeout-boxes": { en: "Takeout Boxes", zh: "外带食品盒" },
   "cake-boxes": { en: "Cake Boxes", zh: "蛋糕盒" },
-  "cake-boards-cake-drums": { en: "Cake Boards & Cake Drums", zh: "蛋糕底托和蛋糕鼓" },
+  "cake-boards-cake-drums": { en: "Cake Boards & Cake Drums", zh: "蛋糕底托与蛋糕鼓" },
   "corrugated-mailer-boxes": { en: "Corrugated Mailer Boxes", zh: "瓦楞邮寄盒" },
 } as const satisfies Record<PackagingCategorySlug, { en: string; zh: string }>;
 
@@ -69,7 +69,7 @@ const allPackagingCategories: PackagingCategory[] = [
     slug: "takeout-boxes",
     title: { en: "Takeout Boxes", zh: "外带盒" },
     shortDescription: { en: "Paper takeaway structures for foodservice, bakery and delivery workflows.", zh: "纸质外带盒，用于餐饮、烘焙和外卖配送。" },
-    description: { en: "Review takeaway box dimensions, board, ventilation, closure and print requirements with a packaging partner. Food-contact, grease or barrier claims are confirmed only when supported by the project specification.", zh: "请提供外带盒尺寸、纸板类型、通风、闭合方式和印刷要求。食品接触、防油或阻隔性能按实际项目规格确认。" },
+    description: { en: "Review takeaway box dimensions, board, ventilation, closure and print requirements with a packaging partner. Performance details are confirmed only when supported by the project specification.", zh: "请提供外带盒尺寸、纸板类型、通风、闭合方式和印刷要求。相关性能按实际项目规格和支持资料确认。" },
     image: showcaseImages.takeoutBoxesReference,
     subcategories: { en: ["Burger boxes", "Fried-food boxes", "Lunch boxes", "Pizza boxes", "Kraft meal boxes", "Takeaway cake boxes"], zh: ["汉堡盒", "炸食盒", "餐盒", "披萨盒", "牛皮纸餐盒", "外带蛋糕盒"] },
     applications: { en: ["Foodservice", "Bakery delivery", "Restaurant takeaway", "Meal delivery"], zh: ["餐饮服务", "烘焙配送", "餐厅外带", "餐食配送"] },
@@ -95,8 +95,8 @@ const allPackagingCategories: PackagingCategory[] = [
   },
   {
     slug: "cake-boards-cake-drums",
-    title: { en: "Cake Boards & Cake Drums", zh: "蛋糕底托和蛋糕鼓" },
-    shortDescription: { en: "Boards and drums for everyday cake support, display and heavier multi-layer transport.", zh: "蛋糕底托和蛋糕鼓，蛋糕承托、展示和运输" },
+    title: { en: "Cake Boards & Cake Drums", zh: "蛋糕底托与蛋糕鼓" },
+    shortDescription: { en: "Boards and drums for everyday cake support, display and heavier multi-layer transport.", zh: "蛋糕底托与蛋糕鼓，蛋糕承托、展示和运输" },
     description: { en: "Cake boards are generally used for everyday support and presentation. Cake drums are thicker and suited to heavier or multi-layer cakes. Cake base boards provide a stable foundation for transport and display; exact material and thickness are confirmed from the project information.", zh: "蛋糕托板用于日常承托和展示。蛋糕鼓更厚，适合较重或多层蛋糕。蛋糕底板用于运输基础承托。具体材料和厚度以项目资料为准。" },
     image: showcaseImages.aiCakeBoardsSet,
     subcategories: { en: ["Cardboard cake board", "Cake drum", "Cake base board", "MDF / Masonite board", "Mini cake board", "Double-thick cake card"], zh: ["纸板蛋糕托", "蛋糕鼓", "蛋糕底板", "MDF/硬质纤维板", "迷你蛋糕托", "加厚蛋糕卡"] },

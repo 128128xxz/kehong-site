@@ -23,7 +23,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
           title={isZh ? "包装设计、材料与结构准备指南" : "Packaging guides for artwork, materials, structure and sampling."}
           lede={
             isZh
-              ? "用于准备设计稿、选择材料、获取刀模图、确认表面工艺和打样资料。"
+              ? "这些指南涵盖设计稿准备、材料选择、刀模图、表面工艺和打样资料。"
               : "Use these guides to prepare artwork, compare materials and finishes, request a dieline and organize sampling information before production."
           }
           meta={[
@@ -81,7 +81,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                         ))}
                       </ul>
                       <Link href={item.type === "request" ? "/contact" : `/resources/${item.slug}`} className="kh-text-link mt-5">
-                        {item.type === "request" ? (isZh ? "提交申请" : "Send a request") : (isZh ? "阅读指南" : "Read guide")}
+                        {item.type === "request" ? (isZh ? "申请刀模图" : "Send a request") : (isZh ? "阅读指南" : "Read guide")}
                         <ArrowRight className="size-4" />
                       </Link>
                     </article>
@@ -126,7 +126,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                       : "Share the product use, contact conditions and specification details needed to select a suitable food-packaging material."}
                   </p>
                   <Link href="/contact" className="kh-button kh-button-light mt-5">
-                    {isZh ? "发起引导式询盘" : "Start guided RFQ"}
+                    {isZh ? "咨询包装专家" : "Start guided RFQ"}
                     <ArrowRight className="size-4" />
                   </Link>
                 </div>

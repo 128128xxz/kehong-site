@@ -475,7 +475,7 @@ export default async function ProductDetailPage({
               </a>
               <Link href={contactHref} className="kh-button kh-button-secondary">
                 <FileText className="size-4" />
-                {isZh ? "获取报价" : "Request a quote"}
+                {isZh ? "提交询价" : "Request a quote"}
               </Link>
             </div>
           </div>
@@ -600,7 +600,7 @@ export default async function ProductDetailPage({
               </a>
               <Link href={contactHref} className="kh-button border border-white/35 text-(--kh-surface) hover:bg-white/10">
                 <FileText className="size-4" />
-                {isZh ? "获取报价" : "Request a quote"}
+                {isZh ? "提交询价" : "Request a quote"}
               </Link>
             </div>
           </aside>

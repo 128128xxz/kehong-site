@@ -63,13 +63,13 @@ export const resourceZhCopy: Record<string, { title: string; summary: string; to
   "artwork-guidelines": { title: "设计稿指南", summary: "实用清单：设计稿交接、色彩沟通和文件版本确认。", topics: ["CMYK 与潘通色沟通", "出血、安全区域和切折线", "字体、矢量图和图片分辨率", "可接受的文件格式"] },
   "materials-guide": { title: "材料指南", summary: "按结构、外观和用途比较纸张、纸板和瓦楞材料。", topics: ["纸张和纸板选择", "结构与应用", "表面工艺适配", "需要确认的规格"] },
   "cupstock-vs-pe-coated-paper": { title: "杯纸与 PE 淋膜纸指南", summary: "杯纸项目报价前，先明确原纸、加工形态和淋膜要求。", topics: ["杯纸与加工组件", "纸卷、平张和扇形片", "涂层要求", "克重与应用需求"] },
-  "food-packaging-material-selection": { title: "食品包装材料选型指南", summary: "整理产品用途、接触方式和规格要求，选择合适的食品包装纸材。", topics: ["产品接触与使用需求", "结构与适配", "阻隔或防油需求", "可提供资料"] },
-  "paper-bag-structure-guide": { title: "纸袋结构指南", summary: "用简明结构清单确认纸袋尺寸、提手、承重和零售展示需求。", topics: ["纸袋尺寸", "提手类型", "纸张与纸板选择", "印刷与包装"] },
+  "food-packaging-material-selection": { title: "食品包装材料选型指南", summary: "整理产品用途、使用方式和规格要求，选择合适的食品包装纸材。", topics: ["产品用途与使用需求", "结构与适配", "性能要求", "可提供资料"] },
+  "paper-bag-structure-guide": { title: "纸袋结构指南", summary: "用简明结构清单确认纸袋尺寸、提手、使用方式和零售展示需求。", topics: ["纸袋尺寸", "提手类型", "纸张与纸板选择", "印刷与包装"] },
   "corrugated-mailer-structure-guide": { title: "瓦楞邮寄盒结构指南", summary: "评审电商邮寄盒的纸板结构、闭合方式、保护点和内托需求。", topics: ["产品尺寸", "纸板与保护要求", "闭合与内托", "发货流程"] },
   "custom-paper-packaging-buyer-faq": { title: "定制纸包装买家常见问题", summary: "帮助采购人员准备尺寸、数量、设计稿和打样信息。", topics: ["产品与应用", "尺寸、数量与市场", "设计稿与印刷", "打样与生产评审"] },
   "finishes-guide": { title: "表面工艺指南", summary: "了解覆膜、烫金、压凸和局部 UV 等工艺对包装外观和设计稿的影响。", topics: ["哑光或亮光覆膜", "烫金", "压凸或压凹", "局部 UV 与涂层", "贴窗"] },
   "dielines-templates": { title: "刀模图与模板申请", summary: "确认包装结构和尺寸后，可申请对应的刀模图或模板。", topics: ["结构类型", "产品尺寸", "切线与折线要求", "设计稿交接"] },
-  "packaging-selection-guide": { title: "包装选型指南", summary: "从产品、运输、展示、食品接触和操作重点开始梳理。", topics: ["产品适配", "运输与保护", "展示与礼赠", "材料与表面工艺"] },
+  "packaging-selection-guide": { title: "包装选型指南", summary: "从产品、运输、展示、使用方式和操作重点开始梳理。", topics: ["产品适配", "运输与保护", "展示与礼赠", "材料与表面工艺"] },
   "proofing-samples": { title: "校样与样品", summary: "了解何时需要白样、数码校样或生产样来确认包装。", topics: ["白样结构样", "数码校样", "印刷样", "生产样"] },
 };
 

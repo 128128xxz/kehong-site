@@ -98,7 +98,7 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
                         href={item!.slug === "cake-boxes" ? "/packaging/cake-boxes" : "/packaging/cake-boards-cake-drums"}
                         className="kh-text-link mt-6"
                       >
-                        {isZh ? "查看范围" : "View range"} <ArrowRight className="size-4" />
+                        {isZh ? "查看包装类型" : "View range"} <ArrowRight className="size-4" />
                       </Link>
                     </div>
                   </article>

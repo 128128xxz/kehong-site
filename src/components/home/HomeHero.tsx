@@ -75,7 +75,7 @@ export default function HomeHero({ locale }: { locale: string }) {
           </h1>
           <p className="kh-lede kh-rise kh-rise-4">
             {zh
-              ? "纸材到包装，按项目对接。"
+              ? "科宏提供纸材加工、纸杯部件和定制纸包装，并根据项目要求安排结构打样、生产和出货准备。"
               : "Paper materials, semi-finished components and finished packaging, made for your brief."}
           </p>
           <div className="kh-actions kh-rise kh-rise-5">

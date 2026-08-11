@@ -72,7 +72,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ lo
       <Header />
       <main>
         <PageHero index="01" kicker={article.category} title={article.title} lede={article.description} meta={[formatNewsDate(article.publishedAt, locale), article.author, zh ? "新闻与洞察" : "News & Insights"]}>
-          <Link href="/contact" className="kh-button kh-button-light">{zh ? "提交询盘" : "Start a project brief"}<ArrowRight className="size-4" /></Link>
+          <Link href="/contact" className="kh-button kh-button-light">{zh ? "提交项目需求" : "Start a project brief"}<ArrowRight className="size-4" /></Link>
           <Link href="/news" className="kh-button kh-button-ghost">{zh ? "返回新闻与洞察" : "Back to News & Insights"}</Link>
         </PageHero>
         <article className="kh-news-article kh-section">

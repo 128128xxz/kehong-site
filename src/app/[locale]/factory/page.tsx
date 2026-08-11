@@ -30,7 +30,7 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
           title={isZh ? "佛山纸品加工与包装生产。" : "Paper converting and packaging production in Foshan."}
           lede={
             isZh
-              ? "科宏位于广东佛山，可根据项目需要完成选材、结构打样、纸材加工、后道工艺和出货准备。"
+              ? "科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺和出货准备。"
               : "Kehong is based in Foshan, Guangdong. Our team handles material selection, structural sampling, paper converting, finishing and shipment preparation for paper packaging projects."
           }
           meta={

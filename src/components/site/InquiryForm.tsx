@@ -27,7 +27,7 @@ type InquiryFormProps = {
 const copy = {
   zh: {
     eyebrow: "提交询盘",
-    title: "提交询盘",
+    title: "提交询价",
     description: "留下采购需求，科宏团队会按产品、数量和目标市场跟进报价。",
     name: "姓名",
     company: "公司 / 品牌",
@@ -46,7 +46,7 @@ const copy = {
     file: "附件（图纸、样品图或规格表）",
     message: "尺寸、材质、数量、印刷、交期或目标市场",
     privacy: "我同意科宏纸品根据隐私政策处理我提交的信息，以便回复本次询盘",
-    submit: "提交询盘",
+    submit: "提交询价",
     whatsapp: "WhatsApp",
     success: "询盘已被系统接收，科宏团队会尽快联系你。",
     error: "提交失败，请稍后重试，或直接使用 WhatsApp 联系。",

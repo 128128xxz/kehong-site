@@ -3,7 +3,7 @@ import { productFamilies } from "@/data/company";
 
 const familyZh: Record<(typeof productFamilies)[number], string> = {
   "Corrugated / Fluted Paper": "瓦楞与坑纸",
-  "Food Grade Paper": "食品级用纸",
+  "Food Packaging Paper": "食品包装纸材",
   "Kraft Paper": "牛皮纸",
   "White Cardboard": "白卡纸",
   "Specialty Paper": "特种纸",

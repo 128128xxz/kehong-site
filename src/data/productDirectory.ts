@@ -85,7 +85,7 @@ export const productCatalogSections: readonly ProductCatalogSection[] = [
         links: [
           { id: "takeout-boxes", href: "/packaging/takeout-boxes", en: "Takeout boxes", zh: "外带食品盒", description: { en: "Paper boxes for takeaway food, prepared meals and bakery products.", zh: "餐饮外带、熟食和烘焙食品的纸盒包装" } },
           { id: "cake-boxes", href: "/packaging/cake-boxes", en: "Cake boxes", zh: "蛋糕盒", description: { en: "Paper boxes for cakes, desserts and bakery products.", zh: "蛋糕、甜点和烘焙产品的纸盒包装" } },
-          { id: "cake-boards-cake-drums", href: "/packaging/cake-boards-cake-drums", en: "Cake boards & cake drums", zh: "蛋糕底托和蛋糕鼓", description: { en: "Boards and drums for cake support, presentation and transport.", zh: "蛋糕承托、展示和运输" } },
+          { id: "cake-boards-cake-drums", href: "/packaging/cake-boards-cake-drums", en: "Cake boards & cake drums", zh: "蛋糕底托与蛋糕鼓", description: { en: "Boards and drums for cake support, presentation and transport.", zh: "蛋糕承托、展示和运输" } },
         ],
       },
       {

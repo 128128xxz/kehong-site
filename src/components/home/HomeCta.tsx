@@ -35,12 +35,12 @@ export default function HomeCta({ locale }: { locale: string }) {
               ))}
             </div>
             <div className="kh-cta-actions">
-              <Link className="kh-button kh-button-light" href="/contact">{zh ? "提交询盘" : "Submit a brief"}<ArrowRight className="size-4" /></Link>
+              <Link className="kh-button kh-button-light" href="/contact">{zh ? "提交询价" : "Submit a brief"}<ArrowRight className="size-4" /></Link>
               <a className="kh-button kh-button-ghost" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle className="size-4" />WhatsApp</a>
             </div>
             <div className="kh-final-links">
               <Link href="/resources/artwork-guidelines">{zh ? "设计稿指南" : "Artwork guide"}</Link>
-              <Link href="/resources/dielines-templates">{zh ? "刀模图申请" : "Dieline request"}</Link>
+              <Link href="/resources/dielines-templates">{zh ? "申请刀模图" : "Dieline request"}</Link>
               <Link href="/resources">{zh ? "全部资源" : "All resources"}</Link>
             </div>
           </div>

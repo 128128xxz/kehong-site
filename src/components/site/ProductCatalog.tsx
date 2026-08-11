@@ -323,7 +323,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
             href="/contact"
             className="kh-button kh-button-primary kh-button-compact"
           >
-            {locale === "zh" ? "提交询价需求" : "Request a quote"}
+            {locale === "zh" ? "提交询价" : "Request a quote"}
           </Link>
         </div>
 
@@ -398,7 +398,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
                       {t("cta.add")}
                     </button>
                     <Link href={`/products/${sku.slug}`} className="kh-button kh-button-secondary kh-button-compact">
-                      {locale === "zh" ? "查看产品规格" : "View product specifications"}
+                      {locale === "zh" ? "查看规格" : "View product specifications"}
                       <ArrowUpRight className="size-4" />
                     </Link>
                   </div>

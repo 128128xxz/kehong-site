@@ -10,7 +10,7 @@ import { captureAttribution, trackKehongEvent } from "@/lib/attribution";
 import { productCatalogSections } from "@/data/productDirectory";
 
 const headerCopy = {
-  zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", resources: "资源", contact: "获取报价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
+  zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", resources: "资源", contact: "提交询价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
   en: { products: "Products", solutions: "Solutions", capabilities: "Capabilities", factory: "Factory", resources: "Resources", contact: "Request a quote", menuOpen: "Open navigation menu", menuClose: "Close navigation menu", menuTitle: "Site navigation" },
   es: { products: "Productos", solutions: "Soluciones", capabilities: "Capacidades", factory: "Fábrica", resources: "Recursos", contact: "Solicitar cotización", menuOpen: "Abrir menú", menuClose: "Cerrar menú", menuTitle: "Navegación" },
   th: { products: "สินค้า", solutions: "โซลูชัน", capabilities: "ความสามารถ", factory: "โรงงาน", resources: "แหล่งข้อมูล", contact: "ขอใบเสนอราคา", menuOpen: "เปิดเมนู", menuClose: "ปิดเมนู", menuTitle: "เมนู" },

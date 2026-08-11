@@ -11,6 +11,17 @@ const materialAliases = new Map(
   taxonomy.materials.flatMap((material) => material.aliases.map((alias) => [alias.trim().toLocaleLowerCase(), material.id] as const)),
 );
 
+const buyerMaterialLabels: Record<string, { en: string; zh: string }> = {
+  "food-grade-kraft-paper": { en: "Kraft paper", zh: "牛皮纸" },
+  "food-grade-white-board": { en: "White cardboard", zh: "白卡纸" },
+  "food-grade-paper": { en: "Paper material", zh: "纸材" },
+  "greaseproof-paper": { en: "Paper material", zh: "纸材" },
+};
+
+const buyerCategoryLabels: Record<string, { en: string; zh: string }> = {
+  "food-grade-paper": { en: "Food packaging paper", zh: "食品包装纸材" },
+};
+
 /** Stable public taxonomy IDs. Raw import IDs remain accepted as aliases. */
 const categoryAliases: Record<string, string> = {
   "kraft-paper-series": "kraft-paper",
@@ -102,12 +113,16 @@ export function getTaxonomyMaterialById(id: string | undefined) {
 export function getTaxonomyMaterialLabel(id: string | undefined, locale: string) {
   const material = getTaxonomyMaterialById(id);
   if (!material) return "";
+  const buyerLabel = buyerMaterialLabels[material.id];
+  if (buyerLabel) return locale === "zh" ? buyerLabel.zh : buyerLabel.en;
   return locale === "zh" ? material.localizedLabel.zh : material.localizedLabel.en;
 }
 
 export function getTaxonomyCategoryLabel(id: string | undefined, locale: string) {
   const category = getTaxonomyCategoryById(id);
   if (!category) return "";
+  const buyerLabel = buyerCategoryLabels[category.id];
+  if (buyerLabel) return locale === "zh" ? buyerLabel.zh : buyerLabel.en;
   return locale === "zh" ? category.localizedLabel.zh : category.localizedLabel.en;
 }
 

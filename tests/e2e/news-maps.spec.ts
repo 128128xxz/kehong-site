@@ -59,7 +59,7 @@ test.describe("factory maps and News & Insights", () => {
       const whatsappHref = await page.locator(".kh-news-share").getByRole("link", { name: /WhatsApp/ }).getAttribute("href");
       expect(decodeURIComponent(linkedInHref ?? "")).toContain("utm_source=linkedin");
       expect(decodeURIComponent(whatsappHref ?? "")).toContain("utm_source=copy");
-      await expect(page.getByRole("link", { name: locale === "zh" ? "提交询盘" : "Start a project brief" }).first()).toBeVisible();
+      await expect(page.getByRole("link", { name: locale === "zh" ? "提交项目需求" : "Start a project brief" }).first()).toBeVisible();
     }
   });
 });

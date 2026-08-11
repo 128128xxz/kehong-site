@@ -23,9 +23,9 @@ const copy = {
     delivery: "Delivery & contact", destination: "Destination country / postal code", shipping: "Shipping preference / Incoterm", company: "Company", companyPlaceholder: "Company name", name: "Name", namePlaceholder: "Your name", email: "Email", phone: "Phone / WhatsApp", optional: "Optional", notes: "Notes", notesPlaceholder: "Lead time, destination or other project notes", privacyPrefix: "I agree that Kehong may process this inquiry according to the", privacy: "Privacy Policy", privacySuffix: ".",
   },
   zh: {
-    eyebrow: "提交询盘", title: "分步骤提交项目需求", intro: "按项目阶段填写信息，前后切换不会丢失当前内容。",
+    eyebrow: "提交询价", title: "分步骤提交项目需求", intro: "按项目阶段填写信息，前后切换不会丢失当前内容。",
     steps: ["项目概况", "尺寸与数量", "材料与结构", "印刷与后处理", "交付与联系信息"],
-    next: "下一步", back: "上一步", submit: "提交询盘", sending: "提交中…", success: "询盘已接收，科宏团队会尽快跟进。", error: "提交失败，请检查必填项后重试。", required: "请完成必填项并同意隐私政策。", whatsapp: "改用 WhatsApp", progress: "询盘进度",
+    next: "下一步", back: "上一步", submit: "提交询价", sending: "提交中…", success: "询盘已接收，科宏团队会尽快跟进。", error: "提交失败，请检查必填项后重试。", required: "请完成必填项并同意隐私政策。", whatsapp: "改用 WhatsApp", progress: "询价进度",
     project: "项目概况", packagingType: "包装类型", packagingPlaceholder: "例如：蛋糕盒、邮寄盒、纸袋", industry: "产品 / 行业", industryPlaceholder: "例如：烘焙、零售、电商", use: "使用场景", usePlaceholder: "零售 / 外带 / 运输", unsure: "暂不确定", unsurePlaceholder: "您要包装什么产品？", products: "产品或 SKU", productsPlaceholder: "产品名称、SKU 或参考信息",
     size: "尺寸与数量", dimensionType: "内尺寸或外尺寸", dimensionTypePlaceholder: "内尺寸 / 外尺寸", dimensions: "长 × 宽 × 高", dimensionsPlaceholder: "例如：20 × 15 × 8 cm", quantity: "数量", quantityPlaceholder: "预计采购数量", repeat: "采购频率", repeatPlaceholder: "一次性 / 常规 / 季节性", orderDate: "计划下单日期", deliveryDate: "期望交付日期", known: "如已知",
     material: "材料与结构", preferredMaterial: "偏好材料", preferredMaterialPlaceholder: "纸张、纸板、瓦楞纸…", board: "纸板 / 坑型 / 纸张类型", structure: "盒型 / 结构", structurePlaceholder: "邮寄盒、折叠盒、托盘…", features: "开窗 / 提手 / 内托 / 隔板", featuresPlaceholder: "可选功能", recommend: "需要我们推荐", recommendPlaceholder: "您的产品与优先事项",

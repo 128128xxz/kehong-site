@@ -34,7 +34,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         />
         <div className="kh-shell py-12 lg:py-16">
         <div className="prose prose-stone max-w-3xl">
-          <p>{isZh ? "本网站提供纸品包装材料、半成品和成品结构的产品信息。具体规格、价格、交期和可用性以双方确认的报价和订单为准。" : "This website provides information about paper packaging materials, components and finished structures. Final specifications, pricing, lead time and availability are confirmed in the quotation and order agreed by both parties."}</p>
+          <p>{isZh ? "本网站提供纸品包装材料、半成品与成品结构的产品信息。具体规格、价格、交期和可用性以双方确认的报价和订单为准。" : "This website provides information about paper packaging materials, components and finished structures. Final specifications, pricing, lead time and availability are confirmed in the quotation and order agreed by both parties."}</p>
           <h2>{isZh ? "产品信息" : "Product information"}</h2>
           <p>{isZh ? "图片用于展示材料或结构示例，除非明确标注为精确产品图片，否则不应视为特定 SKU 的承诺。" : "Images may illustrate a material or structure example. Unless explicitly identified as exact product photography, they are not a commitment for a specific SKU."}</p>
           <h2>{isZh ? "联系我们" : "Contact"}</h2>

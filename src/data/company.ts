@@ -47,7 +47,7 @@ export const companyFacts = [
 
 export const productFamilies = [
   "Corrugated / Fluted Paper",
-  "Food Grade Paper",
+  "Food Packaging Paper",
   "Kraft Paper",
   "White Cardboard",
   "Specialty Paper",

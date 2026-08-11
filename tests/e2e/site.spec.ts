@@ -37,7 +37,7 @@ test.describe("Kehong production flows", () => {
     await expect(page.locator(".kh-footer-brand-tag")).toHaveText("Paper products & custom packaging");
     await page.goto("/zh", { waitUntil: "networkidle" });
     await expect(page.locator(".kh-brand-name")).toHaveText("科宏纸品");
-    await expect(page.locator(".kh-brand-tag")).toHaveText("纸材、半成品和定制纸包装");
+    await expect(page.locator(".kh-brand-tag")).toHaveText("纸材、半成品与定制纸包装");
   });
 
   test("all public routes inherit the versioned Kehong mark-only favicon configuration", async ({ request }) => {
@@ -732,7 +732,7 @@ test.describe("Kehong production flows", () => {
       ["paper-bags", "Paper Bags", "纸袋"],
       ["takeout-boxes", "Takeout Boxes", "外带食品盒"],
       ["cake-boxes", "Cake Boxes", "蛋糕盒"],
-      ["cake-boards-cake-drums", "Cake Boards & Cake Drums", "蛋糕底托和蛋糕鼓"],
+      ["cake-boards-cake-drums", "Cake Boards & Cake Drums", "蛋糕底托与蛋糕鼓"],
       ["corrugated-mailer-boxes", "Corrugated Mailer Boxes", "瓦楞邮寄盒"],
     ] as const;
 

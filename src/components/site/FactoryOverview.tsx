@@ -1,13 +1,13 @@
 import Image from "next/image";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { companyLegalName, companyProfile } from "@/data/company";
+import { companyProfile } from "@/data/company";
 import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryMapUrl } from "@/data/companyLocation";
 import { showcaseImages } from "@/data/visuals";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
-import LocationClickAnchor from "@/components/site/LocationClickAnchor";
+import FactoryLocationCard from "@/components/site/FactoryLocationCard";
 
 const capabilityRows = [
   {
@@ -46,11 +46,11 @@ export default async function FactoryOverview() {
         <div className="kh-shell grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center lg:gap-16">
           <Reveal>
             <SectionKicker index="02" text={isZh ? "厂区与设备" : "Site & equipment"} />
-            <h2>{isZh ? "从纸材加工到成品包装，关键工序在佛山工厂完成。" : "Key paper-converting and packaging stages are handled in our Foshan factory."}</h2>
+            <h2>{isZh ? "按确认规格安排纸材加工与包装工序。" : "Paper converting and packaging stages arranged to the approved specification."}</h2>
             <p className="kh-section-lede mt-5">
               {isZh
-                ? "科宏位于广东佛山，可根据产品和规格要求完成选材、结构打样、纸材加工、后道工艺和出货准备。"
-                : `${companyLegalName} runs in-house die-cutting, slitting, paper-mounting and corrugated-converting lines, with sampling, inspection and shipment preparation arranged to the approved specification.`}
+                ? "科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。"
+                : "Kehong is based in Foshan and arranges material selection, structural sampling, paper converting, finishing, quality checks and shipment preparation according to product structure and specification requirements."}
             </p>
             <dl className="mt-8 grid gap-4 border-y border-(--kh-line) py-5 text-sm sm:grid-cols-2">
               <div>
@@ -62,15 +62,19 @@ export default async function FactoryOverview() {
                 <dd className="mt-1 text-(--kh-muted)">{isZh ? companyProfile.productionCapability.zh : companyProfile.productionCapability.en}</dd>
               </div>
             </dl>
-            <LocationClickAnchor href={getFactoryMapUrl(locale)} locale={locale} sourceBlock="factory" mapProvider={isZh ? "baidu" : "google"} target="_blank" rel="noopener noreferrer" className="kh-panel mt-4 flex min-h-11 items-start gap-3 p-4 transition hover:border-(--kh-forest)/45" aria-label={isZh ? "在百度地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}>
-              <MapPin className="mt-0.5 size-5 shrink-0 text-(--kh-brass)" aria-hidden="true" />
-              <span>
-                <span className="block font-semibold text-(--kh-ink)">{isZh ? "工厂地址" : "Factory address"}</span>
-                <span className="mt-1 block text-xs font-medium text-(--kh-brass)">{isZh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}</span>
-                <span className="mt-1 block text-sm leading-6 text-(--kh-muted)">{isZh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
-                <span className="mt-2 inline-flex text-sm font-semibold text-(--kh-forest)">{isZh ? "查看位置" : "View location"} <ArrowRight className="ml-1 size-4" /></span>
-              </span>
-            </LocationClickAnchor>
+            <FactoryLocationCard
+              className="mt-4"
+              locale={locale}
+              sourceBlock="factory"
+              mapProvider={isZh ? "baidu" : "google"}
+              href={getFactoryMapUrl(locale)}
+              title={isZh ? "工厂地址" : "Factory address"}
+              mapLabel={isZh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}
+              address={isZh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}
+              viewLabel={isZh ? "查看位置" : "View location"}
+              copyLabel={isZh ? "复制地址" : "Copy address"}
+              copiedLabel={isZh ? "已复制" : "Copied"}
+            />
             <Link href="/process" className="kh-text-link mt-6 min-h-11 px-1">
               {isZh ? "查看生产流程" : "View production process"}
               <ArrowRight className="size-4" />

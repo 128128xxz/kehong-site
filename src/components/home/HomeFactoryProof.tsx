@@ -2,25 +2,27 @@ import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
-import { getFactoryMapUrl } from "@/data/companyLocation";
+import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryMapUrl } from "@/data/companyLocation";
 import { Parallax, Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
-import LocationClickAnchor from "@/components/site/LocationClickAnchor";
+import FactoryLocationCard from "@/components/site/FactoryLocationCard";
 
 export default function HomeFactoryProof({ locale }: { locale: string }) {
   const zh = locale === "zh";
   const facts = zh
-    ? ["佛山生产场地", "20+ 年纸品加工", "模切、分切、裱纸、瓦楞"]
-    : ["Foshan production site", "20+ years in paper converting", "Die-cutting, slitting, mounting and corrugated processing"];
+    ? ["20+ 年纸品加工经验", "8,000+ ㎡生产场地", "模切、分切、裱纸、瓦楞"]
+    : ["20+ years in paper converting", "8,000+ ㎡ production site", "Die-cutting, slitting, mounting and corrugated processing"];
 
   return (
     <section className="kh-section kh-section-forest">
       <div className="kh-shell kh-factory-grid">
         <Reveal>
           <SectionKicker index="04" text={zh ? "工厂" : "Factory & capability"} light />
-          <h2>{zh ? "佛山完成纸材加工。" : "Paper converting that moves from sample to shipment."}</h2>
+          <h2>{zh ? "从选材、打样到出货准备。" : "From material selection to shipment preparation."}</h2>
           <p className="kh-section-lede">
-            {zh ? "材料、结构、加工对接。" : "One team coordinates material, structure, converting and dispatch."}
+            {zh
+              ? "科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。"
+              : "Kehong is based in Foshan and arranges material selection, structural sampling, paper converting, finishing, quality checks and shipment preparation according to product structure and specification requirements."}
           </p>
           <ul>
             {facts.map((item) => (
@@ -30,9 +32,19 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
           <Link className="kh-button kh-button-light" href="/factory">
             {zh ? "了解工厂" : "See the factory"}<ArrowRight className="size-4" />
           </Link>
-          <LocationClickAnchor className="kh-text-link mt-4 min-h-11 px-1 text-white/80" href={getFactoryMapUrl(locale)} locale={locale} sourceBlock="home" mapProvider={zh ? "baidu" : "google"} target="_blank" rel="noopener noreferrer" aria-label={zh ? "在百度地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}>
-            {zh ? "查看位置" : "View location"}<ArrowRight className="size-4" />
-          </LocationClickAnchor>
+          <FactoryLocationCard
+            className="mt-4 max-w-xl"
+            locale={locale}
+            sourceBlock="home"
+            mapProvider={zh ? "baidu" : "google"}
+            href={getFactoryMapUrl(locale)}
+            title={zh ? "工厂位置" : "Factory location"}
+            mapLabel={zh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}
+            address={zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}
+            viewLabel={zh ? "查看位置" : "View location"}
+            copyLabel={zh ? "复制地址" : "Copy address"}
+            copiedLabel={zh ? "已复制" : "Copied"}
+          />
         </Reveal>
 
         <div className="kh-factory-stack">

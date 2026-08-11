@@ -22,16 +22,16 @@ export const industrySeoPages = {
   paperCupFanManufacturer: {
     href: "/paper-cup-fan-manufacturer" as SiteHref,
     title: "Paper Cup Fan Blanks Manufacturer for Foodservice Packaging",
-    zhTitle: "纸杯扇形片与食品级杯纸供应商",
+    zhTitle: "纸杯扇形片与杯纸供应商",
     description:
       "Kehong supplies paper cup fan blanks and cupstock solutions for foodservice buyers, with material, GSM, coating and custom printing support.",
     zhDescription:
       "科宏供应纸杯扇形片和杯纸材料，支持材质、克重、淋膜、尺寸和定制印刷确认。",
     eyebrow: "Paper Cup Fan Blanks Manufacturer",
     zhEyebrow: "纸杯扇形片供应商",
-    buyerFocus: ["Food-grade paperboard", "PE-coated cupstock", "Custom fan dimensions", "Export-ready packaging"],
+    buyerFocus: ["Paperboard material", "PE-coated cupstock by specification", "Custom fan dimensions", "Export-ready packaging"],
     zhBuyerFocus: ["食品包装纸板", "PE 淋膜杯纸", "定制扇形尺寸", "出口包装准备"],
-    capabilities: ["Material and GSM matching", "Single- or double-sided PE coating", "Cup fan printing coordination", "Sample and production approval"],
+    capabilities: ["Material and GSM matching", "PE coating options confirmed by specification", "Cup fan printing coordination", "Sample and production approval"],
     zhCapabilities: ["材料和克重匹配", "单面或双面 PE 淋膜", "纸杯扇形片印刷协调", "样品和生产确认"],
     applications: ["Hot and cold beverage cups", "Takeaway beverage packaging", "Café and foodservice supply", "Distributor cupstock programs"],
     zhApplications: ["冷热饮纸杯", "外带饮品包装", "咖啡和餐饮供应", "经销商杯纸项目"],
@@ -140,7 +140,7 @@ export const industrySeoPages = {
     title: "E-commerce & Distribution Packaging for Dispatch and Protection",
     zhTitle: "电商与运输纸包装",
     description: "Mailer structures, protective paper components and presentation packaging reviewed around handling, dispatch and product protection requirements.",
-    zhDescription: "按搬运、发货和产品保护需求，评审邮寄盒、保护纸部件和展示包装。",
+    zhDescription: "用于电商发货、仓储和运输保护的瓦楞邮寄盒及纸质缓冲结构。",
     eyebrow: "E-commerce & Distribution Packaging",
     zhEyebrow: "电商与运输包装",
     buyerFocus: ["Product protection and fit", "Dispatch and handling workflow", "Board structure and insert needs", "Clear quantity and delivery brief"],

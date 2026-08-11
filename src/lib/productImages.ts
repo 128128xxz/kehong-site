@@ -85,7 +85,7 @@ const imageStatusLabels: Record<ProductImageStatus, LocalizedLabel> = {
   },
   representative: {
     en: "Product reference image",
-    zh: "图片仅供参考",
+    zh: "纸品生产能力示意图",
     es: "Imagen de referencia",
     id: "Gambar referensi produk",
     vi: "Hình ảnh tham khảo",

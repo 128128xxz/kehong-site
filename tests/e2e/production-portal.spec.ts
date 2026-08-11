@@ -27,7 +27,7 @@ test.describe("homepage manufacturing website", () => {
   test("keeps localized homepage copy", async ({ page }) => {
     await page.goto("/zh");
     await expect(page.locator("h1")).toContainText("纸材");
-    await expect(page.getByRole("link", { name: "提交询盘" }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: "提交询价" }).first()).toBeVisible();
   });
 
   test("homepage keeps a compact procurement-focused section stack", async ({ page }) => {

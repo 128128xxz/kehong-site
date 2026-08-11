@@ -38,6 +38,13 @@ describe("launch closure buyer-facing gates", () => {
     expect(source).toContain("data-location-source");
   });
 
+  it("keeps the location card copy action separate from the tracked map anchor", () => {
+    const source = readFileSync(path.join(process.cwd(), "src/components/site/FactoryLocationCard.tsx"), "utf8");
+    expect(source).toContain("copyLabel");
+    expect(source).toContain("navigator.clipboard");
+    expect(source).toContain("LocationClickAnchor");
+  });
+
   it("keeps buyer-visible copy free of unapproved AI and synthetic claims", () => {
     const sourceRoot = path.join(process.cwd(), "src");
     const source = readFileSync(path.join(sourceRoot, "components/home/HomeHero.tsx"), "utf8")

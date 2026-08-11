@@ -145,7 +145,7 @@ export const heroScenes = [
     },
     title: {
       en: "Pizza boxes, bakery trays and inner pads that ship clean.",
-      zh: "披萨盒、烘焙托盘、内垫材料，一站式打样。",
+      zh: "披萨盒、烘焙托盘和内垫材料，按项目打样。",
     },
     metric: "Fast sampling",
   },
@@ -172,7 +172,7 @@ export const heroScenes = [
     image: showcaseImages.machine,
     kicker: {
       en: "Factory capability",
-      zh: "工厂产能",
+      zh: "生产支持",
       es: "Capacidad fabril",
       id: "Kapasitas pabrik",
       vi: "Năng lực nhà máy",
@@ -221,10 +221,10 @@ export const solutionScenes = [
       ms: "Pembungkusan makanan",
     },
     body: {
-      en: "Paper boxes, pads, cup fan blanks and oil-resistant structures for food brands and distributors.",
-      zh: "纸盒、纸垫、纸杯扇形片、防油结构，适合食品品牌和渠道客户。",
+      en: "Paper boxes, pads and cup fan blanks for food brands and distributors; final material and use requirements are confirmed by project.",
+      zh: "纸盒、纸垫和纸杯扇形片，按食品包装项目确认。",
     },
-    tags: ["Food grade", "Oil-proof", "Pizza box", "Cup fan blanks"],
+    tags: ["Structure review", "Material confirmation", "Pizza box", "Cup fan blanks"],
   },
   {
     id: "display",

@@ -331,6 +331,8 @@ export function getLocalizedCatalogValue(
   fallback = "",
 ) {
   if (!value) return "";
+  value = sanitizeBuyerFacingCatalogValue(value, locale);
+  if (!value) return "";
   if (/^(?:custom paper packaging specification|confirmed by project|project[- ]confirmed|按项目确认|按项目资料确认|按项目确认为准)$/iu.test(value.trim())) return "";
   // Display-only exceptions for legacy source labels. IDs, URLs and SKU codes
   // are intentionally never passed through this mapping.
@@ -360,6 +362,28 @@ export function getLocalizedCatalogValue(
   );
   const normalized = normalizeEnglishSpacing(translated);
   return containsCjk(normalized) ? fallback : formatProductDisplayValue(normalized, locale);
+}
+
+/** Keep the source catalog intact while redacting unconfirmed public claims. */
+function sanitizeBuyerFacingCatalogValue(value: string, locale: string) {
+  let sanitized = value;
+  if (locale === "zh") {
+    sanitized = sanitized
+      .replaceAll(/食品级白卡纸|食品级牛皮纸|食品级纸/gu, "纸材")
+      .replaceAll(/食品级/gu, "")
+      .replaceAll(/食品接触(?:认证|要求)?/gu, "使用要求")
+      .replaceAll(/防水防油|防油/gu, "表面性能")
+      .replaceAll(/阻隔/gu, "性能")
+      .replaceAll(/承重/gu, "承托要求");
+  } else {
+    sanitized = sanitized
+      .replaceAll(/food[- ]grade(?:[- ]paper|[- ]kraft|[- ]white board| paper| kraft| white board)?/giu, "paper material")
+      .replaceAll(/food[- ]contact(?:[- ]certification| requirements?)?/giu, "product-use requirements")
+      .replaceAll(/greaseproof|oil[- ]resistant/giu, "surface performance")
+      .replaceAll(/barrier/giu, "performance")
+      .replaceAll(/load[- ]bearing/giu, "support requirement");
+  }
+  return sanitized.replaceAll(/\s{2,}/gu, " ").trim();
 }
 
 export type HomepageProductFamily = Omit<ProductFamily, "categoryId"> & { categoryId: string };
@@ -500,7 +524,7 @@ export type ProductCategory = {
 const productCategories: ProductCategory[] = [
   { slug: "kraft-paper", productType: "kraft-paper", title: { en: "Kraft Paper", zh: "牛皮纸" }, description: { en: "Kraft paper grades for bags, wraps, labels and protective packaging.", zh: "适用于纸袋、包裹、标签和保护性包装的牛皮纸系列。" } },
   { slug: "white-cardboard", productType: "white-cardboard", title: { en: "White Cardboard", zh: "白卡纸" }, description: { en: "Bright, printable white board for premium packaging structures.", zh: "适用于高质感包装结构与印刷的白卡纸。" } },
-  { slug: "food-grade-paper", productType: "paper-cup-fan", title: { en: "Food-Grade Paper", zh: "食品级纸" }, description: { en: "Food-contact paper materials for cups, bowls and takeaway packaging.", zh: "适用于纸杯、纸碗和外带包装的食品级纸材。" } },
+  { slug: "food-grade-paper", productType: "paper-cup-fan", title: { en: "Food Packaging Paper", zh: "食品包装纸材" }, description: { en: "Paper materials for cups, bowls and takeaway packaging; final use requirements are confirmed by project.", zh: "适用于纸杯、纸碗和外带包装的纸材，具体使用要求按项目确认。" } },
   { slug: "corrugated-paper", productType: "corrugated-fluted-paper", title: { en: "Corrugated Paper", zh: "瓦楞纸" }, description: { en: "Fluted and corrugated structures for protection, rigidity and presentation.", zh: "兼顾缓冲、挺度与展示效果的瓦楞结构纸材。" } },
   { slug: "specialty-paper", productType: "specialty-paper", title: { en: "Specialty Paper", zh: "特种纸" }, description: { en: "Specialty surfaces and visual finishes for differentiated packaging.", zh: "用于差异化包装的特种表面与视觉效果纸材。" } },
   { slug: "food-packaging-boxes", productType: "food-packaging-box", title: { en: "Food Packaging Boxes", zh: "食品包装盒" }, description: { en: "Paper box structures for bakery, takeaway and foodservice applications.", zh: "适用于烘焙、外带与餐饮场景的纸盒结构。" } },
@@ -739,7 +763,16 @@ export function buildProductGroupSummary(group: { id: string; representative: Pr
   const gsm = gsmRange
     ? (gsmRange.min === gsmRange.max ? `${gsmRange.min} GSM` : `${gsmRange.min}–${gsmRange.max} GSM`)
     : "";
-  const familyLabel = family ? (locale === "zh" ? family.title.zh : family.title.en) : getPublicProductType(group.representative);
+  const rawFamilyLabel = family ? (locale === "zh" ? family.title.zh : family.title.en) : "";
+  // Family titles are canonical taxonomy labels (for example, "Cupstock").
+  // Preserve them verbatim so field-level English spacing normalization cannot
+  // turn a brand/product term into a different label. Only redact a family
+  // title when it itself contains an unconfirmed buyer-facing claim.
+  const familyLabel = family
+    ? /food[- ]grade|food[- ]contact|greaseproof|oil[- ]resistant|barrier|load[- ]bearing|食品级|食品接触|防油|阻隔|承重/iu.test(rawFamilyLabel)
+      ? getLocalizedCatalogValue(rawFamilyLabel, locale)
+      : rawFamilyLabel
+    : getPublicProductType(group.representative);
   const materials = group.id === "paper-cup-fan-kraft-cupstock-paper"
     ? [locale === "zh" ? "可选白色杯纸与牛皮杯纸" : "White and kraft cupstock options"]
     : [...new Set(group.variants.map((variant) => getLocalizedProductMaterial(variant, locale)).filter(Boolean))];

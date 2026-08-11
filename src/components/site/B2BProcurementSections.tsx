@@ -24,7 +24,7 @@ const chooseItems = [
   { icon: PackageCheck, title: "MOQ by specification", zh: "按规格确认 MOQ", detail: "MOQ depends on the material, structure, converting method, and production setup.", detailZh: "MOQ 按材质、结构、加工方式和生产设置核算确认。" },
   { icon: ClipboardCheck, title: "Sample review", zh: "样品确认", detail: "Structural fit and key specifications are reviewed before batch production.", detailZh: "批量生产前确认结构贴合和关键规格。" },
   { icon: ShieldCheck, title: "Quality checkpoints", zh: "质量检查节点", detail: "Material, dimensions, finish, and packing requirements are checked at relevant stages.", detailZh: "在相应节点检查材料、尺寸、表面效果和包装要求。" },
-  { icon: Globe2, title: "Destination requirements", zh: "目的市场要求", detail: "Tell us the destination market and any food-contact or documentation requirements for review.", detailZh: "请提供目的市场、食品接触或文件要求，以便核对。" },
+  { icon: Globe2, title: "Destination requirements", zh: "目的市场要求", detail: "Tell us the destination market and any product-use or documentation requirements for review.", detailZh: "请提供目的市场、产品使用方式或文件要求，以便核对。" },
 ];
 
 const processSteps = {
@@ -54,7 +54,7 @@ export default async function B2BProcurementSections() {
         ]}
       >
         <Link href="/contact" className="kh-button kh-button-light">
-          {isZh ? "提交询盘" : "Request a quote"}
+          {isZh ? "提交询价" : "Request a quote"}
         </Link>
         <Link href="/products" className="kh-button kh-button-ghost">
           {isZh ? "浏览产品目录" : "Browse the catalog"}

@@ -167,7 +167,7 @@ export default async function ProductsPage({
           ]}
         >
           <a href="#materials-and-components" className="kh-button kh-button-light">
-            {locale === "zh" ? "查看产品规格" : "View specifications"}
+            {locale === "zh" ? "查看规格" : "View specifications"}
           </a>
           <Link href="/contact" className="kh-button kh-button-ghost">
             {locale === "zh" ? "索取目录 / 规格资料" : "Request catalog / data sheet"}

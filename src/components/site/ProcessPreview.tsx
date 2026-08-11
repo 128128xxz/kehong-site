@@ -93,10 +93,10 @@ export default async function ProcessPreview() {
             </p>
             <div className="kh-actions mt-7 flex flex-wrap gap-3">
               <Link href="/contact" className="kh-button kh-button-light">
-                {isZh ? "提交询盘" : "Request a quote"}
+                {isZh ? "提交询价" : "Request a quote"}
               </Link>
               <Link href="/products" className="kh-button kh-button-ghost">
-                {isZh ? "查看产品规格" : "Browse products"}
+                {isZh ? "查看规格" : "Browse products"}
               </Link>
             </div>
           </Reveal>

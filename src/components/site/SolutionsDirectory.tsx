@@ -15,8 +15,8 @@ const solutions = [
     href: "/products?search=food",
     image: showcaseImages.foodOpen,
     imageAlt: "Food and bakery paper boxes prepared for delivery",
-    en: { title: "Food & bakery packaging", body: "Oil-resistant boxes, pads and bakery structures for practical food programs.", tags: ["Food contact", "Oil resistance"] },
-    zh: { title: "食品与烘焙包装", body: "防油纸盒、纸垫和烘焙包装结构", tags: ["食品接触", "防油结构"] },
+    en: { title: "Food & bakery packaging", body: "Paper boxes, pads and bakery structures for practical food programs; final material and use requirements are confirmed by project.", tags: ["Structure review", "Material confirmation"] },
+    zh: { title: "食品与烘焙包装", body: "食品包装盒、纸垫和烘焙包装结构", tags: ["结构适配", "材料确认"] },
   },
   {
     id: "cupstock",
@@ -121,7 +121,7 @@ export default function SolutionsDirectory() {
                   ))}
                 </div>
                 <Link href={active.href} className="kh-button kh-button-primary mt-6">
-                  {isZh ? "进入产品范围" : "Open product range"}
+                  {isZh ? "查看规格" : "Open product range"}
                   <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </div>

@@ -41,7 +41,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
           meta={["OEM / ODM", isZh ? "中国广东佛山" : "Foshan, Guangdong, China", contact.email]}
         >
           <Link href="/contact" className="kh-button kh-button-light">
-            {isZh ? "获取报价" : "Request a quote"}
+            {isZh ? "提交询价" : "Request a quote"}
             <ArrowRight className="size-4" />
           </Link>
           <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-ghost">
@@ -148,7 +148,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
             { href: "/packaging", en: "Recommended packaging types", zh: "推荐包装" },
             { href: "/products?collection=materials", en: "Recommended paper materials", zh: "推荐纸材" },
             { href: "/resources/packaging-selection-guide", en: "Packaging selection guide", zh: "包装选型指南" },
-            { href: "/contact", en: "Request a quote", zh: "获取报价" },
+            { href: "/contact", en: "Request a quote", zh: "提交询价" },
           ]}
         />
       </main>

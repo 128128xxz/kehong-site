@@ -76,7 +76,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           }
         >
           <Link href={contactHref} data-testid="packaging-hero-quote" className="kh-button kh-button-light">
-            {isZh ? "获取定制报价" : "Get a custom quote"}
+            {isZh ? "提交询价" : "Get a custom quote"}
             <ArrowRight className="size-4" />
           </Link>
           <a href="#catalog-list" className="kh-button kh-button-ghost">
@@ -213,7 +213,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
             </Reveal>
             <Reveal delay={120}>
               <Link href={contactHref} data-testid="packaging-project-quote" className="kh-button kh-button-light">
-                {isZh ? "提交询盘" : "Request a quote"}
+                {isZh ? "提交项目需求" : "Request a quote"}
                 <ArrowRight className="size-4" />
               </Link>
             </Reveal>
@@ -237,7 +237,7 @@ function getCategoryFaq(slug: string, isZh: boolean): [string, string][] {
     },
     "takeout-boxes": {
       en: [["Which details matter for a takeaway box?", "Product footprint, use case, closure, quantity and print needs guide the first structure review."], ["Can bakery and takeaway structures be developed together?", "A project can cover related boxes, liners, pads and inserts in one brief."], ["How is a food-contact claim confirmed?", "Any food-contact, grease or barrier claim is confirmed only against the project specification and supporting evidence."]],
-      zh: [["外带盒评审重点是什么？", "产品尺寸、使用场景、闭合方式、数量和印刷需求会决定首次结构评审。"], ["烘焙与外带结构可以一起开发吗？", "一个项目可同时涵盖相关盒型、垫纸、纸垫和内托。"], ["食品接触相关声明如何确认？", "食品接触、防油或阻隔等声明，仅在项目规格和支持资料确认后使用。"]],
+      zh: [["外带盒评审重点是什么？", "产品尺寸、使用场景、闭合方式、数量和印刷需求会决定首次结构评审。"], ["烘焙与外带结构可以一起开发吗？", "一个项目可同时涵盖相关盒型、垫纸、纸垫和内托。"], ["相关性能如何确认？", "相关性能仅在项目规格和支持资料确认后使用。"]],
     },
   };
   return categorySpecific[slug]?.[isZh ? "zh" : "en"] ?? (isZh

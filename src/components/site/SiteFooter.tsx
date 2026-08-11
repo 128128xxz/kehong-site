@@ -124,7 +124,7 @@ export default async function SiteFooter() {
         <div className="kh-footer-quote">
           <p>{zh ? "准备启动项目？" : "Ready to discuss a project?"}</p>
           <Link data-testid="site-footer-quote" className="kh-button kh-button-light" href="/contact">
-            {zh ? "提交询盘" : "Request a quote"}
+            {zh ? "提交询价" : "Request a quote"}
             <ArrowRight className="size-4" />
           </Link>
           <div className="kh-footer-actions">

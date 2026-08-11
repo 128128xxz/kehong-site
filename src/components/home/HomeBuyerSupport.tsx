@@ -29,7 +29,7 @@ export default function HomeBuyerSupport({ locale }: { locale: string }) {
         <Reveal>
           <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-lg bg-(--kh-forest) px-5 py-4 text-(--kh-surface)">
             <p className="text-sm font-semibold">{zh ? "已有尺寸、数量或设计稿？直接通过表单、WhatsApp 或 Email 发起询盘。" : "Have size, quantity or artwork ready? Start by form, WhatsApp or email."}</p>
-            <div className="flex flex-wrap gap-3 text-sm font-semibold"><Link href="/contact" className="inline-flex items-center gap-2 text-(--kh-brass-soft)">{zh ? "获取报价" : "Request a quote"}<ArrowRight className="size-4" /></Link><a href={whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2"><MessageCircle className="size-4" />WhatsApp</a><a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2"><Mail className="size-4" />Email</a></div>
+            <div className="flex flex-wrap gap-3 text-sm font-semibold"><Link href="/contact" className="inline-flex items-center gap-2 text-(--kh-brass-soft)">{zh ? "提交询价" : "Request a quote"}<ArrowRight className="size-4" /></Link><a href={whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2"><MessageCircle className="size-4" />WhatsApp</a><a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2"><Mail className="size-4" />Email</a></div>
           </div>
         </Reveal>
       </div>
