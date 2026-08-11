@@ -5,14 +5,14 @@ import PageHero from "@/components/site/PageHero";
 import { SectionKicker } from "@/components/home/annotations";
 import { Reveal } from "@/components/home/interactive";
 import { Link } from "@/i18n/navigation";
-import { finishOptions, finishOptionsZh, resourceItems, resourceZhCopy } from "@/data/siteContent";
+import { finishOptions, finishOptionsZh, resourceApplicationSlugs, resourceItems, resourceZhCopy } from "@/data/siteContent";
 
 const icons = [Palette, FileText, Scissors, Ruler, FileText, FileText];
 
 export default function ResourcesPage({ locale }: { locale: string }) {
   const isZh = locale === "zh";
   const guideCount = resourceItems.filter((item) => item.type === "guide").length;
-  const requestCount = resourceItems.filter((item) => item.type === "request").length;
+  const requestCount = resourceItems.filter((item) => resourceApplicationSlugs.includes(item.slug as (typeof resourceApplicationSlugs)[number])).length;
   return (
     <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">
       <Header />

@@ -431,7 +431,7 @@ test.describe("Kehong production flows", () => {
 
     for (const [path, title] of [
       ["/zh/resources/artwork-guidelines", "设计稿指南 | 科宏纸品"],
-      ["/zh/resources/dielines-templates", "刀模图与模板 | 科宏纸品"],
+      ["/zh/resources/dielines-templates", "刀模图与模板申请 | 科宏纸品"],
       ["/zh/factory", "工厂与服务能力 | 科宏纸品"],
       ["/zh/products", "产品目录 | 科宏纸品"],
       ["/zh/privacy", "隐私政策 | 科宏纸品"],

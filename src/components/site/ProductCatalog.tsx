@@ -306,8 +306,8 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
             <p className="text-sm font-bold text-(--kh-ink)">
               {(pagination?.totalGroups ?? groups.length) > 0
                 ? (locale === "zh"
-                  ? `${pagination?.totalGroups ?? groups.length} 个产品组 / ${pagination?.totalSkus ?? skus.length} 个产品`
-                  : `${pagination?.totalGroups ?? groups.length} product groups / ${pagination?.totalSkus ?? skus.length} products`)
+                  ? `${pagination?.totalGroups ?? groups.length} 个产品组 / ${pagination?.totalSkus ?? skus.length} 个 SKU`
+                  : `${pagination?.totalGroups ?? groups.length} product groups / ${pagination?.totalSkus ?? skus.length} SKUs`)
                 : (locale === "zh" ? "该分类目前暂无公开 SKU" : "No public SKUs in this range yet")}
             </p>
             <p className="mt-1 text-sm leading-6 text-(--kh-muted)">

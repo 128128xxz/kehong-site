@@ -26,7 +26,7 @@ export default async function ResourceDetailPage({ params, searchParams }: { par
   setRequestLocale(locale);
   const isZh = locale === "zh";
   const copy = isZh ? resourceZhCopy[item.slug] : item;
-  const interest = slug === "artwork-guidelines" ? "artwork-review" : slug === "dielines-templates" || slug === "dieline-template-request" ? "dieline-request" : "structure-review";
+  const interest = slug === "artwork-guidelines" ? "artwork-review" : slug === "dielines-templates" ? "dieline-request" : "structure-review";
   const contactHref = buildInquiryContactHref({
     interest,
     utm_source: query.utm_source,
