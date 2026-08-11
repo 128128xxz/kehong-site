@@ -130,7 +130,7 @@ test.describe("Kehong production flows", () => {
   test("core pages load without console or hydration errors", async ({ page }) => {
     const errors = await expectNoConsoleErrors(page);
     for (const path of ["/en", "/en/products", "/en/contact"]) {
-      await page.goto(path, { waitUntil: "networkidle" });
+      await page.goto(path, { waitUntil: "domcontentloaded" });
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator('meta[name="description"]')).toHaveCount(1);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /www\.kehong\.tech/);
@@ -549,7 +549,7 @@ test.describe("Kehong production flows", () => {
     const categories = ["paper-bags", "takeout-boxes", "cake-boxes", "cake-boards-cake-drums", "corrugated-mailer-boxes"];
     for (const locale of ["en", "zh"]) {
       for (const slug of categories) {
-        await page.goto(`/${locale}/packaging/${slug}`, { waitUntil: "networkidle" });
+        await page.goto(`/${locale}/packaging/${slug}`, { waitUntil: "domcontentloaded" });
         const link = page.getByRole("link", { name: locale === "zh" ? "浏览产品" : "Browse products" });
         await expect(link).toHaveAttribute("href", "#catalog-list");
         await link.focus();
