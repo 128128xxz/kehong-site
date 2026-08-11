@@ -77,6 +77,7 @@ describe("product taxonomy and publication gate", () => {
     expect(materials.groups.flatMap((group) => group.links)).toHaveLength(6);
     expect(finished.groups.flatMap((group) => group.links)).toHaveLength(5);
     expect(materials.label.en).toBe("Paper materials & semi-finished components");
+    expect(materials.label.zh).toBe("纸材与半成品");
     expect(finished.label.zh).toBe("成品包装");
     expect(materials.groups.flatMap((group) => group.links).every((link) => link.href.startsWith("/products?group="))).toBe(true);
     expect(finished.groups.flatMap((group) => group.links).every((link) => link.href.startsWith("/packaging/"))).toBe(true);

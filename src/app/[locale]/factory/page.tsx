@@ -35,7 +35,7 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
           }
           meta={
             isZh
-              ? [companyProfile.location.zh, "20+ 年纸品制造", "8,000+ ㎡"]
+              ? [companyProfile.location.zh, "20+ 年纸品加工经验", "8,000+ ㎡生产场地"]
               : [companyProfile.location.en, "20+ years in paper converting", "8,000+ m²"]
           }
           image={{

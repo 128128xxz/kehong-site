@@ -55,7 +55,7 @@ test.describe("homepage manufacturing website", () => {
 
   test("homepage metrics use locale-correct values, units and labels", async ({ page }) => {
     for (const [locale, values, labels, unit] of [
-      ["en", ["20+", "8,000+", "OEM / ODM", "MOQ"], ["Years in paper converting", "Production floor area", "Custom development", "Flexible order quantities"], "m²"],
+      ["en", ["20+", "8,000+", "OEM / ODM", "MOQ"], ["Years in paper converting", "Production site", "Custom development", "Flexible order quantities"], "m²"],
       ["zh", ["20+", "8,000+", "OEM / ODM", "MOQ"], ["纸品加工经验", "生产场地", "定制开发", "灵活起订"], "㎡"],
     ] as const) {
       await page.goto(`/${locale}`);
@@ -77,6 +77,8 @@ test.describe("homepage manufacturing website", () => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto("/en");
     const stats = page.locator(".kh-hero-stat");
+    await expect(stats.first()).toHaveClass(/kh-metric-motion-(armed|in)/, { timeout: 3000 });
+    await stats.first().scrollIntoViewIfNeeded();
     await expect(stats.first()).toHaveClass(/kh-metric-motion-in/, { timeout: 3000 });
     await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("20+");
     await expect(stats.nth(1).locator(".kh-hero-stat-value")).toContainText("8,000+");

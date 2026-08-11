@@ -650,6 +650,41 @@ function normalizeCoating(value: string | undefined) {
   return "";
 }
 
+const processFilterLabels: Record<string, { en: string; zh: string }> = {
+  "coating-pe": { en: "PE coating", zh: "PE 淋膜" },
+  "coating-pla": { en: "PLA coating", zh: "PLA 淋膜" },
+  "die-cutting": { en: "Die-cutting", zh: "模切" },
+  flexographic: { en: "Flexographic printing", zh: "柔印" },
+  "custom-printing": { en: "Custom printing", zh: "定制印刷" },
+  rewinding: { en: "Rewinding", zh: "复卷" },
+  slitting: { en: "Slitting", zh: "分切" },
+  "slitting-rewinding": { en: "Slitting / rewinding", zh: "分切 / 复卷" },
+  "slitting-die-cutting": { en: "Slitting / die-cutting", zh: "分切 / 模切" },
+  "flexographic-custom-printing": { en: "Flexographic / custom printing", zh: "柔印 / 定制印刷" },
+  "flexographic-custom-printing-slitting-rewinding": { en: "Flexographic / custom printing, slitting / rewinding", zh: "柔印 / 定制印刷、分切 / 复卷" },
+  "die-cutting-flexographic-custom-printing": { en: "Die-cutting, flexographic / custom printing", zh: "模切、柔印 / 定制印刷" },
+  "die-cutting-flexographic-custom-printing-slitting-rewinding": { en: "Die-cutting, flexographic / custom printing, slitting / rewinding", zh: "模切、柔印 / 定制印刷、分切 / 复卷" },
+};
+
+const processFilterIds: Record<string, string> = Object.fromEntries([
+  ["PE 淋膜", "coating-pe"], ["PLA 涂层", "coating-pla"], ["模切", "die-cutting"], ["柔印", "flexographic"],
+  ["定制印刷", "custom-printing"], ["复卷", "rewinding"], ["分切", "slitting"], ["分切 / 复卷", "slitting-rewinding"],
+  ["分切 / 模切", "slitting-die-cutting"], ["柔印 / 定制印刷", "flexographic-custom-printing"],
+  ["柔印 / 定制印刷、分切 / 复卷", "flexographic-custom-printing-slitting-rewinding"],
+  ["模切、柔印 / 定制印刷", "die-cutting-flexographic-custom-printing"],
+  ["模切、柔印 / 定制印刷、分切 / 复卷", "die-cutting-flexographic-custom-printing-slitting-rewinding"],
+]);
+
+export function getProcessFilterId(value: string | undefined) {
+  if (!value) return "";
+  return processFilterIds[value] ?? value.toLocaleLowerCase().replaceAll(/[^a-z0-9]+/gu, "-").replaceAll(/^-|-$/gu, "");
+}
+
+export function getLocalizedProcessFilterLabel(value: string, locale: string) {
+  const label = processFilterLabels[value];
+  return label ? (locale === "zh" ? label.zh : label.en) : value;
+}
+
 const canonicalGroupTitles: Record<string, { en: string; zh: string }> = {
   "paper-cup-fan-paper-cup-fan": { en: "Paper Cup Fan", zh: "纸杯扇形片" },
   "paper-cup-fan-pe-coated-paper-roll-for-paper-cup": { en: "Coated Paper Roll for Paper Cup", zh: "纸杯淋膜纸卷" },
@@ -858,7 +893,9 @@ export function filterCatalogSkus(filters: CatalogFilters = {}, skus: ProductSku
   const canonicalCategory = getCanonicalTaxonomyCategoryId(filters.category);
   const matchesLocalizedValue = (raw: string | undefined, selected: string | undefined) => {
     if (!raw || !selected) return false;
-    return raw === selected || getLocalizedCatalogValue(raw, "en") === selected;
+    return raw === selected
+      || getLocalizedCatalogValue(raw, "en") === selected
+      || getProcessFilterId(raw) === selected;
   };
   return skus.filter((sku) => {
     const collection = getProductCollection(filters.collection) ?? getCollectionForCategory(canonicalCategory);
@@ -872,7 +909,7 @@ export function filterCatalogSkus(filters: CatalogFilters = {}, skus: ProductSku
     if (filters.productType && getPublicProductType(sku) !== filters.productType) return false;
     if (filters.material && !(sku.materialIds ?? []).includes(filters.material)) return false;
     if (filters.gsm && !matchesGsmOption(sku.gsm ?? sku.gsmOrThickness, filters.gsm)) return false;
-    if (filters.coating && !matchesLocalizedValue(sku.coating, filters.coating)) return false;
+    if (filters.coating && normalizeCoating(sku.coating)?.toLocaleLowerCase() !== filters.coating.toLocaleLowerCase()) return false;
     if (filters.process && ![sku.surfaceProcess, sku.finishingProcess, ...(sku.process ?? [])].some((value) => matchesLocalizedValue(value, filters.process))) return false;
     if (filters.customizable && !sku.customizable) return false;
     if (query && !searchableSkuText(sku).includes(query)) return false;
@@ -895,16 +932,18 @@ export function hasInvalidCatalogFilters(filters: CatalogFilters, options = getC
 }
 
 export function getCatalogFilterOptions(locale = "zh"): CatalogFilterOptions {
+  void locale;
   const publishedSkus = getAllSkus();
-  const localize = (value: string) => locale === "en" ? getLocalizedCatalogValue(value, "en") : value;
-  const values = (getter: (sku: ProductSku) => string[]) => [...new Set(publishedSkus.flatMap(getter).filter(Boolean).map(localize))].sort((a, b) => a.localeCompare(b));
+  // Query parameters stay canonical and stable across locales. The UI applies
+  // display-only localization when rendering each option.
+  const values = (getter: (sku: ProductSku) => string[]) => [...new Set(publishedSkus.flatMap(getter).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   return {
     categories: getTaxonomyCategories().map((category) => category.slug),
     productTypes: values((sku) => [getPublicProductType(sku)]),
     materials: values((sku) => sku.materialIds ?? []),
     gsm: getCommonGsmOptions(),
-    coatings: values((sku) => [sku.coating]),
-    processes: values((sku) => [...(sku.process ?? []), sku.surfaceProcess, sku.finishingProcess]),
+    coatings: [...new Set(publishedSkus.map((sku) => normalizeCoating(sku.coating)).filter(Boolean))].sort(),
+    processes: [...new Set(publishedSkus.flatMap((sku) => [...(sku.process ?? []), sku.surfaceProcess, sku.finishingProcess].filter(Boolean).map(getProcessFilterId)))].sort(),
   };
 }
 

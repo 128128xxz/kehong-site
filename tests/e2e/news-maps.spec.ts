@@ -3,8 +3,8 @@ import { expect, test } from "@playwright/test";
 test.describe("factory maps and News & Insights", () => {
   test("routes and map providers stay locale-specific", async ({ page, request }) => {
     for (const locale of ["zh", "en"]) {
-      const mapHost = locale === "zh" ? "uri.amap.com" : "www.google.com";
-      const mapLabel = locale === "zh" ? /高德地图/ : /Google Maps/;
+      const mapHost = locale === "zh" ? "map.baidu.com" : "www.google.com";
+      const mapLabel = locale === "zh" ? /查看位置/ : /View location/;
       for (const path of [`/${locale}/contact`, `/${locale}/factory`, `/${locale}`]) {
         const response = await request.get(path);
         expect(response.status()).toBe(200);
@@ -20,6 +20,18 @@ test.describe("factory maps and News & Insights", () => {
       await expect(map).toHaveAttribute("target", "_blank");
       await expect(map).toHaveAttribute("rel", "noopener noreferrer");
       await expect(map).toContainText(mapLabel);
+    }
+  });
+
+  test("location cards expose localized labels, provider metadata and safe external links", async ({ page }) => {
+    for (const [locale, provider, label, sourceBlock] of [["zh", "baidu", "查看位置", "contact"], ["en", "google", "View location", "factory"]] as const) {
+      await page.goto(`/${locale}/${sourceBlock === "contact" ? "contact" : "factory"}`, { waitUntil: "networkidle" });
+      const link = page.locator(`a[data-location-source="${sourceBlock}"]`).first();
+      await expect(link).toBeVisible();
+      await expect(link).toHaveAttribute("data-map-provider", provider);
+      await expect(link).toContainText(label);
+      await expect(link).toHaveAttribute("target", "_blank");
+      await expect(link).toHaveAttribute("rel", "noopener noreferrer");
     }
   });
 

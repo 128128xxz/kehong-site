@@ -3,6 +3,7 @@ import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { companyLegalName, companyProfile, contact, socialLinks } from "@/data/company";
 import { getFactoryMapUrl } from "@/data/companyLocation";
+import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 import SiteLogo from "@/components/site/SiteLogo";
 
 type IconProps = { className?: string };
@@ -135,9 +136,9 @@ export default async function SiteFooter() {
               <Mail className="size-4" />
               {zh ? "Email" : "Email"}
             </a>
-            <a href={getFactoryMapUrl(locale)} target="_blank" rel="noopener noreferrer" aria-label={zh ? "在高德地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}>
-              {zh ? "高德地图" : "Google Maps"}
-            </a>
+            <LocationClickAnchor href={getFactoryMapUrl(locale)} locale={locale} sourceBlock="footer" mapProvider={zh ? "baidu" : "google"} target="_blank" rel="noopener noreferrer" aria-label={zh ? "在百度地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}>
+              {zh ? "查看位置" : "View location"}
+            </LocationClickAnchor>
           </div>
           <div className="kh-social" aria-label={zh ? "社交媒体" : "Social media"}>
             {socialEntries.map(({ key, label, href, Icon }) => (

@@ -10,6 +10,7 @@ import { SectionKicker } from "@/components/home/annotations";
 import { Reveal } from "@/components/home/interactive";
 import { contact } from "@/data/company";
 import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryMapUrl } from "@/data/companyLocation";
+import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 import { showcaseImages } from "@/data/visuals";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
@@ -180,21 +181,24 @@ export default async function ContactPage({
                   </div>
                 ))}
               </div>
-              <a
+              <LocationClickAnchor
                 href={getFactoryMapUrl(locale)}
+                locale={locale}
+                sourceBlock="contact"
+                mapProvider={zh ? "baidu" : "google"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="kh-panel mt-3 flex min-h-11 items-start gap-3 p-4 transition hover:border-(--kh-forest)/45"
-                aria-label={zh ? "在高德地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}
+                aria-label={zh ? "在百度地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}
               >
                 <span className="mt-0.5 text-lg" aria-hidden="true">⌖</span>
                 <span>
                   <span className="block font-semibold text-(--kh-ink)">{zh ? "工厂位置" : "Factory location"}</span>
                   <span className="mt-1 block text-xs font-medium text-(--kh-brass)">{zh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}</span>
                   <span className="mt-1 block text-sm leading-6 text-(--kh-muted)">{zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
-                  <span className="mt-2 block text-sm font-semibold text-(--kh-forest)">{zh ? "在高德地图中查看" : "View on Google Maps"}</span>
+                  <span className="mt-2 block text-sm font-semibold text-(--kh-forest)">{zh ? "查看位置" : "View location"}</span>
                 </span>
-              </a>
+              </LocationClickAnchor>
               <div className="kh-media-shade premium-depth relative mt-8 h-80 overflow-hidden rounded-lg border border-(--kh-line)">
                 <Image
                   src={showcaseImages.webBakeryWindowBox}

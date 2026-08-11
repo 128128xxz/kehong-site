@@ -119,6 +119,6 @@ export function appendAttribution(form: FormData, ctaLocation: string, locale: s
   form.set("inquiryType", ctaLocation);
 }
 
-export function trackKehongEvent(name: "quote_click" | "whatsapp_click" | "resource_open" | "product_view" | "packaging_category_view" | "inquiry_start" | "inquiry_submit", properties: Record<string, string | number | boolean | undefined> = {}) {
+export function trackKehongEvent(name: "quote_click" | "whatsapp_click" | "resource_open" | "product_view" | "packaging_category_view" | "inquiry_start" | "inquiry_submit" | "location_click", properties: Record<string, string | number | boolean | undefined> = {}) {
   try { track(name, properties); } catch { /* analytics is non-blocking */ }
 }

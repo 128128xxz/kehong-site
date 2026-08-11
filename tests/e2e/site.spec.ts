@@ -445,7 +445,7 @@ test.describe("Kehong production flows", () => {
   });
 
   test("products directory separates published materials from finished packaging without exposing Labels & Stickers", async ({ page }) => {
-    for (const [locale, materials, packaging] of [["en", "Paper materials & semi-finished components", "Finished packaging"], ["zh", "纸材和半成品", "成品包装"]] as const) {
+    for (const [locale, materials, packaging] of [["en", "Paper materials & semi-finished components", "Finished packaging"], ["zh", "纸材与半成品", "成品包装"]] as const) {
       await page.goto(`/${locale}/products`, { waitUntil: "networkidle" });
       const materialsDirectory = page.locator("#materials-and-components");
       const finishedDirectory = page.locator("#finished-packaging");
@@ -459,17 +459,18 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("factory address card routes Chinese visitors to AMap and English visitors to Google Maps", async ({ page }) => {
+  test("factory address card routes Chinese visitors to Baidu and English visitors to Google Maps", async ({ page }) => {
     const mapQuery = "佛山市布新工业区科宏纸品";
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/factory`, { waitUntil: "networkidle" });
-      const mapLink = page.locator("main").locator(locale === "zh" ? 'a[href*="uri.amap.com/search"]' : 'a[href*="www.google.com/maps/search"]').first();
+      const mapLink = page.locator("main").locator(locale === "zh" ? 'a[href*="map.baidu.com/search"]' : 'a[href*="www.google.com/maps/search"]').first();
       await expect(mapLink).toBeVisible();
       await expect(mapLink).toHaveAttribute("target", "_blank");
       await expect(mapLink).toHaveAttribute("rel", "noopener noreferrer");
       const href = await mapLink.getAttribute("href");
       const url = new URL(href!);
-      expect(url.searchParams.get(locale === "zh" ? "keyword" : "query")).toBe(mapQuery);
+      if (locale === "zh") expect(decodeURIComponent(url.pathname)).toContain(mapQuery);
+      else expect(url.searchParams.get("query")).toBe(mapQuery);
       await expect(mapLink).toContainText(locale === "zh" ? "佛山市南海区布新工业区7号科宏坑纸厂" : "Kehong Corrugated Paper Factory");
     }
   });

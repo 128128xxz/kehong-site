@@ -17,15 +17,7 @@ export const FACTORY_MAP_LABEL = {
 
 export function getFactoryMapUrl(locale: string) {
   if (locale === "zh") {
-    const url = new URL("https://uri.amap.com/search");
-    url.search = new URLSearchParams({
-      keyword: FACTORY_MAP_QUERY_ZH,
-      city: "佛山",
-      view: "map",
-      src: "kehong.tech",
-      callnative: "1",
-    }).toString();
-    return url.toString();
+    return `https://map.baidu.com/search/${encodeURIComponent(FACTORY_MAP_QUERY_ZH)}`;
   }
 
   const url = new URL("https://www.google.com/maps/search/");
@@ -38,5 +30,7 @@ export function getFactoryMapUrl(locale: string) {
   return url.toString();
 }
 
-export const FACTORY_AMAP_URL = getFactoryMapUrl("zh");
+export const FACTORY_BAIDU_MAP_URL = getFactoryMapUrl("zh");
+/** @deprecated Keep the export for older integrations; new UI uses Baidu. */
+export const FACTORY_AMAP_URL = FACTORY_BAIDU_MAP_URL;
 export const FACTORY_GOOGLE_MAPS_URL = getFactoryMapUrl("en");

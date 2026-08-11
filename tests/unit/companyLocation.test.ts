@@ -2,15 +2,11 @@ import { describe, expect, it } from "vitest";
 import { FACTORY_MAP_QUERY_ZH, getFactoryMapUrl } from "@/data/companyLocation";
 
 describe("locale-specific factory map links", () => {
-  it("uses the approved AMap search query for Chinese pages", () => {
+  it("uses a login-free Baidu search URL for Chinese pages", () => {
     const url = new URL(getFactoryMapUrl("zh"));
-    expect(url.hostname).toBe("uri.amap.com");
-    expect(url.pathname).toBe("/search");
-    expect(url.searchParams.get("keyword")).toBe(FACTORY_MAP_QUERY_ZH);
-    expect(url.searchParams.get("city")).toBe("佛山");
-    expect(url.searchParams.get("view")).toBe("map");
-    expect(url.searchParams.get("src")).toBe("kehong.tech");
-    expect(url.searchParams.get("callnative")).toBe("1");
+    expect(url.hostname).toBe("map.baidu.com");
+    expect(url.pathname).toContain(encodeURIComponent(FACTORY_MAP_QUERY_ZH));
+    expect(url.toString()).not.toContain("amap");
   });
 
   it("uses Google Maps and the same query for English pages", () => {

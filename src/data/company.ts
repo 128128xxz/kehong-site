@@ -9,6 +9,7 @@ export const companyLegalName = "Foshan Kehong Paper Products Co., Ltd.";
 export {
   FACTORY_ADDRESS,
   FACTORY_AMAP_URL,
+  FACTORY_BAIDU_MAP_URL,
   FACTORY_GOOGLE_MAPS_URL,
   FACTORY_MAP_LABEL,
   FACTORY_MAP_QUERY_ZH,

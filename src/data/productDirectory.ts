@@ -31,7 +31,7 @@ export type ProductCatalogSection = {
 export const productCatalogSections: readonly ProductCatalogSection[] = [
   {
     id: "materials",
-    label: { en: "Paper materials & semi-finished components", zh: "纸材和半成品" },
+    label: { en: "Paper materials & semi-finished components", zh: "纸材与半成品" },
     description: {
       en: "Rolls, sheets, cup components and forming materials with published SKUs and specification filters.",
       zh: "卷材、平张、纸杯部件和成型用纸材，提供明确的 SKU 与规格筛选。",

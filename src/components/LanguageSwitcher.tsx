@@ -20,14 +20,16 @@ const LanguageSwitcher = () => {
   return (
     <DropdownMenu dir="ltr">
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" className="kh-language-trigger min-h-11 min-w-11 border-(--kh-line) bg-(--kh-surface)/90 px-3 font-semibold shadow-sm">
           {localeConfig[currentLanguage as keyof typeof localeConfig].label}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="kh-language-menu min-w-32 border-(--kh-line) bg-(--kh-surface) p-1 shadow-xl">
         {routing.locales.map((locale) => (
           <DropdownMenuItem
             key={locale}
+            className={`kh-language-option min-h-11 cursor-pointer rounded-md px-3 font-semibold ${locale === currentLanguage ? "bg-(--kh-forest) text-(--kh-surface)" : "text-(--kh-ink)"}`}
+            aria-current={locale === currentLanguage ? "true" : undefined}
             onClick={() => {
               const secure = window.location.protocol === "https:" ? "; Secure" : "";
               document.cookie = `kehong_locale=${locale}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;

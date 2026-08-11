@@ -37,7 +37,7 @@ export default function HomeHero({ locale }: { locale: string }) {
     {
       value: <><CountUp to={8000} suffix="+" /><span className="kh-hero-stat-unit">{zh ? "㎡" : "m²"}</span></>,
       ariaValue: zh ? "8,000+ ㎡" : "8,000+ m²",
-      label: zh ? "生产场地" : "Production floor area",
+      label: zh ? "生产场地" : "Production site",
     },
     { value: "OEM / ODM", ariaValue: "OEM / ODM", label: zh ? "定制开发" : "Custom development", long: true },
     { value: "MOQ", ariaValue: "MOQ", label: zh ? "灵活起订" : "Flexible order quantities" },
@@ -70,7 +70,7 @@ export default function HomeHero({ locale }: { locale: string }) {
             {zh ? (
               <>纸材、半成品与<span className="whitespace-nowrap">定制包装</span>，制造于佛山。</>
             ) : (
-              "Paper Materials & Custom Packaging, Made in Foshan."
+              "Paper materials, components & custom packaging, made in Foshan."
             )}
           </h1>
           <p className="kh-lede kh-rise kh-rise-4">

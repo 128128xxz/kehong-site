@@ -96,7 +96,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
           title={{ en: "Project resources", zh: "询盘资料" }}
           links={[
             { href: "/packaging", en: "Packaging overview", zh: "成品包装总览" },
-            { href: "/products?collection=materials", en: "Paper materials", zh: "纸材和半成品" },
+            { href: "/products?collection=materials", en: "Paper materials", zh: "纸材与半成品" },
             { href: "/resources", en: "Buyer resources", zh: "买家资料中心" },
             { href: "/contact", en: "Send a project brief", zh: "提交项目需求" },
           ]}

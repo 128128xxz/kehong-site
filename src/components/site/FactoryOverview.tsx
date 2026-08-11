@@ -7,6 +7,7 @@ import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryMapUrl } from "@/data/com
 import { showcaseImages } from "@/data/visuals";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
+import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 
 const capabilityRows = [
   {
@@ -16,8 +17,8 @@ const capabilityRows = [
     bodyZh: "按确认的材料、结构、加工、检验和包装要求组织生产。",
   },
   {
-    title: "Converting equipment",
-    titleZh: "加工设备",
+    title: "Converting process",
+    titleZh: "加工工序",
     body: "Arrange feeding, slitting, die-cutting, creasing and paper mounting for the required structure.",
     bodyZh: "根据产品结构安排送料、分切、模切、压痕和裱纸。",
   },
@@ -61,15 +62,15 @@ export default async function FactoryOverview() {
                 <dd className="mt-1 text-(--kh-muted)">{isZh ? companyProfile.productionCapability.zh : companyProfile.productionCapability.en}</dd>
               </div>
             </dl>
-            <a href={getFactoryMapUrl(locale)} target="_blank" rel="noopener noreferrer" className="kh-panel mt-4 flex min-h-11 items-start gap-3 p-4 transition hover:border-(--kh-forest)/45" aria-label={isZh ? "在高德地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}>
+            <LocationClickAnchor href={getFactoryMapUrl(locale)} locale={locale} sourceBlock="factory" mapProvider={isZh ? "baidu" : "google"} target="_blank" rel="noopener noreferrer" className="kh-panel mt-4 flex min-h-11 items-start gap-3 p-4 transition hover:border-(--kh-forest)/45" aria-label={isZh ? "在百度地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}>
               <MapPin className="mt-0.5 size-5 shrink-0 text-(--kh-brass)" aria-hidden="true" />
               <span>
                 <span className="block font-semibold text-(--kh-ink)">{isZh ? "工厂地址" : "Factory address"}</span>
                 <span className="mt-1 block text-xs font-medium text-(--kh-brass)">{isZh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}</span>
                 <span className="mt-1 block text-sm leading-6 text-(--kh-muted)">{isZh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
-                <span className="mt-2 inline-flex text-sm font-semibold text-(--kh-forest)">{isZh ? "在高德地图中查看" : "View on Google Maps"} <ArrowRight className="ml-1 size-4" /></span>
+                <span className="mt-2 inline-flex text-sm font-semibold text-(--kh-forest)">{isZh ? "查看位置" : "View location"} <ArrowRight className="ml-1 size-4" /></span>
               </span>
-            </a>
+            </LocationClickAnchor>
             <Link href="/process" className="kh-text-link mt-6 min-h-11 px-1">
               {isZh ? "查看生产流程" : "View production process"}
               <ArrowRight className="size-4" />

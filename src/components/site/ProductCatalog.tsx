@@ -12,12 +12,14 @@ import {
   getCatalogGroups,
   getProductGroupSummary,
   getLocalizedCatalogValue,
+  getLocalizedProcessFilterLabel,
   getLocalizedProductMaterial,
   getLocalizedProductTitle,
   type CatalogFilterOptions,
   type ProductSku,
 } from "@/lib/catalog";
 import { getProductTypeLabel } from "@/lib/productImages";
+import { getTaxonomyMaterialLabel } from "@/lib/taxonomy";
 import { formatProductFieldValue } from "@/lib/productPresentation";
 
 type Props = {
@@ -221,7 +223,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
             options={options.materials}
             onChange={(value) => updateUrl("material", value)}
             allLabel={t("catalog.all")}
-            formatOption={(value) => getLocalizedCatalogValue(value, locale)}
+            formatOption={(value) => getTaxonomyMaterialLabel(value, locale) || getLocalizedCatalogValue(value, locale) || value.replaceAll("-", " ")}
           />
           <FilterSelect
             label={locale === "zh" ? "克重 / GSM" : "GSM / weight"}
@@ -236,6 +238,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
             options={options.coatings}
             onChange={(value) => updateUrl("coating", value)}
             allLabel={t("catalog.all")}
+            formatOption={(value) => locale === "zh" ? `${value} 淋膜` : `${value} coating`}
           />
           <FilterSelect
             label={t("catalog.process")}
@@ -243,7 +246,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
             options={options.processes}
             onChange={(value) => updateUrl("process", value)}
             allLabel={t("catalog.all")}
-            formatOption={(value) => getLocalizedCatalogValue(value, locale)}
+            formatOption={(value) => getLocalizedProcessFilterLabel(value, locale)}
           />
           <label className="flex items-center gap-3 rounded-md border border-(--kh-line) bg-(--kh-surface) px-3 py-3 text-sm font-semibold text-(--kh-ink)">
             <input

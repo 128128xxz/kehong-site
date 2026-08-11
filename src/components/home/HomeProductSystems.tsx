@@ -42,7 +42,7 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
   const systems = [
     {
       ...materials,
-      label: zh ? "纸材和半成品" : "Paper materials & semi-finished components",
+      label: zh ? "纸材与半成品" : "Paper materials & semi-finished components",
       intro: zh ? "先从纸材、杯纸组件和成型材料入手。" : "Start with paper grades, cup components and forming materials.",
       links: pickLinks("materials", ["paper-cup-fan", "pe-coated-paper-roll", "food-tray-material"]),
       visuals: materialVisuals,
