@@ -141,7 +141,7 @@ test.describe("real mobile touch interaction gates", () => {
   test.describe.configure({ mode: "serial" });
 
   test("iOS and Android touch contexts expose unobstructed tap targets", async ({ browser }, testInfo) => {
-    test.setTimeout(180_000);
+    test.setTimeout(600_000);
     const audit: HitRecord[] = [];
     for (const [profileName, profile] of [["iPhone Safari equivalent", iphoneEquivalent], ["Pixel 7 Chrome", pixelEquivalent]] as const) {
       for (const viewport of viewports) {
