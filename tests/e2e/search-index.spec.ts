@@ -21,6 +21,11 @@ test("search verification file and discovery feeds stay public and canonical", a
   expect(yandexResponse.headers().location).toBeUndefined();
   expect(await yandexResponse.text()).toContain("8b57a719979b9bf4");
 
+  const baiduResponse = await request.get("/baidu_verify_codeva-TB3TYTpqex.html", { maxRedirects: 0 });
+  expect(baiduResponse.status()).toBe(200);
+  expect(baiduResponse.headers().location).toBeUndefined();
+  expect((await baiduResponse.text()).trim()).toBe("codeva-TB3TYTpqex");
+
   const robotsResponse = await request.get("/robots.txt", { maxRedirects: 0 });
   expect(robotsResponse.status()).toBe(200);
   expect(robotsResponse.headers().location).toBeUndefined();
