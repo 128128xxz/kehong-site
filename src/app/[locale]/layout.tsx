@@ -131,6 +131,9 @@ export async function generateMetadata({
     },
     verification: {
       google: "oGY3RMliU_f7XXUTFQX_T-9UkW6yIzlPy_0WYcGCsd8",
+      other: {
+        "msvalidate.01": "6A7A8E9BDD4625F87D5C5D9BC1F2B9F2",
+      },
     },
   };
 }
