@@ -3,6 +3,7 @@
 import { track } from "@vercel/analytics/react";
 
 const storageKey = "kehong-attribution-v1";
+const aiVisitKeyPrefix = "kehong-ai-referral-visit-v1";
 const attributionKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid"] as const;
 
 export type KehongAttribution = {
@@ -27,6 +28,27 @@ export type AttributionTouch = {
   term: string;
   path: string;
 };
+
+export type AiReferralProvider = "chatgpt" | "perplexity" | "copilot" | "bing" | "gemini" | "claude";
+
+export function detectAiReferralProvider(referrer: string): AiReferralProvider | "" {
+  if (!referrer) return "";
+  try {
+    const host = new URL(referrer).hostname.toLowerCase().replace(/^www\./u, "");
+    if (host === "chatgpt.com" || host.endsWith(".chatgpt.com")) return "chatgpt";
+    if (host === "perplexity.ai" || host.endsWith(".perplexity.ai")) return "perplexity";
+    if (host === "copilot.microsoft.com" || host.endsWith(".copilot.microsoft.com")) return "copilot";
+    if (host === "bing.com" || host.endsWith(".bing.com")) return "bing";
+    if (host === "gemini.google.com" || host.endsWith(".gemini.google.com")) return "gemini";
+    if (host === "claude.ai" || host.endsWith(".claude.ai")) return "claude";
+  } catch { /* malformed referrers are ignored */ }
+  return "";
+}
+
+function deviceType() {
+  if (typeof window === "undefined") return "unknown";
+  return window.matchMedia?.("(max-width: 767px)").matches || /Android|iPhone|iPad|Mobile/u.test(window.navigator.userAgent) ? "mobile" : "desktop";
+}
 
 const emptyTouch = (): AttributionTouch => ({ source: "", medium: "", campaign: "", content: "", term: "", path: "" });
 const emptyAttribution = (): KehongAttribution => ({ firstLandingPath: "", referrer: "", utmSource: "", utmMedium: "", utmCampaign: "", utmContent: "", utmTerm: "", gclid: "", fbclid: "", firstTouch: emptyTouch(), latestTouch: emptyTouch() });
@@ -87,6 +109,22 @@ export function captureAttribution(): KehongAttribution {
     latestTouch,
   };
   try { window.sessionStorage.setItem(storageKey, JSON.stringify(next)); } catch { /* session storage is optional */ }
+  const provider = detectAiReferralProvider(next.referrer);
+  if (provider) {
+    const visitKey = `${aiVisitKeyPrefix}:${provider}:${window.location.pathname}`;
+    let hasTrackedVisit = false;
+    try { hasTrackedVisit = window.sessionStorage.getItem(visitKey) === "1"; } catch { /* optional storage */ }
+    if (!hasTrackedVisit) {
+      trackKehongEvent("ai_referral_visit", {
+        provider,
+        landingPage: window.location.pathname,
+        locale: window.location.pathname.startsWith("/zh") ? "zh" : "en",
+        deviceType: deviceType(),
+        campaign: next.latestTouch.campaign,
+      });
+      try { window.sessionStorage.setItem(visitKey, "1"); } catch { /* optional storage */ }
+    }
+  }
   return next;
 }
 
@@ -119,6 +157,22 @@ export function appendAttribution(form: FormData, ctaLocation: string, locale: s
   form.set("inquiryType", ctaLocation);
 }
 
-export function trackKehongEvent(name: "quote_click" | "whatsapp_click" | "resource_open" | "product_view" | "packaging_category_view" | "inquiry_start" | "inquiry_submit" | "location_click", properties: Record<string, string | number | boolean | undefined> = {}) {
+export function trackAiReferralEvent(name: "ai_referral_product_click" | "ai_referral_quote_start" | "ai_referral_whatsapp_click" | "ai_referral_email_click", properties: Record<string, string | number | boolean | undefined> = {}) {
+  if (typeof window === "undefined") return false;
+  const attribution = captureAttribution();
+  const provider = detectAiReferralProvider(attribution.referrer);
+  if (!provider) return false;
+  trackKehongEvent(name, {
+    provider,
+    landingPage: window.location.pathname,
+    locale: window.location.pathname.startsWith("/zh") ? "zh" : "en",
+    deviceType: deviceType(),
+    campaign: attribution.latestTouch.campaign,
+    ...properties,
+  });
+  return true;
+}
+
+export function trackKehongEvent(name: "quote_click" | "whatsapp_click" | "resource_open" | "product_view" | "packaging_category_view" | "inquiry_start" | "inquiry_submit" | "location_click" | "ai_referral_visit" | "ai_referral_product_click" | "ai_referral_quote_start" | "ai_referral_whatsapp_click" | "ai_referral_email_click", properties: Record<string, string | number | boolean | undefined> = {}) {
   try { track(name, properties); } catch { /* analytics is non-blocking */ }
 }

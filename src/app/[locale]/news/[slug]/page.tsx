@@ -9,6 +9,7 @@ import PageHero from "@/components/site/PageHero";
 import NewsShareTools from "@/components/site/NewsShareTools";
 import NewsCard, { formatNewsDate } from "@/components/site/NewsCard";
 import { getNewsArticle, getNewsSlugs, getNewsTranslation, getPublishedNews, type NewsLocale } from "@/content/news";
+import { getNewsEnhancement } from "@/content/news/citationEnhancements";
 import { Link } from "@/i18n/navigation";
 import { getAlternateLanguages, getLocaleUrl, siteConfig } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
@@ -44,6 +45,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ lo
   setRequestLocale(locale);
   const zh = newsLocale === "zh";
   const canonical = await getLocaleUrl(locale, `/news/${slug}`);
+  const enhancement = getNewsEnhancement(newsLocale, article.translationKey);
   const translation = getNewsTranslation(newsLocale === "zh" ? "en" : "zh", article.translationKey);
   const related = getPublishedNews(newsLocale).filter((item) => item.translationKey !== article.translationKey).slice(0, 3);
   const articleSchema = {
@@ -58,6 +60,9 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ lo
     publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
     mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
     inLanguage: locale,
+    articleSection: article.category,
+    keywords: article.tags,
+    citation: enhancement.sources.filter((source) => source.href).map((source) => new URL(source.href!, siteConfig.url).toString()),
   };
   const breadcrumbSchema = {
     "@context": "https://schema.org", "@type": "BreadcrumbList",
@@ -85,9 +90,32 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ lo
                 <Image src={article.coverImage} alt={article.coverAlt} fill priority sizes="(max-width: 1024px) 92vw, 65vw" className="object-cover" />
               </div>
               <p className="mt-7 text-lg font-medium leading-8 text-(--kh-ink)">{article.excerpt}</p>
+              <section data-ai-direct-answer className="mt-8 rounded-lg border border-(--kh-line) bg-(--kh-paper) p-5" aria-labelledby="direct-answer-title">
+                <p className="kh-eyebrow">{zh ? "直接回答" : "Direct answer"}</p>
+                <h2 id="direct-answer-title" className="mt-2 text-xl font-semibold">{zh ? "先看结论" : "The short answer"}</h2>
+                <p className="mt-3 leading-7">{enhancement.directAnswer}</p>
+              </section>
+              <section className="mt-8" aria-labelledby="comparison-title">
+                <h2 id="comparison-title">{zh ? "采购比较表" : "Buyer comparison"}</h2>
+                <div className="mt-4 overflow-x-auto rounded-lg border border-(--kh-line)">
+                  <table className="min-w-[620px] w-full border-collapse text-left text-sm">
+                    <caption className="sr-only">{zh ? "买家比较表" : "Buyer comparison table"}</caption>
+                    <thead className="bg-(--kh-paper)"><tr>{enhancement.comparisonColumns.map((column) => <th key={column} scope="col" className="border-b border-(--kh-line) px-4 py-3 font-semibold">{column}</th>)}</tr></thead>
+                    <tbody>{enhancement.comparisonRows.map((row, index) => <tr key={index} className="border-b border-(--kh-line) last:border-0">{enhancement.comparisonColumns.map((column) => <td key={column} className="px-4 py-3 align-top text-(--kh-muted)">{row[column] ?? "-"}</td>)}</tr>)}</tbody>
+                  </table>
+                </div>
+              </section>
               <div className="mt-8">
                 {article.sections.map((section) => <section key={section.heading}><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}
               </div>
+              <section className="mt-8" aria-labelledby="buyer-checklist-title">
+                <h2 id="buyer-checklist-title">{zh ? "询价前检查" : "Before you send the brief"}</h2>
+                <ul className="mt-4 grid gap-2 sm:grid-cols-2">{enhancement.buyerChecklist.map((item) => <li key={item} className="rounded-md border border-(--kh-line) bg-(--kh-paper) px-4 py-3 text-sm leading-6">{item}</li>)}</ul>
+              </section>
+              <section className="mt-8" aria-labelledby="sources-title">
+                <h2 id="sources-title">{zh ? "来源" : "Sources"}</h2>
+                <ul className="mt-3 grid gap-2 text-sm">{enhancement.sources.map((source) => <li key={source.label}>{source.href ? <Link className="underline underline-offset-4" href={source.href}>{source.label}</Link> : <span>{source.label}</span>}</li>)}</ul>
+              </section>
               <div className="mt-10"><NewsShareTools canonical={canonical} slug={article.slug} title={article.title} locale={locale} /></div>
               {translation ? <p className="mt-5 text-sm text-(--kh-muted)">{zh ? "English version available:" : "中文版本："} <Link className="underline underline-offset-4" href={`/news/${translation.slug}`}>{translation.title}</Link></p> : null}
             </div>

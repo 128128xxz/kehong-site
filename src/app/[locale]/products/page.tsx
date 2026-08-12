@@ -7,8 +7,8 @@ import PageHero from "@/components/site/PageHero";
 import ProductCatalog from "@/components/site/ProductCatalog";
 import ProductDirectory from "@/components/site/ProductDirectory";
 import { Link } from "@/i18n/navigation";
-import { contact } from "@/data/company";
 import { buildProductCatalogView, getCatalogFilterOptions, getQueryValue } from "@/lib/catalog";
+import { getPublicProductGroups, buildOrganizationJsonLd, buildProductGroupJsonLd } from "@/lib/aiEntities";
 import { getCanonicalTaxonomyCategoryId } from "@/lib/taxonomy";
 import { showcaseImages } from "@/data/visuals";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
@@ -84,7 +84,6 @@ export default async function ProductsPage({
   const query = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Site" });
-  const brand = getBrandConfig(locale);
   const value = (key: string) => getQueryValue(query[key]);
   const rawCategory = value("category");
   const canonicalCategory = getCanonicalTaxonomyCategoryId(rawCategory);
@@ -98,19 +97,8 @@ export default async function ProductsPage({
     redirect(`/${locale}/products${suffix ? `?${suffix}` : ""}`);
   }
   const catalogView = buildProductCatalogView(query, locale);
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: brand.name,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/brand/kehong-logo-full-transparent.png`,
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      telephone: contact.whatsapp,
-      email: contact.email,
-    },
-  };
+  const organizationJsonLd = buildOrganizationJsonLd(locale, t("catalog.description"));
+  const productGroupsJsonLd = getPublicProductGroups().map((group) => buildProductGroupJsonLd(group, locale, `${siteConfig.url}/${locale}/products?group=${encodeURIComponent(group.id)}`));
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -151,6 +139,10 @@ export default async function ProductsPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd({ "@context": "https://schema.org", "@graph": productGroupsJsonLd }) }}
       />
       <div className="kh-premium-site texture-paper min-h-screen">
       <Header />

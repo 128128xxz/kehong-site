@@ -6,7 +6,7 @@ import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SiteLogo from "@/components/site/SiteLogo";
-import { captureAttribution, trackKehongEvent } from "@/lib/attribution";
+import { captureAttribution, trackAiReferralEvent, trackKehongEvent } from "@/lib/attribution";
 import { productCatalogSections } from "@/data/productDirectory";
 
 const headerCopy = {
@@ -198,6 +198,25 @@ export default function Header({ variant = "solid" }: HeaderProps) {
   useEffect(() => {
     captureAttribution();
   }, [pathname]);
+
+  useEffect(() => {
+    const onClick = (event: MouseEvent) => {
+      const anchor = (event.target as HTMLElement | null)?.closest<HTMLAnchorElement>("a[href]");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") ?? "";
+      if (/^mailto:/iu.test(href)) {
+        trackAiReferralEvent("ai_referral_email_click", { conversionAction: "email_click" });
+      } else if (/wa\.me|whatsapp/iu.test(href)) {
+        trackAiReferralEvent("ai_referral_whatsapp_click", { conversionAction: "whatsapp_click" });
+      } else if (/\/products\//u.test(href) || /\/packaging\//u.test(href)) {
+        trackAiReferralEvent("ai_referral_product_click", { conversionAction: "product_click" });
+      } else if (/\/contact(?:[/?#]|$)/u.test(href)) {
+        trackAiReferralEvent("ai_referral_quote_start", { conversionAction: "quote_start" });
+      }
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
 
   // 点击外部或 Escape 关闭桌面下拉
   useEffect(() => {

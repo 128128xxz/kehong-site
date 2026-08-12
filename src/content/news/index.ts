@@ -1,4 +1,5 @@
 import type { SiteHref } from "@/lib/site-config";
+import { getNewsEnhancement, type NewsCitationEnhancement } from "@/content/news/citationEnhancements";
 
 export type NewsLocale = "en" | "zh";
 export type NewsType = "company-news" | "insight" | "buying-guide";
@@ -34,6 +35,11 @@ export type NewsArticle = {
   cta: NewsLink;
   socialExcerpt: string;
   published: boolean;
+  directAnswer?: NewsCitationEnhancement["directAnswer"];
+  comparisonColumns?: NewsCitationEnhancement["comparisonColumns"];
+  comparisonRows?: NewsCitationEnhancement["comparisonRows"];
+  buyerChecklist?: NewsCitationEnhancement["buyerChecklist"];
+  sources?: NewsCitationEnhancement["sources"];
 };
 
 const sharedAuthor = {
@@ -328,7 +334,10 @@ for (const article of zhArticles) {
   article.tags = article.tags.map((tag) => tag);
 }
 
-export const newsArticles = [...articles, ...zhArticles] as const;
+export const newsArticles = [...articles, ...zhArticles].map((article) => ({
+  ...article,
+  ...getNewsEnhancement(article.locale, article.translationKey),
+}));
 
 export function getPublishedNews(locale: NewsLocale) {
   return newsArticles

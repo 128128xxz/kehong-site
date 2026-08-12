@@ -25,4 +25,17 @@ describe("News & Insights content source", () => {
     expect(getPublishedNews("en").every((article) => article.published)).toBe(true);
     expect(getPublishedNews("zh").every((article) => article.published)).toBe(true);
   });
+
+  it("publishes citation-ready direct answers, comparison tables and buyer sources", () => {
+    for (const locale of ["en", "zh"] as const) {
+      for (const article of getPublishedNews(locale)) {
+        expect(article.directAnswer).toBeTruthy();
+        expect(article.comparisonColumns?.length).toBeGreaterThanOrEqual(3);
+        expect(article.comparisonRows?.length).toBeGreaterThanOrEqual(3);
+        expect(article.buyerChecklist?.length).toBeGreaterThanOrEqual(4);
+        expect(article.sources?.length).toBeGreaterThanOrEqual(1);
+        expect(article.directAnswer).not.toMatch(/内容由\s*AI\s*生成|人工智能|仅供参考/iu);
+      }
+    }
+  });
 });

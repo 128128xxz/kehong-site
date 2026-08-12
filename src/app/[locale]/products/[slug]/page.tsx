@@ -31,11 +31,13 @@ import {
   getProductGroupId,
   getSkuBySlug,
   getSkusByGroupId,
+  getProductGroups,
   buildProductGroupSummary,
   productDataRevision,
 } from "@/lib/catalog";
 import ProductImageWithStatus from "@/components/site/ProductImageWithStatus";
 import RelatedLinks from "@/components/site/RelatedLinks";
+import { buildOrganizationJsonLd, buildProductGroupJsonLd } from "@/lib/aiEntities";
 import {
   getProductTypeLabel,
   getPublicProductTypeLabel,
@@ -252,19 +254,9 @@ export default async function ProductDetailPage({
   const rfqChecklist = isZh
     ? ["产品图片 / 图纸", "尺寸 / 材质 / 克重", "数量 / 目标价格", "印刷颜色 / 后工艺", "目标市场"]
     : ["Product photo / drawing", "Size / material / GSM", "Quantity / target price", "Print color / finish", "Destination market"];
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: brand.name,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/brand/kehong-logo-full-transparent.png`,
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      telephone: contact.whatsapp,
-      email: contact.email,
-    },
-  };
+  const organizationJsonLd = buildOrganizationJsonLd(locale, groupSummary.metadata.description);
+  const productGroup = getProductGroups().find((group) => group.id === groupSummary.id);
+  const productGroupJsonLd = productGroup ? buildProductGroupJsonLd(productGroup, locale, productUrl) : undefined;
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -350,6 +342,10 @@ export default async function ProductDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(productJsonLd) }}
       />
+      {productGroupJsonLd ? <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(productGroupJsonLd) }}
+      /> : null}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(productFaqJsonLd) }}

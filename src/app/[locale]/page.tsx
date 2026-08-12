@@ -1,7 +1,8 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import HomeIndex from "@/components/pages/HomeIndex";
-import { getLocaleUrl, siteConfig } from "@/lib/site";
+import { getLocaleUrl } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
+import { buildLocalBusinessJsonLd, buildOrganizationJsonLd, buildWebPageJsonLd, buildWebsiteJsonLd } from "@/lib/aiEntities";
 
 function serializeJsonLd(data: Record<string, unknown>) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -19,34 +20,10 @@ export default async function HomePage({
   const brand = getBrandConfig(locale);
   const canonical = await getLocaleUrl(locale);
 
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: brand.name,
-    description: t("description"),
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/brand/kehong-logo-full-transparent.png`,
-    inLanguage: locale,
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      telephone: "+447599669700",
-    },
-  };
-
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: brand.name,
-    description: t("description"),
-    url: canonical,
-    inLanguage: locale,
-    publisher: {
-      "@type": "Organization",
-      name: brand.name,
-      url: siteConfig.author.url,
-    },
-  };
+  const organizationJsonLd = buildOrganizationJsonLd(locale, t("description"));
+  const localBusinessJsonLd = buildLocalBusinessJsonLd(locale);
+  const websiteJsonLd = buildWebsiteJsonLd(locale, canonical, t("description"));
+  const webPageJsonLd = buildWebPageJsonLd(locale, canonical, brand.name, t("description"));
 
   return (
     <>
@@ -57,6 +34,14 @@ export default async function HomePage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(localBusinessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(webPageJsonLd) }}
       />
       <HomeIndex />
     </>

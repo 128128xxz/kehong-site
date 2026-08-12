@@ -42,3 +42,26 @@ test("search verification file and discovery feeds stay public and canonical", a
     expect(rss).toContain(`https://www.kehong.tech/${locale}/news/`);
   }
 });
+
+test("AI and search crawler user agents receive public raw HTML without challenge", async ({ request }) => {
+  const userAgents = ["OAI-SearchBot", "PerplexityBot", "Perplexity-User", "Claude-SearchBot", "Claude-User", "Googlebot", "Bingbot"];
+  const routes = ["/en", "/zh", "/en/products", "/en/factory", "/en/resources", "/en/contact", "/en/news"];
+  for (const userAgent of userAgents) {
+    for (const route of routes) {
+      const response = await request.get(route, { maxRedirects: 0, headers: { "user-agent": userAgent } });
+      expect(response.status(), `${userAgent} ${route}`).toBe(200);
+      expect(response.headers().location, `${userAgent} ${route} redirect`).toBeUndefined();
+      expect((await response.text()).length, `${userAgent} ${route} raw HTML`).toBeGreaterThan(500);
+    }
+  }
+});
+
+test("news pages expose visible direct answer, semantic comparison and article schema", async ({ request }) => {
+  const response = await request.get("/en/news/paper-cup-fans-coated-rolls-sheets-difference", { maxRedirects: 0, headers: { "user-agent": "OAI-SearchBot" } });
+  expect(response.status()).toBe(200);
+  const html = await response.text();
+  expect(html).toContain("data-ai-direct-answer");
+  expect(html).toContain("<table");
+  expect(html).toContain("application/ld+json");
+  expect(html).toContain("articleSection");
+});

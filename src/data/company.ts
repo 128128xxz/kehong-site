@@ -1,10 +1,14 @@
+import { getVerifiedFact } from "./verifiedCompanyFacts";
+
+const fact = (id: string) => getVerifiedFact(id)!;
+
 export const contact = {
-  whatsapp: "+447599669700",
-  phone: "+447599669700",
-  email: "info@kehong.tech",
+  whatsapp: fact("whatsapp").en,
+  phone: fact("whatsapp").en,
+  email: fact("email").en,
 } as const;
 
-export const companyLegalName = "Foshan Kehong Paper Products Co., Ltd.";
+export const companyLegalName = fact("legal-name").en;
 
 export {
   FACTORY_ADDRESS,
@@ -29,8 +33,8 @@ export const socialLinks = {
 export const companyProfile = {
   location: { en: "Foshan, Guangdong, China", zh: "中国广东佛山" },
   productionCapability: {
-    en: "Paper converting, die-cutting, slitting, lamination and custom sampling",
-    zh: "纸材加工、模切、分切、裱纸和定制打样",
+    en: fact("confirmed-processes").en,
+    zh: fact("confirmed-processes").zh,
   },
   exportExperience: {
     en: "Export-ready packing and project support for overseas B2B orders",
@@ -39,10 +43,10 @@ export const companyProfile = {
 } as const;
 
 export const companyFacts = [
-  { value: "20+", labelKey: "facts.years" },
-  { value: "8000+", labelKey: "facts.factoryArea" },
-  { value: "OEM/ODM", labelKey: "facts.customPackaging" },
-  { value: "MOQ", labelKey: "facts.flexibleOrders" },
+  { value: "20+", labelKey: "facts.years", factId: "paper-converting-experience" },
+  { value: "8000+", labelKey: "facts.factoryArea", factId: "production-site" },
+  { value: "OEM/ODM", labelKey: "facts.customPackaging", factId: "custom-model" },
+  { value: "MOQ", labelKey: "facts.flexibleOrders", factId: "moq" },
 ] as const;
 
 export const productFamilies = [
