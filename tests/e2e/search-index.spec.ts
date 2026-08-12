@@ -14,6 +14,11 @@ test("search verification file and discovery feeds stay public and canonical", a
   expect(homeHtml).toContain('name="sogou_site_verification"');
   expect(homeHtml).toContain('name="shenma-site-verification"');
 
+  const yandexResponse = await request.get("/yandex_8b57a719979b9bf4.html", { maxRedirects: 0 });
+  expect(yandexResponse.status()).toBe(200);
+  expect(yandexResponse.headers().location).toBeUndefined();
+  expect(await yandexResponse.text()).toContain("8b57a719979b9bf4");
+
   const robotsResponse = await request.get("/robots.txt", { maxRedirects: 0 });
   expect(robotsResponse.status()).toBe(200);
   expect(robotsResponse.headers().location).toBeUndefined();
