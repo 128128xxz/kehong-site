@@ -14,6 +14,7 @@ test("search verification file and discovery feeds stay public and canonical", a
   expect(homeHtml).toContain('name="sogou_site_verification"');
   expect(homeHtml).toContain('name="shenma-site-verification"');
   expect(homeHtml).toContain('name="yandex-verification"');
+  expect(homeHtml).toContain('name="baidu-site-verification"');
 
   const yandexResponse = await request.get("/yandex_8b57a719979b9bf4.html", { maxRedirects: 0 });
   expect(yandexResponse.status()).toBe(200);
