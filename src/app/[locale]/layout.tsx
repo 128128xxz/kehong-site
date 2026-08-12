@@ -133,6 +133,8 @@ export async function generateMetadata({
       google: "oGY3RMliU_f7XXUTFQX_T-9UkW6yIzlPy_0WYcGCsd8",
       other: {
         "msvalidate.01": "6A7A8E9BDD4625F87D5C5D9BC1F2B9F2",
+        sogou_site_verification: "vM7FyznlRH",
+        "shenma-site-verification": "2f2b393302840051e4c514ee040eadda_1786519286",
       },
     },
   };
