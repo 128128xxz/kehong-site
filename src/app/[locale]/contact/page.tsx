@@ -8,7 +8,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
 import { SectionKicker } from "@/components/home/annotations";
 import { Reveal } from "@/components/home/interactive";
-import { contact } from "@/data/company";
+import { companyDisplayName, contact } from "@/data/company";
 import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryLocationUrl } from "@/data/companyLocation";
 import FactoryLocationCard from "@/components/site/FactoryLocationCard";
 import WeChatContactButton from "@/components/site/WeChatContactButton";
@@ -27,7 +27,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "Site" });
   const zh = locale === "zh";
   const brand = getBrandConfig(locale);
-  const title = zh ? "联系科宏纸品 | 获取纸材与定制包装报价" : `${t("contact.title")} | ${brand.name}`;
+  const title = zh ? `联系${companyDisplayName.zh} | 获取纸材与定制包装报价` : `${t("contact.title")} | ${brand.name}`;
   const description = t("contact.description");
   const canonical = await getLocaleUrl(locale, "/contact");
 
@@ -102,7 +102,7 @@ export default async function ContactPage({
         ]
       : [];
 
-  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? "科宏纸品询盘" : "Kehong packaging inquiry")}`;
+  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? `${companyDisplayName.zh}询盘` : `${companyDisplayName.en} packaging inquiry`)}`;
   const whatsappHref = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
   const channels = zh
     ? [

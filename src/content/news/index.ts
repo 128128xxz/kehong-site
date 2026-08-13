@@ -43,8 +43,8 @@ export type NewsArticle = {
 };
 
 const sharedAuthor = {
-  en: "Kehong Editorial Team",
-  zh: "科宏纸品编辑部",
+  en: "Foshan Kehong Paper Products Co., Ltd. Editorial Team",
+  zh: "佛山科宏纸品有限公司编辑部",
 } as const;
 
 const articles: NewsArticle[] = [

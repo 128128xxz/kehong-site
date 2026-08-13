@@ -5,7 +5,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
 import { siteConfig, getLocaleUrl, getAlternateLanguages, type SiteHref } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
-import { contact } from "@/data/company";
+import { companyDisplayName, contact } from "@/data/company";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -21,7 +21,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
   const { locale } = await params;
   setRequestLocale(locale);
   const isZh = locale === "zh";
-  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(isZh ? "科宏纸品条款咨询" : "Kehong terms question")}`;
+  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(isZh ? `${companyDisplayName.zh}条款咨询` : `${companyDisplayName.en} terms question`)}`;
   return (
     <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">
       <Header />

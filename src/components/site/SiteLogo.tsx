@@ -32,7 +32,7 @@ export default function SiteLogo({ locale, placement }: SiteLogoProps) {
     );
   }
   return (
-    <div className="kh-footer-brand" aria-label={zh ? "科宏纸品" : "Kehong Paper Products"}>
+    <div className="kh-footer-brand" aria-label={brand.name}>
       <Image
         src="/brand/kehong-mark-transparent.png"
         alt=""
@@ -41,7 +41,7 @@ export default function SiteLogo({ locale, placement }: SiteLogoProps) {
         className="kh-footer-brand-mark"
       />
       <span className="kh-footer-brand-copy">
-        <span className="kh-footer-brand-name">{zh ? "科宏纸品" : "Kehong"}</span>
+        <span className="kh-footer-brand-name">{brand.name}</span>
         <span className="kh-footer-brand-tag">{zh ? "纸品加工与定制包装" : "Paper products & custom packaging"}</span>
       </span>
     </div>

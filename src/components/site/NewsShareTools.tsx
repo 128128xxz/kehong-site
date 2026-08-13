@@ -2,6 +2,7 @@
 
 import { Check, Copy, Mail, MessageCircle, Share2 } from "lucide-react";
 import { useMemo, useState } from "react";
+import { companyDisplayName } from "@/data/company";
 
 type NewsShareToolsProps = {
   canonical: string;
@@ -34,7 +35,7 @@ function platformUrl(canonical: string, slug: string, platform: string) {
 }
 
 function titleForShare(canonical: string) {
-  return `Kehong Paper Products · ${new URL(canonical).pathname.split("/").filter(Boolean).pop() ?? "News & Insights"}`;
+  return `${companyDisplayName.en} · ${new URL(canonical).pathname.split("/").filter(Boolean).pop() ?? "News & Insights"}`;
 }
 
 export default function NewsShareTools({ canonical, slug, title, locale }: NewsShareToolsProps) {

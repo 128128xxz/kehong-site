@@ -1,5 +1,6 @@
 import { getPublishedNews, type NewsLocale } from "@/content/news";
 import { siteConfig } from "@/lib/site-config";
+import { companyDisplayName } from "@/data/company";
 
 function escapeXml(value: string) {
   return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
@@ -9,7 +10,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ loc
   const { locale } = await params;
   const newsLocale = (locale === "zh" ? "zh" : "en") as NewsLocale;
   const articles = getPublishedNews(newsLocale);
-  const siteTitle = newsLocale === "zh" ? "科宏纸品 · 新闻与洞察" : "Kehong Paper Products · News & Insights";
+  const siteTitle = newsLocale === "zh" ? `${companyDisplayName.zh} · 新闻与洞察` : `${companyDisplayName.en} · News & Insights`;
   const siteDescription = newsLocale === "zh" ? "围绕纸材、包装结构、设计稿和采购准备的实用内容。" : "Practical insights on paper materials, packaging structure, artwork and procurement preparation.";
   const origin = siteConfig.url;
   const items = articles.map((article) => {

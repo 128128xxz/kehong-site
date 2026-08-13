@@ -2,7 +2,7 @@
 
 import { CheckCircle2, ChevronLeft, ChevronRight, MessageCircle, Phone, Send, Upload } from "lucide-react";
 import { type FormEvent, type ReactNode, useEffect, useMemo, useState } from "react";
-import { contact } from "@/data/company";
+import { companyDisplayName, contact } from "@/data/company";
 import { appendAttribution, captureAttribution, trackKehongEvent } from "@/lib/attribution";
 import { formatProductSkuSummary } from "@/lib/productPresentation";
 import InquiryConsent from "@/components/site/InquiryConsent";
@@ -21,7 +21,7 @@ const copy = {
     size: "Size & quantity", dimensionType: "Internal or external dimensions", dimensionTypePlaceholder: "Internal / external", dimensions: "Length × width × height", dimensionsPlaceholder: "e.g. 20 × 15 × 8 cm", quantity: "Quantity", quantityPlaceholder: "Estimated quantity", repeat: "Repeat frequency", repeatPlaceholder: "One-off / repeat / seasonal", orderDate: "Target order date", deliveryDate: "Required delivery date", known: "If known",
     material: "Material & structure", preferredMaterial: "Preferred material", preferredMaterialPlaceholder: "Paper, board, corrugated…", board: "Board / flute / paper type", structure: "Box style / structure", structurePlaceholder: "Mailer, carton, tray…", features: "Window / handle / insert / divider", featuresPlaceholder: "Optional features", recommend: "Recommend for me", recommendPlaceholder: "Product and priorities",
     print: "Printing & finish", colors: "Printing colors", colorsPlaceholder: "CMYK / Pantone / reference", printSide: "Inside or outside printing", printSidePlaceholder: "Outside / inside / both", finish: "Lamination / foil / emboss / coating", finishPlaceholder: "Finish requirement", artwork: "Artwork readiness", artworkPlaceholder: "Ready / in progress / unsure", upload: "Artwork or reference file", uploadNote: "File upload status is shown by the browser. Large or unsupported files may need to be shared after the first inquiry.",
-    delivery: "Delivery & contact", destination: "Destination country / postal code", shipping: "Shipping preference / Incoterm", company: "Company", companyPlaceholder: "Company name", name: "Name", namePlaceholder: "Your name", email: "Email", phone: "Phone / WhatsApp", optional: "Optional", notes: "Notes", notesPlaceholder: "Lead time, destination or other project notes", privacyPrefix: "I agree that Kehong may process this inquiry according to the", privacy: "Privacy Policy", privacySuffix: ".",
+    delivery: "Delivery & contact", destination: "Destination country / postal code", shipping: "Shipping preference / Incoterm", company: "Company", companyPlaceholder: "Company name", name: "Name", namePlaceholder: "Your name", email: "Email", phone: "Phone / WhatsApp", optional: "Optional", notes: "Notes", notesPlaceholder: "Lead time, destination or other project notes", privacyPrefix: `I agree that ${companyDisplayName.en} may process this inquiry according to the`, privacy: "Privacy Policy", privacySuffix: ".",
   },
   zh: {
     eyebrow: "提交询价", title: "分步骤提交项目需求", intro: "按项目阶段填写信息，前后切换不会丢失当前内容。",
@@ -31,7 +31,7 @@ const copy = {
     size: "尺寸与数量", dimensionType: "内尺寸或外尺寸", dimensionTypePlaceholder: "内尺寸 / 外尺寸", dimensions: "长 × 宽 × 高", dimensionsPlaceholder: "例如：20 × 15 × 8 cm", quantity: "数量", quantityPlaceholder: "预计采购数量", repeat: "采购频率", repeatPlaceholder: "一次性 / 常规 / 季节性", orderDate: "计划下单日期", deliveryDate: "期望交付日期", known: "如已知",
     material: "材料与结构", preferredMaterial: "偏好材料", preferredMaterialPlaceholder: "纸张、纸板、瓦楞纸…", board: "纸板 / 坑型 / 纸张类型", structure: "盒型 / 结构", structurePlaceholder: "邮寄盒、折叠盒、托盘…", features: "开窗 / 提手 / 内托 / 隔板", featuresPlaceholder: "可选功能", recommend: "需要我们推荐", recommendPlaceholder: "您的产品与优先事项",
     print: "印刷与后处理", colors: "印刷颜色", colorsPlaceholder: "CMYK / Pantone / 参考图", printSide: "内侧或外侧印刷", printSidePlaceholder: "外侧 / 内侧 / 双面", finish: "覆膜 / 烫印 / 压纹 / 涂层", finishPlaceholder: "后处理要求", artwork: "设计文件状态", artworkPlaceholder: "已准备 / 制作中 / 暂不确定", upload: "设计文件或参考资料（可选）", uploadNote: "浏览器会显示文件选择状态。较大或不支持的文件可在首次询盘后补充。",
-    delivery: "交付与联系信息", destination: "目的国家 / 邮编", shipping: "运输方式 / 贸易术语", company: "公司", companyPlaceholder: "公司名称", name: "姓名", namePlaceholder: "您的姓名", email: "Email", phone: "电话", optional: "可选", notes: "备注", notesPlaceholder: "交期、目的地或其他项目说明", privacyPrefix: "我同意科宏纸品根据", privacy: "隐私政策", privacySuffix: "处理我提交的信息，以便回复本次询盘",
+    delivery: "交付与联系信息", destination: "目的国家 / 邮编", shipping: "运输方式 / 贸易术语", company: "公司", companyPlaceholder: "公司名称", name: "姓名", namePlaceholder: "您的姓名", email: "Email", phone: "电话", optional: "可选", notes: "备注", notesPlaceholder: "交期、目的地或其他项目说明", privacyPrefix: `我同意${companyDisplayName.zh}根据`, privacy: "隐私政策", privacySuffix: "处理我提交的信息，以便回复本次询盘",
   },
 } as const;
 

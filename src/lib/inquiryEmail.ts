@@ -1,3 +1,5 @@
+import { companyDisplayName } from "@/data/company";
+
 export type InquiryEmailData = {
   name: string;
   company: string;
@@ -79,7 +81,7 @@ export function buildInquiryEmail(data: InquiryEmailData) {
   const html = `
     <div style="font-family:Arial,sans-serif;line-height:1.6;color:#171713">
       <div style="border-bottom:2px solid #194735;padding:0 0 12px;margin:0 0 20px">
-        <p style="margin:0;color:#194735;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase">Kehong Paper Products</p>
+        <p style="margin:0;color:#194735;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase">${companyDisplayName.en}</p>
         <h2 style="margin:5px 0 0">New quote request</h2>
       </div>
       <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>

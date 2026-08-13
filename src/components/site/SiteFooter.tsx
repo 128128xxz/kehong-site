@@ -77,7 +77,7 @@ export default async function SiteFooter() {
   const locale = await getLocale();
   const zh = locale === "zh";
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
-  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? "科宏纸品询盘" : "Kehong packaging inquiry")}`;
+  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? `${companyDisplayName.zh}询盘` : `${companyDisplayName.en} packaging inquiry`)}`;
 
   return (
     <footer className="kh-footer">
@@ -112,21 +112,21 @@ export default async function SiteFooter() {
           </details>
         </div>
         <div className="kh-footer-contact-column">
-          <p className="kh-footer-column-label">{zh ? "联系科宏" : "Contact Kehong"}</p>
+          <p className="kh-footer-column-label">{zh ? `联系${companyDisplayName.zh}` : `Contact ${companyDisplayName.en}`}</p>
           <div className="kh-footer-contact">
             <span>{zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
-            <LocationClickAnchor href={getFactoryLocationUrl(locale)} locale={locale} sourceBlock="footer" mapProvider={zh ? "baidu_directions" : "google_directions"} target="_blank" rel="noopener noreferrer" aria-label={zh ? "查看科宏纸品工厂位置" : "View Kehong factory location"}>
+            <LocationClickAnchor href={getFactoryLocationUrl(locale)} locale={locale} sourceBlock="footer" mapProvider={zh ? "baidu_directions" : "google_directions"} target="_blank" rel="noopener noreferrer" aria-label={zh ? `查看${companyDisplayName.zh}工厂位置` : `View ${companyDisplayName.en} factory location`}>
               {zh ? "查看位置" : "View location"}
             </LocationClickAnchor>
             <a href={zh ? "tel:+8615888233221" : "tel:+447599669700"} aria-label={zh ? `拨打电话 ${contact.phone.zh}` : `Call ${contact.phone.en}`}>{zh ? contact.phone.zh : contact.phone.en}</a>
             <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>{contact.email}</a>
-            {zh ? <span className="kh-footer-wechat">微信咨询</span> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Contact Kehong on WhatsApp"><MessageCircle className="size-4" />WhatsApp</a>}
+            {zh ? <span className="kh-footer-wechat">微信咨询</span> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Contact ${companyDisplayName.en} on WhatsApp`}><MessageCircle className="size-4" />WhatsApp</a>}
           </div>
         </div>
       </div>
       <div className="kh-shell kh-footer-bottom">
         <div className="kh-footer-legal-links">
-          <span>© {new Date().getFullYear()} {zh ? "科宏纸品" : "Kehong"}</span>
+          <span>© {new Date().getFullYear()} {zh ? companyDisplayName.zh : companyDisplayName.en}</span>
           <Link href="/privacy">{zh ? "隐私政策" : "Privacy"}</Link>
           <Link href="/terms">{zh ? "使用条款" : "Terms"}</Link>
         </div>

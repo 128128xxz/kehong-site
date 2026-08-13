@@ -273,6 +273,36 @@ test.describe("homepage manufacturing website", () => {
     }
   });
 
+  test("mobile product system cards use horizontal rows in both locales", async ({ page }) => {
+    for (const locale of ["en", "zh"] as const) {
+      for (const viewport of [{ width: 390, height: 844 }, { width: 430, height: 932 }]) {
+        await page.setViewportSize(viewport);
+        await page.goto(`/${locale}`, { waitUntil: "networkidle" });
+        const layout = await page.locator(".kh-product-system").first().evaluate((system) => {
+          const grid = system.querySelector(".kh-product-card-grid")!;
+          const cards = [...system.querySelectorAll<HTMLElement>(".kh-product-card")];
+          return {
+            columns: getComputedStyle(grid).gridTemplateColumns,
+            cards: cards.map((card) => {
+              const media = card.querySelector<HTMLElement>(".kh-product-card-media")!;
+              const copy = card.querySelector<HTMLElement>(".kh-product-card-copy")!;
+              return {
+                direction: getComputedStyle(card).flexDirection,
+                mediaWidth: media.getBoundingClientRect().width,
+                copyWidth: copy.getBoundingClientRect().width,
+              };
+            }),
+            overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+          };
+        });
+        expect(layout.columns.split(" ")).toHaveLength(1);
+        expect(layout.cards).toHaveLength(3);
+        expect(layout.cards.every((card) => card.direction === "row" && card.mediaWidth > 0 && card.copyWidth > 0)).toBe(true);
+        expect(layout.overflow).toBe(false);
+      }
+    }
+  });
+
   test("product systems keep desktop panels, headers and representative cards aligned", async ({ page }) => {
     for (const locale of ["en", "zh"] as const) {
       for (const viewport of [
@@ -344,6 +374,79 @@ test.describe("homepage manufacturing website", () => {
     expect(metrics.sectionCount).toBe(2);
     expect(metrics.minItem).toBeGreaterThanOrEqual(36);
     expect(metrics.allHeight).toBeGreaterThanOrEqual(48);
+  });
+
+  test("desktop navigation UI stays single-line and mega menu stays inside the viewport", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto("/en", { waitUntil: "networkidle" });
+    const headerMetrics = await page.evaluate(() => {
+      const nav = document.querySelector(".kh-desktop-nav")!;
+      const model = document.querySelector(".kh-nav-link-3d")!;
+      const quote = document.querySelector(".kh-header-cta")!;
+      return {
+        overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+        navHeight: nav.getBoundingClientRect().height,
+        modelHeight: model.getBoundingClientRect().height,
+        quoteHeight: quote.getBoundingClientRect().height,
+        modelWhiteSpace: getComputedStyle(model).whiteSpace,
+        quoteWhiteSpace: getComputedStyle(quote).whiteSpace,
+      };
+    });
+    expect(headerMetrics.overflow).toBe(false);
+    expect(headerMetrics.navHeight).toBeLessThanOrEqual(48);
+    expect(headerMetrics.modelHeight).toBeLessThanOrEqual(48);
+    expect(headerMetrics.quoteHeight).toBeLessThanOrEqual(48);
+    expect(headerMetrics.modelWhiteSpace).toBe("nowrap");
+    expect(headerMetrics.quoteWhiteSpace).toBe("nowrap");
+
+    await page.getByRole("button", { name: "Products", exact: true }).hover();
+    const mega = page.getByTestId("header-product-mega-menu");
+    await expect(mega).toBeVisible();
+    const megaRect = await mega.boundingBox();
+    expect(megaRect).not.toBeNull();
+    expect(megaRect!.x).toBeGreaterThanOrEqual(0);
+    expect(megaRect!.x + megaRect!.width).toBeLessThanOrEqual(1280);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+  });
+
+  test("desktop footer menus expose consistent group and link affordances", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/en", { waitUntil: "networkidle" });
+    const affordances = await page.evaluate(() => {
+      const summary = document.querySelector<HTMLElement>(".kh-footer-group > summary");
+      const link = document.querySelector<HTMLElement>(".kh-footer-links a");
+      return {
+        summaryIcon: summary ? getComputedStyle(summary, "::after").content : "none",
+        linkIcon: link ? getComputedStyle(link, "::after").content : "none",
+      };
+    });
+    expect(affordances.summaryIcon).not.toBe("none");
+    expect(affordances.linkIcon).not.toBe("none");
+  });
+
+  test("English hero copy uses the available measure without avoidable wrapping", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    const pages = ["/en", "/en/products", "/en/factory", "/en/resources", "/en/solutions", "/en/contact"];
+    for (const path of pages) {
+      await page.goto(path, { waitUntil: "networkidle" });
+      const metrics = await page.evaluate(() => {
+        const lines = (selector: string) => {
+          const element = document.querySelector<HTMLElement>(selector);
+          if (!element) return 0;
+          const range = document.createRange();
+          range.selectNodeContents(element);
+          return new Set([...range.getClientRects()].map((rect) => Math.round(rect.top))).size;
+        };
+        return {
+          heroTitleLines: lines(".kh-home-hero .kh-hero-copy h1, .kh-page-hero h1"),
+          heroLedeLines: lines(".kh-home-hero .kh-hero-copy .kh-lede, .kh-page-hero .kh-lede"),
+          overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+        };
+      });
+      expect(metrics.overflow, `${path} should not overflow horizontally`).toBe(false);
+      expect(metrics.heroTitleLines, `${path} hero title line count`).toBeLessThanOrEqual(path === "/en" ? 3 : 2);
+      expect(metrics.heroLedeLines, `${path} hero description line count`).toBeLessThanOrEqual(2);
+    }
   });
 
   test("mobile mega menu keeps grouped tap targets and no horizontal overflow", async ({ page }) => {

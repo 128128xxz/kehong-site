@@ -3,7 +3,7 @@
 import { CheckCircle2, MessageCircle, Phone, Send } from "lucide-react";
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { contact } from "@/data/company";
+import { companyDisplayName, contact } from "@/data/company";
 import { appendAttribution, captureAttribution, trackKehongEvent } from "@/lib/attribution";
 import { formatProductSkuSummary } from "@/lib/productPresentation";
 import WeChatContactButton from "@/components/site/WeChatContactButton";
@@ -46,7 +46,7 @@ const copy = {
     market: "目标市场",
     file: "附件（图纸、样品图或规格表）",
     message: "尺寸、材质、数量、印刷、交期或目标市场",
-    privacy: "我同意科宏纸品根据隐私政策处理我提交的信息，以便回复本次询盘",
+    privacy: `我同意${companyDisplayName.zh}根据隐私政策处理我提交的信息，以便回复本次询盘`,
     submit: "提交询价",
     whatsapp: "微信咨询",
     success: "询盘已被系统接收，科宏团队会尽快联系你。",
@@ -73,7 +73,7 @@ const copy = {
     market: "Target market",
     file: "Attachment (drawing, sample photo or specification)",
     message: "Size, material, quantity, print, lead time or destination market",
-    privacy: "I agree that Kehong may process this inquiry according to the Privacy Policy.",
+    privacy: `I agree that ${companyDisplayName.en} may process this inquiry according to the Privacy Policy.`,
     submit: "Request a quote",
     whatsapp: "WhatsApp",
     success: "Your inquiry has been accepted by the Kehong website. Our team will follow up shortly.",

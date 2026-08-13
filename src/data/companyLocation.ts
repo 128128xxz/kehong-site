@@ -7,8 +7,8 @@ export const FACTORY_ADDRESS = {
 export const FACTORY_MAP_DESTINATION = FACTORY_ADDRESS.zh;
 
 export const FACTORY_MAP_LABEL = {
-  zh: "佛山科宏纸品",
-  en: "Foshan Kehong Paper Products",
+  zh: "佛山科宏纸品有限公司",
+  en: "Foshan Kehong Paper Products Co., Ltd.",
 } as const;
 
 export function getFactoryLocationUrl(locale: string) {

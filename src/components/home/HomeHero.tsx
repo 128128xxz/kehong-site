@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import { productCatalogSections } from "@/data/productDirectory";
+import { companyDisplayName } from "@/data/company";
 import { CountUp, MetricReveal } from "@/components/home/interactive";
 
 export default function HomeHero({ locale }: { locale: string }) {
@@ -57,7 +58,7 @@ export default function HomeHero({ locale }: { locale: string }) {
 
       <div className="kh-shell kh-hero-inner">
         <p className="kh-mono kh-hero-index kh-rise kh-rise-1">
-          <span>{zh ? "佛山科宏纸品" : "Foshan Kehong Paper Products"}</span>
+          <span>{zh ? companyDisplayName.zh : companyDisplayName.en}</span>
           <span>{zh ? "20+ 年" : "Est. 20+ yrs"}</span>
           <span>OEM / ODM</span>
         </p>

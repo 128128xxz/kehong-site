@@ -12,8 +12,8 @@ export const contact = {
 } as const;
 
 export const companyDisplayName = {
-  zh: "佛山科宏纸品",
-  en: "Foshan Kehong Paper Products",
+  zh: "佛山科宏纸品有限公司",
+  en: "Foshan Kehong Paper Products Co., Ltd.",
 } as const;
 
 export const companyLegalName = fact("legal-name").en;

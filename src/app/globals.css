@@ -2615,6 +2615,26 @@
   .kh-product-system-grid .kh-product-system-copy > p:not(.kh-eyebrow) { min-block-size: 0; }
   .kh-home-product-systems .kh-product-card-copy { min-height: 7.1rem; }
   .kh-home-process .kh-process-step { padding-block: 1.1rem; }
+
+  /* Keep the three homepage entries readable on phones: each entry becomes
+     a stacked horizontal row instead of a compressed three-column card. */
+  .kh-home-product-systems .kh-product-card-grid {
+    grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+  .kh-home-product-systems .kh-product-card {
+    flex-direction: row;
+    min-height: 7rem;
+  }
+  .kh-home-product-systems .kh-product-card-media {
+    flex: 0 0 clamp(7rem, 32vw, 10rem);
+    aspect-ratio: 4 / 3;
+  }
+  .kh-home-product-systems .kh-product-card-copy {
+    min-height: 0;
+    justify-content: center;
+    padding: .9rem 1rem;
+  }
 }
 
 /* Final production tightening: continuous mega-menu rows, shared popovers,
@@ -2776,4 +2796,127 @@
   .kh-home-cta { padding-block: 3.75rem 4rem; }
   .kh-footer { padding-bottom: calc(8rem + env(safe-area-inset-bottom)); }
   .kh-footer-bottom { align-items: flex-start; flex-direction: column; gap: 1rem; }
+}
+
+/* Final navigation and copy fit pass.  Keep the popover centered in the
+   viewport; its panel is wider than the trigger by design. */
+@keyframes kh-nav-popover-in {
+  from { opacity: 0; translate: 0 -14px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (min-width: 1101px) {
+  .kh-product-mega {
+    position: fixed;
+    top: var(--kh-header-height);
+    left: 50%;
+    right: auto;
+    width: min(72rem, calc(100vw - 2rem));
+    max-height: calc(100svh - var(--kh-header-height) - 1rem);
+    overflow: auto;
+    transform: translateX(-50%);
+  }
+
+  .kh-header-actions,
+  .kh-header-actions .kh-button,
+  .kh-header-actions .kh-language-trigger,
+  .kh-nav-link-3d {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .kh-desktop-nav > .kh-nav-link,
+  .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link {
+    position: relative;
+  }
+  .kh-desktop-nav > .kh-nav-link:not(.kh-nav-link-3d)::after {
+    position: absolute;
+    right: .65rem;
+    bottom: .18rem;
+    left: .65rem;
+    height: 1px;
+    background: var(--kh-brass);
+    content: "";
+    opacity: 0;
+    transform: scaleX(.35);
+    transition: opacity .18s ease, transform .18s ease;
+  }
+  .kh-desktop-nav > .kh-nav-link:not(.kh-nav-link-3d):hover::after,
+  .kh-desktop-nav > .kh-nav-link:not(.kh-nav-link-3d):focus-visible::after,
+  .kh-desktop-nav > .kh-nav-link:not(.kh-nav-link-3d).is-active::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .kh-footer-group > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+  }
+  .kh-footer-group > summary::after {
+    color: var(--kh-brass-soft);
+    content: "⌄";
+    font-size: .95rem;
+    line-height: 1;
+    transition: transform .18s ease, color .18s ease;
+  }
+  .kh-footer-group > summary:hover::after,
+  .kh-footer-group > summary:focus-visible::after { color: var(--kh-surface); }
+  .kh-footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+  }
+  .kh-footer-links a::after {
+    color: var(--kh-brass-soft);
+    content: "↗";
+    font-size: .72rem;
+    opacity: 0;
+    transform: translate(-2px, 2px);
+    transition: opacity .18s ease, transform .18s ease;
+  }
+  .kh-footer-links a:hover::after,
+  .kh-footer-links a:focus-visible::after {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/* English copy should use the available measure before introducing a new
+   line.  Chinese wrapping rules remain intentionally separate above. */
+:lang(en) .kh-page-hero h1 {
+  max-width: 38ch;
+  text-wrap: pretty;
+}
+:lang(en) .kh-page-hero .kh-lede {
+  max-width: 78ch;
+  text-wrap: pretty;
+}
+:lang(en) .kh-home-hero .kh-hero-copy {
+  max-width: min(1100px, 100%);
+}
+:lang(en) .kh-home-hero .kh-hero-copy h1 {
+  max-width: 100%;
+  text-wrap: pretty;
+}
+:lang(en) .kh-home-hero .kh-hero-copy .kh-lede,
+:lang(en) .kh-product-system-copy h3,
+:lang(en) .kh-product-system-copy > p:not(.kh-eyebrow),
+:lang(en) .kh-section h2,
+:lang(en) .kh-section-cta h2 {
+  max-width: 32ch;
+  text-wrap: pretty;
+}
+:lang(en) .kh-home-hero .kh-hero-copy .kh-lede { max-width: 72ch; }
+
+@media (min-width: 1101px) and (max-width: 1400px) {
+  .kh-header-bar { gap: .8rem; }
+  .kh-header-brand { gap: .5rem; }
+  .kh-brand-name { font-size: .88rem; }
+  .kh-brand-tag { font-size: .6rem; letter-spacing: .06em; }
+  .kh-desktop-nav { gap: .05rem; font-size: .88rem; }
+  .kh-nav-link { gap: .25rem; padding-inline: .52rem; }
+  .kh-header-actions { gap: .35rem; }
+  .kh-header-cta { padding-inline: .75rem; }
 }

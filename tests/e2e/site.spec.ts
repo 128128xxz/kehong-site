@@ -29,14 +29,14 @@ test.describe("Kehong production flows", () => {
     const headerLogo = page.locator(".kh-header-brand-mark");
     await expect(headerLogo).toBeVisible();
     await expect(headerLogo).toHaveAttribute("src", /kehong-mark-transparent\.png/);
-    await expect(page.locator(".kh-brand-name")).toHaveText("Kehong Paper Products");
+    await expect(page.locator(".kh-brand-name")).toHaveText("Foshan Kehong Paper Products Co., Ltd.");
     await expect(page.locator(".kh-brand-tag")).toHaveText("Paper materials & custom packaging");
     await expect(page.locator(".kh-monogram")).toHaveCount(0);
     await expect(page.locator(".kh-footer-brand-mark")).toHaveAttribute("src", /kehong-mark-transparent\.png/);
-    await expect(page.locator(".kh-footer-brand-name")).toHaveText("Kehong");
+    await expect(page.locator(".kh-footer-brand-name")).toHaveText("Foshan Kehong Paper Products Co., Ltd.");
     await expect(page.locator(".kh-footer-brand-tag")).toHaveText("Paper products & custom packaging");
     await page.goto("/zh", { waitUntil: "networkidle" });
-    await expect(page.locator(".kh-brand-name")).toHaveText("科宏纸品");
+    await expect(page.locator(".kh-brand-name")).toHaveText("佛山科宏纸品有限公司");
     await expect(page.locator(".kh-brand-tag")).toHaveText("纸材、半成品与定制纸包装");
   });
 
@@ -326,7 +326,7 @@ test.describe("Kehong production flows", () => {
   test("contact channels and legal email links stay locale-specific", async ({ page }) => {
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/contact`, { waitUntil: "networkidle" });
-      const expectedSubject = locale === "zh" ? "%E7%A7%91%E5%AE%8F%E7%BA%B8%E5%93%81%E8%AF%A2%E7%9B%98" : "Kehong%20packaging%20inquiry";
+      const expectedSubject = encodeURIComponent(locale === "zh" ? "佛山科宏纸品有限公司询盘" : "Foshan Kehong Paper Products Co., Ltd. packaging inquiry");
       await expect(page.locator('main a[href^="mailto:"]').first()).toHaveAttribute("href", new RegExp(`subject=${expectedSubject}`));
       if (locale === "zh") {
         await expect(page.locator("main")).not.toContainText("WhatsApp");
@@ -490,7 +490,7 @@ test.describe("Kehong production flows", () => {
 
   test("resource metadata follows the active locale and buyer support exposes the resource entry", async ({ page }) => {
     await page.goto("/zh/resources", { waitUntil: "networkidle" });
-    await expect(page).toHaveTitle(/纸包装资源与设计支持 \| 科宏纸品/u);
+    await expect(page).toHaveTitle(/纸包装资源与设计支持 \| 佛山科宏纸品有限公司/u);
     await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /印刷文件/u);
 
     await page.goto("/en", { waitUntil: "networkidle" });
@@ -499,29 +499,29 @@ test.describe("Kehong production flows", () => {
 
   test("Chinese metadata and visible copy consistently use the Chinese brand and labels", async ({ page }) => {
     await page.goto("/zh/packaging", { waitUntil: "domcontentloaded" });
-    await expect(page).toHaveTitle("成品纸包装分类总览 | 科宏纸品");
-    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", "成品纸包装分类总览 | 科宏纸品");
-    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", "成品纸包装分类总览 | 科宏纸品");
+    await expect(page).toHaveTitle("成品纸包装分类总览 | 佛山科宏纸品有限公司");
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", "成品纸包装分类总览 | 佛山科宏纸品有限公司");
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", "成品纸包装分类总览 | 佛山科宏纸品有限公司");
 
     await page.goto("/zh/model-preview", { waitUntil: "domcontentloaded" });
-    await expect(page).toHaveTitle("3D结构展厅 | 科宏纸品");
+    await expect(page).toHaveTitle("3D结构展厅 | 佛山科宏纸品有限公司");
     await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", "在线查看包装结构与折叠方式。");
     await expect(page.locator('html')).toHaveAttribute("lang", "zh");
 
     await page.goto("/zh", { waitUntil: "domcontentloaded" });
-    await expect(page.locator(".kh-hero-index")).toContainText("佛山科宏纸品");
+    await expect(page.locator(".kh-hero-index")).toContainText("佛山科宏纸品有限公司");
     await expect(page.locator(".kh-hero-index")).toContainText("20+ 年");
 
     await page.goto("/zh/contact", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".kh-fig-caption").filter({ hasText: "图01 — 食品纸盒实拍" }).first()).toBeVisible();
 
     for (const [path, title] of [
-      ["/zh/resources/artwork-guidelines", "设计稿指南 | 科宏纸品"],
-      ["/zh/resources/dielines-templates", "刀模图与模板申请 | 科宏纸品"],
-      ["/zh/factory", "工厂与服务能力 | 科宏纸品"],
-      ["/zh/products", "产品目录 | 科宏纸品"],
-      ["/zh/privacy", "隐私政策 | 科宏纸品"],
-      ["/zh/terms", "使用条款 | 科宏纸品"],
+      ["/zh/resources/artwork-guidelines", "设计稿指南 | 佛山科宏纸品有限公司"],
+      ["/zh/resources/dielines-templates", "刀模图与模板申请 | 佛山科宏纸品有限公司"],
+      ["/zh/factory", "工厂与服务能力 | 佛山科宏纸品有限公司"],
+      ["/zh/products", "产品目录 | 佛山科宏纸品有限公司"],
+      ["/zh/privacy", "隐私政策 | 佛山科宏纸品有限公司"],
+      ["/zh/terms", "使用条款 | 佛山科宏纸品有限公司"],
     ]) {
       await page.goto(path, { waitUntil: "domcontentloaded" });
       await expect(page).toHaveTitle(title);
