@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Box, ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -10,13 +10,13 @@ import { captureAttribution, trackAiReferralEvent, trackKehongEvent } from "@/li
 import { productCatalogSections } from "@/data/productDirectory";
 
 const headerCopy = {
-  zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", resources: "资源", contact: "提交询价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
-  en: { products: "Products", solutions: "Solutions", capabilities: "Capabilities", factory: "Factory", resources: "Resources", contact: "Request a quote", menuOpen: "Open navigation menu", menuClose: "Close navigation menu", menuTitle: "Site navigation" },
-  es: { products: "Productos", solutions: "Soluciones", capabilities: "Capacidades", factory: "Fábrica", resources: "Recursos", contact: "Solicitar cotización", menuOpen: "Abrir menú", menuClose: "Cerrar menú", menuTitle: "Navegación" },
-  th: { products: "สินค้า", solutions: "โซลูชัน", capabilities: "ความสามารถ", factory: "โรงงาน", resources: "แหล่งข้อมูล", contact: "ขอใบเสนอราคา", menuOpen: "เปิดเมนู", menuClose: "ปิดเมนู", menuTitle: "เมนู" },
-  vi: { products: "Sản phẩm", solutions: "Giải pháp", capabilities: "Năng lực", factory: "Nhà máy", resources: "Tài nguyên", contact: "Nhận báo giá", menuOpen: "Mở menu", menuClose: "Đóng menu", menuTitle: "Điều hướng" },
-  id: { products: "Produk", solutions: "Solusi", capabilities: "Kemampuan", factory: "Pabrik", resources: "Sumber daya", contact: "Minta penawaran", menuOpen: "Buka menu", menuClose: "Tutup menu", menuTitle: "Navigasi" },
-  ms: { products: "Produk", solutions: "Penyelesaian", capabilities: "Keupayaan", factory: "Kilang", resources: "Sumber", contact: "Dapatkan sebut harga", menuOpen: "Buka menu", menuClose: "Tutup menu", menuTitle: "Navigasi" },
+  zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", modelPreview: "3D结构展厅", resources: "资源", contact: "提交询价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
+  en: { products: "Products", solutions: "Solutions", capabilities: "Capabilities", factory: "Factory", modelPreview: "3D Packaging Studio", resources: "Resources", contact: "Request a quote", menuOpen: "Open navigation menu", menuClose: "Close navigation menu", menuTitle: "Site navigation" },
+  es: { products: "Productos", solutions: "Soluciones", capabilities: "Capacidades", factory: "Fábrica", modelPreview: "3D Packaging Studio", resources: "Recursos", contact: "Solicitar cotización", menuOpen: "Abrir menú", menuClose: "Cerrar menú", menuTitle: "Navegación" },
+  th: { products: "สินค้า", solutions: "โซลูชัน", capabilities: "ความสามารถ", factory: "โรงงาน", modelPreview: "3D Packaging Studio", resources: "แหล่งข้อมูล", contact: "ขอใบเสนอราคา", menuOpen: "เปิดเมนู", menuClose: "ปิดเมนู", menuTitle: "เมนู" },
+  vi: { products: "Sản phẩm", solutions: "Giải pháp", capabilities: "Năng lực", factory: "Nhà máy", modelPreview: "3D Packaging Studio", resources: "Tài nguyên", contact: "Nhận báo giá", menuOpen: "Mở menu", menuClose: "Đóng menu", menuTitle: "Điều hướng" },
+  id: { products: "Produk", solutions: "Solusi", capabilities: "Kemampuan", factory: "Pabrik", modelPreview: "3D Packaging Studio", resources: "Sumber daya", contact: "Minta penawaran", menuOpen: "Buka menu", menuClose: "Tutup menu", menuTitle: "Navigasi" },
+  ms: { products: "Produk", solutions: "Penyelesaian", capabilities: "Keupayaan", factory: "Kilang", modelPreview: "3D Packaging Studio", resources: "Sumber", contact: "Dapatkan sebut harga", menuOpen: "Buka menu", menuClose: "Tutup menu", menuTitle: "Navigasi" },
 } as const;
 
 type NavItem = { href: string; zh: string; en: string };
@@ -26,14 +26,27 @@ const capabilityLinks: NavItem[] = [
   { href: "/process", zh: "生产流程", en: "Production process" },
 ];
 
-const resourceLinks: NavItem[] = [
-  { href: "/resources", zh: "资源与设计中心", en: "Resources & design center" },
-  { href: "/news", zh: "新闻与洞察", en: "News & Insights" },
-  { href: "/resources/artwork-guidelines", zh: "印刷文件指南", en: "Artwork guidelines" },
-  { href: "/resources/dielines-templates", zh: "刀线模板申请", en: "Request a dieline" },
-  { href: "/model-preview", zh: "3D 结构展厅", en: "3D structure studio" },
-  { href: "/procurement", zh: "买家支持", en: "Buyer support" },
-];
+const resourceOverview: NavItem = { href: "/resources", zh: "资源中心", en: "Resource Center" };
+const resourceGroups = [
+  {
+    id: "artwork-sampling",
+    zh: "设计与打样",
+    en: "Artwork & Sampling",
+    links: [
+      { href: "/resources/artwork-guidelines", zh: "设计稿指南", en: "Artwork Guide", zhDescription: "准备印刷文件、颜色和出血信息", enDescription: "Prepare print files, colors and bleed settings" },
+      { href: "/resources/dielines-templates", zh: "刀模图与模板", en: "Dielines & Templates", zhDescription: "申请包装结构对应的刀模图和模板", enDescription: "Request dielines and templates for confirmed structures" },
+    ],
+  },
+  {
+    id: "buying-insights",
+    zh: "采购与内容",
+    en: "Buying & Insights",
+    links: [
+      { href: "/procurement", zh: "采购与询价指南", en: "Buying & Quotation Guide", zhDescription: "准备尺寸、材料、数量和打样信息", enDescription: "Prepare dimensions, materials, quantities and sampling details" },
+      { href: "/news", zh: "新闻与洞察", en: "News & Insights", zhDescription: "查看材料、包装和采购相关文章", enDescription: "Read packaging, material and sourcing articles" },
+    ],
+  },
+] as const;
 
 type HeaderProps = {
   /** cinema = 首页暗场:透明起始,滚过 Hero 后过渡为实底 */
@@ -42,6 +55,56 @@ type HeaderProps = {
 
 function directoryLabel(item: { en: string; zh: string }, zh: boolean) {
   return zh ? item.zh : item.en;
+}
+
+function ResourceMegaMenu({ zh, close, pathname }: { zh: boolean; close: () => void; pathname: string }) {
+  const label = (item: { en: string; zh: string }) => directoryLabel(item, zh);
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  return (
+    <div id="header-resources-menu" className="kh-nav-panel kh-resource-mega" data-testid="header-resources-menu" aria-label={zh ? "资源中心" : "Resource Center"}>
+      <Link href={resourceOverview.href} onClick={close} className={`kh-resource-overview${isActive(resourceOverview.href) ? " is-active" : ""}`}>
+        <span>
+          <small>{zh ? "资源中心" : "Resource Center"}</small>
+          <strong>{zh ? "资源中心" : "Resource Center"}</strong>
+          <em>{zh ? "查看全部设计、材料与采购资料" : "Browse all artwork, material and buying resources"}</em>
+        </span>
+      </Link>
+      <div className="kh-resource-groups">
+        {resourceGroups.map((group) => (
+          <section key={group.id} className="kh-resource-group">
+            <p>{label(group)}</p>
+            <div>
+              {group.links.map((item) => (
+                <Link key={item.href} href={item.href} onClick={close} className={isActive(item.href) ? "is-active" : undefined}>
+                  <strong>{label(item)}</strong>
+                  <span>{zh ? item.zhDescription : item.enDescription}</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MobileResourceDirectory({ zh, close, pathname }: { zh: boolean; close: () => void; pathname: string }) {
+  const label = (item: { en: string; zh: string }) => directoryLabel(item, zh);
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  return (
+    <details className="kh-mobile-resource-directory">
+      <summary>{zh ? "资源" : "Resources"}<ChevronDown className="size-4" /></summary>
+      <div>
+        <Link href={resourceOverview.href} onClick={close} className={isActive(resourceOverview.href) ? "is-active" : undefined}>{label(resourceOverview)}</Link>
+        {resourceGroups.map((group) => (
+          <section key={group.id}>
+            <p>{label(group)}</p>
+            {group.links.map((item) => <Link key={item.href} href={item.href} onClick={close} className={isActive(item.href) ? "is-active" : undefined}>{label(item)}</Link>)}
+          </section>
+        ))}
+      </div>
+    </details>
+  );
 }
 
 function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () => void; firstLinkRef?: (node: HTMLAnchorElement | null) => void }) {
@@ -329,7 +392,8 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
   const isProducts = pathname.startsWith("/products") || pathname.startsWith("/packaging");
   const isCapabilities = pathname.startsWith("/capabilities") || pathname.startsWith("/process");
-  const isResources = pathname.startsWith("/resources") || pathname.startsWith("/news") || pathname.startsWith("/model-preview") || pathname.startsWith("/procurement");
+  const isResources = pathname.startsWith("/resources") || pathname.startsWith("/news") || pathname.startsWith("/procurement");
+  const isModelPreview = pathname.startsWith("/model-preview");
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const navLinkClass = (active: boolean) => `kh-nav-link${active ? " is-active" : ""}`;
 
@@ -370,16 +434,17 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
           <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}>{copy.factory}</Link>
 
+          <Link href="/model-preview" aria-current={isModelPreview ? "page" : undefined} className={`${navLinkClass(isModelPreview)} kh-nav-link-3d`} data-testid="header-model-preview-link">
+            <Box className="kh-nav-3d-icon size-3.5" aria-hidden="true" />
+            <span>{copy.modelPreview}</span>
+          </Link>
+
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("resources")} onPointerLeave={() => scheduleDesktopClose("resources")} onFocusCapture={() => openDesktopMenu("resources")} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("resources"); }}>
             <button type="button" className={navLinkClass(isResources)} aria-expanded={openMenu === "resources"} aria-controls="header-resources-menu" aria-haspopup="true" onClick={() => openMenu === "resources" ? closeDesktopDropdowns() : openDesktopMenu("resources")}>
               <span>{copy.resources}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
-            {openMenu === "resources" ? <div id="header-resources-menu" className="kh-nav-panel">
-              {resourceLinks.map((item) => (
-                <Link key={item.href} href={item.href} onClick={() => closeDesktopDropdowns()}>{label(item)}</Link>
-              ))}
-            </div> : null}
+            {openMenu === "resources" ? <ResourceMegaMenu zh={isZh} close={closeDesktopDropdowns} pathname={pathname} /> : null}
           </div>
         </nav>
 
@@ -418,10 +483,11 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                     <Link key={item.href} href={item.href}>{label(item)}</Link>
                   ))}
                   <Link href="/factory">{copy.factory}</Link>
-                  <p className="kh-nav-panel-label">{copy.resources}</p>
-                  {resourceLinks.map((item) => (
-                    <Link key={item.href} href={item.href}>{label(item)}</Link>
-                  ))}
+                  <Link href="/model-preview" className="kh-mobile-model-link" onClick={closeMobileMenu} data-testid="mobile-model-preview-link">
+                    <Box className="kh-nav-3d-icon size-4" aria-hidden="true" />
+                    {copy.modelPreview}
+                  </Link>
+                  <MobileResourceDirectory zh={isZh} close={closeMobileMenu} pathname={pathname} />
                   <Link href="/contact" onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "mobile_navigation" })} className="kh-button kh-button-primary kh-button-compact mt-2 justify-center">{copy.contact}</Link>
                 </nav>
               </div>

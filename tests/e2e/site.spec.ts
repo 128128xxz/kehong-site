@@ -254,6 +254,75 @@ test.describe("Kehong production flows", () => {
     }
   });
 
+  test("desktop navigation gives the 3D studio its own entry and groups resources", async ({ page }) => {
+    const cases = [
+      {
+        locale: "zh",
+        modelLabel: "3D结构展厅",
+        resourceLabel: "资源",
+        overview: "资源中心",
+        groups: ["设计与打样", "采购与内容"],
+        links: ["设计稿指南", "刀模图与模板", "采购与询价指南", "新闻与洞察"],
+      },
+      {
+        locale: "en",
+        modelLabel: "3D Packaging Studio",
+        resourceLabel: "Resources",
+        overview: "Resource Center",
+        groups: ["Artwork & Sampling", "Buying & Insights"],
+        links: ["Artwork Guide", "Dielines & Templates", "Buying & Quotation Guide", "News & Insights"],
+      },
+    ] as const;
+
+    for (const item of cases) {
+      await page.setViewportSize({ width: 1440, height: 1000 });
+      await page.goto(`/${item.locale}`, { waitUntil: "networkidle" });
+      const modelLink = page.getByTestId("header-model-preview-link");
+      await expect(modelLink).toHaveText(new RegExp(item.modelLabel));
+      await expect(modelLink).toHaveAttribute("href", `/${item.locale}/model-preview`);
+      await expect(modelLink).not.toHaveAttribute("aria-haspopup", "true");
+      await modelLink.click();
+      await expect(page).toHaveURL(new RegExp(`/${item.locale}/model-preview$`));
+      await expect(page.locator("h1")).toHaveText(item.modelLabel);
+      await expect(page.locator(`nav[aria-label="${item.locale === "zh" ? "面包屑" : "Breadcrumb"}"]`)).toContainText(item.modelLabel);
+
+      await page.goto(`/${item.locale}`, { waitUntil: "networkidle" });
+      const resourcesButton = page.getByRole("button", { name: item.resourceLabel, exact: true });
+      await resourcesButton.hover();
+      const panel = page.getByTestId("header-resources-menu");
+      await expect(panel).toBeVisible();
+      await expect(panel).toContainText(item.overview);
+      for (const heading of item.groups) await expect(panel).toContainText(heading);
+      for (const link of item.links) await expect(panel.getByText(link, { exact: true })).toBeVisible();
+      await expect(panel).not.toContainText(item.modelLabel);
+      await expect(panel.locator("a")).toHaveCount(5);
+      await page.keyboard.press("Escape");
+      await expect(panel).toBeHidden();
+    }
+  });
+
+  test("mobile navigation keeps 3D independent and resources two levels deep", async ({ page }) => {
+    for (const item of [
+      { locale: "zh", modelLabel: "3D结构展厅", resourceLabel: "资源", links: ["资源中心", "设计稿指南", "刀模图与模板", "采购与询价指南", "新闻与洞察"] },
+      { locale: "en", modelLabel: "3D Packaging Studio", resourceLabel: "Resources", links: ["Resource Center", "Artwork Guide", "Dielines & Templates", "Buying & Quotation Guide", "News & Insights"] },
+    ] as const) {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto(`/${item.locale}`, { waitUntil: "networkidle" });
+      await page.locator('button[aria-controls="kh-mobile-menu"]').click();
+      const drawer = page.locator("#kh-mobile-menu");
+      await expect(drawer).toBeVisible();
+      const modelLink = drawer.getByTestId("mobile-model-preview-link");
+      await expect(modelLink).toHaveText(new RegExp(item.modelLabel));
+      await expect(modelLink).toHaveAttribute("href", `/${item.locale}/model-preview`);
+      await expect(drawer.locator('details.kh-mobile-resource-directory > summary')).toHaveText(new RegExp(item.resourceLabel));
+      await drawer.locator('details.kh-mobile-resource-directory > summary').click();
+      const resourceDirectory = drawer.locator(".kh-mobile-resource-directory");
+      for (const link of item.links) await expect(resourceDirectory.getByRole("link", { name: link, exact: true })).toBeVisible();
+      await expect(resourceDirectory.locator("details")).toHaveCount(0);
+      await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+    }
+  });
+
   test("contact channels and legal email links stay locale-specific", async ({ page }) => {
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/contact`, { waitUntil: "networkidle" });
@@ -435,8 +504,8 @@ test.describe("Kehong production flows", () => {
     await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", "成品纸包装分类总览 | 科宏纸品");
 
     await page.goto("/zh/model-preview", { waitUntil: "domcontentloaded" });
-    await expect(page).toHaveTitle("3D 包装结构预览 | 科宏纸品");
-    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /科宏/u);
+    await expect(page).toHaveTitle("3D结构展厅 | 科宏纸品");
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", "在线查看包装结构与折叠方式。");
     await expect(page.locator('html')).toHaveAttribute("lang", "zh");
 
     await page.goto("/zh", { waitUntil: "domcontentloaded" });

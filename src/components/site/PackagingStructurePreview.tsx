@@ -84,6 +84,11 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
   return (
     <main className="texture-paper min-h-screen px-4 py-8 text-(--kh-ink) sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
+        <nav aria-label={zh ? "面包屑" : "Breadcrumb"} className="kh-mono mb-5 flex flex-wrap items-center gap-2 text-xs text-(--kh-muted)">
+          <Link href="/" className="transition-colors hover:text-(--kh-ink)">{zh ? "首页" : "Home"}</Link>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page" className="text-(--kh-ink)">{zh ? "3D结构展厅" : "3D Packaging Studio"}</span>
+        </nav>
         <section className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
           <aside className="kh-panel premium-depth p-4 sm:p-5">
             <div className="flex items-center gap-3">
@@ -91,17 +96,17 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
                 <PackageOpen className="size-5" />
               </span>
               <div>
-                <p className="kh-eyebrow">{zh ? "科宏包装结构工作室" : "Kehong packaging studio"}</p>
+                <p className="kh-eyebrow">{zh ? "3D包装工具" : "3D Packaging Tool"}</p>
                 <h1 className="text-2xl font-semibold sm:text-3xl">
-                  {zh ? "包装结构预览" : "Packaging structure preview"}
+                  {zh ? "3D结构展厅" : "3D Packaging Studio"}
                 </h1>
               </div>
             </div>
 
             <p className="mt-4 text-sm leading-7 text-(--kh-muted)">
               {zh
-                ? "查看开盖纸盒的盖板、折线、锁扣和内外层关系。此视图用于结构沟通，不替代最终生产刀线。"
-                : "Review the lid, folds, locking tabs and inner/outer board relationship of an open carton. This view supports structural discussion; it does not replace a production dieline."}
+                ? "在线查看包装结构、折线和开启方式，便于在打样前确认结构。"
+                : "Explore packaging structures, fold lines and opening methods before sampling."}
             </p>
 
             <dl className="mt-6 space-y-4 border-t border-(--kh-line) pt-5 text-sm leading-6 text-(--kh-muted)">

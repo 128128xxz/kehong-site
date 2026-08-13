@@ -239,6 +239,56 @@ test.describe("homepage manufacturing website", () => {
     await expect(page.locator(".kh-home-cta")).toHaveClass(/kh-home-cta/);
   });
 
+  test("product systems keep desktop panels, headers and representative cards aligned", async ({ page }) => {
+    for (const locale of ["en", "zh"] as const) {
+      for (const viewport of [
+        { width: 1280, height: 900 },
+        { width: 1366, height: 768 },
+        { width: 1440, height: 1000 },
+        { width: 1920, height: 1080 },
+      ]) {
+        await page.setViewportSize(viewport);
+        await page.goto(`/${locale}`, { waitUntil: "networkidle" });
+        const systems = page.locator(".kh-product-system");
+        await expect(systems).toHaveCount(2);
+        await systems.first().scrollIntoViewIfNeeded();
+        const metrics = await systems.evaluateAll((nodes) => {
+          const box = (element: Element) => {
+            const rect = element.getBoundingClientRect();
+            return { top: rect.top, bottom: rect.bottom, height: rect.height };
+          };
+          return nodes.map((node) => ({
+            panel: box(node),
+            header: box(node.querySelector(".kh-product-system-head")!),
+            cards: [...node.querySelectorAll(".kh-product-card")].map(box),
+            media: box(node.querySelector(".kh-product-system-media")!),
+          }));
+        });
+        expect(Math.abs(metrics[0].panel.top - metrics[1].panel.top)).toBeLessThanOrEqual(2);
+        expect(Math.abs(metrics[0].panel.bottom - metrics[1].panel.bottom)).toBeLessThanOrEqual(2);
+        expect(Math.abs(metrics[0].header.bottom - metrics[1].header.bottom)).toBeLessThanOrEqual(2);
+        for (const system of metrics) {
+          expect(system.cards).toHaveLength(3);
+          expect(Math.max(...system.cards.map((card) => card.bottom)) - Math.min(...system.cards.map((card) => card.bottom))).toBeLessThanOrEqual(2);
+          expect(Math.max(...system.cards.map((card) => card.height)) - Math.min(...system.cards.map((card) => card.height))).toBeLessThanOrEqual(2);
+          expect(system.media.height).toBeGreaterThan(0);
+        }
+        const nextSectionTop = await page.locator(".kh-home-process").boundingBox();
+        expect(nextSectionTop).not.toBeNull();
+      }
+    }
+
+    for (const viewport of [{ width: 768, height: 1024 }, { width: 430, height: 932 }, { width: 390, height: 844 }]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/en", { waitUntil: "networkidle" });
+      const systems = page.locator(".kh-product-system");
+      await expect(systems).toHaveCount(2);
+      await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+      const panelHeights = await systems.evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().height));
+      expect(panelHeights.every((height) => height > 0)).toBe(true);
+    }
+  });
+
   test("desktop mega menu exposes a structured two-column hierarchy without arrow noise", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto("/en");

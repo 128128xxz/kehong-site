@@ -107,7 +107,7 @@ export default async function SiteFooter() {
               <Link href="/factory">{zh ? "工厂和流程" : "Factory & process"}</Link>
               <Link href="/news">{zh ? "新闻与洞察" : "News & Insights"}</Link>
               <Link href="/resources">{zh ? "资源中心" : "Design center"}</Link>
-              <Link href="/model-preview">{zh ? "3D 结构预览" : "3D structure studio"}</Link>
+              <Link href="/model-preview">{zh ? "3D结构展厅" : "3D Packaging Studio"}</Link>
             </div>
           </details>
         </div>

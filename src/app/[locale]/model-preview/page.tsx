@@ -15,8 +15,8 @@ export async function generateMetadata({
   const brand = getBrandConfig(locale);
   const zh = locale === "zh";
   const canonical = await getLocaleUrl(locale, "/model-preview");
-  const title = `${zh ? "3D 包装结构预览" : "3D product preview"} | ${brand.name}`;
-  const description = zh ? "用于科宏包装结构的交互式 3D 预览。" : "Interactive 3D product preview for Kehong packaging structures.";
+  const title = `${zh ? "3D结构展厅" : "3D Packaging Studio"} | ${brand.name}`;
+  const description = zh ? "在线查看包装结构与折叠方式。" : "Explore packaging structures and folding details in 3D.";
 
   return {
     metadataBase: new URL(siteConfig.url),
