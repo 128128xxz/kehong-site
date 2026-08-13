@@ -514,11 +514,17 @@ test.describe("Kehong production flows", () => {
     await expect(mega).toBeVisible();
     await expect(mega).toContainText("Paper materials & semi-finished components");
     await expect(mega).toContainText("Finished packaging");
+    await expect(mega.locator(".kh-product-mega-section")).toHaveCount(2);
+    await expect(mega.locator('[data-system="materials"] .kh-product-mega-group')).toHaveCount(3);
+    await expect(mega.locator('[data-system="finished-packaging"] .kh-product-mega-group')).toHaveCount(3);
     await expect(mega).toContainText("Cupstock & cup components");
     await expect(mega).toContainText("Paper cup fan");
     await expect(mega).toContainText("Food & bakery packaging");
     await expect(mega).not.toContainText(/Labels\s*&\s*Stickers/u);
     await expect(mega.getByRole("link", { name: "Paper cup fan" })).toHaveAttribute("href", /group=paper-cup-fan-paper-cup-fan/);
+    await expect(mega.getByRole("link", { name: "View specifications" })).toHaveAttribute("href", /#materials-and-components$/u);
+    await expect(mega.getByRole("link", { name: "View packaging types" })).toHaveAttribute("href", /#finished-packaging$/u);
+    await expect(mega.getByRole("link", { name: "View the complete product directory" })).toHaveAttribute("href", "/en/products");
     await page.keyboard.press("Escape");
     await expect(mega).not.toBeVisible();
     await expect(trigger).toBeFocused();
@@ -532,8 +538,14 @@ test.describe("Kehong production flows", () => {
     await menu.click();
     const mobileDirectory = page.getByTestId("mobile-product-directory");
     await expect(mobileDirectory).toBeVisible();
+    await expect(mobileDirectory.locator("details")).toHaveCount(2);
     await mobileDirectory.getByText("Paper materials & semi-finished components", { exact: true }).click();
     await expect(mobileDirectory.getByRole("link", { name: "Paper cup fan" })).toHaveAttribute("href", /group=paper-cup-fan-paper-cup-fan/);
+    await expect(mobileDirectory.getByRole("link", { name: "View specifications" })).toHaveAttribute("href", /#materials-and-components$/u);
+    await mobileDirectory.getByText("Finished packaging", { exact: true }).click();
+    await expect(mobileDirectory.getByRole("link", { name: "Takeout boxes" })).toHaveAttribute("href", "/en/packaging/takeout-boxes");
+    await expect(mobileDirectory.getByRole("link", { name: "View packaging types" })).toHaveAttribute("href", /#finished-packaging$/u);
+    await expect(mobileDirectory.getByRole("link", { name: "View the complete product directory" })).toHaveAttribute("href", "/en/products");
     await expect(page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).resolves.toBe(true);
   });
 

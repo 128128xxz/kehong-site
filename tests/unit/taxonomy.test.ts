@@ -83,6 +83,23 @@ describe("product taxonomy and publication gate", () => {
     expect(finished.groups.flatMap((group) => group.links).every((link) => link.href.startsWith("/packaging/"))).toBe(true);
   });
 
+  it("exposes the six mega-menu groups and their buyer-facing labels from shared taxonomy", () => {
+    const materials = productCatalogSections[0];
+    const finished = productCatalogSections[1];
+    expect(materials.groups.map((group) => group.id)).toEqual([
+      "cupstock-components",
+      "coated-rolls-sheets",
+      "tray-forming-materials",
+    ]);
+    expect(finished.groups.map((group) => group.id)).toEqual([
+      "food-bakery",
+      "retail-carry",
+      "ecommerce-shipping",
+    ]);
+    expect([...materials.groups, ...finished.groups].every((group) => group.links.length > 0)).toBe(true);
+    expect([...materials.groups, ...finished.groups].flatMap((group) => group.links).some((link) => /labels|贴纸/iu.test(`${link.en} ${link.zh}`))).toBe(false);
+  });
+
   it("builds the unfiltered and query-filtered catalog from one server-side view", () => {
     const unfiltered = buildProductCatalogView({}, "en");
     const cupFan = buildProductCatalogView({ productType: "paper-cup-fan" }, "en");

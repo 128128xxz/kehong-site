@@ -46,26 +46,48 @@ function directoryLabel(item: { en: string; zh: string }, zh: boolean) {
 
 function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () => void; firstLinkRef?: (node: HTMLAnchorElement | null) => void }) {
   return (
-    <div id="header-products-menu" className="kh-nav-panel kh-product-mega" data-testid="header-product-mega-menu">
-      {productCatalogSections.map((section) => (
-        <section key={section.id} className="kh-product-mega-section" aria-labelledby={`header-${section.id}-title`}>
-          <div className="kh-product-mega-head">
-            <p id={`header-${section.id}-title`}>{directoryLabel(section.label, zh)}</p>
-            <Link ref={section.id === "materials" ? firstLinkRef : undefined} href={section.href} onClick={close}>{directoryLabel(section.cta, zh)}<span aria-hidden="true">→</span></Link>
-          </div>
-          {section.groups.map((group) => (
-            <div key={group.id} className="kh-product-mega-group">
-              <p>{directoryLabel(group, zh)}</p>
-              <div>
-                {group.links.map((item) => (
-                  <Link key={item.id} href={item.href} onClick={close}>{directoryLabel(item, zh)}</Link>
-                ))}
+    <div id="header-products-menu" className="kh-nav-panel kh-product-mega" data-testid="header-product-mega-menu" aria-label={zh ? "产品目录" : "Product directory"}>
+      <div className="kh-product-mega-grid">
+        {productCatalogSections.map((section, sectionIndex) => (
+          <section key={section.id} className="kh-product-mega-section" data-system={section.id} aria-labelledby={`header-${section.id}-title`}>
+            <div className="kh-product-mega-head">
+              <p className="kh-product-mega-kicker">{String(sectionIndex + 1).padStart(2, "0")} · {zh ? "产品系统" : "Product system"}</p>
+              <div className="kh-product-mega-head-row">
+                <div className="kh-product-mega-heading">
+                  <h3 id={`header-${section.id}-title`}>{directoryLabel(section.label, zh)}</h3>
+                  <p className="kh-product-mega-description">{directoryLabel(section.description, zh)}</p>
+                </div>
+                <Link ref={section.id === "materials" ? firstLinkRef : undefined} className="kh-product-mega-cta" href={section.href} onClick={close}>
+                  <span>{directoryLabel(section.cta, zh)}</span><span aria-hidden="true">→</span>
+                </Link>
               </div>
             </div>
-          ))}
-        </section>
-      ))}
-      <Link className="kh-product-mega-all" href="/products" onClick={close}>{zh ? "查看完整产品目录" : "View the complete product directory"}<span aria-hidden="true">→</span></Link>
+            <div className="kh-product-mega-groups">
+              {section.groups.map((group, groupIndex) => (
+                <div key={group.id} className="kh-product-mega-group">
+                  <div className="kh-product-mega-group-heading">
+                    <span className="kh-product-mega-group-index">{String(groupIndex + 1).padStart(2, "0")}</span>
+                    <h4>{directoryLabel(group, zh)}</h4>
+                  </div>
+                  <ul className="kh-product-mega-items">
+                    {group.links.map((item) => (
+                      <li key={item.id}>
+                        <Link href={item.href} onClick={close}>
+                          <span>{directoryLabel(item, zh)}</span><span className="kh-product-mega-item-arrow" aria-hidden="true">↗</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+      <Link className="kh-product-mega-all" href="/products" onClick={close}>
+        <span><small>{zh ? "总目录" : "Directory"}</small>{zh ? "查看完整产品目录" : "View the complete product directory"}</span>
+        <span aria-hidden="true">→</span>
+      </Link>
     </div>
   );
 }
@@ -73,18 +95,26 @@ function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () =
 function MobileProductDirectory({ zh, close }: { zh: boolean; close: () => void }) {
   return (
     <div className="kh-mobile-product-directory" data-testid="mobile-product-directory">
-      {productCatalogSections.map((section) => (
-        <details key={section.id}>
-          <summary>{directoryLabel(section.label, zh)}<ChevronDown className="size-4" /></summary>
-          {section.groups.map((group) => (
-            <div key={group.id} className="kh-mobile-product-group">
-              <p>{directoryLabel(group, zh)}</p>
-              {group.links.map((item) => <Link key={item.id} href={item.href} onClick={close}>{directoryLabel(item, zh)}</Link>)}
-            </div>
-          ))}
+      {productCatalogSections.map((section, sectionIndex) => (
+        <details key={section.id} className="kh-mobile-product-section">
+          <summary>
+            <span className="kh-mobile-product-kicker">{String(sectionIndex + 1).padStart(2, "0")}</span>
+            <span className="kh-mobile-product-section-title">{directoryLabel(section.label, zh)}</span>
+            <ChevronDown className="size-4" />
+          </summary>
+          <div className="kh-mobile-product-section-body">
+            <p className="kh-mobile-product-description">{directoryLabel(section.description, zh)}</p>
+            <Link className="kh-mobile-product-cta" href={section.href} onClick={close}>{directoryLabel(section.cta, zh)}<span aria-hidden="true">→</span></Link>
+            {section.groups.map((group, groupIndex) => (
+              <div key={group.id} className="kh-mobile-product-group">
+                <p><span>{String(groupIndex + 1).padStart(2, "0")}</span>{directoryLabel(group, zh)}</p>
+                {group.links.map((item) => <Link key={item.id} href={item.href} onClick={close}>{directoryLabel(item, zh)}<span aria-hidden="true">↗</span></Link>)}
+              </div>
+            ))}
+          </div>
         </details>
       ))}
-      <Link href="/products" onClick={close}>{zh ? "查看完整产品目录" : "View the complete product directory"}<span aria-hidden="true">→</span></Link>
+      <Link className="kh-mobile-product-all" href="/products" onClick={close}><span>{zh ? "查看完整产品目录" : "View the complete product directory"}</span><span aria-hidden="true">→</span></Link>
     </div>
   );
 }
