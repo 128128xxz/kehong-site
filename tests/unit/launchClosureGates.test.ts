@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { getAllSkus, getCatalogFilterOptions, getSkuBySlug } from "@/lib/catalog";
 import { localeConfig } from "@/i18n/locales";
-import { FACTORY_ADDRESS, getFactoryMapUrl } from "@/data/companyLocation";
+import { FACTORY_ADDRESS, FACTORY_MAP_DESTINATION, getFactoryLocationUrl } from "@/data/companyLocation";
 
 describe("launch closure buyer-facing gates", () => {
   it("exposes every confirmed published SKU through a unique detail route", () => {
@@ -25,9 +25,9 @@ describe("launch closure buyer-facing gates", () => {
   });
 
   it("keeps location addresses and provider split explicit", () => {
-    expect(FACTORY_ADDRESS.zh).toContain("佛山市南海区布新工业区7号科宏坑纸厂");
-    expect(new URL(getFactoryMapUrl("zh")).hostname).toBe("map.baidu.com");
-    expect(new URL(getFactoryMapUrl("en")).hostname).toBe("www.google.com");
+    expect(FACTORY_ADDRESS.zh).toBe(FACTORY_MAP_DESTINATION);
+    expect(new URL(getFactoryLocationUrl("zh")).hostname).toBe("api.map.baidu.com");
+    expect(new URL(getFactoryLocationUrl("en")).hostname).toBe("www.google.com");
   });
 
   it("uses the shared location click telemetry anchor for every location block", () => {
@@ -35,6 +35,9 @@ describe("launch closure buyer-facing gates", () => {
     expect(source).toContain('trackKehongEvent("location_click"');
     expect(source).toContain("sourceBlock");
     expect(source).toContain("mapProvider");
+    expect(source).toContain("page_path");
+    expect(source).toContain("source_block");
+    expect(source).toContain("device_type");
     expect(source).toContain("data-location-source");
   });
 

@@ -2,12 +2,13 @@
 
 import { Check, Copy, MapPin } from "lucide-react";
 import { useState } from "react";
-import LocationClickAnchor from "@/components/site/LocationClickAnchor";
+import LocationClickAnchor, { trackLocationAction } from "@/components/site/LocationClickAnchor";
+import { FACTORY_MAP_DESTINATION } from "@/data/companyLocation";
 
 type Props = {
   locale: string;
   sourceBlock: string;
-  mapProvider: "baidu" | "google";
+  mapProvider: "baidu_geocoder" | "google_directions";
   href: string;
   title: string;
   mapLabel: string;
@@ -18,8 +19,7 @@ type Props = {
   className?: string;
 };
 
-/** A keyboard-safe location card: the card opens the map, while the separate
- * copy action never nests a button inside the tracked map anchor. */
+/** A keyboard-safe location card with separate map and copy actions. */
 export default function FactoryLocationCard({
   locale,
   sourceBlock,
@@ -35,13 +35,13 @@ export default function FactoryLocationCard({
 }: Props) {
   const [copied, setCopied] = useState(false);
 
-  const copyAddress = async () => {
+  const handleCopyAddress = async () => {
     try {
       if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(address);
+        await navigator.clipboard.writeText(FACTORY_MAP_DESTINATION);
       } else {
         const input = document.createElement("textarea");
-        input.value = address;
+        input.value = FACTORY_MAP_DESTINATION;
         input.setAttribute("readonly", "true");
         input.style.position = "fixed";
         input.style.opacity = "0";
@@ -51,6 +51,7 @@ export default function FactoryLocationCard({
         input.remove();
       }
       setCopied(true);
+      trackLocationAction({ locale, sourceBlock, mapProvider, action: "copy_address" });
       window.setTimeout(() => setCopied(false), 1800);
     } catch {
       setCopied(false);
@@ -58,36 +59,42 @@ export default function FactoryLocationCard({
   };
 
   return (
-    <div className={`relative ${className}`.trim()}>
-      <LocationClickAnchor
-        href={href}
-        locale={locale}
-        sourceBlock={sourceBlock}
-        mapProvider={mapProvider}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="kh-panel group block min-h-11 p-4 pr-36 transition hover:border-(--kh-forest)/45 focus-visible:border-(--kh-forest)/65"
-        aria-label={title}
-      >
+    <div className={`kh-panel p-4 ${className}`.trim()} data-location-card>
+      <div className="group block min-h-11">
         <span className="flex items-start gap-3">
           <MapPin className="mt-0.5 size-5 shrink-0 text-(--kh-brass)" aria-hidden="true" />
           <span className="min-w-0">
             <span className="block font-semibold text-(--kh-ink)">{title}</span>
             <span className="mt-1 block text-xs font-medium text-(--kh-brass)">{mapLabel}</span>
             <span className="mt-1 block text-sm leading-6 text-(--kh-muted)">{address}</span>
-            <span className="mt-2 inline-flex items-center text-sm font-semibold text-(--kh-forest)">{viewLabel}</span>
           </span>
         </span>
-      </LocationClickAnchor>
-      <button
-        type="button"
-        className="absolute bottom-4 right-4 inline-flex min-h-11 items-center gap-2 rounded-md border border-(--kh-line) bg-(--kh-surface) px-3 text-sm font-semibold text-(--kh-forest) shadow-sm transition hover:border-(--kh-forest)/45 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-(--kh-brass)"
-        onClick={copyAddress}
-        aria-label={copied ? copiedLabel : copyLabel}
-      >
-        {copied ? <Check className="size-4" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
-        <span>{copied ? copiedLabel : copyLabel}</span>
-      </button>
+      </div>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <LocationClickAnchor
+          href={href}
+          locale={locale}
+          sourceBlock={sourceBlock}
+          mapProvider={mapProvider}
+          action="view_location"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="kh-button kh-button-primary kh-button-compact min-h-11"
+          aria-label={viewLabel}
+        >
+          <MapPin className="size-4" aria-hidden="true" />
+          {viewLabel}
+        </LocationClickAnchor>
+        <button
+          type="button"
+          className="kh-button kh-button-secondary kh-button-compact min-h-11"
+          onClick={handleCopyAddress}
+          aria-label={copied ? copiedLabel : copyLabel}
+        >
+          {copied ? <Check className="size-4" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
+          <span>{copied ? copiedLabel : copyLabel}</span>
+        </button>
+      </div>
     </div>
   );
 }

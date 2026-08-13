@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
-import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryMapUrl } from "@/data/companyLocation";
+import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryLocationUrl } from "@/data/companyLocation";
 import { Parallax, Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
 import FactoryLocationCard from "@/components/site/FactoryLocationCard";
@@ -36,14 +36,14 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
             className="mt-4 max-w-xl"
             locale={locale}
             sourceBlock="home"
-            mapProvider={zh ? "baidu" : "google"}
-            href={getFactoryMapUrl(locale)}
+            mapProvider={zh ? "baidu_geocoder" : "google_directions"}
+            href={getFactoryLocationUrl(locale)}
             title={zh ? "工厂位置" : "Factory location"}
             mapLabel={zh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}
             address={zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}
             viewLabel={zh ? "查看位置" : "View location"}
             copyLabel={zh ? "复制地址" : "Copy address"}
-            copiedLabel={zh ? "已复制" : "Copied"}
+            copiedLabel={zh ? "地址已复制" : "Copied"}
           />
         </Reveal>
 

@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.describe("factory maps and News & Insights", () => {
   test("routes and map providers stay locale-specific", async ({ page, request }) => {
     for (const locale of ["zh", "en"]) {
-      const mapHost = locale === "zh" ? "map.baidu.com" : "www.google.com";
+      const mapHost = locale === "zh" ? "api.map.baidu.com" : "www.google.com";
       const mapLabel = locale === "zh" ? /查看位置/ : /View location/;
       for (const path of [`/${locale}/contact`, `/${locale}/factory`, `/${locale}`]) {
         const response = await request.get(path);
@@ -12,7 +12,9 @@ test.describe("factory maps and News & Insights", () => {
         expect(html).toContain(mapHost);
         expect(html).toContain("noopener noreferrer");
         const mapHref = (html.match(new RegExp(`https://${mapHost.replaceAll(".", "\\.")}[^\\\" ]+`)) ?? [""])[0];
-        expect(decodeURIComponent(mapHref)).toContain("佛山市布新工业区科宏纸品");
+        expect(decodeURIComponent(mapHref)).toContain("佛山市南海区布新工业区7号科宏纸品");
+        expect(mapHref).toContain(locale === "zh" ? "/geocoder?" : "/maps/dir/?");
+        expect(mapHref).not.toContain("/maps/search/");
       }
       await page.goto(`/${locale}/contact`, { waitUntil: "networkidle" });
       const map = page.locator(`a[href*="${mapHost}"]`).first();
@@ -24,7 +26,7 @@ test.describe("factory maps and News & Insights", () => {
   });
 
   test("location cards expose localized labels, provider metadata and safe external links", async ({ page }) => {
-    for (const [locale, provider, label, sourceBlock] of [["zh", "baidu", "查看位置", "contact"], ["en", "google", "View location", "factory"]] as const) {
+    for (const [locale, provider, label, sourceBlock] of [["zh", "baidu_geocoder", "查看位置", "contact"], ["en", "google_directions", "View location", "factory"]] as const) {
       await page.goto(`/${locale}/${sourceBlock === "contact" ? "contact" : "factory"}`, { waitUntil: "networkidle" });
       const link = page.locator(`a[data-location-source="${sourceBlock}"]`).first();
       await expect(link).toBeVisible();
@@ -32,6 +34,17 @@ test.describe("factory maps and News & Insights", () => {
       await expect(link).toContainText(label);
       await expect(link).toHaveAttribute("target", "_blank");
       await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    }
+  });
+
+  test("copy address uses the exact shared Chinese destination", async ({ page, context }) => {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    for (const locale of ["zh", "en"]) {
+      await page.goto(`/${locale}/contact`, { waitUntil: "networkidle" });
+      const card = page.locator("[data-location-card]").first();
+      await card.getByRole("button", { name: locale === "zh" ? "复制地址" : "Copy address" }).click();
+      await expect(card.getByRole("button", { name: locale === "zh" ? "地址已复制" : "Copied" })).toBeVisible();
+      await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe("佛山市南海区布新工业区7号科宏纸品");
     }
   });
 

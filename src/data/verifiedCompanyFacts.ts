@@ -21,7 +21,7 @@ const lastVerifiedDate = "2026-08-12";
 export const verifiedCompanyFacts = [
   { id: "legal-name", zh: "佛山市科宏纸品有限公司", en: "Foshan Kehong Paper Products Co., Ltd.", status: "LOCKED", source: "Current legal/site configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
   { id: "brand-name", zh: "科宏纸品", en: "Kehong Paper Products", status: "LOCKED", source: "Current brand configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: false },
-  { id: "factory-address", zh: "佛山市南海区布新工业区7号科宏坑纸厂", en: "Kehong Corrugated Paper Factory, No. 7 Buxin Industrial Zone, Nanhai District, Foshan, Guangdong, China", status: "LOCKED", source: "Current factory location data", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
+  { id: "factory-address", zh: "佛山市南海区布新工业区7号科宏纸品", en: "Kehong Paper Products, No. 7 Buxin Industrial Zone, Nanhai District, Foshan, Guangdong, China", status: "LOCKED", source: "Current factory location data", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
   { id: "website", zh: "https://www.kehong.tech", en: "https://www.kehong.tech", status: "LOCKED", source: "Current canonical site configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
   { id: "logo", zh: "/brand/kehong-logo-full-transparent.png", en: "/brand/kehong-logo-full-transparent.png", status: "LOCKED", source: "Current brand asset configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
   { id: "email", zh: "info@kehong.tech", en: "info@kehong.tech", status: "LOCKED", source: "Current contact configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },

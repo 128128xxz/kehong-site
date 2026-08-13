@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { companyProfile } from "@/data/company";
-import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryMapUrl } from "@/data/companyLocation";
+import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryLocationUrl } from "@/data/companyLocation";
 import { showcaseImages } from "@/data/visuals";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
@@ -66,14 +66,14 @@ export default async function FactoryOverview() {
               className="mt-4"
               locale={locale}
               sourceBlock="factory"
-              mapProvider={isZh ? "baidu" : "google"}
-              href={getFactoryMapUrl(locale)}
+              mapProvider={isZh ? "baidu_geocoder" : "google_directions"}
+              href={getFactoryLocationUrl(locale)}
               title={isZh ? "工厂地址" : "Factory address"}
               mapLabel={isZh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}
               address={isZh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}
               viewLabel={isZh ? "查看位置" : "View location"}
               copyLabel={isZh ? "复制地址" : "Copy address"}
-              copiedLabel={isZh ? "已复制" : "Copied"}
+              copiedLabel={isZh ? "地址已复制" : "Copied"}
             />
             <Link href="/process" className="kh-text-link mt-6 min-h-11 px-1">
               {isZh ? "查看生产流程" : "View production process"}

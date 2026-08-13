@@ -1,36 +1,38 @@
-/**
- * Shared factory location facts. Keep the map search query intentionally
- * broader than the postal address: it is the approved search phrase for both
- * services and avoids guessing a POI or coordinate.
- */
-export const FACTORY_MAP_QUERY_ZH = "佛山市布新工业区科宏纸品" as const;
-
 export const FACTORY_ADDRESS = {
-  zh: "佛山市南海区布新工业区7号科宏坑纸厂",
-  en: "Kehong Corrugated Paper Factory, No. 7 Buxin Industrial Zone, Nanhai District, Foshan, Guangdong, China",
+  zh: "佛山市南海区布新工业区7号科宏纸品",
+  en: "Kehong Paper Products, No. 7 Buxin Industrial Zone, Nanhai District, Foshan, Guangdong, China",
 } as const;
+
+/** The single destination string used by both map providers. */
+export const FACTORY_MAP_DESTINATION = FACTORY_ADDRESS.zh;
 
 export const FACTORY_MAP_LABEL = {
-  zh: "科宏纸品 · 佛山市布新工业区",
-  en: "Kehong Paper Products · Buxin Industrial Zone, Foshan, Guangdong, China",
+  zh: "科宏纸品",
+  en: "Kehong Paper Products",
 } as const;
 
-export function getFactoryMapUrl(locale: string) {
+export function getFactoryLocationUrl(locale: string) {
   if (locale === "zh") {
-    return `https://map.baidu.com/search/${encodeURIComponent(FACTORY_MAP_QUERY_ZH)}`;
+    const params = new URLSearchParams({
+      address: FACTORY_MAP_DESTINATION,
+      output: "html",
+      src: "webapp.kehong.website",
+    });
+    return `https://api.map.baidu.com/geocoder?${params.toString()}`;
   }
 
-  const url = new URL("https://www.google.com/maps/search/");
+  const url = new URL("https://www.google.com/maps/dir/");
   url.search = new URLSearchParams({
     api: "1",
-    query: FACTORY_MAP_QUERY_ZH,
-    utm_source: "kehong.tech",
-    utm_campaign: "factory_location",
+    destination: FACTORY_MAP_DESTINATION,
+    travelmode: "driving",
   }).toString();
   return url.toString();
 }
 
-export const FACTORY_BAIDU_MAP_URL = getFactoryMapUrl("zh");
-/** @deprecated Keep the export for older integrations; new UI uses Baidu. */
+/** @deprecated Use getFactoryLocationUrl instead. */
+export const getFactoryMapUrl = getFactoryLocationUrl;
+export const FACTORY_BAIDU_MAP_URL = getFactoryLocationUrl("zh");
+/** @deprecated Keep the export for older integrations; new UI uses Baidu geocoder. */
 export const FACTORY_AMAP_URL = FACTORY_BAIDU_MAP_URL;
-export const FACTORY_GOOGLE_MAPS_URL = getFactoryMapUrl("en");
+export const FACTORY_GOOGLE_MAPS_URL = getFactoryLocationUrl("en");

@@ -459,19 +459,32 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("factory address card routes Chinese visitors to Baidu and English visitors to Google Maps", async ({ page }) => {
-    const mapQuery = "佛山市布新工业区科宏纸品";
+  test("factory address card routes Chinese visitors to Baidu geocoder and English visitors to Google Directions", async ({ page }) => {
+    const mapDestination = "佛山市南海区布新工业区7号科宏纸品";
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/factory`, { waitUntil: "networkidle" });
-      const mapLink = page.locator("main").locator(locale === "zh" ? 'a[href*="map.baidu.com/search"]' : 'a[href*="www.google.com/maps/search"]').first();
+      const card = page.locator("main").locator("[data-location-card]").first();
+      const mapLink = card.locator('a[data-location-action="view_location"]');
       await expect(mapLink).toBeVisible();
       await expect(mapLink).toHaveAttribute("target", "_blank");
       await expect(mapLink).toHaveAttribute("rel", "noopener noreferrer");
       const href = await mapLink.getAttribute("href");
       const url = new URL(href!);
-      if (locale === "zh") expect(decodeURIComponent(url.pathname)).toContain(mapQuery);
-      else expect(url.searchParams.get("query")).toBe(mapQuery);
-      await expect(mapLink).toContainText(locale === "zh" ? "佛山市南海区布新工业区7号科宏坑纸厂" : "Kehong Corrugated Paper Factory");
+      if (locale === "zh") {
+        expect(url.hostname).toBe("api.map.baidu.com");
+        expect(url.pathname).toBe("/geocoder");
+        expect(url.searchParams.get("address")).toBe(mapDestination);
+        expect(url.searchParams.get("output")).toBe("html");
+        expect(url.searchParams.has("query")).toBe(false);
+      } else {
+        expect(url.hostname).toBe("www.google.com");
+        expect(url.pathname).toBe("/maps/dir/");
+        expect(url.searchParams.get("destination")).toBe(mapDestination);
+        expect(url.searchParams.get("travelmode")).toBe("driving");
+        expect(url.searchParams.has("query")).toBe(false);
+      }
+      await expect(card).toContainText(locale === "zh" ? mapDestination : "Kehong Paper Products");
+      await expect(mapLink).toContainText(locale === "zh" ? "查看位置" : "View location");
     }
   });
 

@@ -2,7 +2,7 @@ import { Mail, MessageCircle, ArrowRight } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { companyLegalName, companyProfile, contact, socialLinks } from "@/data/company";
-import { getFactoryMapUrl } from "@/data/companyLocation";
+import { getFactoryLocationUrl } from "@/data/companyLocation";
 import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 import SiteLogo from "@/components/site/SiteLogo";
 
@@ -136,7 +136,7 @@ export default async function SiteFooter() {
               <Mail className="size-4" />
               {zh ? "Email" : "Email"}
             </a>
-            <LocationClickAnchor href={getFactoryMapUrl(locale)} locale={locale} sourceBlock="footer" mapProvider={zh ? "baidu" : "google"} target="_blank" rel="noopener noreferrer" aria-label={zh ? "在百度地图中查看科宏纸品工厂位置" : "View Kehong factory location on Google Maps"}>
+            <LocationClickAnchor href={getFactoryLocationUrl(locale)} locale={locale} sourceBlock="footer" mapProvider={zh ? "baidu_geocoder" : "google_directions"} target="_blank" rel="noopener noreferrer" aria-label={zh ? "查看科宏纸品工厂位置" : "View Kehong factory location"}>
               {zh ? "查看位置" : "View location"}
             </LocationClickAnchor>
           </div>
