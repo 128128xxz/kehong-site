@@ -2586,3 +2586,101 @@
   .kh-home-product-systems .kh-product-card-copy { min-height: 7.1rem; }
   .kh-home-process .kh-process-step { padding-block: 1.1rem; }
 }
+
+/* Final production tightening: continuous mega-menu rows, shared popovers,
+   content-driven inquiry/footer surfaces. */
+:root {
+  --nav-popover-surface: var(--kh-paper);
+  --nav-popover-border: var(--kh-line);
+  --nav-popover-shadow: 0 18px 40px rgba(29, 33, 29, .14);
+  --nav-popover-radius: 10px;
+  --nav-popover-accent: var(--kh-brass);
+  --nav-popover-padding: .55rem;
+}
+
+.kh-nav-panel {
+  background: var(--nav-popover-surface);
+  border-color: var(--nav-popover-border);
+  border-radius: var(--nav-popover-radius);
+  box-shadow: var(--nav-popover-shadow);
+  border-top: 2px solid var(--nav-popover-accent);
+  padding: var(--nav-popover-padding);
+  transform-origin: top center;
+  animation: kh-nav-popover-in 200ms var(--kh-ease) both;
+}
+
+@keyframes kh-nav-popover-in {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.kh-product-mega {
+  width: min(72rem, calc(100vw - 2rem));
+  padding: .65rem;
+}
+
+.kh-product-mega-grid { gap: .65rem; }
+.kh-product-mega-section { padding: .78rem .85rem .7rem; }
+.kh-product-mega-head-row { align-items: center; }
+.kh-product-mega-description { margin-top: .18rem; }
+.kh-product-mega-cta { min-height: 2.2rem; }
+.kh-product-mega-groups { display: grid; grid-template-columns: 1fr; gap: 0; padding-top: .3rem; }
+.kh-product-mega-group,
+.kh-product-mega-group + .kh-product-mega-group {
+  display: grid;
+  grid-template-columns: clamp(150px, 24%, 210px) minmax(0, 1fr);
+  align-items: center;
+  gap: .75rem;
+  min-width: 0;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--kh-line) 84%, transparent);
+  border-radius: 0;
+  padding: .52rem 0;
+}
+.kh-product-mega-group-heading { margin: 0; }
+.kh-product-mega-items { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .12rem .28rem; }
+.kh-product-mega .kh-product-mega-items a { min-height: 2.75rem; padding: .35rem .45rem; }
+.kh-product-mega-item-arrow { display: none !important; }
+.kh-product-mega-all { min-height: 4rem; margin-top: .55rem; padding: .48rem .65rem; }
+
+.kh-home-cta { padding-block: clamp(4.5rem, 7vw, 5.5rem); }
+.kh-cta-grid { align-items: center; gap: clamp(2rem, 4vw, 4rem); }
+.kh-spec-panel { padding: 1.15rem 1.25rem; }
+.kh-spec-row { padding: .62rem .35rem; }
+.kh-cta-actions { margin-top: .95rem; }
+.kh-final-links { gap: .5rem 1rem; margin-top: .9rem; }
+
+.kh-footer { padding-block: 3.5rem 1.25rem; }
+.kh-footer-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, .8fr) minmax(0, .95fr) minmax(0, 1.05fr); gap: 2rem; align-items: start; }
+.kh-footer-links { display: contents; }
+.kh-footer-group { min-width: 0; }
+.kh-footer-group > summary { color: var(--kh-brass-soft); }
+.kh-footer-contact-column { min-width: 0; }
+.kh-footer-column-label { margin: 0 0 1rem; color: var(--kh-brass-soft); font-family: var(--font-mono); font-size: .74rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.kh-footer-contact { display: grid; gap: .55rem; margin-top: 0; color: rgba(255, 253, 248, .78); font-size: .9rem; }
+.kh-footer-contact a { display: inline-flex; align-items: center; gap: .35rem; }
+.kh-footer-wechat { color: rgba(255, 253, 248, .78); }
+.kh-footer-quote { display: none; }
+.kh-footer-bottom { align-items: center; justify-content: space-between; margin-top: 2.75rem; }
+.kh-footer-legal-links { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.kh-footer-bottom .kh-social { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kh-nav-panel { animation: none; }
+}
+
+@media (max-width: 1100px) {
+  .kh-product-mega { width: auto; }
+  .kh-footer-grid { grid-template-columns: 1fr; }
+  .kh-footer-links { display: grid; }
+  .kh-footer-contact-column { border-top: 1px solid rgba(255, 253, 248, .16); padding-top: .7rem; }
+}
+
+@media (max-width: 760px) {
+  .kh-product-mega-group,
+  .kh-product-mega-group + .kh-product-mega-group { grid-template-columns: 1fr; gap: .25rem; }
+  .kh-product-mega-items { grid-template-columns: 1fr; }
+  .kh-home-cta { padding-block: 3.75rem 4rem; }
+  .kh-footer { padding-bottom: calc(8rem + env(safe-area-inset-bottom)); }
+  .kh-footer-bottom { align-items: flex-start; flex-direction: column; gap: 1rem; }
+}

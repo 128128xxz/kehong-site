@@ -1,11 +1,10 @@
-import { Mail, MessageCircle, ArrowRight } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { companyDisplayName, contact, socialLinks } from "@/data/company";
 import { FACTORY_ADDRESS, getFactoryLocationUrl } from "@/data/companyLocation";
 import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 import SiteLogo from "@/components/site/SiteLogo";
-import WeChatContactButton from "@/components/site/WeChatContactButton";
 
 type IconProps = { className?: string };
 
@@ -83,7 +82,7 @@ export default async function SiteFooter() {
   return (
     <footer className="kh-footer">
       <div className="kh-shell kh-footer-grid">
-        <div>
+        <div className="kh-footer-brand-column">
           <SiteLogo locale={locale} placement="footer" />
           <h2>{zh ? companyDisplayName.zh : companyDisplayName.en}</h2>
           <p className="kh-footer-note">
@@ -91,11 +90,6 @@ export default async function SiteFooter() {
               ? "纸材加工、结构打样和定制包装服务"
               : "Paper converting, structural sampling and custom packaging from our Foshan team."}
           </p>
-          <div className="kh-footer-contact">
-            <span>{zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
-            <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>{contact.email}</a>
-            {zh ? <a href="tel:+8615888233221" aria-label={`拨打电话 ${contact.phone.zh}`}>{contact.phone.zh}</a> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Contact Kehong on WhatsApp">WhatsApp</a>}
-          </div>
         </div>
         <div className="kh-footer-links">
             <details className="kh-footer-group" open>
@@ -117,44 +111,32 @@ export default async function SiteFooter() {
             </div>
           </details>
         </div>
-        <div className="kh-footer-quote">
-          <p>{zh ? "准备启动项目？" : "Ready to discuss a project?"}</p>
-          <Link data-testid="site-footer-quote" className="kh-button kh-button-light" href="/contact">
-            {zh ? "提交询价" : "Request a quote"}
-            <ArrowRight className="size-4" />
-          </Link>
-          <div className="kh-footer-actions">
-            {zh ? <WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-footer-action-button" /> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Contact Kehong on WhatsApp"><MessageCircle className="size-4" />WhatsApp</a>}
-            <a href={zh ? "tel:+8615888233221" : "tel:+447599669700"} aria-label={zh ? `拨打电话 ${contact.phone.zh}` : `Call ${contact.phone.en}`}>
-              {zh ? "电话" : "Call"} · {zh ? contact.phone.zh : contact.phone.en}
-            </a>
-            <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>
-              <Mail className="size-4" />
-              {zh ? "Email" : "Email"}
-            </a>
+        <div className="kh-footer-contact-column">
+          <p className="kh-footer-column-label">{zh ? "联系科宏" : "Contact Kehong"}</p>
+          <div className="kh-footer-contact">
+            <span>{zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
             <LocationClickAnchor href={getFactoryLocationUrl(locale)} locale={locale} sourceBlock="footer" mapProvider={zh ? "baidu_directions" : "google_directions"} target="_blank" rel="noopener noreferrer" aria-label={zh ? "查看科宏纸品工厂位置" : "View Kehong factory location"}>
               {zh ? "查看位置" : "View location"}
             </LocationClickAnchor>
-          </div>
-          <div className="kh-social" aria-label={zh ? "社交媒体" : "Social media"}>
-            {socialEntries.map(({ key, label, href, Icon }) => (
-              <a
-                key={key}
-                href={href || `/${locale}`}
-                aria-label={label}
-                title={href ? label : `${label}${zh ? " · 返回首页" : " · Return home"}`}
-                {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                <Icon className="size-4" />
-              </a>
-            ))}
+            <a href={zh ? "tel:+8615888233221" : "tel:+447599669700"} aria-label={zh ? `拨打电话 ${contact.phone.zh}` : `Call ${contact.phone.en}`}>{zh ? contact.phone.zh : contact.phone.en}</a>
+            <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>{contact.email}</a>
+            {zh ? <span className="kh-footer-wechat">微信咨询</span> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Contact Kehong on WhatsApp"><MessageCircle className="size-4" />WhatsApp</a>}
           </div>
         </div>
       </div>
       <div className="kh-shell kh-footer-bottom">
-        <span>© {new Date().getFullYear()} {zh ? "科宏纸品" : "Kehong"}</span>
-        <Link href="/privacy">{zh ? "隐私政策" : "Privacy"}</Link>
-        <Link href="/terms">{zh ? "使用条款" : "Terms"}</Link>
+        <div className="kh-footer-legal-links">
+          <span>© {new Date().getFullYear()} {zh ? "科宏纸品" : "Kehong"}</span>
+          <Link href="/privacy">{zh ? "隐私政策" : "Privacy"}</Link>
+          <Link href="/terms">{zh ? "使用条款" : "Terms"}</Link>
+        </div>
+        <div className="kh-social" aria-label={zh ? "社交媒体" : "Social media"}>
+          {socialEntries.map(({ key, label, href, Icon }) => (
+            <a key={key} href={href || `/${locale}`} aria-label={label} title={href ? label : `${label}${zh ? " · 返回首页" : " · Return home"}`} {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+              <Icon className="size-4" />
+            </a>
+          ))}
+        </div>
       </div>
     </footer>
   );

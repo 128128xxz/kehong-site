@@ -809,14 +809,14 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("header and footer quotes remain generic while category project briefs retain their purpose", async ({ page }) => {
+  test("header quote stays generic while the footer remains contact-only and category briefs retain their purpose", async ({ page }) => {
     await page.goto("/en/packaging/paper-bags", { waitUntil: "networkidle" });
-    for (const ctaId of ["site-header-quote", "site-footer-quote"] as const) {
-      const href = await page.getByTestId(ctaId).getAttribute("href");
-      const url = new URL(href!, "https://www.kehong.tech");
-      expect(url.pathname).toBe("/en/contact");
-      expect(url.searchParams.get("product")).toBeNull();
-    }
+    const headerHref = await page.getByTestId("site-header-quote").getAttribute("href");
+    const headerUrl = new URL(headerHref!, "https://www.kehong.tech");
+    expect(headerUrl.pathname).toBe("/en/contact");
+    expect(headerUrl.searchParams.get("product")).toBeNull();
+    await expect(page.getByTestId("site-footer-quote")).toHaveCount(0);
+    await expect(page.locator(".kh-footer-contact-column")).toBeVisible();
     const brief = page.getByRole("link", { name: "Start your project brief" });
     const briefUrl = new URL((await brief.getAttribute("href"))!, "https://www.kehong.tech");
     expect(briefUrl.pathname).toBe("/en/contact");
