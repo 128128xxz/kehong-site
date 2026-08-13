@@ -19,7 +19,7 @@ import InquiryForm from "@/components/site/InquiryForm";
 import SiteFooter from "@/components/site/SiteFooter";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
-import { absoluteSiteUrl, getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
+import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
 import { formatProductDisplayList, formatProductFieldValue, type ProductDisplayField } from "@/lib/productPresentation";
 import { buildInquiryContactHref } from "@/lib/inquiryContext";
@@ -32,14 +32,13 @@ import {
   getProductGroupId,
   getSkuBySlug,
   getSkusByGroupId,
-  getProductGroups,
   buildProductGroupSummary,
   productDataRevision,
 } from "@/lib/catalog";
 import ProductImageWithStatus from "@/components/site/ProductImageWithStatus";
 import WeChatContactButton from "@/components/site/WeChatContactButton";
 import RelatedLinks from "@/components/site/RelatedLinks";
-import { buildOrganizationJsonLd, buildProductGroupJsonLd } from "@/lib/aiEntities";
+import { buildOrganizationJsonLd } from "@/lib/aiEntities";
 import {
   getProductTypeLabel,
   getPublicProductTypeLabel,
@@ -186,14 +185,12 @@ export default async function ProductDetailPage({
 
   const t = await getTranslations({ locale, namespace: "Site" });
   const isZh = locale === "zh";
-  const brand = getBrandConfig(locale);
   const productHref = `/products/${sku.slug}` as SiteHref;
   const productUrl = await getLocaleUrl(locale, productHref);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
   const groupSummary = buildProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
   const contactHref = buildInquiryContactHref({ product: sku.slug, sku: sku.sku, url: productUrl }) as SiteHref;
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(`${t("inquiry.message")}\n- ${isZh ? "产品组" : "Product group"}: ${groupSummary.title}\n- ${isZh ? "当前 SKU" : "Current SKU"}: ${sku.sku}\n- URL: ${productUrl}`)}`;
-  const imageMeta = getSkuImageMeta(sku, locale);
   const variantSearch = typeof query.variantSearch === "string" ? query.variantSearch.trim().toLowerCase() : "";
   const matchingVariants = variantSearch
     ? groupVariants.filter((variant) => [variant.sku, variant.gsmOrThickness, variant.coating, variant.commonSize]
@@ -257,34 +254,6 @@ export default async function ProductDetailPage({
     ? ["产品图片 / 图纸", "尺寸 / 材质 / 克重", "数量 / 目标价格", "印刷颜色 / 后工艺", "目标市场"]
     : ["Product photo / drawing", "Size / material / GSM", "Quantity / target price", "Print color / finish", "Destination market"];
   const organizationJsonLd = buildOrganizationJsonLd(locale, groupSummary.metadata.description);
-  const productGroup = getProductGroups().find((group) => group.id === groupSummary.id);
-  const productGroupJsonLd = productGroup ? buildProductGroupJsonLd(productGroup, locale, productUrl) : undefined;
-  const productJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: groupSummary.title,
-    alternateName: isZh ? sku.title.en : undefined,
-    sku: sku.sku,
-    category: groupSummary.familyLabel,
-    material: getLocalizedProductMaterial(sku, locale) || undefined,
-    description: groupSummary.metadata.description,
-    url: productUrl,
-    image: imageMeta.status === "exact" ? absoluteSiteUrl(imageMeta.src) : undefined,
-    brand: {
-      "@type": "Brand",
-      name: brand.name,
-    },
-    manufacturer: {
-      "@type": "Organization",
-      name: siteConfig.author.name,
-      url: siteConfig.url,
-    },
-    additionalProperty: [...groupSpecs, ...currentSkuSpecs].map(([name, value]) => ({
-      "@type": "PropertyValue",
-      name: String(name),
-      value: String(value),
-    })),
-  };
   const productFaqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -340,14 +309,6 @@ export default async function ProductDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(organizationJsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(productJsonLd) }}
-      />
-      {productGroupJsonLd ? <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(productGroupJsonLd) }}
-      /> : null}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(productFaqJsonLd) }}

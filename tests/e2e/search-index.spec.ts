@@ -72,3 +72,25 @@ test("news pages expose visible direct answer, semantic comparison and article s
   expect(html).toContain("application/ld+json");
   expect(html).toContain("articleSection");
 });
+
+test("quote-led product pages do not emit incomplete product rich-result markup", async ({ request }) => {
+  const routes = [
+    "/en/products",
+    "/zh/products",
+    "/en/products/kh-fd-cuproll-150350-pr-032-pe-coated-paper-roll-for-paper-cup",
+    "/zh/products/kh-fd-cuproll-150350-pr-032-pe-coated-paper-roll-for-paper-cup",
+  ];
+
+  for (const route of routes) {
+    const response = await request.get(route, { maxRedirects: 0 });
+    expect(response.status(), route).toBe(200);
+    const html = await response.text();
+    const jsonLdBlocks = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/giu)]
+      .map((match) => match[1].replaceAll("\\u003c", "<"));
+    const jsonLd = jsonLdBlocks.map((block) => JSON.parse(block) as { "@type"?: string | string[] });
+    const types = jsonLd.flatMap((item) => Array.isArray(item["@type"]) ? item["@type"] : item["@type"] ? [item["@type"]] : []);
+    expect(types, route).not.toContain("Product");
+    expect(types, route).not.toContain("ProductGroup");
+    expect(jsonLdBlocks.join("\n"), route).not.toMatch(/"(?:hasVariant|aggregateRating|offers|review)"\s*:/iu);
+  }
+});

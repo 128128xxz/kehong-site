@@ -8,7 +8,7 @@ import ProductCatalog from "@/components/site/ProductCatalog";
 import ProductDirectory from "@/components/site/ProductDirectory";
 import { Link } from "@/i18n/navigation";
 import { buildProductCatalogView, getCatalogFilterOptions, getQueryValue } from "@/lib/catalog";
-import { getPublicProductGroups, buildOrganizationJsonLd, buildProductGroupJsonLd } from "@/lib/aiEntities";
+import { buildOrganizationJsonLd } from "@/lib/aiEntities";
 import { getCanonicalTaxonomyCategoryId } from "@/lib/taxonomy";
 import { showcaseImages } from "@/data/visuals";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
@@ -98,7 +98,6 @@ export default async function ProductsPage({
   }
   const catalogView = buildProductCatalogView(query, locale);
   const organizationJsonLd = buildOrganizationJsonLd(locale, t("catalog.description"));
-  const productGroupsJsonLd = getPublicProductGroups().map((group) => buildProductGroupJsonLd(group, locale, `${siteConfig.url}/${locale}/products?group=${encodeURIComponent(group.id)}`));
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -139,10 +138,6 @@ export default async function ProductsPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd({ "@context": "https://schema.org", "@graph": productGroupsJsonLd }) }}
       />
       <div className="kh-premium-site texture-paper min-h-screen">
       <Header />
