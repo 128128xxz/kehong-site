@@ -72,7 +72,7 @@ export default function NewsShareTools({ canonical, slug, title, locale }: NewsS
           {copied ? <Check className="size-4" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
           <span>{copied ? locale === "zh" ? "已复制" : "Copied" : locale === "zh" ? "复制链接" : "Copy link"}</span>
         </button>
-        {platforms.map((platform) => {
+        {platforms.filter((platform) => locale !== "zh" || platform.key !== "whatsapp").map((platform) => {
           const href = platform.key === "x"
             ? `https://x.com/intent/post?url=${encodeURIComponent(copyUrl)}&text=${encodeURIComponent(shareTitle)}`
             : platform.key === "whatsapp"

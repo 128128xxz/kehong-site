@@ -63,7 +63,7 @@ export const industrySeoPages = {
     buyerFocus: ["Food packaging structure", "Paper inserts and pads", "Custom printed boxes", "Clear quote information"],
     zhBuyerFocus: ["食品包装结构", "纸内托和纸垫", "定制印刷纸盒", "清晰的报价信息"],
     capabilities: ["Structure and material confirmation", "OEM/ODM packaging support", "GSM and finish matching", "WhatsApp and quote support"],
-    zhCapabilities: ["结构和材料确认", "OEM / ODM 包装支持", "克重和表面工艺匹配", "WhatsApp 和报价支持"],
+    zhCapabilities: ["结构和材料确认", "OEM / ODM 包装支持", "克重和表面工艺匹配", "微信、电话和报价支持"],
     applications: ["Bakery packaging", "Pizza and takeaway boxes", "Retail paper boxes", "Distributor packaging programs"],
     zhApplications: ["烘焙包装", "披萨和外带盒", "零售纸盒", "经销商包装项目"],
     faq: [

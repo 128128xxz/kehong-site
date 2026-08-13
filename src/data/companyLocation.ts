@@ -1,14 +1,14 @@
 export const FACTORY_ADDRESS = {
-  zh: "佛山市南海区布新工业区7号科宏纸品",
-  en: "Kehong Paper Products, No. 7 Buxin Industrial Zone, Nanhai District, Foshan, Guangdong, China",
+  zh: "佛山市南海区布新工业区7号",
+  en: "No. 7 Buxin Industrial Zone, Nanhai District, Foshan, Guangdong, China",
 } as const;
 
 /** The single destination string used by both map providers. */
 export const FACTORY_MAP_DESTINATION = FACTORY_ADDRESS.zh;
 
 export const FACTORY_MAP_LABEL = {
-  zh: "科宏纸品",
-  en: "Kehong Paper Products",
+  zh: "佛山科宏纸品",
+  en: "Foshan Kehong Paper Products",
 } as const;
 
 export function getFactoryLocationUrl(locale: string) {

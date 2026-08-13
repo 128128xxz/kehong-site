@@ -34,7 +34,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
         <PageHero
           index="01"
           kicker={isZh ? "科宏 · 行业应用" : "Kehong · Industry applications"}
-          title={isZh ? "按行业选择纸包装" : "Choose paper packaging by industry."}
+          title={isZh ? "按行业选择纸包装" : "Choose paper packaging by industry"}
           lede={
             isZh
               ? "按应用场景浏览材料、结构、内托和成品包装。确定尺寸和图纸后，再发起询价。"
@@ -61,7 +61,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="02" text={isZh ? "行业矩阵" : "Industry matrix"} />
-                  <h2>{isZh ? "每个应用场景，都有入口。" : "Every application has an entry point."}</h2>
+                  <h2>{isZh ? "每个应用场景，都有入口" : "Every application has an entry point"}</h2>
                 </div>
               </div>
             </Reveal>

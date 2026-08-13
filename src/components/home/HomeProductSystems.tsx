@@ -62,7 +62,7 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
           <div className="kh-section-heading">
             <div>
               <SectionKicker index="02" text={zh ? "产品" : "Product range"} />
-              <h2>{zh ? "按产品体系进入分类。" : "Choose a product system, then go deeper by category."}</h2>
+              <h2>{zh ? "按产品体系进入分类" : "Choose a product system, then go deeper by category"}</h2>
             </div>
             <Link className="kh-text-link" href="/products">
               {zh ? "查看全部产品" : "View all products"}
@@ -85,8 +85,11 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
                   />
                 </div>
                 <div className="kh-product-system-copy">
-                  <h3>{system.label}</h3>
-                  <p>{zh ? "先选择纸材与半成品或成品包装，再查看对应产品和规格。" : system.intro}</p>
+                  <div className="kh-product-system-head">
+                    <h3>{system.label}</h3>
+                    <Link className="kh-product-system-cta" href={system.href}>{zh ? system.cta.zh : system.cta.en}</Link>
+                  </div>
+                  <p>{zh ? "先选分类，再看产品和规格。" : system.intro}</p>
                   <div className="kh-product-card-grid">
                     {system.links.map((item) => {
                       const visual = system.visuals[item.id];

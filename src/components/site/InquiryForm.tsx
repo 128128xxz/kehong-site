@@ -1,11 +1,12 @@
 "use client";
 
-import { CheckCircle2, MessageCircle, Send } from "lucide-react";
+import { CheckCircle2, MessageCircle, Phone, Send } from "lucide-react";
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { appendAttribution, captureAttribution, trackKehongEvent } from "@/lib/attribution";
 import { formatProductSkuSummary } from "@/lib/productPresentation";
+import WeChatContactButton from "@/components/site/WeChatContactButton";
 
 type InquiryProduct = {
   productGroupId?: string;
@@ -33,7 +34,7 @@ const copy = {
     company: "公司 / 品牌",
     email: "Email",
     phone: "电话",
-    whatsappField: "WhatsApp",
+    whatsappField: "微信或电话",
     country: "国家 / 地区",
     products: "感兴趣产品 / 产品编号",
     quantity: "预计数量",
@@ -47,9 +48,9 @@ const copy = {
     message: "尺寸、材质、数量、印刷、交期或目标市场",
     privacy: "我同意科宏纸品根据隐私政策处理我提交的信息，以便回复本次询盘",
     submit: "提交询价",
-    whatsapp: "WhatsApp",
+    whatsapp: "微信咨询",
     success: "询盘已被系统接收，科宏团队会尽快联系你。",
-    error: "提交失败，请稍后重试，或直接使用 WhatsApp 联系。",
+    error: "提交失败，请稍后重试，或直接通过电话联系。",
     required: "请填写姓名、Email、产品需求，并同意隐私政策。",
   },
   en: {
@@ -268,15 +269,7 @@ export default function InquiryForm({
           <Send className="size-4" />
           {status === "sending" ? (isZh ? "提交中..." : "Sending...") : text.submit}
         </button>
-        <a
-          href={whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="kh-button kh-button-secondary"
-        >
-          <MessageCircle className="size-4 text-(--kh-brass)" />
-          {text.whatsapp}
-        </a>
+        {isZh ? <><WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-secondary" /><a href="tel:+8615888233221" className="kh-button kh-button-secondary"><Phone className="size-4 text-(--kh-brass)" />电话</a></> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-secondary"><MessageCircle className="size-4 text-(--kh-brass)" />{text.whatsapp}</a>}
       </div>
 
       {status === "success" ? (

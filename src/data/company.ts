@@ -4,8 +4,16 @@ const fact = (id: string) => getVerifiedFact(id)!;
 
 export const contact = {
   whatsapp: fact("whatsapp").en,
-  phone: fact("whatsapp").en,
+  phone: {
+    zh: fact("phone-zh").zh,
+    en: fact("phone-en").en,
+  },
   email: fact("email").en,
+} as const;
+
+export const companyDisplayName = {
+  zh: "佛山科宏纸品",
+  en: "Foshan Kehong Paper Products",
 } as const;
 
 export const companyLegalName = fact("legal-name").en;

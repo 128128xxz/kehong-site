@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Filter, Layers3, MessageCircle, Search, X } from "lucide-react";
+import { Filter, Layers3, MessageCircle, Phone, Search, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { contact } from "@/data/company";
@@ -21,6 +21,7 @@ import {
 import { getProductTypeLabel } from "@/lib/productImages";
 import { getTaxonomyMaterialLabel } from "@/lib/taxonomy";
 import { formatProductFieldValue } from "@/lib/productPresentation";
+import WeChatContactButton from "@/components/site/WeChatContactButton";
 
 type Props = {
   skus: ProductSku[];
@@ -289,15 +290,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
                   </button>
                 </div>
               ))}
-              <a
-                href={whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="kh-button kh-button-light kh-button-compact mt-3"
-              >
-                <MessageCircle className="size-4" />
-                {t("cta.whatsapp")}
-              </a>
+              {locale === "zh" ? <div className="mt-3 flex flex-wrap gap-2"><WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-light kh-button-compact" /><a href="tel:+8615888233221" className="kh-button kh-button-light kh-button-compact"><Phone className="size-4" />电话</a></div> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-light kh-button-compact mt-3"><MessageCircle className="size-4" />{t("cta.whatsapp")}</a>}
             </div>
           </div>
         ) : null}

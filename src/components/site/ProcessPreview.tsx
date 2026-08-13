@@ -38,7 +38,7 @@ export default async function ProcessPreview() {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="02" text={isZh ? "生产节点" : "Production stages"} />
-                <h2>{isZh ? "六个节点，把要求落进产线。" : "Six stages carry the brief through the line."}</h2>
+                <h2>{isZh ? "六个节点，把要求落进产线" : "Six stages carry the brief through the line"}</h2>
               </div>
             </div>
           </Reveal>
@@ -85,7 +85,7 @@ export default async function ProcessPreview() {
         <div className="kh-shell">
           <Reveal>
             <SectionKicker index="03" text={isZh ? "开始一个包装项目" : "Start a packaging project"} light />
-            <h2>{isZh ? "把规格与目标市场交给同一条产线。" : "Put your spec and market on the same line."}</h2>
+            <h2>{isZh ? "把规格与目标市场交给同一条产线" : "Put your spec and market on the same line"}</h2>
             <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
               {isZh
                 ? "发送尺寸、材料和数量，科宏按流程回复打样和报价的下一步。"

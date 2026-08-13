@@ -6,6 +6,7 @@ import {
   ClipboardCheck,
   FileText,
   MessageCircle,
+  Phone,
   PackageCheck,
   Ruler,
   Search,
@@ -36,6 +37,7 @@ import {
   productDataRevision,
 } from "@/lib/catalog";
 import ProductImageWithStatus from "@/components/site/ProductImageWithStatus";
+import WeChatContactButton from "@/components/site/WeChatContactButton";
 import RelatedLinks from "@/components/site/RelatedLinks";
 import { buildOrganizationJsonLd, buildProductGroupJsonLd } from "@/lib/aiEntities";
 import {
@@ -465,10 +467,7 @@ export default async function ProductDetailPage({
 
             <p className="mt-6 text-sm text-(--kh-muted)">{t("detail.note")}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-primary">
-                <MessageCircle className="size-4" />
-                {t("cta.whatsapp")}
-              </a>
+              {isZh ? <><WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-primary" /><a href="tel:+8615888233221" className="kh-button kh-button-secondary"><Phone className="size-4" />电话</a></> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-primary"><MessageCircle className="size-4" />{t("cta.whatsapp")}</a>}
               <Link href={contactHref} className="kh-button kh-button-secondary">
                 <FileText className="size-4" />
                 {isZh ? "提交询价" : "Request a quote"}
@@ -590,10 +589,7 @@ export default async function ProductDetailPage({
               ))}
             </div>
             <div className="mt-6 grid gap-2">
-              <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-light">
-                <MessageCircle className="size-4" />
-                {isZh ? "咨询此产品" : "Discuss this product"}
-              </a>
+              {isZh ? <WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-light" /> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-light"><MessageCircle className="size-4" />Discuss this product</a>}
               <Link href={contactHref} className="kh-button border border-white/35 text-(--kh-surface) hover:bg-white/10">
                 <FileText className="size-4" />
                 {isZh ? "提交询价" : "Request a quote"}

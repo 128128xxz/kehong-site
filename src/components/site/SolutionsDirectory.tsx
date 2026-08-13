@@ -59,7 +59,7 @@ export default function SolutionsDirectory() {
           <div className="kh-section-heading">
             <div>
               <SectionKicker index="02" text={isZh ? "解决方案" : "Solutions"} />
-              <h2>{isZh ? "四类应用，覆盖主要生产需求。" : "Four applications for common production needs."}</h2>
+              <h2>{isZh ? "四类应用，覆盖主要生产需求" : "Four applications for common production needs"}</h2>
             </div>
           </div>
         </Reveal>

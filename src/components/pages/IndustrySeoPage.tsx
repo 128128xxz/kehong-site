@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, ClipboardCheck, Factory, MessageCircle } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardCheck, Factory, MessageCircle, Phone } from "lucide-react";
 import Header from "@/components/site/Header";
 import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
@@ -8,6 +8,7 @@ import { contact } from "@/data/company";
 import type { IndustrySeoPageData } from "@/data/industrySeoPages";
 import { Link } from "@/i18n/navigation";
 import RelatedLinks from "@/components/site/RelatedLinks";
+import WeChatContactButton from "@/components/site/WeChatContactButton";
 
 type Props = {
   locale: string;
@@ -44,10 +45,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
             {isZh ? "提交询价" : "Request a quote"}
             <ArrowRight className="size-4" />
           </Link>
-          <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-ghost">
-            <MessageCircle className="size-4" />
-            WhatsApp
-          </a>
+          {isZh ? <><WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-ghost" /><a href="tel:+8615888233221" className="kh-button kh-button-ghost"><Phone className="size-4" />电话</a></> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-ghost"><MessageCircle className="size-4" />WhatsApp</a>}
         </PageHero>
 
         <section className="kh-section">

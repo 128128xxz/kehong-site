@@ -41,7 +41,7 @@ export default async function B2BProcurementSections() {
       <PageHero
         index="01"
         kicker={isZh ? "工厂与服务能力" : "Manufacturing and service capabilities"}
-        title={isZh ? "把采购要求整理成可确认的生产规格。" : "Turn your packaging brief into a quote-ready specification."}
+        title={isZh ? "把采购要求整理成可确认的生产规格" : "Turn your packaging brief into a quote-ready specification"}
         lede={
           isZh
             ? "从材料匹配、结构打样到批量生产和出口包装，科宏为每个项目提供清晰的交付服务。"
@@ -67,7 +67,7 @@ export default async function B2BProcurementSections() {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="02" text={isZh ? "报价资料" : "Quote preparation"} />
-                <h2>{isZh ? "报价前，先备齐这四类信息。" : "Four inputs that make a quote move faster."}</h2>
+                <h2>{isZh ? "报价前，先备齐这四类信息" : "Four inputs that make a quote move faster"}</h2>
               </div>
             </div>
           </Reveal>
@@ -101,7 +101,7 @@ export default async function B2BProcurementSections() {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="03" text={isZh ? "采购确认事项" : "Procurement checkpoints"} light />
-                <h2>{isZh ? "每个项目都会过一遍的确认清单。" : "The checklist every project runs through."}</h2>
+                <h2>{isZh ? "每个项目都会过一遍的确认清单" : "The checklist every project runs through"}</h2>
               </div>
             </div>
           </Reveal>
@@ -131,7 +131,7 @@ export default async function B2BProcurementSections() {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="04" text={isZh ? "项目流程" : "Project process"} />
-                <h2>{isZh ? "从需求沟通到安排出货的五个节点。" : "Five stages from brief to shipment."}</h2>
+                <h2>{isZh ? "从需求沟通到安排出货的五个节点" : "Five stages from brief to shipment"}</h2>
               </div>
             </div>
           </Reveal>

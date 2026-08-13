@@ -1,8 +1,9 @@
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
+import WeChatContactButton from "@/components/site/WeChatContactButton";
 
 export default function HomeBuyerSupport({ locale }: { locale: string }) {
   const zh = locale === "zh";
@@ -16,7 +17,7 @@ export default function HomeBuyerSupport({ locale }: { locale: string }) {
           <div className="kh-section-heading">
             <div>
               <SectionKicker index="07" text={zh ? "买家支持与采购准备" : "Buyer support & sourcing preparation"} />
-              <h2>{zh ? "提交产品、尺寸、材料和数量后，我们会确认打样与报价需要哪些信息。" : "Prepare the key details needed for sampling and quotation."}</h2>
+              <h2>{zh ? "提交产品、尺寸、材料和数量，确认打样与报价" : "Prepare the key details for sampling and quotation"}</h2>
             </div>
             <Link href="/resources" className="kh-text-link">{zh ? "打开资料中心" : "Open resources"}</Link>
           </div>
@@ -28,8 +29,8 @@ export default function HomeBuyerSupport({ locale }: { locale: string }) {
         </div>
         <Reveal>
           <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-lg bg-(--kh-forest) px-5 py-4 text-(--kh-surface)">
-            <p className="text-sm font-semibold">{zh ? "已有尺寸、数量或设计稿？直接通过表单、WhatsApp 或 Email 发起询盘。" : "Have size, quantity or artwork ready? Start by form, WhatsApp or email."}</p>
-            <div className="flex flex-wrap gap-3 text-sm font-semibold"><Link href="/contact" className="inline-flex items-center gap-2 text-(--kh-brass-soft)">{zh ? "提交询价" : "Request a quote"}</Link><a href={whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2"><MessageCircle className="size-4" />WhatsApp</a><a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2"><Mail className="size-4" />Email</a></div>
+            <p className="text-sm font-semibold">{zh ? "已有尺寸、数量或设计稿？直接通过表单、微信或电话沟通。" : "Have size, quantity or artwork ready? Start by form, WhatsApp or email."}</p>
+            <div className="flex flex-wrap items-center gap-3 text-sm font-semibold"><Link href="/contact" className="inline-flex items-center gap-2 text-(--kh-brass-soft)">{zh ? "提交询价" : "Request a quote"}</Link>{zh ? <><WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="inline-flex min-h-11 items-center gap-2 border-0 bg-transparent p-0 text-(--kh-brass-soft)" /><a href="tel:+8615888233221" className="inline-flex items-center gap-2"><Phone className="size-4" />电话</a></> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2"><MessageCircle className="size-4" />WhatsApp</a>}<a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2"><Mail className="size-4" />Email</a></div>
           </div>
         </Reveal>
       </div>

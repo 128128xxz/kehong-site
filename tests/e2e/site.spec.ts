@@ -254,12 +254,19 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("contact, footer and legal email links use localized subjects and WhatsApp is a safe external link", async ({ page }) => {
+  test("contact channels and legal email links stay locale-specific", async ({ page }) => {
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/contact`, { waitUntil: "networkidle" });
       const expectedSubject = locale === "zh" ? "%E7%A7%91%E5%AE%8F%E7%BA%B8%E5%93%81%E8%AF%A2%E7%9B%98" : "Kehong%20packaging%20inquiry";
       await expect(page.locator('main a[href^="mailto:"]').first()).toHaveAttribute("href", new RegExp(`subject=${expectedSubject}`));
-      await expect(page.locator('main a[href^="https://wa.me/"]').first()).toHaveAttribute("rel", "noopener noreferrer");
+      if (locale === "zh") {
+        await expect(page.locator("main")).not.toContainText("WhatsApp");
+        await expect(page.locator('main a[href^="tel:+8615888233221"]').first()).toBeVisible();
+        await expect(page.getByTestId("wechat-contact").first()).toBeVisible();
+      } else {
+        await expect(page.locator('main a[href^="https://wa.me/"]').first()).toHaveAttribute("rel", "noopener noreferrer");
+        await expect(page.locator('main a[href^="tel:+447599669700"]').first()).toBeVisible();
+      }
       await expect(page.locator('footer a[href^="mailto:"]').first()).toHaveAttribute("href", new RegExp(`subject=${expectedSubject}`));
 
       for (const legal of ["privacy", "terms"]) {
@@ -268,6 +275,16 @@ test.describe("Kehong production flows", () => {
         await expect(page.locator('main a[href^="mailto:"]')).toHaveAttribute("aria-label", /Email|发送邮件/);
       }
     }
+  });
+
+  test("Chinese buyer-facing pages use WeChat and phone instead of WhatsApp", async ({ page }) => {
+    for (const path of ["/zh", "/zh/products", "/zh/factory", "/zh/contact", "/zh/resources"]) {
+      await page.goto(path, { waitUntil: "networkidle" });
+      await expect(page.locator("body")).not.toContainText("WhatsApp");
+    }
+    await page.goto("/zh/contact", { waitUntil: "networkidle" });
+    await expect(page.locator("body")).toContainText("+86 15888233221");
+    await expect(page.getByTestId("wechat-contact").first()).toBeVisible();
   });
 
   test("all quick and guided consent labels keep only the privacy policy link interactive", async ({ page }) => {
@@ -460,7 +477,7 @@ test.describe("Kehong production flows", () => {
   });
 
   test("factory address card routes Chinese visitors to Baidu geocoder and English visitors to Google Directions", async ({ page }) => {
-    const mapDestination = "佛山市南海区布新工业区7号科宏纸品";
+    const mapDestination = "佛山市南海区布新工业区7号";
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/factory`, { waitUntil: "networkidle" });
       const card = page.locator("main").locator("[data-location-card]").first();
@@ -483,7 +500,7 @@ test.describe("Kehong production flows", () => {
         expect(url.searchParams.get("travelmode")).toBe("driving");
         expect(url.searchParams.has("query")).toBe(false);
       }
-      await expect(card).toContainText(locale === "zh" ? mapDestination : "Kehong Paper Products");
+      await expect(card).toContainText(locale === "zh" ? mapDestination : "No. 7 Buxin Industrial Zone");
       await expect(mapLink).toContainText(locale === "zh" ? "查看位置" : "View location");
     }
   });

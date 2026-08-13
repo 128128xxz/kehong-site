@@ -22,7 +22,7 @@ export default async function ProcessPage({ params }: { params: Promise<{ locale
         <PageHero
           index="01"
           kicker={isZh ? "受控生产" : "Controlled production"}
-          title={isZh ? "从材料确认到包装出货。" : "From material confirmation to finished packaging."}
+          title={isZh ? "从材料确认到包装出货" : "From material confirmation to finished packaging"}
           lede={
             isZh
               ? "每个项目将材料、结构、加工和检验要求对应到清晰的生产节点。"

@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle, Quote } from "lucide-react";
+import { MessageCircle, Phone, Quote } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -28,10 +28,7 @@ export default function MobileStickyActions() {
         <Quote className="size-4" />
         {zh ? "提交询价" : "Get a quote"}
       </Link>
-      <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-secondary">
-        <MessageCircle className="size-4" />
-        WhatsApp
-      </a>
+      {zh ? <a href="tel:+8615888233221" className="kh-button kh-button-secondary"><Phone className="size-4" />电话</a> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-secondary"><MessageCircle className="size-4" />WhatsApp</a>}
     </div>
   );
 }

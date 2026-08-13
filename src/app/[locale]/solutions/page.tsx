@@ -30,7 +30,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
         <PageHero
           index="01"
           kicker={isZh ? "包装解决方案" : "Packaging solutions"}
-          title={isZh ? "按应用选择结构。" : "Choose the structure by application."}
+          title={isZh ? "按应用选择结构" : "Choose the structure by application"}
           lede={
             isZh
               ? "从食品、杯纸到瓦楞和内托，先确认应用和保护要求，再进入匹配的产品范围。"

@@ -27,7 +27,7 @@ export default async function FactoryPage({ params }: { params: Promise<{ locale
         <PageHero
           index="01"
           kicker={isZh ? "佛山工厂" : "Foshan production site"}
-          title={isZh ? "佛山纸品加工与包装生产。" : "Paper converting and packaging production in Foshan."}
+          title={isZh ? "佛山纸品加工与包装生产" : "Paper converting and packaging production in Foshan"}
           lede={
             isZh
               ? "科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺和出货准备。"

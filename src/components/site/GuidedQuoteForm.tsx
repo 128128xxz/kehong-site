@@ -1,12 +1,13 @@
 "use client";
 
-import { CheckCircle2, ChevronLeft, ChevronRight, MessageCircle, Send, Upload } from "lucide-react";
+import { CheckCircle2, ChevronLeft, ChevronRight, MessageCircle, Phone, Send, Upload } from "lucide-react";
 import { type FormEvent, type ReactNode, useEffect, useMemo, useState } from "react";
 import { contact } from "@/data/company";
 import { appendAttribution, captureAttribution, trackKehongEvent } from "@/lib/attribution";
 import { formatProductSkuSummary } from "@/lib/productPresentation";
 import InquiryConsent from "@/components/site/InquiryConsent";
 import InquiryContext, { hasProductContext, type InquirySeed } from "@/components/site/InquiryContext";
+import WeChatContactButton from "@/components/site/WeChatContactButton";
 
 type ProductSeed = InquirySeed;
 type GuidedQuoteFormProps = { locale: string; initialProducts?: ProductSeed[] };
@@ -25,12 +26,12 @@ const copy = {
   zh: {
     eyebrow: "提交询价", title: "分步骤提交项目需求", intro: "按项目阶段填写信息，前后切换不会丢失当前内容。",
     steps: ["项目概况", "尺寸与数量", "材料与结构", "印刷与后处理", "交付与联系信息"],
-    next: "下一步", back: "上一步", submit: "提交询价", sending: "提交中…", success: "询盘已接收，科宏团队会尽快跟进。", error: "提交失败，请检查必填项后重试。", required: "请完成必填项并同意隐私政策。", whatsapp: "改用 WhatsApp", progress: "询价进度",
+    next: "下一步", back: "上一步", submit: "提交询价", sending: "提交中…", success: "询盘已接收，科宏团队会尽快跟进。", error: "提交失败，请检查必填项后重试。", required: "请完成必填项并同意隐私政策。", whatsapp: "微信咨询", progress: "询价进度",
     project: "项目概况", packagingType: "包装类型", packagingPlaceholder: "例如：蛋糕盒、邮寄盒、纸袋", industry: "产品 / 行业", industryPlaceholder: "例如：烘焙、零售、电商", use: "使用场景", usePlaceholder: "零售 / 外带 / 运输", unsure: "暂不确定", unsurePlaceholder: "您要包装什么产品？", products: "产品或 SKU", productsPlaceholder: "产品名称、SKU 或参考信息",
     size: "尺寸与数量", dimensionType: "内尺寸或外尺寸", dimensionTypePlaceholder: "内尺寸 / 外尺寸", dimensions: "长 × 宽 × 高", dimensionsPlaceholder: "例如：20 × 15 × 8 cm", quantity: "数量", quantityPlaceholder: "预计采购数量", repeat: "采购频率", repeatPlaceholder: "一次性 / 常规 / 季节性", orderDate: "计划下单日期", deliveryDate: "期望交付日期", known: "如已知",
     material: "材料与结构", preferredMaterial: "偏好材料", preferredMaterialPlaceholder: "纸张、纸板、瓦楞纸…", board: "纸板 / 坑型 / 纸张类型", structure: "盒型 / 结构", structurePlaceholder: "邮寄盒、折叠盒、托盘…", features: "开窗 / 提手 / 内托 / 隔板", featuresPlaceholder: "可选功能", recommend: "需要我们推荐", recommendPlaceholder: "您的产品与优先事项",
     print: "印刷与后处理", colors: "印刷颜色", colorsPlaceholder: "CMYK / Pantone / 参考图", printSide: "内侧或外侧印刷", printSidePlaceholder: "外侧 / 内侧 / 双面", finish: "覆膜 / 烫印 / 压纹 / 涂层", finishPlaceholder: "后处理要求", artwork: "设计文件状态", artworkPlaceholder: "已准备 / 制作中 / 暂不确定", upload: "设计文件或参考资料（可选）", uploadNote: "浏览器会显示文件选择状态。较大或不支持的文件可在首次询盘后补充。",
-    delivery: "交付与联系信息", destination: "目的国家 / 邮编", shipping: "运输方式 / 贸易术语", company: "公司", companyPlaceholder: "公司名称", name: "姓名", namePlaceholder: "您的姓名", email: "Email", phone: "电话 / WhatsApp", optional: "可选", notes: "备注", notesPlaceholder: "交期、目的地或其他项目说明", privacyPrefix: "我同意科宏纸品根据", privacy: "隐私政策", privacySuffix: "处理我提交的信息，以便回复本次询盘",
+    delivery: "交付与联系信息", destination: "目的国家 / 邮编", shipping: "运输方式 / 贸易术语", company: "公司", companyPlaceholder: "公司名称", name: "姓名", namePlaceholder: "您的姓名", email: "Email", phone: "电话", optional: "可选", notes: "备注", notesPlaceholder: "交期、目的地或其他项目说明", privacyPrefix: "我同意科宏纸品根据", privacy: "隐私政策", privacySuffix: "处理我提交的信息，以便回复本次询盘",
   },
 } as const;
 
@@ -73,7 +74,7 @@ export default function GuidedQuoteForm({ locale, initialProducts = [] }: Guided
       <div hidden={step !== 3}><Fieldset title={text.print}><div className="grid gap-3 sm:grid-cols-2"><Field label={text.colors} name="printing" placeholder={text.colorsPlaceholder} /><Field label={text.printSide} name="printSide" placeholder={text.printSidePlaceholder} /><Field label={text.finish} name="finish" placeholder={text.finishPlaceholder} /><Field label={text.artwork} name="artworkStatus" placeholder={text.artworkPlaceholder} /></div><label className="mt-3 flex min-h-14 items-center gap-3 rounded-md border border-dashed border-(--kh-brass)/50 bg-(--kh-surface) px-3 text-sm font-semibold"><Upload className="size-4 text-(--kh-brass)" /><span className="flex-1">{text.upload}</span><input name="attachment" type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" className="max-w-[11rem] text-xs" /></label><p className="mt-2 text-xs leading-5 text-(--kh-muted)">{text.uploadNote}</p></Fieldset></div>
       <div hidden={step !== 4}><Fieldset title={text.delivery}><div className="grid gap-3 sm:grid-cols-2"><Field label={text.destination} name="country" placeholder={text.destination} /><Field label={text.shipping} name="shipping" placeholder={text.known} /><Field label={text.company} name="company" placeholder={text.companyPlaceholder} /><Field label={text.name} name="name" placeholder={text.namePlaceholder} required /><Field label={text.email} name="email" type="email" placeholder="name@company.com" required /><Field label={text.phone} name="phone" placeholder={text.optional} /></div><Field label={text.notes} name="message" placeholder={text.notesPlaceholder} multiline /><InquiryConsent locale={locale} id="guided-quote-privacy" /></Fieldset></div>
     </div>
-    <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-between"><button type="button" onClick={() => setStep((value) => Math.max(0, value - 1))} disabled={step === 0 || status === "sending"} className="kh-button kh-button-secondary disabled:opacity-40"><ChevronLeft className="size-4" />{text.back}</button>{step < 4 ? <button type="button" onClick={() => setStep((value) => Math.min(4, value + 1))} className="kh-button kh-button-primary">{text.next}<ChevronRight className="size-4" /></button> : <div className="flex flex-col gap-3 sm:flex-row"><button type="submit" disabled={status === "sending"} className="kh-button kh-button-primary disabled:opacity-60"><Send className="size-4" />{status === "sending" ? text.sending : text.submit}</button><a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-secondary"><MessageCircle className="size-4 text-(--kh-brass)" />{text.whatsapp}</a></div>}</div>
+    <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-between"><button type="button" onClick={() => setStep((value) => Math.max(0, value - 1))} disabled={step === 0 || status === "sending"} className="kh-button kh-button-secondary disabled:opacity-40"><ChevronLeft className="size-4" />{text.back}</button>{step < 4 ? <button type="button" onClick={() => setStep((value) => Math.min(4, value + 1))} className="kh-button kh-button-primary">{text.next}<ChevronRight className="size-4" /></button> : <div className="flex flex-col gap-3 sm:flex-row"><button type="submit" disabled={status === "sending"} className="kh-button kh-button-primary disabled:opacity-60"><Send className="size-4" />{status === "sending" ? text.sending : text.submit}</button>{zh ? <><WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-secondary" /><a href="tel:+8615888233221" className="kh-button kh-button-secondary"><Phone className="size-4 text-(--kh-brass)" />电话</a></> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-secondary"><MessageCircle className="size-4 text-(--kh-brass)" />{text.whatsapp}</a>}</div>}</div>
     {status === "success" ? <p className="mt-4 flex items-center gap-2 rounded-md border border-emerald-500/20 bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-900"><CheckCircle2 className="size-4" />{text.success}</p> : null}{status === "error" ? <p className="mt-4 rounded-md border border-red-500/20 bg-red-50 px-3 py-2 text-sm font-semibold text-red-900">{error}</p> : null}
   </form>;
 }

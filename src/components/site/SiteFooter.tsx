@@ -1,10 +1,11 @@
 import { Mail, MessageCircle, ArrowRight } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { companyLegalName, companyProfile, contact, socialLinks } from "@/data/company";
-import { getFactoryLocationUrl } from "@/data/companyLocation";
+import { companyDisplayName, contact, socialLinks } from "@/data/company";
+import { FACTORY_ADDRESS, getFactoryLocationUrl } from "@/data/companyLocation";
 import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 import SiteLogo from "@/components/site/SiteLogo";
+import WeChatContactButton from "@/components/site/WeChatContactButton";
 
 type IconProps = { className?: string };
 
@@ -73,9 +74,6 @@ const socialEntries = [
   { key: "tiktok", label: "TikTok", href: socialLinks.tiktok, Icon: TikTokIcon },
 ] as const;
 
-/** Chinese display form of `companyLegalName` (company.ts stores the English registration only). */
-const companyLegalNameZh = "佛山科宏纸品有限公司";
-
 export default async function SiteFooter() {
   const locale = await getLocale();
   const zh = locale === "zh";
@@ -87,18 +85,16 @@ export default async function SiteFooter() {
       <div className="kh-shell kh-footer-grid">
         <div>
           <SiteLogo locale={locale} placement="footer" />
-          <h2>{zh ? companyLegalNameZh : companyLegalName}</h2>
+          <h2>{zh ? companyDisplayName.zh : companyDisplayName.en}</h2>
           <p className="kh-footer-note">
             {zh
               ? "纸材加工、结构打样和定制包装服务"
               : "Paper converting, structural sampling and custom packaging from our Foshan team."}
           </p>
           <div className="kh-footer-contact">
-            <span>{zh ? companyProfile.location.zh : companyProfile.location.en}</span>
+            <span>{zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
             <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>{contact.email}</a>
-            <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={zh ? "通过 WhatsApp 联系科宏" : "Contact Kehong on WhatsApp"}>
-              WhatsApp
-            </a>
+            {zh ? <a href="tel:+8615888233221" aria-label={`拨打电话 ${contact.phone.zh}`}>{contact.phone.zh}</a> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Contact Kehong on WhatsApp">WhatsApp</a>}
           </div>
         </div>
         <div className="kh-footer-links">
@@ -128,9 +124,9 @@ export default async function SiteFooter() {
             <ArrowRight className="size-4" />
           </Link>
           <div className="kh-footer-actions">
-            <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={zh ? "通过 WhatsApp 联系科宏" : "Contact Kehong on WhatsApp"}>
-              <MessageCircle className="size-4" />
-              WhatsApp
+            {zh ? <WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-footer-action-button" /> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Contact Kehong on WhatsApp"><MessageCircle className="size-4" />WhatsApp</a>}
+            <a href={zh ? "tel:+8615888233221" : "tel:+447599669700"} aria-label={zh ? `拨打电话 ${contact.phone.zh}` : `Call ${contact.phone.en}`}>
+              {zh ? "电话" : "Call"} · {zh ? contact.phone.zh : contact.phone.en}
             </a>
             <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>
               <Mail className="size-4" />

@@ -18,7 +18,7 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
       <div className="kh-shell kh-factory-grid">
         <Reveal>
           <SectionKicker index="04" text={zh ? "工厂" : "Factory & capability"} light />
-          <h2>{zh ? "从选材、打样到出货准备。" : "From material selection to shipment preparation."}</h2>
+          <h2>{zh ? "从选材、打样到出货准备" : "From material selection to shipment preparation"}</h2>
           <p className="kh-section-lede">
             {zh
               ? "科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。"

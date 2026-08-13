@@ -66,7 +66,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
   return (
     <form onSubmit={submit} className="text-(--kh-ink)" noValidate>
       <p className="kh-eyebrow">{zh ? "快速询盘" : "Quick quote"}</p>
-      <h2 className="mt-2 text-2xl font-semibold tracking-tight">{zh ? "先提交基础需求。" : "Start with the essentials."}</h2>
+      <h2 className="mt-2 text-2xl font-semibold tracking-tight">{zh ? "先提交基础需求" : "Start with the essentials"}</h2>
       <p className="mt-2 max-w-2xl text-sm leading-6 text-(--kh-muted)">
         {zh ? "上传参考图或填写产品、尺寸和数量。技术细节可以随后补充。" : "Share a product, reference image, size and quantity now. Technical details can follow when you have them."}
       </p>
@@ -79,7 +79,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
         <Field label={zh ? "目的地" : "Destination"} name="country" placeholder={zh ? "国家 / 城市" : "Country / city"} />
         <Field label={zh ? "姓名" : "Name"} name="name" placeholder={zh ? "您的姓名" : "Your name"} required />
         <Field label="Email" name="email" type="email" placeholder="name@company.com" required />
-        <Field label="WhatsApp" name="phone" placeholder={zh ? "可选" : "Optional"} />
+        <Field label={zh ? "电话 / 微信" : "WhatsApp / phone"} name="phone" placeholder={zh ? "可选" : "Optional"} />
       </div>
       <InquiryConsent locale={locale} id="quick-quote-privacy" />
       <div className="mt-5 flex flex-wrap items-center gap-3">

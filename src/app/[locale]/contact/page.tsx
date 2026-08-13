@@ -11,6 +11,7 @@ import { Reveal } from "@/components/home/interactive";
 import { contact } from "@/data/company";
 import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryLocationUrl } from "@/data/companyLocation";
 import FactoryLocationCard from "@/components/site/FactoryLocationCard";
+import WeChatContactButton from "@/components/site/WeChatContactButton";
 import { showcaseImages } from "@/data/visuals";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
@@ -103,10 +104,16 @@ export default async function ContactPage({
 
   const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? "科宏纸品询盘" : "Kehong packaging inquiry")}`;
   const whatsappHref = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
-  const channels = [
-    { label: zh ? "海外销售 WhatsApp" : "Overseas Sales WhatsApp", value: contact.whatsapp, href: whatsappHref, external: true },
-    { label: zh ? "Email" : "Email", value: contact.email, href: emailHref, external: false },
-  ];
+  const channels = zh
+    ? [
+        { label: "电话", value: contact.phone.zh, href: "tel:+8615888233221", external: false },
+        { label: "Email", value: contact.email, href: emailHref, external: false },
+      ]
+    : [
+        { label: "Overseas Sales WhatsApp", value: contact.whatsapp, href: whatsappHref, external: true },
+        { label: "Call", value: contact.phone.en, href: "tel:+447599669700", external: false },
+        { label: "Email", value: contact.email, href: emailHref, external: false },
+      ];
   const checklist = [
     {
       index: "A",
@@ -126,7 +133,7 @@ export default async function ContactPage({
     {
       index: "D",
       label: zh ? "回复方式" : "Response channels",
-      body: zh ? "WhatsApp/Email" : "WhatsApp / email",
+      body: zh ? "微信 / 电话 / Email" : "WhatsApp / phone / email",
     },
   ];
   const serviceTags = [
@@ -146,7 +153,7 @@ export default async function ContactPage({
           lede={t("contact.description")}
           meta={[
             `Email · ${contact.email}`,
-            `WhatsApp · ${contact.whatsapp}`,
+            zh ? `电话 · ${contact.phone.zh}` : `WhatsApp · ${contact.whatsapp}`,
             zh ? "中国广东佛山" : "Foshan, Guangdong, China",
           ]}
         >
@@ -163,9 +170,10 @@ export default async function ContactPage({
             <Reveal>
               <SectionKicker index="02" text={zh ? "联系通道" : "Direct channels"} />
               <h2 className="mt-3 max-w-[20ch] text-3xl font-semibold tracking-tight text-(--kh-ink) sm:text-4xl">
-                {zh ? "直接对接销售团队。" : "Talk directly to the sales team."}
+                {zh ? "直接对接销售团队" : "Talk directly to the sales team"}
               </h2>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                {zh ? <div className="kh-panel p-4"><p className="kh-mono text-(--kh-brass)">微信咨询</p><WeChatContactButton phone={contact.phone.zh} label="复制手机号" copiedLabel="手机号已复制" className="kh-button kh-button-secondary mt-2 min-h-11" /></div> : null}
                 {channels.map((channel) => (
                   <div key={channel.label} className="kh-panel p-4">
                     <p className="kh-mono text-(--kh-brass)">{channel.label}</p>

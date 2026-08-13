@@ -35,7 +35,7 @@ export function buildContactPointJsonLd() {
     "@type": "ContactPoint",
     contactType: "sales",
     email: jsonLdValue("email", "en") ?? contact.email,
-    telephone: jsonLdValue("whatsapp", "en") ?? contact.phone,
+    telephone: jsonLdValue("phone-en", "en") ?? contact.phone.en,
     availableLanguage: ["en", "zh"],
   };
 }
@@ -51,7 +51,7 @@ export function buildLocalBusinessJsonLd(locale: string) {
     description: companyProfile.productionCapability[zh ? "zh" : "en"],
     url: siteConfig.url,
     image: [absoluteSiteUrl(jsonLdValue("logo", locale) ?? "/brand/kehong-logo-full-transparent.png")],
-    telephone: contact.phone,
+    telephone: contact.phone[zh ? "zh" : "en"],
     email: contact.email,
     address: {
       "@type": "PostalAddress",

@@ -12,7 +12,7 @@ test.describe("factory maps and News & Insights", () => {
         expect(html).toContain(mapHost);
         expect(html).toContain("noopener noreferrer");
         const mapHref = (html.match(new RegExp(`https://${mapHost.replaceAll(".", "\\.")}[^\\\" ]+`)) ?? [""])[0];
-        expect(decodeURIComponent(mapHref)).toContain("佛山市南海区布新工业区7号科宏纸品");
+        expect(decodeURIComponent(mapHref)).toContain("佛山市南海区布新工业区7号");
         expect(mapHref).toContain(locale === "zh" ? "/geocoder?" : "/maps/dir/?");
         expect(mapHref).not.toContain("/maps/search/");
       }
@@ -44,7 +44,7 @@ test.describe("factory maps and News & Insights", () => {
       const card = page.locator("[data-location-card]").first();
       await card.getByRole("button", { name: locale === "zh" ? "复制地址" : "Copy address" }).click();
       await expect(card.getByRole("button", { name: locale === "zh" ? "地址已复制" : "Copied" })).toBeVisible();
-      await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe("佛山市南海区布新工业区7号科宏纸品");
+      await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe("佛山市南海区布新工业区7号");
     }
   });
 
@@ -69,9 +69,13 @@ test.describe("factory maps and News & Insights", () => {
       await expect(page.locator('meta[property="og:type"]')).toHaveAttribute("content", "article");
       await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2);
       const linkedInHref = await page.locator(".kh-news-share").getByRole("link", { name: /LinkedIn/ }).getAttribute("href");
-      const whatsappHref = await page.locator(".kh-news-share").getByRole("link", { name: /WhatsApp/ }).getAttribute("href");
       expect(decodeURIComponent(linkedInHref ?? "")).toContain("utm_source=linkedin");
-      expect(decodeURIComponent(whatsappHref ?? "")).toContain("utm_source=copy");
+      if (locale === "zh") {
+        await expect(page.locator(".kh-news-share")).not.toContainText("WhatsApp");
+      } else {
+        const whatsappHref = await page.locator(".kh-news-share").getByRole("link", { name: /WhatsApp/ }).getAttribute("href");
+        expect(decodeURIComponent(whatsappHref ?? "")).toContain("utm_source=copy");
+      }
       await expect(page.getByRole("link", { name: locale === "zh" ? "提交项目需求" : "Start a project brief" }).first()).toBeVisible();
     }
   });

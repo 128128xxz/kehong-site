@@ -3,7 +3,7 @@ import { FACTORY_ADDRESS, FACTORY_MAP_DESTINATION, getFactoryLocationUrl } from 
 
 describe("factory location links", () => {
   it("keeps the exact confirmed factory address as the shared destination", () => {
-    expect(FACTORY_ADDRESS.zh).toBe("佛山市南海区布新工业区7号科宏纸品");
+    expect(FACTORY_ADDRESS.zh).toBe("佛山市南海区布新工业区7号");
     expect(FACTORY_MAP_DESTINATION).toBe(FACTORY_ADDRESS.zh);
   });
 
@@ -31,6 +31,6 @@ describe("factory location links", () => {
   });
 
   it("uses the exact Chinese destination for copy address", () => {
-    expect(FACTORY_MAP_DESTINATION).toBe("佛山市南海区布新工业区7号科宏纸品");
+    expect(FACTORY_MAP_DESTINATION).toBe("佛山市南海区布新工业区7号");
   });
 });

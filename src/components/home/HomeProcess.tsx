@@ -86,7 +86,7 @@ export default function HomeProcess({ locale }: { locale: string }) {
           <div className="kh-section-heading">
             <div>
               <SectionKicker index="03" text={zh ? "流程" : "Process"} />
-              <h2>{zh ? "确认结构，完成加工。" : "Four clear steps from structure approval to dispatch."}</h2>
+              <h2>{zh ? "确认结构，完成加工" : "Four clear steps from structure approval to dispatch"}</h2>
             </div>
           </div>
         </Reveal>

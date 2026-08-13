@@ -46,7 +46,7 @@ export default async function FactoryOverview() {
         <div className="kh-shell grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center lg:gap-16">
           <Reveal>
             <SectionKicker index="02" text={isZh ? "厂区与设备" : "Site & equipment"} />
-            <h2>{isZh ? "按确认规格安排纸材加工与包装工序。" : "Paper converting and packaging stages arranged to the approved specification."}</h2>
+            <h2>{isZh ? "按确认规格安排纸材加工与包装工序" : "Paper converting and packaging stages arranged to the approved specification"}</h2>
             <p className="kh-section-lede mt-5">
               {isZh
                 ? "科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。"
@@ -125,7 +125,7 @@ export default async function FactoryOverview() {
             <div className="grid gap-6 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
               <div>
                 <SectionKicker index="03" text={isZh ? "生产与质量控制" : "Production & quality control"} light />
-                <h2>{isZh ? "按图纸和规格组织加工，并在关键工序完成检查。" : "Production follows the approved drawing and specification, with checks at key stages."}</h2>
+                <h2>{isZh ? "按图纸和规格组织加工，并在关键工序完成检查" : "Production follows the approved drawing and specification, with checks at key stages"}</h2>
               </div>
               <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
                 {isZh
