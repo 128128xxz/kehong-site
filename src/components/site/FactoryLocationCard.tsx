@@ -8,7 +8,7 @@ import { FACTORY_MAP_DESTINATION } from "@/data/companyLocation";
 type Props = {
   locale: string;
   sourceBlock: string;
-  mapProvider: "baidu_geocoder" | "google_directions";
+  mapProvider: "baidu_directions" | "google_directions";
   href: string;
   title: string;
   mapLabel: string;

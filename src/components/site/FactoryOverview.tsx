@@ -66,7 +66,7 @@ export default async function FactoryOverview() {
               className="mt-4"
               locale={locale}
               sourceBlock="factory"
-              mapProvider={isZh ? "baidu_geocoder" : "google_directions"}
+              mapProvider={isZh ? "baidu_directions" : "google_directions"}
               href={getFactoryLocationUrl(locale)}
               title={isZh ? "工厂地址" : "Factory address"}
               mapLabel={isZh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}

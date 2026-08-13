@@ -476,7 +476,7 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("factory address card routes Chinese visitors to Baidu geocoder and English visitors to Google Directions", async ({ page }) => {
+  test("factory address card routes Chinese visitors to Baidu directions and English visitors to Google Directions", async ({ page }) => {
     const mapDestination = "佛山市南海区布新工业区7号";
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/factory`, { waitUntil: "networkidle" });
@@ -489,8 +489,11 @@ test.describe("Kehong production flows", () => {
       const url = new URL(href!);
       if (locale === "zh") {
         expect(url.hostname).toBe("api.map.baidu.com");
-        expect(url.pathname).toBe("/geocoder");
-        expect(url.searchParams.get("address")).toBe(mapDestination);
+        expect(url.pathname).toBe("/direction");
+        expect(url.searchParams.get("origin")).toBe("我的位置");
+        expect(url.searchParams.get("destination")).toBe(mapDestination);
+        expect(url.searchParams.get("region")).toBe("佛山");
+        expect(url.searchParams.get("mode")).toBe("driving");
         expect(url.searchParams.get("output")).toBe("html");
         expect(url.searchParams.has("query")).toBe(false);
       } else {

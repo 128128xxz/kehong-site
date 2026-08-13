@@ -132,7 +132,7 @@ export default async function SiteFooter() {
               <Mail className="size-4" />
               {zh ? "Email" : "Email"}
             </a>
-            <LocationClickAnchor href={getFactoryLocationUrl(locale)} locale={locale} sourceBlock="footer" mapProvider={zh ? "baidu_geocoder" : "google_directions"} target="_blank" rel="noopener noreferrer" aria-label={zh ? "查看科宏纸品工厂位置" : "View Kehong factory location"}>
+            <LocationClickAnchor href={getFactoryLocationUrl(locale)} locale={locale} sourceBlock="footer" mapProvider={zh ? "baidu_directions" : "google_directions"} target="_blank" rel="noopener noreferrer" aria-label={zh ? "查看科宏纸品工厂位置" : "View Kehong factory location"}>
               {zh ? "查看位置" : "View location"}
             </LocationClickAnchor>
           </div>

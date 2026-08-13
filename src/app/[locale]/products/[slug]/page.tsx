@@ -369,7 +369,7 @@ export default async function ProductDetailPage({
           {t("detail.back")}
         </Link>
         <div className="kh-detail-hero mt-6 lg:grid lg:grid-cols-[.95fr_1.05fr]">
-          <div className="relative min-h-[380px] lg:min-h-[720px]">
+          <div className="kh-detail-media relative min-h-[360px]">
             <ProductImageWithStatus
               sku={sku}
               locale={locale}

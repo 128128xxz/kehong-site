@@ -36,7 +36,7 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
             className="mt-4 max-w-xl"
             locale={locale}
             sourceBlock="home"
-            mapProvider={zh ? "baidu_geocoder" : "google_directions"}
+            mapProvider={zh ? "baidu_directions" : "google_directions"}
             href={getFactoryLocationUrl(locale)}
             title={zh ? "工厂位置" : "Factory location"}
             mapLabel={zh ? FACTORY_MAP_LABEL.zh : FACTORY_MAP_LABEL.en}

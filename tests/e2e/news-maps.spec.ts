@@ -13,7 +13,7 @@ test.describe("factory maps and News & Insights", () => {
         expect(html).toContain("noopener noreferrer");
         const mapHref = (html.match(new RegExp(`https://${mapHost.replaceAll(".", "\\.")}[^\\\" ]+`)) ?? [""])[0];
         expect(decodeURIComponent(mapHref)).toContain("佛山市南海区布新工业区7号");
-        expect(mapHref).toContain(locale === "zh" ? "/geocoder?" : "/maps/dir/?");
+        expect(mapHref).toContain(locale === "zh" ? "/direction?" : "/maps/dir/?");
         expect(mapHref).not.toContain("/maps/search/");
       }
       await page.goto(`/${locale}/contact`, { waitUntil: "networkidle" });
@@ -26,7 +26,7 @@ test.describe("factory maps and News & Insights", () => {
   });
 
   test("location cards expose localized labels, provider metadata and safe external links", async ({ page }) => {
-    for (const [locale, provider, label, sourceBlock] of [["zh", "baidu_geocoder", "查看位置", "contact"], ["en", "google_directions", "View location", "factory"]] as const) {
+    for (const [locale, provider, label, sourceBlock] of [["zh", "baidu_directions", "查看位置", "contact"], ["en", "google_directions", "View location", "factory"]] as const) {
       await page.goto(`/${locale}/${sourceBlock === "contact" ? "contact" : "factory"}`, { waitUntil: "networkidle" });
       const link = page.locator(`a[data-location-source="${sourceBlock}"]`).first();
       await expect(link).toBeVisible();

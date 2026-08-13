@@ -13,12 +13,18 @@ export const FACTORY_MAP_LABEL = {
 
 export function getFactoryLocationUrl(locale: string) {
   if (locale === "zh") {
+    // Baidu's direction URI opens a route with the confirmed factory address
+    // as its destination. It avoids the generic geocoder/search result page
+    // and does not require a browser login or an API token.
     const params = new URLSearchParams({
-      address: FACTORY_MAP_DESTINATION,
+      origin: "我的位置",
+      destination: FACTORY_MAP_DESTINATION,
+      region: "佛山",
+      mode: "driving",
       output: "html",
       src: "webapp.kehong.website",
     });
-    return `https://api.map.baidu.com/geocoder?${params.toString()}`;
+    return `https://api.map.baidu.com/direction?${params.toString()}`;
   }
 
   const url = new URL("https://www.google.com/maps/dir/");
@@ -33,6 +39,6 @@ export function getFactoryLocationUrl(locale: string) {
 /** @deprecated Use getFactoryLocationUrl instead. */
 export const getFactoryMapUrl = getFactoryLocationUrl;
 export const FACTORY_BAIDU_MAP_URL = getFactoryLocationUrl("zh");
-/** @deprecated Keep the export for older integrations; new UI uses Baidu geocoder. */
+/** @deprecated Keep the export for older integrations; new UI uses Baidu directions. */
 export const FACTORY_AMAP_URL = FACTORY_BAIDU_MAP_URL;
 export const FACTORY_GOOGLE_MAPS_URL = getFactoryLocationUrl("en");

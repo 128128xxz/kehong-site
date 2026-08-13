@@ -7,7 +7,7 @@ type Props = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "children"> 
   href: string;
   locale: string;
   sourceBlock: string;
-  mapProvider: "baidu_geocoder" | "google_directions";
+  mapProvider: "baidu_directions" | "google_directions";
   action?: "view_location";
   children: ReactNode;
 };
@@ -15,7 +15,7 @@ type Props = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "children"> 
 export type LocationActionContext = {
   locale: string;
   sourceBlock: string;
-  mapProvider: "baidu_geocoder" | "google_directions";
+  mapProvider: "baidu_directions" | "google_directions";
   action: "view_location" | "copy_address";
 };
 
