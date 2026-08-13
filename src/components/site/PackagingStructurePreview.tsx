@@ -85,7 +85,7 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
     <main className="texture-paper min-h-screen px-4 py-8 text-(--kh-ink) sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <nav aria-label={zh ? "面包屑" : "Breadcrumb"} className="kh-mono mb-5 flex flex-wrap items-center gap-2 text-xs text-(--kh-muted)">
-          <Link href="/" className="transition-colors hover:text-(--kh-ink)">{zh ? "首页" : "Home"}</Link>
+          <span>{zh ? "首页" : "Home"}</span>
           <span aria-hidden="true">/</span>
           <span aria-current="page" className="text-(--kh-ink)">{zh ? "3D结构展厅" : "3D Packaging Studio"}</span>
         </nav>
