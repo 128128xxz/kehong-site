@@ -69,11 +69,12 @@
   img {
     max-width: 100%;
   }
-  /* 中文标题不使用大负字距(指令书第六节) */
+  /* 中文标题保持自然断行，避免长标题在窄窗口被整行推出屏幕。 */
   :lang(zh) h1, :lang(zh) h2, :lang(zh) h3 {
     letter-spacing: -.01em;
-    word-break: keep-all;
-    overflow-wrap: normal;
+    word-break: normal;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 }
 
@@ -1599,6 +1600,10 @@
     align-items: start;
     gap: clamp(2rem, 5vw, 5rem);
     grid-template-columns: 1.05fr .95fr;
+  }
+  .kh-cta-grid > *,
+  .kh-hero-copy {
+    min-width: 0;
   }
   .kh-spec-panel {
     position: relative;

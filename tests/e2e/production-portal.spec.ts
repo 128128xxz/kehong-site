@@ -239,6 +239,40 @@ test.describe("homepage manufacturing website", () => {
     await expect(page.locator(".kh-home-cta")).toHaveClass(/kh-home-cta/);
   });
 
+  test("Chinese homepage headings stay within the viewport at desktop and mobile widths", async ({ page }) => {
+    for (const viewport of [
+      { width: 390, height: 844 },
+      { width: 768, height: 1024 },
+      { width: 1024, height: 900 },
+      { width: 1280, height: 900 },
+      { width: 1440, height: 1000 },
+      { width: 1920, height: 1080 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/zh", { waitUntil: "networkidle" });
+      const layout = await page.evaluate(() => {
+        const selectors = [".kh-home-hero h1", ".kh-home-cta h2"];
+        return {
+          pageOverflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+          headings: selectors.map((selector) => {
+            const element = document.querySelector(selector)!;
+            const rect = element.getBoundingClientRect();
+            return {
+              right: rect.right,
+              clientWidth: element.clientWidth,
+              scrollWidth: element.scrollWidth,
+            };
+          }),
+        };
+      });
+      expect(layout.pageOverflow).toBe(false);
+      for (const heading of layout.headings) {
+        expect(heading.right).toBeLessThanOrEqual(viewport.width + 1);
+        expect(heading.scrollWidth).toBeLessThanOrEqual(heading.clientWidth + 1);
+      }
+    }
+  });
+
   test("product systems keep desktop panels, headers and representative cards aligned", async ({ page }) => {
     for (const locale of ["en", "zh"] as const) {
       for (const viewport of [
