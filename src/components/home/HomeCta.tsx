@@ -16,7 +16,7 @@ export default function HomeCta({ locale }: { locale: string }) {
   const zh = locale === "zh";
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
   return (
-    <section className="kh-section kh-section-cta">
+    <section className="kh-section kh-section-cta kh-home-cta">
       <Reveal mode="none"><div className="kh-keyline" aria-hidden="true" /></Reveal>
       <div className="kh-shell kh-cta-grid">
         <Reveal>

@@ -80,7 +80,7 @@ export default function HomeProcess({ locale }: { locale: string }) {
   };
 
   return (
-    <section className="kh-section kh-section-muted" data-testid="home-process">
+    <section className="kh-section kh-section-muted kh-home-process" data-testid="home-process">
       <div className="kh-shell">
         <Reveal>
           <div className="kh-section-heading">

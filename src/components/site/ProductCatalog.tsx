@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ArrowUpRight, Filter, Layers3, MessageCircle, Search, X } from "lucide-react";
+import { Filter, Layers3, MessageCircle, Search, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { contact } from "@/data/company";
@@ -399,7 +399,6 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
                     </button>
                     <Link href={`/products/${sku.slug}`} className="kh-button kh-button-secondary kh-button-compact">
                       {locale === "zh" ? "查看规格" : "View product specifications"}
-                      <ArrowUpRight className="size-4" />
                     </Link>
                   </div>
                 </div>

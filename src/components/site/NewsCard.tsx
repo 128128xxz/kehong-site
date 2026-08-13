@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { NewsArticle } from "@/content/news";
 
@@ -24,7 +23,7 @@ export default function NewsCard({ article, locale }: { article: NewsArticle; lo
         </span>
         <span className="mt-2 block px-2 text-xl font-semibold tracking-tight text-(--kh-ink)">{article.title}</span>
         <span className="mt-2 block px-2 text-sm leading-6 text-(--kh-muted)">{article.excerpt}</span>
-        <span className="kh-text-link mt-4 px-2 pb-2 text-sm">{zh ? "阅读全文" : "Read article"}<ArrowRight className="size-4" /></span>
+        <span className="kh-text-link mt-4 px-2 pb-2 text-sm">{zh ? "阅读全文" : "Read article"}</span>
       </Link>
     </article>
   );

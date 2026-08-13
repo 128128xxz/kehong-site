@@ -82,7 +82,6 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                       </ul>
                       <Link href={item.type === "request" ? "/contact" : `/resources/${item.slug}`} className="kh-text-link mt-5">
                         {item.type === "request" ? (isZh ? "申请刀模图" : "Send a request") : (isZh ? "阅读指南" : "Read guide")}
-                        <ArrowRight className="size-4" />
                       </Link>
                     </article>
                   );
@@ -127,7 +126,6 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                   </p>
                   <Link href="/contact" className="kh-button kh-button-light mt-5">
                     {isZh ? "咨询包装专家" : "Start guided RFQ"}
-                    <ArrowRight className="size-4" />
                   </Link>
                 </div>
               </Reveal>

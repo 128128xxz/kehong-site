@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import { Reveal } from "@/components/home/interactive";
@@ -41,7 +40,7 @@ const paths = [
 export default function HomeIndustries({ locale }: { locale: string }) {
   const zh = locale === "zh";
   return (
-    <section className="kh-section kh-section-paper kh-industries-section">
+    <section className="kh-section kh-section-paper kh-industries-section kh-home-industries">
       <div className="kh-shell">
         <Reveal>
           <div className="kh-section-heading">
@@ -62,7 +61,6 @@ export default function HomeIndustries({ locale }: { locale: string }) {
                 <span className="kh-industry-card-copy">
                   <span className="kh-industry-card-title">{zh ? path.titleZh : path.title}</span>
                   <span className="kh-industry-card-body">{zh ? path.bodyZh : path.body}</span>
-                  <ArrowUpRight className="size-5" aria-hidden="true" />
                 </span>
               </Link>
             </Reveal>

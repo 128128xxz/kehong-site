@@ -217,4 +217,61 @@ test.describe("homepage manufacturing website", () => {
     const outlineWidth = await page.evaluate(() => parseFloat(getComputedStyle(document.activeElement as Element).outlineWidth));
     expect(outlineWidth).toBeGreaterThan(0);
   });
+
+  test("homepage UI hierarchy keeps one primary arrow language and clear type scale", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/en");
+    await expect(page.locator(".kh-home-hero .kh-button-light svg")).toHaveCount(1);
+    await expect(page.locator(".kh-home-hero .kh-button-ghost svg")).toHaveCount(0);
+    await expect(page.locator('[data-testid="homepage-product-entry"] svg')).toHaveCount(0);
+    await expect(page.locator(".kh-home-industries .kh-industry-card svg")).toHaveCount(0);
+    await expect(page.locator(".kh-home-insights .kh-news-card svg")).toHaveCount(0);
+    const scale = await page.evaluate(() => {
+      const h1 = document.querySelector(".kh-home-hero h1")!;
+      const h2 = document.querySelector(".kh-home-product-systems h2")!;
+      const card = document.querySelector(".kh-product-card-title")!;
+      return [h1, h2, card].map((node) => parseFloat(getComputedStyle(node).fontSize));
+    });
+    expect(scale[0]).toBeGreaterThan(scale[1]);
+    expect(scale[1]).toBeGreaterThan(scale[2]);
+    await expect(page.locator(".kh-home-product-systems")).toHaveClass(/kh-home-product-systems/);
+    await expect(page.locator(".kh-home-process")).toHaveClass(/kh-home-process/);
+    await expect(page.locator(".kh-home-cta")).toHaveClass(/kh-home-cta/);
+  });
+
+  test("desktop mega menu exposes a structured two-column hierarchy without arrow noise", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/en");
+    const trigger = page.getByRole("button", { name: "Products", exact: true });
+    await trigger.hover();
+    const mega = page.getByTestId("header-product-mega-menu");
+    await expect(mega).toBeVisible();
+    await expect(mega.locator(".kh-product-mega-section")).toHaveCount(2);
+    await expect(mega.locator(".kh-product-mega-group")).toHaveCount(6);
+    await expect(mega.locator(".kh-product-mega-item-arrow")).toHaveCount(0);
+    const metrics = await mega.evaluate((node) => {
+      const panel = getComputedStyle(node);
+      const sections = [...node.querySelectorAll<HTMLElement>(".kh-product-mega-section")];
+      const itemHeights = [...node.querySelectorAll<HTMLElement>(".kh-product-mega-items a")].map((item) => item.getBoundingClientRect().height);
+      const all = node.querySelector<HTMLElement>(".kh-product-mega-all")!;
+      return { borderTop: panel.borderTopStyle, columns: panel.width, sectionCount: sections.length, minItem: Math.min(...itemHeights), allHeight: all.getBoundingClientRect().height };
+    });
+    expect(metrics.borderTop).toBe("solid");
+    expect(metrics.sectionCount).toBe(2);
+    expect(metrics.minItem).toBeGreaterThanOrEqual(36);
+    expect(metrics.allHeight).toBeGreaterThanOrEqual(48);
+  });
+
+  test("mobile mega menu keeps grouped tap targets and no horizontal overflow", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/en");
+    await page.locator('button[aria-controls="kh-mobile-menu"]').click();
+    const directory = page.getByTestId("mobile-product-directory");
+    await directory.locator("summary").first().click();
+    const targets = directory.locator(".kh-mobile-product-cta, .kh-mobile-product-group a, .kh-mobile-product-all");
+    const heights = await targets.evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().height));
+    expect(heights.length).toBeGreaterThan(3);
+    expect(Math.min(...heights)).toBeGreaterThanOrEqual(44);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+  });
 });

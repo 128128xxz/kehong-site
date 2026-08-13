@@ -58,7 +58,7 @@ function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () =
                   <p className="kh-product-mega-description">{directoryLabel(section.description, zh)}</p>
                 </div>
                 <Link ref={section.id === "materials" ? firstLinkRef : undefined} className="kh-product-mega-cta" href={section.href} onClick={close}>
-                  <span>{directoryLabel(section.cta, zh)}</span><span aria-hidden="true">→</span>
+                  <span>{directoryLabel(section.cta, zh)}</span>
                 </Link>
               </div>
             </div>
@@ -73,7 +73,7 @@ function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () =
                     {group.links.map((item) => (
                       <li key={item.id}>
                         <Link href={item.href} onClick={close}>
-                          <span>{directoryLabel(item, zh)}</span><span className="kh-product-mega-item-arrow" aria-hidden="true">↗</span>
+                          <span>{directoryLabel(item, zh)}</span>
                         </Link>
                       </li>
                     ))}
@@ -86,7 +86,6 @@ function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () =
       </div>
       <Link className="kh-product-mega-all" href="/products" onClick={close}>
         <span><small>{zh ? "总目录" : "Directory"}</small>{zh ? "查看完整产品目录" : "View the complete product directory"}</span>
-        <span aria-hidden="true">→</span>
       </Link>
     </div>
   );
@@ -104,17 +103,17 @@ function MobileProductDirectory({ zh, close }: { zh: boolean; close: () => void 
           </summary>
           <div className="kh-mobile-product-section-body">
             <p className="kh-mobile-product-description">{directoryLabel(section.description, zh)}</p>
-            <Link className="kh-mobile-product-cta" href={section.href} onClick={close}>{directoryLabel(section.cta, zh)}<span aria-hidden="true">→</span></Link>
+            <Link className="kh-mobile-product-cta" href={section.href} onClick={close}>{directoryLabel(section.cta, zh)}</Link>
             {section.groups.map((group, groupIndex) => (
               <div key={group.id} className="kh-mobile-product-group">
                 <p><span>{String(groupIndex + 1).padStart(2, "0")}</span>{directoryLabel(group, zh)}</p>
-                {group.links.map((item) => <Link key={item.id} href={item.href} onClick={close}>{directoryLabel(item, zh)}<span aria-hidden="true">↗</span></Link>)}
+                {group.links.map((item) => <Link key={item.id} href={item.href} onClick={close}>{directoryLabel(item, zh)}</Link>)}
               </div>
             ))}
           </div>
         </details>
       ))}
-      <Link className="kh-mobile-product-all" href="/products" onClick={close}><span>{zh ? "查看完整产品目录" : "View the complete product directory"}</span><span aria-hidden="true">→</span></Link>
+      <Link className="kh-mobile-product-all" href="/products" onClick={close}><span>{zh ? "查看完整产品目录" : "View the complete product directory"}</span></Link>
     </div>
   );
 }
@@ -364,7 +363,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
             </button>
             {openMenu === "capabilities" ? <div id="header-capabilities-menu" className="kh-nav-panel">
               {capabilityLinks.map((item) => (
-                <Link key={item.href} href={item.href} onClick={() => closeDesktopDropdowns()}>{label(item)}<span aria-hidden="true">→</span></Link>
+                <Link key={item.href} href={item.href} onClick={() => closeDesktopDropdowns()}>{label(item)}</Link>
               ))}
             </div> : null}
           </div>
@@ -378,7 +377,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
             </button>
             {openMenu === "resources" ? <div id="header-resources-menu" className="kh-nav-panel">
               {resourceLinks.map((item) => (
-                <Link key={item.href} href={item.href} onClick={() => closeDesktopDropdowns()}>{label(item)}<span aria-hidden="true">→</span></Link>
+                <Link key={item.href} href={item.href} onClick={() => closeDesktopDropdowns()}>{label(item)}</Link>
               ))}
             </div> : null}
           </div>
@@ -413,15 +412,15 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                   <p className="kh-nav-panel-label">{copy.products}</p>
                   <MobileProductDirectory zh={isZh} close={closeMobileMenu} />
                   <p className="kh-nav-panel-label">{copy.solutions}</p>
-                  <Link href="/solutions">{copy.solutions}<span aria-hidden="true">→</span></Link>
+                  <Link href="/solutions">{copy.solutions}</Link>
                   <p className="kh-nav-panel-label">{copy.capabilities}</p>
                   {capabilityLinks.map((item) => (
-                    <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+                    <Link key={item.href} href={item.href}>{label(item)}</Link>
                   ))}
-                  <Link href="/factory">{copy.factory}<span aria-hidden="true">→</span></Link>
+                  <Link href="/factory">{copy.factory}</Link>
                   <p className="kh-nav-panel-label">{copy.resources}</p>
                   {resourceLinks.map((item) => (
-                    <Link key={item.href} href={item.href}>{label(item)}<span aria-hidden="true">→</span></Link>
+                    <Link key={item.href} href={item.href}>{label(item)}</Link>
                   ))}
                   <Link href="/contact" onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "mobile_navigation" })} className="kh-button kh-button-primary kh-button-compact mt-2 justify-center">{copy.contact}</Link>
                 </nav>

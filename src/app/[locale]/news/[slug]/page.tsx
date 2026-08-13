@@ -123,7 +123,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ lo
               <p className="kh-mono text-(--kh-brass)">{zh ? "项目入口" : "Project paths"}</p>
               <h2 className="mt-3 text-2xl font-semibold">{zh ? "把内容带回项目" : "Bring this into a project"}</h2>
               <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{zh ? "准备好产品、尺寸、材料和数量后，可以直接提交需求。" : "Share the product, dimensions, material and quantity when you are ready to discuss the brief."}</p>
-              <div className="mt-5 grid gap-3">{article.relatedLinks.map((link) => <Link key={link.href} href={link.href} className="kh-text-link min-h-11">{zh ? link.zh : link.en}<ArrowRight className="size-4" /></Link>)}</div>
+              <div className="mt-5 grid gap-3">{article.relatedLinks.map((link) => <Link key={link.href} href={link.href} className="kh-text-link min-h-11">{zh ? link.zh : link.en}</Link>)}</div>
               <Link href={article.cta.href} className="kh-button kh-button-primary mt-6 w-full justify-center">{zh ? article.cta.zh : article.cta.en}<ArrowRight className="size-4" /></Link>
             </aside>
           </div>

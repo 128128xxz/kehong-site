@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { useLocale } from "next-intl";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
@@ -88,7 +88,6 @@ export default function SolutionsDirectory() {
                       <strong className="block text-base font-semibold text-(--kh-ink)">{item.title}</strong>
                       <span className="mt-1 block text-sm leading-6 text-(--kh-muted)">{item.body}</span>
                     </span>
-                    <ArrowRight size={17} aria-hidden="true" className={selected ? "text-(--kh-forest)" : "text-(--kh-muted)"} />
                   </Link>
                 );
               })}

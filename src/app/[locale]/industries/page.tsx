@@ -81,7 +81,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
                       ))}
                     </ul>
                     <Link href="/products" className="kh-text-link mt-6">
-                      {isZh ? "浏览产品" : "Explore product ranges"} <ArrowRight className="size-4" />
+                      {isZh ? "浏览产品" : "Explore product ranges"}
                     </Link>
                   </article>
                 </Reveal>

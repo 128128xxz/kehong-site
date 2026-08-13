@@ -1,4 +1,4 @@
-import { ArrowRight, Layers3 } from "lucide-react";
+import { Layers3 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { productCatalogSections } from "@/data/productDirectory";
 
@@ -43,7 +43,6 @@ export default function ProductDirectory({ locale, section }: Props) {
                       <span className="block text-sm font-semibold text-(--kh-ink)">{title(item, zh)}</span>
                       <span className="mt-1 block text-xs leading-5 text-(--kh-muted)">{title(item.description, zh)}</span>
                     </span>
-                    <ArrowRight className="size-4 shrink-0 text-(--kh-forest)" />
                   </Link>
                 ))}
               </div>

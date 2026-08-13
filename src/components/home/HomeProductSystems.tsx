@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
@@ -57,7 +56,7 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
   ];
 
   return (
-    <section className="kh-section kh-section-paper kh-product-systems">
+    <section className="kh-section kh-section-paper kh-product-systems kh-home-product-systems">
       <div className="kh-shell">
         <Reveal>
           <div className="kh-section-heading">
@@ -67,7 +66,6 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
             </div>
             <Link className="kh-text-link" href="/products">
               {zh ? "查看全部产品" : "View all products"}
-              <ArrowUpRight className="size-4" />
             </Link>
           </div>
         </Reveal>
@@ -100,7 +98,6 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
                           <span className="kh-product-card-copy">
                             <span className="kh-product-card-title">{zh ? item.zh : item.en}</span>
                             <span className="kh-product-card-description">{zh ? shortZhDescriptions[item.id] : item.description.en}</span>
-                            <ArrowRight className="size-4" aria-hidden="true" />
                           </span>
                         </Link>
                       );

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import Header from "@/components/site/Header";
 import PageHero from "@/components/site/PageHero";
@@ -66,7 +65,6 @@ export default async function PackagingOverviewPage({ params }: { params: Promis
                     <p className="mt-2 text-sm leading-6 text-(--kh-muted)">{zh ? category.shortDescription.zh : category.shortDescription.en}</p>
                     <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-(--kh-forest)">
                       {zh ? "查看分类" : "View category"}
-                      <ArrowRight className="size-4" />
                     </span>
                   </div>
                 </Link>

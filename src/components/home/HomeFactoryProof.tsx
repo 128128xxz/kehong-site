@@ -14,7 +14,7 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
     : ["20+ years in paper converting", "8,000+ ㎡ production site", "Die-cutting, slitting, mounting and corrugated processing"];
 
   return (
-    <section className="kh-section kh-section-forest">
+    <section className="kh-section kh-section-forest kh-home-factory">
       <div className="kh-shell kh-factory-grid">
         <Reveal>
           <SectionKicker index="04" text={zh ? "工厂" : "Factory & capability"} light />

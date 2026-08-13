@@ -85,7 +85,6 @@ export default function HomeHero({ locale }: { locale: string }) {
             </Link>
             <Link className="kh-button kh-button-ghost" href={packagingEntry.href}>
               {zh ? "查看成品包装" : "Explore packaging"}
-              <ArrowRight className="size-4" />
             </Link>
           </div>
         </div>
