@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, ChevronDown, Menu, X } from "lucide-react";
+import { BookOpen, Box, ChevronDown, Factory, Layers3, Lightbulb, Menu, Settings2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -412,16 +412,21 @@ export default function Header({ variant = "solid" }: HeaderProps) {
         <nav ref={desktopNavRef} className="kh-desktop-nav" aria-label="Primary navigation">
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("products")} onPointerLeave={() => scheduleDesktopClose("products")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("products"); }}>
             <button ref={productsButtonRef} type="button" className={navLinkClass(isProducts)} aria-expanded={openMenu === "products"} aria-controls="header-products-menu" aria-haspopup="true" onClick={(event) => { if (keyboardProductsActivationRef.current) { event.preventDefault(); event.stopPropagation(); keyboardProductsActivationRef.current = null; return; } if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); }} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); if (event.repeat) return; keyboardProductsActivationRef.current = event.key; if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); return; } if (event.key !== "ArrowDown") return; event.preventDefault(); event.stopPropagation(); focusFirstProductLinkRef.current = true; setFirstProductFocusRequest((request) => request + 1); openDesktopMenu("products"); }} onKeyUp={(event) => { if (event.key !== keyboardProductsActivationRef.current) return; event.preventDefault(); event.stopPropagation(); requestAnimationFrame(() => { keyboardProductsActivationRef.current = null; }); }}>
+              <Layers3 className="kh-nav-icon size-3.5" aria-hidden="true" />
               <span>{copy.products}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
             {openMenu === "products" ? <ProductMegaMenu zh={isZh} close={closeDesktopDropdowns} firstLinkRef={setFirstProductMenuLinkRef} /> : null}
           </div>
 
-          <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>{copy.solutions}</Link>
+          <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>
+            <Lightbulb className="kh-nav-icon size-3.5" aria-hidden="true" />
+            <span>{copy.solutions}</span>
+          </Link>
 
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("capabilities")} onPointerLeave={() => scheduleDesktopClose("capabilities")} onFocusCapture={() => openDesktopMenu("capabilities")} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("capabilities"); }}>
             <button type="button" className={navLinkClass(isCapabilities)} aria-expanded={openMenu === "capabilities"} aria-controls="header-capabilities-menu" aria-haspopup="true" onClick={() => openMenu === "capabilities" ? closeDesktopDropdowns() : openDesktopMenu("capabilities")}>
+              <Settings2 className="kh-nav-icon size-3.5" aria-hidden="true" />
               <span>{copy.capabilities}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
@@ -432,7 +437,10 @@ export default function Header({ variant = "solid" }: HeaderProps) {
             </div> : null}
           </div>
 
-          <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}>{copy.factory}</Link>
+          <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}>
+            <Factory className="kh-nav-icon size-3.5" aria-hidden="true" />
+            <span>{copy.factory}</span>
+          </Link>
 
           <Link href="/model-preview" aria-current={isModelPreview ? "page" : undefined} className={`${navLinkClass(isModelPreview)} kh-nav-link-3d`} data-testid="header-model-preview-link">
             <Box className="kh-nav-3d-icon size-3.5" aria-hidden="true" />
@@ -441,6 +449,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("resources")} onPointerLeave={() => scheduleDesktopClose("resources")} onFocusCapture={() => openDesktopMenu("resources")} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("resources"); }}>
             <button type="button" className={navLinkClass(isResources)} aria-expanded={openMenu === "resources"} aria-controls="header-resources-menu" aria-haspopup="true" onClick={() => openMenu === "resources" ? closeDesktopDropdowns() : openDesktopMenu("resources")}>
+              <BookOpen className="kh-nav-icon size-3.5" aria-hidden="true" />
               <span>{copy.resources}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
