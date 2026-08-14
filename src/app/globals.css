@@ -2947,3 +2947,20 @@
   .kh-header-actions { gap: .35rem; }
   .kh-header-cta { padding-inline: .75rem; }
 }
+
+/* English mobile copy should use the full readable measure. The shared
+   narrow Chinese display measure is too restrictive for the longer English
+   hero sentence and creates avoidable one- or two-word lines. */
+@media (max-width: 760px) {
+  :lang(en) .kh-home-hero .kh-hero-copy h1 {
+    max-width: 100%;
+    font-size: clamp(1.75rem, 6.5vw, 2.4rem);
+    letter-spacing: -.04em;
+    line-height: 1.04;
+    text-wrap: pretty;
+  }
+  :lang(en) .kh-home-hero .kh-hero-copy .kh-lede,
+  :lang(en) .kh-page-hero .kh-lede {
+    max-width: none;
+  }
+}
