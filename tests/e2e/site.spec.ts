@@ -356,6 +356,17 @@ test.describe("Kehong production flows", () => {
     await expect(page.getByTestId("wechat-contact").first()).toBeVisible();
   });
 
+  test("WeChat QR dialog keeps scan and download actions available", async ({ page }) => {
+    await page.goto("/zh/contact", { waitUntil: "networkidle" });
+    await page.getByTestId("wechat-contact").first().click();
+    const dialog = page.getByTestId("wechat-qr-dialog");
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole("img", { name: "科宏微信二维码" })).toHaveAttribute("src", /wechat-qr/);
+    await expect(dialog.getByTestId("wechat-qr-download")).toHaveAttribute("download", "kehong-wechat-qr.png");
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
+  });
+
   test("all quick and guided consent labels keep only the privacy policy link interactive", async ({ page }) => {
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/contact`, { waitUntil: "networkidle" });

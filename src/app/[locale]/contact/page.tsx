@@ -173,7 +173,7 @@ export default async function ContactPage({
                 {zh ? "直接对接销售团队" : "Talk directly to the sales team"}
               </h2>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {zh ? <div className="kh-panel p-4"><p className="kh-mono text-(--kh-brass)">微信咨询</p><WeChatContactButton phone={contact.phone.zh} label="复制手机号" copiedLabel="手机号已复制" className="kh-button kh-button-secondary mt-2 min-h-11" /></div> : null}
+                {zh ? <div className="kh-panel p-4"><p className="kh-mono text-(--kh-brass)">微信咨询</p><WeChatContactButton phone={contact.phone.zh} label="打开微信二维码" copiedLabel="手机号已复制" className="kh-button kh-button-secondary mt-2 min-h-11" /></div> : null}
                 {channels.map((channel) => (
                   <div key={channel.label} className="kh-panel p-4">
                     <p className="kh-mono text-(--kh-brass)">{channel.label}</p>

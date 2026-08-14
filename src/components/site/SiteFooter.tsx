@@ -5,6 +5,7 @@ import { companyDisplayName, contact, socialLinks } from "@/data/company";
 import { FACTORY_ADDRESS, getFactoryLocationUrl } from "@/data/companyLocation";
 import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 import SiteLogo from "@/components/site/SiteLogo";
+import WeChatContactButton from "@/components/site/WeChatContactButton";
 
 type IconProps = { className?: string };
 
@@ -120,7 +121,7 @@ export default async function SiteFooter() {
             </LocationClickAnchor>
             <a href={zh ? "tel:+8615888233221" : "tel:+447599669700"} aria-label={zh ? `拨打电话 ${contact.phone.zh}` : `Call ${contact.phone.en}`}>{zh ? contact.phone.zh : contact.phone.en}</a>
             <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>{contact.email}</a>
-            {zh ? <span className="kh-footer-wechat">微信咨询</span> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Contact ${companyDisplayName.en} on WhatsApp`}><MessageCircle className="size-4" />WhatsApp</a>}
+            {zh ? <WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-footer-wechat inline-flex min-h-11 items-center gap-2 border-0 bg-transparent p-0" /> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Contact ${companyDisplayName.en} on WhatsApp`}><MessageCircle className="size-4" />WhatsApp</a>}
           </div>
         </div>
       </div>
