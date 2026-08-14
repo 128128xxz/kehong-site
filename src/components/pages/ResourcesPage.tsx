@@ -20,7 +20,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
         <PageHero
           index="01"
           kicker={isZh ? "科宏 · 资源中心" : "Kehong · Packaging resources"}
-          title={isZh ? "包装设计、材料与结构准备指南" : "Packaging guides for artwork, materials, structure and sampling."}
+          title={isZh ? "包装设计、材料与结构准备指南" : "Packaging guides for artwork, materials, structure and sampling"}
           lede={
             isZh
               ? "这些指南涵盖设计稿准备、材料选择、刀模图、表面工艺和打样资料。"
@@ -97,7 +97,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="03" text={isZh ? "表面工艺" : "Finishing options"} />
-                  <h2>{isZh ? "常用表面工艺一览。" : "Finishes at a glance."}</h2>
+                  <h2>{isZh ? "常用表面工艺一览" : "Finishes at a glance"}</h2>
                 </div>
               </div>
             </Reveal>

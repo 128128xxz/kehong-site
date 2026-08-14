@@ -17,7 +17,7 @@ export default function SiteLogo({ locale, placement }: SiteLogoProps) {
     return (
       <>
         <Image
-          src="/brand/kehong-mark-transparent.png"
+          src="/brand/kehong-mark-512.png"
           alt=""
           width={512}
           height={512}
@@ -34,7 +34,7 @@ export default function SiteLogo({ locale, placement }: SiteLogoProps) {
   return (
     <div className="kh-footer-brand" aria-label={brand.name}>
       <Image
-        src="/brand/kehong-mark-transparent.png"
+        src="/brand/kehong-mark-512.png"
         alt=""
         width={523}
         height={535}

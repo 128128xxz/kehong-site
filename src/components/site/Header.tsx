@@ -424,7 +424,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
             <span>{copy.solutions}</span>
           </Link>
 
-          <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("capabilities")} onPointerLeave={() => scheduleDesktopClose("capabilities")} onFocusCapture={() => openDesktopMenu("capabilities")} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("capabilities"); }}>
+          <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("capabilities")} onPointerLeave={() => scheduleDesktopClose("capabilities")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("capabilities"); }}>
             <button type="button" className={navLinkClass(isCapabilities)} aria-expanded={openMenu === "capabilities"} aria-controls="header-capabilities-menu" aria-haspopup="true" onClick={() => openMenu === "capabilities" ? closeDesktopDropdowns() : openDesktopMenu("capabilities")}>
               <Settings2 className="kh-nav-icon size-3.5" aria-hidden="true" />
               <span>{copy.capabilities}</span>
@@ -447,7 +447,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
             <span>{copy.modelPreview}</span>
           </Link>
 
-          <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("resources")} onPointerLeave={() => scheduleDesktopClose("resources")} onFocusCapture={() => openDesktopMenu("resources")} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("resources"); }}>
+          <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("resources")} onPointerLeave={() => scheduleDesktopClose("resources")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("resources"); }}>
             <button type="button" className={navLinkClass(isResources)} aria-expanded={openMenu === "resources"} aria-controls="header-resources-menu" aria-haspopup="true" onClick={() => openMenu === "resources" ? closeDesktopDropdowns() : openDesktopMenu("resources")}>
               <BookOpen className="kh-nav-icon size-3.5" aria-hidden="true" />
               <span>{copy.resources}</span>

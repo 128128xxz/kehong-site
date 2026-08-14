@@ -30,7 +30,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           index="§"
           kicker={isZh ? "法律信息" : "Legal information"}
           title={isZh ? "隐私政策" : "Privacy Policy"}
-          lede={isZh ? "科宏网站询盘信息处理说明" : "How Kehong handles information submitted through this website."}
+          lede={isZh ? "科宏网站询盘信息处理说明" : "How Kehong handles information submitted through this website"}
         />
         <div className="kh-shell py-12 lg:py-16">
         <div className="prose prose-stone max-w-3xl">

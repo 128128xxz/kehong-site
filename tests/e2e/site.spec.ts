@@ -24,15 +24,15 @@ test.describe("Kehong production flows", () => {
     expect(english.headers().location).toBe("/en");
   });
 
-  test("header and footer use the clean supplied transparent mark asset", async ({ page }) => {
+  test("header and footer use the compact official transparent mark asset", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
     const headerLogo = page.locator(".kh-header-brand-mark");
     await expect(headerLogo).toBeVisible();
-    await expect(headerLogo).toHaveAttribute("src", /kehong-mark-transparent\.png/);
+    await expect(headerLogo).toHaveAttribute("src", /kehong-mark-512\.png/);
     await expect(page.locator(".kh-brand-name")).toHaveText("Foshan Kehong Paper Products Co., Ltd.");
     await expect(page.locator(".kh-brand-tag")).toHaveText("Paper materials & custom packaging");
     await expect(page.locator(".kh-monogram")).toHaveCount(0);
-    await expect(page.locator(".kh-footer-brand-mark")).toHaveAttribute("src", /kehong-mark-transparent\.png/);
+    await expect(page.locator(".kh-footer-brand-mark")).toHaveAttribute("src", /kehong-mark-512\.png/);
     await expect(page.locator(".kh-footer-brand-name")).toHaveText("Foshan Kehong Paper Products Co., Ltd.");
     await expect(page.locator(".kh-footer-brand-tag")).toHaveText("Paper products & custom packaging");
     await page.goto("/zh", { waitUntil: "networkidle" });
@@ -585,6 +585,22 @@ test.describe("Kehong production flows", () => {
       }
       await expect(card).toContainText(locale === "zh" ? mapDestination : "No. 7 Buxin Industrial Zone");
       await expect(mapLink).toContainText(locale === "zh" ? "查看位置" : "View location");
+    }
+  });
+
+  test("footer contact uses an address map link, semantic icons and a left social row", async ({ page }) => {
+    for (const locale of ["en", "zh"] as const) {
+      await page.goto(`/${locale}`, { waitUntil: "networkidle" });
+      const footer = page.locator("footer");
+      await expect(footer.getByText(locale === "zh" ? "联系我们" : "Contact us", { exact: true })).toBeVisible();
+      const address = footer.getByTestId("footer-address-link");
+      await expect(address).toBeVisible();
+      await expect(address).toHaveAttribute("target", "_blank");
+      await expect(address).toHaveAttribute("rel", "noopener noreferrer");
+      await expect(address).toContainText(locale === "zh" ? "佛山市南海区布新工业区7号" : "No. 7 Buxin Industrial Zone");
+      await expect(footer.getByText(locale === "zh" ? "查看位置" : "View location", { exact: true })).toHaveCount(0);
+      await expect(footer.locator(".kh-footer-links svg")).not.toHaveCount(0);
+      await expect(footer.locator(".kh-footer-bottom > .kh-social")).toHaveCount(1);
     }
   });
 

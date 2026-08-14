@@ -73,7 +73,7 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
         <PageHero
           index="01"
           kicker={isZh ? "科宏 · 制造能力" : "Kehong · Manufacturing capabilities"}
-          title={isZh ? "把包装需求拆成可确认的制造步骤" : "Capabilities that turn a packaging brief into a production path."}
+          title={isZh ? "把包装需求拆成可确认的制造步骤" : "Capabilities that turn a packaging brief into a production path"}
           lede={
             isZh
               ? "从结构设计、文件准备到打样、印刷、后加工、质检和出货，每个环节按项目需求逐项确认。"
@@ -99,7 +99,7 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="02" text={isZh ? "制造能力" : "Manufacturing capabilities"} />
-                  <h2>{isZh ? "七项能力，覆盖从简报到出货。" : "Seven capabilities, from brief to dispatch."}</h2>
+                  <h2>{isZh ? "七项能力，覆盖从简报到出货" : "Seven capabilities, from brief to dispatch"}</h2>
                 </div>
               </div>
             </Reveal>
@@ -135,7 +135,7 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="03" text={isZh ? "定制包装流程" : "Custom packaging process"} />
-                  <h2>{isZh ? "从询盘到出货，每一步都可追踪" : "A clear path from inquiry to export handoff."}</h2>
+                  <h2>{isZh ? "从询盘到出货，每一步都可追踪" : "A clear path from inquiry to export handoff"}</h2>
                 </div>
               </div>
             </Reveal>

@@ -9,7 +9,7 @@ const read = (relative: string) => readFileSync(path.join(root, relative), "utf8
 
 describe("finalized Chinese buyer copy", () => {
   it("adopts the locked facts and explicit page copy", () => {
-    expect(read("components/home/HomeHero.tsx")).toContain("科宏提供纸材加工、纸杯部件和定制纸包装，并根据项目要求安排结构打样、生产和出货准备。");
+    expect(read("components/home/HomeHero.tsx")).toContain("科宏提供纸材加工、纸杯部件和定制纸包装，并根据项目要求安排结构打样、生产和出货准备");
     expect(read("components/home/HomeProductSystems.tsx")).toContain("先选分类，再看产品和规格。");
     expect(read("components/site/FactoryOverview.tsx")).toContain("科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。");
     expect(read("app/[locale]/factory/page.tsx")).toContain("科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺和出货准备。");

@@ -30,7 +30,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           index="§"
           kicker={isZh ? "法律信息" : "Legal information"}
           title={isZh ? "使用条款" : "Terms of Use"}
-          lede={isZh ? "科宏网站使用条款" : "Terms for using the Kehong website and inquiry service."}
+          lede={isZh ? "科宏网站使用条款" : "Terms for using the Kehong website and inquiry service"}
         />
         <div className="kh-shell py-12 lg:py-16">
         <div className="prose prose-stone max-w-3xl">

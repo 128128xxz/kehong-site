@@ -417,7 +417,7 @@ test.describe("homepage manufacturing website", () => {
       const link = document.querySelector<HTMLElement>(".kh-footer-links a");
       return {
         summaryIcon: summary ? getComputedStyle(summary, "::after").content : "none",
-        linkIcon: link ? getComputedStyle(link, "::after").content : "none",
+        linkIcon: link?.querySelector("svg") ? "svg" : "none",
       };
     });
     expect(affordances.summaryIcon).not.toBe("none");

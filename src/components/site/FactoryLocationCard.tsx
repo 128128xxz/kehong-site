@@ -4,6 +4,7 @@ import { Check, Copy, MapPin } from "lucide-react";
 import { useState } from "react";
 import LocationClickAnchor, { trackLocationAction } from "@/components/site/LocationClickAnchor";
 import { FACTORY_MAP_DESTINATION } from "@/data/companyLocation";
+import { GlassSurface } from "@/components/ui/glass/GlassSurface";
 
 type Props = {
   locale: string;
@@ -59,7 +60,7 @@ export default function FactoryLocationCard({
   };
 
   return (
-    <div className={`kh-panel p-4 ${className}`.trim()} data-location-card>
+    <GlassSurface variant="contact-card" className={`kh-panel p-4 ${className}`.trim()} data-location-card>
       <div className="group block min-h-11">
         <span className="flex items-start gap-3">
           <MapPin className="mt-0.5 size-5 shrink-0 text-(--kh-brass)" aria-hidden="true" />
@@ -95,6 +96,6 @@ export default function FactoryLocationCard({
           <span>{copied ? copiedLabel : copyLabel}</span>
         </button>
       </div>
-    </div>
+    </GlassSurface>
   );
 }

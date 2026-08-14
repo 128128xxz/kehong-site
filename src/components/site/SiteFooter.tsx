@@ -1,4 +1,14 @@
-import { MessageCircle } from "lucide-react";
+import {
+  BookOpen,
+  Factory,
+  Lightbulb,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Newspaper,
+  Package,
+  Phone,
+} from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { companyDisplayName, contact, socialLinks } from "@/data/company";
@@ -6,6 +16,7 @@ import { FACTORY_ADDRESS, getFactoryLocationUrl } from "@/data/companyLocation";
 import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 import SiteLogo from "@/components/site/SiteLogo";
 import WeChatContactButton from "@/components/site/WeChatContactButton";
+import { GlassSurface } from "@/components/ui/glass/GlassSurface";
 
 type IconProps = { className?: string };
 
@@ -89,54 +100,64 @@ export default async function SiteFooter() {
           <p className="kh-footer-note">
             {zh
               ? "纸材加工、结构打样和定制包装服务"
-              : "Paper converting, structural sampling and custom packaging from our Foshan team."}
+              : "Paper converting, structural sampling and custom packaging from our Foshan team"}
           </p>
         </div>
         <div className="kh-footer-links">
             <details className="kh-footer-group" open>
-            <summary>{zh ? "产品与解决方案" : "Products & solutions"}</summary>
+            <summary><Package className="kh-footer-heading-icon" aria-hidden="true" />{zh ? "产品与解决方案" : "Products & solutions"}</summary>
             <div>
-              <Link href="/products">{zh ? "产品目录" : "All products"}</Link>
-              <Link href="/solutions">{zh ? "解决方案" : "Solutions"}</Link>
-              <Link href="/industries">{zh ? "行业应用" : "Industries"}</Link>
+              <Link href="/products"><Package aria-hidden="true" />{zh ? "产品目录" : "All products"}</Link>
+              <Link href="/solutions"><Lightbulb aria-hidden="true" />{zh ? "解决方案" : "Solutions"}</Link>
+              <Link href="/industries"><Factory aria-hidden="true" />{zh ? "行业应用" : "Industries"}</Link>
             </div>
           </details>
             <details className="kh-footer-group" open>
-            <summary>{zh ? "能力与资源" : "Capabilities & resources"}</summary>
+            <summary><BookOpen className="kh-footer-heading-icon" aria-hidden="true" />{zh ? "能力与资源" : "Capabilities & resources"}</summary>
             <div>
-              <Link href="/capabilities">{zh ? "制造能力" : "Capabilities"}</Link>
-              <Link href="/factory">{zh ? "工厂和流程" : "Factory & process"}</Link>
-              <Link href="/news">{zh ? "新闻与洞察" : "News & Insights"}</Link>
-              <Link href="/resources">{zh ? "资源中心" : "Design center"}</Link>
-              <Link href="/model-preview">{zh ? "3D结构展厅" : "3D Packaging Studio"}</Link>
+              <Link href="/capabilities"><Factory aria-hidden="true" />{zh ? "制造能力" : "Capabilities"}</Link>
+              <Link href="/factory"><MapPin aria-hidden="true" />{zh ? "工厂和流程" : "Factory & process"}</Link>
+              <Link href="/news"><Newspaper aria-hidden="true" />{zh ? "新闻与洞察" : "News & Insights"}</Link>
+              <Link href="/resources"><BookOpen aria-hidden="true" />{zh ? "资源中心" : "Design center"}</Link>
+              <Link href="/model-preview"><Package aria-hidden="true" />{zh ? "3D结构展厅" : "3D Packaging Studio"}</Link>
             </div>
           </details>
         </div>
-        <div className="kh-footer-contact-column">
-          <p className="kh-footer-column-label">{zh ? `联系${companyDisplayName.zh}` : `Contact ${companyDisplayName.en}`}</p>
+        <GlassSurface variant="contact-card" tone="dark" className="kh-footer-contact-column kh-glass-footer-card">
+          <p className="kh-footer-column-label">{zh ? "联系我们" : "Contact us"}</p>
           <div className="kh-footer-contact">
-            <span>{zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
-            <LocationClickAnchor href={getFactoryLocationUrl(locale)} locale={locale} sourceBlock="footer" mapProvider={zh ? "baidu_directions" : "google_directions"} target="_blank" rel="noopener noreferrer" aria-label={zh ? `查看${companyDisplayName.zh}工厂位置` : `View ${companyDisplayName.en} factory location`}>
-              {zh ? "查看位置" : "View location"}
+            <LocationClickAnchor
+              href={getFactoryLocationUrl(locale)}
+              locale={locale}
+              sourceBlock="footer"
+              mapProvider={zh ? "baidu_directions" : "google_directions"}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={zh ? `在地图中查看${FACTORY_ADDRESS.zh}` : `Open ${FACTORY_ADDRESS.en} in maps`}
+              className="kh-footer-contact-link"
+              data-testid="footer-address-link"
+            >
+              <MapPin aria-hidden="true" />
+              <span>{zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
             </LocationClickAnchor>
-            <a href={zh ? "tel:+8615888233221" : "tel:+447599669700"} aria-label={zh ? `拨打电话 ${contact.phone.zh}` : `Call ${contact.phone.en}`}>{zh ? contact.phone.zh : contact.phone.en}</a>
-            <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}>{contact.email}</a>
+            <a href={zh ? "tel:+8615888233221" : "tel:+447599669700"} aria-label={zh ? `拨打电话 ${contact.phone.zh}` : `Call ${contact.phone.en}`}><Phone aria-hidden="true" />{zh ? contact.phone.zh : contact.phone.en}</a>
+            <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}><Mail aria-hidden="true" />{contact.email}</a>
             {zh ? <WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-footer-wechat inline-flex min-h-11 items-center gap-2 border-0 bg-transparent p-0" /> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Contact ${companyDisplayName.en} on WhatsApp`}><MessageCircle className="size-4" />WhatsApp</a>}
           </div>
-        </div>
+        </GlassSurface>
       </div>
       <div className="kh-shell kh-footer-bottom">
-        <div className="kh-footer-legal-links">
-          <span>© {new Date().getFullYear()} {zh ? companyDisplayName.zh : companyDisplayName.en}</span>
-          <Link href="/privacy">{zh ? "隐私政策" : "Privacy"}</Link>
-          <Link href="/terms">{zh ? "使用条款" : "Terms"}</Link>
-        </div>
         <div className="kh-social" aria-label={zh ? "社交媒体" : "Social media"}>
           {socialEntries.map(({ key, label, href, Icon }) => (
             <a key={key} href={href || `/${locale}`} aria-label={label} title={href ? label : `${label}${zh ? " · 返回首页" : " · Return home"}`} {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
               <Icon className="size-4" />
             </a>
           ))}
+        </div>
+        <div className="kh-footer-legal-links">
+          <span>© {new Date().getFullYear()} {zh ? companyDisplayName.zh : companyDisplayName.en}</span>
+          <Link href="/privacy">{zh ? "隐私政策" : "Privacy"}</Link>
+          <Link href="/terms">{zh ? "使用条款" : "Terms"}</Link>
         </div>
       </div>
     </footer>

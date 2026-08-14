@@ -36,7 +36,7 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
         <PageHero
           index="01"
           kicker={isZh ? "科宏 · 烘焙包装" : "Kehong · Bakery Packaging"}
-          title={isZh ? "从蛋糕盒到承托底板，按烘焙场景选择" : "Bakery packaging built around presentation, support and transport."}
+          title={isZh ? "从蛋糕盒到承托底板，按烘焙场景选择" : "Bakery packaging built around presentation, support and transport"}
           lede={
             isZh
               ? "将蛋糕盒、纸板底托、蛋糕鼓和内托分开比较，按尺寸、开窗、携带、展示和运输需求提交项目。"
@@ -63,7 +63,7 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="02" text={isZh ? "烘焙品类" : "Bakery categories"} />
-                  <h2>{isZh ? "展示与承托，两条用途。" : "Presentation and support, two use cases."}</h2>
+                  <h2>{isZh ? "展示与承托，两条用途" : "Presentation and support, two use cases"}</h2>
                 </div>
               </div>
             </Reveal>
@@ -114,7 +114,7 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="03" text={isZh ? "选型对照" : "Board comparison"} />
-                  <h2>{isZh ? "四种底托，逐项对比。" : "Compare the four board formats."}</h2>
+                  <h2>{isZh ? "四种底托，逐项对比" : "Compare the four board formats"}</h2>
                 </div>
               </div>
             </Reveal>
