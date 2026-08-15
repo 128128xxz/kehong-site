@@ -85,9 +85,19 @@ const socialEntries = [
   { key: "tiktok", label: "TikTok", href: socialLinks.tiktok, Icon: TikTokIcon },
 ] as const;
 
+const footerCopy = {
+  en: { note: "Paper converting, structural sampling and custom packaging from our Foshan team", products: "Products & solutions", allProducts: "All products", solutions: "Solutions", industries: "Industries", capabilities: "Capabilities & resources", capabilitiesLink: "Capabilities", factory: "Factory & process", news: "News & Insights", resources: "Design center", studio: "3D Packaging Studio", contact: "Contact us", social: "Social media", returnHome: " · Return home", privacy: "Privacy", terms: "Terms" },
+  zh: { note: "纸材加工、结构打样和定制包装服务", products: "产品与解决方案", allProducts: "产品目录", solutions: "解决方案", industries: "行业应用", capabilities: "能力与资源", capabilitiesLink: "制造能力", factory: "工厂和流程", news: "新闻与洞察", resources: "资源中心", studio: "3D结构展厅", contact: "联系我们", social: "社交媒体", returnHome: " · 返回首页", privacy: "隐私政策", terms: "使用条款" },
+  id: { note: "Pengolahan kertas, pembuatan struktur dan pembungkusan tersuai daripada pasukan Foshan kami", products: "Produk & solusi", allProducts: "Semua produk", solutions: "Solusi", industries: "Industri", capabilities: "Keupayaan & sumber", capabilitiesLink: "Keupayaan", factory: "Kilang & proses", news: "Berita & wawasan", resources: "Pusat sumber", studio: "Studio pembungkusan 3D", contact: "Hubungi kami", social: "Media sosial", returnHome: " · Kembali ke beranda", privacy: "Privasi", terms: "Ketentuan" },
+  vi: { note: "Gia công giấy, làm mẫu cấu trúc và bao bì tùy chỉnh từ đội ngũ Foshan", products: "Sản phẩm & giải pháp", allProducts: "Tất cả sản phẩm", solutions: "Giải pháp", industries: "Ngành ứng dụng", capabilities: "Năng lực & tài nguyên", capabilitiesLink: "Năng lực", factory: "Nhà máy & quy trình", news: "Tin tức & insights", resources: "Trung tâm tài nguyên", studio: "Studio bao bì 3D", contact: "Liên hệ", social: "Mạng xã hội", returnHome: " · Về trang chủ", privacy: "Quyền riêng tư", terms: "Điều khoản" },
+  th: { note: "การแปรรูปกระดาษ การทำตัวอย่างโครงสร้าง และบรรจุภัณฑ์สั่งทำจากทีม Foshan", products: "สินค้าและโซลูชัน", allProducts: "สินค้าทั้งหมด", solutions: "โซลูชัน", industries: "อุตสาหกรรม", capabilities: "ความสามารถและแหล่งข้อมูล", capabilitiesLink: "ความสามารถ", factory: "โรงงานและกระบวนการ", news: "ข่าวสารและข้อมูลเชิงลึก", resources: "ศูนย์ทรัพยากร", studio: "สตูดิโอบรรจุภัณฑ์ 3D", contact: "ติดต่อเรา", social: "โซเชียลมีเดีย", returnHome: " · กลับหน้าแรก", privacy: "ความเป็นส่วนตัว", terms: "ข้อกำหนด" },
+  ms: { note: "Pemprosesan kertas, pensampelan struktur dan pembungkusan tersuai daripada pasukan Foshan kami", products: "Produk & penyelesaian", allProducts: "Semua produk", solutions: "Penyelesaian", industries: "Industri", capabilities: "Keupayaan & sumber", capabilitiesLink: "Keupayaan", factory: "Kilang & proses", news: "Berita & pandangan", resources: "Pusat sumber", studio: "Studio pembungkusan 3D", contact: "Hubungi kami", social: "Media sosial", returnHome: " · Kembali ke laman utama", privacy: "Privasi", terms: "Terma" },
+} as const;
+
 export default async function SiteFooter() {
   const locale = await getLocale();
   const zh = locale === "zh";
+  const copy = footerCopy[locale as keyof typeof footerCopy] ?? footerCopy.en;
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
   const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? `${companyDisplayName.zh}询盘` : `${companyDisplayName.en} packaging inquiry`)}`;
 
@@ -98,33 +108,31 @@ export default async function SiteFooter() {
           <SiteLogo locale={locale} placement="footer" />
           <h2>{zh ? companyDisplayName.zh : companyDisplayName.en}</h2>
           <p className="kh-footer-note">
-            {zh
-              ? "纸材加工、结构打样和定制包装服务"
-              : "Paper converting, structural sampling and custom packaging from our Foshan team"}
+            {copy.note}
           </p>
         </div>
         <div className="kh-footer-links">
             <details className="kh-footer-group" open>
-            <summary><Package className="kh-footer-heading-icon" aria-hidden="true" />{zh ? "产品与解决方案" : "Products & solutions"}</summary>
+            <summary><Package className="kh-footer-heading-icon" aria-hidden="true" />{copy.products}</summary>
             <div>
-              <Link href="/products"><Package aria-hidden="true" />{zh ? "产品目录" : "All products"}</Link>
-              <Link href="/solutions"><Lightbulb aria-hidden="true" />{zh ? "解决方案" : "Solutions"}</Link>
-              <Link href="/industries"><Factory aria-hidden="true" />{zh ? "行业应用" : "Industries"}</Link>
+              <Link href="/products"><Package aria-hidden="true" />{copy.allProducts}</Link>
+              <Link href="/solutions"><Lightbulb aria-hidden="true" />{copy.solutions}</Link>
+              <Link href="/industries"><Factory aria-hidden="true" />{copy.industries}</Link>
             </div>
           </details>
             <details className="kh-footer-group" open>
-            <summary><BookOpen className="kh-footer-heading-icon" aria-hidden="true" />{zh ? "能力与资源" : "Capabilities & resources"}</summary>
+            <summary><BookOpen className="kh-footer-heading-icon" aria-hidden="true" />{copy.capabilities}</summary>
             <div>
-              <Link href="/capabilities"><Factory aria-hidden="true" />{zh ? "制造能力" : "Capabilities"}</Link>
-              <Link href="/factory"><MapPin aria-hidden="true" />{zh ? "工厂和流程" : "Factory & process"}</Link>
-              <Link href="/news"><Newspaper aria-hidden="true" />{zh ? "新闻与洞察" : "News & Insights"}</Link>
-              <Link href="/resources"><BookOpen aria-hidden="true" />{zh ? "资源中心" : "Design center"}</Link>
-              <Link href="/model-preview"><Package aria-hidden="true" />{zh ? "3D结构展厅" : "3D Packaging Studio"}</Link>
+              <Link href="/capabilities"><Factory aria-hidden="true" />{copy.capabilitiesLink}</Link>
+              <Link href="/factory"><MapPin aria-hidden="true" />{copy.factory}</Link>
+              <Link href="/news"><Newspaper aria-hidden="true" />{copy.news}</Link>
+              <Link href="/resources"><BookOpen aria-hidden="true" />{copy.resources}</Link>
+              <Link href="/model-preview"><Package aria-hidden="true" />{copy.studio}</Link>
             </div>
           </details>
         </div>
         <GlassSurface variant="contact-card" tone="dark" className="kh-footer-contact-column kh-glass-footer-card">
-          <p className="kh-footer-column-label">{zh ? "联系我们" : "Contact us"}</p>
+          <p className="kh-footer-column-label">{copy.contact}</p>
           <div className="kh-footer-contact">
             <LocationClickAnchor
               href={getFactoryLocationUrl(locale)}
@@ -147,17 +155,17 @@ export default async function SiteFooter() {
         </GlassSurface>
       </div>
       <div className="kh-shell kh-footer-bottom">
-        <div className="kh-social" aria-label={zh ? "社交媒体" : "Social media"}>
+        <div className="kh-social" aria-label={copy.social}>
           {socialEntries.map(({ key, label, href, Icon }) => (
-            <a key={key} href={href || `/${locale}`} aria-label={label} title={href ? label : `${label}${zh ? " · 返回首页" : " · Return home"}`} {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+            <a key={key} href={href || `/${locale}`} aria-label={label} title={href ? label : `${label}${copy.returnHome}`} {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
               <Icon className="size-4" />
             </a>
           ))}
         </div>
         <div className="kh-footer-legal-links">
           <span>© {new Date().getFullYear()} {zh ? companyDisplayName.zh : companyDisplayName.en}</span>
-          <Link href="/privacy">{zh ? "隐私政策" : "Privacy"}</Link>
-          <Link href="/terms">{zh ? "使用条款" : "Terms"}</Link>
+          <Link href="/privacy">{copy.privacy}</Link>
+          <Link href="/terms">{copy.terms}</Link>
         </div>
       </div>
     </footer>

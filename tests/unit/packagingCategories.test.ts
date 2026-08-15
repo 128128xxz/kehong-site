@@ -4,6 +4,7 @@ import { buildPackagingContactHref } from "@/lib/packagingInquiry";
 import { getLocalizedCatalogValue } from "@/lib/catalog";
 import { localeConfig, locales } from "@/i18n/locales";
 import { buildInquiryContactHref } from "@/lib/inquiryContext";
+import { getInterestLabel } from "@/data/interests";
 
 describe("public packaging and locale governance", () => {
   it("exposes only the five active packaging categories with canonical inquiry labels", () => {
@@ -60,9 +61,17 @@ describe("public packaging and locale governance", () => {
     expect(buildInquiryContactHref({ interest: "unknown-interest" })).toBe("/contact");
   });
 
-  it("keeps only complete English and Chinese public locales", () => {
-    expect(locales).toEqual(["en", "zh"]);
-    expect(Object.keys(localeConfig)).toEqual(["en", "zh"]);
+  it("keeps interest context localized without changing the canonical interest key", () => {
+    expect(getInterestLabel("structure-review", "id")).toBe("Tinjauan struktur kemasan");
+    expect(getInterestLabel("structure-review", "vi")).toBe("Đánh giá cấu trúc bao bì");
+    expect(getInterestLabel("structure-review", "th")).toBe("ตรวจสอบโครงสร้างบรรจุภัณฑ์");
+    expect(getInterestLabel("structure-review", "ms")).toBe("Semakan struktur pembungkusan");
+    expect(getInterestLabel("structure-review", "unknown")).toBe("Packaging structure review");
+  });
+
+  it("keeps the public locale order stable for all reviewed language bundles", () => {
+    expect(locales).toEqual(["en", "zh", "id", "vi", "th", "ms"]);
+    expect(Object.keys(localeConfig)).toEqual(["en", "zh", "id", "vi", "th", "ms"]);
   });
 
   it("localizes only exact legacy Chinese display values without changing English", () => {

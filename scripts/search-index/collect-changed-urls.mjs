@@ -9,6 +9,7 @@ const outputIndex = args.indexOf("--output");
 const outputPath = outputIndex >= 0 ? path.resolve(args[outputIndex + 1]) : defaultManifestPath(root);
 const baseRef = process.env.SEARCH_BASE_REF || process.env.GITHUB_EVENT_BEFORE || "HEAD^";
 const headRef = process.env.SEARCH_HEAD_REF || "HEAD";
+const publicLocales = ["en", "zh", "id", "vi", "th", "ms"];
 
 function git(args, fallback = "") {
   try { return execFileSync("git", args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }); } catch { return fallback; }
@@ -79,30 +80,26 @@ const baseNews = readBaseNews(base);
 
 if (newsChanged || sitemapChanged) {
   for (const article of currentNews) {
-    addUrl(items, `${SITE_URL}/en/news/${article.slug}`, "updated", article.lastmod);
-    addUrl(items, `${SITE_URL}/zh/news/${article.slug}`, "updated", article.lastmod);
+    for (const locale of publicLocales) addUrl(items, `${SITE_URL}/${locale}/news/${article.slug}`, "updated", article.lastmod);
   }
-  addUrl(items, `${SITE_URL}/en/news`, "updated");
-  addUrl(items, `${SITE_URL}/zh/news`, "updated");
+  for (const locale of publicLocales) addUrl(items, `${SITE_URL}/${locale}/news`, "updated");
   if (newsChanged) {
     const currentSlugs = new Set(currentNews.map((article) => article.slug));
     for (const article of baseNews.filter((item) => !currentSlugs.has(item.slug))) {
-      addUrl(items, `${SITE_URL}/en/news/${article.slug}`, "deleted", article.lastmod);
-      addUrl(items, `${SITE_URL}/zh/news/${article.slug}`, "deleted", article.lastmod);
+      for (const locale of publicLocales) addUrl(items, `${SITE_URL}/${locale}/news/${article.slug}`, "deleted", article.lastmod);
     }
   }
 }
 if (sitemapChanged) {
-  addUrl(items, `${SITE_URL}/en`, "updated");
-  addUrl(items, `${SITE_URL}/zh`, "updated");
+  for (const locale of publicLocales) addUrl(items, `${SITE_URL}/${locale}`, "updated");
 }
 if (catalogChanged) {
   const catalog = JSON.parse(fs.readFileSync(path.join(root, "src/data/catalog.normalized.json"), "utf8"));
-  for (const sku of catalog.skus.filter((item) => item.published && item.sourceStatus === "confirmed")) for (const locale of ["en", "zh"]) addUrl(items, `${SITE_URL}/${locale}/products/${sku.slug}`, "updated");
+  for (const sku of catalog.skus.filter((item) => item.published && item.sourceStatus === "confirmed")) for (const locale of publicLocales) addUrl(items, `${SITE_URL}/${locale}/products/${sku.slug}`, "updated");
 }
 if (packagingChanged) {
   const source = fs.readFileSync(path.join(root, "src/data/packagingCategories.ts"), "utf8");
-  for (const slug of [...source.matchAll(/slug:\s*"([^"]+)"/gu)].map((match) => match[1])) for (const locale of ["en", "zh"]) addUrl(items, `${SITE_URL}/${locale}/packaging/${slug}`, "updated");
+  for (const slug of [...source.matchAll(/slug:\s*"([^"]+)"/gu)].map((match) => match[1])) for (const locale of publicLocales) addUrl(items, `${SITE_URL}/${locale}/packaging/${slug}`, "updated");
 }
 
 const sitemapLastmods = await fetchSitemap();

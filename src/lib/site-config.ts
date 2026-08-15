@@ -22,10 +22,26 @@ export const brandConfig = {
     name: "佛山科宏纸品有限公司",
     tagline: "纸材、半成品与定制纸包装",
   },
+  id: {
+    name: "Foshan Kehong Paper Products Co., Ltd.",
+    tagline: "Bahan kertas & pembungkusan tersuai",
+  },
+  vi: {
+    name: "Foshan Kehong Paper Products Co., Ltd.",
+    tagline: "Vật liệu giấy & bao bì tùy chỉnh",
+  },
+  th: {
+    name: "Foshan Kehong Paper Products Co., Ltd.",
+    tagline: "วัสดุกระดาษและบรรจุภัณฑ์สั่งทำ",
+  },
+  ms: {
+    name: "Foshan Kehong Paper Products Co., Ltd.",
+    tagline: "Bahan kertas & pembungkusan tersuai",
+  },
 } as const;
 
 export function getBrandConfig(locale: string) {
-  return locale === "zh" ? brandConfig.zh : brandConfig.en;
+  return brandConfig[locale as keyof typeof brandConfig] ?? brandConfig.en;
 }
 
 export type SiteHref = "/" | `/${string}`;

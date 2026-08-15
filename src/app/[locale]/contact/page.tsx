@@ -15,7 +15,7 @@ import WeChatContactButton from "@/components/site/WeChatContactButton";
 import { showcaseImages } from "@/data/visuals";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
-import { getInterest } from "@/data/interests";
+import { getInterest, getInterestLabel } from "@/data/interests";
 import { buildProductGroupSummary, getLocalizedProductTitle, getProductGroupId, getSkuBySlug, getSkusByGroupId } from "@/lib/catalog";
 
 export async function generateMetadata({
@@ -96,7 +96,7 @@ export default async function ContactPage({
             name: selectedName,
             url: query.url,
             interestId: interest?.id,
-            interestLabel: interest ? (zh ? interest.label.zh : interest.label.en) : undefined,
+            interestLabel: interest ? getInterestLabel(interest.id, locale) : undefined,
             interestProductType: interest?.formProductType,
           },
         ]

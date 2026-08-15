@@ -1,6 +1,7 @@
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
+import { locales } from "./i18n/locales";
 import { siteConfig } from "./lib/site-config";
 import catalog from "./data/catalog.normalized.json";
 import { getRootLocale } from "./lib/localeRouting";
@@ -17,7 +18,9 @@ const buildId = (
 ).slice(0, 80);
 const commitSha = (process.env.VERCEL_GIT_COMMIT_SHA || "local").slice(0, 80);
 const productDataRevision = String(catalog.generatedAt ?? "catalog-unknown");
-const retiredPublicLocales = new Set(["es", "id", "ms", "th", "vi"]);
+// Spanish remains retired because no reviewed Spanish buyer-facing bundle is
+// published. Indonesian, Vietnamese, Thai and Malay are active locales.
+const retiredPublicLocales = new Set(["es"]);
 const activePackagingSlugs = new Set([
   "paper-bags",
   "takeout-boxes",
@@ -115,8 +118,9 @@ export default function proxy(request: NextRequest) {
   const hostname = request.nextUrl.hostname.toLowerCase();
   const isProductionHost = hostname === canonicalHost || hostname === apexHost;
   const retiredLocaleDestination = getRetiredLocaleDestination(request.nextUrl.pathname);
-  const legacyAllProducts = request.nextUrl.pathname.match(/^\/(en|zh|es|th|vi|id|ms)\/packaging\/all-products\/?$/u);
-  const retiredPackagingRoute = request.nextUrl.pathname.match(/^\/(en|zh)\/packaging\/([^/]+)\/?$/u);
+  const localePattern = locales.join("|");
+  const legacyAllProducts = request.nextUrl.pathname.match(new RegExp(`^/(${localePattern}|es)/packaging/all-products/?$`, "u"));
+  const retiredPackagingRoute = request.nextUrl.pathname.match(new RegExp(`^/(${localePattern})/packaging/([^/]+)/?$`, "u"));
 
   // Retired public locales are permanently consolidated into an active English
   // route. Valid routes keep their path; unsupported legacy paths use the
@@ -176,7 +180,10 @@ export default function proxy(request: NextRequest) {
     return withDiagnostics(NextResponse.redirect(url, 308));
   }
 
-  const locale = request.nextUrl.pathname.split("/")[1] === "zh" ? "zh" : "en";
+  const pathnameLocale = request.nextUrl.pathname.split("/")[1];
+  const locale = locales.includes(pathnameLocale as (typeof locales)[number])
+    ? pathnameLocale
+    : routing.defaultLocale;
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-kehong-locale", locale);
   return withDiagnostics(intlMiddleware(new NextRequest(request, { headers: requestHeaders })));

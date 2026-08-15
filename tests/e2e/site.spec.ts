@@ -85,38 +85,29 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("retired locales permanently redirect to their active English route without losing inquiry or UTM query", async ({ request }) => {
-    const cases = [
-      ["/id", "/en"],
-      ["/id/products", "/en/products"],
-      ["/id/packaging/takeout-boxes", "/en/packaging/takeout-boxes"],
-      ["/id/packaging/pillow-boxes", "/en/packaging"],
-      ["/id/resources/not-a-public-resource", "/en/resources"],
-    ] as const;
-    for (const [from, target] of cases) {
-      const response = await request.get(`${from}?product=Paper%20Bags&utm_source=qa`, { maxRedirects: 0 });
-      expect(response.status()).toBe(308);
-      const location = new URL(response.headers().location!, "https://www.kehong.tech");
-      expect(location.pathname).toBe(target);
-      expect(location.searchParams.get("product")).toBe("Paper Bags");
-      expect(location.searchParams.get("utm_source")).toBe("qa");
+  test("publishes Indonesian, Vietnamese, Thai and Malay routes without locale consolidation", async ({ request }) => {
+    for (const locale of ["id", "vi", "th", "ms"]) {
+      const response = await request.get(`/${locale}?utm_source=qa`, { maxRedirects: 0 });
+      expect(response.status(), locale).toBe(200);
+      expect(response.headers().location, locale).toBeUndefined();
+      expect(await response.text(), locale).toContain(`<html lang="${locale}"`);
     }
 
     const sitemap = await request.get("/sitemap.xml");
     expect(sitemap.status()).toBe(200);
     const sitemapXml = await sitemap.text();
-    expect(sitemapXml).not.toContain("/id/");
-    expect(sitemapXml).toContain("/en/");
-    expect(sitemapXml).toContain("/zh/");
+    for (const locale of ["en", "zh", "id", "vi", "th", "ms"]) {
+      expect(sitemapXml).toContain(`/${locale}/`);
+    }
   });
 
-  test("every retired public locale keeps representative routes permanently consolidated", async ({ request }) => {
+  test("the unreviewed Spanish locale remains permanently consolidated", async ({ request }) => {
     const routes = [
       ["", "/en"], ["products", "/en/products"], ["products/kh-fd-cupfan-150350-pr-001-paper-cup-fan", "/en/products/kh-fd-cupfan-150350-pr-001-paper-cup-fan"],
       ["packaging", "/en/packaging"], ["packaging/paper-bags", "/en/packaging/paper-bags"], ["packaging/pillow-boxes", "/en/packaging"],
       ["resources", "/en/resources"], ["contact", "/en/contact"], ["privacy", "/en/privacy"], ["terms", "/en/terms"],
     ] as const;
-    for (const locale of ["es", "id", "vi", "th", "ms"]) {
+    for (const locale of ["es"]) {
       for (const [route, expectedPath] of routes) {
         const response = await request.get(`/${locale}${route ? `/${route}` : ""}?utm_source=qa`, { maxRedirects: 0 });
         expect(response.status()).toBe(308);

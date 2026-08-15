@@ -20,8 +20,12 @@ describe("launch closure buyer-facing gates", () => {
     expect(options.processes).not.toContain("特种纸");
   });
 
-  it("keeps SEA locales internal until a complete closure exists", () => {
-    expect(Object.keys(localeConfig).sort()).toEqual(["en", "zh"]);
+  it("publishes the reviewed Southeast Asia locale set alongside English and Chinese", () => {
+    expect(Object.keys(localeConfig).sort()).toEqual(["en", "id", "ms", "th", "vi", "zh"]);
+    expect(localeConfig.id.currency).toBe("IDR");
+    expect(localeConfig.vi.currency).toBe("VND");
+    expect(localeConfig.th.currency).toBe("THB");
+    expect(localeConfig.ms.currency).toBe("MYR");
   });
 
   it("keeps location addresses and provider split explicit", () => {
