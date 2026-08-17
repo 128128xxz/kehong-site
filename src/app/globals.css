@@ -5315,8 +5315,8 @@ html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scr
    approved bubble treatment is visible in production without turning the
    rest of the site into a preview-only material theme. */
 html[data-nav-glass="true"] .kh-header {
-  -webkit-backdrop-filter: blur(16px) saturate(108%) contrast(103%);
-  backdrop-filter: blur(16px) saturate(108%) contrast(103%);
+  -webkit-backdrop-filter: blur(16px) saturate(108%) contrast(103%) !important;
+  backdrop-filter: blur(16px) saturate(108%) contrast(103%) !important;
 }
 
 html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link,
