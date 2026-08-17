@@ -1975,6 +1975,221 @@
   }
 }
 
+/* Apple-like liquid-glass treatment for the two primary header bubbles only:
+   the Products disclosure and the quote CTA. The surrounding header material
+   remains unchanged; these controls get a thicker optical edge, a frosted
+   interior and a pointer-following highlight. */
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .68) !important;
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05) 52%, rgba(218, 240, 246, .1)) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .72), inset 0 -1.5px 0 rgba(13, 39, 71, .18), 0 8px 18px rgba(7, 28, 40, .14) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link {
+  min-height: 2.65rem;
+  padding-inline: .9rem;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link > *,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta > * {
+  position: relative;
+  z-index: 1;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 11px;
+  background: linear-gradient(120deg, rgba(255, 255, 255, .12), transparent 42% 64%, rgba(255, 255, 255, .06));
+  pointer-events: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .4), transparent 52%) !important;
+  opacity: .58 !important;
+  pointer-events: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link[aria-expanded="true"],
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:focus-visible {
+  border-color: rgba(255, 255, 255, .9) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .9), inset 0 -1.5px 0 rgba(13, 39, 71, .28), 0 12px 28px rgba(7, 28, 40, .24) !important;
+}
+
+/* Extend the same transparent bubble to every primary navigation control.
+   The fill stays light and see-through; only the edge, typography and glyphs
+   carry the stronger contrast needed for legibility. */
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .68) !important;
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05) 52%, rgba(218, 240, 246, .1)) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .72), inset 0 -1.5px 0 rgba(13, 39, 71, .18), 0 8px 18px rgba(7, 28, 40, .14) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  color: #0d2747 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .82);
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link > *,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link > *,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger > *,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > * {
+  position: relative;
+  z-index: 1;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::before {
+  inset: 1px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  background: linear-gradient(120deg, rgba(255, 255, 255, .12), transparent 42% 64%, rgba(255, 255, 255, .06));
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .4), transparent 52%) !important;
+  opacity: .58 !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  color: #1f73ae !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .88));
+  stroke-width: 2.5;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:focus-visible {
+  border-color: rgba(255, 255, 255, .9) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .9), inset 0 -1.5px 0 rgba(13, 39, 71, .25), 0 10px 22px rgba(7, 28, 40, .2) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link {
+  color: #f7fbff !important;
+  text-shadow: 0 1px 2px rgba(7, 28, 40, .7);
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-3d-icon {
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(4, 19, 31, .85));
+}
+
+/* Softer, more integrated bubble layout: the controls share one visual
+   rhythm instead of reading as a row of rigid cards. */
+html:root[data-ui-material="glass-c"] .kh-desktop-nav {
+  gap: .3rem;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  min-height: 2.55rem;
+  padding-block: .42rem;
+  padding-inline: .78rem;
+  border-width: 1px !important;
+  border-radius: 17px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .58), inset 0 -1px 0 rgba(13, 39, 71, .14), 0 5px 14px rgba(7, 28, 40, .1) !important;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, transform .2s ease;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link > span,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link > span {
+  letter-spacing: -.015em;
+  line-height: 1.1;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .82));
+  stroke-width: 2.35;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-3d-icon {
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(4, 19, 31, .85));
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:focus-visible {
+  border-width: 1.5px !important;
+  border-color: rgba(255, 255, 255, .78) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .78), inset 0 -1px 0 rgba(13, 39, 71, .18), 0 8px 18px rgba(7, 28, 40, .161) !important;
+}
+
 @media (max-width: 760px) {
   .kh-home-hero {
     min-height: min(780px, 100svh);
@@ -2467,6 +2682,558 @@
 
   .signature-highlight { animation: none !important; opacity: 0; }
   .signature-reflection { animation: none !important; opacity: .18; stroke-dashoffset: 0; }
+}
+
+/* Final vivid Glass C cascade: keep this after the legacy preview rules so the
+   material is visible on cinema headers and not reduced to an outline. */
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] {
+  background:
+    linear-gradient(112deg, rgba(9, 30, 25, .72), rgba(54, 118, 101, .48) 42%, rgba(225, 193, 125, .34)),
+    radial-gradient(ellipse at 18% 0%, rgba(209, 247, 232, .34), transparent 46%),
+    rgba(17, 49, 42, .58);
+  border-bottom-color: rgba(224, 246, 236, .48);
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, .18), inset 0 0 34px rgba(214, 246, 232, .12), 0 12px 30px rgba(5, 18, 15, .2);
+  -webkit-backdrop-filter: blur(26px) saturate(180%) contrast(110%);
+  backdrop-filter: blur(26px) saturate(180%) contrast(110%);
+}
+
+html:root[data-ui-material="glass-c"] .kh-button.kh-button-primary,
+html:root[data-ui-material="glass-c"] .kh-button.kh-button-light,
+html:root[data-ui-material="glass-c"] .kh-button.kh-button-ghost,
+html:root[data-ui-material="glass-c"] .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-menu-toggle {
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, .5), rgba(167, 214, 200, .46) 48%, rgba(225, 193, 125, .5)),
+    rgba(178, 220, 206, .46);
+  box-shadow: inset 0 0 24px rgba(255, 255, 255, .24), inset 0 1px 0 rgba(255, 255, 255, .72), 0 12px 26px rgba(8, 27, 22, .18);
+  -webkit-backdrop-filter: blur(20px) saturate(175%) contrast(108%);
+  backdrop-filter: blur(20px) saturate(175%) contrast(108%);
+}
+
+html:root[data-ui-material="glass-c"] .kh-button.kh-button-primary,
+html:root[data-ui-material="glass-c"] .kh-button.kh-button-ghost { color: #f7fff9; }
+html:root[data-ui-material="glass-c"] .kh-button.kh-button-light { color: #102a23; }
+
+/* Vivid full-surface Glass C preview: the material must read across the pane,
+   not only at its outline, including on the dark Hero image. */
+html[data-ui-material="glass-c"] .kh-header {
+  background:
+    linear-gradient(112deg, rgba(9, 30, 25, .72), rgba(54, 118, 101, .48) 42%, rgba(225, 193, 125, .34)),
+    radial-gradient(ellipse at 18% 0%, rgba(209, 247, 232, .34), transparent 46%),
+    rgba(17, 49, 42, .58);
+  border-bottom-color: rgba(224, 246, 236, .48);
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, .18), inset 0 0 34px rgba(214, 246, 232, .12), 0 12px 30px rgba(5, 18, 15, .2);
+  -webkit-backdrop-filter: blur(26px) saturate(180%) contrast(110%);
+  backdrop-filter: blur(26px) saturate(180%) contrast(110%);
+}
+
+html[data-ui-material="glass-c"] .kh-nav-panel,
+html[data-ui-material="glass-c"] .kh-language-menu,
+html[data-ui-material="glass-c"] .kh-mobile-panel {
+  background:
+    linear-gradient(125deg, rgba(242, 255, 249, .62), rgba(172, 218, 203, .52) 52%, rgba(225, 193, 125, .4)),
+    rgba(178, 220, 206, .46);
+  box-shadow: var(--glass-shadow), inset 0 0 38px rgba(255, 255, 255, .25), inset 0 1px 0 rgba(255, 255, 255, .62);
+  -webkit-backdrop-filter: blur(32px) saturate(185%) contrast(110%);
+  backdrop-filter: blur(32px) saturate(185%) contrast(110%);
+}
+
+html[data-ui-material="glass-c"] .kh-glass-surface,
+html[data-ui-material="glass-c"] .kh-panel,
+html[data-ui-material="glass-c"] .kh-system-card,
+html[data-ui-material="glass-c"] .kh-product-system,
+html[data-ui-material="glass-c"] .kh-news-card,
+html[data-ui-material="glass-c"] .kh-detail-hero {
+  background:
+    linear-gradient(125deg, rgba(250, 255, 252, .58), rgba(174, 218, 204, .5) 48%, rgba(225, 193, 125, .38)),
+    radial-gradient(ellipse at 15% 8%, rgba(255, 255, 255, .42), transparent 38%),
+    rgba(178, 220, 206, .44);
+  box-shadow: var(--glass-shadow), inset 0 0 42px rgba(255, 255, 255, .22), inset 0 1px 0 rgba(255, 255, 255, .58);
+  -webkit-backdrop-filter: blur(34px) saturate(185%) contrast(110%);
+  backdrop-filter: blur(34px) saturate(185%) contrast(110%);
+}
+
+html[data-ui-material="glass-c"] .kh-button-primary,
+html[data-ui-material="glass-c"] .kh-button-light,
+html[data-ui-material="glass-c"] .kh-button-secondary,
+html[data-ui-material="glass-c"] .kh-language-trigger,
+html[data-ui-material="glass-c"] .kh-menu-toggle {
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, .5), rgba(167, 214, 200, .46) 48%, rgba(225, 193, 125, .5)),
+    rgba(178, 220, 206, .46);
+  box-shadow: inset 0 0 24px rgba(255, 255, 255, .24), inset 0 1px 0 rgba(255, 255, 255, .72), 0 12px 26px rgba(8, 27, 22, .18);
+  -webkit-backdrop-filter: blur(20px) saturate(175%) contrast(108%);
+  backdrop-filter: blur(20px) saturate(175%) contrast(108%);
+}
+
+html[data-ui-material="glass-c"] .kh-button-primary,
+html[data-ui-material="glass-c"] .kh-button-secondary { color: #f7fff9; }
+html[data-ui-material="glass-c"] .kh-button-light { color: #102a23; }
+
+html[data-ui-material="glass-c"] .kh-product-card,
+html[data-ui-material="glass-c"] .kh-glass-chip,
+html[data-ui-material="glass-c"] .kh-product-mega-cta,
+html[data-ui-material="glass-c"] .kh-mobile-product-cta {
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, .52), rgba(177, 220, 206, .44) 52%, rgba(225, 193, 125, .34)),
+    rgba(178, 220, 206, .4);
+  box-shadow: inset 0 0 26px rgba(255, 255, 255, .2), inset 0 1px 0 rgba(255, 255, 255, .64), 0 8px 20px rgba(8, 27, 22, .12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-ui-material="glass-c"] .kh-glass-surface::after,
+  html[data-ui-material="glass-c"] .kh-panel::after,
+  html[data-ui-material="glass-c"] .kh-system-card::after,
+  html[data-ui-material="glass-c"] .kh-product-system::after,
+  html[data-ui-material="glass-c"] .kh-news-card::after { animation: none; }
+}
+
+/* English Products Mega Menu: make the secondary/tertiary hierarchy scan as a
+   compact directory instead of a loose text field. Keep the taxonomy and
+   links unchanged; this is presentation-only and desktop-scoped. */
+@media (min-width: 1101px) {
+  html[lang="en"][data-ui-material="glass-a"] .kh-product-mega,
+  html[lang="en"][data-ui-material="glass-b"] .kh-product-mega,
+  html[lang="en"][data-ui-material="glass-c"] .kh-product-mega {
+    /* Keep the final fixed-panel centering transform while the popover fades in. */
+    animation-name: kh-nav-popover-in;
+  }
+
+  html[lang="en"] .kh-product-mega-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .85rem;
+  }
+
+  html[lang="en"] .kh-product-mega-section {
+    padding: .9rem .95rem 1rem;
+  }
+
+  html[lang="en"] .kh-product-mega-heading h3 {
+    font-size: 1.05rem;
+    letter-spacing: -.015em;
+  }
+
+  html[lang="en"] .kh-product-mega-description {
+    max-width: 42ch;
+    font-size: .72rem;
+    line-height: 1.4;
+  }
+
+  html[lang="en"] .kh-product-mega-groups {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: .4rem;
+  }
+
+  html[lang="en"] .kh-product-mega-group,
+  html[lang="en"] .kh-product-mega-group + .kh-product-mega-group {
+    display: grid;
+    grid-template-columns: minmax(11.5rem, 30%) minmax(0, 1fr);
+    align-items: stretch;
+    gap: .75rem;
+    min-width: 0;
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, var(--kh-line) 78%, transparent);
+    border-radius: 0;
+    padding: .55rem 0;
+  }
+
+  html[lang="en"] .kh-product-mega-group:first-child {
+    border-top: 0;
+  }
+
+  html[lang="en"] .kh-product-mega-group-heading {
+    align-items: flex-start;
+    gap: .4rem;
+    min-width: 0;
+    margin: 0;
+    padding: .52rem .6rem;
+    border-left: 3px solid var(--kh-brass);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--kh-paper-deep) 62%, transparent);
+  }
+
+  html[lang="en"] .kh-product-mega-group-index {
+    padding-top: .08rem;
+    font-size: .62rem;
+  }
+
+  html[lang="en"] .kh-product-mega-group h4 {
+    color: var(--kh-forest);
+    font-size: .76rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -.005em;
+  }
+
+  html[lang="en"] .kh-product-mega-items {
+    align-content: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(2.25rem, auto);
+    gap: .18rem .28rem;
+    min-width: 0;
+    padding: .18rem;
+    border: 1px solid color-mix(in srgb, var(--kh-line) 72%, transparent);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--kh-surface) 58%, transparent);
+  }
+
+  html[lang="en"] .kh-product-mega .kh-product-mega-items a {
+    display: flex;
+    min-height: 2.25rem;
+    align-items: center;
+    padding: .42rem .5rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: var(--kh-ink);
+    font-size: .74rem;
+    font-weight: 650;
+    line-height: 1.25;
+    white-space: normal;
+  }
+
+  html[lang="en"] .kh-product-mega .kh-product-mega-items a:hover,
+  html[lang="en"] .kh-product-mega .kh-product-mega-items a:focus-visible {
+    border-color: color-mix(in srgb, var(--kh-brass) 62%, transparent);
+    background: color-mix(in srgb, var(--kh-paper-deep) 72%, transparent);
+    color: var(--kh-forest);
+  }
+}
+
+/* ---------- Local-only Glass C preview (soft iOS-style material) ----------
+   A calmer alternative to the high-contrast Glass B treatment. It keeps the
+   document interactive and readable while using a lighter lens, lower-contrast
+   borders and restrained highlights instead of stacked cards and hard shadows. */
+html[data-ui-material="glass-c"] {
+  --glass-tint-neutral: rgba(255, 253, 248, .46);
+  --glass-tint-dark: rgba(16, 42, 35, .56);
+  --glass-tint-gold: rgba(220, 194, 139, .28);
+  --glass-border-light: rgba(255, 255, 255, .48);
+  --glass-border-dark: rgba(23, 56, 47, .16);
+  --glass-frost: 30px;
+  --glass-radius-sm: 12px;
+  --glass-radius-md: 18px;
+  --glass-radius-lg: 24px;
+  --glass-shadow: 0 18px 44px rgba(10, 22, 18, .16), 0 1px 3px rgba(10, 22, 18, .1);
+}
+
+html[data-ui-material="glass-c"] .kh-premium-site {
+  background:
+    radial-gradient(circle at 10% -8%, rgba(220, 194, 139, .1), transparent 32rem),
+    radial-gradient(circle at 92% 18%, rgba(23, 56, 47, .06), transparent 28rem),
+    var(--kh-paper);
+}
+
+html[data-ui-material="glass-c"] .kh-header {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255, 255, 255, .48), transparent 38%),
+    linear-gradient(115deg, rgba(255, 253, 248, .64), rgba(255, 253, 248, .34) 55%, rgba(220, 194, 139, .25)),
+    rgba(255, 253, 248, .42);
+  border-bottom-color: rgba(255, 255, 255, .48);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 8px 24px rgba(10, 22, 18, .08);
+  -webkit-backdrop-filter: blur(var(--glass-frost)) saturate(125%);
+  backdrop-filter: blur(var(--glass-frost)) saturate(125%);
+}
+
+html[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255, 255, 255, .28), transparent 38%),
+    linear-gradient(115deg, rgba(10, 22, 18, .54), rgba(10, 22, 18, .3) 55%, rgba(220, 194, 139, .2)),
+    rgba(10, 22, 18, .36);
+  border-bottom-color: rgba(255, 253, 248, .24);
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(12px) saturate(115%);
+  backdrop-filter: blur(12px) saturate(115%);
+}
+
+html[data-ui-material="glass-c"] .kh-nav-link {
+  border: 1px solid transparent;
+  transition: background-color .22s ease, color .22s ease;
+}
+
+html[data-ui-material="glass-c"] .kh-nav-link:hover,
+html[data-ui-material="glass-c"] .kh-nav-link:focus-visible,
+html[data-ui-material="glass-c"] .kh-nav-link[aria-expanded="true"] {
+  border-color: transparent;
+  background: rgba(255, 253, 248, .24);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .34), 0 4px 12px rgba(10, 22, 18, .06);
+  transform: none;
+}
+
+html[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-nav-link:hover,
+html[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-nav-link:focus-visible {
+  background: rgba(255, 253, 248, .18);
+}
+
+html[data-ui-material="glass-c"] .kh-nav-panel,
+html[data-ui-material="glass-c"] .kh-language-menu,
+html[data-ui-material="glass-c"] .kh-mobile-panel {
+  border-color: rgba(255, 255, 255, .52);
+  background:
+    radial-gradient(circle at 16% 0%, rgba(255, 255, 255, .4), transparent 42%),
+    radial-gradient(circle at 90% 100%, rgba(220, 194, 139, .2), transparent 46%),
+    rgba(255, 253, 248, .38);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, .4);
+  -webkit-backdrop-filter: blur(30px) saturate(160%) contrast(108%);
+  backdrop-filter: blur(30px) saturate(160%) contrast(108%);
+  animation: kh-glass-popover-in .28s var(--kh-ease) both;
+}
+
+html[data-ui-material="glass-c"] .kh-nav-panel::before,
+html[data-ui-material="glass-c"] .kh-language-menu::before,
+html[data-ui-material="glass-c"] .kh-mobile-panel::before {
+  opacity: .8;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, .42), transparent 28% 68%, rgba(220, 194, 139, .2)),
+    radial-gradient(ellipse at 50% -10%, rgba(255, 255, 255, .34), transparent 54%);
+}
+
+html[data-ui-material="glass-c"] .kh-product-mega {
+  border-radius: var(--glass-radius-lg);
+  padding: .65rem;
+}
+
+html[data-ui-material="glass-c"] .kh-product-mega-section,
+html[data-ui-material="glass-c"] .kh-resource-overview,
+html[data-ui-material="glass-c"] .kh-resource-group {
+  border-color: rgba(23, 56, 47, .18);
+  background: rgba(255, 253, 248, .48);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42), 0 8px 20px rgba(10, 22, 18, .06);
+}
+
+html[data-ui-material="glass-c"] .kh-product-mega-section[data-system="finished-packaging"] {
+  background: rgba(220, 194, 139, .24);
+}
+
+html[data-ui-material="glass-c"] .kh-product-mega .kh-product-mega-items a:hover,
+html[data-ui-material="glass-c"] .kh-resource-group a:hover,
+html[data-ui-material="glass-c"] .kh-resource-overview:hover {
+  background: rgba(220, 194, 139, .28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42), 0 3px 10px rgba(10, 22, 18, .05);
+}
+
+html[data-ui-material="glass-c"] .kh-glass-surface,
+html[data-ui-material="glass-c"] .kh-panel,
+html[data-ui-material="glass-c"] .kh-system-card,
+html[data-ui-material="glass-c"] .kh-product-system,
+html[data-ui-material="glass-c"] .kh-news-card,
+html[data-ui-material="glass-c"] .kh-detail-hero {
+  border-color: rgba(23, 56, 47, .28);
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255, 255, 255, .46), transparent 42%),
+    radial-gradient(circle at 92% 100%, rgba(111, 177, 158, .26), transparent 48%),
+    linear-gradient(135deg, rgba(255, 255, 255, .48), rgba(190, 226, 215, .42) 52%, rgba(220, 194, 139, .3)),
+    rgba(190, 225, 214, .38);
+  box-shadow: var(--glass-shadow), inset 0 0 34px rgba(255, 255, 255, .18), inset 0 1px 0 rgba(255, 255, 255, .48);
+  -webkit-backdrop-filter: blur(var(--glass-frost)) saturate(160%) contrast(108%);
+  backdrop-filter: blur(var(--glass-frost)) saturate(160%) contrast(108%);
+}
+
+html[data-ui-material="glass-c"] .kh-glass-surface::after,
+html[data-ui-material="glass-c"] .kh-panel::after,
+html[data-ui-material="glass-c"] .kh-system-card::after,
+html[data-ui-material="glass-c"] .kh-product-system::after,
+html[data-ui-material="glass-c"] .kh-news-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: .96;
+  background:
+    linear-gradient(112deg, rgba(255, 255, 255, .5), rgba(223, 242, 235, .48) 28%, rgba(179, 216, 204, .42) 58%, rgba(220, 194, 139, .38)),
+    radial-gradient(ellipse at 20% 14%, rgba(255, 255, 255, .56), transparent 34%),
+    radial-gradient(ellipse at 82% 86%, rgba(109, 174, 155, .32), transparent 42%);
+  background-size: 180% 180%, 130% 130%, 130% 130%;
+  background-position: 0% 0%, 0% 0%, 100% 100%;
+  mix-blend-mode: normal;
+  animation: kh-glass-c-sheen 10s ease-in-out infinite alternate;
+}
+
+html[data-ui-material="glass-c"] .kh-product-card {
+  border-color: rgba(23, 56, 47, .24);
+  border-radius: var(--glass-radius-sm);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, .34), transparent 52%),
+    linear-gradient(145deg, rgba(255, 253, 248, .3), rgba(220, 194, 139, .12)),
+    rgba(255, 253, 248, .26);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42), 0 8px 20px rgba(10, 22, 18, .07);
+  -webkit-backdrop-filter: blur(16px) saturate(145%) contrast(106%);
+  backdrop-filter: blur(16px) saturate(145%) contrast(106%);
+}
+
+html[data-ui-material="glass-c"] .kh-product-card:hover {
+  border-color: rgba(220, 194, 139, .7);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4), 0 8px 20px rgba(10, 22, 18, .07);
+}
+
+html[data-ui-material="glass-c"] .kh-button,
+html[data-ui-material="glass-c"] .kh-glass-button,
+html[data-ui-material="glass-c"] .kh-language-trigger,
+html[data-ui-material="glass-c"] .kh-menu-toggle {
+  border: 1px solid rgba(255, 255, 255, .52);
+  border-radius: var(--glass-radius-sm);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42), 0 8px 18px rgba(10, 22, 18, .09);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease;
+}
+
+html[data-ui-material="glass-c"] .kh-button::before,
+html[data-ui-material="glass-c"] .kh-language-trigger::before,
+html[data-ui-material="glass-c"] .kh-menu-toggle::before {
+  opacity: .52;
+  background: linear-gradient(115deg, rgba(255, 255, 255, .38), transparent 40% 70%, rgba(220, 194, 139, .18));
+}
+
+html[data-ui-material="glass-c"] .kh-button:hover,
+html[data-ui-material="glass-c"] .kh-language-trigger:hover,
+html[data-ui-material="glass-c"] .kh-menu-toggle:hover {
+  border-color: rgba(220, 194, 139, .72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .36), 0 7px 18px rgba(10, 22, 18, .08);
+  transform: none;
+}
+
+html[data-ui-material="glass-c"] .kh-button:active,
+html[data-ui-material="glass-c"] .kh-language-trigger:active,
+html[data-ui-material="glass-c"] .kh-menu-toggle:active { transform: scale(.99); }
+
+html[data-ui-material="glass-c"] .kh-button-primary { background: rgba(23, 56, 47, .86); color: var(--kh-surface); }
+html[data-ui-material="glass-c"] .kh-button-light { background: rgba(220, 194, 139, .76); color: var(--kh-ink); }
+html[data-ui-material="glass-c"] .kh-button-secondary,
+html[data-ui-material="glass-c"] .kh-language-trigger,
+html[data-ui-material="glass-c"] .kh-menu-toggle {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .48), rgba(255, 253, 248, .18) 58%, rgba(220, 194, 139, .18)),
+    rgba(255, 253, 248, .26);
+  color: var(--kh-forest);
+}
+
+html[data-ui-material="glass-c"] .kh-glass-chip,
+html[data-ui-material="glass-c"] .kh-product-mega-cta,
+html[data-ui-material="glass-c"] .kh-mobile-product-cta {
+  border-color: rgba(23, 56, 47, .2);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .44), rgba(255, 253, 248, .16) 60%, rgba(220, 194, 139, .16)), rgba(255, 253, 248, .26);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42), 0 4px 12px rgba(10, 22, 18, .05);
+  -webkit-backdrop-filter: blur(9px) saturate(120%);
+  backdrop-filter: blur(9px) saturate(120%);
+}
+
+html[data-ui-material="glass-c"] .kh-input {
+  border-color: rgba(23, 56, 47, .22);
+  background: rgba(255, 253, 248, .48);
+  -webkit-backdrop-filter: blur(9px) saturate(115%);
+  backdrop-filter: blur(9px) saturate(115%);
+}
+
+html[data-ui-material="glass-c"] .kh-footer-contact-column {
+  border-color: rgba(255, 253, 248, .16);
+  border-radius: var(--glass-radius-md);
+  background: rgba(255, 253, 248, .08);
+  box-shadow: inset 0 1px 0 rgba(255, 253, 248, .14), 0 10px 24px rgba(0, 0, 0, .06);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  backdrop-filter: blur(14px) saturate(120%);
+}
+
+html[data-ui-material="glass-c"] .kh-mobile-sticky-actions {
+  border-top-color: rgba(255, 253, 248, .42);
+  background:
+    linear-gradient(110deg, rgba(255, 255, 255, .52), rgba(190, 226, 215, .46) 58%, rgba(220, 194, 139, .34)),
+    rgba(190, 225, 214, .42);
+  box-shadow: 0 -10px 24px rgba(10, 22, 18, .08), inset 0 1px 0 rgba(255, 255, 255, .36);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px) saturate(125%);
+}
+
+/* Visible lens movement: the preview should read as glass even over a quiet
+   paper background, not only as a thin outlined card. */
+html[data-ui-material="glass-c"] .kh-header,
+html[data-ui-material="glass-c"] .kh-glass-surface,
+html[data-ui-material="glass-c"] .kh-panel,
+html[data-ui-material="glass-c"] .kh-system-card,
+html[data-ui-material="glass-c"] .kh-product-system,
+html[data-ui-material="glass-c"] .kh-news-card {
+  position: relative;
+  isolation: isolate;
+}
+
+html[data-ui-material="glass-c"] .kh-header::before,
+html[data-ui-material="glass-c"] .kh-glass-surface::before,
+html[data-ui-material="glass-c"] .kh-panel::before,
+html[data-ui-material="glass-c"] .kh-system-card::before,
+html[data-ui-material="glass-c"] .kh-product-system::before,
+html[data-ui-material="glass-c"] .kh-news-card::before {
+  content: "";
+  position: absolute;
+  inset: -55% -24%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(255, 255, 255, .4), transparent 28%),
+    radial-gradient(ellipse at 82% 78%, rgba(220, 194, 139, .22), transparent 34%);
+  filter: blur(16px);
+  opacity: .72;
+  transform: translate3d(-8%, 0, 0) rotate(-6deg);
+  animation: kh-glass-c-lens 8s ease-in-out infinite alternate;
+}
+
+html[data-ui-material="glass-c"] .kh-header-bar,
+html[data-ui-material="glass-c"] .kh-header-inner,
+html[data-ui-material="glass-c"] .kh-glass-surface > *,
+html[data-ui-material="glass-c"] .kh-panel > *,
+html[data-ui-material="glass-c"] .kh-system-card > *,
+html[data-ui-material="glass-c"] .kh-product-system > *,
+html[data-ui-material="glass-c"] .kh-news-card > * { position: relative; z-index: 1; }
+
+@keyframes kh-glass-c-lens {
+  from { transform: translate3d(-8%, 0, 0) rotate(-6deg) scale(1); }
+  to { transform: translate3d(8%, 2%, 0) rotate(4deg) scale(1.06); }
+}
+
+@keyframes kh-glass-c-sheen {
+  from { background-position: 0% 0%, 0% 0%, 100% 100%; }
+  to { background-position: 100% 100%, 42% 22%, 58% 78%; }
+}
+
+@supports not ((backdrop-filter: blur(1px))) {
+  html[data-ui-material="glass-c"] .kh-glass-surface,
+  html[data-ui-material="glass-c"] .kh-panel,
+  html[data-ui-material="glass-c"] .kh-nav-panel,
+  html[data-ui-material="glass-c"] .kh-mobile-panel { background: rgba(255, 253, 248, .92); }
+}
+
+@media (prefers-reduced-motion: reduce), (update: slow) {
+  html[data-ui-material="glass-c"] * {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media (max-width: 760px) {
+  html[data-ui-material="glass-c"] .kh-mobile-panel {
+    border-radius: var(--glass-radius-lg);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, .52), rgba(190, 226, 215, .48) 54%, rgba(220, 194, 139, .34)),
+      rgba(190, 225, 214, .44);
+    box-shadow: var(--glass-shadow), inset 0 0 34px rgba(255, 255, 255, .18), inset 0 1px 0 rgba(255, 255, 255, .48);
+    -webkit-backdrop-filter: blur(30px) saturate(160%) contrast(108%);
+    backdrop-filter: blur(30px) saturate(160%) contrast(108%);
+  }
+
+  html[data-ui-material="glass-c"] .kh-mobile-panel nav a {
+    min-height: 2.75rem;
+    border: 1px solid transparent;
+  }
+
+  html[data-ui-material="glass-c"] .kh-mobile-panel nav a:hover,
+  html[data-ui-material="glass-c"] .kh-mobile-panel nav a:focus-visible {
+    border-color: rgba(23, 56, 47, .12);
+    background: rgba(220, 194, 139, .16);
+  }
 }
 
 /* ---------- Local-only Kehong Liquid Glass UI preview ----------
@@ -3907,4 +4674,801 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
   .signature-path, .signature-liquid { animation: none !important; opacity: 1; clip-path: none; }
   .signature-highlight { animation: none !important; opacity: 0; }
   .signature-reflection { animation: none !important; opacity: .18; stroke-dashoffset: 0; }
+}
+
+/* Glass C is intentionally header-only: restore the page canvas, content
+   cards and body CTAs while keeping the top navigation material visible. */
+html:root[data-ui-material="glass-c"] .kh-premium-site { background: var(--kh-paper); }
+
+html:root[data-ui-material="glass-c"] .kh-glass-surface,
+html:root[data-ui-material="glass-c"] .kh-panel,
+html:root[data-ui-material="glass-c"] .kh-news-card,
+html:root[data-ui-material="glass-c"] .kh-detail-hero {
+  background: var(--kh-surface);
+  border-color: rgba(29, 33, 29, .14);
+  box-shadow: 0 10px 30px rgba(29, 33, 29, .08);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-product-system {
+  background: var(--kh-paper-deep);
+  border-color: var(--kh-brass) rgba(29, 33, 29, .14) rgba(29, 33, 29, .14);
+  box-shadow: 0 14px 32px rgba(29, 33, 29, .06);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-system-card,
+html:root[data-ui-material="glass-c"] .kh-product-card {
+  background: var(--kh-surface);
+  border-color: rgba(29, 33, 29, .14);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-glass-surface::before,
+html:root[data-ui-material="glass-c"] .kh-glass-surface::after,
+html:root[data-ui-material="glass-c"] .kh-panel::before,
+html:root[data-ui-material="glass-c"] .kh-panel::after,
+html:root[data-ui-material="glass-c"] .kh-system-card::before,
+html:root[data-ui-material="glass-c"] .kh-system-card::after,
+html:root[data-ui-material="glass-c"] .kh-product-system::before,
+html:root[data-ui-material="glass-c"] .kh-product-system::after,
+html:root[data-ui-material="glass-c"] .kh-news-card::before,
+html:root[data-ui-material="glass-c"] .kh-news-card::after { content: none; animation: none; }
+
+html:root[data-ui-material="glass-c"] .kh-button-primary,
+html:root[data-ui-material="glass-c"] .kh-button-light {
+  background: var(--kh-brass-soft);
+  color: var(--kh-ink);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-button-secondary {
+  background: transparent;
+  color: var(--kh-ink);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-button-ghost {
+  background: rgba(10, 22, 18, .16);
+  color: var(--kh-surface);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* The only vivid glass buttons are the controls that live in the top bar. */
+html:root[data-ui-material="glass-c"] .kh-header .kh-button,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, .5), rgba(167, 214, 200, .46) 48%, rgba(225, 193, 125, .5)),
+    rgba(178, 220, 206, .46);
+  color: #f7fff9;
+  box-shadow: inset 0 0 24px rgba(255, 255, 255, .24), inset 0 1px 0 rgba(255, 255, 255, .72), 0 12px 26px rgba(8, 27, 22, .18);
+  -webkit-backdrop-filter: blur(20px) saturate(175%) contrast(108%);
+  backdrop-filter: blur(20px) saturate(175%) contrast(108%);
+}
+
+html:root[data-ui-material="glass-c"] .kh-mobile-sticky-actions {
+  background: rgba(255, 253, 248, .94);
+  box-shadow: 0 -10px 24px rgba(29, 33, 29, .12);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* Body actions are deliberately not part of the navigation material. */
+html:root[data-ui-material="glass-c"] main .kh-button {
+  background: var(--kh-brass-soft) !important;
+  color: var(--kh-ink) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html:root[data-ui-material="glass-c"] main .kh-button-ghost {
+  background: rgba(10, 22, 18, .16) !important;
+  color: var(--kh-surface) !important;
+}
+
+/* Pointer-reactive lens: these variables are updated from the real pointer
+   coordinates by UIMaterialPreview; no bitmap is used for the movement. */
+html:root[data-ui-material="glass-c"] .kh-header,
+html:root[data-ui-material="glass-c"] .kh-nav-panel,
+html:root[data-ui-material="glass-c"] .kh-language-menu,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel {
+  --glass-pointer-x: 50%;
+  --glass-pointer-y: 50%;
+  --glass-tilt-x: 0deg;
+  --glass-tilt-y: 0deg;
+}
+
+/* The header lens is driven by pointer coordinates, so remove the old
+   position-only sweep from this surface. */
+html:root[data-ui-material="glass-c"] .kh-header::before { content: none; animation: none; }
+
+html:root[data-ui-material="glass-c"] .kh-header::after,
+html:root[data-ui-material="glass-c"] .kh-nav-panel::after,
+html:root[data-ui-material="glass-c"] .kh-language-menu::after,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(229, 255, 242, .5), transparent 24%),
+    radial-gradient(circle at calc(100% - var(--glass-pointer-x)) calc(100% - var(--glass-pointer-y)), rgba(225, 193, 125, .28), transparent 32%),
+    linear-gradient(115deg, rgba(255, 255, 255, .12), transparent 34% 66%, rgba(255, 255, 255, .08));
+  opacity: .88;
+  transition: opacity .2s ease;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header > *,
+html:root[data-ui-material="glass-c"] .kh-nav-panel > *,
+html:root[data-ui-material="glass-c"] .kh-language-menu > *,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel > * { position: relative; z-index: 1; }
+
+html:root[data-ui-material="glass-c"] .kh-header .kh-button,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  position: relative;
+  transform: perspective(700px) rotateX(var(--glass-tilt-y)) rotateY(var(--glass-tilt-x));
+  transition: transform .12s ease, box-shadow .18s ease, background-position .18s ease;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header .kh-button::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .52), transparent 46%);
+  opacity: .72;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header .kh-button > *,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger > *,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > * { position: relative; z-index: 1; }
+
+/* Keep the primary navigation visible while the page scrolls. Solid-page
+   headers reserve their own height; the cinema header remains an overlay on
+   the hero so the existing homepage composition is unchanged. */
+.kh-header {
+  position: fixed;
+  inset: 0 0 auto;
+  width: 100%;
+}
+
+.kh-header:not([data-variant="cinema"]) + main {
+  padding-block-start: var(--kh-header-height);
+}
+
+.kh-header[data-variant="cinema"] + main {
+  padding-block-start: 0;
+}
+
+/* Preview material selectors intentionally have higher specificity than the
+   base header rule; keep the fixed positioning invariant in every material. */
+html:root[data-ui-material] .kh-header {
+  position: fixed !important;
+  inset: 0 0 auto;
+  width: 100%;
+}
+
+/* Glass C should read like a clear pane over the live page, not a green/gold
+   color wash. Keep the backdrop filter and let the current background show
+   through; all highlights are neutral and pointer-led. */
+html:root[data-ui-material="glass-c"] .kh-header,
+html:root[data-ui-material="glass-c"] .kh-nav-panel,
+html:root[data-ui-material="glass-c"] .kh-language-menu,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel {
+  background: rgba(255, 255, 255, .12) !important;
+  background-image: none !important;
+  border-color: rgba(255, 255, 255, .3) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .14), inset 0 1px 0 rgba(255, 255, 255, .24) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(108%) contrast(103%) !important;
+  backdrop-filter: blur(16px) saturate(108%) contrast(103%) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-nav-panel,
+html:root[data-ui-material="glass-c"] .kh-language-menu,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel {
+  background-color: rgba(255, 255, 255, .2) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header::after,
+html:root[data-ui-material="glass-c"] .kh-nav-panel::after,
+html:root[data-ui-material="glass-c"] .kh-language-menu::after,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel::after {
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .34), transparent 38%) !important;
+  opacity: .62 !important;
+  transition: opacity .12s linear !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header .kh-button,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  background: rgba(255, 255, 255, .16) !important;
+  background-image: none !important;
+  color: inherit !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .32), 0 8px 20px rgba(0, 0, 0, .12) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(110%) !important;
+  backdrop-filter: blur(18px) saturate(110%) !important;
+  transform: none !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header .kh-button::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .38), transparent 52%) !important;
+  opacity: .68 !important;
+}
+
+/* Keep the two scroll-critical mid-page sections laid out before they enter
+   view. Delayed layout here is perceptible as a hitch when the sticky process
+   panel and factory imagery become active together. */
+.kh-home-product-systems,
+.kh-home-process,
+.kh-home-factory,
+.kh-home-industries,
+.kh-home-insights,
+.kh-home-cta {
+  content-visibility: visible;
+  contain-intrinsic-size: none;
+}
+
+/* Do not animate large homepage blocks while the user is actively scrolling;
+   the reveal transition otherwise competes with image decode and sticky
+   positioning at the midpoint of the page. */
+.kh-home-product-systems .kh-reveal-armed,
+.kh-home-process .kh-reveal-armed,
+.kh-home-factory .kh-reveal-armed,
+.kh-home-industries .kh-reveal-armed,
+.kh-home-insights .kh-reveal-armed,
+.kh-home-cta .kh-reveal-armed {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* Give the factory proof block a stronger information hierarchy. */
+.kh-home-factory h2 {
+  max-width: 12ch;
+  font-size: clamp(2.5rem, 5vw, 4.1rem);
+  line-height: 1.04;
+}
+
+.kh-home-factory .kh-section-lede {
+  max-width: 46ch;
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.kh-home-factory ul {
+  gap: .72rem;
+}
+
+.kh-home-factory li {
+  font-size: 1.04rem;
+  line-height: 1.5;
+}
+
+.kh-home-factory [data-location-card] {
+  padding: 1.25rem !important;
+}
+
+.kh-home-factory [data-location-card] .font-semibold {
+  font-size: 1.05rem;
+}
+
+.kh-home-factory [data-location-card] .text-sm {
+  font-size: .95rem;
+  line-height: 1.65;
+}
+
+/* A visible but neutral cold-glass tint: clearer than the previous white
+   wash while avoiding the old yellow/green cast. */
+html:root[data-ui-material="glass-c"] .kh-header,
+html:root[data-ui-material="glass-c"] .kh-nav-panel,
+html:root[data-ui-material="glass-c"] .kh-language-menu,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel {
+  background-color: rgba(216, 237, 245, .22) !important;
+  border-color: rgba(231, 249, 255, .5) !important;
+  box-shadow: 0 14px 32px rgba(21, 43, 54, .2), inset 0 1px 0 rgba(255, 255, 255, .38) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-nav-panel,
+html:root[data-ui-material="glass-c"] .kh-language-menu,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel {
+  background-color: rgba(216, 237, 245, .3) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header::after,
+html:root[data-ui-material="glass-c"] .kh-nav-panel::after,
+html:root[data-ui-material="glass-c"] .kh-language-menu::after,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel::after {
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(226, 248, 255, .52), transparent 38%) !important;
+  opacity: .78 !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header .kh-button,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  background-color: rgba(216, 237, 245, .3) !important;
+  border-color: rgba(231, 249, 255, .56) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42), 0 10px 22px rgba(21, 43, 54, .18) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header .kh-button::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(226, 248, 255, .58), transparent 52%) !important;
+  opacity: .82 !important;
+}
+
+/* Keep the glass surface itself unchanged. Only the navigation glyphs and
+   chevrons receive a higher-contrast color treatment so the UI markers read
+   clearly through the existing transparent material. */
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  color: #0d2747 !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .72));
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-link-3d .kh-nav-3d-icon {
+  color: #0d2747 !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .72));
+}
+
+html:root[data-ui-material="glass-c"] .kh-mobile-panel .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-mobile-panel .kh-nav-chevron {
+  color: #0d2747 !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .72));
+}
+
+/* Give the official lock-up enough presence at desktop widths without
+   changing the header height or the mobile compact layout. */
+@media (min-width: 1101px) {
+  html:root[data-ui-material="glass-c"] .kh-header-brand {
+    gap: .72rem;
+  }
+
+  html:root[data-ui-material="glass-c"] .kh-header-brand-mark {
+    width: clamp(3.1rem, 3.5vw, 3.8rem);
+    height: clamp(3.1rem, 3.5vw, 3.8rem);
+  }
+
+  html:root[data-ui-material="glass-c"] .kh-brand-name {
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    line-height: 1.12;
+  }
+
+  html:root[data-ui-material="glass-c"] .kh-brand-tag {
+    font-size: clamp(.64rem, .8vw, .78rem);
+    letter-spacing: .08em;
+  }
+}
+
+/* Final cascade for the two primary header bubbles. Keep this after the
+   existing Glass C compatibility rules so the material is truly transparent
+   instead of collapsing back to a thin outline. */
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .68) !important;
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05) 52%, rgba(218, 240, 246, .1)) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .72), inset 0 -1.5px 0 rgba(13, 39, 71, .18), 0 8px 18px rgba(7, 28, 40, .14) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link {
+  min-height: 2.65rem;
+  padding-inline: .9rem;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link > *,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta > * {
+  position: relative;
+  z-index: 1;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 11px;
+  background: linear-gradient(120deg, rgba(255, 255, 255, .12), transparent 42% 64%, rgba(255, 255, 255, .06));
+  pointer-events: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .4), transparent 52%) !important;
+  opacity: .58 !important;
+  pointer-events: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu:first-child > .kh-nav-link[aria-expanded="true"],
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:focus-visible {
+  border-color: rgba(255, 255, 255, .9) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .9), inset 0 -1.5px 0 rgba(13, 39, 71, .28), 0 12px 28px rgba(7, 28, 40, .25) !important;
+}
+
+/* Last-pass contrast and transparency for every navigation bubble. */
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  border: 1px solid rgba(255, 255, 255, .68) !important;
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05) 52%, rgba(218, 240, 246, .1)) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .72), inset 0 -1.5px 0 rgba(13, 39, 71, .18), 0 8px 18px rgba(7, 28, 40, .14) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  color: #0d2747 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .82);
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::before {
+  inset: 1px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  background: linear-gradient(120deg, rgba(255, 255, 255, .12), transparent 42% 64%, rgba(255, 255, 255, .06));
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .4), transparent 52%) !important;
+  opacity: .58 !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  color: #1f73ae !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .88));
+  stroke-width: 2.5;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link > *,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link > *,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta > *,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger > *,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > * {
+  position: relative;
+  z-index: 1;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle {
+  color: #f7fbff !important;
+  text-shadow: 0 1px 2px rgba(7, 28, 40, .7);
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-3d-icon {
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(4, 19, 31, .85));
+}
+
+/* Final soft-layout override: keep the bubbles continuous and calm rather
+   than presenting a row of heavy rectangular cards. */
+html:root[data-ui-material="glass-c"] .kh-desktop-nav {
+  gap: .3rem;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  min-height: 2.55rem;
+  padding-block: .42rem;
+  padding-inline: .78rem;
+  border-width: 1px !important;
+  border-radius: 17px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .58), inset 0 -1px 0 rgba(13, 39, 71, .14), 0 5px 14px rgba(7, 28, 40, .1) !important;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, transform .2s ease;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link > span,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link > span {
+  letter-spacing: -.015em;
+  line-height: 1.1;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .82));
+  stroke-width: 2.35;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-3d-icon {
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(4, 19, 31, .85));
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:focus-visible {
+  border-width: 1.5px !important;
+  border-color: rgba(255, 255, 255, .78) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .78), inset 0 -1px 0 rgba(13, 39, 71, .18), 0 8px 18px rgba(7, 28, 40, .16) !important;
+}
+
+/* Final green accent pass: enlarge the glyphs, separate each bubble and let
+   the brand green tint show through the transparent material. */
+html:root[data-ui-material="glass-c"] .kh-desktop-nav {
+  gap: .62rem;
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05) 52%, rgba(218, 240, 246, .1)) !important;
+  border-color: rgba(255, 255, 255, .52) !important;
+  color: #101512 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .84);
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  width: 1.16rem;
+  height: 1.16rem;
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .84));
+  stroke-width: 2.55;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle {
+  color: #f5fff6 !important;
+  border-color: rgba(255, 255, 255, .68) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-3d-icon {
+  color: #279b39 !important;
+}
+
+/* Live navigation glass: this is intentionally scoped to the header so the
+   approved bubble treatment is visible in production without turning the
+   rest of the site into a preview-only material theme. */
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-header-cta,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 2.55rem;
+  padding-block: .42rem;
+  padding-inline: .78rem;
+  gap: .68rem;
+  border: 1px solid rgba(255, 255, 255, .68) !important;
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05) 52%, rgba(218, 240, 246, .1)) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .72), inset 0 -1.5px 0 rgba(13, 39, 71, .18), 0 8px 18px rgba(7, 28, 40, .14) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  color: #101512 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .82);
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link > *,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link > *,
+html[data-nav-glass="true"] .kh-header .kh-header-cta > *,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger > *,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle > * {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::before,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-header-cta::before,
+html[data-nav-glass="true"] .kh-header .kh-header-cta::after,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger::before,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger::after,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle::before,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::before,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html[data-nav-glass="true"] .kh-header .kh-header-cta::before,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger::before,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle::before {
+  inset: 1px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  background: linear-gradient(120deg, rgba(255, 255, 255, .12), transparent 42% 64%, rgba(255, 255, 255, .06));
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-header-cta::after,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger::after,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle::after {
+  background: radial-gradient(circle at var(--glass-pointer-x, 50%) var(--glass-pointer-y, 50%), rgba(255, 255, 255, .4), transparent 52%);
+  opacity: .58;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-icon,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-chevron,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-3d-icon,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle > svg {
+  width: 1.16rem;
+  height: 1.16rem;
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .84));
+  stroke-width: 2.55;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav {
+  gap: .62rem;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link:hover,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html[data-nav-glass="true"] .kh-header .kh-header-cta:hover,
+html[data-nav-glass="true"] .kh-header .kh-header-cta:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger:hover,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle:hover,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle:focus-visible {
+  border-color: rgba(255, 255, 255, .9) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .9), inset 0 -1.5px 0 rgba(13, 39, 71, .24), 0 10px 22px rgba(7, 28, 40, .2) !important;
+}
+
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(4, 19, 31, .72);
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:focus-visible {
+  border-color: rgba(255, 255, 255, .78) !important;
+}
+
+/* Final color separation: green belongs to the glass edge and glyphs; copy
+   stays strictly black or white for a clean, readable lock-up. */
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05) 52%, rgba(218, 240, 246, .1)) !important;
+  border-color: rgba(255, 255, 255, .68) !important;
+  color: #101512 !important;
+  gap: .68rem;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .82);
+}
+
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  color: #279b39 !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, .78) !important;
+  text-shadow: 0 1px 2px rgba(4, 19, 31, .72);
+}
+
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-3d-icon {
+  color: #279b39 !important;
 }
