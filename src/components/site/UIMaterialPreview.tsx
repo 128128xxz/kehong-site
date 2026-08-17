@@ -17,7 +17,11 @@ export default function UIMaterialPreview() {
     root.dataset.uiMaterial = material;
     root.dataset.navGlass = "true";
 
-    const surfaceSelector = ".kh-header, .kh-nav-panel, .kh-language-menu, .kh-mobile-panel";
+    // Keep the lens coordinate on the header itself. Writing the same pointer
+    // values to every bubble made each control render its own moving hotspot,
+    // so neighboring bubbles appeared to move in sync. The header is the
+    // single optical surface; controls sit above it as static clear bubbles.
+    const header = document.querySelector<HTMLElement>(".kh-header");
     let frame = 0;
     let lastEvent: PointerEvent | null = null;
 
@@ -27,20 +31,15 @@ export default function UIMaterialPreview() {
 
       const event = lastEvent;
       lastEvent = null;
-      const target = event.target instanceof Element
-        ? event.target.closest<HTMLElement>(surfaceSelector)
-        : null;
-      if (!target) return;
+      if (!header) return;
 
-      const rect = target.getBoundingClientRect();
+      const rect = header.getBoundingClientRect();
       if (rect.width <= 0 || rect.height <= 0) return;
 
       const x = Math.max(0, Math.min(100, ((event.clientX - rect.left) / rect.width) * 100));
       const y = Math.max(0, Math.min(100, ((event.clientY - rect.top) / rect.height) * 100));
-      target.style.setProperty("--glass-pointer-x", `${x.toFixed(2)}%`);
-      target.style.setProperty("--glass-pointer-y", `${y.toFixed(2)}%`);
-      target.style.setProperty("--glass-tilt-x", `${((x - 50) * 0.06).toFixed(2)}deg`);
-      target.style.setProperty("--glass-tilt-y", `${((50 - y) * 0.04).toFixed(2)}deg`);
+      header.style.setProperty("--glass-pointer-x", `${x.toFixed(2)}%`);
+      header.style.setProperty("--glass-pointer-y", `${y.toFixed(2)}%`);
     };
 
     const handlePointerMove = (event: PointerEvent) => {
@@ -52,6 +51,8 @@ export default function UIMaterialPreview() {
     return () => {
       document.removeEventListener("pointermove", handlePointerMove);
       if (frame) window.cancelAnimationFrame(frame);
+      header?.style.removeProperty("--glass-pointer-x");
+      header?.style.removeProperty("--glass-pointer-y");
       delete root.dataset.uiMaterial;
       delete root.dataset.navGlass;
     };

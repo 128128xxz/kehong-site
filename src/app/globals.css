@@ -5311,6 +5311,268 @@ html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scr
   color: #279b39 !important;
 }
 
+/* Last cascade guard: these rules intentionally come after every legacy
+   preview pass so hover/focus/expanded state cannot reintroduce a per-bubble
+   hotspot, white icon halo, or selective bright border. */
+html[data-nav-glass="true"] .kh-header,
+html:root[data-ui-material="glass-c"] .kh-header {
+  --glass-pointer-x: 50%;
+  --glass-pointer-y: 50%;
+}
+
+html[data-nav-glass="true"] .kh-header::before,
+html:root[data-ui-material="glass-c"] .kh-header::before {
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .24) 0, rgba(255, 255, 255, .1) 19%, transparent 48%),
+    linear-gradient(112deg, rgba(255, 255, 255, .08), transparent 34% 68%, rgba(255, 255, 255, .06));
+  filter: blur(8px);
+  opacity: .9;
+  transform: translateZ(0);
+  animation: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header::after,
+html:root[data-ui-material="glass-c"] .kh-header::after {
+  content: none !important;
+  animation: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header > .kh-header-bar,
+html:root[data-ui-material="glass-c"] .kh-header > .kh-header-bar {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-header-cta,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  background: rgba(255, 255, 255, .1) !important;
+  background-image: none !important;
+  border: 1px solid rgba(255, 255, 255, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .48), inset 0 -1px 0 rgba(9, 27, 39, .14), 0 7px 18px rgba(7, 28, 40, .14) !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link:hover,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html[data-nav-glass="true"] .kh-header .kh-header-cta:hover,
+html[data-nav-glass="true"] .kh-header .kh-header-cta:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger:hover,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle:hover,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:focus-visible {
+  background: rgba(255, 255, 255, .1) !important;
+  border: 1px solid rgba(255, 255, 255, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .48), inset 0 -1px 0 rgba(9, 27, 39, .14), 0 7px 18px rgba(7, 28, 40, .14) !important;
+  transform: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-header-cta::after,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger::after,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  content: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-icon,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-chevron,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-3d-icon,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle > svg,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  color: #279b39 !important;
+  fill: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  stroke: currentColor !important;
+}
+
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle {
+  background: rgba(255, 255, 255, .1) !important;
+  border: 1px solid rgba(255, 255, 255, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .48), inset 0 -1px 0 rgba(9, 27, 39, .14), 0 7px 18px rgba(7, 28, 40, .14) !important;
+}
+
+/* -------------------------------------------------------------------------
+   Shared navigation lens (final interaction model)
+
+   The pointer light belongs to the header pane, not to each control. Earlier
+   preview passes put the same radial gradient on every bubble, which made
+   neighboring controls appear to move together and caused inconsistent white
+   hover states. Keep the bubbles as clear, static controls and let one lens
+   travel across the live header surface.
+   ------------------------------------------------------------------------- */
+html[data-nav-glass="true"] .kh-header,
+html:root[data-ui-material="glass-c"] .kh-header {
+  --glass-pointer-x: 50%;
+  --glass-pointer-y: 50%;
+  position: relative;
+  isolation: isolate;
+}
+
+html[data-nav-glass="true"] .kh-header::before,
+html:root[data-ui-material="glass-c"] .kh-header::before {
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at var(--glass-pointer-x) var(--glass-pointer-y),
+      rgba(255, 255, 255, .24) 0,
+      rgba(255, 255, 255, .1) 19%,
+      transparent 48%
+    ),
+    linear-gradient(112deg, rgba(255, 255, 255, .08), transparent 34% 68%, rgba(255, 255, 255, .06));
+  filter: blur(8px);
+  opacity: .9;
+  transform: translateZ(0);
+  animation: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header::after,
+html:root[data-ui-material="glass-c"] .kh-header::after {
+  content: none !important;
+  animation: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header > .kh-header-bar,
+html:root[data-ui-material="glass-c"] .kh-header > .kh-header-bar {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-header-cta,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  background: rgba(255, 255, 255, .1) !important;
+  background-image: none !important;
+  border: 1px solid rgba(255, 255, 255, .58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .48),
+    inset 0 -1px 0 rgba(9, 27, 39, .14),
+    0 7px 18px rgba(7, 28, 40, .14) !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* The state does not recolor or whiten individual bubbles. Focus is still
+   exposed by the global :focus-visible outline for keyboard users. */
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link:hover,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html[data-nav-glass="true"] .kh-header .kh-header-cta:hover,
+html[data-nav-glass="true"] .kh-header .kh-header-cta:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger:hover,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle:hover,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:focus-visible {
+  background: rgba(255, 255, 255, .1) !important;
+  border-color: rgba(255, 255, 255, .58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .48),
+    inset 0 -1px 0 rgba(9, 27, 39, .14),
+    0 7px 18px rgba(7, 28, 40, .14) !important;
+  transform: none !important;
+}
+
+/* Disable per-bubble moving hotspots; the header ::before above is the only
+   pointer-reactive lens. */
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-header-cta::after,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger::after,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  content: none !important;
+}
+
+/* Keep the icon ink pure brand green. The previous white drop-shadow was
+   visible through the transparent controls as a second, muddy color. */
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-icon,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-chevron,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-3d-icon,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle > svg,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  color: #279b39 !important;
+  fill: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  stroke: currentColor !important;
+}
+
 /* Live navigation glass: this is intentionally scoped to the header so the
    approved bubble treatment is visible in production without turning the
    rest of the site into a preview-only material theme. */
@@ -5476,4 +5738,121 @@ html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scr
 html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-chevron,
 html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-3d-icon {
   color: #279b39 !important;
+}
+
+/* Authoritative end-of-file navigation lens cascade. */
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle {
+  background: rgba(255, 255, 255, .1) !important;
+  border: 1px solid rgba(255, 255, 255, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .48), inset 0 -1px 0 rgba(9, 27, 39, .14), 0 7px 18px rgba(7, 28, 40, .14) !important;
+}
+html[data-nav-glass="true"] .kh-header::before,
+html:root[data-ui-material="glass-c"] .kh-header::before {
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .24) 0, rgba(255, 255, 255, .1) 19%, transparent 48%),
+    linear-gradient(112deg, rgba(255, 255, 255, .08), transparent 34% 68%, rgba(255, 255, 255, .06));
+  filter: blur(8px);
+  opacity: .9;
+  transform: translateZ(0);
+  animation: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header::after,
+html:root[data-ui-material="glass-c"] .kh-header::after {
+  content: none !important;
+  animation: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header > .kh-header-bar,
+html:root[data-ui-material="glass-c"] .kh-header > .kh-header-bar {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-header-cta,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  background: rgba(255, 255, 255, .1) !important;
+  background-image: none !important;
+  border: 1px solid rgba(255, 255, 255, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .48), inset 0 -1px 0 rgba(9, 27, 39, .14), 0 7px 18px rgba(7, 28, 40, .14) !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link:hover,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html[data-nav-glass="true"] .kh-header .kh-header-cta:hover,
+html[data-nav-glass="true"] .kh-header .kh-header-cta:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger:hover,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger:focus-visible,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle:hover,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger:focus-visible,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:hover,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:focus-visible {
+  background: rgba(255, 255, 255, .1) !important;
+  border: 1px solid rgba(255, 255, 255, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .48), inset 0 -1px 0 rgba(9, 27, 39, .14), 0 7px 18px rgba(7, 28, 40, .14) !important;
+  transform: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html[data-nav-glass="true"] .kh-header .kh-header-cta::after,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger::after,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::after,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::after {
+  content: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-icon,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-chevron,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-3d-icon,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle > svg,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
+  color: #279b39 !important;
+  fill: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  stroke: currentColor !important;
 }
