@@ -160,8 +160,14 @@ export default function proxy(request: NextRequest) {
   const needsRootRedirect = request.nextUrl.pathname === "/";
 
   if (needsRootRedirect) {
+    // Keep an explicit language choice when the browser or a legacy link
+    // returns to the unprefixed root. next-intl writes NEXT_LOCALE, while the
+    // site switcher also writes kehong_locale; either cookie must outrank
+    // mainland geo/browser-language detection.
+    const localeCookie = request.cookies.get("kehong_locale")?.value
+      ?? request.cookies.get("NEXT_LOCALE")?.value;
     const locale = getRootLocale({
-      cookieLocale: request.cookies.get("kehong_locale")?.value,
+      cookieLocale: localeCookie,
       country: request.headers.get("x-vercel-ip-country"),
       acceptLanguage: request.headers.get("accept-language"),
     });
