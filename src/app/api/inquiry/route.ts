@@ -4,6 +4,7 @@ import { buildInquiryEmail } from "@/lib/inquiryEmail";
 import { getInquiryEmailConfig, isValidEmail } from "@/lib/emailConfig";
 import { absoluteSiteUrl } from "@/lib/site-config";
 import { getInterest } from "@/data/interests";
+import { persistCustomerInquiry } from "@/server/b2b-intelligence/service";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -281,5 +282,28 @@ export async function POST(request: Request) {
   recentRequests.set(ip, now);
   recentInquiryKeys.set(inquiryKey, { timestamp: now, status: "accepted" });
   console.info("Kehong inquiry email accepted", { requestId, emailId, at: new Date().toISOString(), status: "accepted" });
+  try {
+    const emailDomain = inquiry.email.includes("@") ? inquiry.email.split("@").pop() ?? null : null;
+    await persistCustomerInquiry({
+      source: "website_contact",
+      sourceLabel: "客户主动提交询盘",
+      status: "new",
+      customerName: inquiry.name || null,
+      customerEmail: inquiry.email || null,
+      customerPhone: inquiry.phone || inquiry.whatsapp || null,
+      customerMessage: inquiry.message || null,
+      companyName: inquiry.company || null,
+      companyDomain: emailDomain,
+      companyWebsite: null,
+      countryName: inquiry.country || null,
+      firstReferrer: inquiry.referrer || null,
+      latestReferrer: inquiry.referrer || null,
+      firstUtmSource: inquiry.utmSource || null,
+      latestUtmSource: inquiry.utmSource || null,
+      linkedInquiryId: null,
+    });
+  } catch (error) {
+    console.error("Kehong inquiry persistence unavailable", { requestId, category: error instanceof Error ? error.name : "unknown" });
+  }
   return NextResponse.json({ ok: true, code: "ACCEPTED", status: "PROVIDER_ACCEPTED", requestId, message: "Your inquiry has been accepted by the Kehong website." });
 }

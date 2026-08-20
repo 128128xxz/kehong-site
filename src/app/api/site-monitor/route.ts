@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAllSkus } from "@/lib/catalog";
 import { siteConfig } from "@/lib/site";
+import { cleanupVisitorIntelligence } from "@/server/b2b-intelligence/service";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -107,6 +108,13 @@ export async function GET(request: Request) {
     return NextResponse.json({ status: "monitor_not_configured" }, { status: 503 });
   }
 
+  let intelligenceCleanup: { visitEvents: number; providerCache: number; activityLogs: number } | null = null;
+  try {
+    intelligenceCleanup = await cleanupVisitorIntelligence();
+  } catch {
+    intelligenceCleanup = null;
+  }
+
   const results = await Promise.all(
     getMonitorPaths().map(async (pathname) => {
       const result = await readResponse(new URL(pathname, siteConfig.url).toString());
@@ -121,6 +129,7 @@ export async function GET(request: Request) {
       checkedAt: new Date().toISOString(),
       failureCount: failures.length,
       alertSent,
+      intelligenceCleanup,
       failures,
     },
     { status: failures.length ? 503 : 200, headers: { "Cache-Control": "no-store, max-age=0" } },
