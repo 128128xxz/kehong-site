@@ -453,7 +453,7 @@ test.describe("Kehong production flows", () => {
 
   test("homepage section sequence stays unique after the hero", async ({ page }) => {
     await page.goto("/en", { waitUntil: "networkidle" });
-    await expect(page.locator(".kh-kicker-index")).toHaveText(["02", "03", "04", "05", "06"]);
+    await expect(page.locator(".kh-kicker-index")).toHaveText(["02", "03", "04", "05", "06", "07"]);
   });
 
   test("home CTA keeps a compact brief and resource links", async ({ page }) => {
@@ -504,7 +504,7 @@ test.describe("Kehong production flows", () => {
 
     await page.goto("/zh", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".kh-hero-index")).toContainText("佛山科宏纸品有限公司");
-    await expect(page.locator(".kh-hero-index")).toContainText("20+ 年");
+    await expect(page.locator(".kh-hero-index")).toContainText("OEM / ODM");
 
     await page.goto("/zh/contact", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".kh-fig-caption").filter({ hasText: "图01 — 食品纸盒实拍" }).first()).toBeVisible();

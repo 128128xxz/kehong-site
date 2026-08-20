@@ -3821,6 +3821,22 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
 
 .kh-home-insights .kh-news-card { box-shadow: 0 10px 24px rgba(29, 33, 29, .05); }
 
+/* Compact resource entries on the homepage: three linked panels that stay
+   visually quiet next to the section heading while giving clear targets. */
+.kh-resource-entry {
+  display: block;
+  border-radius: 10px;
+  transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+.kh-resource-entry:hover {
+  border-color: var(--kh-brass);
+  box-shadow: 0 14px 30px rgba(29, 33, 29, .09);
+  transform: translateY(-2px);
+}
+.kh-resource-entry .kh-text-link { color: var(--kh-brass); }
+.kh-resource-entry .kh-text-link svg { transition: transform .16s ease; }
+.kh-resource-entry:hover .kh-text-link svg { transform: translateX(2px); }
+
 /* Mega menu: two deliberate columns, visible group rhythm, one terminal row. */
 .kh-product-mega {
   padding: 1rem;

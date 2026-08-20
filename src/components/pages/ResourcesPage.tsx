@@ -1,45 +1,48 @@
-import { ArrowRight, FileText, Palette, Ruler, Scissors } from "lucide-react";
+import { ArrowRight, Box, FileText, Palette, Ruler, Scissors, Send } from "lucide-react";
+import Image from "next/image";
 import Header from "@/components/site/Header";
 import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
+import NewsCard from "@/components/site/NewsCard";
 import { SectionKicker } from "@/components/home/annotations";
 import { Reveal } from "@/components/home/interactive";
 import { Link } from "@/i18n/navigation";
-import { finishOptions, finishOptionsZh, resourceApplicationSlugs, resourceItems, resourceZhCopy } from "@/data/siteContent";
+import { resourceApplicationSlugs, resourceItems, resourceZhCopy } from "@/data/siteContent";
+import { getPublishedNews, type NewsLocale } from "@/content/news";
+import { getTranslations } from "next-intl/server";
 
 const icons = [Palette, FileText, Scissors, Ruler, FileText, FileText];
 
-export default function ResourcesPage({ locale }: { locale: string }) {
+export default async function ResourcesPage({ locale }: { locale: string }) {
   const isZh = locale === "zh";
+  const t = await getTranslations({ locale, namespace: "Stage2.resources" });
   const guideCount = resourceItems.filter((item) => item.type === "guide").length;
   const requestCount = resourceItems.filter((item) => resourceApplicationSlugs.includes(item.slug as (typeof resourceApplicationSlugs)[number])).length;
+  const articles = getPublishedNews(locale as NewsLocale).slice(0, 3);
+
   return (
     <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">
       <Header />
       <main>
         <PageHero
           index="01"
-          kicker={isZh ? "科宏 · 资源中心" : "Kehong · Packaging resources"}
-          title={isZh ? "包装设计、材料与结构准备指南" : "Packaging guides for artwork, materials, structure and sampling"}
-          lede={
-            isZh
-              ? "这些指南涵盖设计稿准备、材料选择、刀模图、表面工艺和打样资料。"
-              : "Use these guides to prepare artwork, compare materials and finishes, request a dieline and organize sampling information before production."
-          }
+          kicker={t("hero.kicker")}
+          title={t("hero.title")}
+          lede={t("hero.lede")}
           meta={[
             isZh
               ? `${guideCount} 份指南 · ${requestCount} 个申请入口`
               : `${guideCount} guides · ${requestCount} request channels`,
-            "OEM / ODM",
-            isZh ? "中国广东佛山" : "Foshan, Guangdong, China",
+            t("hero.metaOem"),
+            t("hero.metaLocation"),
           ]}
         >
           <Link href="/contact" className="kh-button kh-button-light">
-            {isZh ? "咨询包装专家" : "Talk to a packaging expert"}
+            {t("hero.ctaExpert")}
             <ArrowRight className="size-4" />
           </Link>
           <Link href="/capabilities" className="kh-button kh-button-ghost">
-            {isZh ? "了解工厂能力" : "Explore capabilities"}
+            {t("hero.ctaCapabilities")}
           </Link>
         </PageHero>
 
@@ -48,12 +51,8 @@ export default function ResourcesPage({ locale }: { locale: string }) {
             <Reveal>
               <div className="kh-section-heading">
                 <div>
-                  <SectionKicker index="02" text={isZh ? "指南与申请" : "Guides & requests"} />
-                  <h2>
-                  {isZh
-                    ? "包装设计、材料与结构准备指南"
-                    : "Practical guides for artwork, materials and packaging structure."}
-                  </h2>
+                  <SectionKicker index="02" text={t("guides.kicker")} />
+                  <h2>{t("guides.title")}</h2>
                 </div>
               </div>
             </Reveal>
@@ -68,7 +67,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                         <span className="grid size-10 place-items-center rounded-full bg-(--kh-brass-soft)/35 text-(--kh-brass)">
                           <Icon className="size-5" />
                         </span>
-                        <span className="kh-mono text-(--kh-brass)">{item.type === "request" ? (isZh ? "申请" : "Request") : (isZh ? "指南" : "Guide")}</span>
+                        <span className="kh-mono text-(--kh-brass)">{item.type === "request" ? t("guides.requestLabel") : t("guides.guideLabel")}</span>
                       </div>
                       <h3 className="mt-4 text-xl font-bold">{copy.title}</h3>
                       <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{copy.summary}</p>
@@ -81,7 +80,7 @@ export default function ResourcesPage({ locale }: { locale: string }) {
                         ))}
                       </ul>
                       <Link href={item.type === "request" ? "/contact" : `/resources/${item.slug}`} className="kh-text-link mt-5">
-                        {item.type === "request" ? (isZh ? "申请刀模图" : "Send a request") : (isZh ? "阅读指南" : "Read guide")}
+                        {item.type === "request" ? t("guides.sendRequest") : t("guides.readGuide")}
                       </Link>
                     </article>
                   );
@@ -96,40 +95,80 @@ export default function ResourcesPage({ locale }: { locale: string }) {
             <Reveal>
               <div className="kh-section-heading">
                 <div>
-                  <SectionKicker index="03" text={isZh ? "表面工艺" : "Finishing options"} />
-                  <h2>{isZh ? "常用表面工艺一览" : "Finishes at a glance"}</h2>
+                  <SectionKicker index="03" text={t("news.kicker")} />
+                  <h2>{t("news.title")}</h2>
+                  <p className="kh-section-lede mt-5">{t("news.lede")}</p>
+                </div>
+                <div>
+                  <Link href="/news" className="kh-button kh-button-outline">
+                    {t("news.viewAll")}<ArrowRight className="size-4" />
+                  </Link>
                 </div>
               </div>
             </Reveal>
-            <div className="grid gap-6 lg:grid-cols-2">
-              <Reveal>
-                <div className="kh-panel h-full p-7">
-                  <p className="kh-mono text-(--kh-brass)">{isZh ? "可选工艺" : "Finishing requirements"}</p>
-                  <div className="mt-5 grid gap-2 sm:grid-cols-2">
-                    {(isZh ? finishOptionsZh : finishOptions).map((finish) => (
-                      <p key={finish} className="rounded-md bg-(--kh-paper) px-4 py-3 text-sm font-medium text-(--kh-ink)">
-                        {finish}
-                      </p>
-                    ))}
-                  </div>
+            <Reveal delay={80}>
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-news-preview-grid>
+                {articles.map((article) => <NewsCard key={article.slug} article={article} locale={locale} />)}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="kh-section">
+          <div className="kh-shell">
+            <Reveal>
+              <div className="kh-section-heading">
+                <div>
+                  <SectionKicker index="04" text={t("studio.kicker")} />
+                  <h2>{t("studio.title")}</h2>
+                  <p className="kh-section-lede mt-5">{t("studio.lede")}</p>
                 </div>
-              </Reveal>
-              <Reveal delay={120}>
-                <div className="h-full rounded-lg texture-ink p-7">
-                  <h3 className="text-2xl font-semibold text-white">
-                    {isZh ? "需要结构建议？" : "Need a structure recommendation?"}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-white/75">
-                    {isZh
-                      ? "如需结构建议，请提供产品尺寸、重量、使用方式和运输要求。"
-                      : "Share the product use, contact conditions and specification details needed to select a suitable food-packaging material."}
-                  </p>
-                  <Link href="/contact" className="kh-button kh-button-light mt-5">
-                    {isZh ? "咨询包装专家" : "Start guided RFQ"}
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="kh-panel grid gap-6 p-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:items-center">
+                <div>
+                  <span className="grid size-12 place-items-center rounded-full bg-(--kh-brass-soft)/35 text-(--kh-brass)">
+                    <Box className="size-6" />
+                  </span>
+                  <h3 className="mt-5 text-xl font-bold">{isZh ? "结构参考工具" : "Structure reference tool"}</h3>
+                  <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{t("studio.positioning")}</p>
+                  <Link href="/model-preview" className="kh-button kh-button-dark mt-6">
+                    {t("studio.explore")}<ArrowRight className="size-4" />
                   </Link>
                 </div>
-              </Reveal>
-            </div>
+                <div className="kh-media-shade relative aspect-video overflow-hidden rounded-lg">
+                  <Image
+                    src="/media/shared/pizza-box-structure-preview-reference.png"
+                    alt={isZh ? "3D 包装结构预览界面" : "3D packaging structure preview"}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="kh-section kh-section-cta">
+          <div className="kh-shell">
+            <Reveal>
+              <div className="mx-auto max-w-2xl text-center">
+                <SectionKicker index="05" text={t("reference.kicker")} light />
+                <h2 className="mt-4">{t("reference.title")}</h2>
+                <p className="kh-section-lede mt-4 text-(--kh-muted)/80">{t("reference.lede")}</p>
+                <div className="kh-cta-actions mt-6 justify-center">
+                  <Link href="/contact" className="kh-button kh-button-light">
+                    <Send className="size-4" />
+                    {t("reference.sendFile")}
+                  </Link>
+                  <Link href="/contact" className="kh-button kh-button-ghost">
+                    {t("reference.discuss")}<ArrowRight className="size-4" />
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
       </main>

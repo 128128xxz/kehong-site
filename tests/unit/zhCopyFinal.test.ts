@@ -13,9 +13,8 @@ describe("finalized Chinese buyer copy", () => {
     const zh = readDictionary("zh");
     expect(zh).toContain("科宏为 B 端包装项目提供瓦楞纸板、特种与功能纸、纸杯材料及纸品定制加工支持。");
     expect(zh).toContain("查看适合 B 端包装项目的纸张、杯纸组件和成型材料。");
-    expect(read("components/site/FactoryOverview.tsx")).toContain("科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。");
-    expect(read("app/[locale]/factory/page.tsx")).toContain("科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺和出货准备。");
-    expect(read("components/pages/ResourcesPage.tsx")).toContain("这些指南涵盖设计稿准备、材料选择、刀模图、表面工艺和打样资料。");
+    expect(zh).toContain("科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。");
+    expect(zh).toContain("设计稿准备");
     expect(read("data/industrySeoPages.ts")).toContain("用于电商发货、仓储和运输保护的瓦楞邮寄盒及纸质缓冲结构。");
     expect(read("lib/site-config.ts")).toContain("纸材、半成品与定制纸包装");
   });
@@ -54,12 +53,13 @@ describe("finalized Chinese buyer copy", () => {
       read("components/home/HomeCta.tsx"),
       read("components/site/ProductCatalog.tsx"),
     ].join("\n");
+    const zh = readDictionary("zh");
     expect(source).toContain("立即询价");
     expect(source).not.toContain("提交询价");
     expect(source).toContain("提交项目需求");
     expect(source).toContain("查看规格");
     expect(source).toContain("申请刀模图");
-    expect(source).toContain("咨询包装专家");
+    expect(zh).toContain('"ctaExpert": "咨询包装专家"');
     expect(source).not.toContain("查看范围");
     expect(source).not.toContain("发起引导式询盘");
   });

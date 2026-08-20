@@ -4,67 +4,18 @@ import PageHero from "@/components/site/PageHero";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
-import { capabilities, complianceDocuments, processSteps } from "@/data/siteContent";
+import { getTranslations } from "next-intl/server";
 
-const capabilityZh: Record<string, { title: string; summary: string; buyerValue: string; input: string }> = {
-  "structural-design": {
-    title: "结构设计",
-    summary: "报价前核对产品占位、开合、支撑和装箱顺序。",
-    buyerValue: "结构简报更清晰时，贴合和组装意外更少。",
-    input: "产品尺寸、参考图或现有刀线图。",
-  },
-  "artwork-prepress": {
-    title: "稿件与印前",
-    summary: "对照已确认结构，核对稿件、印刷区域和版本记录。",
-    buyerValue: "生产文件准备前，明确需要确认的内容。",
-    input: "稿件、品牌色、Logo 文件和目标印刷方式",
-  },
-  "prototyping": {
-    title: "打样",
-    summary: "通过结构样核对尺寸、贴合、开合和手感后再投产。",
-    buyerValue: "用样品把包装想法变成可评审的实物。",
-    input: "目标尺寸、产品样或参考结构",
-  },
-  "printing-finishing": {
-    title: "印刷与后工艺",
-    summary: "根据材料和结构，确认印刷要求和可用表面处理。",
-    buyerValue: "工艺选择与基材、稿件和使用场景保持一致。",
-    input: "印刷颜色、参考工艺和应用优先级",
-  },
-  "die-cutting-assembly": {
-    title: "模切与组装",
-    summary: "将版面、折线、切线、粘合和组装要求作为完整流程逐项核对。",
-    buyerValue: "清晰的结构交接能让加工和装箱过程可重复。",
-    input: "刀线图、结构图或实物参考",
-  },
-  "quality-control": {
-    title: "质量控制",
-    summary: "贯穿项目的规格、稿件、尺寸、后工艺和终检核对。",
-    buyerValue: "质检节点对应项目简报要求，不做泛泛承诺。",
-    input: "已确认规格、稿件和检验优先级",
-  },
-  "packing-export-support": {
-    title: "包装与出口支持",
-    summary: "为海外 B2B 项目协调装箱信息和目的地要求。",
-    buyerValue: "产品、装箱与目的地信息保持对齐交接。",
-    input: "目的国、装箱偏好和运输简报",
-  },
-};
+type CapabilityItem = { title: string; what: string; materials: string; output: string };
+type CapabilityGroup = { kicker: string; lede: string; items: CapabilityItem[] };
 
-const processZh: Record<string, { title: string; body: string }> = {
-  "01": { title: "询盘", body: "提供产品、尺寸、数量和目标市场。" },
-  "02": { title: "结构评审", body: "确认材料、形式、开合、贴合和项目约束。" },
-  "03": { title: "打样", body: "按项目需要评审结构样或项目样。" },
-  "04": { title: "生产", body: "将已确认规格投入印刷、加工和组装。" },
-  "05": { title: "质量检验", body: "装箱和出货前核对既定检验节点。" },
-  "06": { title: "出口交接", body: "确认装箱、目的地和单证细节后发货。" },
-};
-
-export default function CapabilitiesPage({ locale }: { locale: string }) {
-  const isZh = locale === "zh";
-  const qualityChecks = isZh
-    ? ["来料检验", "稿件与尺寸核对", "装箱终检"]
-    : ["Incoming material inspection", "Artwork and dimension check", "Final packing inspection"];
+export default async function CapabilitiesPage({ locale }: { locale: string }) {
+  const t = await getTranslations({ locale, namespace: "Stage2" });
+  const groups = t.raw("capabilities.groups") as CapabilityGroup[];
+  const startSteps = t.raw("capabilities.start.steps") as Array<{ title: string; body: string }>;
+  const whatLabel = t("factory.process.whatLabel");
+  const materialLabel = t("factory.process.materialLabel");
+  const outputLabel = t("factory.process.outputLabel");
 
   return (
     <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">
@@ -72,60 +23,55 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
       <main>
         <PageHero
           index="01"
-          kicker={isZh ? "科宏 · 制造能力" : "Kehong · Manufacturing capabilities"}
-          title={isZh ? "把包装需求拆成可确认的制造步骤" : "Capabilities that turn a packaging brief into a production path"}
-          lede={
-            isZh
-              ? "从结构设计、文件准备到打样、印刷、后加工、质检和出货，每个环节按项目需求逐项确认。"
-              : "From structure, artwork and sampling through printing, finishing, quality checks and shipment preparation, each capability follows the project brief."
-          }
-          meta={
-            isZh
-              ? [`${capabilities.length} 项核心能力`, "OEM / ODM", "中国广东佛山"]
-              : [`${capabilities.length} core capabilities`, "OEM / ODM", "Foshan, Guangdong, China"]
-          }
+          kicker={t("capabilities.hero.kicker")}
+          title={t("capabilities.hero.title")}
+          lede={t("capabilities.hero.lede")}
+          meta={[t("capabilities.hero.metaGroups"), t("capabilities.hero.metaOem"), t("capabilities.hero.metaLocation")]}
         >
           <Link href="/contact" className="kh-button kh-button-light">
-            {isZh ? "立即询价" : "Get a custom quote"}
-          </Link>
-          <Link href="/process" className="kh-button kh-button-ghost">
-            {isZh ? "查看生产流程" : "View production process"}
+            {t("capabilities.hero.requestQuote")}
           </Link>
         </PageHero>
 
         <section className="kh-section">
           <div className="kh-shell">
-            <Reveal>
-              <div className="kh-section-heading">
-                <div>
-                  <SectionKicker index="02" text={isZh ? "制造能力" : "Manufacturing capabilities"} />
-                  <h2>{isZh ? "七项能力，覆盖从简报到出货" : "Seven capabilities, from brief to dispatch"}</h2>
-                </div>
+            {groups.map((group, groupIndex) => (
+              <div key={group.kicker} className={groupIndex > 0 ? "mt-16" : ""}>
+                <Reveal>
+                  <div className="kh-section-heading">
+                    <div>
+                      <SectionKicker index={String(groupIndex + 2).padStart(2, "0")} text={group.kicker} />
+                      <h2>{group.kicker}</h2>
+                      <p className="kh-section-lede mt-4">{group.lede}</p>
+                    </div>
+                  </div>
+                </Reveal>
+                <Reveal delay={80}>
+                  <ol className="m-0 mt-8 grid list-none gap-5 p-0 md:grid-cols-3">
+                    {group.items.map((item) => (
+                      <li
+                        key={item.title}
+                        className="flex flex-col rounded-lg border border-(--kh-line) p-6"
+                      >
+                        <h3 className="m-0 text-lg font-semibold">{item.title}</h3>
+                        <p className="kh-mono mt-4 text-xs uppercase tracking-wide text-(--kh-muted)">{whatLabel}</p>
+                        <p className="mt-1 text-sm leading-6 text-(--kh-muted)">{item.what}</p>
+                        <div className="mt-4 grid gap-3 border-t border-(--kh-line) pt-4 text-sm leading-6">
+                          <p className="m-0">
+                            <strong>{materialLabel}</strong>
+                            <span className="block text-(--kh-muted)">{item.materials}</span>
+                          </p>
+                          <p className="m-0">
+                            <strong>{outputLabel}</strong>
+                            <span className="block text-(--kh-muted)">{item.output}</span>
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </Reveal>
               </div>
-            </Reveal>
-            <Reveal delay={80}>
-              <ol className="m-0 grid list-none gap-x-14 border-t border-(--kh-line) p-0 md:grid-cols-2">
-                {capabilities.map((item, index) => {
-                  const zh = capabilityZh[item.slug];
-                  return (
-                    <li key={item.slug} className="grid grid-cols-[3.2rem_1fr] gap-4 border-b border-(--kh-line) py-6">
-                      <b className="kh-mono text-(--kh-brass)">{String(index + 1).padStart(2, "0")}</b>
-                      <div>
-                        <h3 className="m-0 text-xl font-semibold">{isZh && zh ? zh.title : item.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-(--kh-muted)">{isZh && zh ? zh.summary : item.summary}</p>
-                        <p className="mt-2 border-l-2 border-(--kh-brass-soft) pl-3 text-sm font-semibold leading-6">
-                          {isZh && zh ? zh.buyerValue : item.buyerValue}
-                        </p>
-                        <p className="mt-2 text-xs leading-5 text-(--kh-muted)">
-                          <strong>{isZh ? "需提供：" : "Bring: "}</strong>
-                          {isZh && zh ? zh.input : item.input}
-                        </p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ol>
-            </Reveal>
+            ))}
           </div>
         </section>
 
@@ -134,59 +80,24 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
             <Reveal>
               <div className="kh-section-heading">
                 <div>
-                  <SectionKicker index="03" text={isZh ? "定制包装流程" : "Custom packaging process"} />
-                  <h2>{isZh ? "从询盘到出货，每一步都可追踪" : "A clear path from inquiry to export handoff"}</h2>
+                  <SectionKicker index={String(groups.length + 2).padStart(2, "0")} text={t("capabilities.start.kicker")} />
+                  <h2>{t("capabilities.start.title")}</h2>
+                  <p className="kh-section-lede mt-5">{t("capabilities.start.lede")}</p>
                 </div>
               </div>
             </Reveal>
             <Reveal delay={80}>
               <ol className="m-0 grid list-none gap-x-14 border-t border-(--kh-line) p-0 md:grid-cols-2">
-                {processSteps.map((step) => {
-                  const zh = processZh[step.number];
-                  return (
-                    <li key={step.number} className="grid grid-cols-[3.2rem_1fr] gap-4 border-b border-(--kh-line) py-6">
-                      <b className="kh-mono text-(--kh-brass)">{step.number}</b>
-                      <div>
-                        <h3 className="m-0 text-xl font-semibold">{isZh && zh ? zh.title : step.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-(--kh-muted)">{isZh && zh ? zh.body : step.body}</p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ol>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="kh-section kh-section-forest">
-          <div className="kh-shell">
-            <Reveal>
-              <div className="grid gap-6 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
-                <div>
-                  <SectionKicker index="04" text={isZh ? "质量与合规" : "Quality & compliance"} light />
-                  <h2>{isZh ? "质量控制与第三方检测" : "Quality control and third-party testing"}</h2>
-                </div>
-                <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
-                  {isZh
-                    ? "合规文件可按需提供。提供前根据项目记录确认检测范围、出具机构和日期。"
-                    : "Compliance documents are available upon request. Test scope, issuing body and date are confirmed against relevant project records before sharing."}
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <ol className="m-0 mt-10 list-none border-t border-white/15 p-0">
-                {qualityChecks.map((item, index) => (
-                  <li key={item} className="grid grid-cols-[3.2rem_1fr] gap-4 border-b border-white/15 py-5">
-                    <b className="kh-mono text-(--kh-brass-soft)">{String(index + 1).padStart(2, "0")}</b>
-                    <h3 className="m-0 text-lg font-semibold text-[#fffdf8]">{item}</h3>
+                {startSteps.map((step, index) => (
+                  <li key={step.title} className="grid grid-cols-[3.2rem_1fr] gap-4 border-b border-(--kh-line) py-6">
+                    <b className="kh-mono text-(--kh-brass)">{String(index + 1).padStart(2, "0")}</b>
+                    <div>
+                      <h3 className="m-0 text-xl font-semibold">{step.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-(--kh-muted)">{step.body}</p>
+                    </div>
                   </li>
                 ))}
               </ol>
-              <p className="kh-mono mt-6 text-white/60">
-                {isZh
-                  ? `已配置 ${complianceDocuments.length} 条合规文件通道，不公开展示未经核实的证书`
-                  : `${complianceDocuments.length} compliance document pathway configured; no unverified certificate is displayed publicly`}
-              </p>
             </Reveal>
           </div>
         </section>
@@ -197,19 +108,17 @@ export default function CapabilitiesPage({ locale }: { locale: string }) {
           </Reveal>
           <div className="kh-shell">
             <Reveal>
-              <SectionKicker index="05" text={isZh ? "开始一个包装项目" : "Start a packaging project"} light />
-              <h2>{isZh ? "准备好评审一个结构了吗？" : "Ready to review a structure?"}</h2>
+              <SectionKicker index={String(groups.length + 3).padStart(2, "0")} text={t("capabilities.cta.kicker")} light />
+              <h2>{t("capabilities.cta.title")}</h2>
               <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
-                {isZh
-                  ? "发送尺寸、图纸、材料偏好和目的地信息，科宏确认下一步具体动作。"
-                  : "Send dimensions, drawings, material preferences and destination details. Kehong will confirm the next practical step."}
+                {t("capabilities.cta.lede")}
               </p>
               <div className="kh-actions mt-7 flex flex-wrap gap-3">
                 <Link href="/contact" className="kh-button kh-button-light">
-                  {isZh ? "提交项目需求" : "Start a packaging project"}
+                  {t("capabilities.cta.requestQuote")}
                 </Link>
-                <Link href="/products" className="kh-button kh-button-ghost">
-                  {isZh ? "查看规格" : "Browse products"}
+                <Link href="/contact" className="kh-button kh-button-ghost">
+                  {t("capabilities.cta.sendReference")}
                 </Link>
               </div>
             </Reveal>

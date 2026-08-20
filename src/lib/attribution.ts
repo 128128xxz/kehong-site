@@ -1,6 +1,7 @@
 "use client";
 
 import { track } from "@vercel/analytics/react";
+import { isAnalyticsOptedOut, sanitizeAnalyticsProperties } from "@/lib/analyticsPrivacy";
 
 const storageKey = "kehong-attribution-v1";
 const aiVisitKeyPrefix = "kehong-ai-referral-visit-v1";
@@ -178,5 +179,6 @@ export function trackAiReferralEvent(name: "ai_referral_product_click" | "ai_ref
 }
 
 export function trackKehongEvent(name: "quote_click" | "whatsapp_click" | "resource_open" | "product_view" | "packaging_category_view" | "inquiry_start" | "inquiry_submit" | "location_click" | "ai_referral_visit" | "ai_referral_product_click" | "ai_referral_quote_start" | "ai_referral_whatsapp_click" | "ai_referral_email_click", properties: Record<string, string | number | boolean | undefined> = {}) {
-  try { track(name, properties); } catch { /* analytics is non-blocking */ }
+  if (isAnalyticsOptedOut()) return;
+  try { track(name, sanitizeAnalyticsProperties(properties)); } catch { /* analytics is non-blocking */ }
 }

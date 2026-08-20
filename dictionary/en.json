@@ -101,19 +101,525 @@
       "description": "Tell us your target material, size, process, quantity and application. We will outline the next steps for sampling or a quotation.",
       "country": "Country / Region",
       "quantity": "Estimated quantity",
-      "requirements": "Material, GSM, size and process notes", "factory": "China factory", "internationalSales": "International sales", "generalInquiry": "General inquiry", "deliveryUnavailable": "Email delivery is not configured yet", "deliveryFailed": "We could not send the inquiry just now. Please retry or use a direct channel"
+      "requirements": "Material, GSM, size and process notes",
+      "factory": "China factory",
+      "internationalSales": "International sales",
+      "generalInquiry": "General inquiry",
+      "deliveryUnavailable": "Email delivery is not configured yet",
+      "deliveryFailed": "We could not send the inquiry just now. Please retry or use a direct channel"
     },
     "footer": {
       "tagline": "Quality first · Integrity in every project · Long-term partnerships"
     }
   },
   "Stage2": {
-    "nav": { "products": "Products", "capabilities": "Capabilities", "applications": "Applications", "factoryQuality": "Factory & Quality", "resources": "Resources", "about": "About Kehong", "quote": "Request a quote", "modelPreview": "3D Packaging Studio", "menuOpen": "Open navigation menu", "menuClose": "Close navigation menu", "menuTitle": "Site navigation" },
+    "nav": {
+      "products": "Products",
+      "capabilities": "Capabilities",
+      "applications": "Applications",
+      "factoryQuality": "Factory & Quality",
+      "resources": "Resources",
+      "about": "About Kehong",
+      "quote": "Request a quote",
+      "modelPreview": "3D Packaging Studio",
+      "menuOpen": "Open navigation menu",
+      "menuClose": "Close navigation menu",
+      "menuTitle": "Site navigation"
+    },
     "home": {
-      "hero": { "eyebrow": "Specialty paper · Corrugated board · Custom converting", "title": "Specialty Paper and Corrugated Board for Custom Packaging", "description": "Kehong supplies corrugated board, specialty and functional paper, paper-cup materials, and custom paper converting support for B2B packaging projects.", "primary": "Explore Products", "secondary": "Request a Quote" },
-      "products": { "eyebrow": "Product systems", "title": "Start with the material or packaging route that fits your brief", "viewAll": "View all products", "materials": "Paper materials & semi-finished components", "materialsIntro": "Browse paper grades, cup components and forming materials for B2B packaging work.", "materialsCta": "View specifications", "finished": "Finished packaging", "finishedIntro": "Review food, bakery and shipping packaging by application, structure and finish.", "finishedCta": "View packaging types" }
+      "hero": {
+        "eyebrow": "Specialty paper · Corrugated board · Custom converting",
+        "title": "Specialty Paper and Corrugated Board for Custom Packaging",
+        "description": "Kehong supplies corrugated board, specialty and functional paper, paper-cup materials, and custom paper converting support for B2B packaging projects.",
+        "primary": "Explore Products",
+        "secondary": "Request a Quote",
+        "stats": [
+                {
+                        "value": "OEM / ODM",
+                        "label": "Custom development"
+                },
+                {
+                        "value": "MOQ",
+                        "label": "Flexible order quantities"
+                },
+                {
+                        "value": "Paper · Board",
+                        "label": "Specialty paper and corrugated board"
+                },
+                {
+                        "value": "B2B",
+                        "label": "Custom packaging projects"
+                }
+        ]
+      },
+      "products": {
+            "eyebrow": "Product systems",
+            "title": "Start with the material or packaging route that fits your brief",
+            "viewAll": "View all products",
+            "materials": "Paper materials & semi-finished components",
+            "materialsIntro": "Browse paper grades, cup components and forming materials for B2B packaging work.",
+            "materialsCta": "View specifications",
+            "finished": "Finished packaging",
+            "finishedIntro": "Review food, bakery and shipping packaging by application, structure and finish.",
+            "finishedCta": "View packaging types"
+      },
+      "factoryProof": {
+            "kicker": "Factory and capability",
+            "title": "From material selection to shipment preparation",
+            "lede": "Kehong is based in Foshan and arranges material selection, structural sampling, paper converting, finishing, quality checks and shipment preparation according to product structure and specification requirements.",
+            "facts": [
+                  "Die-cutting, slitting, mounting and corrugated processing",
+                  "Material selection and structural sampling",
+                  "Quality checks and shipment preparation"
+            ],
+            "factoryCta": "See the factory",
+            "capabilitiesCta": "Explore Capabilities",
+            "imageAlt": "Kehong factory samples and production floor",
+            "imageCaption": "Production floor",
+            "miniImageAlt": "Paper product sample display"
+      },
+      "resources": {
+            "kicker": "Resources",
+            "title": "Guides, packaging tools and industry insights",
+            "items": [
+                  {
+                        "title": "Guides and buying resources",
+                        "body": "Artwork preparation, dieline requests, material guides and packaging structure references.",
+                        "href": "/resources",
+                        "cta": "Browse guides"
+                  },
+                  {
+                        "title": "News and articles",
+                        "body": "Packaging industry insights, material comparisons and company updates.",
+                        "href": "/news",
+                        "cta": "Read articles"
+                  },
+                  {
+                        "title": "3D Packaging Studio",
+                        "body": "Explore common packaging structures interactively before prototyping.",
+                        "href": "/model-preview",
+                        "cta": "Open studio"
+                  }
+            ]
+      }
+    },
+    "factory": {
+      "hero": {
+        "kicker": "Foshan production site",
+        "title": "Paper converting & packaging production",
+        "lede": "Kehong is a paper processing and converting facility in Foshan. We work with paper, corrugated board and paper-based materials, and support B2B custom projects from material selection to dispatch preparation.",
+        "metaLocation": "Foshan, Guangdong, China",
+        "viewCapabilities": "View Capabilities",
+        "requestQuote": "Request a Quote",
+        "imageAlt": "Paper converting work area",
+        "metaScope": "Paper · Corrugated board · Converted products",
+        "metaCustom": "B2B custom projects"
+      },
+      "workWith": {
+        "kicker": "What we work with",
+        "title": "Materials and converted products",
+        "lede": "Current business categories confirmed by Kehong's published product range and project records.",
+        "items": [
+          {
+            "title": "Corrugated board",
+            "body": "Fluted board and corrugated structures for protective and shipping packaging.",
+            "alt": "Corrugated board material reference"
+          },
+          {
+            "title": "Specialty paper",
+            "body": "Colored, textured and functional paper for branded and decorative packaging.",
+            "alt": "Specialty paper material reference"
+          },
+          {
+            "title": "Coated paper",
+            "body": "PE-coated and surface-treated paper for cup and food packaging projects.",
+            "alt": "Coated paper roll material reference"
+          },
+          {
+            "title": "Paper rolls & sheets",
+            "body": "Paper supplied as rolls or sheets for further converting.",
+            "alt": "Paper roll material reference"
+          },
+          {
+            "title": "Paper cup materials",
+            "body": "Cupstock, fan blanks and bottom rolls for paper cup projects.",
+            "alt": "Paper cup fan blank product reference"
+          },
+          {
+            "title": "Converted paper components",
+            "body": "Die-cut trays, pads, inserts and assembled paper components.",
+            "alt": "Die-cut paper component reference"
+          }
+        ]
+      },
+      "process": {
+        "kicker": "Production & converting process",
+        "title": "How material becomes a finished component",
+        "lede": "Each stage states what we do, the material we work with, and the output you receive.",
+        "whatLabel": "What we do",
+        "materialLabel": "Material",
+        "outputLabel": "Output",
+        "steps": [
+          {
+            "title": "Material selection",
+            "what": "Confirm the paper, board or coated material against the product use and structure.",
+            "material": "Paper, board, coated paper",
+            "output": "Approved material specification"
+          },
+          {
+            "title": "Structural sampling",
+            "what": "Review size, fit, fold lines and inserts with a structural sample.",
+            "material": "Approved structure material",
+            "output": "Structural sample for review"
+          },
+          {
+            "title": "Paper converting",
+            "what": "Feed, sheet and slit paper into the required working format.",
+            "material": "Paper rolls and sheets",
+            "output": "Converted stock for the next stage"
+          },
+          {
+            "title": "Slitting",
+            "what": "Cut rolls into required widths or sheets.",
+            "material": "Paper and board rolls",
+            "output": "Slit rolls or cut sheets"
+          },
+          {
+            "title": "Die-cutting",
+            "what": "Cut and crease panels, folds and openings to the approved dieline.",
+            "material": "Paperboard, corrugated board",
+            "output": "Die-cut packaging parts"
+          },
+          {
+            "title": "Printing & finishing",
+            "what": "Apply printing, lamination, coating, foil, embossing or window patching where the brief requires.",
+            "material": "Coated paper, printed paperboard",
+            "output": "Finished surface and structure"
+          },
+          {
+            "title": "Quality checks & dispatch",
+            "what": "Confirm material, dimensions, surface and forming at agreed checkpoints, then pack for dispatch.",
+            "material": "Finished order",
+            "output": "Dispatch-ready order"
+          }
+        ]
+      },
+      "quality": {
+        "kicker": "Quality approach",
+        "title": "Confirmation-based quality control",
+        "lede": "Quality is managed through material and specification confirmation, in-process checks and final order review.",
+        "items": [
+          {
+            "title": "Material confirmation",
+            "body": "Confirm the starting material against the project specification."
+          },
+          {
+            "title": "Specification confirmation",
+            "body": "Confirm dimensions, structure and surface requirements before production."
+          },
+          {
+            "title": "In-process checks",
+            "body": "Check key dimensions, surface and forming at relevant stages."
+          },
+          {
+            "title": "Final order confirmation",
+            "body": "Review the finished order against the approved specification before packing."
+          },
+          {
+            "title": "Sample & document discussion",
+            "body": "Discuss samples, test reports and project documents with your team as required."
+          }
+        ]
+      },
+      "preparation": {
+        "kicker": "Before you inquire",
+        "title": "What to prepare for a custom project",
+        "lede": "A clearer brief helps us confirm material, structure and quotation faster.",
+        "items": [
+          "Product or material requirement",
+          "Dimensions",
+          "Quantity",
+          "Reference images or files",
+          "Destination country or region"
+        ],
+        "cta": "Discuss Your Requirement"
+      }
+    },
+    "capabilities": {
+      "hero": {
+        "kicker": "Kehong · Manufacturing capabilities",
+        "title": "Paper Converting & Packaging Material Capabilities",
+        "lede": "A practical view of what Kehong can produce: material processing, converting, surface treatment and customization support for paper packaging projects.",
+        "metaGroups": "4 capability groups",
+        "metaOem": "OEM / ODM",
+        "metaLocation": "Foshan, Guangdong, China",
+        "requestQuote": "Request a Quote"
+      },
+      "groups": [
+        {
+          "kicker": "Material processing",
+          "lede": "Confirming and preparing the right paper material before converting.",
+          "items": [
+            {
+              "title": "Material selection",
+              "what": "Confirm paper, board or coated material against product use and structure.",
+              "materials": "Paper, board, coated paper",
+              "output": "Approved material specification"
+            },
+            {
+              "title": "Slitting & sheeting",
+              "what": "Cut rolls into required widths or sheets for downstream work.",
+              "materials": "Paper and board rolls",
+              "output": "Slit rolls or cut sheets"
+            },
+            {
+              "title": "Paper & board converting",
+              "what": "Feed, sheet and convert material into the required working format.",
+              "materials": "Paper, board, coated paper",
+              "output": "Converted stock"
+            }
+          ]
+        },
+        {
+          "kicker": "Converting",
+          "lede": "Turning approved material into the required packaging structure.",
+          "items": [
+            {
+              "title": "Structural sampling",
+              "what": "Produce a structural sample to review size, fit and fold.",
+              "materials": "Approved structure material",
+              "output": "Reviewable structural sample"
+            },
+            {
+              "title": "Die-cutting",
+              "what": "Cut and crease panels, folds and openings to the approved dieline.",
+              "materials": "Paperboard, corrugated board",
+              "output": "Die-cut packaging parts"
+            },
+            {
+              "title": "Forming & assembly",
+              "what": "Fold, glue and assemble parts into the finished structure.",
+              "materials": "Die-cut paper parts",
+              "output": "Assembled packaging"
+            }
+          ]
+        },
+        {
+          "kicker": "Surface & functional treatment",
+          "lede": "Printing and finishing options confirmed against material and brief.",
+          "items": [
+            {
+              "title": "Printing",
+              "what": "Confirm print areas, colors and artwork against the structure.",
+              "materials": "Coated paper, paperboard",
+              "output": "Printed packaging material"
+            },
+            {
+              "title": "Lamination & coating",
+              "what": "Apply matte or gloss lamination and aqueous coating as required.",
+              "materials": "Printed paper and board",
+              "output": "Surface-protected material"
+            },
+            {
+              "title": "Finishing details",
+              "what": "Hot foil, embossing, debossing, spot UV and window patching.",
+              "materials": "Paper, board, printed material",
+              "output": "Finished packaging detail"
+            }
+          ]
+        },
+        {
+          "kicker": "Customization support",
+          "lede": "Project-led support for B2B custom orders.",
+          "items": [
+            {
+              "title": "Artwork & prepress",
+              "what": "Check artwork, colors and file versions before production.",
+              "materials": "Any print material",
+              "output": "Production-ready artwork"
+            },
+            {
+              "title": "Quality control",
+              "what": "Confirm material, dimensions, surface and forming at agreed checkpoints.",
+              "materials": "All project materials",
+              "output": "Checked and confirmed order"
+            },
+            {
+              "title": "Packing & export support",
+              "what": "Coordinate packing information and destination requirements for overseas B2B projects.",
+              "materials": "Finished packaging",
+              "output": "Dispatch-ready order"
+            }
+          ]
+        }
+      ],
+      "start": {
+        "kicker": "How to start",
+        "title": "Start a custom project",
+        "lede": "A practical sequence that keeps the brief and specification aligned.",
+        "steps": [
+          {
+            "title": "Share requirement",
+            "body": "Send the product or material need, dimensions, quantity and destination market."
+          },
+          {
+            "title": "Review material & structure",
+            "body": "Confirm material, structure and project constraints together."
+          },
+          {
+            "title": "Confirm specification or sample",
+            "body": "Review the specification, drawing or a structural sample."
+          },
+          {
+            "title": "Proceed with quotation",
+            "body": "Kehong prepares the quotation and next production steps."
+          }
+        ]
+      },
+      "cta": {
+        "kicker": "Start a project",
+        "title": "Check whether Kehong can produce your project",
+        "lede": "Send the requirement or a reference file. Kehong will confirm the next practical step.",
+        "requestQuote": "Request a Quote",
+        "sendReference": "Send a Reference File"
+      }
+    }
+  ,
+  "about": {
+    "hero": {
+      "kicker": "Kehong · About us",
+      "title": "Paper materials, converting and packaging support for B2B projects",
+      "lede": "Kehong provides paper materials, corrugated board, paper converting and custom packaging support for B2B buyers and project teams.",
+      "metaScope": "Paper · Corrugated board · Converted products",
+      "metaCustom": "B2B custom projects",
+      "metaLocation": "Foshan, Guangdong, China",
+      "imageAlt": "Paper converting work area with processed materials",
+      "ctaQuote": "Request a Quote",
+      "ctaCapabilities": "View Capabilities"
+    },
+    "what": {
+      "kicker": "What Kehong does",
+      "title": "Paper converting and packaging support from material to finished product",
+      "lede": "Kehong works across paper material processing, converting, finishing and custom packaging, supporting B2B projects at any stage.",
+      "items": [
+        {
+          "title": "Paper materials",
+          "body": "Specialty paper, coated paper, cup fan blanks and board materials for packaging and converting work."
+        },
+        {
+          "title": "Corrugated board",
+          "body": "Corrugated sheets and board for structural packaging, mailers and protective transit packaging."
+        },
+        {
+          "title": "Paper converting",
+          "body": "Die-cutting, slitting, mounting and assembly for paper-based packaging and paper product components."
+        },
+        {
+          "title": "Custom packaging support",
+          "body": "Material selection, structural sampling, finishing and coordination for custom B2B packaging projects."
+        }
+      ]
+    },
+    "who": {
+      "kicker": "Who we work with",
+      "title": "B2B buyers and project teams across packaging supply chains",
+      "lede": "Kehong supports packaging converters, product manufacturers and sourcing teams with paper materials and converting services.",
+      "items": [
+        "Packaging converters",
+        "Paper product manufacturers",
+        "Food and bakery packaging buyers",
+        "Beauty and fragrance packaging projects",
+        "Distributors and sourcing teams",
+        "Custom B2B packaging projects"
+      ]
+    },
+    "how": {
+      "kicker": "How we support projects",
+      "title": "Step-by-step project support from material to delivery",
+      "lede": "Kehong works with buyers through each stage of a custom packaging project.",
+      "items": [
+        {
+          "title": "Material selection",
+          "body": "Recommend paper grade, board type, coating and finish based on product requirements."
+        },
+        {
+          "title": "Specification discussion",
+          "body": "Clarify dimensions, structure, print method, quantity and destination before quoting."
+        },
+        {
+          "title": "Converting and customization",
+          "body": "Arrange die-cutting, slitting, mounting, finishing and assembly for custom packaging."
+        },
+        {
+          "title": "Quotation and sample discussion",
+          "body": "Review project requirements, discuss sampling procedure and production timeline."
+        }
+      ]
+    },
+    "entry": {
+      "kicker": "Learn more about our production",
+      "title": "Explore the factory and production capabilities",
+      "lede": "Visit the factory overview and capabilities pages for a detailed view of the production site, equipment and processes.",
+      "factoryCta": "View Factory",
+      "capabilitiesCta": "Explore Capabilities",
+      "imageAlt": "Kehong factory production area"
+    },
+    "cta": {
+      "kicker": "Start a project",
+      "title": "Share your project requirements for a discussion",
+      "lede": "Submit a brief or request a quote to begin the conversation.",
+      "discussBtn": "Discuss Your Requirement",
+      "quoteBtn": "Request a Quote"
     }
   },
+  "resources": {
+    "hero": {
+      "kicker": "Kehong · Buyer resources",
+      "title": "Guides, buying resources and packaging reference tools",
+      "lede": "Use these resources to prepare artwork, compare materials, review finishes, request a dieline and structure packaging projects.",
+      "metaGuides": "Guides and requests",
+      "metaOem": "OEM / ODM",
+      "metaLocation": "Foshan, Guangdong, China",
+      "ctaExpert": "Talk to a packaging expert",
+      "ctaCapabilities": "Explore capabilities"
+    },
+    "guides": {
+      "kicker": "Guides and buying resources",
+      "title": "Practical guides for artwork, materials and packaging structure",
+      "guideLabel": "Guide",
+      "requestLabel": "Request",
+      "readGuide": "Read guide",
+      "sendRequest": "Send a request"
+    },
+    "finishes": {
+      "kicker": "Finishing options",
+      "title": "Finishes at a glance",
+      "finishingRequirements": "Finishing requirements",
+      "startGuidedRfq": "Start guided RFQ",
+      "needStructure": "Need a structure recommendation?",
+      "structureTip": "Share the product dimensions, weight, use conditions and shipping requirements for a packaging structure recommendation."
+    },
+    "news": {
+      "kicker": "News and articles",
+      "title": "Packaging industry insights and company updates",
+      "lede": "Read the latest articles on paper materials, converting techniques and packaging buying guides.",
+      "viewAll": "View all articles"
+    },
+    "studio": {
+      "kicker": "3D Packaging Studio",
+      "title": "Packaging structure reference tool",
+      "lede": "Explore common packaging structures in 3D to understand configuration, dimensions and assembly before prototyping.",
+      "explore": "Open 3D Studio",
+      "positioning": "Structure reference tool — use for visualization and project planning before prototyping."
+    },
+    "reference": {
+      "kicker": "Reference file",
+      "title": "Send a reference file or discuss packaging requirements",
+      "lede": "Share a reference packaging sample, sketch or specification for a quotation or feasibility discussion.",
+      "sendFile": "Send a Reference File",
+      "discuss": "Discuss a Packaging Requirement"
+    }
+  }},
   "ProductFamilies": {
     "eyebrow": "Product families",
     "breadcrumbProducts": "Products",
@@ -139,14 +645,65 @@
     "viewFullRecord": "View full product record",
     "viewAllSpecifications": "View all specifications",
     "publishedCount": "{count} published records",
-    "serviceNote": "A project-led route for OEM / ODM material selection, structure review and custom paper converting.", "projectSupport": "Related project support", "capabilitiesLink": "Capabilities overview", "processLink": "Production process",
+    "serviceNote": "A project-led route for OEM / ODM material selection, structure review and custom paper converting.",
+    "projectSupport": "Related project support",
+    "capabilitiesLink": "Capabilities overview",
+    "processLink": "Production process",
     "family": {
-      "corrugated": { "title": "Corrugated board & flute materials", "description": "Base papers, fluted structures and converted board components for protective packaging projects.", "material": "Liner paper and fluting materials", "forms": "Sheets, blanks and converted board components", "applications": "Mailers, inserts and protective structures", "capabilities": "Structure review, converting and project sampling", "parameters": "Board construction · flute · dimensions · printing" },
-      "specialty": { "title": "Specialty & decorative paper", "description": "Surface-led paper and board directions for branded, retail and presentation packaging.", "material": "Specialty paper and board directions", "forms": "Sheets, inserts and presentation components", "applications": "Retail, gift and branded packaging", "capabilities": "Material selection, printing and finishing review", "parameters": "Surface · color · printing · format" },
-      "functional": { "title": "Functional & food paper", "description": "Paper materials, trays and food-packaging components organized around the structure and process to confirm.", "material": "Paper and board materials for packaging conversion", "forms": "Sheets, trays, liners and forming components", "applications": "Foodservice, trays and paper inserts", "capabilities": "Material selection and structure review", "parameters": "Material · GSM · format · surface process" },
-      "cup": { "title": "Paper cup materials", "description": "Published cupstock, roll, sheet, bottom-stock and tray-material groups for converting projects.", "material": "Cupstock and coated paper materials", "forms": "Fan blanks, rolls, sheets and tray material", "applications": "Paper cups, bowls and formed trays", "capabilities": "Coating, die-cutting and converting review", "parameters": "GSM · size · coating · surface process · finishing" },
-      "converted": { "title": "Packaging materials & converted components", "description": "Paper, board and converted components for packaging structures that need a defined material and format.", "material": "Paper, board and converted material directions", "forms": "Sheets, blanks, inserts and packaging components", "applications": "Boxes, inserts and protective packaging", "capabilities": "Die-cutting, creasing and lamination review", "parameters": "Material · GSM · structure · size" },
-      "service": { "title": "OEM / ODM & custom paper converting", "description": "A project route for buyers who need material selection, structure sampling or custom paper converting support.", "material": "Confirmed against the project brief", "forms": "Custom sheets, components or packaging structures", "applications": "Custom packaging projects", "capabilities": "Material selection, structure review and converting", "parameters": "Material · GSM · size · quantity" }
+      "corrugated": {
+        "title": "Corrugated board & flute materials",
+        "description": "Base papers, fluted structures and converted board components for protective packaging projects.",
+        "material": "Liner paper and fluting materials",
+        "forms": "Sheets, blanks and converted board components",
+        "applications": "Mailers, inserts and protective structures",
+        "capabilities": "Structure review, converting and project sampling",
+        "parameters": "Board construction · flute · dimensions · printing"
+      },
+      "specialty": {
+        "title": "Specialty & decorative paper",
+        "description": "Surface-led paper and board directions for branded, retail and presentation packaging.",
+        "material": "Specialty paper and board directions",
+        "forms": "Sheets, inserts and presentation components",
+        "applications": "Retail, gift and branded packaging",
+        "capabilities": "Material selection, printing and finishing review",
+        "parameters": "Surface · color · printing · format"
+      },
+      "functional": {
+        "title": "Functional & food paper",
+        "description": "Paper materials, trays and food-packaging components organized around the structure and process to confirm.",
+        "material": "Paper and board materials for packaging conversion",
+        "forms": "Sheets, trays, liners and forming components",
+        "applications": "Foodservice, trays and paper inserts",
+        "capabilities": "Material selection and structure review",
+        "parameters": "Material · GSM · format · surface process"
+      },
+      "cup": {
+        "title": "Paper cup materials",
+        "description": "Published cupstock, roll, sheet, bottom-stock and tray-material groups for converting projects.",
+        "material": "Cupstock and coated paper materials",
+        "forms": "Fan blanks, rolls, sheets and tray material",
+        "applications": "Paper cups, bowls and formed trays",
+        "capabilities": "Coating, die-cutting and converting review",
+        "parameters": "GSM · size · coating · surface process · finishing"
+      },
+      "converted": {
+        "title": "Packaging materials & converted components",
+        "description": "Paper, board and converted components for packaging structures that need a defined material and format.",
+        "material": "Paper, board and converted material directions",
+        "forms": "Sheets, blanks, inserts and packaging components",
+        "applications": "Boxes, inserts and protective packaging",
+        "capabilities": "Die-cutting, creasing and lamination review",
+        "parameters": "Material · GSM · structure · size"
+      },
+      "service": {
+        "title": "OEM / ODM & custom paper converting",
+        "description": "A project route for buyers who need material selection, structure sampling or custom paper converting support.",
+        "material": "Confirmed against the project brief",
+        "forms": "Custom sheets, components or packaging structures",
+        "applications": "Custom packaging projects",
+        "capabilities": "Material selection, structure review and converting",
+        "parameters": "Material · GSM · size · quantity"
+      }
     },
     "anchor": {
       "title": "Food tray paper material",

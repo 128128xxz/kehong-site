@@ -10,8 +10,6 @@ import {
   getTranslations,
   setRequestLocale,
 } from "next-intl/server";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import {
   getAlternateLanguages,
   getLocaleUrl,
@@ -22,6 +20,7 @@ import { getBrandConfig } from "@/lib/site-config";
 import LocaleDocumentLanguage from "@/components/site/LocaleDocumentLanguage";
 import MobileStickyActions from "@/components/site/MobileStickyActions";
 import UIMaterialPreview from "@/components/site/UIMaterialPreview";
+import AnalyticsConsent from "@/components/site/AnalyticsConsent";
 import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -60,8 +59,8 @@ export default async function RootLayout({
       <NextIntlClientProvider messages={messages} timeZone={timeZone} now={now}>
         {children}
         <MobileStickyActions />
+        <AnalyticsConsent enabled={process.env.VERCEL === "1"} />
       </NextIntlClientProvider>
-      {process.env.VERCEL === "1" ? <><Analytics /><SpeedInsights /></> : null}
     </body>
   </html>;
 }

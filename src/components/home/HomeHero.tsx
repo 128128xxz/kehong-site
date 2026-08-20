@@ -5,7 +5,9 @@ import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import { productCatalogSections } from "@/data/productDirectory";
 import { companyDisplayName } from "@/data/company";
-import { CountUp, MetricReveal } from "@/components/home/interactive";
+import { MetricReveal } from "@/components/home/interactive";
+
+type StatItem = { value: string; label: string };
 
 export default async function HomeHero({ locale }: { locale: string }) {
   const zh = locale === "zh";
@@ -15,16 +17,14 @@ export default async function HomeHero({ locale }: { locale: string }) {
     ? "科宏工厂车间:成排模切设备与纸板堆垛"
     : "Kehong factory hall with die-cutting lines and stacked board";
 
-  const stats: Array<{ value: ReactNode; ariaValue: string; label: string; long?: boolean }> = [
-    { value: <CountUp to={20} suffix="+" />, ariaValue: "20+", label: zh ? "纸品加工经验" : "Years in paper converting" },
-    {
-      value: <><CountUp to={8000} suffix="+" /><span className="kh-hero-stat-unit">{zh ? "㎡" : "m²"}</span></>,
-      ariaValue: zh ? "8,000+ ㎡" : "8,000+ m²",
-      label: zh ? "生产场地" : "Production site",
-    },
-    { value: "OEM / ODM", ariaValue: "OEM / ODM", label: zh ? "定制开发" : "Custom development", long: true },
-    { value: "MOQ", ariaValue: "MOQ", label: zh ? "灵活起订" : "Flexible order quantities" },
-  ];
+  const stats: Array<{ value: ReactNode; ariaValue: string; label: string; long?: boolean }> = (
+    t.raw("hero.stats") as StatItem[]
+  ).map((stat) => ({
+    value: stat.value,
+    ariaValue: stat.value,
+    label: stat.label,
+    long: stat.value.length > 10,
+  }));
 
   return (
     <section className="kh-home-hero">
@@ -49,7 +49,7 @@ export default async function HomeHero({ locale }: { locale: string }) {
       <div className="kh-shell kh-hero-inner">
         <p className="kh-mono kh-hero-index kh-rise kh-rise-1">
           <span>{zh ? companyDisplayName.zh : companyDisplayName.en}</span>
-          <span>{zh ? "20+ 年" : "Est. 20+ yrs"}</span>
+          <span>{zh ? "广东佛山" : "Foshan, Guangdong"}</span>
           <span>OEM / ODM</span>
         </p>
 

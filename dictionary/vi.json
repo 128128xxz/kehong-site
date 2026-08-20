@@ -1,34 +1,727 @@
 {
-  "Metadata": { "title": "Foshan Kehong Paper Products | Vật liệu bao bì giấy", "description": "Nhà máy vật liệu bao bì giấy: giấy sóng, giấy đặc biệt, hộp giấy, khay giấy và paper cup fan.", "keywords": "vật liệu bao bì giấy, giấy sóng, bao bì giấy thực phẩm, paper cup fan" },
+  "Metadata": {
+    "title": "Foshan Kehong Paper Products | Vật liệu bao bì giấy",
+    "description": "Nhà máy vật liệu bao bì giấy: giấy sóng, giấy đặc biệt, hộp giấy, khay giấy và paper cup fan.",
+    "keywords": "vật liệu bao bì giấy, giấy sóng, bao bì giấy thực phẩm, paper cup fan"
+  },
   "Site": {
     "brand": "Kehong Paper",
-    "nav": { "products": "Sản phẩm", "process": "Quy trình", "factory": "Nhà máy", "contact": "Liên hệ" },
-    "cta": { "quote": "Yêu cầu báo giá", "explore": "Xem sản phẩm", "whatsapp": "WhatsApp", "sample": "Yêu cầu mẫu", "add": "Thêm vào hỏi giá", "email": "Hỏi giá email" },
-    "hero": { "eyebrow": "Đối tác vật liệu bao bì toàn cầu", "title": "Vật liệu bao bì giấy có nhà máy hỗ trợ cho người mua B2B.", "description": "Từ năm 2001, Kehong sản xuất giấy sóng, giấy đặc biệt, hộp, khay, cup fan và cấu trúc bao bì tùy chỉnh.", "proof": "Nguồn cung ổn định, mẫu nhanh, kiểm soát chất lượng và đơn hàng linh hoạt." },
-    "facts": { "years": "năm kinh nghiệm", "factoryArea": "m2 nhà máy", "customPackaging": "hỗ trợ OEM/ODM", "flexibleOrders": "hỗ trợ đơn linh hoạt" },
-    "products": { "eyebrow": "Khám phá sản phẩm", "title": "Vật liệu, bao bì và hoàn thiện cho mọi dự án.", "description": "Xem theo nhóm sản phẩm, so sánh thông số và gửi yêu cầu báo giá.", "featured": "Sản phẩm phổ biến", "families": "Nhóm sản phẩm", "viewAll": "Xem toàn bộ danh mục" },
-    "process": { "eyebrow": "Sản xuất kiểm soát", "title": "Từ tấm giấy đến bao bì hoàn thiện.", "description": "Quy trình ổn định cho cấp liệu, gia công, hoàn thiện và bảo vệ.", "dieCutting": { "title": "Bế tự động", "text": "Cắt hình tùy chỉnh và tạo nếp chính xác." }, "corrugated": { "title": "Gia công giấy sóng", "text": "Sản xuất giấy sóng chính xác, bề mặt mịn." }, "dyeing": { "title": "Nhuộm và xẻ", "text": "Màu ổn định và cấp liệu đều." }, "laminating": { "title": "Cán và bọc màng", "text": "Chống bụi và chống ẩm cho sản phẩm." } },
-    "inquiry": { "title": "Gửi vật liệu, kích thước, quy trình và số lượng. Chúng tôi hỗ trợ báo giá.", "description": "Giá phụ thuộc vào vật liệu, GSM, kích thước, quy trình, màu in, số lượng và điều khoản thương mại.", "selected": "Sản phẩm đã chọn", "empty": "Chưa chọn sản phẩm.", "message": "Xin chào Kehong, tôi muốn hỏi giá cho:" },
-    "catalog": { "title": "Danh mục sản phẩm", "description": "So sánh sản phẩm theo danh mục, vật liệu, quy trình và tùy chọn tùy chỉnh.", "search": "Tìm sản phẩm hoặc mã sản phẩm", "category": "Danh mục", "material": "Vật liệu", "process": "Quy trình", "all": "Tất cả", "customizable": "Tùy chỉnh", "reset": "Đặt lại", "results": "{count} sản phẩm", "details": "Chi tiết", "noResults": "Không có sản phẩm phù hợp. Hãy đặt lại bộ lọc hoặc gửi yêu cầu của bạn." },
-    "detail": { "back": "Quay lại sản phẩm", "specs": "Thông số", "material": "Vật liệu", "gsm": "GSM / Độ dày", "structure": "Cấu trúc / Sóng", "surface": "Xử lý bề mặt", "finishing": "Hoàn thiện", "size": "Kích thước phổ biến", "moq": "MOQ", "application": "Ứng dụng", "unit": "Đơn vị", "note": "Sản phẩm và giá cuối cùng theo mẫu hoặc bản vẽ đã xác nhận." },
-    "contact": { "title": "Liên hệ Kehong", "description": "Gửi vật liệu, kích thước, quy trình, số lượng và ứng dụng.", "country": "Quốc gia / Khu vực", "quantity": "Số lượng dự kiến", "requirements": "Ghi chú vật liệu, GSM, kích thước và quy trình", "factory": "Nhà máy tại Trung Quốc", "internationalSales": "Kinh doanh quốc tế", "generalInquiry": "Yêu cầu chung", "deliveryUnavailable": "Dịch vụ email chưa được cấu hình", "deliveryFailed": "Không thể gửi yêu cầu. Vui lòng thử lại hoặc dùng kênh trực tiếp" },
-    "footer": { "tagline": "Chất lượng trước · Trung thực · Hợp tác cùng thắng" }
-  },
-  "Stage2": { "nav": { "products": "Sản phẩm", "capabilities": "Năng lực", "applications": "Ứng dụng", "factoryQuality": "Nhà máy & chất lượng", "resources": "Tài nguyên", "about": "Về Kehong", "quote": "Yêu cầu báo giá", "modelPreview": "Studio Bao bì 3D", "menuOpen": "Mở menu điều hướng", "menuClose": "Đóng menu điều hướng", "menuTitle": "Điều hướng trang" }, "home": { "hero": { "eyebrow": "Giấy chuyên dụng · Bìa sóng · Gia công theo yêu cầu", "title": "Giấy chuyên dụng và bìa sóng cho bao bì tùy chỉnh", "description": "Kehong cung cấp bìa sóng, giấy chuyên dụng và giấy chức năng, vật liệu cốc giấy cùng hỗ trợ gia công cho dự án bao bì B2B.", "primary": "Xem sản phẩm", "secondary": "Yêu cầu báo giá" }, "products": { "eyebrow": "Hệ sản phẩm", "title": "Bắt đầu với vật liệu hoặc hướng bao bì phù hợp", "viewAll": "Xem tất cả sản phẩm", "materials": "Vật liệu giấy & linh kiện bán thành phẩm", "materialsIntro": "Xem các loại giấy, linh kiện cốc và vật liệu tạo hình cho bao bì B2B.", "materialsCta": "Xem thông số", "finished": "Bao bì thành phẩm", "finishedIntro": "Xem bao bì thực phẩm, bánh và vận chuyển theo ứng dụng và cấu trúc.", "finishedCta": "Xem loại bao bì" } } },
-  "ProductFamilies": {
-    "eyebrow": "Nhóm sản phẩm", "breadcrumbProducts": "Sản phẩm", "breadcrumbFamilies": "Nhóm sản phẩm", "backToFamilies": "Quay lại nhóm sản phẩm", "viewFamily": "Mở nhóm", "requestQuote": "Gửi yêu cầu báo giá", "viewPublishedSpecs": "Xem thông số đã công bố", "publishedSpecs": "Thông số đã công bố", "publishedSpecsDescription": "Xem các nhóm sản phẩm đã được xác nhận trong nhóm này.", "noPublishedSpecs": "Nhóm này hỗ trợ định hướng dự án. Thông số đã công bố được xem trong danh mục chính.", "representativeNote": "Hình ảnh tham khảo · xác nhận tài sản cuối theo yêu cầu", "materials": "Định hướng vật liệu", "forms": "Dạng và quy cách", "applications": "Ứng dụng mua hàng", "capabilities": "Hỗ trợ dự án", "commonParameters": "Thông số cần xác nhận", "relatedFamilies": "Nhóm sản phẩm liên quan", "anchorEyebrow": "Sản phẩm công bố tiêu biểu", "anchorDescription": "Bắt đầu từ hướng vật liệu đã công bố, sau đó xác nhận cấu trúc, kích thước và lớp phủ cho dự án.", "realOptions": "Lựa chọn từ bản ghi đã công bố", "selectedRecord": "Bản ghi đã chọn", "viewFullRecord": "Xem bản ghi sản phẩm đầy đủ", "viewAllSpecifications": "Xem toàn bộ thông số", "publishedCount": "{count} bản ghi đã công bố", "serviceNote": "Lối vào cho dự án OEM / ODM, chọn vật liệu, xem xét cấu trúc và gia công giấy theo yêu cầu.",
-    "projectSupport": "Hỗ trợ dự án liên quan", "capabilitiesLink": "Xem năng lực", "processLink": "Xem quy trình sản xuất",
-    "family": {
-      "corrugated": { "title": "Vật liệu carton sóng và flute", "description": "Giấy mặt, cấu trúc flute và linh kiện carton gia công cho bao bì bảo vệ.", "material": "Giấy mặt và vật liệu flute", "forms": "Tờ, phôi và linh kiện carton", "applications": "Hộp gửi hàng, khay lót và cấu trúc bảo vệ", "capabilities": "Xem xét cấu trúc, gia công và mẫu dự án", "parameters": "Cấu trúc carton · flute · kích thước · in" },
-      "specialty": { "title": "Giấy đặc biệt và trang trí", "description": "Định hướng giấy và bìa theo bề mặt cho bao bì thương hiệu và bán lẻ.", "material": "Giấy và bìa đặc biệt", "forms": "Tờ, khay lót và linh kiện trình bày", "applications": "Bán lẻ, quà tặng và bao bì thương hiệu", "capabilities": "Chọn vật liệu, in và hoàn thiện", "parameters": "Bề mặt · màu · in · quy cách" },
-      "functional": { "title": "Giấy chức năng và giấy cho bao bì thực phẩm", "description": "Vật liệu giấy, khay và linh kiện bao bì được sắp xếp theo cấu trúc và quy trình cần xác nhận.", "material": "Giấy và bìa cho gia công bao bì", "forms": "Tờ, khay, giấy lót và linh kiện tạo hình", "applications": "Dịch vụ ăn uống, khay và khay lót giấy", "capabilities": "Chọn vật liệu và xem xét cấu trúc", "parameters": "Vật liệu · GSM · quy cách · xử lý bề mặt" },
-      "cup": { "title": "Vật liệu cốc giấy", "description": "Các nhóm cupstock, cuộn, tờ, giấy đáy và vật liệu khay cho dự án gia công.", "material": "Cupstock và giấy phủ", "forms": "Phôi quạt, cuộn, tờ và vật liệu khay", "applications": "Cốc giấy, bát giấy và khay tạo hình", "capabilities": "Phủ, bế và gia công", "parameters": "GSM · kích thước · lớp phủ · bề mặt · hoàn thiện" },
-      "converted": { "title": "Vật liệu bao bì và linh kiện gia công", "description": "Giấy, bìa và linh kiện gia công cho cấu trúc cần vật liệu và quy cách rõ ràng.", "material": "Giấy, bìa và hướng gia công", "forms": "Tờ, phôi, khay lót và linh kiện", "applications": "Hộp, khay lót và bao bì bảo vệ", "capabilities": "Bế, tạo nếp và cán", "parameters": "Vật liệu · GSM · cấu trúc · kích thước" },
-      "service": { "title": "OEM / ODM và gia công giấy theo yêu cầu", "description": "Lối vào dự án cần chọn vật liệu, làm mẫu cấu trúc hoặc hỗ trợ gia công giấy.", "material": "Xác nhận theo brief dự án", "forms": "Tờ, linh kiện hoặc cấu trúc tùy chỉnh", "applications": "Dự án bao bì tùy chỉnh", "capabilities": "Chọn vật liệu, xem xét cấu trúc và gia công", "parameters": "Vật liệu · GSM · kích thước · số lượng" }
+    "nav": {
+      "products": "Sản phẩm",
+      "process": "Quy trình",
+      "factory": "Nhà máy",
+      "contact": "Liên hệ"
     },
-    "anchor": { "title": "Vật liệu khay giấy", "description": "Hướng vật liệu đã công bố cho khay tạo hình và khay lót giấy. Chọn giá trị thực trước khi yêu cầu báo giá.", "materialLabel": "Vật liệu", "formLabel": "Dạng / cấu trúc", "gsmLabel": "GSM / độ dày", "coatingLabel": "Lớp phủ", "sizeLabel": "Kích thước thông dụng", "applicationLabel": "Ứng dụng", "realRecordNote": "Các giá trị dưới đây lấy từ bản ghi đã công bố; không tạo tổ hợp giả." }
+    "cta": {
+      "quote": "Yêu cầu báo giá",
+      "explore": "Xem sản phẩm",
+      "whatsapp": "WhatsApp",
+      "sample": "Yêu cầu mẫu",
+      "add": "Thêm vào hỏi giá",
+      "email": "Hỏi giá email"
+    },
+    "hero": {
+      "eyebrow": "Đối tác vật liệu bao bì toàn cầu",
+      "title": "Vật liệu bao bì giấy có nhà máy hỗ trợ cho người mua B2B.",
+      "description": "Từ năm 2001, Kehong sản xuất giấy sóng, giấy đặc biệt, hộp, khay, cup fan và cấu trúc bao bì tùy chỉnh.",
+      "proof": "Nguồn cung ổn định, mẫu nhanh, kiểm soát chất lượng và đơn hàng linh hoạt."
+    },
+    "facts": {
+      "years": "năm kinh nghiệm",
+      "factoryArea": "m2 nhà máy",
+      "customPackaging": "hỗ trợ OEM/ODM",
+      "flexibleOrders": "hỗ trợ đơn linh hoạt"
+    },
+    "products": {
+      "eyebrow": "Khám phá sản phẩm",
+      "title": "Vật liệu, bao bì và hoàn thiện cho mọi dự án.",
+      "description": "Xem theo nhóm sản phẩm, so sánh thông số và gửi yêu cầu báo giá.",
+      "featured": "Sản phẩm phổ biến",
+      "families": "Nhóm sản phẩm",
+      "viewAll": "Xem toàn bộ danh mục"
+    },
+    "process": {
+      "eyebrow": "Sản xuất kiểm soát",
+      "title": "Từ tấm giấy đến bao bì hoàn thiện.",
+      "description": "Quy trình ổn định cho cấp liệu, gia công, hoàn thiện và bảo vệ.",
+      "dieCutting": {
+        "title": "Bế tự động",
+        "text": "Cắt hình tùy chỉnh và tạo nếp chính xác."
+      },
+      "corrugated": {
+        "title": "Gia công giấy sóng",
+        "text": "Sản xuất giấy sóng chính xác, bề mặt mịn."
+      },
+      "dyeing": {
+        "title": "Nhuộm và xẻ",
+        "text": "Màu ổn định và cấp liệu đều."
+      },
+      "laminating": {
+        "title": "Cán và bọc màng",
+        "text": "Chống bụi và chống ẩm cho sản phẩm."
+      }
+    },
+    "inquiry": {
+      "title": "Gửi vật liệu, kích thước, quy trình và số lượng. Chúng tôi hỗ trợ báo giá.",
+      "description": "Giá phụ thuộc vào vật liệu, GSM, kích thước, quy trình, màu in, số lượng và điều khoản thương mại.",
+      "selected": "Sản phẩm đã chọn",
+      "empty": "Chưa chọn sản phẩm.",
+      "message": "Xin chào Kehong, tôi muốn hỏi giá cho:"
+    },
+    "catalog": {
+      "title": "Danh mục sản phẩm",
+      "description": "So sánh sản phẩm theo danh mục, vật liệu, quy trình và tùy chọn tùy chỉnh.",
+      "search": "Tìm sản phẩm hoặc mã sản phẩm",
+      "category": "Danh mục",
+      "material": "Vật liệu",
+      "process": "Quy trình",
+      "all": "Tất cả",
+      "customizable": "Tùy chỉnh",
+      "reset": "Đặt lại",
+      "results": "{count} sản phẩm",
+      "details": "Chi tiết",
+      "noResults": "Không có sản phẩm phù hợp. Hãy đặt lại bộ lọc hoặc gửi yêu cầu của bạn."
+    },
+    "detail": {
+      "back": "Quay lại sản phẩm",
+      "specs": "Thông số",
+      "material": "Vật liệu",
+      "gsm": "GSM / Độ dày",
+      "structure": "Cấu trúc / Sóng",
+      "surface": "Xử lý bề mặt",
+      "finishing": "Hoàn thiện",
+      "size": "Kích thước phổ biến",
+      "moq": "MOQ",
+      "application": "Ứng dụng",
+      "unit": "Đơn vị",
+      "note": "Sản phẩm và giá cuối cùng theo mẫu hoặc bản vẽ đã xác nhận."
+    },
+    "contact": {
+      "title": "Liên hệ Kehong",
+      "description": "Gửi vật liệu, kích thước, quy trình, số lượng và ứng dụng.",
+      "country": "Quốc gia / Khu vực",
+      "quantity": "Số lượng dự kiến",
+      "requirements": "Ghi chú vật liệu, GSM, kích thước và quy trình",
+      "factory": "Nhà máy tại Trung Quốc",
+      "internationalSales": "Kinh doanh quốc tế",
+      "generalInquiry": "Yêu cầu chung",
+      "deliveryUnavailable": "Dịch vụ email chưa được cấu hình",
+      "deliveryFailed": "Không thể gửi yêu cầu. Vui lòng thử lại hoặc dùng kênh trực tiếp"
+    },
+    "footer": {
+      "tagline": "Chất lượng trước · Trung thực · Hợp tác cùng thắng"
+    }
   },
-  "NotFound": { "title": "Không tìm thấy trang", "description": "Trang không tồn tại hoặc đã được di chuyển.", "homeLink": "Về trang chủ" },
+  "Stage2": {
+    "nav": {
+      "products": "Sản phẩm",
+      "capabilities": "Năng lực",
+      "applications": "Ứng dụng",
+      "factoryQuality": "Nhà máy & chất lượng",
+      "resources": "Tài nguyên",
+      "about": "Về Kehong",
+      "quote": "Yêu cầu báo giá",
+      "modelPreview": "Studio Bao bì 3D",
+      "menuOpen": "Mở menu điều hướng",
+      "menuClose": "Đóng menu điều hướng",
+      "menuTitle": "Điều hướng trang"
+    },
+    "home": {
+      "hero": {
+        "eyebrow": "Giấy chuyên dụng · Bìa sóng · Gia công theo yêu cầu",
+        "title": "Giấy chuyên dụng và bìa sóng cho bao bì tùy chỉnh",
+        "description": "Kehong cung cấp bìa sóng, giấy chuyên dụng và giấy chức năng, vật liệu cốc giấy cùng hỗ trợ gia công cho dự án bao bì B2B.",
+        "primary": "Xem sản phẩm",
+        "secondary": "Yêu cầu báo giá",
+        "stats": [
+                {
+                        "value": "OEM / ODM",
+                        "label": "Phát triển tùy chỉnh"
+                },
+                {
+                        "value": "MOQ",
+                        "label": "Số lượng đặt hàng linh hoạt"
+                },
+                {
+                        "value": "Giấy · Tấm",
+                        "label": "Giấy đặc biệt và tông sóng"
+                },
+                {
+                        "value": "B2B",
+                        "label": "Dự án đóng gói tùy chỉnh"
+                }
+        ]
+      },
+      "products": {
+            "eyebrow": "Hệ sản phẩm",
+            "title": "Bắt đầu với vật liệu hoặc hướng bao bì phù hợp",
+            "viewAll": "Xem tất cả sản phẩm",
+            "materials": "Vật liệu giấy & linh kiện bán thành phẩm",
+            "materialsIntro": "Xem các loại giấy, linh kiện cốc và vật liệu tạo hình cho bao bì B2B.",
+            "materialsCta": "Xem thông số",
+            "finished": "Bao bì thành phẩm",
+            "finishedIntro": "Xem bao bì thực phẩm, bánh và vận chuyển theo ứng dụng và cấu trúc.",
+            "finishedCta": "Xem loại bao bì"
+      },
+      "factoryProof": {
+            "kicker": "Nhà máy và năng lực",
+            "title": "Từ chọn vật liệu đến chuẩn bị giao hàng",
+            "lede": "Kehong ở Foshan, sắp xếp chọn vật liệu, tạo mẫu cấu trúc, gia công giấy, hoàn thiện, kiểm tra chất lượng.",
+            "facts": [
+                  "Cắt, dán và xử lý tông sóng",
+                  "Chọn vật liệu và tạo mẫu cấu trúc",
+                  "Kiểm tra chất lượng và chuẩn bị giao hàng"
+            ],
+            "factoryCta": "Xem nhà máy",
+            "capabilitiesCta": "Khám phá năng lực",
+            "imageAlt": "Mẫu nhà máy và sàn sản xuất Kehong",
+            "imageCaption": "Sàn sản xuất",
+            "miniImageAlt": "Trưng bày mẫu sản phẩm giấy"
+      },
+      "resources": {
+            "kicker": "Tài nguyên",
+            "title": "Hướng dẫn, công cụ đóng gói và thông tin ngành",
+            "items": [
+                  {
+                        "title": "Hướng dẫn và tài nguyên mua hàng",
+                        "body": "Chuẩn bị artwork, yêu cầu dieline, hướng dẫn vật liệu.",
+                        "href": "/resources",
+                        "cta": "Xem hướng dẫn"
+                  },
+                  {
+                        "title": "Tin tức và bài viết",
+                        "body": "Thông tin ngành đóng gói và cập nhật công ty.",
+                        "href": "/news",
+                        "cta": "Đọc bài viết"
+                  },
+                  {
+                        "title": "3D Packaging Studio",
+                        "body": "Khám phá cấu trúc đóng gói phổ biến trong 3D.",
+                        "href": "/model-preview",
+                        "cta": "Mở studio"
+                  }
+            ]
+      }
+    },
+    "factory": {
+      "hero": {
+        "kicker": "Nhà máy tại Phật Sơn",
+        "title": "Gia công giấy & sản xuất bao bì",
+        "lede": "Kehong là cơ sở gia công và chế biến giấy tại Phật Sơn. Chúng tôi xử lý giấy, bìa sóng và vật liệu từ giấy, hỗ trợ dự án B2B tùy chỉnh từ chọn vật liệu đến chuẩn bị xuất hàng.",
+        "metaLocation": "Phật Sơn, Quảng Đông, Trung Quốc",
+        "viewCapabilities": "Xem năng lực",
+        "requestQuote": "Yêu cầu báo giá",
+        "imageAlt": "Khu vực gia công giấy",
+        "metaScope": "Giấy · Bìa sóng · Sản phẩm gia công",
+        "metaCustom": "Dự án tùy chỉnh B2B"
+      },
+      "workWith": {
+        "kicker": "Vật liệu chúng tôi xử lý",
+        "title": "Vật liệu và sản phẩm gia công",
+        "lede": "Các nhóm sau đây lấy từ danh mục sản phẩm và hồ sơ dự án đã công bố của Kehong.",
+        "items": [
+          {
+            "title": "Bìa sóng",
+            "body": "Bìa sóng và kết cấu cho bao bì bảo vệ và vận chuyển.",
+            "alt": "Hình tham khảo vật liệu bìa sóng"
+          },
+          {
+            "title": "Giấy đặc biệt",
+            "body": "Giấy màu, giấy vân và giấy chức năng cho bao bì thương hiệu và trang trí.",
+            "alt": "Hình tham khảo vật liệu giấy đặc biệt"
+          },
+          {
+            "title": "Giấy tráng phủ",
+            "body": "Giấy tráng PE và xử lý bề mặt cho dự án cốc và bao bì thực phẩm.",
+            "alt": "Hình tham khảo cuộn giấy tráng phủ"
+          },
+          {
+            "title": "Cuộn & tờ giấy",
+            "body": "Giấy dạng cuộn hoặc tờ để gia công tiếp.",
+            "alt": "Hình tham khảo cuộn giấy"
+          },
+          {
+            "title": "Vật liệu cốc giấy",
+            "body": "Cupstock, phôi quạt và cuộn đáy cho dự án cốc giấy.",
+            "alt": "Hình tham khảo sản phẩm phôi quạt cốc giấy"
+          },
+          {
+            "title": "Linh kiện giấy gia công",
+            "body": "Khay cắt chết, tấm lót, ngăn chèn và linh kiện giấy lắp ráp.",
+            "alt": "Hình tham khảo linh kiện giấy cắt chết"
+          }
+        ]
+      },
+      "process": {
+        "kicker": "Quy trình sản xuất & gia công",
+        "title": "Từ vật liệu đến linh kiện hoàn thiện",
+        "lede": "Mỗi bước nêu rõ chúng tôi làm gì, vật liệu sử dụng và đầu ra nhận được.",
+        "whatLabel": "Chúng tôi làm gì",
+        "materialLabel": "Vật liệu",
+        "outputLabel": "Đầu ra",
+        "steps": [
+          {
+            "title": "Chọn vật liệu",
+            "what": "Xác nhận giấy, bìa hoặc giấy tráng phủ theo công dụng và kết cấu sản phẩm.",
+            "material": "Giấy, bìa, giấy tráng phủ",
+            "output": "Thông số vật liệu đã duyệt"
+          },
+          {
+            "title": "Làm mẫu kết cấu",
+            "what": "Rà soát kích thước, độ khớp, đường gấp và ngăn chèn bằng mẫu kết cấu.",
+            "material": "Vật liệu kết cấu đã duyệt",
+            "output": "Mẫu kết cấu để xem xét"
+          },
+          {
+            "title": "Gia công giấy",
+            "what": "Cấp giấy, xé tờ và xẻ theo định dạng làm việc cần thiết.",
+            "material": "Cuộn và tờ giấy",
+            "output": "Vật liệu gia công cho bước tiếp theo"
+          },
+          {
+            "title": "Xẻ cuộn",
+            "what": "Cắt cuộn theo khổ rộng hoặc tờ cần thiết.",
+            "material": "Cuộn giấy và bìa",
+            "output": "Cuộn đã xẻ hoặc tờ đã cắt"
+          },
+          {
+            "title": "Cắt chết",
+            "what": "Cắt và tạo rãnh trên tấm, nếp gấp và lỗ mở theo dieline đã duyệt.",
+            "material": "Bìa giấy, bìa sóng",
+            "output": "Linh kiện bao bì cắt chết"
+          },
+          {
+            "title": "In & hoàn thiện",
+            "what": "In, cán màng, phủ, dập nóng, dập nổi hoặc dán cửa sổ theo yêu cầu.",
+            "material": "Giấy tráng phủ, bìa in",
+            "output": "Bề mặt và kết cấu hoàn thiện"
+          },
+          {
+            "title": "Kiểm tra chất lượng & xuất hàng",
+            "what": "Xác nhận vật liệu, kích thước, bề mặt và tạo hình tại các điểm đã thống nhất, sau đó đóng gói xuất hàng.",
+            "material": "Đơn hàng hoàn thành",
+            "output": "Đơn hàng sẵn sàng xuất"
+          }
+        ]
+      },
+      "quality": {
+        "kicker": "Phương pháp chất lượng",
+        "title": "Kiểm soát chất lượng dựa trên xác nhận",
+        "lede": "Chất lượng được quản lý qua xác nhận vật liệu, thông số, kiểm tra trong quá trình và rà soát cuối.",
+        "items": [
+          {
+            "title": "Xác nhận vật liệu",
+            "body": "Xác nhận vật liệu ban đầu theo thông số dự án."
+          },
+          {
+            "title": "Xác nhận thông số",
+            "body": "Xác nhận kích thước, kết cấu và yêu cầu bề mặt trước sản xuất."
+          },
+          {
+            "title": "Kiểm tra trong quá trình",
+            "body": "Kiểm tra kích thước chính, bề mặt và tạo hình ở các bước liên quan."
+          },
+          {
+            "title": "Xác nhận đơn hàng cuối",
+            "body": "Rà soát đơn hàng hoàn thành theo thông số đã duyệt trước khi đóng gói."
+          },
+          {
+            "title": "Trao đổi mẫu & tài liệu",
+            "body": "Trao đổi mẫu, báo cáo thử nghiệm và tài liệu dự án khi cần."
+          }
+        ]
+      },
+      "preparation": {
+        "kicker": "Trước khi hỏi hàng",
+        "title": "Chuẩn bị gì cho dự án tùy chỉnh",
+        "lede": "Thông tin rõ ràng giúp chúng tôi xác nhận vật liệu, kết cấu và báo giá nhanh hơn.",
+        "items": [
+          "Nhu cầu sản phẩm hoặc vật liệu",
+          "Kích thước",
+          "Số lượng",
+          "Hình ảnh hoặc tệp tham khảo",
+          "Quốc gia / khu vực đến"
+        ],
+        "cta": "Trao đổi yêu cầu của bạn"
+      }
+    },
+    "capabilities": {
+      "hero": {
+        "kicker": "Kehong · Năng lực sản xuất",
+        "title": "Năng lực Gia công Giấy & Vật liệu Bao bì",
+        "lede": "Cái nhìn thực tế về những gì Kehong có thể sản xuất: xử lý vật liệu, gia công, xử lý bề mặt và hỗ trợ tùy chỉnh cho dự án bao bì giấy.",
+        "metaGroups": "4 nhóm năng lực",
+        "metaOem": "OEM / ODM",
+        "metaLocation": "Phật Sơn, Quảng Đông, Trung Quốc",
+        "requestQuote": "Yêu cầu báo giá"
+      },
+      "groups": [
+        {
+          "kicker": "Xử lý vật liệu",
+          "lede": "Xác nhận và chuẩn bị vật liệu giấy phù hợp trước khi gia công.",
+          "items": [
+            {
+              "title": "Chọn vật liệu",
+              "what": "Xác nhận giấy, bìa hoặc giấy tráng phủ theo công dụng và kết cấu sản phẩm.",
+              "materials": "Giấy, bìa, giấy tráng phủ",
+              "output": "Thông số vật liệu đã duyệt"
+            },
+            {
+              "title": "Xẻ & cắt tờ",
+              "what": "Cắt cuộn theo khổ rộng hoặc tờ cho công đoạn sau.",
+              "materials": "Cuộn giấy và bìa",
+              "output": "Cuộn đã xẻ hoặc tờ đã cắt"
+            },
+            {
+              "title": "Gia công giấy & bìa",
+              "what": "Cấp, xé và gia công vật liệu theo định dạng cần thiết.",
+              "materials": "Giấy, bìa, giấy tráng phủ",
+              "output": "Vật liệu đã gia công"
+            }
+          ]
+        },
+        {
+          "kicker": "Gia công chuyển đổi",
+          "lede": "Biến vật liệu đã duyệt thành kết cấu bao bì cần thiết.",
+          "items": [
+            {
+              "title": "Làm mẫu kết cấu",
+              "what": "Tạo mẫu kết cấu để rà soát kích thước, độ khớp và nếp gấp.",
+              "materials": "Vật liệu kết cấu đã duyệt",
+              "output": "Mẫu kết cấu xem xét được"
+            },
+            {
+              "title": "Cắt chết",
+              "what": "Cắt và tạo rãnh trên tấm, nếp gấp và lỗ mở theo dieline.",
+              "materials": "Bìa giấy, bìa sóng",
+              "output": "Linh kiện bao bì cắt chết"
+            },
+            {
+              "title": "Tạo hình & lắp ráp",
+              "what": "Gấp, dán và lắp ráp các bộ phận thành kết cấu hoàn chỉnh.",
+              "materials": "Linh kiện giấy cắt chết",
+              "output": "Bao bì lắp ráp hoàn chỉnh"
+            }
+          ]
+        },
+        {
+          "kicker": "Xử lý bề mặt & chức năng",
+          "lede": "Tùy chọn in và hoàn thiện được xác nhận theo vật liệu và yêu cầu.",
+          "items": [
+            {
+              "title": "In ấn",
+              "what": "Xác nhận vùng in, màu sắc và file thiết kế theo kết cấu.",
+              "materials": "Giấy tráng phủ, bìa giấy",
+              "output": "Vật liệu bao bì đã in"
+            },
+            {
+              "title": "Cán & phủ",
+              "what": "Cán mờ hoặc bóng và phủ dung dịch theo yêu cầu.",
+              "materials": "Giấy và bìa đã in",
+              "output": "Vật liệu bảo vệ bề mặt"
+            },
+            {
+              "title": "Chi tiết hoàn thiện",
+              "what": "Dập nóng, dập nổi, dập chìm, UV cục bộ và dán cửa sổ.",
+              "materials": "Giấy, bìa, vật liệu đã in",
+              "output": "Chi tiết bao bì hoàn thiện"
+            }
+          ]
+        },
+        {
+          "kicker": "Hỗ trợ tùy chỉnh",
+          "lede": "Hỗ trợ theo dự án cho đơn hàng B2B tùy chỉnh.",
+          "items": [
+            {
+              "title": "File thiết kế & tiền in",
+              "what": "Kiểm tra file, màu sắc và phiên bản trước sản xuất.",
+              "materials": "Mọi vật liệu in",
+              "output": "File sẵn sàng sản xuất"
+            },
+            {
+              "title": "Kiểm soát chất lượng",
+              "what": "Xác nhận vật liệu, kích thước, bề mặt và tạo hình tại các điểm đã thống nhất.",
+              "materials": "Mọi vật liệu dự án",
+              "output": "Đơn hàng đã kiểm tra"
+            },
+            {
+              "title": "Hỗ trợ đóng gói & xuất khẩu",
+              "what": "Phối hợp thông tin đóng gói và yêu cầu điểm đến cho dự án B2B.",
+              "materials": "Bao bì hoàn thiện",
+              "output": "Đơn hàng sẵn sàng xuất"
+            }
+          ]
+        }
+      ],
+      "start": {
+        "kicker": "Cách bắt đầu",
+        "title": "Bắt đầu dự án tùy chỉnh",
+        "lede": "Trình tự thực tế giúp yêu cầu và thông số luôn khớp nhau.",
+        "steps": [
+          {
+            "title": "Chia sẻ yêu cầu",
+            "body": "Gửi nhu cầu sản phẩm hoặc vật liệu, kích thước, số lượng và thị trường đích."
+          },
+          {
+            "title": "Rà soát vật liệu & kết cấu",
+            "body": "Cùng xác nhận vật liệu, kết cấu và ràng buộc dự án."
+          },
+          {
+            "title": "Xác nhận thông số hoặc mẫu",
+            "body": "Rà soát thông số, bản vẽ hoặc mẫu kết cấu."
+          },
+          {
+            "title": "Tiến hành báo giá",
+            "body": "Kehong chuẩn bị báo giá và các bước sản xuất tiếp theo."
+          }
+        ]
+      },
+      "cta": {
+        "kicker": "Bắt đầu dự án",
+        "title": "Kiểm tra Kehong có thể sản xuất dự án của bạn không",
+        "lede": "Gửi yêu cầu hoặc tệp tham khảo. Kehong sẽ xác nhận bước thực tế tiếp theo.",
+        "requestQuote": "Yêu cầu báo giá",
+        "sendReference": "Gửi Tệp Tham khảo"
+      }
+    }
+  ,
+  "about": {
+    "hero": {
+      "kicker": "Kehong · Về chúng tôi",
+      "title": "Vật liệu giấy, tông sóng, gia công giấy và hỗ trợ đóng gói",
+      "lede": "Kehong cung cấp vật liệu giấy, tông sóng, gia công giấy và hỗ trợ đóng gói tùy chỉnh cho dự án B2B.",
+      "metaScope": "Giấy · Tông sóng · Sản phẩm gia công",
+      "metaCustom": "Dự án tùy chỉnh B2B",
+      "metaLocation": "Foshan, Quảng Đông, Trung Quốc",
+      "imageAlt": "Khu vực gia công giấy Kehong",
+      "ctaQuote": "Yêu cầu báo giá",
+      "ctaCapabilities": "Xem năng lực"
+    },
+    "what": {
+      "kicker": "Kehong làm gì",
+      "title": "Hỗ trợ gia công giấy và đóng gói từ nguyên liệu đến thành phẩm",
+      "lede": "Kehong xử lý vật liệu giấy, gia công, hoàn thiện và đóng gói tùy chỉnh cho dự án B2B.",
+      "items": [
+        {
+          "title": "Vật liệu giấy",
+          "body": "Giấy đặc biệt, giấy tráng, phôi cốc giấy và vật liệu tấm."
+        },
+        {
+          "title": "Tông sóng",
+          "body": "Tấm tông sóng cho đóng gói cấu trúc và vận chuyển."
+        },
+        {
+          "title": "Gia công giấy",
+          "body": "Cắt, dán, lắp ráp cho các thành phần đóng gói từ giấy."
+        },
+        {
+          "title": "Hỗ trợ đóng gói tùy chỉnh",
+          "body": "Chọn vật liệu, tạo mẫu cấu trúc, hoàn thiện cho dự án B2B."
+        }
+      ]
+    },
+    "who": {
+      "kicker": "Đối tác của chúng tôi",
+      "title": "Người mua B2B và nhóm dự án trong chuỗi cung ứng đóng gói",
+      "lede": "Kehong hỗ trợ các nhà gia công đóng gói, nhà sản xuất và đội ngũ thu mua.",
+      "items": [
+        "Nhà gia công đóng gói",
+        "Nhà sản xuất sản phẩm giấy",
+        "Người mua đóng gói thực phẩm và bánh",
+        "Dự án đóng gói mỹ phẩm và nước hoa",
+        "Nhà phân phối và đội ngũ thu mua",
+        "Dự án đóng gói tùy chỉnh B2B"
+      ]
+    },
+    "how": {
+      "kicker": "Cách chúng tôi hỗ trợ dự án",
+      "title": "Hỗ trợ dự án từng bước từ vật liệu đến giao hàng",
+      "lede": "Kehong làm việc với người mua qua từng giai đoạn của dự án đóng gói tùy chỉnh.",
+      "items": [
+        {
+          "title": "Chọn vật liệu",
+          "body": "Đề xuất loại giấy, tấm, lớp phủ dựa trên yêu cầu sản phẩm."
+        },
+        {
+          "title": "Thảo luận thông số",
+          "body": "Làm rõ kích thước, cấu trúc, phương pháp in, số lượng và điểm đến."
+        },
+        {
+          "title": "Gia công và tùy chỉnh",
+          "body": "Sắp xếp cắt, dán, hoàn thiện cho đóng gói tùy chỉnh."
+        },
+        {
+          "title": "Báo giá và thảo luận mẫu",
+          "body": "Xem xét yêu cầu dự án, thảo luận quy trình lấy mẫu."
+        }
+      ]
+    },
+    "entry": {
+      "kicker": "Tìm hiểu thêm về sản xuất",
+      "title": "Khám phá nhà máy và năng lực sản xuất",
+      "lede": "Truy cập trang nhà máy và năng lực để xem chi tiết sản xuất.",
+      "factoryCta": "Xem nhà máy",
+      "capabilitiesCta": "Khám phá năng lực",
+      "imageAlt": "Khu vực sản xuất nhà máy Kehong"
+    },
+    "cta": {
+      "kicker": "Bắt đầu dự án",
+      "title": "Chia sẻ yêu cầu dự án để thảo luận",
+      "lede": "Gửi brief hoặc yêu cầu báo giá để bắt đầu trao đổi.",
+      "discussBtn": "Thảo luận yêu cầu",
+      "quoteBtn": "Yêu cầu báo giá"
+    }
+  },
+  "resources": {
+    "hero": {
+      "kicker": "Kehong · Tài nguyên người mua",
+      "title": "Hướng dẫn, tài nguyên mua hàng và công cụ tham khảo đóng gói",
+      "lede": "Sử dụng tài nguyên này để chuẩn bị artwork, so sánh vật liệu và lập kế hoạch dự án.",
+      "metaGuides": "Hướng dẫn và yêu cầu",
+      "metaOem": "OEM / ODM",
+      "metaLocation": "Foshan, Quảng Đông, Trung Quốc",
+      "ctaExpert": "Nói chuyện với chuyên gia đóng gói",
+      "ctaCapabilities": "Khám phá năng lực"
+    },
+    "guides": {
+      "kicker": "Hướng dẫn và tài nguyên mua hàng",
+      "title": "Hướng dẫn thực tế về artwork, vật liệu và cấu trúc đóng gói",
+      "guideLabel": "Hướng dẫn",
+      "requestLabel": "Yêu cầu",
+      "readGuide": "Đọc hướng dẫn",
+      "sendRequest": "Gửi yêu cầu"
+    },
+    "finishes": {
+      "kicker": "Tùy chọn hoàn thiện",
+      "title": "Tổng quan hoàn thiện",
+      "finishingRequirements": "Yêu cầu hoàn thiện",
+      "startGuidedRfq": "Bắt đầu RFQ có hướng dẫn",
+      "needStructure": "Cần đề xuất cấu trúc?",
+      "structureTip": "Chia sẻ kích thước, trọng lượng và yêu cầu vận chuyển để được đề xuất cấu trúc."
+    },
+    "news": {
+      "kicker": "Tin tức và bài viết",
+      "title": "Thông tin ngành đóng gói và cập nhật công ty",
+      "lede": "Đọc bài viết mới nhất về vật liệu giấy và kỹ thuật gia công.",
+      "viewAll": "Xem tất cả bài viết"
+    },
+    "studio": {
+      "kicker": "3D Packaging Studio",
+      "title": "Công cụ tham khảo cấu trúc đóng gói",
+      "lede": "Khám phá cấu trúc đóng gói phổ biến trong 3D trước khi tạo mẫu.",
+      "explore": "Mở 3D Studio",
+      "positioning": "Công cụ tham khảo cấu trúc — dùng để trực quan hóa và lập kế hoạch dự án."
+    },
+    "reference": {
+      "kicker": "Tệp tham khảo",
+      "title": "Gửi tệp tham khảo hoặc thảo luận yêu cầu đóng gói",
+      "lede": "Chia sẻ mẫu đóng gói tham khảo hoặc bản phác thảo để thảo luận báo giá.",
+      "sendFile": "Gửi tệp tham khảo",
+      "discuss": "Thảo luận yêu cầu đóng gói"
+    }
+  }},
+  "ProductFamilies": {
+    "eyebrow": "Nhóm sản phẩm",
+    "breadcrumbProducts": "Sản phẩm",
+    "breadcrumbFamilies": "Nhóm sản phẩm",
+    "backToFamilies": "Quay lại nhóm sản phẩm",
+    "viewFamily": "Mở nhóm",
+    "requestQuote": "Gửi yêu cầu báo giá",
+    "viewPublishedSpecs": "Xem thông số đã công bố",
+    "publishedSpecs": "Thông số đã công bố",
+    "publishedSpecsDescription": "Xem các nhóm sản phẩm đã được xác nhận trong nhóm này.",
+    "noPublishedSpecs": "Nhóm này hỗ trợ định hướng dự án. Thông số đã công bố được xem trong danh mục chính.",
+    "representativeNote": "Hình ảnh tham khảo · xác nhận tài sản cuối theo yêu cầu",
+    "materials": "Định hướng vật liệu",
+    "forms": "Dạng và quy cách",
+    "applications": "Ứng dụng mua hàng",
+    "capabilities": "Hỗ trợ dự án",
+    "commonParameters": "Thông số cần xác nhận",
+    "relatedFamilies": "Nhóm sản phẩm liên quan",
+    "anchorEyebrow": "Sản phẩm công bố tiêu biểu",
+    "anchorDescription": "Bắt đầu từ hướng vật liệu đã công bố, sau đó xác nhận cấu trúc, kích thước và lớp phủ cho dự án.",
+    "realOptions": "Lựa chọn từ bản ghi đã công bố",
+    "selectedRecord": "Bản ghi đã chọn",
+    "viewFullRecord": "Xem bản ghi sản phẩm đầy đủ",
+    "viewAllSpecifications": "Xem toàn bộ thông số",
+    "publishedCount": "{count} bản ghi đã công bố",
+    "serviceNote": "Lối vào cho dự án OEM / ODM, chọn vật liệu, xem xét cấu trúc và gia công giấy theo yêu cầu.",
+    "projectSupport": "Hỗ trợ dự án liên quan",
+    "capabilitiesLink": "Xem năng lực",
+    "processLink": "Xem quy trình sản xuất",
+    "family": {
+      "corrugated": {
+        "title": "Vật liệu carton sóng và flute",
+        "description": "Giấy mặt, cấu trúc flute và linh kiện carton gia công cho bao bì bảo vệ.",
+        "material": "Giấy mặt và vật liệu flute",
+        "forms": "Tờ, phôi và linh kiện carton",
+        "applications": "Hộp gửi hàng, khay lót và cấu trúc bảo vệ",
+        "capabilities": "Xem xét cấu trúc, gia công và mẫu dự án",
+        "parameters": "Cấu trúc carton · flute · kích thước · in"
+      },
+      "specialty": {
+        "title": "Giấy đặc biệt và trang trí",
+        "description": "Định hướng giấy và bìa theo bề mặt cho bao bì thương hiệu và bán lẻ.",
+        "material": "Giấy và bìa đặc biệt",
+        "forms": "Tờ, khay lót và linh kiện trình bày",
+        "applications": "Bán lẻ, quà tặng và bao bì thương hiệu",
+        "capabilities": "Chọn vật liệu, in và hoàn thiện",
+        "parameters": "Bề mặt · màu · in · quy cách"
+      },
+      "functional": {
+        "title": "Giấy chức năng và giấy cho bao bì thực phẩm",
+        "description": "Vật liệu giấy, khay và linh kiện bao bì được sắp xếp theo cấu trúc và quy trình cần xác nhận.",
+        "material": "Giấy và bìa cho gia công bao bì",
+        "forms": "Tờ, khay, giấy lót và linh kiện tạo hình",
+        "applications": "Dịch vụ ăn uống, khay và khay lót giấy",
+        "capabilities": "Chọn vật liệu và xem xét cấu trúc",
+        "parameters": "Vật liệu · GSM · quy cách · xử lý bề mặt"
+      },
+      "cup": {
+        "title": "Vật liệu cốc giấy",
+        "description": "Các nhóm cupstock, cuộn, tờ, giấy đáy và vật liệu khay cho dự án gia công.",
+        "material": "Cupstock và giấy phủ",
+        "forms": "Phôi quạt, cuộn, tờ và vật liệu khay",
+        "applications": "Cốc giấy, bát giấy và khay tạo hình",
+        "capabilities": "Phủ, bế và gia công",
+        "parameters": "GSM · kích thước · lớp phủ · bề mặt · hoàn thiện"
+      },
+      "converted": {
+        "title": "Vật liệu bao bì và linh kiện gia công",
+        "description": "Giấy, bìa và linh kiện gia công cho cấu trúc cần vật liệu và quy cách rõ ràng.",
+        "material": "Giấy, bìa và hướng gia công",
+        "forms": "Tờ, phôi, khay lót và linh kiện",
+        "applications": "Hộp, khay lót và bao bì bảo vệ",
+        "capabilities": "Bế, tạo nếp và cán",
+        "parameters": "Vật liệu · GSM · cấu trúc · kích thước"
+      },
+      "service": {
+        "title": "OEM / ODM và gia công giấy theo yêu cầu",
+        "description": "Lối vào dự án cần chọn vật liệu, làm mẫu cấu trúc hoặc hỗ trợ gia công giấy.",
+        "material": "Xác nhận theo brief dự án",
+        "forms": "Tờ, linh kiện hoặc cấu trúc tùy chỉnh",
+        "applications": "Dự án bao bì tùy chỉnh",
+        "capabilities": "Chọn vật liệu, xem xét cấu trúc và gia công",
+        "parameters": "Vật liệu · GSM · kích thước · số lượng"
+      }
+    },
+    "anchor": {
+      "title": "Vật liệu khay giấy",
+      "description": "Hướng vật liệu đã công bố cho khay tạo hình và khay lót giấy. Chọn giá trị thực trước khi yêu cầu báo giá.",
+      "materialLabel": "Vật liệu",
+      "formLabel": "Dạng / cấu trúc",
+      "gsmLabel": "GSM / độ dày",
+      "coatingLabel": "Lớp phủ",
+      "sizeLabel": "Kích thước thông dụng",
+      "applicationLabel": "Ứng dụng",
+      "realRecordNote": "Các giá trị dưới đây lấy từ bản ghi đã công bố; không tạo tổ hợp giả."
+    }
+  },
+  "NotFound": {
+    "title": "Không tìm thấy trang",
+    "description": "Trang không tồn tại hoặc đã được di chuyển.",
+    "homeLink": "Về trang chủ"
+  },
   "Error": {
     "server": "Đã xảy ra lỗi",
     "sorry": "Vui lòng thử lại hoặc quay về trang chủ để gửi yêu cầu.",

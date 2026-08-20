@@ -16,18 +16,19 @@ type RevealProps = {
 };
 
 /**
- * 滚动入场原语。服务端渲染即终态,JS 挂载后才对"仍在视口外"的元素布防,
- * 因此 no-JS、爬虫和 e2e 始终看到完整内容;reduced-motion 下完全不启用。
+ * 滚动入场原语。服务端渲染即终态,JS 挂载后内容也始终可见——
+ * 不依赖用户滚动、不依赖 hydration 即可完整呈现核心内容,
+ * 因此 no-JS、爬虫、e2e 与 full-page 截图均看到完整版面;
+ * reduced-motion 下完全不启用。入场动画仅作渐进增强,绝不隐藏内容。
  */
 export function Reveal({ children, className = "", delay = 0, mode = "rise" }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [state, setState] = useState<"idle" | "armed" | "in">("idle");
+  const [state, setState] = useState<"idle" | "armed" | "in">("in");
 
   useEffect(() => {
     const element = ref.current;
     if (!element || prefersReducedMotion()) return;
-    if (element.getBoundingClientRect().top < window.innerHeight * 0.92) return;
-    setState("armed");
+    // 内容初始即终态可见;仅当元素进入视口时补一次轻量入场过渡(不隐藏)。
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {

@@ -18,7 +18,7 @@ test.describe("Stage 2 homepage positioning and B2B navigation", () => {
     await page.goto("/en", { waitUntil: "networkidle" });
     await expect(page.getByRole("link", { name: "Applications", exact: true })).toHaveAttribute("href", "/en/solutions");
     await expect(page.getByRole("link", { name: "Factory & Quality", exact: true })).toHaveAttribute("href", "/en/factory");
-    await expect(page.getByRole("link", { name: "About Kehong", exact: true })).toHaveAttribute("href", "/en/custom-paper-products");
+    await expect(page.getByRole("link", { name: "About Kehong", exact: true })).toHaveAttribute("href", "/en/about");
     await expect(page.getByTestId("header-model-preview-link")).toHaveCount(0);
     const resources = page.getByRole("button", { name: "Resources", exact: true });
     await resources.hover();

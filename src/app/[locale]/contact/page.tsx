@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import Header from "@/components/site/Header";
 import QuickQuoteForm from "@/components/site/QuickQuoteForm";
 import GuidedQuoteForm from "@/components/site/GuidedQuoteForm";
@@ -18,6 +19,15 @@ import { getBrandConfig } from "@/lib/site-config";
 import { getInterest, getInterestLabel } from "@/data/interests";
 import { buildProductGroupSummary, getLocalizedProductTitle, getProductGroupId, getSkuBySlug, getSkusByGroupId } from "@/lib/catalog";
 import { mailtoHref, publicContact, telHref, whatsappHref } from "@/config/company-public";
+
+const contactPrivacyNotice = {
+  en: "By submitting this form, you provide the information needed to process and reply to this inquiry. See the Privacy Policy for details.",
+  zh: "提交此表单即表示你提供的信息将用于处理和回复本次询盘。详情请见隐私政策。",
+  id: "Dengan mengirim formulir ini, Anda memberikan informasi untuk memproses dan menjawab pertanyaan ini. Lihat Kebijakan Privasi untuk detailnya.",
+  vi: "Khi gửi biểu mẫu, bạn cung cấp thông tin cần thiết để xử lý và trả lời yêu cầu này. Xem Chính sách quyền riêng tư để biết thêm.",
+  th: "การส่งแบบฟอร์มนี้เป็นการให้ข้อมูลเพื่อดำเนินการและตอบคำถามนี้ ดูรายละเอียดได้ที่นโยบายความเป็นส่วนตัว",
+  ms: "Dengan menghantar borang ini, anda memberikan maklumat untuk memproses dan menjawab pertanyaan ini. Lihat Dasar Privasi untuk butiran.",
+} as const;
 
 export async function generateMetadata({
   params,
@@ -233,6 +243,10 @@ export default async function ContactPage({
                   ))}
                 </div>
                 <QuickQuoteForm locale={locale} initialProducts={initialProducts} />
+                <p className="mt-4 text-xs leading-5 text-(--kh-muted)" data-testid="contact-privacy-notice">
+                  {(contactPrivacyNotice[locale as keyof typeof contactPrivacyNotice] ?? contactPrivacyNotice.en)} {" "}
+                  <Link href="/privacy" className="kh-inline-link">{zh ? "隐私政策" : "Privacy Policy"}</Link>
+                </p>
                 <details className="mt-7 border-t border-(--kh-line) pt-5">
                   <summary className="cursor-pointer text-sm font-bold text-(--kh-forest)">
                     {zh ? "补充技术信息（材质、结构、印刷与交期）" : "Add technical details — material, structure, print and timing"}

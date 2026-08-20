@@ -507,7 +507,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
             {openMenu === "resources" ? <ResourceMegaMenu zh={isZh} close={closeDesktopDropdowns} pathname={pathname} /> : null}
           </div>
 
-          <Link href="/custom-paper-products" aria-current={isActive("/custom-paper-products") ? "page" : undefined} className={navLinkClass(isActive("/custom-paper-products"))}>
+          <Link href="/about" aria-current={isActive("/about") ? "page" : undefined} className={navLinkClass(isActive("/about"))}>
             <span>{copy.about}</span>
           </Link>
         </nav>
@@ -563,7 +563,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                     <Factory className="kh-mobile-nav-icon" aria-hidden="true" />
                     <span>{copy.factoryQuality}</span>
                   </Link>
-                  <Link href="/custom-paper-products" className="kh-mobile-nav-row" onClick={closeMobileMenu}>
+                  <Link href="/about" className="kh-mobile-nav-row" onClick={closeMobileMenu}>
                     <span>{copy.about}</span>
                   </Link>
                   <MobileResourceDirectory zh={isZh} close={closeMobileMenu} pathname={pathname} />

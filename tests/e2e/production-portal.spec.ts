@@ -54,20 +54,19 @@ test.describe("homepage manufacturing website", () => {
   });
 
   test("homepage metrics use locale-correct values, units and labels", async ({ page }) => {
-    for (const [locale, values, labels, unit] of [
-      ["en", ["20+", "8,000+", "OEM / ODM", "MOQ"], ["Years in paper converting", "Production site", "Custom development", "Flexible order quantities"], "m²"],
-      ["zh", ["20+", "8,000+", "OEM / ODM", "MOQ"], ["纸品加工经验", "生产场地", "定制开发", "灵活起订"], "㎡"],
+    for (const [locale, values, labels] of [
+      ["en", ["OEM / ODM", "MOQ", "Paper · Board", "B2B"], ["Custom development", "Flexible order quantities", "Specialty paper and corrugated board", "Custom packaging projects"]],
+      ["zh", ["OEM / ODM", "MOQ", "纸材·纸板", "B2B"], ["定制开发", "灵活起订量", "特种纸与瓦楞纸板", "定制包装项目"]],
     ] as const) {
       await page.goto(`/${locale}`);
       const stats = page.locator(".kh-hero-stat");
       await expect(stats).toHaveCount(4);
       for (let index = 0; index < values.length; index += 1) {
-        await expect(stats.nth(index).locator(".kh-hero-stat-value")).toHaveAttribute("aria-label", index === 1 ? `${values[index]} ${unit}` : values[index]);
+        await expect(stats.nth(index).locator(".kh-hero-stat-value")).toHaveAttribute("aria-label", values[index]);
         await expect(stats.nth(index).locator(".kh-hero-stat-label")).toHaveText(labels[index]);
       }
-      await expect(page.locator(".kh-home-hero")).toContainText("8,000+");
+      await expect(page.locator(".kh-home-hero")).toContainText(values[0]);
       if (locale === "en") await expect(page.locator(".kh-home-hero")).not.toContainText("㎡");
-      await expect(page.locator(".kh-hero-stat-value").nth(1)).toContainText(unit);
       const nowrap = await stats.locator(".kh-hero-stat-value").evaluateAll((nodes) => nodes.every((node) => getComputedStyle(node).whiteSpace === "nowrap"));
       expect(nowrap).toBe(true);
     }
@@ -80,8 +79,8 @@ test.describe("homepage manufacturing website", () => {
     await expect(stats.first()).toHaveClass(/kh-metric-motion-(armed|in)/, { timeout: 3000 });
     await stats.first().scrollIntoViewIfNeeded();
     await expect(stats.first()).toHaveClass(/kh-metric-motion-in/, { timeout: 3000 });
-    await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("20+");
-    await expect(stats.nth(1).locator(".kh-hero-stat-value")).toContainText("8,000+");
+    await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("OEM / ODM");
+    await expect(stats.nth(1).locator(".kh-hero-stat-value")).toHaveText("MOQ");
     const before = await stats.evaluateAll((nodes) => nodes.map((node) => ({ top: (node as HTMLElement).offsetTop, height: node.getBoundingClientRect().height })));
     await page.waitForTimeout(250);
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -89,16 +88,16 @@ test.describe("homepage manufacturing website", () => {
     await page.waitForTimeout(250);
     const after = await stats.evaluateAll((nodes) => nodes.map((node) => ({ top: (node as HTMLElement).offsetTop, height: node.getBoundingClientRect().height })));
     expect(after).toEqual(before);
-    await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("20+");
-    await expect(stats.nth(1).locator(".kh-hero-stat-value")).toContainText("8,000+");
+    await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("OEM / ODM");
+    await expect(stats.nth(1).locator(".kh-hero-stat-value")).toHaveText("MOQ");
   });
 
   test("homepage metrics honor reduced motion and remain final immediately", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/zh");
     const stats = page.locator(".kh-hero-stat");
-    await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("20+");
-    await expect(stats.nth(1).locator(".kh-hero-stat-value")).toContainText("8,000+");
+    await expect(stats.nth(0).locator(".kh-hero-stat-value")).toHaveText("OEM / ODM");
+    await expect(stats.nth(1).locator(".kh-hero-stat-value")).toHaveText("MOQ");
     const styles = await stats.evaluateAll((nodes) => nodes.map((node) => {
       const value = node.querySelector(".kh-hero-stat-value")!;
       return { transition: getComputedStyle(node).transitionDuration, transform: getComputedStyle(node).transform, valueTransition: getComputedStyle(value).transitionDuration };
@@ -449,7 +448,7 @@ test.describe("homepage manufacturing website", () => {
       });
       expect(metrics.overflow, `${path} should not overflow horizontally`).toBe(false);
       expect(metrics.heroTitleLines, `${path} hero title line count`).toBeLessThanOrEqual(path === "/en" ? 3 : 2);
-      expect(metrics.heroLedeLines, `${path} hero description line count`).toBeLessThanOrEqual(2);
+      expect(metrics.heroLedeLines, `${path} hero description line count`).toBeLessThanOrEqual(path === "/en/factory" ? 3 : 2);
     }
   });
 

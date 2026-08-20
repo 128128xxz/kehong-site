@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryLocationUrl } from "@/data/companyLocation";
@@ -7,31 +8,33 @@ import { Parallax, Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
 import FactoryLocationCard from "@/components/site/FactoryLocationCard";
 
-export default function HomeFactoryProof({ locale }: { locale: string }) {
+export default async function HomeFactoryProof({ locale }: { locale: string }) {
   const zh = locale === "zh";
-  const facts = zh
-    ? ["20+ 年纸品加工经验", "8,000+ ㎡生产场地", "模切、分切、裱纸、瓦楞"]
-    : ["20+ years in paper converting", "8,000+ ㎡ production site", "Die-cutting, slitting, mounting and corrugated processing"];
+  const t = await getTranslations({ locale, namespace: "Stage2.home" });
+  const facts = t.raw("factoryProof.facts") as string[];
 
   return (
     <section className="kh-section kh-section-forest kh-home-factory">
       <div className="kh-shell kh-factory-grid">
         <Reveal>
-          <SectionKicker index="04" text={zh ? "工厂" : "Factory & capability"} light />
-          <h2>{zh ? "从选材、打样到出货准备" : "From material selection to shipment preparation"}</h2>
+          <SectionKicker index="04" text={t("factoryProof.kicker")} light />
+          <h2>{t("factoryProof.title")}</h2>
           <p className="kh-section-lede">
-            {zh
-              ? "科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。"
-              : "Kehong is based in Foshan and arranges material selection, structural sampling, paper converting, finishing, quality checks and shipment preparation according to product structure and specification requirements."}
+            {t("factoryProof.lede")}
           </p>
           <ul>
             {facts.map((item) => (
               <li key={item}><Check className="size-4" />{item}</li>
             ))}
           </ul>
-          <Link className="kh-button kh-button-light" href="/factory">
-            {zh ? "了解工厂" : "See the factory"}<ArrowRight className="size-4" />
-          </Link>
+          <div className="kh-cta-actions">
+            <Link className="kh-button kh-button-light" href="/factory">
+              {t("factoryProof.factoryCta")}<ArrowRight className="size-4" />
+            </Link>
+            <Link className="kh-button kh-button-ghost" href="/capabilities">
+              {t("factoryProof.capabilitiesCta")}<ArrowRight className="size-4" />
+            </Link>
+          </div>
           <FactoryLocationCard
             className="mt-4 max-w-xl"
             locale={locale}
@@ -50,12 +53,12 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
         <div className="kh-factory-stack">
           <Parallax strength={-8}>
             <div className="kh-factory-main kh-media-shade">
-              <Image src={showcaseImages.factorySamplesFloor} alt={zh ? "科宏工厂样品与生产现场" : "Kehong factory samples and production floor"} fill sizes="(max-width: 1100px) 100vw, 48vw" className="object-cover" loading="eager" fetchPriority="low" decoding="async" />
-              <span className="kh-fig-caption kh-mono">{zh ? "图04 — 生产现场" : "Fig.04 — Foshan production floor"}</span>
+              <Image src={showcaseImages.factorySamplesFloor} alt={t("factoryProof.imageAlt")} fill sizes="(max-width: 1100px) 100vw, 48vw" className="object-cover" loading="eager" fetchPriority="low" decoding="async" />
+              <span className="kh-fig-caption kh-mono">{t("factoryProof.imageCaption")}</span>
             </div>
           </Parallax>
           <Parallax strength={10} className="kh-factory-mini kh-media-shade">
-            <Image src={showcaseImages.boothInterior01} alt={zh ? "纸品样品展示细节" : "Paper product sample display"} fill sizes="260px" className="object-cover" loading="lazy" decoding="async" />
+            <Image src={showcaseImages.boothInterior01} alt={t("factoryProof.miniImageAlt")} fill sizes="260px" className="object-cover" loading="lazy" decoding="async" />
           </Parallax>
         </div>
       </div>

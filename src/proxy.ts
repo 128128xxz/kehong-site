@@ -81,6 +81,11 @@ function withDiagnostics(response: NextResponse) {
   response.headers.set("x-kehong-product-data-revision", productDataRevision);
   response.headers.set("x-kehong-data-revision", productDataRevision);
   response.headers.set("x-kehong-canonical-host", canonicalHost);
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  response.headers.set("Content-Security-Policy", "frame-ancestors 'self'");
+  response.headers.set("X-Frame-Options", "SAMEORIGIN");
   return response;
 }
 

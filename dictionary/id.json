@@ -6,33 +6,722 @@
   },
   "Site": {
     "brand": "Kehong Paper",
-    "nav": { "products": "Produk", "process": "Proses", "factory": "Pabrik", "contact": "Kontak" },
-    "cta": { "quote": "Minta Penawaran", "explore": "Lihat Produk", "whatsapp": "WhatsApp", "sample": "Minta Sampel", "add": "Tambah Inquiry", "email": "Inquiry Email" },
-    "hero": { "eyebrow": "Mitra Global Bahan Kemasan", "title": "Bahan kemasan kertas dari pabrik untuk pembeli serius.", "description": "Sejak 2001, Kehong memproduksi corrugated paper, specialty paper, box, tray, cup fan, dan struktur kemasan khusus.", "proof": "Pasokan stabil, sampel cepat, kontrol kualitas, dan pesanan fleksibel." },
-    "facts": { "years": "tahun pengalaman", "factoryArea": "m2 area pabrik", "customPackaging": "dukungan OEM/ODM", "flexibleOrders": "dukungan pesanan fleksibel" },
-    "products": { "eyebrow": "Jelajahi Produk Kami", "title": "Material, kemasan, dan finishing untuk setiap proyek.", "description": "Jelajahi keluarga produk, bandingkan spesifikasi, dan minta penawaran dengan mudah.", "featured": "Produk Populer", "families": "Keluarga Produk", "viewAll": "Lihat katalog lengkap" },
-    "process": { "eyebrow": "Produksi Terkontrol", "title": "Dari board processing ke kemasan jadi.", "description": "Proses stabil untuk feeding, converting, finishing, dan proteksi.", "dieCutting": { "title": "Die-cutting otomatis", "text": "Pemotongan bentuk khusus dan creasing presisi." }, "corrugated": { "title": "Corrugated board converting", "text": "Produksi board presisi dengan permukaan halus." }, "dyeing": { "title": "Dyeing dan slitting", "text": "Warna stabil dan feeding merata." }, "laminating": { "title": "Laminating dan sealing", "text": "Perlindungan anti debu dan tahan lembap." } },
-    "inquiry": { "title": "Kirim material, ukuran, proses dan kuantitas. Kami bantu siapkan penawaran.", "description": "Harga bergantung pada material, GSM, ukuran, proses, warna cetak, jumlah dan term dagang.", "selected": "Produk terpilih", "empty": "Belum ada produk dipilih.", "message": "Halo Kehong, saya ingin meminta penawaran untuk:" },
-    "catalog": { "title": "Katalog Produk", "description": "Bandingkan produk berdasarkan kategori, material, proses dan opsi kustomisasi.", "search": "Cari produk atau kode produk", "category": "Kategori", "material": "Material", "process": "Proses", "all": "Semua", "customizable": "Bisa dikustomisasi", "reset": "Reset", "results": "{count} produk", "details": "Detail", "noResults": "Tidak ada produk yang cocok. Reset filter atau kirim kebutuhan Anda." },
-    "detail": { "back": "Kembali ke produk", "specs": "Spesifikasi", "material": "Material", "gsm": "GSM / Tebal", "structure": "Struktur / Flute", "surface": "Proses permukaan", "finishing": "Finishing", "size": "Ukuran umum", "moq": "MOQ", "application": "Aplikasi", "unit": "Unit", "note": "Produk dan harga final mengikuti sampel atau gambar yang disetujui." },
-    "contact": { "title": "Hubungi Kehong", "description": "Kirim material, ukuran, proses, kuantitas dan aplikasi target.", "country": "Negara / Wilayah", "quantity": "Perkiraan kuantitas", "requirements": "Catatan material, GSM, ukuran dan proses", "factory": "Pabrik di Tiongkok", "internationalSales": "Penjualan internasional", "generalInquiry": "Pertanyaan umum", "deliveryUnavailable": "Pengiriman email belum dikonfigurasi", "deliveryFailed": "Pertanyaan tidak dapat dikirim. Silakan coba lagi atau gunakan kanal langsung" },
-    "footer": { "tagline": "Quality First · Integrity Management · Win-Win Cooperation" }
-  },
-  "Stage2": { "nav": { "products": "Produk", "capabilities": "Kapabilitas", "applications": "Aplikasi", "factoryQuality": "Pabrik & Kualitas", "resources": "Sumber daya", "about": "Tentang Kehong", "quote": "Minta penawaran", "modelPreview": "Studio Kemasan 3D", "menuOpen": "Buka menu navigasi", "menuClose": "Tutup menu navigasi", "menuTitle": "Navigasi situs" }, "home": { "hero": { "eyebrow": "Kertas khusus · Papan bergelombang · Konversi khusus", "title": "Kertas Khusus dan Papan Bergelombang untuk Kemasan Khusus", "description": "Kehong memasok papan bergelombang, kertas khusus dan fungsional, bahan paper cup, serta dukungan konversi kertas untuk proyek kemasan B2B.", "primary": "Lihat produk", "secondary": "Minta penawaran" }, "products": { "eyebrow": "Sistem produk", "title": "Mulai dari jalur material atau kemasan yang sesuai kebutuhan Anda", "viewAll": "Lihat semua produk", "materials": "Material kertas & komponen setengah jadi", "materialsIntro": "Jelajahi grade kertas, komponen cup, dan material pembentuk untuk kemasan B2B.", "materialsCta": "Lihat spesifikasi", "finished": "Kemasan jadi", "finishedIntro": "Tinjau kemasan makanan, bakery, dan pengiriman berdasarkan aplikasi dan struktur.", "finishedCta": "Lihat jenis kemasan" } } },
-  "ProductFamilies": {
-    "eyebrow": "Keluarga produk", "breadcrumbProducts": "Produk", "breadcrumbFamilies": "Keluarga produk", "backToFamilies": "Kembali ke keluarga produk", "viewFamily": "Buka keluarga", "requestQuote": "Minta penawaran", "viewPublishedSpecs": "Lihat spesifikasi terbit", "publishedSpecs": "Spesifikasi terbit", "publishedSpecsDescription": "Lihat grup produk yang sudah dikonfirmasi dan tersedia dalam keluarga ini.", "noPublishedSpecs": "Keluarga ini membantu perencanaan proyek. Spesifikasi terbit tersedia di direktori utama.", "representativeNote": "Gambar referensi · konfirmasi aset akhir sesuai kebutuhan", "materials": "Arah material", "forms": "Bentuk dan format", "applications": "Aplikasi pembeli", "capabilities": "Dukungan proyek", "commonParameters": "Parameter untuk dikonfirmasi", "relatedFamilies": "Keluarga produk terkait", "anchorEyebrow": "Produk terbit utama", "anchorDescription": "Mulai dari rute material terbit ini, lalu konfirmasi struktur, ukuran, dan coating untuk proyek Anda.", "realOptions": "Pilihan dari catatan terbit", "selectedRecord": "Catatan terbit terpilih", "viewFullRecord": "Lihat catatan produk lengkap", "viewAllSpecifications": "Lihat semua spesifikasi", "publishedCount": "{count} catatan terbit", "serviceNote": "Rute proyek untuk pemilihan material OEM / ODM, tinjauan struktur, dan konversi kertas khusus.",
-    "projectSupport": "Dukungan proyek terkait", "capabilitiesLink": "Lihat kemampuan", "processLink": "Lihat proses produksi",
-    "family": {
-      "corrugated": { "title": "Material papan bergelombang dan flute", "description": "Kertas liner, struktur flute, dan komponen papan konversi untuk kemasan pelindung.", "material": "Material liner dan flute", "forms": "Lembaran, blank, dan komponen papan", "applications": "Mailer, insert, dan struktur pelindung", "capabilities": "Tinjauan struktur, konversi, dan sampel proyek", "parameters": "Struktur papan · flute · dimensi · cetak" },
-      "specialty": { "title": "Kertas khusus dan dekoratif", "description": "Arah kertas dan papan berbasis permukaan untuk kemasan merek dan ritel.", "material": "Arah kertas dan papan khusus", "forms": "Lembaran, insert, dan komponen presentasi", "applications": "Ritel, hadiah, dan kemasan bermerek", "capabilities": "Pilihan material, cetak, dan finishing", "parameters": "Permukaan · warna · cetak · format" },
-      "functional": { "title": "Kertas fungsional dan kemasan makanan", "description": "Material kertas, tray, dan komponen kemasan yang diatur berdasarkan struktur dan proses.", "material": "Material kertas dan papan untuk konversi", "forms": "Lembaran, tray, liner, dan komponen bentuk", "applications": "Foodservice, tray, dan insert kertas", "capabilities": "Pilihan material dan tinjauan struktur", "parameters": "Material · GSM · format · proses permukaan" },
-      "cup": { "title": "Material paper cup", "description": "Grup cupstock, roll, sheet, bottom stock, dan material tray untuk proyek konversi.", "material": "Cupstock dan material kertas berlapis", "forms": "Blank kipas, roll, sheet, dan material tray", "applications": "Paper cup, bowl, dan tray bentuk", "capabilities": "Coating, die-cutting, dan konversi", "parameters": "GSM · ukuran · coating · permukaan · finishing" },
-      "converted": { "title": "Material kemasan dan komponen konversi", "description": "Kertas, papan, dan komponen konversi untuk struktur yang memerlukan material dan format jelas.", "material": "Arah material kertas dan papan", "forms": "Lembaran, blank, insert, dan komponen", "applications": "Kotak, insert, dan kemasan pelindung", "capabilities": "Die-cutting, creasing, dan laminasi", "parameters": "Material · GSM · struktur · ukuran" },
-      "service": { "title": "OEM / ODM dan konversi kertas khusus", "description": "Rute proyek untuk pemilihan material, sampel struktur, atau dukungan konversi kertas.", "material": "Dikonfirmasi dari brief proyek", "forms": "Lembaran, komponen, atau struktur khusus", "applications": "Proyek kemasan khusus", "capabilities": "Pemilihan material, struktur, dan konversi", "parameters": "Material · GSM · ukuran · jumlah" }
+    "nav": {
+      "products": "Produk",
+      "process": "Proses",
+      "factory": "Pabrik",
+      "contact": "Kontak"
     },
-    "anchor": { "title": "Material paper tray", "description": "Rute material terbit untuk tray bentuk dan insert kertas. Pilih nilai nyata sebelum meminta penawaran.", "materialLabel": "Material", "formLabel": "Bentuk / struktur", "gsmLabel": "GSM / ketebalan", "coatingLabel": "Coating", "sizeLabel": "Ukuran umum", "applicationLabel": "Aplikasi", "realRecordNote": "Nilai di bawah berasal dari catatan terbit; kombinasi sintetis tidak dibuat." }
+    "cta": {
+      "quote": "Minta Penawaran",
+      "explore": "Lihat Produk",
+      "whatsapp": "WhatsApp",
+      "sample": "Minta Sampel",
+      "add": "Tambah Inquiry",
+      "email": "Inquiry Email"
+    },
+    "hero": {
+      "eyebrow": "Mitra Global Bahan Kemasan",
+      "title": "Bahan kemasan kertas dari pabrik untuk pembeli serius.",
+      "description": "Sejak 2001, Kehong memproduksi corrugated paper, specialty paper, box, tray, cup fan, dan struktur kemasan khusus.",
+      "proof": "Pasokan stabil, sampel cepat, kontrol kualitas, dan pesanan fleksibel."
+    },
+    "facts": {
+      "years": "tahun pengalaman",
+      "factoryArea": "m2 area pabrik",
+      "customPackaging": "dukungan OEM/ODM",
+      "flexibleOrders": "dukungan pesanan fleksibel"
+    },
+    "products": {
+      "eyebrow": "Jelajahi Produk Kami",
+      "title": "Material, kemasan, dan finishing untuk setiap proyek.",
+      "description": "Jelajahi keluarga produk, bandingkan spesifikasi, dan minta penawaran dengan mudah.",
+      "featured": "Produk Populer",
+      "families": "Keluarga Produk",
+      "viewAll": "Lihat katalog lengkap"
+    },
+    "process": {
+      "eyebrow": "Produksi Terkontrol",
+      "title": "Dari board processing ke kemasan jadi.",
+      "description": "Proses stabil untuk feeding, converting, finishing, dan proteksi.",
+      "dieCutting": {
+        "title": "Die-cutting otomatis",
+        "text": "Pemotongan bentuk khusus dan creasing presisi."
+      },
+      "corrugated": {
+        "title": "Corrugated board converting",
+        "text": "Produksi board presisi dengan permukaan halus."
+      },
+      "dyeing": {
+        "title": "Dyeing dan slitting",
+        "text": "Warna stabil dan feeding merata."
+      },
+      "laminating": {
+        "title": "Laminating dan sealing",
+        "text": "Perlindungan anti debu dan tahan lembap."
+      }
+    },
+    "inquiry": {
+      "title": "Kirim material, ukuran, proses dan kuantitas. Kami bantu siapkan penawaran.",
+      "description": "Harga bergantung pada material, GSM, ukuran, proses, warna cetak, jumlah dan term dagang.",
+      "selected": "Produk terpilih",
+      "empty": "Belum ada produk dipilih.",
+      "message": "Halo Kehong, saya ingin meminta penawaran untuk:"
+    },
+    "catalog": {
+      "title": "Katalog Produk",
+      "description": "Bandingkan produk berdasarkan kategori, material, proses dan opsi kustomisasi.",
+      "search": "Cari produk atau kode produk",
+      "category": "Kategori",
+      "material": "Material",
+      "process": "Proses",
+      "all": "Semua",
+      "customizable": "Bisa dikustomisasi",
+      "reset": "Reset",
+      "results": "{count} produk",
+      "details": "Detail",
+      "noResults": "Tidak ada produk yang cocok. Reset filter atau kirim kebutuhan Anda."
+    },
+    "detail": {
+      "back": "Kembali ke produk",
+      "specs": "Spesifikasi",
+      "material": "Material",
+      "gsm": "GSM / Tebal",
+      "structure": "Struktur / Flute",
+      "surface": "Proses permukaan",
+      "finishing": "Finishing",
+      "size": "Ukuran umum",
+      "moq": "MOQ",
+      "application": "Aplikasi",
+      "unit": "Unit",
+      "note": "Produk dan harga final mengikuti sampel atau gambar yang disetujui."
+    },
+    "contact": {
+      "title": "Hubungi Kehong",
+      "description": "Kirim material, ukuran, proses, kuantitas dan aplikasi target.",
+      "country": "Negara / Wilayah",
+      "quantity": "Perkiraan kuantitas",
+      "requirements": "Catatan material, GSM, ukuran dan proses",
+      "factory": "Pabrik di Tiongkok",
+      "internationalSales": "Penjualan internasional",
+      "generalInquiry": "Pertanyaan umum",
+      "deliveryUnavailable": "Pengiriman email belum dikonfigurasi",
+      "deliveryFailed": "Pertanyaan tidak dapat dikirim. Silakan coba lagi atau gunakan kanal langsung"
+    },
+    "footer": {
+      "tagline": "Quality First · Integrity Management · Win-Win Cooperation"
+    }
   },
-  "NotFound": { "title": "Halaman tidak ditemukan", "description": "Halaman tidak ada atau sudah dipindahkan.", "homeLink": "Kembali ke beranda" },
+  "Stage2": {
+    "nav": {
+      "products": "Produk",
+      "capabilities": "Kapabilitas",
+      "applications": "Aplikasi",
+      "factoryQuality": "Pabrik & Kualitas",
+      "resources": "Sumber daya",
+      "about": "Tentang Kehong",
+      "quote": "Minta penawaran",
+      "modelPreview": "Studio Kemasan 3D",
+      "menuOpen": "Buka menu navigasi",
+      "menuClose": "Tutup menu navigasi",
+      "menuTitle": "Navigasi situs"
+    },
+    "home": {
+      "hero": {
+        "eyebrow": "Kertas khusus · Papan bergelombang · Konversi khusus",
+        "title": "Kertas Khusus dan Papan Bergelombang untuk Kemasan Khusus",
+        "description": "Kehong memasok papan bergelombang, kertas khusus dan fungsional, bahan paper cup, serta dukungan konversi kertas untuk proyek kemasan B2B.",
+        "primary": "Lihat produk",
+        "secondary": "Minta penawaran",
+        "stats": [
+                {
+                        "value": "OEM / ODM",
+                        "label": "Pengembangan kustom"
+                },
+                {
+                        "value": "MOQ",
+                        "label": "Jumlah pesanan fleksibel"
+                },
+                {
+                        "value": "Kertas · Papan",
+                        "label": "Kertas khusus dan karton"
+                },
+                {
+                        "value": "B2B",
+                        "label": "Proyek kemasan kustom"
+                }
+        ]
+      },
+      "products": {
+            "eyebrow": "Sistem produk",
+            "title": "Mulai dari jalur material atau kemasan yang sesuai kebutuhan Anda",
+            "viewAll": "Lihat semua produk",
+            "materials": "Material kertas & komponen setengah jadi",
+            "materialsIntro": "Jelajahi grade kertas, komponen cup, dan material pembentuk untuk kemasan B2B.",
+            "materialsCta": "Lihat spesifikasi",
+            "finished": "Kemasan jadi",
+            "finishedIntro": "Tinjau kemasan makanan, bakery, dan pengiriman berdasarkan aplikasi dan struktur.",
+            "finishedCta": "Lihat jenis kemasan"
+      },
+      "factoryProof": {
+            "kicker": "Pabrik dan kemampuan",
+            "title": "Dari pemilihan bahan hingga persiapan pengiriman",
+            "lede": "Kehong berlokasi di Foshan dan mengatur pemilihan bahan, sampling struktural, konversi kertas, finishing, dan pemeriksaan kualitas.",
+            "facts": [
+                  "Pemotongan, pelapisan, dan pemrosesan karton gelombang",
+                  "Pemilihan bahan dan sampling struktural",
+                  "Pemeriksaan kualitas dan persiapan pengiriman"
+            ],
+            "factoryCta": "Lihat pabrik",
+            "capabilitiesCta": "Jelajahi kemampuan",
+            "imageAlt": "Sampel pabrik dan lantai produksi Kehong",
+            "imageCaption": "Lantai produksi",
+            "miniImageAlt": "Tampilan sampel produk kertas"
+      },
+      "resources": {
+            "kicker": "Sumber daya",
+            "title": "Panduan, alat kemasan, dan wawasan industri",
+            "items": [
+                  {
+                        "title": "Panduan dan sumber daya pembelian",
+                        "body": "Persiapan artwork, permintaan dieline, panduan bahan.",
+                        "href": "/resources",
+                        "cta": "Jelajahi panduan"
+                  },
+                  {
+                        "title": "Berita dan artikel",
+                        "body": "Wawasan industri kemasan dan pembaruan perusahaan.",
+                        "href": "/news",
+                        "cta": "Baca artikel"
+                  },
+                  {
+                        "title": "3D Packaging Studio",
+                        "body": "Jelajahi struktur kemasan umum dalam 3D.",
+                        "href": "/model-preview",
+                        "cta": "Buka studio"
+                  }
+            ]
+      }
+    },
+    "factory": {
+      "hero": {
+        "kicker": "Lokasi produksi Foshan",
+        "title": "Konversi kertas & produksi kemasan",
+        "lede": "Kehong adalah fasilitas pemrosesan dan konversi kertas di Foshan. Kami memproses kertas, papan bergelombang, dan bahan berbasis kertas untuk proyek B2B khusus, dari pemilihan material hingga persiapan pengiriman.",
+        "metaLocation": "Foshan, Guangdong, Tiongkok",
+        "viewCapabilities": "Lihat Kemampuan",
+        "requestQuote": "Minta Penawaran",
+        "imageAlt": "Area kerja konversi kertas",
+        "metaScope": "Kertas · Karton bergelombang · Produk konversi",
+        "metaCustom": "Proyek kustom B2B"
+      },
+      "workWith": {
+        "kicker": "Bahan yang kami kerjakan",
+        "title": "Material dan produk olahan",
+        "lede": "Kategori berikut berasal dari katalog produk dan catatan proyek Kehong.",
+        "items": [
+          {
+            "title": "Papan bergelombang",
+            "body": "Papan bergelombang dan struktur untuk kemasan pelindung dan pengiriman.",
+            "alt": "Referensi material papan bergelombang"
+          },
+          {
+            "title": "Kertas khusus",
+            "body": "Kertas berwarna, bertekstur, dan fungsional untuk kemasan bermerek dan dekoratif.",
+            "alt": "Referensi material kertas khusus"
+          },
+          {
+            "title": "Kertas berlapis",
+            "body": "Kertas berlapis PE dan perlakuan permukaan untuk proyek cangkir dan kemasan makanan.",
+            "alt": "Referensi gulungan kertas berlapis"
+          },
+          {
+            "title": "Gulungan & lembaran kertas",
+            "body": "Kertas dalam bentuk gulungan atau lembaran untuk konversi lanjutan.",
+            "alt": "Referensi gulungan kertas"
+          },
+          {
+            "title": "Material cangkir kertas",
+            "body": "Cupstock, fan blank, dan gulungan bawah untuk proyek cangkir kertas.",
+            "alt": "Referensi produk fan blank cangkir kertas"
+          },
+          {
+            "title": "Komponen kertas olahan",
+            "body": "Baki potong mati, alas, sisipan, dan komponen kertas rakitan.",
+            "alt": "Referensi komponen kertas potong mati"
+          }
+        ]
+      },
+      "process": {
+        "kicker": "Proses produksi & konversi",
+        "title": "Dari material menjadi komponen jadi",
+        "lede": "Setiap tahap menjelaskan yang kami lakukan, material yang digunakan, dan output yang diterima.",
+        "whatLabel": "Yang kami lakukan",
+        "materialLabel": "Material",
+        "outputLabel": "Output",
+        "steps": [
+          {
+            "title": "Pemilihan material",
+            "what": "Konfirmasi kertas, papan, atau kertas berlapis sesuai penggunaan dan struktur produk.",
+            "material": "Kertas, papan, kertas berlapis",
+            "output": "Spesifikasi material disetujui"
+          },
+          {
+            "title": "Sampel struktur",
+            "what": "Tinjau ukuran, kecocokan, garis lipat, dan sisipan dengan sampel struktur.",
+            "material": "Material struktur disetujui",
+            "output": "Sampel struktur untuk ditinjau"
+          },
+          {
+            "title": "Konversi kertas",
+            "what": "Siapkan, lembar, dan potong kertas sesuai format kerja yang dibutuhkan.",
+            "material": "Gulungan dan lembaran kertas",
+            "output": "Stok olahan untuk tahap berikutnya"
+          },
+          {
+            "title": "Pemotongan",
+            "what": "Potong gulungan menjadi lebar atau lembaran yang dibutuhkan.",
+            "material": "Gulungan kertas dan papan",
+            "output": "Gulungan potong atau lembaran"
+          },
+          {
+            "title": "Pemotongan die",
+            "what": "Potong dan beri crease pada panel, lipatan, dan bukaan sesuai dieline.",
+            "material": "Papan kertas, papan bergelombang",
+            "output": "Bagian kemasan potong die"
+          },
+          {
+            "title": "Cetak & finishing",
+            "what": "Terapkan cetak, laminasi, pelapisan, foil, emboss, atau window patching sesuai kebutuhan.",
+            "material": "Kertas berlapis, papan cetak",
+            "output": "Permukaan dan struktur selesai"
+          },
+          {
+            "title": "Kontrol kualitas & pengiriman",
+            "what": "Konfirmasi material, dimensi, permukaan, dan pembentukan pada titik yang disepakati, lalu kemas untuk pengiriman.",
+            "material": "Pesanan jadi",
+            "output": "Pesanan siap kirim"
+          }
+        ]
+      },
+      "quality": {
+        "kicker": "Pendekatan kualitas",
+        "title": "Kontrol kualitas berbasis konfirmasi",
+        "lede": "Kualitas dikelola melalui konfirmasi material dan spesifikasi, pemeriksaan proses, serta tinjauan akhir.",
+        "items": [
+          {
+            "title": "Konfirmasi material",
+            "body": "Konfirmasi material awal sesuai spesifikasi proyek."
+          },
+          {
+            "title": "Konfirmasi spesifikasi",
+            "body": "Konfirmasi dimensi, struktur, dan persyaratan permukaan sebelum produksi."
+          },
+          {
+            "title": "Pemeriksaan proses",
+            "body": "Periksa dimensi utama, permukaan, dan pembentukan pada tahap terkait."
+          },
+          {
+            "title": "Konfirmasi pesanan akhir",
+            "body": "Tinjau pesanan jadi terhadap spesifikasi yang disetujui sebelum pengepakan."
+          },
+          {
+            "title": "Diskusi sampel & dokumen",
+            "body": "Diskusikan sampel, laporan uji, dan dokumen proyek sesuai kebutuhan."
+          }
+        ]
+      },
+      "preparation": {
+        "kicker": "Sebelum bertanya",
+        "title": "Yang perlu disiapkan untuk proyek khusus",
+        "lede": "Brief yang lebih jelas membantu kami mengonfirmasi material, struktur, dan penawaran lebih cepat.",
+        "items": [
+          "Kebutuhan produk atau material",
+          "Dimensi",
+          "Jumlah",
+          "Gambar atau file referensi",
+          "Negara / wilayah tujuan"
+        ],
+        "cta": "Diskusikan Kebutuhan Anda"
+      }
+    },
+    "capabilities": {
+      "hero": {
+        "kicker": "Kehong · Kemampuan manufaktur",
+        "title": "Kemampuan Konversi Kertas & Material Kemasan",
+        "lede": "Pandangan praktis tentang yang dapat diproduksi Kehong: pemrosesan material, konversi, perlakuan permukaan, dan dukungan penyesuaian untuk proyek kemasan kertas.",
+        "metaGroups": "4 kelompok kemampuan",
+        "metaOem": "OEM / ODM",
+        "metaLocation": "Foshan, Guangdong, Tiongkok",
+        "requestQuote": "Minta Penawaran"
+      },
+      "groups": [
+        {
+          "kicker": "Pemrosesan material",
+          "lede": "Konfirmasi dan siapkan material kertas yang tepat sebelum konversi.",
+          "items": [
+            {
+              "title": "Pemilihan material",
+              "what": "Konfirmasi kertas, papan, atau kertas berlapis sesuai penggunaan dan struktur produk.",
+              "materials": "Kertas, papan, kertas berlapis",
+              "output": "Spesifikasi material disetujui"
+            },
+            {
+              "title": "Pemotongan & pelat",
+              "what": "Potong gulungan menjadi lebar atau lembaran untuk pekerjaan berikutnya.",
+              "materials": "Gulungan kertas dan papan",
+              "output": "Gulungan potong atau lembaran"
+            },
+            {
+              "title": "Konversi kertas & papan",
+              "what": "Siapkan, lembar, dan konversi material menjadi format kerja yang dibutuhkan.",
+              "materials": "Kertas, papan, kertas berlapis",
+              "output": "Stok olahan"
+            }
+          ]
+        },
+        {
+          "kicker": "Konversi",
+          "lede": "Mengubah material yang disetujui menjadi struktur kemasan yang dibutuhkan.",
+          "items": [
+            {
+              "title": "Sampel struktur",
+              "what": "Buat sampel struktur untuk meninjau ukuran, kecocokan, dan lipatan.",
+              "materials": "Material struktur disetujui",
+              "output": "Sampel struktur dapat ditinjau"
+            },
+            {
+              "title": "Pemotongan die",
+              "what": "Potong dan beri crease pada panel, lipatan, dan bukaan sesuai dieline.",
+              "materials": "Papan kertas, papan bergelombang",
+              "output": "Bagian kemasan potong die"
+            },
+            {
+              "title": "Pembentukan & perakitan",
+              "what": "Lipat, rekat, dan rakit bagian menjadi struktur jadi.",
+              "materials": "Bagian kertas potong die",
+              "output": "Kemasan terakit"
+            }
+          ]
+        },
+        {
+          "kicker": "Perlakuan permukaan & fungsional",
+          "lede": "Opsi cetak dan finishing dikonfirmasi sesuai material dan brief.",
+          "items": [
+            {
+              "title": "Pencetakan",
+              "what": "Konfirmasi area cetak, warna, dan artwork sesuai struktur.",
+              "materials": "Kertas berlapis, papan kertas",
+              "output": "Material kemasan cetak"
+            },
+            {
+              "title": "Laminasi & pelapisan",
+              "what": "Terapkan laminasi matte atau gloss dan pelapisan aqueous sesuai kebutuhan.",
+              "materials": "Kertas dan papan cetak",
+              "output": "Material terlindungi permukaan"
+            },
+            {
+              "title": "Detail finishing",
+              "what": "Hot foil, embossing, debossing, spot UV, dan window patching.",
+              "materials": "Kertas, papan, material cetak",
+              "output": "Detail kemasan selesai"
+            }
+          ]
+        },
+        {
+          "kicker": "Dukungan penyesuaian",
+          "lede": "Dukungan berbasis proyek untuk pesanan B2B khusus.",
+          "items": [
+            {
+              "title": "Artwork & pracetak",
+              "what": "Periksa artwork, warna, dan versi file sebelum produksi.",
+              "materials": "Semua material cetak",
+              "output": "Artwork siap produksi"
+            },
+            {
+              "title": "Kontrol kualitas",
+              "what": "Konfirmasi material, dimensi, permukaan, dan pembentukan pada titik yang disepakati.",
+              "materials": "Semua material proyek",
+              "output": "Pesanan terperiksa dan terkonfirmasi"
+            },
+            {
+              "title": "Dukungan pengepakan & ekspor",
+              "what": "Koordinasi informasi pengepakan dan persyaratan tujuan untuk proyek B2B luar negeri.",
+              "materials": "Kemasan jadi",
+              "output": "Pesanan siap kirim"
+            }
+          ]
+        }
+      ],
+      "start": {
+        "kicker": "Cara memulai",
+        "title": "Mulai proyek khusus",
+        "lede": "Urutan praktis yang menjaga brief dan spesifikasi tetap selaras.",
+        "steps": [
+          {
+            "title": "Bagikan kebutuhan",
+            "body": "Kirim kebutuhan produk atau material, dimensi, jumlah, dan pasar tujuan."
+          },
+          {
+            "title": "Tinjau material & struktur",
+            "body": "Konfirmasi material, struktur, dan batasan proyek bersama."
+          },
+          {
+            "title": "Konfirmasi spesifikasi atau sampel",
+            "body": "Tinjau spesifikasi, gambar, atau sampel struktur."
+          },
+          {
+            "title": "Lanjut ke penawaran",
+            "body": "Kehong menyiapkan penawaran dan langkah produksi berikutnya."
+          }
+        ]
+      },
+      "cta": {
+        "kicker": "Mulai proyek",
+        "title": "Periksa apakah Kehong dapat memproduksi proyek Anda",
+        "lede": "Kirim kebutuhan atau file referensi. Kehong akan mengonfirmasi langkah praktis berikutnya.",
+        "requestQuote": "Minta Penawaran",
+        "sendReference": "Kirim File Referensi"
+      }
+    }
+  ,
+  "about": {
+    "hero": {
+      "kicker": "Kehong · Tentang kami",
+      "title": "Bahan kertas, karton gelombang, konversi kertas dan dukungan kemasan",
+      "lede": "Kehong menyediakan bahan kertas, karton gelombang, konversi kertas, dan dukungan kemasan kustom untuk proyek B2B.",
+      "metaScope": "Kertas · Karton gelombang · Produk konversi",
+      "metaCustom": "Proyek kustom B2B",
+      "metaLocation": "Foshan, Guangdong, China",
+      "imageAlt": "Area kerja konversi kertas Kehong",
+      "ctaQuote": "Minta penawaran",
+      "ctaCapabilities": "Lihat kemampuan"
+    },
+    "what": {
+      "kicker": "Apa yang dilakukan Kehong",
+      "title": "Dukungan konversi kertas dan kemasan dari bahan hingga produk jadi",
+      "lede": "Kehong menangani pemrosesan bahan kertas, konversi, finishing, dan kemasan kustom untuk proyek B2B.",
+      "items": [
+        {
+          "title": "Bahan kertas",
+          "body": "Kertas khusus, kertas berlapis, blank cangkir kertas, dan bahan papan."
+        },
+        {
+          "title": "Karton gelombang",
+          "body": "Lembaran karton gelombang untuk kemasan struktural dan pengiriman."
+        },
+        {
+          "title": "Konversi kertas",
+          "body": "Pemotongan, pelapisan, perakitan untuk komponen kemasan berbasis kertas."
+        },
+        {
+          "title": "Dukungan kemasan kustom",
+          "body": "Pemilihan bahan, sampel struktural, finishing untuk proyek kemasan kustom B2B."
+        }
+      ]
+    },
+    "who": {
+      "kicker": "Dengan siapa kami bekerja",
+      "title": "Pembeli B2B dan tim proyek di rantai pasokan kemasan",
+      "lede": "Kehong mendukung konverter kemasan, produsen produk, dan tim pengadaan.",
+      "items": [
+        "Konverter kemasan",
+        "Produsen produk kertas",
+        "Pembeli kemasan makanan dan roti",
+        "Proyek kemasan kecantikan dan wewangian",
+        "Distributor dan tim pengadaan",
+        "Proyek kemasan kustom B2B"
+      ]
+    },
+    "how": {
+      "kicker": "Bagaimana kami mendukung proyek",
+      "title": "Dukungan proyek langkah demi langkah",
+      "lede": "Kehong bekerja dengan pembeli di setiap tahap proyek kemasan kustom.",
+      "items": [
+        {
+          "title": "Pemilihan bahan",
+          "body": "Rekomendasikan grade kertas, jenis papan, dan lapisan berdasarkan kebutuhan."
+        },
+        {
+          "title": "Diskusi spesifikasi",
+          "body": "Perjelas dimensi, struktur, metode cetak, jumlah dan tujuan."
+        },
+        {
+          "title": "Konversi dan kustomisasi",
+          "body": "Atur pemotongan, pelapisan, perakitan untuk kemasan kustom."
+        },
+        {
+          "title": "Diskusi penawaran dan sampel",
+          "body": "Tinjau kebutuhan proyek, diskusikan prosedur sampling."
+        }
+      ]
+    },
+    "entry": {
+      "kicker": "Pelajari lebih lanjut tentang produksi kami",
+      "title": "Jelajahi pabrik dan kemampuan produksi",
+      "lede": "Kunjungi halaman pabrik dan kemampuan untuk melihat detail produksi.",
+      "factoryCta": "Lihat pabrik",
+      "capabilitiesCta": "Jelajahi kemampuan",
+      "imageAlt": "Area produksi pabrik Kehong"
+    },
+    "cta": {
+      "kicker": "Mulai proyek",
+      "title": "Bagikan kebutuhan proyek Anda untuk diskusi",
+      "lede": "Kirim brief atau minta penawaran untuk memulai diskusi.",
+      "discussBtn": "Diskusikan kebutuhan Anda",
+      "quoteBtn": "Minta penawaran"
+    }
+  },
+  "resources": {
+    "hero": {
+      "kicker": "Kehong · Sumber daya pembeli",
+      "title": "Panduan, sumber daya pembelian, dan alat referensi kemasan",
+      "lede": "Gunakan sumber daya ini untuk menyiapkan artwork, membandingkan bahan, dan merencanakan proyek kemasan.",
+      "metaGuides": "Panduan dan permintaan",
+      "metaOem": "OEM / ODM",
+      "metaLocation": "Foshan, Guangdong, China",
+      "ctaExpert": "Bicara dengan ahli kemasan",
+      "ctaCapabilities": "Jelajahi kemampuan"
+    },
+    "guides": {
+      "kicker": "Panduan dan sumber daya pembelian",
+      "title": "Panduan praktis untuk artwork, bahan, dan struktur kemasan",
+      "guideLabel": "Panduan",
+      "requestLabel": "Permintaan",
+      "readGuide": "Baca panduan",
+      "sendRequest": "Kirim permintaan"
+    },
+    "finishes": {
+      "kicker": "Opsi finishing",
+      "title": "Finishing sekilas",
+      "finishingRequirements": "Persyaratan finishing",
+      "startGuidedRfq": "Mulai RFQ terbimbing",
+      "needStructure": "Butuh rekomendasi struktur?",
+      "structureTip": "Bagikan dimensi, berat, dan kebutuhan pengiriman untuk rekomendasi struktur kemasan."
+    },
+    "news": {
+      "kicker": "Berita dan artikel",
+      "title": "Wawasan industri kemasan dan pembaruan perusahaan",
+      "lede": "Baca artikel terbaru tentang bahan kertas dan teknik konversi.",
+      "viewAll": "Lihat semua artikel"
+    },
+    "studio": {
+      "kicker": "3D Packaging Studio",
+      "title": "Alat referensi struktur kemasan",
+      "lede": "Jelajahi struktur kemasan umum dalam 3D sebelum prototipe.",
+      "explore": "Buka 3D Studio",
+      "positioning": "Alat referensi struktur — gunakan untuk visualisasi dan perencanaan proyek."
+    },
+    "reference": {
+      "kicker": "File referensi",
+      "title": "Kirim file referensi atau diskusikan kebutuhan kemasan",
+      "lede": "Bagikan sampel kemasan referensi atau sketsa untuk diskusi penawaran.",
+      "sendFile": "Kirim file referensi",
+      "discuss": "Diskusikan kebutuhan kemasan"
+    }
+  }},
+  "ProductFamilies": {
+    "eyebrow": "Keluarga produk",
+    "breadcrumbProducts": "Produk",
+    "breadcrumbFamilies": "Keluarga produk",
+    "backToFamilies": "Kembali ke keluarga produk",
+    "viewFamily": "Buka keluarga",
+    "requestQuote": "Minta penawaran",
+    "viewPublishedSpecs": "Lihat spesifikasi terbit",
+    "publishedSpecs": "Spesifikasi terbit",
+    "publishedSpecsDescription": "Lihat grup produk yang sudah dikonfirmasi dan tersedia dalam keluarga ini.",
+    "noPublishedSpecs": "Keluarga ini membantu perencanaan proyek. Spesifikasi terbit tersedia di direktori utama.",
+    "representativeNote": "Gambar referensi · konfirmasi aset akhir sesuai kebutuhan",
+    "materials": "Arah material",
+    "forms": "Bentuk dan format",
+    "applications": "Aplikasi pembeli",
+    "capabilities": "Dukungan proyek",
+    "commonParameters": "Parameter untuk dikonfirmasi",
+    "relatedFamilies": "Keluarga produk terkait",
+    "anchorEyebrow": "Produk terbit utama",
+    "anchorDescription": "Mulai dari rute material terbit ini, lalu konfirmasi struktur, ukuran, dan coating untuk proyek Anda.",
+    "realOptions": "Pilihan dari catatan terbit",
+    "selectedRecord": "Catatan terbit terpilih",
+    "viewFullRecord": "Lihat catatan produk lengkap",
+    "viewAllSpecifications": "Lihat semua spesifikasi",
+    "publishedCount": "{count} catatan terbit",
+    "serviceNote": "Rute proyek untuk pemilihan material OEM / ODM, tinjauan struktur, dan konversi kertas khusus.",
+    "projectSupport": "Dukungan proyek terkait",
+    "capabilitiesLink": "Lihat kemampuan",
+    "processLink": "Lihat proses produksi",
+    "family": {
+      "corrugated": {
+        "title": "Material papan bergelombang dan flute",
+        "description": "Kertas liner, struktur flute, dan komponen papan konversi untuk kemasan pelindung.",
+        "material": "Material liner dan flute",
+        "forms": "Lembaran, blank, dan komponen papan",
+        "applications": "Mailer, insert, dan struktur pelindung",
+        "capabilities": "Tinjauan struktur, konversi, dan sampel proyek",
+        "parameters": "Struktur papan · flute · dimensi · cetak"
+      },
+      "specialty": {
+        "title": "Kertas khusus dan dekoratif",
+        "description": "Arah kertas dan papan berbasis permukaan untuk kemasan merek dan ritel.",
+        "material": "Arah kertas dan papan khusus",
+        "forms": "Lembaran, insert, dan komponen presentasi",
+        "applications": "Ritel, hadiah, dan kemasan bermerek",
+        "capabilities": "Pilihan material, cetak, dan finishing",
+        "parameters": "Permukaan · warna · cetak · format"
+      },
+      "functional": {
+        "title": "Kertas fungsional dan kemasan makanan",
+        "description": "Material kertas, tray, dan komponen kemasan yang diatur berdasarkan struktur dan proses.",
+        "material": "Material kertas dan papan untuk konversi",
+        "forms": "Lembaran, tray, liner, dan komponen bentuk",
+        "applications": "Foodservice, tray, dan insert kertas",
+        "capabilities": "Pilihan material dan tinjauan struktur",
+        "parameters": "Material · GSM · format · proses permukaan"
+      },
+      "cup": {
+        "title": "Material paper cup",
+        "description": "Grup cupstock, roll, sheet, bottom stock, dan material tray untuk proyek konversi.",
+        "material": "Cupstock dan material kertas berlapis",
+        "forms": "Blank kipas, roll, sheet, dan material tray",
+        "applications": "Paper cup, bowl, dan tray bentuk",
+        "capabilities": "Coating, die-cutting, dan konversi",
+        "parameters": "GSM · ukuran · coating · permukaan · finishing"
+      },
+      "converted": {
+        "title": "Material kemasan dan komponen konversi",
+        "description": "Kertas, papan, dan komponen konversi untuk struktur yang memerlukan material dan format jelas.",
+        "material": "Arah material kertas dan papan",
+        "forms": "Lembaran, blank, insert, dan komponen",
+        "applications": "Kotak, insert, dan kemasan pelindung",
+        "capabilities": "Die-cutting, creasing, dan laminasi",
+        "parameters": "Material · GSM · struktur · ukuran"
+      },
+      "service": {
+        "title": "OEM / ODM dan konversi kertas khusus",
+        "description": "Rute proyek untuk pemilihan material, sampel struktur, atau dukungan konversi kertas.",
+        "material": "Dikonfirmasi dari brief proyek",
+        "forms": "Lembaran, komponen, atau struktur khusus",
+        "applications": "Proyek kemasan khusus",
+        "capabilities": "Pemilihan material, struktur, dan konversi",
+        "parameters": "Material · GSM · ukuran · jumlah"
+      }
+    },
+    "anchor": {
+      "title": "Material paper tray",
+      "description": "Rute material terbit untuk tray bentuk dan insert kertas. Pilih nilai nyata sebelum meminta penawaran.",
+      "materialLabel": "Material",
+      "formLabel": "Bentuk / struktur",
+      "gsmLabel": "GSM / ketebalan",
+      "coatingLabel": "Coating",
+      "sizeLabel": "Ukuran umum",
+      "applicationLabel": "Aplikasi",
+      "realRecordNote": "Nilai di bawah berasal dari catatan terbit; kombinasi sintetis tidak dibuat."
+    }
+  },
+  "NotFound": {
+    "title": "Halaman tidak ditemukan",
+    "description": "Halaman tidak ada atau sudah dipindahkan.",
+    "homeLink": "Kembali ke beranda"
+  },
   "Error": {
     "server": "Terjadi kesalahan",
     "sorry": "Silakan coba lagi, atau kembali ke beranda untuk mengirim kebutuhan Anda.",

@@ -6,15 +6,32 @@
   },
   "Site": {
     "brand": "科宏纸品",
-    "nav": { "products": "产品", "process": "工艺", "factory": "工厂", "contact": "联系" },
-    "cta": { "quote": "获取报价", "explore": "浏览产品", "whatsapp": "WhatsApp", "sample": "申请打样", "add": "加入询盘", "email": "邮件询盘" },
+    "nav": {
+      "products": "产品",
+      "process": "工艺",
+      "factory": "工厂",
+      "contact": "联系"
+    },
+    "cta": {
+      "quote": "获取报价",
+      "explore": "浏览产品",
+      "whatsapp": "WhatsApp",
+      "sample": "申请打样",
+      "add": "加入询盘",
+      "email": "邮件询盘"
+    },
     "hero": {
       "eyebrow": "全球纸质包装材料伙伴",
       "title": "有工厂支撑的纸质包装材料供应商。",
       "description": "科宏始于 2001 年，生产瓦楞纸、特种纸、纸盒、内托、纸杯扇形片及定制包装结构，服务包装厂、品牌方、加工厂和贸易客户。",
       "proof": "稳定供料、快速打样、严格品控、灵活订单。"
     },
-    "facts": { "years": "年生产经验", "factoryArea": "平方米厂区", "customPackaging": "定制包装支持", "flexibleOrders": "灵活订单支持" },
+    "facts": {
+      "years": "年生产经验",
+      "factoryArea": "平方米厂区",
+      "customPackaging": "定制包装支持",
+      "flexibleOrders": "灵活订单支持"
+    },
     "products": {
       "eyebrow": "探索我们的产品",
       "title": "覆盖材料、包装与后加工的完整产品方案。",
@@ -27,10 +44,22 @@
       "eyebrow": "稳定可控的生产",
       "title": "从板材加工到成品包装。",
       "description": "围绕稳定送料、精准加工、清洁后道和可靠防护组织生产流程。",
-      "dieCutting": { "title": "全自动模切", "text": "支持异形切割和精准压痕，送料顺畅、定位稳定。" },
-      "corrugated": { "title": "瓦楞纸生产加工", "text": "高精度瓦楞板生产，板面平整，分切压线准确。" },
-      "dyeing": { "title": "染色与分切", "text": "色彩稳定、上料均匀，可满足多种纹路和颜色需求。" },
-      "laminating": { "title": "裱纸与封膜", "text": "提升平整度和强度，成品具备防尘防潮保护。" }
+      "dieCutting": {
+        "title": "全自动模切",
+        "text": "支持异形切割和精准压痕，送料顺畅、定位稳定。"
+      },
+      "corrugated": {
+        "title": "瓦楞纸生产加工",
+        "text": "高精度瓦楞板生产，板面平整，分切压线准确。"
+      },
+      "dyeing": {
+        "title": "染色与分切",
+        "text": "色彩稳定、上料均匀，可满足多种纹路和颜色需求。"
+      },
+      "laminating": {
+        "title": "裱纸与封膜",
+        "text": "提升平整度和强度，成品具备防尘防潮保护。"
+      }
     },
     "inquiry": {
       "title": "把您的包装需求带入生产。",
@@ -72,31 +101,627 @@
       "description": "告诉我们目标材质、尺寸、工艺、数量和用途，我们会为打样或报价准备下一步。",
       "country": "国家 / 地区",
       "quantity": "预计数量",
-      "requirements": "材质、克重、尺寸和工艺说明", "factory": "中国工厂", "internationalSales": "国际销售", "generalInquiry": "一般询问", "deliveryUnavailable": "当前邮件服务尚未配置", "deliveryFailed": "暂时无法发送询盘，请重试或使用直接联系方式"
+      "requirements": "材质、克重、尺寸和工艺说明",
+      "factory": "中国工厂",
+      "internationalSales": "国际销售",
+      "generalInquiry": "一般询问",
+      "deliveryUnavailable": "当前邮件服务尚未配置",
+      "deliveryFailed": "暂时无法发送询盘，请重试或使用直接联系方式"
     },
-    "footer": { "tagline": "品质为本 · 诚信经营 · 合作共赢" }
-  },
-  "Stage2": {
-    "nav": { "products": "产品", "capabilities": "制造能力", "applications": "应用场景", "factoryQuality": "工厂与质量", "resources": "资源", "about": "关于科宏", "quote": "提交询价", "modelPreview": "3D结构展厅", "menuOpen": "打开导航菜单", "menuClose": "关闭导航菜单", "menuTitle": "网站导航" },
-    "home": {
-      "hero": { "eyebrow": "特种纸材 · 瓦楞纸板 · 定制加工", "title": "面向定制包装的特种纸材与瓦楞纸板", "description": "科宏为 B 端包装项目提供瓦楞纸板、特种与功能纸、纸杯材料及纸品定制加工支持。", "primary": "查看产品", "secondary": "提交询价" },
-      "products": { "eyebrow": "产品体系", "title": "从适合项目的纸材或包装路径开始", "viewAll": "查看全部产品", "materials": "纸材与半成品", "materialsIntro": "查看适合 B 端包装项目的纸张、杯纸组件和成型材料。", "materialsCta": "查看规格", "finished": "成品包装", "finishedIntro": "按应用、结构和工艺查看餐饮、烘焙及运输包装。", "finishedCta": "查看包装类型" }
+    "footer": {
+      "tagline": "品质为本 · 诚信经营 · 合作共赢"
     }
   },
-  "ProductFamilies": {
-    "eyebrow": "产品家族", "breadcrumbProducts": "产品", "breadcrumbFamilies": "产品家族", "backToFamilies": "返回产品家族", "viewFamily": "进入家族", "requestQuote": "提交询价", "viewPublishedSpecs": "查看已发布规格", "publishedSpecs": "已发布规格", "publishedSpecsDescription": "查看当前家族中已确认并公开的产品组。", "noPublishedSpecs": "该家族用于项目规划，已发布规格可在产品目录中继续查看。", "representativeNote": "代表性参考图 · 最终素材请结合项目确认", "materials": "材料方向", "forms": "形态与规格", "applications": "采购应用", "capabilities": "项目支持", "commonParameters": "需要确认的参数", "relatedFamilies": "相关产品家族", "anchorEyebrow": "已发布产品锚点", "anchorDescription": "以该已发布材料路线作为起点，再根据项目确认结构、尺寸和淋膜要求。", "realOptions": "来自已发布记录的选项", "selectedRecord": "当前已发布记录", "viewFullRecord": "查看完整产品记录", "viewAllSpecifications": "查看全部规格", "publishedCount": "{count} 个已发布记录", "serviceNote": "面向 OEM / ODM 的材料选择、结构评审和定制纸品加工项目入口。",
-    "projectSupport": "相关项目支持", "capabilitiesLink": "查看制造能力", "processLink": "查看生产流程",
-    "family": {
-      "corrugated": { "title": "瓦楞纸板与坑纸材料", "description": "面向保护性包装项目的面纸、坑纸结构和加工纸板部件。", "material": "面纸与坑纸材料", "forms": "平张、盒片和加工纸板部件", "applications": "邮寄盒、内托和保护结构", "capabilities": "结构评审、加工和项目打样", "parameters": "纸板结构 · 坑型 · 尺寸 · 印刷" },
-      "specialty": { "title": "特种纸与装饰纸", "description": "面向品牌、零售和展示包装的表面与纸板方向。", "material": "特种纸与纸板方向", "forms": "平张、内托和展示部件", "applications": "零售、礼品和品牌包装", "capabilities": "材料选择、印刷和后工艺评审", "parameters": "表面 · 颜色 · 印刷 · 规格" },
-      "functional": { "title": "功能纸与食品用纸", "description": "围绕待确认的结构和工艺，整理纸材、纸托和食品包装部件。", "material": "用于包装加工的纸材与纸板", "forms": "平张、纸托、衬纸和成型部件", "applications": "餐饮、纸托和纸内托", "capabilities": "材料选择和结构评审", "parameters": "材料 · 克重 · 规格 · 表面工艺" },
-      "cup": { "title": "纸杯材料", "description": "用于加工项目的杯纸、卷材、平张、底纸和纸托材料产品组。", "material": "杯纸与淋膜纸材", "forms": "扇形片、卷材、平张和纸托材料", "applications": "纸杯、纸碗和成型纸托", "capabilities": "淋膜、模切和加工评审", "parameters": "克重 · 尺寸 · 淋膜 · 表面工艺 · 后加工" },
-      "converted": { "title": "包装材料与加工部件", "description": "面向需要明确材料和形态的包装结构，整理纸材、纸板和加工部件。", "material": "纸材、纸板和加工方向", "forms": "平张、盒片、内托和包装部件", "applications": "纸盒、内托和保护包装", "capabilities": "模切、压痕和裱合评审", "parameters": "材料 · 克重 · 结构 · 尺寸" },
-      "service": { "title": "OEM / ODM 与定制纸品加工", "description": "面向需要材料选择、结构打样或定制纸品加工支持的项目。", "material": "根据项目资料确认", "forms": "定制平张、部件或包装结构", "applications": "定制包装项目", "capabilities": "材料选择、结构评审和加工", "parameters": "材料 · 克重 · 尺寸 · 数量" }
+  "Stage2": {
+    "nav": {
+      "products": "产品",
+      "capabilities": "制造能力",
+      "applications": "应用场景",
+      "factoryQuality": "工厂与质量",
+      "resources": "资源",
+      "about": "关于科宏",
+      "quote": "提交询价",
+      "modelPreview": "3D结构展厅",
+      "menuOpen": "打开导航菜单",
+      "menuClose": "关闭导航菜单",
+      "menuTitle": "网站导航"
     },
-    "anchor": { "title": "食品纸托材料", "description": "用于成型纸托和纸内托的已发布纸材路线。提交询价前可先选择真实已发布值。", "materialLabel": "材料", "formLabel": "形态 / 结构", "gsmLabel": "克重 / 厚度", "coatingLabel": "淋膜", "sizeLabel": "常规尺寸", "applicationLabel": "应用", "realRecordNote": "以下值来自已发布记录，不生成虚构组合。" }
+    "home": {
+      "hero": {
+        "eyebrow": "特种纸材 · 瓦楞纸板 · 定制加工",
+        "title": "面向定制包装的特种纸材与瓦楞纸板",
+        "description": "科宏为 B 端包装项目提供瓦楞纸板、特种与功能纸、纸杯材料及纸品定制加工支持。",
+        "primary": "查看产品",
+        "secondary": "提交询价",
+        "stats": [
+                {
+                        "value": "OEM / ODM",
+                        "label": "定制开发"
+                },
+                {
+                        "value": "MOQ",
+                        "label": "灵活起订量"
+                },
+                {
+                        "value": "纸材·纸板",
+                        "label": "特种纸与瓦楞纸板"
+                },
+                {
+                        "value": "B2B",
+                        "label": "定制包装项目"
+                }
+        ]
+      },
+      "products": {
+            "eyebrow": "产品体系",
+            "title": "从适合项目的纸材或包装路径开始",
+            "viewAll": "查看全部产品",
+            "materials": "纸材与半成品",
+            "materialsIntro": "查看适合 B 端包装项目的纸张、杯纸组件和成型材料。",
+            "materialsCta": "查看规格",
+            "finished": "成品包装",
+            "finishedIntro": "按应用、结构和工艺查看餐饮、烘焙及运输包装。",
+            "finishedCta": "查看包装类型"
+      },
+      "factoryProof": {
+            "kicker": "工厂与能力",
+            "title": "从选材、打样到出货准备",
+            "lede": "科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。",
+            "facts": [
+                  "模切、分裱、瓦楞加工",
+                  "选材与结构打样",
+                  "质量检查与出货准备"
+            ],
+            "factoryCta": "了解工厂",
+            "capabilitiesCta": "探索能力",
+            "imageAlt": "科宏工厂样品与生产现场",
+            "imageCaption": "生产现场",
+            "miniImageAlt": "纸品样品展示"
+      },
+      "resources": {
+            "kicker": "资源",
+            "title": "指南、包装工具与行业洞察",
+            "items": [
+                  {
+                        "title": "指南与采购资源",
+                        "body": "设计稿准备、刀模图申请、材料指南与包装结构参考。",
+                        "href": "/resources",
+                        "cta": "浏览指南"
+                  },
+                  {
+                        "title": "新闻与文章",
+                        "body": "包装行业洞察、材料对比与公司动态。",
+                        "href": "/news",
+                        "cta": "阅读文章"
+                  },
+                  {
+                        "title": "3D 包装工作室",
+                        "body": "在打样前以 3D 方式查看常见包装结构。",
+                        "href": "/model-preview",
+                        "cta": "打开工作室"
+                  }
+            ]
+      }
+    },
+    "factory": {
+      "hero": {
+        "kicker": "佛山工厂",
+        "title": "纸品加工与包装生产",
+        "lede": "科宏是位于佛山的纸品加工与包装生产企业，专注纸材、瓦楞纸板和纸品材料，支持从选材到出货准备的 B2B 定制项目。",
+        "metaLocation": "中国广东佛山",
+        "viewCapabilities": "查看制造能力",
+        "requestQuote": "提交询价",
+        "imageAlt": "纸品加工工作区",
+        "metaScope": "纸材 · 瓦楞纸板 · 纸品加工",
+        "metaCustom": "B2B 定制项目"
+      },
+      "workWith": {
+        "kicker": "主要业务方向",
+        "title": "材料与加工产品",
+        "lede": "以下类别来自科宏已发布的产品目录和项目记录。",
+        "items": [
+          {
+            "title": "瓦楞纸板",
+            "body": "用于保护和运输包装的瓦楞纸板和结构。",
+            "alt": "瓦楞纸板材料参考图"
+          },
+          {
+            "title": "特种纸",
+            "body": "用于品牌包装和装饰包装的彩色、纹理和功能纸。",
+            "alt": "特种纸材料参考图"
+          },
+          {
+            "title": "涂层纸",
+            "body": "用于纸杯和食品包装项目的淋膜纸和表面处理纸。",
+            "alt": "涂层纸卷材料参考图"
+          },
+          {
+            "title": "纸卷与平张",
+            "body": "以纸卷或平张形式供应，供后续加工。",
+            "alt": "纸卷材料参考图"
+          },
+          {
+            "title": "纸杯材料",
+            "body": "用于纸杯项目的杯纸、扇形片和底纸卷。",
+            "alt": "纸杯扇形片产品参考图"
+          },
+          {
+            "title": "加工纸品组件",
+            "body": "模切托盘、纸垫、内托和组装纸品组件。",
+            "alt": "模切纸品组件参考图"
+          }
+        ]
+      },
+      "process": {
+        "kicker": "生产与加工工序",
+        "title": "从材料到成品组件的加工路径",
+        "lede": "每个工序说明加工内容、适用材料和最终输出。",
+        "whatLabel": "做什么",
+        "materialLabel": "适用材料",
+        "outputLabel": "产出",
+        "steps": [
+          {
+            "title": "选材",
+            "what": "根据产品用途和结构确认纸材、纸板或涂层纸。",
+            "material": "纸材、纸板、涂层纸",
+            "output": "确认的材料规格"
+          },
+          {
+            "title": "结构打样",
+            "what": "通过结构样核对尺寸、贴合、折线和内托。",
+            "material": "已确认的结构材料",
+            "output": "可评审的结构样"
+          },
+          {
+            "title": "纸材加工",
+            "what": "完成送纸、分张和分切，形成所需加工规格。",
+            "material": "纸卷与平张",
+            "output": "供下一工序使用的加工纸材"
+          },
+          {
+            "title": "分切",
+            "what": "按需求宽度分切纸卷或分张。",
+            "material": "纸卷与纸板卷",
+            "output": "分切纸卷或平张"
+          },
+          {
+            "title": "模切",
+            "what": "按确认的刀线完成版面、折线和开口的模切与压痕。",
+            "material": "纸板、瓦楞纸板",
+            "output": "模切包装部件"
+          },
+          {
+            "title": "印刷与后道",
+            "what": "按需求完成印刷、覆膜、涂层、烫金、压纹或贴窗。",
+            "material": "涂层纸、已印刷纸板",
+            "output": "完成的表面与结构"
+          },
+          {
+            "title": "质检与出货",
+            "what": "在约定节点核对材料、尺寸、表面和成型，并装箱准备出货。",
+            "material": "成品订单",
+            "output": "可出货订单"
+          }
+        ]
+      },
+      "quality": {
+        "kicker": "质量控制方式",
+        "title": "以确认为基础的质量控制",
+        "lede": "通过材料与规格确认、过程检查和终检复核管理质量。",
+        "items": [
+          {
+            "title": "材料确认",
+            "body": "按项目规格确认起始材料。"
+          },
+          {
+            "title": "规格确认",
+            "body": "生产前确认尺寸、结构和表面要求。"
+          },
+          {
+            "title": "过程检查",
+            "body": "在相关工序检查关键尺寸、表面和成型状态。"
+          },
+          {
+            "title": "终检确认",
+            "body": "装箱前对照已确认规格复核成品订单。"
+          },
+          {
+            "title": "样品与资料沟通",
+            "body": "按需与您的团队沟通样品、检测报告和项目资料。"
+          }
+        ]
+      },
+      "preparation": {
+        "kicker": "询盘前准备",
+        "title": "定制项目可提前准备的信息",
+        "lede": "更清晰的询盘信息有助于更快确认材料、结构和报价。",
+        "items": [
+          "产品或材料需求",
+          "尺寸",
+          "数量",
+          "参考图片或文件",
+          "目的国家/地区"
+        ],
+        "cta": "沟通您的需求"
+      }
+    },
+    "capabilities": {
+      "hero": {
+        "kicker": "科宏 · 制造能力",
+        "title": "纸品加工与包装材料制造能力",
+        "lede": "科宏可承接能力的实用概览：面向纸品包装项目的材料处理、加工转换、表面处理与定制支持。",
+        "metaGroups": "4 组制造能力",
+        "metaOem": "OEM / ODM",
+        "metaLocation": "中国广东佛山",
+        "requestQuote": "提交询价"
+      },
+      "groups": [
+        {
+          "kicker": "材料处理",
+          "lede": "加工前确认并准备好合适的纸材。",
+          "items": [
+            {
+              "title": "选材",
+              "what": "根据产品用途和结构确认纸材、纸板或涂层纸。",
+              "materials": "纸材、纸板、涂层纸",
+              "output": "确认的材料规格"
+            },
+            {
+              "title": "分切与分张",
+              "what": "按需求宽度分切纸卷或分张，供后续工序使用。",
+              "materials": "纸卷与纸板卷",
+              "output": "分切纸卷或平张"
+            },
+            {
+              "title": "纸材与纸板加工",
+              "what": "完成送纸、分张和转换，形成所需加工规格。",
+              "materials": "纸材、纸板、涂层纸",
+              "output": "加工纸材"
+            }
+          ]
+        },
+        {
+          "kicker": "加工转换",
+          "lede": "将已确认材料加工为所需包装结构。",
+          "items": [
+            {
+              "title": "结构打样",
+              "what": "制作结构样，核对尺寸、贴合和折线。",
+              "materials": "已确认的结构材料",
+              "output": "可评审的结构样"
+            },
+            {
+              "title": "模切",
+              "what": "按确认的刀线完成版面、折线和开口的模切与压痕。",
+              "materials": "纸板、瓦楞纸板",
+              "output": "模切包装部件"
+            },
+            {
+              "title": "成型与组装",
+              "what": "完成折盒、粘合和组装，形成成品结构。",
+              "materials": "模切纸品部件",
+              "output": "组装完成的包装"
+            }
+          ]
+        },
+        {
+          "kicker": "表面与功能处理",
+          "lede": "根据材料和需求确认印刷与后道工艺。",
+          "items": [
+            {
+              "title": "印刷",
+              "what": "对照结构确认印刷区域、颜色和稿件。",
+              "materials": "涂层纸、纸板",
+              "output": "已印刷包装材料"
+            },
+            {
+              "title": "覆膜与涂层",
+              "what": "按需求完成哑光或亮光覆膜及水性涂层。",
+              "materials": "已印刷纸材与纸板",
+              "output": "表面防护完成的材料"
+            },
+            {
+              "title": "后道工艺细节",
+              "what": "烫金、压凸、压凹、局部 UV 和贴窗。",
+              "materials": "纸材、纸板、已印刷材料",
+              "output": "完成表面细节的包装"
+            }
+          ]
+        },
+        {
+          "kicker": "定制支持",
+          "lede": "面向 B2B 定制订单的项目级支持。",
+          "items": [
+            {
+              "title": "稿件与印前",
+              "what": "生产前核对稿件、颜色和文件版本。",
+              "materials": "各类印刷材料",
+              "output": "可投产的稿件"
+            },
+            {
+              "title": "质量控制",
+              "what": "在约定节点核对材料、尺寸、表面和成型。",
+              "materials": "项目全部材料",
+              "output": "检验确认的订单"
+            },
+            {
+              "title": "包装与出口支持",
+              "what": "协调装箱信息和目的国要求，支持海外 B2B 项目。",
+              "materials": "成品包装",
+              "output": "可出货订单"
+            }
+          ]
+        }
+      ],
+      "start": {
+        "kicker": "如何开始",
+        "title": "四步启动定制项目",
+        "lede": "按实际步骤推进，保持需求与规格对齐。",
+        "steps": [
+          {
+            "title": "提交需求",
+            "body": "提交产品或材料需求、尺寸、数量和目标市场。"
+          },
+          {
+            "title": "评审材料与结构",
+            "body": "双方共同确认材料、结构和项目约束。"
+          },
+          {
+            "title": "确认规格或样品",
+            "body": "评审规格、图纸或结构样。"
+          },
+          {
+            "title": "进入报价",
+            "body": "科宏准备报价和后续生产安排。"
+          }
+        ]
+      },
+      "cta": {
+        "kicker": "开始项目",
+        "title": "确认科宏能否承接您的项目",
+        "lede": "发送需求或参考文件，科宏将确认下一步具体动作。",
+        "requestQuote": "提交询价",
+        "sendReference": "发送参考文件"
+      }
+    }
+  ,
+  "about": {
+    "hero": {
+      "kicker": "科宏 · 关于我们",
+      "title": "纸材、纸板、纸品加工与包装支持",
+      "lede": "科宏为 B2B 买家及项目团队提供纸材、瓦楞纸板、纸品加工与定制包装支持。",
+      "metaScope": "纸张 · 瓦楞纸板 · 纸品加工",
+      "metaCustom": "B2B 定制项目",
+      "metaLocation": "广东佛山",
+      "imageAlt": "科宏纸品加工工作区",
+      "ctaQuote": "询价",
+      "ctaCapabilities": "查看能力"
+    },
+    "what": {
+      "kicker": "科宏做什么",
+      "title": "从纸材到成品，覆盖纸品加工与包装",
+      "lede": "科宏的业务覆盖纸材处理、纸品加工、后道工艺与定制包装，B2B 项目各阶段均可对接。",
+      "items": [
+        {
+          "title": "纸材",
+          "body": "特种纸、淋膜纸、纸杯扇形片及纸板材料。"
+        },
+        {
+          "title": "瓦楞纸板",
+          "body": "瓦楞纸板与纸片，用于结构包装、邮寄盒与运输保护。"
+        },
+        {
+          "title": "纸品加工",
+          "body": "模切、分切、裱纸、组装等纸品加工与包装组件制作。"
+        },
+        {
+          "title": "定制包装支持",
+          "body": "按项目需求安排选材、打样、后道与协调。"
+        }
+      ]
+    },
+    "who": {
+      "kicker": "合作对象",
+      "title": "B2B 买家与包装供应链项目团队",
+      "lede": "科宏为包装加工企业、产品制造商及采购团队提供纸材与加工服务。",
+      "items": [
+        "包装加工厂商",
+        "纸品产品制造商",
+        "餐饮烘焙包装采购方",
+        "美妆香氛包装项目",
+        "经销商与采购团队",
+        "B2B 定制包装项目"
+      ]
+    },
+    "how": {
+      "kicker": "项目支持流程",
+      "title": "从选材到出货，逐步对接项目需求",
+      "lede": "科宏在定制包装项目的各阶段与买家协作。",
+      "items": [
+        {
+          "title": "选材",
+          "body": "根据产品需求推荐纸种、板型、淋膜与后道工艺。"
+        },
+        {
+          "title": "规格沟通",
+          "body": "报价前明确尺寸、结构、印刷方式、数量和目的地。"
+        },
+        {
+          "title": "加工与定制",
+          "body": "安排模切、分切、裱纸、后道与组装等定制加工。"
+        },
+        {
+          "title": "报价与打样",
+          "body": "审核项目需求，讨论打样流程与生产周期。"
+        }
+      ]
+    },
+    "entry": {
+      "kicker": "了解更多生产信息",
+      "title": "了解工厂与生产能力",
+      "lede": "访问工厂概述与能力页面，了解生产现场、设备与工艺。",
+      "factoryCta": "查看工厂",
+      "capabilitiesCta": "探索能力",
+      "imageAlt": "科宏工厂生产区域"
+    },
+    "cta": {
+      "kicker": "开始项目",
+      "title": "提交项目需求，开始讨论",
+      "lede": "提交询盘或需求说明，开始沟通。",
+      "discussBtn": "讨论需求",
+      "quoteBtn": "询价"
+    }
   },
-  "NotFound": { "title": "页面不存在", "description": "您访问的页面不存在或已移动。", "homeLink": "返回首页" },
+  "resources": {
+    "hero": {
+      "kicker": "科宏 · 买家资源",
+      "title": "指南、采购资源与包装参考工具",
+      "lede": "使用这些资源准备设计稿、对比材料、了解表面工艺、申请刀模图与规划包装项目。",
+      "metaGuides": "指南与申请",
+      "metaOem": "OEM / ODM",
+      "metaLocation": "广东佛山",
+      "ctaExpert": "咨询包装专家",
+      "ctaCapabilities": "了解工厂能力"
+    },
+    "guides": {
+      "kicker": "指南与采购资源",
+      "title": "设计稿、材料与包装结构实用指南",
+      "guideLabel": "指南",
+      "requestLabel": "申请",
+      "readGuide": "阅读指南",
+      "sendRequest": "申请"
+    },
+    "finishes": {
+      "kicker": "表面工艺",
+      "title": "常用表面工艺一览",
+      "finishingRequirements": "可选工艺",
+      "startGuidedRfq": "咨询包装专家",
+      "needStructure": "需要结构建议？",
+      "structureTip": "请提供产品尺寸、重量、使用方式和运输要求，获取结构建议。"
+    },
+    "news": {
+      "kicker": "新闻与文章",
+      "title": "包装行业洞察与公司动态",
+      "lede": "阅读关于纸材、加工技术与包装采购指南的最新文章。",
+      "viewAll": "查看全部文章"
+    },
+    "studio": {
+      "kicker": "3D 包装工作室",
+      "title": "包装结构参考工具",
+      "lede": "在 3D 中查看常见包装结构，了解配置、尺寸与组装方式。",
+      "explore": "打开 3D 工作室",
+      "positioning": "结构参考工具，非设计软件，用于项目规划与可视化。"
+    },
+    "reference": {
+      "kicker": "参考文件",
+      "title": "发送参考文件或讨论包装需求",
+      "lede": "分享参考包装样品、草图或规格，获取报价或可行性评估。",
+      "sendFile": "发送参考文件",
+      "discuss": "讨论包装需求"
+    }
+  }},
+  "ProductFamilies": {
+    "eyebrow": "产品家族",
+    "breadcrumbProducts": "产品",
+    "breadcrumbFamilies": "产品家族",
+    "backToFamilies": "返回产品家族",
+    "viewFamily": "进入家族",
+    "requestQuote": "提交询价",
+    "viewPublishedSpecs": "查看已发布规格",
+    "publishedSpecs": "已发布规格",
+    "publishedSpecsDescription": "查看当前家族中已确认并公开的产品组。",
+    "noPublishedSpecs": "该家族用于项目规划，已发布规格可在产品目录中继续查看。",
+    "representativeNote": "代表性参考图 · 最终素材请结合项目确认",
+    "materials": "材料方向",
+    "forms": "形态与规格",
+    "applications": "采购应用",
+    "capabilities": "项目支持",
+    "commonParameters": "需要确认的参数",
+    "relatedFamilies": "相关产品家族",
+    "anchorEyebrow": "已发布产品锚点",
+    "anchorDescription": "以该已发布材料路线作为起点，再根据项目确认结构、尺寸和淋膜要求。",
+    "realOptions": "来自已发布记录的选项",
+    "selectedRecord": "当前已发布记录",
+    "viewFullRecord": "查看完整产品记录",
+    "viewAllSpecifications": "查看全部规格",
+    "publishedCount": "{count} 个已发布记录",
+    "serviceNote": "面向 OEM / ODM 的材料选择、结构评审和定制纸品加工项目入口。",
+    "projectSupport": "相关项目支持",
+    "capabilitiesLink": "查看制造能力",
+    "processLink": "查看生产流程",
+    "family": {
+      "corrugated": {
+        "title": "瓦楞纸板与坑纸材料",
+        "description": "面向保护性包装项目的面纸、坑纸结构和加工纸板部件。",
+        "material": "面纸与坑纸材料",
+        "forms": "平张、盒片和加工纸板部件",
+        "applications": "邮寄盒、内托和保护结构",
+        "capabilities": "结构评审、加工和项目打样",
+        "parameters": "纸板结构 · 坑型 · 尺寸 · 印刷"
+      },
+      "specialty": {
+        "title": "特种纸与装饰纸",
+        "description": "面向品牌、零售和展示包装的表面与纸板方向。",
+        "material": "特种纸与纸板方向",
+        "forms": "平张、内托和展示部件",
+        "applications": "零售、礼品和品牌包装",
+        "capabilities": "材料选择、印刷和后工艺评审",
+        "parameters": "表面 · 颜色 · 印刷 · 规格"
+      },
+      "functional": {
+        "title": "功能纸与食品用纸",
+        "description": "围绕待确认的结构和工艺，整理纸材、纸托和食品包装部件。",
+        "material": "用于包装加工的纸材与纸板",
+        "forms": "平张、纸托、衬纸和成型部件",
+        "applications": "餐饮、纸托和纸内托",
+        "capabilities": "材料选择和结构评审",
+        "parameters": "材料 · 克重 · 规格 · 表面工艺"
+      },
+      "cup": {
+        "title": "纸杯材料",
+        "description": "用于加工项目的杯纸、卷材、平张、底纸和纸托材料产品组。",
+        "material": "杯纸与淋膜纸材",
+        "forms": "扇形片、卷材、平张和纸托材料",
+        "applications": "纸杯、纸碗和成型纸托",
+        "capabilities": "淋膜、模切和加工评审",
+        "parameters": "克重 · 尺寸 · 淋膜 · 表面工艺 · 后加工"
+      },
+      "converted": {
+        "title": "包装材料与加工部件",
+        "description": "面向需要明确材料和形态的包装结构，整理纸材、纸板和加工部件。",
+        "material": "纸材、纸板和加工方向",
+        "forms": "平张、盒片、内托和包装部件",
+        "applications": "纸盒、内托和保护包装",
+        "capabilities": "模切、压痕和裱合评审",
+        "parameters": "材料 · 克重 · 结构 · 尺寸"
+      },
+      "service": {
+        "title": "OEM / ODM 与定制纸品加工",
+        "description": "面向需要材料选择、结构打样或定制纸品加工支持的项目。",
+        "material": "根据项目资料确认",
+        "forms": "定制平张、部件或包装结构",
+        "applications": "定制包装项目",
+        "capabilities": "材料选择、结构评审和加工",
+        "parameters": "材料 · 克重 · 尺寸 · 数量"
+      }
+    },
+    "anchor": {
+      "title": "食品纸托材料",
+      "description": "用于成型纸托和纸内托的已发布纸材路线。提交询价前可先选择真实已发布值。",
+      "materialLabel": "材料",
+      "formLabel": "形态 / 结构",
+      "gsmLabel": "克重 / 厚度",
+      "coatingLabel": "淋膜",
+      "sizeLabel": "常规尺寸",
+      "applicationLabel": "应用",
+      "realRecordNote": "以下值来自已发布记录，不生成虚构组合。"
+    }
+  },
+  "NotFound": {
+    "title": "页面不存在",
+    "description": "您访问的页面不存在或已移动。",
+    "homeLink": "返回首页"
+  },
   "Error": {
     "server": "页面出错了",
     "sorry": "请重试，或返回首页发送您的采购需求。",
