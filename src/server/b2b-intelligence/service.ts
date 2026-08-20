@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { visitorConfig, companyIdentityFor, normalizeCompanyDomain } from "./config";
+import { visitorConfig, companyIdentityFor, normalizeCompanyDomain, visitorIntelligenceEnabled } from "./config";
 import { extractTrustedClientIp, hashIp } from "./ip";
 import { hasMeaningfulBehavior, isEligibleNetwork, scoreLead } from "./lead-scoring";
 import { lookupCompanyByIp, enrichCompany } from "./providers";
@@ -17,6 +17,7 @@ function mergeProfile(ipProfile: ProviderCompanyResult | null, enrichment: Provi
 }
 
 export async function processVisitorEvent(request: Request, event: VisitorEventInput) {
+  if (!visitorIntelligenceEnabled()) return { accepted: true, deduplicated: false, leadId: null, disabled: true };
   const shouldLookup = event.eventType !== "page_view";
   const rawIp = shouldLookup ? extractTrustedClientIp(request) : null;
   const ipHash = hashIp(rawIp);

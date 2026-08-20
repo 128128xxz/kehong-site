@@ -13,6 +13,10 @@ export type LeadEventPayload = {
   durationSeconds?: number;
 };
 
+export function shouldSendLeadEvent(enabled: boolean, optedOut: boolean) {
+  return enabled && !optedOut;
+}
+
 export function trackLeadEvent(payload: LeadEventPayload) {
   if (typeof window === "undefined" || typeof navigator === "undefined") return;
   const body = JSON.stringify({ ...payload, eventId: typeof crypto?.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}` });

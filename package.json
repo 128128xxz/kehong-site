@@ -42,8 +42,9 @@
     "test": "pnpm run test:unit && pnpm run test:e2e",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
+    "test:e2e": "B2B_VISITOR_INTELLIGENCE_ENABLED=false playwright test",
+    "test:e2e:b2b": "B2B_VISITOR_INTELLIGENCE_ENABLED=true B2B_MOCK_SCENARIO=business playwright test tests/e2e/b2b-mock.spec.ts",
+    "test:e2e:ui": "B2B_VISITOR_INTELLIGENCE_ENABLED=false playwright test --ui",
     "ci": "pnpm install --frozen-lockfile && pnpm run lint && pnpm run typecheck && pnpm run validate:products && pnpm run audit:legacy-domain && pnpm run test:unit && pnpm run build && pnpm run test:e2e"
   },
   "dependencies": {

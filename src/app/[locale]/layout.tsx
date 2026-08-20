@@ -21,6 +21,7 @@ import LocaleDocumentLanguage from "@/components/site/LocaleDocumentLanguage";
 import MobileStickyActions from "@/components/site/MobileStickyActions";
 import UIMaterialPreview from "@/components/site/UIMaterialPreview";
 import AnalyticsConsent from "@/components/site/AnalyticsConsent";
+import B2BVisitorTracking from "@/components/site/B2BVisitorTracking";
 import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -59,6 +60,7 @@ export default async function RootLayout({
       <NextIntlClientProvider messages={messages} timeZone={timeZone} now={now}>
         {children}
         <MobileStickyActions />
+        <B2BVisitorTracking enabled={process.env.B2B_VISITOR_INTELLIGENCE_ENABLED === "true"} />
         <AnalyticsConsent enabled={process.env.VERCEL === "1"} />
       </NextIntlClientProvider>
     </body>

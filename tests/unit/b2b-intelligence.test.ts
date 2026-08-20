@@ -7,6 +7,7 @@ import { parseLeadEvent } from "@/server/b2b-intelligence/event-validation";
 import { clearProviderCaches } from "@/server/b2b-intelligence/providers";
 import type { ProviderCompanyResult, VisitorEventRecord } from "@/server/b2b-intelligence/types";
 import { getInquiryRepository } from "@/server/b2b-intelligence/repository-factory";
+import { shouldSendLeadEvent } from "@/lib/leadEvent";
 
 const originalEnv = { ...process.env };
 
@@ -18,7 +19,7 @@ const business: ProviderCompanyResult = { provider: "mock", companyId: "mock-exa
 
 describe("B2B visitor intelligence", () => {
   beforeEach(() => {
-    process.env = { ...originalEnv, IP_HASH_SECRET: "unit-test-secret", IP_COMPANY_PROVIDER: "mock", COMPANY_ENRICHMENT_PROVIDER: "mock" };
+    process.env = { ...originalEnv, B2B_VISITOR_INTELLIGENCE_ENABLED: "true", IP_HASH_SECRET: "unit-test-secret", IP_COMPANY_PROVIDER: "mock", COMPANY_ENRICHMENT_PROVIDER: "mock" };
     delete process.env.DATABASE_URL;
     delete process.env.VERCEL_ENV;
     resetMemoryRepository();
@@ -68,5 +69,19 @@ describe("B2B visitor intelligence", () => {
     expect(await getInquiryRepository().listInquiries({ inquiryType: "company_visitor_lead" })).toHaveLength(0);
     process.env.B2B_MOCK_SCENARIO = "provider_timeout";
     await expect(processVisitorEvent(request, { eventId: "timeout-contact", eventType: "contact_view", path: "/en/contact", pageTitle: null, referrer: null, utmSource: null, utmMedium: null, utmCampaign: null, utmTerm: null, utmContent: null, durationSeconds: null })).resolves.toMatchObject({ accepted: true });
+  });
+
+  it("is disabled by default in production and never uses the mock provider there", async () => {
+    process.env.VERCEL_ENV = "production";
+    process.env.B2B_VISITOR_INTELLIGENCE_ENABLED = "false";
+    const request = new Request("https://www.kehong.tech/api/lead-event", { headers: { origin: "https://www.kehong.tech", "x-forwarded-for": "8.8.8.8" } });
+    await expect(processVisitorEvent(request, { eventId: "production-disabled", eventType: "product_view", path: "/en/products/example", pageTitle: null, referrer: null, utmSource: null, utmMedium: null, utmCampaign: null, utmTerm: null, utmContent: null, durationSeconds: null })).resolves.toMatchObject({ accepted: true, disabled: true });
+    expect(await getInquiryRepository().listInquiries()).toHaveLength(0);
+  });
+
+  it("does not send browser telemetry when visitor intelligence is disabled or opted out", () => {
+    expect(shouldSendLeadEvent(false, false)).toBe(false);
+    expect(shouldSendLeadEvent(true, true)).toBe(false);
+    expect(shouldSendLeadEvent(true, false)).toBe(true);
   });
 });

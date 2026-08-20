@@ -1,4 +1,4 @@
-import { visitorConfig, isProductionEnvironment } from "./config";
+import { visitorConfig, mockVisitorIntelligenceEnabled } from "./config";
 import type { ProviderCompanyResult } from "./types";
 
 export interface IpCompanyProvider {
@@ -58,17 +58,13 @@ class NotConfiguredProvider implements IpCompanyProvider, CompanyEnrichmentProvi
   async enrich(domain: string) { void domain; return null; }
 }
 
-function providersEnabled() {
-  return !isProductionEnvironment() || process.env.IP_COMPANY_PROVIDER !== "mock";
-}
-
 function getIpProvider(): IpCompanyProvider {
-  if (process.env.IP_COMPANY_PROVIDER === "mock" || !process.env.IP_COMPANY_PROVIDER) return providersEnabled() ? new MockIpCompanyProvider() : new NotConfiguredProvider();
+  if (process.env.IP_COMPANY_PROVIDER === "mock" || !process.env.IP_COMPANY_PROVIDER) return mockVisitorIntelligenceEnabled() ? new MockIpCompanyProvider() : new NotConfiguredProvider();
   return new NotConfiguredProvider();
 }
 
 function getEnrichmentProvider(): CompanyEnrichmentProvider {
-  if (process.env.COMPANY_ENRICHMENT_PROVIDER === "mock" || !process.env.COMPANY_ENRICHMENT_PROVIDER) return providersEnabled() ? new MockCompanyEnrichmentProvider() : new NotConfiguredProvider();
+  if (process.env.COMPANY_ENRICHMENT_PROVIDER === "mock" || !process.env.COMPANY_ENRICHMENT_PROVIDER) return mockVisitorIntelligenceEnabled() ? new MockCompanyEnrichmentProvider() : new NotConfiguredProvider();
   return new NotConfiguredProvider();
 }
 
