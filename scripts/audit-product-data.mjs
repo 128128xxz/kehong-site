@@ -28,27 +28,14 @@ const skuImageMap = productImages.skuImages || {};
 const skus = catalog.skus || [];
 const assets = productImages.assets || [];
 const assetsById = new Map(assets.map((asset) => [asset.assetId, asset]));
-const allowedImageStatuses = new Set(["exact", "representative", "ai-representative", "pending"]);
+const allowedImageStatuses = new Set(["exact", "representative", "pending"]);
 
 function normalizeImageStatus(status) {
   return allowedImageStatuses.has(status) ? status : "pending";
 }
 
-function isAiGeneratedAsset(asset) {
-  return asset?.sourceType === "ai-generated";
-}
-
 function isDisplayAllowedAsset(asset) {
-  if (asset?.permissionStatus === "approved") return true;
-
-  return (
-    isAiGeneratedAsset(asset) &&
-    asset.permissionStatus === "generated-for-site" &&
-    asset.exactness === "representative" &&
-    asset.imageStatus === "ai-representative" &&
-    asset.productionUsageAllowed === true &&
-    asset.exactSkuEligible === false
-  );
+  return asset?.permissionStatus === "approved";
 }
 
 function effectiveSkuImageStatus(sku) {
@@ -58,8 +45,6 @@ function effectiveSkuImageStatus(sku) {
   const asset = mainId ? assetsById.get(mainId) : undefined;
 
   if (!asset || !isDisplayAllowedAsset(asset)) return "pending";
-  if (isAiGeneratedAsset(asset)) return "ai-representative";
-
   const assetExactness = normalizeImageStatus(asset.exactness);
   if (requestedStatus === "exact") return assetExactness === "exact" ? "exact" : assetExactness;
   if (requestedStatus === "representative") return assetExactness === "exact" ? "representative" : assetExactness;
@@ -90,15 +75,7 @@ const summary = {
   conclusion: {
     exactSkuImageMappingComplete: (countBy(skus, (sku) => effectiveSkuImageStatus(sku)).exact || 0) === skus.length && skus.length > 0,
     hasAnyExactSkuImage: (countBy(skus, (sku) => effectiveSkuImageStatus(sku)).exact || 0) > 0,
-    productionUsesOnlyApprovedOrGeneratedRepresentativeAssets: assets.every(
-      (asset) =>
-        isDisplayAllowedAsset(asset) &&
-        asset.exactness === "representative" &&
-        (!isAiGeneratedAsset(asset) || asset.exactSkuEligible === false),
-    ),
-    aiGeneratedAssetsCannotCountAsExact: assets.every(
-      (asset) => !isAiGeneratedAsset(asset) || (asset.exactness === "representative" && asset.exactSkuEligible === false),
-    ),
+    productionUsesOnlyApprovedRepresentativeAssets: assets.every((asset) => isDisplayAllowedAsset(asset) && asset.exactness === "representative"),
     stillNeedsExactSkuPhotography: (countBy(skus, (sku) => effectiveSkuImageStatus(sku)).exact || 0) < skus.length,
     stillNeedsSourceConfirmationForPendingProducts: skus.some((sku) => sku.sourceStatus !== "confirmed"),
   },
@@ -138,7 +115,6 @@ Generated: ${summary.generatedAt}
 - Image assets: ${summary.totals.imageAssets}
 - Effective exact SKU images: ${summary.skuImageStatus.exact || 0}
 - Effective representative SKU images: ${summary.skuImageStatus.representative || 0}
-- Effective AI representative SKU images: ${summary.skuImageStatus["ai-representative"] || 0}
 - Effective pending SKU images: ${summary.skuImageStatus.pending || 0}
 - Requested exact SKU images: ${summary.requestedSkuImageStatus.exact || 0}
 - Published SKUs: ${summary.published.true || 0}
@@ -147,7 +123,7 @@ Generated: ${summary.generatedAt}
 
 ## Conclusion
 
-This build is safer than random image assignment because all production SKU cards use approved local representative visuals or generated-for-site AI representative visuals, and they are labeled clearly. It is not an exact SKU image rebuild: there are currently ${summary.skuImageStatus.exact || 0} exact SKU images.
+This build is safer than random image assignment because all production SKU cards use approved local representative visuals and are labeled clearly. It is not an exact SKU image rebuild: there are currently ${summary.skuImageStatus.exact || 0} exact SKU images.
 
 Do not mark any SKU image as exact until the source image is confirmed as Kehong-owned or licensed and visually verified against the target SKU.
 `;

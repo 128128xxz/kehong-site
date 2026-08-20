@@ -60,7 +60,7 @@ const articles: NewsArticle[] = [
     publishedAt: "2026-08-06",
     updatedAt: "2026-08-06",
     author: sharedAuthor.en,
-    coverImage: "/images/kehong/showcase/optimized/color-paper-fan.jpg",
+    coverImage: "/media/materials/colored-paper-cup-fan-reference.jpg",
     coverAlt: "Paper cup fan blanks and coated paper material",
     tags: ["cupstock", "coated paper", "formats"],
     sections: [
@@ -89,7 +89,7 @@ const articles: NewsArticle[] = [
     publishedAt: "2026-08-05",
     updatedAt: "2026-08-05",
     author: sharedAuthor.en,
-    coverImage: "/images/kehong/showcase/optimized/food-box-real-02.jpg",
+    coverImage: "/media/products/food-packaging/food-packaging-box-reference-02.jpg",
     coverAlt: "Unbranded takeaway paper boxes",
     tags: ["takeout boxes", "quotation", "brief"],
     sections: [
@@ -121,7 +121,7 @@ const articles: NewsArticle[] = [
     publishedAt: "2026-08-04",
     updatedAt: "2026-08-04",
     author: sharedAuthor.en,
-    coverImage: "/images/kehong/showcase/optimized/kraft-cartons-tall.jpg",
+    coverImage: "/media/packaging/kraft-cartons-tall-reference.jpg",
     coverAlt: "Corrugated mailer cartons prepared for dispatch",
     tags: ["corrugated mailers", "inserts", "ecommerce packaging"],
     sections: [
@@ -151,7 +151,7 @@ const articles: NewsArticle[] = [
     publishedAt: "2026-08-03",
     updatedAt: "2026-08-03",
     author: sharedAuthor.en,
-    coverImage: "/images/web/pexels-kraft-paper-bag.jpg",
+    coverImage: "/media/applications/kraft-paper-bag-reference.jpg",
     coverAlt: "Kraft paper bag used as a packaging reference",
     tags: ["paper bags", "printing", "quotation"],
     sections: [
@@ -181,7 +181,7 @@ const articles: NewsArticle[] = [
     publishedAt: "2026-08-02",
     updatedAt: "2026-08-02",
     author: sharedAuthor.en,
-    coverImage: "/images/kehong/showcase/optimized/cake-board-real.jpg",
+    coverImage: "/media/products/cake-boards/cake-board-reference-01.jpg",
     coverAlt: "Cake boards and bakery packaging components",
     tags: ["cake boxes", "cake boards", "bakery packaging"],
     sections: [
@@ -212,7 +212,7 @@ const articles: NewsArticle[] = [
     publishedAt: "2026-08-01",
     updatedAt: "2026-08-01",
     author: sharedAuthor.en,
-    coverImage: "/images/ai/ai-artwork-guide-cover.jpg",
+    coverImage: "/media/resources/artwork-guide-cover-reference.jpg",
     coverAlt: "Representative packaging artwork and dieline preparation",
     tags: ["artwork", "dielines", "sampling"],
     sections: [

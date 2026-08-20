@@ -162,12 +162,22 @@ export function Parallax({ children, className, strength = 12 }: ParallaxProps) 
     if (!window.matchMedia("(pointer: fine)").matches) return;
     let raf = 0;
     let active = false;
+    let elementTop = 0;
+    let elementHeight = 0;
+
+    // Measure layout only when it can change. Reading getBoundingClientRect
+    // inside every scroll frame forces a synchronous layout and is visible
+    // as a hitch when the factory section enters the viewport.
+    const measure = () => {
+      const rect = element.getBoundingClientRect();
+      elementTop = rect.top + window.scrollY;
+      elementHeight = rect.height;
+    };
 
     const update = () => {
       raf = 0;
-      const rect = element.getBoundingClientRect();
       const viewportCenter = window.innerHeight / 2;
-      const elementCenter = rect.top + rect.height / 2;
+      const elementCenter = elementTop + elementHeight / 2 - window.scrollY;
       const ratio = Math.max(-1, Math.min(1, (elementCenter - viewportCenter) / viewportCenter));
       element.style.transform = `translateY(${(ratio * strength).toFixed(1)}px)`;
     };
@@ -176,15 +186,27 @@ export function Parallax({ children, className, strength = 12 }: ParallaxProps) 
     };
     const observer = new IntersectionObserver((entries) => {
       active = entries.some((entry) => entry.isIntersecting);
+      if (active) {
+        measure();
+        onScroll();
+      }
+    });
+    const resizeObserver = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(() => {
+      measure();
       if (active) onScroll();
     });
+    measure();
+    resizeObserver?.observe(element);
+    element.style.willChange = "transform";
     observer.observe(element);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       observer.disconnect();
+      resizeObserver?.disconnect();
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf);
       element.style.transform = "";
+      element.style.willChange = "";
     };
   }, [strength]);
 

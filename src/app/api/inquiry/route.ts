@@ -23,6 +23,8 @@ type InquiryPayload = {
   printing?: unknown;
   process?: unknown;
   market?: unknown;
+  targetDate?: unknown;
+  shipping?: unknown;
   message?: unknown;
   sourceUrl?: unknown;
   utmSource?: unknown;
@@ -105,6 +107,8 @@ function inquiryError(code: string, status: number, message: string) {
   return NextResponse.json({ ok: false, code, error: message }, { status });
 }
 
+const allowedAttachmentExtensions = new Set(["png", "jpg", "jpeg", "webp", "gif", "pdf", "doc", "docx", "xls", "xlsx"]);
+
 function makeInquiryKey(inquiry: Record<string, unknown>, idempotencyHeader: string) {
   if (idempotencyHeader) return `header:${idempotencyHeader}`;
   const content = [inquiry.email, ...(inquiry.products as string[]), inquiry.interestId, inquiry.message, inquiry.quantity, inquiry.sourceUrl]
@@ -119,11 +123,17 @@ async function parseAttachments(form: FormData) {
   const totalBytes = files.reduce((total, file) => total + file.size, 0);
   if (totalBytes > MAX_TOTAL_ATTACHMENT_BYTES) throw new Error("ATTACHMENT_TOTAL_SIZE");
   const attachments: Attachment[] = [];
+  const filenames = new Set<string>();
   for (const file of files) {
     if (file.size > MAX_ATTACHMENT_BYTES) throw new Error("ATTACHMENT_SIZE");
     if (!allowedAttachmentTypes.has(file.type)) throw new Error("ATTACHMENT_TYPE");
+    const extension = file.name.split(".").pop()?.toLowerCase() ?? "";
+    if (!allowedAttachmentExtensions.has(extension)) throw new Error("ATTACHMENT_EXTENSION");
+    const filename = file.name.replace(/[^a-zA-Z0-9._-]/gu, "_").slice(0, 120);
+    if (!filename || filenames.has(filename)) throw new Error("ATTACHMENT_DUPLICATE");
+    filenames.add(filename);
     attachments.push({
-      filename: file.name.replace(/[^a-zA-Z0-9._-]/gu, "_").slice(0, 120),
+      filename,
       content: Buffer.from(await file.arrayBuffer()).toString("base64"),
     });
   }
@@ -142,7 +152,7 @@ export async function POST(request: Request) {
   try {
     if (request.headers.get("content-type")?.includes("multipart/form-data")) {
       const form = await request.formData();
-      if (toText(form.get("website"))) return NextResponse.json({ ok: true, code: "ACCEPTED" }, { status: 200 });
+      if (toText(form.get("website"))) return inquiryError("INVALID_SUBMISSION", 400, "Invalid inquiry submission");
       payload = Object.fromEntries([...form.entries()].filter(([key, value]) => key !== "attachment" && typeof value === "string")) as InquiryPayload;
       attachments = await parseAttachments(form);
     } else {
@@ -170,6 +180,8 @@ export async function POST(request: Request) {
     printing: canonicalizePublicText(toText(payload.printing)),
     process: canonicalizePublicText(toText(payload.process)),
     market: canonicalizePublicText(toText(payload.market)),
+    targetDate: canonicalizePublicText(toText(payload.targetDate)),
+    shipping: canonicalizePublicText(toText(payload.shipping)),
     message: canonicalizePublicText(toText(payload.message)),
     sourceUrl: canonicalizePublicText(toText(payload.sourceUrl)),
     utmSource: canonicalizePublicText(toText(payload.utmSource)),
@@ -209,8 +221,9 @@ export async function POST(request: Request) {
     interestProductType: approvedInterest?.formProductType ?? "",
   };
 
-  if (!inquiry.name || !isValidEmail(inquiry.email) || (inquiry.products.length === 0 && !inquiry.interestId) || inquiry.privacy !== "on") {
-    return inquiryError("VALIDATION_FAILED", 400, "Name, valid email and at least one product or inquiry type are required");
+  const hasReachableChannel = isValidEmail(inquiry.email) || Boolean(inquiry.whatsapp || inquiry.phone);
+  if (!inquiry.name || !hasReachableChannel || (inquiry.products.length === 0 && !inquiry.interestId) || inquiry.privacy !== "on") {
+    return inquiryError("VALIDATION_FAILED", 400, "Name, a valid email or phone/WhatsApp, and at least one product or inquiry type are required");
   }
 
   const inquiryKey = makeInquiryKey(inquiry, request.headers.get("idempotency-key")?.trim() ?? "");
@@ -268,5 +281,5 @@ export async function POST(request: Request) {
   recentRequests.set(ip, now);
   recentInquiryKeys.set(inquiryKey, { timestamp: now, status: "accepted" });
   console.info("Kehong inquiry email accepted", { requestId, emailId, at: new Date().toISOString(), status: "accepted" });
-  return NextResponse.json({ ok: true, code: "ACCEPTED", message: "Your inquiry has been accepted by the Kehong website." });
+  return NextResponse.json({ ok: true, code: "ACCEPTED", status: "PROVIDER_ACCEPTED", requestId, message: "Your inquiry has been accepted by the Kehong website." });
 }

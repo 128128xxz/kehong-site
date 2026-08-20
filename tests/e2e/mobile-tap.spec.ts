@@ -63,12 +63,17 @@ type HitRecord = {
 async function hitAudit(page: Page, route: string, viewport: { width: number; height: number }) {
   return page.evaluate(({ route, viewport }) => {
     const records: HitRecord[] = [];
+    // Chromium's mobile emulation reports a desktop-style `innerWidth` while
+    // the layout viewport (and actual tap surface) remains clientWidth wide.
+    // Use the layout viewport for center-point hit testing so an off-screen
+    // control is not tested against coordinates outside the physical device.
+    const layoutWidth = document.documentElement.clientWidth;
     for (const element of document.querySelectorAll<HTMLElement>("a[href], button, [role=button], summary, select")) {
       const style = getComputedStyle(element);
       const box = element.getBoundingClientRect();
       if (style.display === "none" || style.visibility === "hidden" || style.opacity === "0" || !box.width || !box.height || box.bottom <= 0 || box.top >= innerHeight) continue;
       const center = {
-        x: Math.min(innerWidth - 1, Math.max(0, box.left + box.width / 2)),
+        x: Math.min(layoutWidth - 1, Math.max(0, box.left + box.width / 2)),
         y: Math.min(innerHeight - 1, Math.max(0, box.top + box.height / 2)),
       };
       const topmost = document.elementFromPoint(center.x, center.y);

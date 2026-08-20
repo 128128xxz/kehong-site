@@ -26,7 +26,7 @@ export default function MobileStickyActions() {
     <div className="kh-mobile-sticky-actions" data-testid="mobile-sticky-actions">
       <Link href="/contact" className="kh-button kh-button-primary">
         <Quote className="size-4" />
-        {zh ? "提交询价" : "Get a quote"}
+        {zh ? "立即询价" : "Get a quote"}
       </Link>
       {zh ? <a href="tel:+8615888233221" className="kh-button kh-button-secondary"><Phone className="size-4" />电话</a> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-secondary"><MessageCircle className="size-4" />WhatsApp</a>}
     </div>

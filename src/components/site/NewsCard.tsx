@@ -9,13 +9,13 @@ export function formatNewsDate(date: string, locale: string) {
   }).format(new Date(`${date}T00:00:00Z`));
 }
 
-export default function NewsCard({ article, locale }: { article: NewsArticle; locale: string }) {
+export default function NewsCard({ article, locale, eager = false }: { article: NewsArticle; locale: string; eager?: boolean }) {
   const zh = locale === "zh";
   return (
     <article className="kh-news-card kh-panel overflow-hidden p-3" data-news-card data-news-category={article.category}>
       <Link href={`/news/${article.slug}`} className="block rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--kh-brass)">
         <span className="kh-news-card-media block">
-          <Image src={article.coverImage} alt={article.coverAlt} fill sizes="(max-width: 760px) 92vw, (max-width: 1100px) 45vw, 30vw" className="object-cover" />
+          <Image src={article.coverImage} alt={article.coverAlt} fill sizes="(max-width: 760px) 92vw, (max-width: 1100px) 45vw, 30vw" className="object-cover" loading={eager ? "eager" : "lazy"} />
         </span>
         <span className="mt-4 flex items-center justify-between gap-3 px-2">
           <span className="kh-mono text-xs uppercase tracking-[.12em] text-(--kh-brass)">{article.category}</span>

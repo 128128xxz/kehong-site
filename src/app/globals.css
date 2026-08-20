@@ -4110,11 +4110,103 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
 .kh-resource-group a:focus-visible,
 .kh-resource-group a.is-active { background: var(--kh-paper-deep); }
 .kh-mobile-model-link { display: inline-flex !important; align-items: center; gap: .45rem; color: var(--kh-forest) !important; }
-.kh-mobile-resource-directory { margin-top: .35rem; border-top: 1px solid var(--kh-line); border-bottom: 1px solid var(--kh-line); }
-.kh-mobile-resource-directory > summary { display: flex; min-height: 44px; align-items: center; justify-content: space-between; color: var(--kh-ink); font-weight: 700; cursor: pointer; list-style: none; }
-.kh-mobile-resource-directory > summary::-webkit-details-marker { display: none; }
+.kh-mobile-inline-nav { display: none; }
+
+@media (max-width: 1100px) {
+  /* Keep the desktop section order visible in the compact header. The strip
+     owns its horizontal scrolling so the page itself never overflows. */
+  .kh-mobile-inline-nav {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    align-items: center;
+    gap: .25rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+  .kh-mobile-inline-nav::-webkit-scrollbar { display: none; }
+  .kh-mobile-inline-nav a {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: .32rem;
+    min-height: 44px;
+    padding: .4rem .55rem;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    color: var(--kh-ink);
+    font-size: .78rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .kh-mobile-inline-nav a:hover,
+  .kh-mobile-inline-nav a:focus-visible,
+  .kh-mobile-inline-nav a.is-active {
+    border-color: var(--kh-line);
+    background: var(--kh-paper-deep);
+    color: var(--kh-forest);
+  }
+  .kh-mobile-inline-nav-icon {
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
+    color: var(--kh-brass);
+    stroke-width: 2;
+  }
+}
+.kh-mobile-nav-row,
+.kh-mobile-model-link {
+  display: flex !important;
+  align-items: center;
+  gap: .72rem;
+}
+.kh-mobile-nav-row > span,
+.kh-mobile-model-link > span { min-width: 0; }
+.kh-mobile-nav-icon {
+  flex: 0 0 auto;
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--kh-brass);
+  stroke-width: 2;
+}
+.kh-mobile-nav-chevron {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--kh-brass);
+  transition: transform .2s ease;
+}
+.kh-mobile-simple-directory {
+  border-top: 1px solid var(--kh-line);
+  border-bottom: 1px solid var(--kh-line);
+}
+.kh-mobile-simple-directory > summary {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: .72rem;
+  cursor: pointer;
+  list-style: none;
+}
+.kh-mobile-simple-directory > summary::-webkit-details-marker { display: none; }
+.kh-mobile-simple-directory[open] > summary,
 .kh-mobile-resource-directory[open] > summary { color: var(--kh-forest); }
-.kh-mobile-resource-directory > div { display: grid; gap: .25rem; padding: .2rem 0 .55rem; }
+.kh-mobile-simple-directory[open] .kh-mobile-nav-chevron,
+.kh-mobile-resource-directory[open] .kh-mobile-nav-chevron { transform: rotate(180deg); }
+.kh-mobile-simple-directory > div {
+  display: grid;
+  gap: .15rem;
+  padding: .2rem 0 .55rem 1.87rem;
+}
+.kh-mobile-simple-directory > div a {
+  min-height: 44px;
+  padding: .45rem .55rem !important;
+}
+.kh-mobile-resource-directory { margin-top: .35rem; border-top: 1px solid var(--kh-line); border-bottom: 1px solid var(--kh-line); }
+.kh-mobile-resource-directory > summary { display: flex; min-height: 44px; align-items: center; gap: .72rem; color: var(--kh-ink); font-weight: 700; cursor: pointer; list-style: none; }
+.kh-mobile-resource-directory > summary::-webkit-details-marker { display: none; }
+.kh-mobile-resource-directory > div { display: grid; gap: .25rem; padding: .2rem 0 .55rem 1.87rem; }
 .kh-mobile-resource-directory > div > a { min-height: 44px; padding: .45rem .55rem !important; }
 .kh-mobile-resource-directory section { display: grid; gap: .1rem; padding: .35rem 0 .2rem; }
 .kh-mobile-resource-directory section p { margin: 0; padding: .2rem .55rem; color: var(--kh-brass); font-family: var(--font-mono); font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
@@ -4221,6 +4313,14 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
   .kh-header-actions .kh-language-trigger,
   .kh-nav-link-3d {
     flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Keep every desktop navigation label on one line at compact desktop
+     widths too.  The factory/about labels are regular anchors (rather than
+     the legacy 3D link class), so they need the same no-wrap contract. */
+  .kh-desktop-nav > .kh-nav-link,
+  .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link {
     white-space: nowrap;
   }
 
@@ -4409,6 +4509,27 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
   .kh-nav-link { gap: .22rem; padding-inline: .44rem; }
   .kh-header-actions { gap: .3rem; }
   .kh-header-cta { padding-inline: .68rem; }
+}
+
+/* At the compact desktop breakpoint retain every procurement entry while
+   leaving room for the language and quote actions. The labels stay on one
+   line; only their chrome and spacing tighten. */
+@media (min-width: 1101px) and (max-width: 1300px) {
+  .kh-desktop-nav {
+    gap: 0;
+    font-size: .72rem;
+  }
+
+  .kh-desktop-nav .kh-nav-link {
+    gap: .16rem;
+    padding-inline: .24rem;
+  }
+
+  .kh-desktop-nav .kh-nav-icon,
+  .kh-desktop-nav .kh-nav-chevron {
+    width: .85rem;
+    height: .85rem;
+  }
 }
 
 @media (min-width: 1501px) {
@@ -5040,6 +5161,53 @@ html:root[data-ui-material="glass-c"] .kh-mobile-panel .kh-nav-chevron {
   filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .72));
 }
 
+/* Attribute-scoped fallback keeps the compact section strip horizontal even
+   when a preview stylesheet is served from a warm Turbopack cache. */
+[data-testid="mobile-inline-nav"] {
+  display: none;
+}
+@media (max-width: 1100px) {
+  [data-testid="mobile-inline-nav"] {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    align-items: center;
+    gap: .25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  [data-testid="mobile-inline-nav"]::-webkit-scrollbar { display: none; }
+  [data-testid="mobile-inline-nav"] > a {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: .32rem;
+    min-height: 44px;
+    padding: .4rem .55rem;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    color: var(--kh-ink);
+    font-size: .78rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  [data-testid="mobile-inline-nav"] > a:hover,
+  [data-testid="mobile-inline-nav"] > a:focus-visible,
+  [data-testid="mobile-inline-nav"] > a.is-active {
+    border-color: var(--kh-line);
+    background: var(--kh-paper-deep);
+    color: var(--kh-forest);
+  }
+  [data-testid="mobile-inline-nav"] .kh-mobile-inline-nav-icon {
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
+    color: var(--kh-brass);
+    stroke-width: 2;
+  }
+}
+
 /* Give the official lock-up enough presence at desktop widths without
    changing the header height or the mobile compact layout. */
 @media (min-width: 1101px) {
@@ -5422,6 +5590,451 @@ html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
   stroke: currentColor !important;
 }
 
+/* Final compact navigation guard (must remain last so preview layers cannot
+   hide the section strip or the official factory name on mobile viewports). */
+@media (max-width: 1100px) {
+  :root {
+    --kh-header-height: 112px !important;
+  }
+
+  .kh-header-bar {
+    height: auto !important;
+    min-height: calc(var(--kh-header-height) - 1px) !important;
+    flex-wrap: wrap !important;
+    align-content: center !important;
+    row-gap: 0 !important;
+  }
+
+  .kh-desktop-nav {
+    display: none !important;
+  }
+
+  .kh-header-brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .kh-header-brand-copy {
+    display: block !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .kh-header-actions {
+    flex: 0 0 auto !important;
+  }
+
+  .kh-mobile-inline-nav {
+    display: flex !important;
+    order: 3 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 .1rem .2rem !important;
+  }
+
+  .kh-mobile-inline-nav > a {
+    display: inline-flex !important;
+    flex: 0 0 auto;
+    align-items: center;
+    min-height: 44px;
+    padding: .4rem .55rem;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .kh-header-brand-mark {
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+  }
+
+  .kh-brand-name {
+    font-size: .78rem !important;
+    line-height: 1.12 !important;
+  }
+
+  .kh-brand-tag {
+    font-size: .53rem !important;
+    letter-spacing: .035em !important;
+  }
+
+  .kh-mobile-inline-nav {
+    gap: .15rem !important;
+  }
+
+  .kh-mobile-inline-nav > a {
+    padding-inline: .42rem !important;
+    font-size: .7rem !important;
+  }
+}
+
+/* On the narrowest touch viewports keep every section shortcut inside the
+   header instead of leaving a partially visible, off-screen link at the
+   right edge. Equal-width cells preserve the desktop section order while
+   keeping each 44px target fully tappable. */
+@media (max-width: 640px) {
+  .kh-mobile-inline-nav {
+    gap: 0 !important;
+    overflow-x: hidden !important;
+    justify-content: stretch !important;
+  }
+
+  .kh-mobile-inline-nav > a {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    justify-content: center !important;
+    gap: .16rem !important;
+    padding-inline: .12rem !important;
+    font-size: clamp(.56rem, 2.35vw, .68rem) !important;
+    letter-spacing: -.01em;
+  }
+
+  .kh-mobile-inline-nav-icon {
+    width: .9rem !important;
+    height: .9rem !important;
+  }
+}
+
+/* Final compact navigation guard.
+   Some mobile browsers report a layout viewport wider than the physical
+   screen (roughly 1,260 CSS px). Keep the section shortcuts visible in that
+   mode and retain the official factory name beside the mark at every mobile
+   width. */
+@media (max-width: 1100px) {
+  :root {
+    --kh-header-height: 112px !important;
+  }
+
+  .kh-header-bar {
+    height: auto !important;
+    min-height: calc(var(--kh-header-height) - 1px) !important;
+    flex-wrap: wrap !important;
+    align-content: center !important;
+    row-gap: 0 !important;
+  }
+
+  .kh-desktop-nav {
+    display: none !important;
+  }
+
+  .kh-header-brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .kh-header-brand-copy {
+    display: block !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .kh-header-actions {
+    flex: 0 0 auto !important;
+  }
+
+  .kh-mobile-inline-nav {
+    display: flex !important;
+    order: 3 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 .1rem .2rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .kh-header-brand-mark {
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+  }
+
+  .kh-brand-name {
+    font-size: .78rem !important;
+    line-height: 1.12 !important;
+  }
+
+  .kh-brand-tag {
+    font-size: .53rem !important;
+    letter-spacing: .035em !important;
+  }
+
+  .kh-mobile-inline-nav {
+    gap: .15rem !important;
+  }
+
+  .kh-mobile-inline-nav > a {
+    padding-inline: .42rem !important;
+    font-size: .7rem !important;
+  }
+}
+
+/* Keep the directory links on a true 36px rhythm at desktop widths. */
+.kh-product-mega .kh-product-mega-items a { min-height: 36px; }
+
+/* Keep every desktop navigation label on one line at the compact desktop
+   breakpoint; long labels such as “Factory & Quality” must not increase the
+   whole navigation bar height. */
+@media (min-width: 1101px) {
+  .kh-desktop-nav > .kh-nav-link,
+  .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link {
+    white-space: nowrap;
+  }
+}
+
+/* Final compact-header and single-pane glass correction. */
+@media (max-width: 1100px) {
+  :root { --kh-header-height: 112px; }
+  .kh-header-bar {
+    height: auto;
+    min-height: calc(var(--kh-header-height) - 1px);
+    flex-wrap: wrap;
+    align-content: center;
+    row-gap: 0;
+  }
+  .kh-header-brand { flex: 1 1 auto; min-width: 0; }
+  .kh-header-actions { flex: 0 0 auto; }
+  .kh-mobile-inline-nav {
+    order: 3;
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 .1rem .2rem;
+  }
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::before,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html[data-nav-glass="true"] .kh-header .kh-header-cta::before,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger::before,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::before {
+  content: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-header-cta,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  border: 1px solid rgba(255, 255, 255, .5) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), inset 0 -1px 0 rgba(9, 27, 39, .14), 0 8px 22px rgba(7, 28, 40, .14) !important;
+}
+
+/* Compact header layout: keep the legal lock-up in the first row and place
+   the six section shortcuts on their own horizontal strip. This prevents
+   the shortcut text from being painted over the brand at narrow widths. */
+@media (max-width: 1100px) {
+  :root { --kh-header-height: 112px; }
+
+  .kh-header-bar {
+    height: auto;
+    min-height: calc(var(--kh-header-height) - 1px);
+    flex-wrap: wrap;
+    align-content: center;
+    row-gap: 0;
+  }
+
+  .kh-header-brand {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .kh-header-actions {
+    flex: 0 0 auto;
+  }
+
+  .kh-mobile-inline-nav {
+    order: 3;
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 .1rem .2rem;
+  }
+}
+
+/* A single transparent pane is the glass surface. The previous cascade left
+   an inset ::before border on top of the real border, creating two visible
+   frames around the language, quote and menu bubbles. */
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::before,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html[data-nav-glass="true"] .kh-header .kh-header-cta::before,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger::before,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger::before,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle::before {
+  content: none !important;
+}
+
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html[data-nav-glass="true"] .kh-header .kh-header-cta,
+html[data-nav-glass="true"] .kh-header .kh-language-trigger,
+html[data-nav-glass="true"] .kh-header .kh-menu-toggle,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-ui-material="glass-c"] .kh-header .kh-header-cta,
+html:root[data-ui-material="glass-c"] .kh-header .kh-language-trigger,
+html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle {
+  border: 1px solid rgba(255, 255, 255, .5) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .3),
+    inset 0 -1px 0 rgba(9, 27, 39, .14),
+    0 8px 22px rgba(7, 28, 40, .14) !important;
+}
+
+/* Final mobile overrides must follow the historical material cascades. */
+@media (max-width: 760px) {
+  .kh-header-cta {
+    display: inline-flex !important;
+    min-height: 44px !important;
+  }
+  .kh-language-trigger,
+  .kh-menu-toggle {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* Mobile information rhythm: keep the header actionable, remove the
+   desktop-sized gaps, and give text/cards a predictable reading measure. */
+.kh-header-cta-mobile { display: none; }
+
+@media (max-width: 760px) {
+  .kh-header-bar {
+    width: min(100% - 1rem, 1240px);
+    gap: .45rem;
+  }
+  .kh-header-actions { gap: .35rem; }
+  .kh-header-cta {
+    display: inline-flex !important;
+    min-height: 44px !important;
+    min-width: 0;
+    padding-inline: .72rem;
+    font-size: .76rem;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .kh-header-cta-full { display: none; }
+  .kh-header-cta-mobile { display: inline; }
+  .kh-language-trigger,
+  .kh-menu-toggle {
+    min-width: 44px;
+    min-height: 44px !important;
+  }
+  .kh-language-trigger { padding-inline: .65rem; }
+  .kh-compact-nav { display: flex; align-items: center; }
+
+  /* The mobile drawer mirrors the desktop top-level order without copying
+     desktop-sized prose into a narrow panel. Keep destinations and grouped
+     links available while removing duplicate section descriptions. */
+  .kh-mobile-product-description { display: none; }
+  .kh-mobile-product-section-body { padding-top: .45rem; }
+  .kh-mobile-product-group { padding-block: .42rem .2rem; }
+  .kh-mobile-resource-directory section { padding-block: .2rem .1rem; }
+
+  .kh-section { padding-block: 2.75rem 3rem; }
+  .kh-section-heading { gap: .5rem; margin-bottom: 1.15rem; }
+  .kh-section h2,
+  .kh-section-cta h2 {
+    font-size: clamp(1.75rem, 8.5vw, 2.35rem);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .kh-section-lede,
+  .kh-lede { line-height: 1.5; }
+
+  .kh-home-hero { min-height: min(700px, 100svh); }
+  .kh-hero-inner { padding-top: 5.25rem; }
+  .kh-hero-copy { padding: 1.1rem 0 1.15rem; }
+  .kh-home-hero .kh-hero-copy h1 {
+    max-width: 100%;
+    font-size: clamp(2.1rem, 9.6vw, 3rem);
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+  .kh-home-hero .kh-hero-copy .kh-lede {
+    max-width: 36ch;
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+  .kh-hero-stats { gap: .7rem 1rem; padding-bottom: .75rem; }
+
+  .kh-home-product-systems .kh-product-system-copy { padding: .9rem; }
+  .kh-home-product-systems .kh-product-system { border-radius: 10px; }
+  .kh-home-product-systems .kh-product-card { min-height: 5.6rem; }
+  .kh-home-product-systems .kh-product-card-media { flex-basis: 6.2rem; }
+  .kh-home-product-systems .kh-product-card-copy {
+    gap: .12rem;
+    padding: .65rem .75rem;
+  }
+  .kh-product-card-title,
+  .kh-product-card-description {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+  }
+  .kh-product-card-title { -webkit-line-clamp: 2; }
+  .kh-product-card-description { -webkit-line-clamp: 2; }
+
+  .kh-home-process .kh-process-media { height: clamp(220px, 58vw, 300px); }
+  .kh-home-process .kh-process-step { padding-block: .8rem; }
+  .kh-home-factory .kh-factory-grid { gap: 1.25rem; }
+  .kh-home-factory h2 {
+    max-width: 16ch;
+    font-size: clamp(2rem, 8.5vw, 2.7rem);
+  }
+  .kh-home-factory .kh-section-lede { line-height: 1.5; }
+  .kh-home-factory ul { margin: 1rem 0 1.25rem; gap: .4rem; }
+  .kh-home-factory [data-location-card] { padding: .85rem !important; }
+  .kh-home-industries .kh-industry-card-media { aspect-ratio: 16 / 9; }
+  .kh-home-industries .kh-industry-card-copy { padding: .8rem .9rem .9rem; }
+  .kh-home-industries .kh-industry-card-body {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .kh-home-insights .kh-news-card-media { aspect-ratio: 16 / 8; }
+  .kh-home-cta { padding-block: 2.75rem 3rem; }
+
+  /* Avoid content-visibility delaying image intersection on constrained
+     mobile browsers; the images themselves retain their intentional lazy
+     loading and still enter the viewport only when needed. */
+  .kh-home-product-systems,
+  .kh-home-process,
+  .kh-home-factory,
+  .kh-home-industries,
+  .kh-home-insights,
+  .kh-home-cta {
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .kh-header-cta { padding-inline: .55rem; font-size: .7rem; }
+  .kh-language-trigger { padding-inline: .5rem; }
+  .kh-header-bar { gap: .3rem; }
+}
+
 html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
 html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
 html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
@@ -5741,6 +6354,54 @@ html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scr
 }
 
 /* Authoritative end-of-file navigation lens cascade. */
+
+/* High-specificity final guard: these rules intentionally sit before the
+   historical preview layers below, so they still win without deleting those
+   preserved experiments from the worktree. */
+@media (max-width: 1100px) {
+  :root[data-nav-glass="true"][data-nav-glass="true"],
+  :root[data-ui-material="glass-c"][data-ui-material="glass-c"] {
+    --kh-header-height: 112px !important;
+  }
+  html[data-nav-glass="true"][data-nav-glass="true"] .kh-header-bar,
+  html:root[data-ui-material="glass-c"][data-ui-material="glass-c"] .kh-header-bar {
+    height: auto !important;
+    min-height: calc(var(--kh-header-height) - 1px) !important;
+    flex-wrap: wrap !important;
+    align-content: center !important;
+    row-gap: 0 !important;
+  }
+  html[data-nav-glass="true"][data-nav-glass="true"] .kh-header-brand,
+  html:root[data-ui-material="glass-c"][data-ui-material="glass-c"] .kh-header-brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+  html[data-nav-glass="true"][data-nav-glass="true"] .kh-header-actions,
+  html:root[data-ui-material="glass-c"][data-ui-material="glass-c"] .kh-header-actions {
+    flex: 0 0 auto !important;
+  }
+  html[data-nav-glass="true"][data-nav-glass="true"] .kh-mobile-inline-nav,
+  html:root[data-ui-material="glass-c"][data-ui-material="glass-c"] .kh-mobile-inline-nav {
+    order: 3 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 .1rem .2rem !important;
+  }
+}
+
+html[data-nav-glass="true"][data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-nav-link::before,
+html[data-nav-glass="true"][data-nav-glass="true"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html[data-nav-glass="true"][data-nav-glass="true"] .kh-header .kh-header-cta::before,
+html[data-nav-glass="true"][data-nav-glass="true"] .kh-header .kh-language-trigger::before,
+html[data-nav-glass="true"][data-nav-glass="true"] .kh-header .kh-menu-toggle::before,
+html:root[data-ui-material="glass-c"][data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"][data-ui-material="glass-c"] .kh-header .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+html:root[data-ui-material="glass-c"][data-ui-material="glass-c"] .kh-header .kh-header-cta::before,
+html:root[data-ui-material="glass-c"][data-ui-material="glass-c"] .kh-header .kh-language-trigger::before,
+html:root[data-ui-material="glass-c"][data-ui-material="glass-c"] .kh-header .kh-menu-toggle::before {
+  content: none !important;
+}
 html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
 html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
 html[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,

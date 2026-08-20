@@ -50,12 +50,12 @@ export default function HomeFactoryProof({ locale }: { locale: string }) {
         <div className="kh-factory-stack">
           <Parallax strength={-8}>
             <div className="kh-factory-main kh-media-shade">
-              <Image src={showcaseImages.factorySamplesFloor} alt={zh ? "科宏工厂样品与生产现场" : "Kehong factory samples and production floor"} fill sizes="(max-width: 1100px) 100vw, 48vw" className="object-cover" loading="lazy" />
+              <Image src={showcaseImages.factorySamplesFloor} alt={zh ? "科宏工厂样品与生产现场" : "Kehong factory samples and production floor"} fill sizes="(max-width: 1100px) 100vw, 48vw" className="object-cover" loading="eager" fetchPriority="low" decoding="async" />
               <span className="kh-fig-caption kh-mono">{zh ? "图04 — 生产现场" : "Fig.04 — Foshan production floor"}</span>
             </div>
           </Parallax>
           <Parallax strength={10} className="kh-factory-mini kh-media-shade">
-            <Image src={showcaseImages.boothInterior01} alt={zh ? "纸品样品展示细节" : "Paper product sample display"} fill sizes="260px" className="object-cover" loading="lazy" />
+            <Image src={showcaseImages.boothInterior01} alt={zh ? "纸品样品展示细节" : "Paper product sample display"} fill sizes="260px" className="object-cover" loading="lazy" decoding="async" />
           </Parallax>
         </div>
       </div>

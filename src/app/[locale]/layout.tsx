@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -21,11 +21,18 @@ import {
 import { getBrandConfig } from "@/lib/site-config";
 import LocaleDocumentLanguage from "@/components/site/LocaleDocumentLanguage";
 import MobileStickyActions from "@/components/site/MobileStickyActions";
+import UIMaterialPreview from "@/components/site/UIMaterialPreview";
 import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-plex-mono", display: "swap" });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export default async function RootLayout({
   children,
@@ -48,6 +55,7 @@ export default async function RootLayout({
   return <html lang={locale} dir="ltr" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable}`}>
     <head><meta name="theme-color" content="#171713" /></head>
     <body className="antialiased">
+      <UIMaterialPreview />
       <LocaleDocumentLanguage locale={locale} />
       <NextIntlClientProvider messages={messages} timeZone={timeZone} now={now}>
         {children}
@@ -77,13 +85,13 @@ export async function generateMetadata({
     metadataBase: new URL(siteConfig.url),
     icons: {
       icon: [
-        { url: "/brand/kehong-favicon-v2.ico", type: "image/x-icon", sizes: "any" },
-        { url: "/brand/kehong-tab-icon-v2-16.png", type: "image/png", sizes: "16x16" },
-        { url: "/brand/kehong-tab-icon-v2-32.png", type: "image/png", sizes: "32x32" },
-        { url: "/brand/kehong-tab-icon-v2-48.png", type: "image/png", sizes: "48x48" },
+        { url: "/media/brand/kehong-favicon.ico", type: "image/x-icon", sizes: "any" },
+        { url: "/media/brand/kehong-tab-icon-16.png", type: "image/png", sizes: "16x16" },
+        { url: "/media/brand/kehong-tab-icon-32.png", type: "image/png", sizes: "32x32" },
+        { url: "/media/brand/kehong-tab-icon-48.png", type: "image/png", sizes: "48x48" },
       ],
-      shortcut: "/brand/kehong-favicon-v2.ico",
-      apple: [{ url: "/brand/kehong-apple-touch-icon-v2.png", type: "image/png", sizes: "180x180" }],
+      shortcut: "/media/brand/kehong-favicon.ico",
+      apple: [{ url: "/media/brand/kehong-apple-touch-icon-180.png", type: "image/png", sizes: "180x180" }],
     },
     manifest: "/site.webmanifest",
     title: t("title"),

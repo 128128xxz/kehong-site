@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
@@ -34,22 +35,25 @@ const pickLinks = (sectionId: "materials" | "finished-packaging", ids: string[])
   return ids.map((id) => links.find((link) => link.id === id)!).filter(Boolean);
 };
 
-export default function HomeProductSystems({ locale }: { locale: string }) {
+export default async function HomeProductSystems({ locale }: { locale: string }) {
   const zh = locale === "zh";
+  const t = await getTranslations({ locale, namespace: "Stage2.home" });
   const materials = productCatalogSections[0];
   const finished = productCatalogSections[1];
   const systems = [
     {
       ...materials,
-      label: zh ? "纸材与半成品" : "Paper materials & semi-finished components",
-      intro: zh ? "先从纸材、杯纸组件和成型材料入手。" : "Start with paper grades, cup components and forming materials.",
+      label: t("products.materials"),
+      intro: t("products.materialsIntro"),
+      cta: t("products.materialsCta"),
       links: pickLinks("materials", ["paper-cup-fan", "pe-coated-paper-roll", "food-tray-material"]),
       visuals: materialVisuals,
     },
     {
       ...finished,
-      label: zh ? "成品包装" : "Finished packaging",
-      intro: zh ? "按用途查看餐饮、烘焙和运输包装。" : "Review food, bakery and shipping packaging by use.",
+      label: t("products.finished"),
+      intro: t("products.finishedIntro"),
+      cta: t("products.finishedCta"),
       links: pickLinks("finished-packaging", ["takeout-boxes", "cake-boxes", "corrugated-mailer-boxes"]),
       visuals: finishedVisuals,
     },
@@ -61,11 +65,11 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
         <Reveal>
           <div className="kh-section-heading">
             <div>
-              <SectionKicker index="02" text={zh ? "产品" : "Product range"} />
-              <h2>{zh ? "按产品体系进入分类" : "Choose a product system, then go deeper by category"}</h2>
+              <SectionKicker index="02" text={t("products.eyebrow")} />
+              <h2>{t("products.title")}</h2>
             </div>
             <Link className="kh-text-link" href="/products">
-              {zh ? "查看全部产品" : "View all products"}
+              {t("products.viewAll")}
             </Link>
           </div>
         </Reveal>
@@ -87,9 +91,9 @@ export default function HomeProductSystems({ locale }: { locale: string }) {
                 <div className="kh-product-system-copy">
                   <div className="kh-product-system-head">
                     <h3>{system.label}</h3>
-                    <Link className="kh-product-system-cta" href={system.href}>{zh ? system.cta.zh : system.cta.en}</Link>
+                    <Link className="kh-product-system-cta" href={system.href}>{system.cta}</Link>
                   </div>
-                  <p>{zh ? "先选分类，再看产品和规格。" : system.intro}</p>
+                  <p>{system.intro}</p>
                   <div className="kh-product-card-grid">
                     {system.links.map((item) => {
                       const visual = system.visuals[item.id];

@@ -6,7 +6,7 @@ const root = process.cwd();
 const catalogPath = path.join(root, "src/data/catalog.json");
 const normalizedPath = path.join(root, "src/data/catalog.normalized.json");
 const productImagesPath = path.join(root, "src/data/productImages.json");
-const sourcesPath = path.join(root, "public/images/products/SOURCES.md");
+const sourcesPath = path.join(root, "docs/stage-1b-media-source-notes/product-image-sources.md");
 
 const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 
@@ -185,9 +185,9 @@ const typeToImage = {
 const assets = [
   {
     assetId: "kh-cupfan-family-representative",
-    localPath: "/images/ai/ai-cup-fan-blanks.jpg",
+    localPath: "/media/products/paper-cup-materials/paper-cup-fan-product-reference-03.jpg",
     scope: "family",
-    exactness: "ai-representative",
+    exactness: "representative",
     alt: {
       en: "Die-cut paper cup fan blanks — reference image",
       zh: "纸杯扇形片参考图",
@@ -195,9 +195,9 @@ const assets = [
   },
   {
     assetId: "kh-kraft-family-representative",
-    localPath: "/images/ai/ai-kraft-cupstock.jpg",
+    localPath: "/media/products/paper-cup-materials/cupstock-paper-product-reference-01.jpg",
     scope: "family",
-    exactness: "ai-representative",
+    exactness: "representative",
     alt: {
       en: "Kraft cupstock roll and paper cups — reference image",
       zh: "牛皮杯纸卷与纸杯参考图",
@@ -205,7 +205,7 @@ const assets = [
   },
   {
     assetId: "kh-white-cardboard-family-representative",
-    localPath: "/images/kehong/showcase/food-paper-box-open.webp",
+    localPath: "/media/packaging/food-packaging-box-open.webp",
     scope: "family",
     exactness: "representative",
     alt: {
@@ -215,9 +215,9 @@ const assets = [
   },
   {
     assetId: "kh-corrugated-family-representative",
-    localPath: "/images/ai/ai-flute-types.jpg",
+    localPath: "/media/products/corrugated-board/corrugated-board-cross-section-reference-01.jpg",
     scope: "family",
-    exactness: "ai-representative",
+    exactness: "representative",
     alt: {
       en: "Single, double and triple wall corrugated cross-sections — reference image",
       zh: "单/双/三层瓦楞纸板剖面参考图",
@@ -225,9 +225,9 @@ const assets = [
   },
   {
     assetId: "kh-specialty-family-representative",
-    localPath: "/images/ai/ai-specialty-papers.jpg",
+    localPath: "/media/products/specialty-paper/specialty-paper-sheet-reference-01.jpg",
     scope: "family",
-    exactness: "ai-representative",
+    exactness: "representative",
     alt: {
       en: "Gold, silver and holographic specialty papers — reference image",
       zh: "金卡、银卡与镭射特种纸参考图",
@@ -235,7 +235,7 @@ const assets = [
   },
   {
     assetId: "kh-food-box-family-representative",
-    localPath: "/images/kehong/showcase/orins-pizza-box-collage.webp",
+    localPath: "/media/products/food-packaging/food-packaging-box-reference-01.jpg",
     scope: "family",
     exactness: "representative",
     alt: {
@@ -245,7 +245,7 @@ const assets = [
   },
   {
     assetId: "kh-paper-pad-family-representative",
-    localPath: "/images/kehong/showcase/optimized/cake-board-real.jpg",
+    localPath: "/media/products/cake-boards/cake-board-reference-01.jpg",
     scope: "family",
     exactness: "representative",
     alt: {
@@ -255,9 +255,9 @@ const assets = [
   },
   {
     assetId: "kh-paper-insert-family-representative",
-    localPath: "/images/ai/ai-paper-insert.jpg",
+    localPath: "/media/products/paper-inserts/paper-insert-tray-reference-03.jpg",
     scope: "family",
-    exactness: "ai-representative",
+    exactness: "representative",
     alt: {
       en: "Die-cut molded paper insert tray — reference image",
       zh: "模切纸内托参考图",
@@ -265,7 +265,7 @@ const assets = [
   },
   {
     assetId: "kh-paper-box-family-representative",
-    localPath: "/images/kehong/showcase/pink-structural-box.webp",
+    localPath: "/media/products/paper-box/paper-box-structure-reference-01.webp",
     scope: "family",
     exactness: "representative",
     alt: {
@@ -275,9 +275,9 @@ const assets = [
   },
   {
     assetId: "kh-material-family-representative",
-    localPath: "/images/ai/ai-pe-coated-roll.jpg",
+    localPath: "/media/products/paper-cup-materials/pe-coated-paper-roll-reference-01.jpg",
     scope: "family",
-    exactness: "ai-representative",
+    exactness: "representative",
     alt: {
       en: "PE-coated paper roll — reference image",
       zh: "PE 淋膜纸卷参考图",

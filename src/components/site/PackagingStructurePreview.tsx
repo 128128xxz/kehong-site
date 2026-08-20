@@ -71,7 +71,10 @@ function InfoCard({ label, value }: { label: string; value: string }) {
 /** This page intentionally exposes only Kehong's reference visual and its matching structure model. */
 export default function PackagingStructurePreview({ locale }: { locale: string }) {
   const [cameraPreset, setCameraPreset] = useState<CameraPreset>("front");
-  const [canRender3d, setCanRender3d] = useState(true);
+  // Start with the deterministic image fallback. WebGL capability is only
+  // known after hydration; mounting Canvas optimistically can crash headless
+  // browsers before the capability check has a chance to switch to fallback.
+  const [canRender3d, setCanRender3d] = useState(false);
   const camera = cameraPresets[cameraPreset];
   const zh = locale === "zh";
 
@@ -165,7 +168,7 @@ export default function PackagingStructurePreview({ locale }: { locale: string }
                 <Suspense fallback={null}>
                   <StructureScene />
                 </Suspense>
-              </Canvas> : <div className="grid h-full place-items-center p-6 text-center"><Image src="/images/3d-preview/reference-pizza-box-open-v1.png" alt={zh ? "开盖式纸盒结构参考图" : "Open carton structure reference"} width={1600} height={1200} className="max-h-full max-w-full rounded-md object-contain" /><p className="sr-only">{zh ? "当前浏览器不支持 3D 查看器，已显示结构参考图。" : "Your browser does not support the 3D viewer. A structure reference is shown instead."}</p></div>}
+              </Canvas> : <div className="grid h-full place-items-center p-6 text-center"><Image src="/media/shared/pizza-box-structure-preview-reference.png" alt={zh ? "开盖式纸盒结构参考图" : "Open carton structure reference"} width={1600} height={1200} className="max-h-full max-w-full rounded-md object-contain" /><p className="sr-only">{zh ? "当前浏览器不支持 3D 查看器，已显示结构参考图。" : "Your browser does not support the 3D viewer. A structure reference is shown instead."}</p></div>}
               <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-white/12 bg-(--kh-ink)/70 px-4 py-3 text-sm font-bold text-white shadow-xl shadow-black/20">
                 <span className="inline-flex items-center gap-2">
                   <Rotate3D className="size-4 text-(--kh-brass-soft)" />

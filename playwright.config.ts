@@ -1,6 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3000";
+const PLAYWRIGHT_DEFAULT_PORT = 3451;
+const baseURL = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${process.env.PLAYWRIGHT_TEST_PORT || process.env.PLAYWRIGHT_PORT || PLAYWRIGHT_DEFAULT_PORT}`;
 const serverPort = new URL(baseURL).port || (baseURL.startsWith("https:") ? "443" : "80");
 
 export default defineConfig({
@@ -10,7 +11,7 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
   workers: 1,
-  reporter: process.env.CI ? [["html", { outputFolder: "test-results/playwright-report", open: "never" }], ["line"]] : "list",
+  reporter: process.env.CI ? [["html", { outputFolder: "playwright-report", open: "never" }], ["line"]] : "list",
   use: {
     baseURL,
     ...devices["Desktop Chrome"],
@@ -19,6 +20,7 @@ export default defineConfig({
     video: "retain-on-failure",
     actionTimeout: 15_000,
   },
+  outputDir: "test-results/artifacts",
   webServer: {
     command: process.env.PLAYWRIGHT_SERVER_COMMAND || `pnpm exec next start --port ${serverPort}`,
     url: `${baseURL}/en`,

@@ -11,7 +11,7 @@ type Props = {
   className?: string;
 };
 
-const WECHAT_QR_SRC = "/images/contact/wechat-qr.png";
+const WECHAT_QR_SRC = "/media/shared/wechat-qr.png";
 
 /**
  * Opens the verified WeChat QR code while keeping phone-copy as a fallback.

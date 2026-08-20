@@ -29,7 +29,7 @@ const routeMap = {
 };
 const imageMap = {
   materials: {
-    imagePath: "/images/kehong/showcase/color-material-swatch-portal.webp",
+    imagePath: "/media/materials/paper-color-swatch-portal.webp",
     actualContent: "Corrugated paperboard and colored material swatches.",
     isRealKehongAsset: true,
     containsThirdPartyBranding: false,
@@ -59,7 +59,7 @@ const imageMap = {
     responsiveSizes: "CSS; no network image",
   },
   factory: {
-    imagePath: "/images/kehong/showcase/precision-machine-closeup.webp",
+    imagePath: "/media/factory/paper-converting-machine-detail.webp",
     actualContent: "Kehong paper converting machine detail with visible rollers and material path.",
     isRealKehongAsset: true,
     containsThirdPartyBranding: false,

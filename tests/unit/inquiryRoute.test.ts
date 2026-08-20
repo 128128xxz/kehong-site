@@ -35,6 +35,7 @@ describe("inquiry API provider contract", () => {
     const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({ id: "email-qa-1" }), { status: 200, headers: { "content-type": "application/json" } }));
     const response = await POST(requestFor("buyer@example.com", "qa-success-1"));
     expect(response.status).toBe(200);
+    expect(await response.clone().json()).toMatchObject({ ok: true, code: "ACCEPTED", status: "PROVIDER_ACCEPTED" });
     const body = JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body));
     expect(body.from).toContain("sales@kehong.tech");
     expect(body.to).toEqual(["info@kehong.tech"]);
@@ -83,5 +84,20 @@ describe("inquiry API provider contract", () => {
     }));
     expect(response.status).toBe(400);
     expect(await response.json()).toMatchObject({ code: "VALIDATION_FAILED" });
+  });
+
+  it("never reports a honeypot submission as accepted", async () => {
+    const form = new FormData();
+    form.set("website", "https://spam.invalid");
+    const response = await POST(new Request("https://www.kehong.tech/api/inquiry", { method: "POST", body: form }));
+    expect(response.status).toBe(400);
+    expect(await response.json()).toEqual({ ok: false, code: "INVALID_SUBMISSION", error: "Invalid inquiry submission" });
+  });
+
+  it("returns unavailable instead of fake success when email configuration is missing", async () => {
+    vi.unstubAllEnvs();
+    const response = await POST(requestFor("missing-config@example.com", "qa-missing-config"));
+    expect(response.status).toBe(503);
+    expect(await response.json()).toMatchObject({ ok: false, code: "EMAIL_NOT_CONFIGURED" });
   });
 });

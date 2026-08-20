@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Header from "@/components/site/Header";
-import GuidedQuoteForm from "@/components/site/GuidedQuoteForm";
 import QuickQuoteForm from "@/components/site/QuickQuoteForm";
+import GuidedQuoteForm from "@/components/site/GuidedQuoteForm";
 import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
 import { SectionKicker } from "@/components/home/annotations";
 import { Reveal } from "@/components/home/interactive";
-import { companyDisplayName, contact } from "@/data/company";
+import { companyDisplayName } from "@/data/company";
 import { FACTORY_ADDRESS, FACTORY_MAP_LABEL, getFactoryLocationUrl } from "@/data/companyLocation";
 import FactoryLocationCard from "@/components/site/FactoryLocationCard";
 import WeChatContactButton from "@/components/site/WeChatContactButton";
@@ -17,6 +17,7 @@ import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig } fro
 import { getBrandConfig } from "@/lib/site-config";
 import { getInterest, getInterestLabel } from "@/data/interests";
 import { buildProductGroupSummary, getLocalizedProductTitle, getProductGroupId, getSkuBySlug, getSkusByGroupId } from "@/lib/catalog";
+import { mailtoHref, publicContact, telHref, whatsappHref } from "@/config/company-public";
 
 export async function generateMetadata({
   params,
@@ -102,17 +103,17 @@ export default async function ContactPage({
         ]
       : [];
 
-  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? `${companyDisplayName.zh}询盘` : `${companyDisplayName.en} packaging inquiry`)}`;
-  const whatsappHref = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
+  const emailHref = mailtoHref(publicContact.email, zh ? `${companyDisplayName.zh}询盘` : `${companyDisplayName.en} packaging inquiry`);
+  const whatsappLink = whatsappHref(publicContact.whatsapp);
   const channels = zh
     ? [
-        { label: "电话", value: contact.phone.zh, href: "tel:+8615888233221", external: false },
-        { label: "Email", value: contact.email, href: emailHref, external: false },
+        { label: `${t("contact.factory")} · 电话`, value: publicContact.factoryPhone, href: telHref(publicContact.factoryPhone), external: false },
+        { label: `${t("contact.generalInquiry")} · Email`, value: publicContact.email, href: emailHref, external: false },
       ]
     : [
-        { label: "Overseas Sales WhatsApp", value: contact.whatsapp, href: whatsappHref, external: true },
-        { label: "Call", value: contact.phone.en, href: "tel:+447599669700", external: false },
-        { label: "Email", value: contact.email, href: emailHref, external: false },
+        { label: `${t("contact.internationalSales")} · WhatsApp`, value: publicContact.whatsapp, href: whatsappLink, external: true },
+        { label: `${t("contact.internationalSales")} · Call`, value: publicContact.internationalPhone, href: telHref(publicContact.internationalPhone), external: false },
+        { label: `${t("contact.generalInquiry")} · Email`, value: publicContact.email, href: emailHref, external: false },
       ];
   const checklist = [
     {
@@ -152,8 +153,8 @@ export default async function ContactPage({
           title={t("contact.title")}
           lede={t("contact.description")}
           meta={[
-            `Email · ${contact.email}`,
-            zh ? `电话 · ${contact.phone.zh}` : `WhatsApp · ${contact.whatsapp}`,
+            `Email · ${publicContact.email}`,
+            zh ? `电话 · ${publicContact.factoryPhone}` : `WhatsApp · ${publicContact.whatsapp}`,
             zh ? "中国广东佛山" : "Foshan, Guangdong, China",
           ]}
         >
@@ -173,7 +174,7 @@ export default async function ContactPage({
                 {zh ? "直接对接销售团队" : "Talk directly to the sales team"}
               </h2>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {zh ? <div className="kh-panel p-4"><p className="kh-mono text-(--kh-brass)">微信咨询</p><WeChatContactButton phone={contact.phone.zh} label="打开微信二维码" copiedLabel="手机号已复制" className="kh-button kh-button-secondary mt-2 min-h-11" /></div> : null}
+                {zh ? <div className="kh-panel p-4"><p className="kh-mono text-(--kh-brass)">微信咨询</p><WeChatContactButton phone={publicContact.factoryPhone} label="打开微信二维码" copiedLabel="手机号已复制" className="kh-button kh-button-secondary mt-2 min-h-11" /></div> : null}
                 {channels.map((channel) => (
                   <div key={channel.label} className="kh-panel p-4">
                     <p className="kh-mono text-(--kh-brass)">{channel.label}</p>
@@ -236,7 +237,7 @@ export default async function ContactPage({
                   <summary className="cursor-pointer text-sm font-bold text-(--kh-forest)">
                     {zh ? "补充技术信息（材质、结构、印刷与交期）" : "Add technical details — material, structure, print and timing"}
                   </summary>
-                  <div className="mt-6">
+                  <div className="mt-4">
                     <GuidedQuoteForm locale={locale} initialProducts={initialProducts} />
                   </div>
                 </details>

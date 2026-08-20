@@ -3,6 +3,7 @@ import { getAllSkus, getProductCategories } from "@/lib/catalog";
 import { getAlternateLanguages, getLocaleUrl, type SiteHref } from "@/lib/site";
 import { packagingCategories } from "@/data/packagingCategories";
 import { getNewsSlugs } from "@/content/news";
+import { PAPER_CUP_SHEET_SOURCE_RECORD_IDS } from "@/data/paperCupSheetVariants";
 
 const staticRoutes = [
   { href: "/", changeFrequency: "weekly", priority: 1 },
@@ -49,7 +50,8 @@ async function sitemapEntry({
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
-  const productRoutes = getAllSkus().map((sku) => ({
+  const paperCupSheetSourceIds = new Set<string>(PAPER_CUP_SHEET_SOURCE_RECORD_IDS);
+  const productRoutes = getAllSkus().filter((sku) => !paperCupSheetSourceIds.has(sku.id)).map((sku) => ({
     href: `/products/${sku.slug}` as SiteHref,
     changeFrequency: "monthly" as const,
     priority: 0.72,
@@ -67,8 +69,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"].map((slug) => ({ href: `/resources/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.65 }));
   const bakeryProductRoutes = ["cake-boxes", "cake-boards-and-drums"].map((slug) => ({ href: `/products/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.78 }));
   const newsRoutes = getNewsSlugs().map((slug) => ({ href: `/news/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.66 }));
+  const paperCupFamilyRoute = { href: "/products/families/paper-cup-materials" as SiteHref, changeFrequency: "monthly" as const, priority: 0.8 };
 
-  const routes = [...staticRoutes, ...resourceRoutes, ...bakeryProductRoutes, ...newsRoutes, ...packagingRoutes, ...categoryRoutes, ...productRoutes];
+  const routes = [...staticRoutes, ...resourceRoutes, ...bakeryProductRoutes, ...newsRoutes, ...packagingRoutes, ...categoryRoutes, paperCupFamilyRoute, ...productRoutes];
   const entries = await Promise.all(
     routes.map((route) => sitemapEntry({ ...route, lastModified })),
   );

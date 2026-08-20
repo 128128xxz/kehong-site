@@ -72,7 +72,7 @@ for (const [url, skus] of linkedGroups.entries()) {
     exactnessAssessment: "uncertain",
     reasoning: reasoningFor(url, skus.length),
     recommendedAction: recommendedAction(url),
-    notes: "Research-only candidate. Do not copy product photos into public/images/products until permission and exactness are confirmed.",
+    notes: "Research-only candidate. Do not copy product photos into /media/products until permission and exactness are confirmed.",
   });
 }
 

@@ -3,7 +3,7 @@ import type { AppLocale } from "@/i18n/locales";
 import type { ProductSku } from "@/lib/catalog";
 import { getPublicProductType } from "@/lib/catalog";
 
-export type ProductImageStatus = "exact" | "representative" | "ai-representative" | "pending";
+export type ProductImageStatus = "exact" | "representative" | "pending";
 export type ProductDataStatus = "complete" | "partial" | "pending-source";
 
 // Keep archived translation source available without reintroducing it to the
@@ -57,7 +57,6 @@ function normalizeImageStatus(status: ProductImageStatus | string | undefined): 
   if (
     status === "exact" ||
     status === "representative" ||
-    status === "ai-representative" ||
     status === "pending"
   ) {
     return status;
@@ -91,15 +90,6 @@ const imageStatusLabels: Record<ProductImageStatus, LocalizedLabel> = {
     vi: "Hình ảnh tham khảo",
     th: "ภาพอ้างอิงสินค้า",
     ms: "Imej rujukan produk",
-  },
-  "ai-representative": {
-    en: "Concept visualization",
-    zh: "概念示意图",
-    es: "Visualización conceptual",
-    id: "Visualisasi konsep",
-    vi: "Minh họa khái niệm",
-    th: "ภาพแนวคิด",
-    ms: "Visualisasi konsep",
   },
   pending: {
     en: "Image Pending Confirmation",
@@ -272,25 +262,12 @@ export function getPublicProductTypeLabel(sku: ProductSku, locale: string) {
 
 function statusTone(status: ProductImageStatus): ProductImageMeta["statusTone"] {
   if (status === "exact") return "success";
-  if (status === "representative" || status === "ai-representative") return "warning";
+  if (status === "representative") return "warning";
   return "muted";
 }
 
-function isAiGeneratedAsset(asset: ProductImageAsset) {
-  return asset.sourceType === "ai-generated";
-}
-
 function isAssetDisplayAllowed(asset: ProductImageAsset) {
-  if (asset.permissionStatus === "approved") return true;
-
-  return (
-    isAiGeneratedAsset(asset) &&
-    asset.permissionStatus === "generated-for-site" &&
-    asset.exactness === "representative" &&
-    asset.imageStatus === "ai-representative" &&
-    asset.productionUsageAllowed === true &&
-    asset.exactSkuEligible === false
-  );
+  return asset.permissionStatus === "approved";
 }
 
 export function getSkuEffectiveImageStatus(sku: ProductSku): ProductImageStatus {
@@ -301,8 +278,6 @@ export function getSkuEffectiveImageStatus(sku: ProductSku): ProductImageStatus 
 
   if (!asset || !isAssetDisplayAllowed(asset)) return "pending";
 
-  if (isAiGeneratedAsset(asset)) return "ai-representative";
-
   const assetExactness = normalizeImageStatus(asset.exactness);
   if (requestedStatus === "exact") return assetExactness === "exact" ? "exact" : assetExactness;
   if (requestedStatus === "representative") return assetExactness === "exact" ? "representative" : assetExactness;
@@ -310,19 +285,19 @@ export function getSkuEffectiveImageStatus(sku: ProductSku): ProductImageStatus 
 }
 
 const productTypeFallbacks: Record<string, { src: string; en: string; zh: string }> = {
-  "paper-cup-fan": { src: "/images/ai/ai-cup-fan-blanks.jpg", en: "Paper cup fan blanks for cup converting", zh: "用于纸杯加工的纸杯扇形片" },
-  "paper-packaging-material": { src: "/images/ai/ai-pe-coated-roll.jpg", en: "PE-coated paper roll for packaging conversion", zh: "用于包装加工的 PE 淋膜纸卷" },
-  "kraft-paper": { src: "/images/ai/ai-kraft-cupstock.jpg", en: "Kraft paper and cupstock material reference", zh: "牛皮纸与杯纸材料参考图" },
-  "food-packaging-box": { src: "/images/kehong/showcase/optimized/food-box-real-01.jpg", en: "Food packaging box structure reference", zh: "食品包装盒结构参考图" },
-  "corrugated-fluted-paper": { src: "/images/ai/ai-flute-types.jpg", en: "Corrugated board material structure reference", zh: "瓦楞纸板材料结构参考图" },
-  "paper-insert": { src: "/images/ai/ai-paper-insert.jpg", en: "Paper insert and protective tray reference", zh: "纸内托与保护纸托参考图" },
-  "paper-pad": { src: "/images/ai/ai-cake-pads.jpg", en: "Paper pad and cake board reference", zh: "纸垫片与蛋糕垫板参考图" },
+  "paper-cup-fan": { src: "/media/products/paper-cup-materials/paper-cup-fan-product-reference-03.jpg", en: "Paper cup fan blanks for cup converting", zh: "用于纸杯加工的纸杯扇形片" },
+  "paper-packaging-material": { src: "/media/products/paper-cup-materials/pe-coated-paper-roll-reference-01.jpg", en: "PE-coated paper roll for packaging conversion", zh: "用于包装加工的 PE 淋膜纸卷" },
+  "kraft-paper": { src: "/media/products/paper-cup-materials/cupstock-paper-product-reference-01.jpg", en: "Kraft paper and cupstock material reference", zh: "牛皮纸与杯纸材料参考图" },
+  "food-packaging-box": { src: "/media/products/food-packaging/food-packaging-box-reference-01.jpg", en: "Food packaging box structure reference", zh: "食品包装盒结构参考图" },
+  "corrugated-fluted-paper": { src: "/media/products/corrugated-board/corrugated-board-cross-section-reference-01.jpg", en: "Corrugated board material structure reference", zh: "瓦楞纸板材料结构参考图" },
+  "paper-insert": { src: "/media/products/paper-inserts/paper-insert-tray-reference-03.jpg", en: "Paper insert and protective tray reference", zh: "纸内托与保护纸托参考图" },
+  "paper-pad": { src: "/media/packaging/cake-pads-reference.jpg", en: "Paper pad and cake board reference", zh: "纸垫片与蛋糕垫板参考图" },
 };
 
 function fallbackImage(sku: ProductSku, locale: string): ProductImageMeta {
   const fallback = productTypeFallbacks[sku.productType];
   return {
-    src: fallback?.src ?? "/images/kehong/showcase/precision-machine-closeup.webp",
+    src: fallback?.src ?? "/media/factory/paper-converting-machine-detail.webp",
     alt: locale === "zh" ? (fallback?.zh ?? "纸品生产能力代表图") : (fallback?.en ?? "Representative paper production capability"),
     status: "pending",
     statusLabel: getImageStatusLabel("pending", locale),
@@ -339,7 +314,7 @@ export function getSkuImageMeta(sku: ProductSku, locale: string): ProductImageMe
   if (!approvedAsset) return fallbackImage(sku, locale);
 
   const safeStatus = getSkuEffectiveImageStatus(sku);
-  const alt = locale === "zh" ? approvedAsset.alt.zh : approvedAsset.alt.en;
+  const alt = pickLabel(approvedAsset.alt as LocalizedLabel, locale);
 
   return {
     src: approvedAsset.localPath,
@@ -351,13 +326,31 @@ export function getSkuImageMeta(sku: ProductSku, locale: string): ProductImageMe
   };
 }
 
+/**
+ * Return metadata for an approved family-level asset. Family pages use the
+ * same permission and localization rules as product pages, without inventing
+ * a SKU-specific image mapping.
+ */
+export function getPublicAssetMeta(assetId: string, locale: string): ProductImageMeta | undefined {
+  const asset = assetsById.get(assetId);
+  if (!asset || !isAssetDisplayAllowed(asset)) return undefined;
+  const status = normalizeImageStatus(asset.exactness);
+  return {
+    src: asset.localPath,
+    alt: pickLabel(asset.alt as LocalizedLabel, locale),
+    status,
+    statusLabel: getImageStatusLabel(status, locale),
+    statusTone: statusTone(status),
+    asset,
+  };
+}
+
 function getSafeGalleryStatus(sku: ProductSku, asset: ProductImageAsset): ProductImageStatus {
   const mapping = getSkuImageMapping(sku);
   const requestedStatus = normalizeImageStatus(mapping.imageStatus ?? sku.imageMappingStatus);
   const assetExactness = normalizeImageStatus(asset.exactness);
 
   if (!isAssetDisplayAllowed(asset)) return "pending";
-  if (isAiGeneratedAsset(asset)) return "ai-representative";
   if (requestedStatus === "exact") return assetExactness === "exact" ? "exact" : assetExactness;
   if (requestedStatus === "representative") return assetExactness === "exact" ? "representative" : assetExactness;
   return requestedStatus;
@@ -383,7 +376,7 @@ export function getSkuGalleryMeta(sku: ProductSku, locale: string): ProductImage
     return [
       {
         src: asset.localPath,
-        alt: locale === "zh" ? asset.alt.zh : asset.alt.en,
+        alt: pickLabel(asset.alt as LocalizedLabel, locale),
         status,
         statusLabel: getImageStatusLabel(status, locale),
         statusTone: statusTone(status),

@@ -54,7 +54,7 @@ export default async function B2BProcurementSections() {
         ]}
       >
         <Link href="/contact" className="kh-button kh-button-light">
-          {isZh ? "提交询价" : "Request a quote"}
+          {isZh ? "立即询价" : "Request a quote"}
         </Link>
         <Link href="/products" className="kh-button kh-button-ghost">
           {isZh ? "浏览产品目录" : "Browse the catalog"}

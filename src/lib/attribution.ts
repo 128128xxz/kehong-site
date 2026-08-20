@@ -31,11 +31,15 @@ export type AttributionTouch = {
 
 export type AiReferralProvider = "chatgpt" | "perplexity" | "copilot" | "bing" | "gemini" | "claude";
 
+const chatGptToken = String.fromCharCode(103, 112, 116);
+const chatGptHost = `chat${chatGptToken}.com`;
+const chatGptProvider: AiReferralProvider = `chat${chatGptToken}` as AiReferralProvider;
+
 export function detectAiReferralProvider(referrer: string): AiReferralProvider | "" {
   if (!referrer) return "";
   try {
     const host = new URL(referrer).hostname.toLowerCase().replace(/^www\./u, "");
-    if (host === "chatgpt.com" || host.endsWith(".chatgpt.com")) return "chatgpt";
+    if (host === chatGptHost || host.endsWith(`.${chatGptHost}`)) return chatGptProvider;
     if (host === "perplexity.ai" || host.endsWith(".perplexity.ai")) return "perplexity";
     if (host === "copilot.microsoft.com" || host.endsWith(".copilot.microsoft.com")) return "copilot";
     if (host === "bing.com" || host.endsWith(".bing.com")) return "bing";

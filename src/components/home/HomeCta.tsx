@@ -36,7 +36,7 @@ export default function HomeCta({ locale }: { locale: string }) {
               ))}
             </div>
             <div className="kh-cta-actions">
-              <Link className="kh-button kh-button-light" href="/contact">{zh ? "提交询价" : "Submit a brief"}<ArrowRight className="size-4" /></Link>
+              <Link className="kh-button kh-button-light" href="/contact">{zh ? "立即询价" : "Submit a brief"}<ArrowRight className="size-4" /></Link>
               {zh ? <><WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-ghost" /><a className="kh-button kh-button-ghost" href="tel:+8615888233221"><Phone className="size-4" />电话</a></> : <a className="kh-button kh-button-ghost" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle className="size-4" />WhatsApp</a>}
             </div>
             <div className="kh-final-links">

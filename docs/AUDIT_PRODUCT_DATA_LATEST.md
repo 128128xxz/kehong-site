@@ -1,18 +1,18 @@
 # Kehong Product Data Audit
 
-Generated: 2026-07-16T14:01:07.612Z
+Generated: 2026-08-17T15:06:46.281Z
 
 ## Summary
 
-- SKUs: 398
+- SKUs: 337
 - Product groups: 6
-- Image assets: 10
+- Image assets: 14
 - Effective exact SKU images: 0
-- Effective representative SKU images: 398
-- Effective AI representative SKU images: 0
+- Effective representative SKU images: 41
+- Effective AI representative SKU images: 296
 - Effective pending SKU images: 0
 - Requested exact SKU images: 0
-- Published SKUs: 292
+- Published SKUs: 231
 - Pending source SKUs: 106
 - Research-only image candidates: 179
 

@@ -26,9 +26,9 @@ def dhash(image: Image.Image) -> str:
 
 def classify(relative: str, width: int, height: int) -> dict[str, object]:
     lowered = relative.lower()
-    company_showcase = "images/kehong/showcase/" in lowered
+    company_showcase = "media/" in lowered
     generated = "/ai-generated/" in lowered
-    web_asset = "/images/web/" in lowered
+    web_asset = "/media/applications/" in lowered
     poster = lowered.endswith(("/factory.png", "/factory.webp", "/process.png", "/process.webp", "/products.png", "/products.webp"))
     chinese_ui = "studio-pizza-preview" in lowered or poster
     third_party = any(term in lowered for term in ("orins", "custom-box-display-open", "food-paper-box"))
@@ -40,7 +40,7 @@ def classify(relative: str, width: int, height: int) -> dict[str, object]:
         else "unverified external/reference asset"
         if web_asset
         else "company-provided; ownership still requires confirmation"
-        if company_showcase or "/images/kehong/" in lowered
+        if company_showcase or "/media/" in lowered
         else "technical/local asset; provenance requires confirmation"
     )
     clear = width >= 900 and height >= 700

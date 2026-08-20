@@ -1,14 +1,15 @@
 import { getVerifiedFact } from "./verifiedCompanyFacts";
+import { companyPublicConfig, publicContact } from "@/config/company-public";
 
 const fact = (id: string) => getVerifiedFact(id)!;
 
 export const contact = {
-  whatsapp: fact("whatsapp").en,
+  whatsapp: publicContact.whatsapp,
   phone: {
-    zh: fact("phone-zh").zh,
-    en: fact("phone-en").en,
+    zh: publicContact.factoryPhone,
+    en: publicContact.internationalPhone,
   },
-  email: fact("email").en,
+  email: publicContact.email,
 } as const;
 
 export const companyDisplayName = {
@@ -17,6 +18,8 @@ export const companyDisplayName = {
 } as const;
 
 export const companyLegalName = fact("legal-name").en;
+
+export { companyPublicConfig };
 
 export {
   FACTORY_ADDRESS,

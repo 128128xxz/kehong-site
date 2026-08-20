@@ -11,12 +11,13 @@ import {
 } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { companyDisplayName, contact, socialLinks } from "@/data/company";
+import { companyDisplayName, socialLinks } from "@/data/company";
 import { FACTORY_ADDRESS, getFactoryLocationUrl } from "@/data/companyLocation";
 import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 import SiteLogo from "@/components/site/SiteLogo";
 import WeChatContactButton from "@/components/site/WeChatContactButton";
 import { GlassSurface } from "@/components/ui/glass/GlassSurface";
+import { mailtoHref, publicContact, telHref, whatsappHref } from "@/config/company-public";
 
 type IconProps = { className?: string };
 
@@ -98,8 +99,8 @@ export default async function SiteFooter() {
   const locale = await getLocale();
   const zh = locale === "zh";
   const copy = footerCopy[locale as keyof typeof footerCopy] ?? footerCopy.en;
-  const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}`;
-  const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(zh ? `${companyDisplayName.zh}询盘` : `${companyDisplayName.en} packaging inquiry`)}`;
+  const whatsapp = whatsappHref(publicContact.whatsapp);
+  const emailHref = mailtoHref(publicContact.email, zh ? `${companyDisplayName.zh}询盘` : `${companyDisplayName.en} packaging inquiry`);
 
   return (
     <footer className="kh-footer">
@@ -148,9 +149,9 @@ export default async function SiteFooter() {
               <MapPin aria-hidden="true" />
               <span>{zh ? FACTORY_ADDRESS.zh : FACTORY_ADDRESS.en}</span>
             </LocationClickAnchor>
-            <a href={zh ? "tel:+8615888233221" : "tel:+447599669700"} aria-label={zh ? `拨打电话 ${contact.phone.zh}` : `Call ${contact.phone.en}`}><Phone aria-hidden="true" />{zh ? contact.phone.zh : contact.phone.en}</a>
-            <a href={emailHref} aria-label={zh ? `发送邮件至 ${contact.email}` : `Email ${contact.email}`}><Mail aria-hidden="true" />{contact.email}</a>
-            {zh ? <WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-footer-wechat inline-flex min-h-11 items-center gap-2 border-0 bg-transparent p-0" /> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Contact ${companyDisplayName.en} on WhatsApp`}><MessageCircle className="size-4" />WhatsApp</a>}
+            <a href={telHref(zh ? publicContact.factoryPhone : publicContact.internationalPhone)} aria-label={zh ? `拨打电话 ${publicContact.factoryPhone}` : `Call ${publicContact.internationalPhone}`}><Phone aria-hidden="true" />{zh ? publicContact.factoryPhone : publicContact.internationalPhone}</a>
+            <a href={emailHref} aria-label={zh ? `发送邮件至 ${publicContact.email}` : `Email ${publicContact.email}`}><Mail aria-hidden="true" />{publicContact.email}</a>
+            {zh ? <WeChatContactButton phone={publicContact.factoryPhone} label="微信咨询" copiedLabel="手机号已复制" className="kh-footer-wechat inline-flex min-h-11 items-center gap-2 border-0 bg-transparent p-0" /> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Contact ${companyDisplayName.en} on WhatsApp`}><MessageCircle className="size-4" />WhatsApp</a>}
           </div>
         </GlassSurface>
       </div>

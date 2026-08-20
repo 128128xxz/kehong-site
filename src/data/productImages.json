@@ -8,226 +8,296 @@
   "assets": [
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai/ai-cup-fan-blanks.jpg",
+      "directImageUrl": "/media/products/paper-cup-materials/paper-cup-fan-product-reference-03.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-cupfan-family-representative",
-      "localPath": "/images/ai/ai-cup-fan-blanks.jpg",
+      "localPath": "/media/products/paper-cup-materials/paper-cup-fan-product-reference-03.jpg",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "Die-cut paper cup fan blanks — reference image",
-        "zh": "纸杯扇形片参考图"
+        "zh": "纸杯扇形片参考图",
+        "id": "Gambar referensi lembar kipas paper cup",
+        "vi": "Hình ảnh tham khảo phôi quạt giấy làm cốc",
+        "th": "ภาพอ้างอิงชิ้นพัดกระดาษสำหรับขึ้นรูปแก้ว",
+        "ms": "Imej rujukan kepingan kipas cawan kertas",
+        "es": "Imagen de referencia de troqueles para vasos de papel"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai/ai-kraft-cupstock.jpg",
+      "directImageUrl": "/media/products/paper-cup-materials/cupstock-paper-product-reference-01.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-kraft-family-representative",
-      "localPath": "/images/ai/ai-kraft-cupstock.jpg",
+      "localPath": "/media/products/paper-cup-materials/cupstock-paper-product-reference-01.jpg",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "Kraft cupstock roll and paper cups — reference image",
-        "zh": "牛皮杯纸卷与纸杯参考图"
+        "zh": "牛皮杯纸卷与纸杯参考图",
+        "id": "Gambar referensi kertas cupstock kraft dan cangkir kertas",
+        "vi": "Hình ảnh tham khảo giấy cupstock kraft và cốc giấy",
+        "th": "ภาพอ้างอิงกระดาษ cupstock คราฟท์และแก้วกระดาษ",
+        "ms": "Imej rujukan kertas cupstock kraft dan cawan kertas",
+        "es": "Imagen de referencia de papel cupstock kraft y vasos de papel"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/kehong/showcase/food-paper-box-open.webp",
+      "directImageUrl": "/media/packaging/food-packaging-box-open.webp",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-white-cardboard-family-representative",
-      "localPath": "/images/kehong/showcase/food-paper-box-open.webp",
+      "localPath": "/media/packaging/food-packaging-box-open.webp",
       "scope": "family",
       "exactness": "representative",
       "alt": {
         "en": "Representative white cardboard food packaging structure",
-        "zh": "白卡纸食品包装结构代表图"
+        "zh": "白卡纸食品包装结构代表图",
+        "id": "Referensi struktur kemasan makanan karton putih",
+        "vi": "Hình ảnh tham khảo cấu trúc bao bì thực phẩm bìa trắng",
+        "th": "ภาพอ้างอิงโครงสร้างบรรจุภัณฑ์อาหารกระดาษการ์ดขาว",
+        "ms": "Rujukan struktur pembungkusan makanan kadbod putih",
+        "es": "Imagen de referencia de estructura de envase alimentario de cartón blanco"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai/ai-flute-types.jpg",
+      "directImageUrl": "/media/products/corrugated-board/corrugated-board-cross-section-reference-01.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-corrugated-family-representative",
-      "localPath": "/images/ai/ai-flute-types.jpg",
+      "localPath": "/media/products/corrugated-board/corrugated-board-cross-section-reference-01.jpg",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "Single, double and triple wall corrugated cross-sections — reference image",
-        "zh": "单/双/三层瓦楞纸板剖面参考图"
+        "zh": "单/双/三层瓦楞纸板剖面参考图",
+        "id": "Gambar referensi penampang karton bergelombang",
+        "vi": "Hình ảnh tham khảo mặt cắt tấm carton sóng",
+        "th": "ภาพอ้างอิงหน้าตัดกระดาษลูกฟูก",
+        "ms": "Imej rujukan keratan rentas papan beralun",
+        "es": "Imagen de referencia de secciones de cartón corrugado"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai/ai-specialty-papers.jpg",
+      "directImageUrl": "/media/products/specialty-paper/specialty-paper-sheet-reference-01.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-specialty-family-representative",
-      "localPath": "/images/ai/ai-specialty-papers.jpg",
+      "localPath": "/media/products/specialty-paper/specialty-paper-sheet-reference-01.jpg",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "Gold, silver and holographic specialty papers — reference image",
-        "zh": "金卡、银卡与镭射特种纸参考图"
+        "zh": "金卡、银卡与镭射特种纸参考图",
+        "id": "Gambar referensi kertas khusus emas perak dan holografik",
+        "vi": "Hình ảnh tham khảo giấy đặc biệt màu vàng bạc và hologram",
+        "th": "ภาพอ้างอิงกระดาษชนิดพิเศษสีทอง เงิน และโฮโลแกรม",
+        "ms": "Imej rujukan kertas khas emas perak dan holografik",
+        "es": "Imagen de referencia de papeles especiales dorados, plateados y holográficos"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/kehong/showcase/optimized/food-box-real-01.jpg",
+      "directImageUrl": "/media/products/food-packaging/food-packaging-box-reference-01.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-food-box-family-representative",
-      "localPath": "/images/kehong/showcase/optimized/food-box-real-01.jpg",
+      "localPath": "/media/products/food-packaging/food-packaging-box-reference-01.jpg",
       "scope": "family",
       "exactness": "representative",
       "alt": {
         "en": "Representative food packaging box structure sample",
-        "zh": "食品包装盒结构样品代表图"
+        "zh": "食品包装盒结构样品代表图",
+        "id": "Gambar referensi struktur kotak kemasan makanan",
+        "vi": "Hình ảnh tham khảo cấu trúc hộp bao bì thực phẩm",
+        "th": "ภาพอ้างอิงโครงสร้างกล่องบรรจุอาหาร",
+        "ms": "Imej rujukan struktur kotak pembungkusan makanan",
+        "es": "Imagen de referencia de estructura de caja para alimentos"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/kehong/showcase/optimized/cake-board-real.jpg",
+      "directImageUrl": "/media/products/cake-boards/cake-board-reference-01.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-paper-pad-family-representative",
-      "localPath": "/images/kehong/showcase/optimized/cake-board-real.jpg",
+      "localPath": "/media/products/cake-boards/cake-board-reference-01.jpg",
       "scope": "family",
       "exactness": "representative",
       "alt": {
         "en": "Representative cake board and paper pad product image",
-        "zh": "蛋糕垫片与纸垫片代表图"
+        "zh": "蛋糕垫片与纸垫片代表图",
+        "id": "Gambar produk referensi papan kek dan pad kertas",
+        "vi": "Hình ảnh tham khảo đế bánh và miếng lót giấy",
+        "th": "ภาพอ้างอิงฐานเค้กและแผ่นรองกระดาษ",
+        "ms": "Imej rujukan papan kek dan pad kertas",
+        "es": "Imagen de referencia de bases de tarta y almohadillas de papel"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai/ai-paper-insert.jpg",
+      "directImageUrl": "/media/products/paper-inserts/paper-insert-tray-reference-03.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-paper-insert-family-representative",
-      "localPath": "/images/ai/ai-paper-insert.jpg",
+      "localPath": "/media/products/paper-inserts/paper-insert-tray-reference-03.jpg",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "Die-cut molded paper insert tray — reference image",
-        "zh": "模切纸内托参考图"
+        "zh": "模切纸内托参考图",
+        "id": "Gambar referensi baki sisipan kertas cetak mati",
+        "vi": "Hình ảnh tham khảo khay lót giấy bế định hình",
+        "th": "ภาพอ้างอิงถาดกระดาษขึ้นรูปด้วยไดคัท",
+        "ms": "Imej rujukan dulang sisipan kertas die-cut",
+        "es": "Imagen de referencia de bandeja de inserción de papel troquelada"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/kehong/showcase/pink-structural-box.webp",
+      "directImageUrl": "/media/products/paper-box/paper-box-structure-reference-01.webp",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-paper-box-family-representative",
-      "localPath": "/images/kehong/showcase/pink-structural-box.webp",
+      "localPath": "/media/products/paper-box/paper-box-structure-reference-01.webp",
       "scope": "family",
       "exactness": "representative",
       "alt": {
         "en": "Representative paper box structure sample",
-        "zh": "纸盒结构样品代表图"
+        "zh": "纸盒结构样品代表图",
+        "id": "Gambar referensi struktur kotak kertas",
+        "vi": "Hình ảnh tham khảo cấu trúc hộp giấy",
+        "th": "ภาพอ้างอิงโครงสร้างกล่องกระดาษ",
+        "ms": "Imej rujukan struktur kotak kertas",
+        "es": "Imagen de referencia de estructura de caja de papel"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai/ai-pe-coated-roll.jpg",
+      "directImageUrl": "/media/products/paper-cup-materials/pe-coated-paper-roll-reference-01.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-material-family-representative",
-      "localPath": "/images/ai/ai-pe-coated-roll.jpg",
+      "localPath": "/media/products/paper-cup-materials/pe-coated-paper-roll-reference-01.jpg",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "PE-coated paper roll — reference image",
-        "zh": "PE 淋膜纸卷参考图"
+        "zh": "PE 淋膜纸卷参考图",
+        "id": "Gambar referensi gulungan kertas berlapis PE",
+        "vi": "Hình ảnh tham khảo cuộn giấy tráng PE",
+        "th": "ภาพอ้างอิงม้วนกระดาษเคลือบ PE",
+        "ms": "Imej rujukan gulungan kertas bersalut PE",
+        "es": "Imagen de referencia de rollo de papel recubierto de PE"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai/ai-cup-bottom-rolls.jpg",
+      "directImageUrl": "/media/products/paper-cup-materials/paper-cup-bottom-roll-reference-01.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-cup-bottom-family-representative",
-      "localPath": "/images/ai/ai-cup-bottom-rolls.jpg",
+      "localPath": "/media/products/paper-cup-materials/paper-cup-bottom-roll-reference-01.jpg",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "Paper cup bottom rolls — reference image",
-        "zh": "纸杯底卷参考图"
+        "zh": "纸杯底卷参考图",
+        "id": "Gambar referensi gulungan dasar cangkir kertas",
+        "vi": "Hình ảnh tham khảo cuộn đáy cốc giấy",
+        "th": "ภาพอ้างอิงม้วนกระดาษก้นแก้ว",
+        "ms": "Imej rujukan gulungan dasar cawan kertas",
+        "es": "Imagen de referencia de rollos para fondos de vasos de papel"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai/ai-diecut-sheets.jpg",
+      "directImageUrl": "/media/materials/paper-die-cut-sheet-reference.jpg",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-coated-sheet-family-representative",
-      "localPath": "/images/ai/ai-diecut-sheets.jpg",
+      "localPath": "/media/materials/paper-die-cut-sheet-reference.jpg",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "Coated paper sheet — reference image",
-        "zh": "淋膜纸片参考图"
+        "zh": "淋膜纸片参考图",
+        "id": "Gambar referensi lembar kertas berlapis",
+        "vi": "Hình ảnh tham khảo tờ giấy tráng phủ",
+        "th": "ภาพอ้างอิงแผ่นกระดาษเคลือบ",
+        "ms": "Imej rujukan kepingan kertas bersalut",
+        "es": "Imagen de referencia de hojas de papel recubiertas"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai-generated/category/ai-category-pe-coated-paper-sheet.webp",
+      "directImageUrl": "/media/products/paper-cup-materials/pe-coated-paper-sheet-concept-reference-01.webp",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Concept visualization only. It represents stacked PE-coated flat paper sheets and is not exact SKU photography.",
       "assetId": "kh-coated-sheet-family-concept",
-      "localPath": "/images/ai-generated/category/ai-category-pe-coated-paper-sheet.webp",
+      "localPath": "/media/products/paper-cup-materials/pe-coated-paper-sheet-concept-reference-01.webp",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "Stacked PE-coated paper sheets with a lifted coated surface",
-        "zh": "叠放的 PE 淋膜纸片及表面涂层"
+        "zh": "叠放的 PE 淋膜纸片及表面涂层",
+        "id": "Format bahan lembar kertas berlapis PE",
+        "vi": "Dạng vật liệu tờ giấy tráng PE",
+        "th": "รูปแบบวัสดุแผ่นกระดาษเคลือบ PE",
+        "ms": "Format bahan kepingan kertas bersalut PE",
+        "es": "Formato de material de hojas de papel recubiertas de PE"
       }
     },
     {
       "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/images/ai-generated/category/ai-category-paper-insert.webp",
+      "directImageUrl": "/media/products/paper-inserts/paper-insert-tray-reference-01.webp",
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
       "notes": "Concept visualization only. It represents paper tray and insert material formats and is not exact SKU photography.",
       "assetId": "kh-food-tray-family-concept",
-      "localPath": "/images/ai-generated/category/ai-category-paper-insert.webp",
+      "localPath": "/media/products/paper-inserts/paper-insert-tray-reference-01.webp",
       "scope": "family",
-      "exactness": "ai-representative",
+      "exactness": "representative",
       "alt": {
         "en": "Paper tray and insert material formats",
-        "zh": "纸托与纸内托材料形态"
+        "zh": "纸托与纸内托材料形态",
+        "id": "Format bahan baki kertas dan sisipan",
+        "vi": "Dạng vật liệu khay và miếng lót giấy",
+        "th": "รูปแบบวัสดุถาดและแผ่นรองกระดาษ",
+        "ms": "Format bahan dulang dan sisipan kertas",
+        "es": "Formatos de material para bandejas e insertos de papel"
       }
     }
   ],

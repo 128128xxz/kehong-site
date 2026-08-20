@@ -20,7 +20,7 @@ export default function HomeLatestInsights({ locale }: { locale: string }) {
           </div>
         </Reveal>
         <div className="grid gap-5 md:grid-cols-3">
-          {articles.map((article, index) => <Reveal key={article.slug} delay={index * 70}><NewsCard article={article} locale={newsLocale} /></Reveal>)}
+          {articles.map((article, index) => <Reveal key={article.slug} delay={index * 70}><NewsCard article={article} locale={newsLocale} eager={index === 0} /></Reveal>)}
         </div>
       </div>
     </section>

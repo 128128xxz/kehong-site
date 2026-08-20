@@ -1,0 +1,23 @@
+# Kehong Recovery Complete
+
+- 旧仓库路径: /Users/a369/Documents/Codex/2026-07-13/new-chat/kehong-site
+- 新仓库路径: /Users/a369/Documents/Codex/2026-08-20/kehong-site-recovered-3
+- origin: https://github.com/128128xxz/kehong-site.git
+- 基线分支: codex/production-portal-release-fix-20260720-1703
+- 基线提交: 29bc8429a5f5a4acedae784120362c66435c553e
+- 迁移文件数量: 532（含业务代码/配置/脚本/测试/文档）
+- 迁移到新仓库的业务文件（tracked 变化）: 83
+- 迁移到新仓库的业务文件（untracked）: 449
+- 迁移到新仓库的 deleted：175
+- 跳过文件（FileProvider/非关键截图与临时产物）：479
+  - 典型示例: reports/..., screenshots/..., reports/liquid-glass-ui-preview/screenshots/..., reports/img2threejs/...，及测试截图与视频归档。
+- SHA-256 检查结果: PASS（532 文件）
+- 新仓库 git status: 可用（`--no-renames` 输出 535 行）
+- 新仓库 git fsck: PASS（仅可见 dangling object，不影响校验）
+- Node / pnpm: v24.19.0 / 11.19.0
+- lint: PASS
+- typecheck: PASS
+- 单元测试+e2e (pnpm run test): FAIL
+  - 原因: Playwright e2e 阶段报端口占用（127.0.0.1:3000 已在用）且 HTML 报告目录与 test-results 冲突。
+- 当前未解决问题: 未能在本次恢复阶段完成 `pnpm run test` 的 e2e 部分（与开发环境进程/报告目录配置相关）。
+- 后续开发应使用目录: /Users/a369/Documents/Codex/2026-08-20/kehong-site-recovered-3

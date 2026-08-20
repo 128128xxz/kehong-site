@@ -28,11 +28,11 @@ test.describe("Kehong production flows", () => {
     await page.goto("/en", { waitUntil: "networkidle" });
     const headerLogo = page.locator(".kh-header-brand-mark");
     await expect(headerLogo).toBeVisible();
-    await expect(headerLogo).toHaveAttribute("src", /kehong-mark-512\.png/);
+    await expect(headerLogo).toHaveAttribute("src", /kehong-brand-mark-512\.png/);
     await expect(page.locator(".kh-brand-name")).toHaveText("Foshan Kehong Paper Products Co., Ltd.");
     await expect(page.locator(".kh-brand-tag")).toHaveText("Paper materials & custom packaging");
     await expect(page.locator(".kh-monogram")).toHaveCount(0);
-    await expect(page.locator(".kh-footer-brand-mark")).toHaveAttribute("src", /kehong-mark-512\.png/);
+    await expect(page.locator(".kh-footer-brand-mark")).toHaveAttribute("src", /kehong-brand-mark-512\.png/);
     await expect(page.locator(".kh-footer-brand-name")).toHaveText("Foshan Kehong Paper Products Co., Ltd.");
     await expect(page.locator(".kh-footer-brand-tag")).toHaveText("Paper products & custom packaging");
     await page.goto("/zh", { waitUntil: "networkidle" });
@@ -45,11 +45,11 @@ test.describe("Kehong production flows", () => {
       const response = await request.get(path);
       expect(response.status()).toBe(200);
       const html = await response.text();
-      expect(html).toContain("/brand/kehong-favicon-v2.ico");
-      expect(html).toContain("/brand/kehong-tab-icon-v2-32.png");
-      expect(html).toContain("/brand/kehong-apple-touch-icon-v2.png");
+      expect(html).toContain("/media/brand/kehong-favicon.ico");
+      expect(html).toContain("/media/brand/kehong-tab-icon-32.png");
+      expect(html).toContain("/media/brand/kehong-apple-touch-icon-180.png");
       expect(html).toContain("/site.webmanifest");
-      expect(html).not.toContain("/brand/kehong-mark-32.png");
+      expect(html).not.toContain("/media/brand/kehong-brand-mark-32.png");
       expect(html).not.toMatch(/vercel\.svg|vercel\.com\/favicon/i);
     }
 
@@ -57,8 +57,8 @@ test.describe("Kehong production flows", () => {
     expect(manifest.status()).toBe(200);
     expect(await manifest.json()).toMatchObject({
       icons: expect.arrayContaining([
-        expect.objectContaining({ src: "/brand/kehong-pwa-icon-v2-192.png", sizes: "192x192" }),
-        expect.objectContaining({ src: "/brand/kehong-pwa-icon-v2-512.png", sizes: "512x512" }),
+        expect.objectContaining({ src: "/media/brand/kehong-pwa-icon-192.png", sizes: "192x192" }),
+        expect.objectContaining({ src: "/media/brand/kehong-pwa-icon-512.png", sizes: "512x512" }),
       ]),
     });
 
@@ -245,39 +245,30 @@ test.describe("Kehong production flows", () => {
     }
   });
 
-  test("desktop navigation gives the 3D studio its own entry and groups resources", async ({ page }) => {
+  test("desktop navigation groups the 3D studio under resources", async ({ page }) => {
     const cases = [
       {
         locale: "zh",
         modelLabel: "3D结构展厅",
         resourceLabel: "资源",
         overview: "资源中心",
-        groups: ["设计与打样", "采购与内容"],
-        links: ["设计稿指南", "刀模图与模板", "采购与询价指南", "新闻与洞察"],
+        groups: ["设计与打样", "采购与内容", "工具"],
+        links: ["设计稿指南", "刀模图与模板", "采购与询价指南", "新闻与洞察", "3D结构展厅"],
       },
       {
         locale: "en",
         modelLabel: "3D Packaging Studio",
         resourceLabel: "Resources",
         overview: "Resource Center",
-        groups: ["Artwork & Sampling", "Buying & Insights"],
-        links: ["Artwork Guide", "Dielines & Templates", "Buying & Quotation Guide", "News & Insights"],
+        groups: ["Artwork & Sampling", "Buying & Insights", "Tools"],
+        links: ["Artwork Guide", "Dielines & Templates", "Buying & Quotation Guide", "News & Insights", "3D Packaging Studio"],
       },
     ] as const;
 
     for (const item of cases) {
       await page.setViewportSize({ width: 1440, height: 1000 });
       await page.goto(`/${item.locale}`, { waitUntil: "networkidle" });
-      const modelLink = page.getByTestId("header-model-preview-link");
-      await expect(modelLink).toHaveText(new RegExp(item.modelLabel));
-      await expect(modelLink).toHaveAttribute("href", `/${item.locale}/model-preview`);
-      await expect(modelLink).not.toHaveAttribute("aria-haspopup", "true");
-      await modelLink.click();
-      await expect(page).toHaveURL(new RegExp(`/${item.locale}/model-preview$`));
-      await expect(page.locator("h1")).toHaveText(item.modelLabel);
-      await expect(page.locator(`nav[aria-label="${item.locale === "zh" ? "面包屑" : "Breadcrumb"}"]`)).toContainText(item.modelLabel);
-
-      await page.goto(`/${item.locale}`, { waitUntil: "networkidle" });
+      await expect(page.getByTestId("header-model-preview-link")).toHaveCount(0);
       const resourcesButton = page.getByRole("button", { name: item.resourceLabel, exact: true });
       await resourcesButton.hover();
       const panel = page.getByTestId("header-resources-menu");
@@ -285,14 +276,16 @@ test.describe("Kehong production flows", () => {
       await expect(panel).toContainText(item.overview);
       for (const heading of item.groups) await expect(panel).toContainText(heading);
       for (const link of item.links) await expect(panel.getByText(link, { exact: true })).toBeVisible();
-      await expect(panel).not.toContainText(item.modelLabel);
-      await expect(panel.locator("a")).toHaveCount(5);
+      await expect(panel).toContainText(item.modelLabel);
+      await expect(panel.locator("a")).toHaveCount(6);
+      await panel.locator('a[href$="/model-preview"]').click();
+      await expect(page).toHaveURL(new RegExp(`/${item.locale}/model-preview$`));
       await page.keyboard.press("Escape");
       await expect(panel).toBeHidden();
     }
   });
 
-  test("mobile navigation keeps 3D independent and resources two levels deep", async ({ page }) => {
+  test("mobile navigation places 3D inside the resources directory", async ({ page }) => {
     for (const item of [
       { locale: "zh", modelLabel: "3D结构展厅", resourceLabel: "资源", links: ["资源中心", "设计稿指南", "刀模图与模板", "采购与询价指南", "新闻与洞察"] },
       { locale: "en", modelLabel: "3D Packaging Studio", resourceLabel: "Resources", links: ["Resource Center", "Artwork Guide", "Dielines & Templates", "Buying & Quotation Guide", "News & Insights"] },
@@ -302,12 +295,11 @@ test.describe("Kehong production flows", () => {
       await page.locator('button[aria-controls="kh-mobile-menu"]').click();
       const drawer = page.locator("#kh-mobile-menu");
       await expect(drawer).toBeVisible();
-      const modelLink = drawer.getByTestId("mobile-model-preview-link");
-      await expect(modelLink).toHaveText(new RegExp(item.modelLabel));
-      await expect(modelLink).toHaveAttribute("href", `/${item.locale}/model-preview`);
+      await expect(drawer.getByTestId("mobile-model-preview-link")).toHaveCount(0);
       await expect(drawer.locator('details.kh-mobile-resource-directory > summary')).toHaveText(new RegExp(item.resourceLabel));
       await drawer.locator('details.kh-mobile-resource-directory > summary').click();
       const resourceDirectory = drawer.locator(".kh-mobile-resource-directory");
+      await expect(resourceDirectory.getByRole("link", { name: item.modelLabel, exact: true })).toBeVisible();
       for (const link of item.links) await expect(resourceDirectory.getByRole("link", { name: link, exact: true })).toBeVisible();
       await expect(resourceDirectory.locator("details")).toHaveCount(0);
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);

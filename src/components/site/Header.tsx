@@ -1,8 +1,8 @@
 "use client";
 
-import { BookOpen, Box, ChevronDown, Factory, Layers3, Lightbulb, Menu, Settings2, X } from "lucide-react";
+import { BookOpen, ChevronDown, Factory, Layers3, Lightbulb, Menu, Settings2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SiteLogo from "@/components/site/SiteLogo";
@@ -10,7 +10,7 @@ import { captureAttribution, trackAiReferralEvent, trackKehongEvent } from "@/li
 import { productCatalogSections } from "@/data/productDirectory";
 
 const headerCopy = {
-  zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", modelPreview: "3D结构展厅", resources: "资源", contact: "提交询价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
+  zh: { products: "产品", solutions: "解决方案", capabilities: "制造能力", factory: "工厂", modelPreview: "3D结构展厅", resources: "资源", contact: "立即询价", menuOpen: "打开导航菜单", menuClose: "关闭导航菜单", menuTitle: "网站导航" },
   en: { products: "Products", solutions: "Solutions", capabilities: "Capabilities", factory: "Factory", modelPreview: "3D Packaging Studio", resources: "Resources", contact: "Request a quote", menuOpen: "Open navigation menu", menuClose: "Close navigation menu", menuTitle: "Site navigation" },
   es: { products: "Productos", solutions: "Soluciones", capabilities: "Capacidades", factory: "Fábrica", modelPreview: "3D Packaging Studio", resources: "Recursos", contact: "Solicitar cotización", menuOpen: "Abrir menú", menuClose: "Cerrar menú", menuTitle: "Navegación" },
   th: { products: "สินค้า", solutions: "โซลูชัน", capabilities: "ความสามารถ", factory: "โรงงาน", modelPreview: "3D Packaging Studio", resources: "แหล่งข้อมูล", contact: "ขอใบเสนอราคา", menuOpen: "เปิดเมนู", menuClose: "ปิดเมนู", menuTitle: "เมนู" },
@@ -44,6 +44,14 @@ const resourceGroups = [
     links: [
       { href: "/procurement", zh: "采购与询价指南", en: "Buying & Quotation Guide", zhDescription: "准备尺寸、材料、数量和打样信息", enDescription: "Prepare dimensions, materials, quantities and sampling details" },
       { href: "/news", zh: "新闻与洞察", en: "News & Insights", zhDescription: "查看材料、包装和采购相关文章", enDescription: "Read packaging, material and sourcing articles" },
+    ],
+  },
+  {
+    id: "tools",
+    zh: "工具",
+    en: "Tools",
+    links: [
+      { href: "/model-preview", zh: "3D结构展厅", en: "3D Packaging Studio", zhDescription: "辅助查看包装结构与展开效果", enDescription: "Preview packaging structures as a supporting tool" },
     ],
   },
 ] as const;
@@ -93,7 +101,11 @@ function MobileResourceDirectory({ zh, close, pathname }: { zh: boolean; close: 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   return (
     <details className="kh-mobile-resource-directory">
-      <summary>{zh ? "资源" : "Resources"}<ChevronDown className="size-4" /></summary>
+      <summary>
+        <BookOpen className="kh-mobile-nav-icon" aria-hidden="true" />
+        <span>{zh ? "资源" : "Resources"}</span>
+        <ChevronDown className="kh-mobile-nav-chevron size-4" aria-hidden="true" />
+      </summary>
       <div>
         <Link href={resourceOverview.href} onClick={close} className={isActive(resourceOverview.href) ? "is-active" : undefined}>{label(resourceOverview)}</Link>
         {resourceGroups.map((group) => (
@@ -160,9 +172,10 @@ function MobileProductDirectory({ zh, close }: { zh: boolean; close: () => void 
       {productCatalogSections.map((section, sectionIndex) => (
         <details key={section.id} className="kh-mobile-product-section">
           <summary>
+            <Layers3 className="kh-mobile-nav-icon" aria-hidden="true" />
             <span className="kh-mobile-product-kicker">{String(sectionIndex + 1).padStart(2, "0")}</span>
             <span className="kh-mobile-product-section-title">{directoryLabel(section.label, zh)}</span>
-            <ChevronDown className="size-4" />
+            <ChevronDown className="kh-mobile-nav-chevron size-4" aria-hidden="true" />
           </summary>
           <div className="kh-mobile-product-section-body">
             <p className="kh-mobile-product-description">{directoryLabel(section.description, zh)}</p>
@@ -181,10 +194,52 @@ function MobileProductDirectory({ zh, close }: { zh: boolean; close: () => void 
   );
 }
 
+function MobileInlineNav({ copy, pathname, locale }: { copy: { products: string; applications: string; capabilities: string; factoryQuality: string; resources: string; menuTitle: string }; pathname: string; locale: string }) {
+  const compactLabel = (href: string, value: string) => {
+    if (href === "/solutions") return locale === "en" ? "Apps" : locale === "zh" ? "应用" : value;
+    if (href === "/capabilities") return locale === "zh" ? "能力" : value;
+    if (href === "/factory") return value.split(/\s*[&与]\s*/u)[0] || value;
+    return value;
+  };
+  const entries = [
+    { href: "/products", label: copy.products, Icon: Layers3 },
+    { href: "/solutions", label: copy.applications, Icon: Lightbulb },
+    { href: "/capabilities", label: copy.capabilities, Icon: Settings2 },
+    { href: "/factory", label: copy.factoryQuality, Icon: Factory },
+    { href: "/resources", label: copy.resources, Icon: BookOpen },
+  ] as const;
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
+  return (
+    <nav className="kh-mobile-inline-nav" data-testid="mobile-inline-nav" aria-label={copy.menuTitle}>
+      {entries.map(({ href, label, Icon }) => (
+        <Link key={href} href={href} className={isActive(href) ? "is-active" : undefined}>
+          <Icon className="kh-mobile-inline-nav-icon" aria-hidden="true" />
+          <span>{compactLabel(href, label)}</span>
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
 export default function Header({ variant = "solid" }: HeaderProps) {
   const locale = useLocale();
+  const t = useTranslations("Stage2.nav");
   const pathname = usePathname();
-  const copy = headerCopy[locale as keyof typeof headerCopy] ?? headerCopy.en;
+  const baseCopy = headerCopy[locale as keyof typeof headerCopy] ?? headerCopy.en;
+  const copy = {
+    ...baseCopy,
+    applications: t("applications"),
+    capabilities: t("capabilities"),
+    factoryQuality: t("factoryQuality"),
+    resources: t("resources"),
+    about: t("about"),
+    modelPreview: t("modelPreview"),
+    contact: t("quote"),
+    menuOpen: t("menuOpen"),
+    menuClose: t("menuClose"),
+    menuTitle: t("menuTitle"),
+  };
   const isZh = locale === "zh";
   const label = (item: NavItem) => (isZh ? item.zh : item.en);
 
@@ -392,8 +447,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
   const isProducts = pathname.startsWith("/products") || pathname.startsWith("/packaging");
   const isCapabilities = pathname.startsWith("/capabilities") || pathname.startsWith("/process");
-  const isResources = pathname.startsWith("/resources") || pathname.startsWith("/news") || pathname.startsWith("/procurement");
-  const isModelPreview = pathname.startsWith("/model-preview");
+  const isResources = pathname.startsWith("/resources") || pathname.startsWith("/news") || pathname.startsWith("/procurement") || pathname.startsWith("/model-preview");
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const navLinkClass = (active: boolean) => `kh-nav-link${active ? " is-active" : ""}`;
 
@@ -409,6 +463,8 @@ export default function Header({ variant = "solid" }: HeaderProps) {
           <SiteLogo locale={locale} placement="header" />
         </Link>
 
+        <MobileInlineNav copy={copy} pathname={pathname} locale={locale} />
+
         <nav ref={desktopNavRef} className="kh-desktop-nav" aria-label="Primary navigation">
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("products")} onPointerLeave={() => scheduleDesktopClose("products")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("products"); }}>
             <button ref={productsButtonRef} type="button" className={navLinkClass(isProducts)} aria-expanded={openMenu === "products"} aria-controls="header-products-menu" aria-haspopup="true" onClick={(event) => { if (keyboardProductsActivationRef.current) { event.preventDefault(); event.stopPropagation(); keyboardProductsActivationRef.current = null; return; } if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); }} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); if (event.repeat) return; keyboardProductsActivationRef.current = event.key; if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); return; } if (event.key !== "ArrowDown") return; event.preventDefault(); event.stopPropagation(); focusFirstProductLinkRef.current = true; setFirstProductFocusRequest((request) => request + 1); openDesktopMenu("products"); }} onKeyUp={(event) => { if (event.key !== keyboardProductsActivationRef.current) return; event.preventDefault(); event.stopPropagation(); requestAnimationFrame(() => { keyboardProductsActivationRef.current = null; }); }}>
@@ -418,11 +474,6 @@ export default function Header({ variant = "solid" }: HeaderProps) {
             </button>
             {openMenu === "products" ? <ProductMegaMenu zh={isZh} close={closeDesktopDropdowns} firstLinkRef={setFirstProductMenuLinkRef} /> : null}
           </div>
-
-          <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>
-            <Lightbulb className="kh-nav-icon size-3.5" aria-hidden="true" />
-            <span>{copy.solutions}</span>
-          </Link>
 
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("capabilities")} onPointerLeave={() => scheduleDesktopClose("capabilities")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("capabilities"); }}>
             <button type="button" className={navLinkClass(isCapabilities)} aria-expanded={openMenu === "capabilities"} aria-controls="header-capabilities-menu" aria-haspopup="true" onClick={() => openMenu === "capabilities" ? closeDesktopDropdowns() : openDesktopMenu("capabilities")}>
@@ -437,14 +488,14 @@ export default function Header({ variant = "solid" }: HeaderProps) {
             </div> : null}
           </div>
 
-          <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}>
-            <Factory className="kh-nav-icon size-3.5" aria-hidden="true" />
-            <span>{copy.factory}</span>
+          <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>
+            <Lightbulb className="kh-nav-icon size-3.5" aria-hidden="true" />
+            <span>{copy.applications}</span>
           </Link>
 
-          <Link href="/model-preview" aria-current={isModelPreview ? "page" : undefined} className={`${navLinkClass(isModelPreview)} kh-nav-link-3d`} data-testid="header-model-preview-link">
-            <Box className="kh-nav-3d-icon size-3.5" aria-hidden="true" />
-            <span>{copy.modelPreview}</span>
+          <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}>
+            <Factory className="kh-nav-icon size-3.5" aria-hidden="true" />
+            <span>{copy.factoryQuality}</span>
           </Link>
 
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("resources")} onPointerLeave={() => scheduleDesktopClose("resources")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("resources"); }}>
@@ -455,11 +506,18 @@ export default function Header({ variant = "solid" }: HeaderProps) {
             </button>
             {openMenu === "resources" ? <ResourceMegaMenu zh={isZh} close={closeDesktopDropdowns} pathname={pathname} /> : null}
           </div>
+
+          <Link href="/custom-paper-products" aria-current={isActive("/custom-paper-products") ? "page" : undefined} className={navLinkClass(isActive("/custom-paper-products"))}>
+            <span>{copy.about}</span>
+          </Link>
         </nav>
 
         <div className="kh-header-actions">
           <LanguageSwitcher />
-          <Link href="/contact" data-testid="site-header-quote" onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "header" })} className="kh-button kh-button-primary kh-button-compact kh-header-cta">{copy.contact}</Link>
+          <Link href="/contact" data-testid="site-header-quote" aria-label={copy.contact} onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "header" })} className="kh-button kh-button-primary kh-button-compact kh-header-cta" style={{ minHeight: "44px" }}>
+            <span className="kh-header-cta-full" aria-hidden="true">{copy.contact}</span>
+            <span className="kh-header-cta-mobile" aria-hidden="true">{isZh ? "询价" : "Quote"}</span>
+          </Link>
           <div className="kh-compact-nav">
             <button
               ref={menuButtonRef}
@@ -468,6 +526,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
               aria-label={menuOpen ? copy.menuClose : copy.menuOpen}
               aria-expanded={menuOpen}
               aria-controls="kh-mobile-menu"
+              style={{ minWidth: "44px", minHeight: "44px" }}
               onClick={() => setMenuOpen((value) => !value)}
             >
               <Menu className="size-5" />
@@ -483,18 +542,29 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                   </button>
                 </div>
                 <nav aria-label={copy.menuTitle}>
-                  <p className="kh-nav-panel-label">{copy.products}</p>
                   <MobileProductDirectory zh={isZh} close={closeMobileMenu} />
-                  <p className="kh-nav-panel-label">{copy.solutions}</p>
-                  <Link href="/solutions">{copy.solutions}</Link>
-                  <p className="kh-nav-panel-label">{copy.capabilities}</p>
-                  {capabilityLinks.map((item) => (
-                    <Link key={item.href} href={item.href}>{label(item)}</Link>
-                  ))}
-                  <Link href="/factory">{copy.factory}</Link>
-                  <Link href="/model-preview" className="kh-mobile-model-link" onClick={closeMobileMenu} data-testid="mobile-model-preview-link">
-                    <Box className="kh-nav-3d-icon size-4" aria-hidden="true" />
-                    {copy.modelPreview}
+                  <Link className="kh-mobile-nav-row" href="/solutions" onClick={closeMobileMenu}>
+                    <Lightbulb className="kh-mobile-nav-icon" aria-hidden="true" />
+                    <span>{copy.applications}</span>
+                  </Link>
+                  <details className="kh-mobile-simple-directory">
+                    <summary>
+                      <Settings2 className="kh-mobile-nav-icon" aria-hidden="true" />
+                      <span>{copy.capabilities}</span>
+                      <ChevronDown className="kh-mobile-nav-chevron size-4" aria-hidden="true" />
+                    </summary>
+                    <div>
+                      {capabilityLinks.map((item) => (
+                        <Link key={item.href} href={item.href} onClick={closeMobileMenu}>{label(item)}</Link>
+                      ))}
+                    </div>
+                  </details>
+                  <Link className="kh-mobile-nav-row" href="/factory" onClick={closeMobileMenu}>
+                    <Factory className="kh-mobile-nav-icon" aria-hidden="true" />
+                    <span>{copy.factoryQuality}</span>
+                  </Link>
+                  <Link href="/custom-paper-products" className="kh-mobile-nav-row" onClick={closeMobileMenu}>
+                    <span>{copy.about}</span>
                   </Link>
                   <MobileResourceDirectory zh={isZh} close={closeMobileMenu} pathname={pathname} />
                   <Link href="/contact" onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "mobile_navigation" })} className="kh-button kh-button-primary kh-button-compact mt-2 justify-center">{copy.contact}</Link>

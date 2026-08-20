@@ -101,10 +101,63 @@
       "description": "Tell us your target material, size, process, quantity and application. We will outline the next steps for sampling or a quotation.",
       "country": "Country / Region",
       "quantity": "Estimated quantity",
-      "requirements": "Material, GSM, size and process notes"
+      "requirements": "Material, GSM, size and process notes", "factory": "China factory", "internationalSales": "International sales", "generalInquiry": "General inquiry", "deliveryUnavailable": "Email delivery is not configured yet", "deliveryFailed": "We could not send the inquiry just now. Please retry or use a direct channel"
     },
     "footer": {
       "tagline": "Quality first · Integrity in every project · Long-term partnerships"
+    }
+  },
+  "Stage2": {
+    "nav": { "products": "Products", "capabilities": "Capabilities", "applications": "Applications", "factoryQuality": "Factory & Quality", "resources": "Resources", "about": "About Kehong", "quote": "Request a quote", "modelPreview": "3D Packaging Studio", "menuOpen": "Open navigation menu", "menuClose": "Close navigation menu", "menuTitle": "Site navigation" },
+    "home": {
+      "hero": { "eyebrow": "Specialty paper · Corrugated board · Custom converting", "title": "Specialty Paper and Corrugated Board for Custom Packaging", "description": "Kehong supplies corrugated board, specialty and functional paper, paper-cup materials, and custom paper converting support for B2B packaging projects.", "primary": "Explore Products", "secondary": "Request a Quote" },
+      "products": { "eyebrow": "Product systems", "title": "Start with the material or packaging route that fits your brief", "viewAll": "View all products", "materials": "Paper materials & semi-finished components", "materialsIntro": "Browse paper grades, cup components and forming materials for B2B packaging work.", "materialsCta": "View specifications", "finished": "Finished packaging", "finishedIntro": "Review food, bakery and shipping packaging by application, structure and finish.", "finishedCta": "View packaging types" }
+    }
+  },
+  "ProductFamilies": {
+    "eyebrow": "Product families",
+    "breadcrumbProducts": "Products",
+    "breadcrumbFamilies": "Product families",
+    "backToFamilies": "Back to product families",
+    "viewFamily": "Open family",
+    "requestQuote": "Request a quote",
+    "viewPublishedSpecs": "View published specifications",
+    "publishedSpecs": "Published specifications",
+    "publishedSpecsDescription": "Browse the confirmed product groups currently available in this family.",
+    "noPublishedSpecs": "This family is presented as a planning route. Published specifications can be reviewed in the main directory.",
+    "representativeNote": "Representative reference image · confirm the final asset against your brief",
+    "materials": "Material direction",
+    "forms": "Forms and formats",
+    "applications": "Buyer applications",
+    "capabilities": "Project support",
+    "commonParameters": "Parameters to confirm",
+    "relatedFamilies": "Related product families",
+    "anchorEyebrow": "Published product anchor",
+    "anchorDescription": "Use this published material route as a starting point, then confirm the exact structure, size and coating for your project.",
+    "realOptions": "Options from published records",
+    "selectedRecord": "Selected published record",
+    "viewFullRecord": "View full product record",
+    "viewAllSpecifications": "View all specifications",
+    "publishedCount": "{count} published records",
+    "serviceNote": "A project-led route for OEM / ODM material selection, structure review and custom paper converting.", "projectSupport": "Related project support", "capabilitiesLink": "Capabilities overview", "processLink": "Production process",
+    "family": {
+      "corrugated": { "title": "Corrugated board & flute materials", "description": "Base papers, fluted structures and converted board components for protective packaging projects.", "material": "Liner paper and fluting materials", "forms": "Sheets, blanks and converted board components", "applications": "Mailers, inserts and protective structures", "capabilities": "Structure review, converting and project sampling", "parameters": "Board construction · flute · dimensions · printing" },
+      "specialty": { "title": "Specialty & decorative paper", "description": "Surface-led paper and board directions for branded, retail and presentation packaging.", "material": "Specialty paper and board directions", "forms": "Sheets, inserts and presentation components", "applications": "Retail, gift and branded packaging", "capabilities": "Material selection, printing and finishing review", "parameters": "Surface · color · printing · format" },
+      "functional": { "title": "Functional & food paper", "description": "Paper materials, trays and food-packaging components organized around the structure and process to confirm.", "material": "Paper and board materials for packaging conversion", "forms": "Sheets, trays, liners and forming components", "applications": "Foodservice, trays and paper inserts", "capabilities": "Material selection and structure review", "parameters": "Material · GSM · format · surface process" },
+      "cup": { "title": "Paper cup materials", "description": "Published cupstock, roll, sheet, bottom-stock and tray-material groups for converting projects.", "material": "Cupstock and coated paper materials", "forms": "Fan blanks, rolls, sheets and tray material", "applications": "Paper cups, bowls and formed trays", "capabilities": "Coating, die-cutting and converting review", "parameters": "GSM · size · coating · surface process · finishing" },
+      "converted": { "title": "Packaging materials & converted components", "description": "Paper, board and converted components for packaging structures that need a defined material and format.", "material": "Paper, board and converted material directions", "forms": "Sheets, blanks, inserts and packaging components", "applications": "Boxes, inserts and protective packaging", "capabilities": "Die-cutting, creasing and lamination review", "parameters": "Material · GSM · structure · size" },
+      "service": { "title": "OEM / ODM & custom paper converting", "description": "A project route for buyers who need material selection, structure sampling or custom paper converting support.", "material": "Confirmed against the project brief", "forms": "Custom sheets, components or packaging structures", "applications": "Custom packaging projects", "capabilities": "Material selection, structure review and converting", "parameters": "Material · GSM · size · quantity" }
+    },
+    "anchor": {
+      "title": "Food tray paper material",
+      "description": "A published paper material route for formed trays and paper inserts. Select from real published values before requesting a quotation.",
+      "materialLabel": "Material",
+      "formLabel": "Form / structure",
+      "gsmLabel": "GSM / thickness",
+      "coatingLabel": "Coating",
+      "sizeLabel": "Typical size",
+      "applicationLabel": "Application",
+      "realRecordNote": "Values below come from the published record; no synthetic combinations are generated."
     }
   },
   "NotFound": {

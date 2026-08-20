@@ -5,6 +5,7 @@ import { locales } from "./i18n/locales";
 import { siteConfig } from "./lib/site-config";
 import catalog from "./data/catalog.normalized.json";
 import { getRootLocale } from "./lib/localeRouting";
+import { seoMediaRedirects } from "./data/seoMediaRedirects";
 
 const intlMiddleware = createMiddleware(routing);
 const canonicalOrigin = siteConfig.url;
@@ -117,6 +118,19 @@ function getRetiredLocaleDestination(pathname: string) {
 export default function proxy(request: NextRequest) {
   const hostname = request.nextUrl.hostname.toLowerCase();
   const isProductionHost = hostname === canonicalHost || hostname === apexHost;
+  const mediaRedirect = seoMediaRedirects[request.nextUrl.pathname];
+
+  // Semantic media renames preserve neutral legacy URLs with one direct 308.
+  // AI/GPT-marked historical paths are intentionally absent from this map and
+  // therefore fall through to the static asset handler as 404/410.
+  if (mediaRedirect) {
+    const url = isProductionHost ? new URL(mediaRedirect, canonicalOrigin) : request.nextUrl.clone();
+    url.pathname = mediaRedirect;
+    return withDiagnostics(NextResponse.redirect(url, 308));
+  }
+  if (request.nextUrl.pathname.startsWith("/media/")) {
+    return withDiagnostics(NextResponse.next());
+  }
   const retiredLocaleDestination = getRetiredLocaleDestination(request.nextUrl.pathname);
   const localePattern = locales.join("|");
   const legacyAllProducts = request.nextUrl.pathname.match(new RegExp(`^/(${localePattern}|es)/packaging/all-products/?$`, "u"));
@@ -160,8 +174,14 @@ export default function proxy(request: NextRequest) {
   const needsRootRedirect = request.nextUrl.pathname === "/";
 
   if (needsRootRedirect) {
+    // Keep an explicit language choice when the browser or a legacy link
+    // returns to the unprefixed root. next-intl writes NEXT_LOCALE, while the
+    // site switcher also writes kehong_locale; either cookie must outrank
+    // mainland geo/browser-language detection.
+    const localeCookie = request.cookies.get("kehong_locale")?.value
+      ?? request.cookies.get("NEXT_LOCALE")?.value;
     const locale = getRootLocale({
-      cookieLocale: request.cookies.get("kehong_locale")?.value,
+      cookieLocale: localeCookie,
       country: request.headers.get("x-vercel-ip-country"),
       acceptLanguage: request.headers.get("accept-language"),
     });
@@ -193,5 +213,8 @@ export const config = {
   // Match all pathnames except for
   // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
   // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+  matcher: [
+    "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+    "/media/:path*",
+  ],
 };

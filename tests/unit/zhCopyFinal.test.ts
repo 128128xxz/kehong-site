@@ -6,11 +6,13 @@ import { getTaxonomyMaterialLabel } from "@/lib/taxonomy";
 
 const root = path.join(process.cwd(), "src");
 const read = (relative: string) => readFileSync(path.join(root, relative), "utf8");
+const readDictionary = (locale: string) => readFileSync(path.join(process.cwd(), "dictionary", `${locale}.json`), "utf8");
 
 describe("finalized Chinese buyer copy", () => {
   it("adopts the locked facts and explicit page copy", () => {
-    expect(read("components/home/HomeHero.tsx")).toContain("科宏提供纸材加工、纸杯部件和定制纸包装，并根据项目要求安排结构打样、生产和出货准备");
-    expect(read("components/home/HomeProductSystems.tsx")).toContain("先选分类，再看产品和规格。");
+    const zh = readDictionary("zh");
+    expect(zh).toContain("科宏为 B 端包装项目提供瓦楞纸板、特种与功能纸、纸杯材料及纸品定制加工支持。");
+    expect(zh).toContain("查看适合 B 端包装项目的纸张、杯纸组件和成型材料。");
     expect(read("components/site/FactoryOverview.tsx")).toContain("科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺、质量检查和出货准备。");
     expect(read("app/[locale]/factory/page.tsx")).toContain("科宏位于广东佛山，可根据产品结构和规格要求安排选材、结构打样、纸材加工、后道工艺和出货准备。");
     expect(read("components/pages/ResourcesPage.tsx")).toContain("这些指南涵盖设计稿准备、材料选择、刀模图、表面工艺和打样资料。");
@@ -52,7 +54,8 @@ describe("finalized Chinese buyer copy", () => {
       read("components/home/HomeCta.tsx"),
       read("components/site/ProductCatalog.tsx"),
     ].join("\n");
-    expect(source).toContain("提交询价");
+    expect(source).toContain("立即询价");
+    expect(source).not.toContain("提交询价");
     expect(source).toContain("提交项目需求");
     expect(source).toContain("查看规格");
     expect(source).toContain("申请刀模图");

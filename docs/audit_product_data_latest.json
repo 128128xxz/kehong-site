@@ -1,41 +1,43 @@
 {
-  "generatedAt": "2026-07-16T14:01:07.612Z",
+  "generatedAt": "2026-08-17T15:06:46.281Z",
   "totals": {
-    "skus": 398,
+    "skus": 337,
     "productGroups": 6,
     "families": 11,
-    "imageAssets": 10,
-    "skuImageMappings": 398,
+    "imageAssets": 14,
+    "skuImageMappings": 337,
     "candidateImageRows": 179
   },
   "skuImageStatus": {
-    "representative": 398
+    "ai-representative": 296,
+    "representative": 41
   },
   "requestedSkuImageStatus": {
-    "representative": 398
+    "representative": 337
   },
   "assetExactness": {
-    "representative": 10
+    "ai-representative": 10,
+    "representative": 4
   },
   "assetPermissionStatus": {
-    "approved": 10
+    "approved": 14
   },
   "assetSourceType": {
-    "provided-local": 10
+    "provided-local": 14
   },
   "sourceStatus": {
-    "confirmed": 292,
+    "confirmed": 231,
     "pending": 106
   },
   "published": {
     "false": 106,
-    "true": 292
+    "true": 231
   },
   "productTypeCounts": {
     "corrugated-fluted-paper": 20,
     "food-packaging-box": 9,
     "kraft-paper": 10,
-    "paper-cup-fan": 292,
+    "paper-cup-fan": 231,
     "paper-insert": 25,
     "paper-packaging-material": 4,
     "paper-pad": 19,
@@ -60,7 +62,7 @@
   "conclusion": {
     "exactSkuImageMappingComplete": false,
     "hasAnyExactSkuImage": false,
-    "productionUsesOnlyApprovedOrGeneratedRepresentativeAssets": true,
+    "productionUsesOnlyApprovedOrGeneratedRepresentativeAssets": false,
     "aiGeneratedAssetsCannotCountAsExact": true,
     "stillNeedsExactSkuPhotography": true,
     "stillNeedsSourceConfirmationForPendingProducts": true

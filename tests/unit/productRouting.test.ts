@@ -46,8 +46,8 @@ describe("public product routing", () => {
     const entries = getHomepageProductEntries();
     expect(entries).toHaveLength(6);
     expect(new Set(entries.map((entry) => entry.image)).size).toBe(entries.length);
-    expect(entries.map((entry) => entry.image)).not.toContain("/images/ai/ai-diecut-sheets.jpg");
-    expect(entries.map((entry) => entry.image)).not.toContain("/images/ai/ai-meal-box.jpg");
+    expect(entries.map((entry) => entry.image)).not.toContain("/media/materials/paper-die-cut-sheet-reference.jpg");
+    expect(entries.map((entry) => entry.image)).not.toContain("/media/packaging/meal-box-reference.jpg");
   });
 
   it("assigns distinct approved representative images to the six public product groups", () => {
@@ -55,8 +55,8 @@ describe("public product routing", () => {
     const images = groups.map((group) => getSkuImageMeta(group.representative, "en").src);
     expect(groups).toHaveLength(6);
     expect(new Set(images).size).toBe(groups.length);
-    expect(images.every((image) => image.startsWith("/images/"))).toBe(true);
-    expect(images).not.toContain("/images/ai/ai-diecut-sheets.jpg");
-    expect(images).not.toContain("/images/ai/ai-meal-box.jpg");
+    expect(images.every((image) => image.startsWith("/media/"))).toBe(true);
+    expect(images).not.toContain("/media/materials/paper-die-cut-sheet-reference.jpg");
+    expect(images).not.toContain("/media/packaging/meal-box-reference.jpg");
   });
 });

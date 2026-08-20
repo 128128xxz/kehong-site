@@ -7,13 +7,13 @@
   "theme_color": "#171713",
   "icons": [
     {
-      "src": "/brand/kehong-pwa-icon-v2-192.png",
+      "src": "/media/brand/kehong-pwa-icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/brand/kehong-pwa-icon-v2-512.png",
+      "src": "/media/brand/kehong-pwa-icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"

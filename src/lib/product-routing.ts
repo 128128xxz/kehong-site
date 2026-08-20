@@ -37,7 +37,7 @@ const productEntries: readonly ProductEntry[] = [
     fallbackHref: "/contact?product=paper-materials",
     title: { en: "Browse materials", zh: "浏览纸材" },
     note: { en: "Paper grades, coating and converting formats", zh: "纸材等级、涂层与加工规格" },
-    image: "/images/ai/ai-cup-fan-blanks.jpg",
+    image: "/media/products/paper-cup-materials/paper-cup-fan-product-reference-03.jpg",
     alt: { en: "Paper converting material reference", zh: "纸品加工材料参考图" },
   },
   {
@@ -45,7 +45,7 @@ const productEntries: readonly ProductEntry[] = [
     fallbackHref: "/packaging",
     title: { en: "Browse packaging", zh: "浏览成品包装" },
     note: { en: "Structures for food, retail and delivery", zh: "适用于餐饮、零售与配送的包装结构" },
-    image: "/images/ai/ai-packaging-family.jpg",
+    image: "/media/packaging/paper-packaging-family-reference.jpg",
     alt: { en: "Paper packaging structures reference", zh: "纸包装结构参考图" },
   },
   {
@@ -54,7 +54,7 @@ const productEntries: readonly ProductEntry[] = [
     fallbackHref: "/contact?product=paper-cup-fan",
     title: { en: "Paper cup fan", zh: "纸杯扇形片" },
     note: { en: "Die-cut blanks and cupstock components", zh: "模切扇形片与杯纸部件" },
-    image: "/images/ai/ai-cup-fan-blanks.jpg",
+    image: "/media/products/paper-cup-materials/paper-cup-fan-product-reference-03.jpg",
     alt: { en: "Die-cut paper cup fan blanks", zh: "模切纸杯扇形片" },
   },
   {
@@ -63,7 +63,7 @@ const productEntries: readonly ProductEntry[] = [
     fallbackHref: "/contact?product=pe-coated-paper-roll",
     title: { en: "PE-coated paper roll", zh: "PE 淋膜纸卷" },
     note: { en: "Coated roll material for paper cup and bowl converting", zh: "用于纸杯、纸碗加工的淋膜卷材" },
-    image: "/images/ai/ai-pe-coated-roll.jpg",
+    image: "/media/products/paper-cup-materials/pe-coated-paper-roll-reference-01.jpg",
     alt: { en: "PE-coated paper roll reference", zh: "PE 淋膜纸卷参考图" },
   },
   {
@@ -72,7 +72,7 @@ const productEntries: readonly ProductEntry[] = [
     fallbackHref: "/contact?product=pe-coated-paper-sheet",
     title: { en: "PE-coated paper sheet", zh: "PE 淋膜平张纸" },
     note: { en: "Sheet formats for converting and forming", zh: "适用于加工与成型的平张规格" },
-    image: "/images/ai-generated/category/ai-category-pe-coated-paper-sheet.webp",
+    image: "/media/products/paper-cup-materials/pe-coated-paper-sheet-concept-reference-01.webp",
     alt: { en: "Stacked PE-coated paper sheets", zh: "叠放的 PE 淋膜纸片" },
   },
   {
@@ -81,7 +81,7 @@ const productEntries: readonly ProductEntry[] = [
     fallbackHref: "/contact?product=paper-cup-bottom-roll",
     title: { en: "Paper cup bottom roll", zh: "纸杯底纸卷" },
     note: { en: "Bottom-roll requirements for cup converting", zh: "用于纸杯加工的底卷需求" },
-    image: "/images/ai/ai-cup-bottom-rolls.jpg",
+    image: "/media/products/paper-cup-materials/paper-cup-bottom-roll-reference-01.jpg",
     alt: { en: "Paper cup bottom rolls", zh: "纸杯底卷参考图" },
   },
   {
@@ -90,7 +90,7 @@ const productEntries: readonly ProductEntry[] = [
     fallbackHref: "/contact?product=cupstock-paper",
     title: { en: "Cupstock paper", zh: "杯纸原纸" },
     note: { en: "Paper grades for cup converting projects", zh: "用于纸杯加工项目的纸材等级" },
-    image: "/images/ai/ai-kraft-cupstock.jpg",
+    image: "/media/products/paper-cup-materials/cupstock-paper-product-reference-01.jpg",
     alt: { en: "Cupstock paper reference", zh: "杯纸参考图" },
   },
   {
@@ -99,7 +99,7 @@ const productEntries: readonly ProductEntry[] = [
     fallbackHref: "/contact?product=food-tray-paper-material",
     title: { en: "Food tray paper material", zh: "食品纸托材料" },
     note: { en: "Paper material for food trays and paper inserts", zh: "用于食品纸托和纸内托成型的纸材" },
-    image: "/images/ai-generated/category/ai-category-paper-insert.webp",
+    image: "/media/products/paper-inserts/paper-insert-tray-reference-01.webp",
     alt: { en: "Paper tray and insert material formats", zh: "纸托与纸内托材料形态" },
   },
 ] as const;

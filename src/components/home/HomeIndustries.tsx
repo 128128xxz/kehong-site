@@ -55,7 +55,7 @@ export default function HomeIndustries({ locale }: { locale: string }) {
             <Reveal key={path.title} delay={index * 70}>
               <Link href={path.href} className="kh-industry-card">
                 <span className="kh-industry-card-media kh-media-shade">
-                  <Image src={path.image} alt={zh ? path.altZh : path.alt} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 33vw, 30vw" className="object-cover" loading="lazy" />
+                  <Image src={path.image} alt={zh ? path.altZh : path.alt} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 33vw, 30vw" className="object-cover" loading={index === 0 ? "eager" : "lazy"} />
                   <span className="kh-fig-caption kh-mono">0{index + 1}</span>
                 </span>
                 <span className="kh-industry-card-copy">

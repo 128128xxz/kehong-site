@@ -6,6 +6,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
 import ProductCatalog from "@/components/site/ProductCatalog";
 import ProductDirectory from "@/components/site/ProductDirectory";
+import ProductFamilyDirectory from "@/components/site/ProductFamilyDirectory";
 import { Link } from "@/i18n/navigation";
 import { buildProductCatalogView, getCatalogFilterOptions, getQueryValue } from "@/lib/catalog";
 import { buildOrganizationJsonLd } from "@/lib/aiEntities";
@@ -160,6 +161,7 @@ export default async function ProductsPage({
             {locale === "zh" ? "索取目录 / 规格资料" : "Request catalog / data sheet"}
           </Link>
         </PageHero>
+        <ProductFamilyDirectory locale={locale} />
         <ProductDirectory locale={locale} section="materials" />
         <section id="catalog-list" aria-labelledby="material-catalog-title" className="kh-shell scroll-mt-24 py-10">
           <div className="mb-7 max-w-3xl">

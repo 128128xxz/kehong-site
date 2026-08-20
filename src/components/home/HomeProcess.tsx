@@ -104,7 +104,9 @@ export default function HomeProcess({ locale }: { locale: string }) {
                 src={current.image}
                 alt={zh ? current.altZh : current.alt}
                 fill
-                loading="lazy"
+                loading="eager"
+                fetchPriority="low"
+                decoding="async"
                 sizes="(max-width: 1100px) 100vw, 52vw"
                 className="object-cover"
               />

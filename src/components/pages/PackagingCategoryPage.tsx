@@ -76,7 +76,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           }
         >
           <Link href={contactHref} data-testid="packaging-hero-quote" className="kh-button kh-button-light">
-            {isZh ? "提交询价" : "Get a custom quote"}
+            {isZh ? "立即询价" : "Get a custom quote"}
             <ArrowRight className="size-4" />
           </Link>
           <a href="#catalog-list" className="kh-button kh-button-ghost">

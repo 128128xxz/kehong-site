@@ -41,13 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# visual QA artifacts are generated locally from a clean commit
-/reports/screenshots/
-/reports/release-candidate/
-/reports/lighthouse-*.json
-/reports/lighthouse/
-/reports/design-final/working/
-
 # codex working files
 .superpowers/
 work/

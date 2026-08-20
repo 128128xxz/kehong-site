@@ -23,7 +23,7 @@ export const verifiedCompanyFacts = [
   { id: "brand-name", zh: "佛山科宏纸品有限公司", en: "Foshan Kehong Paper Products Co., Ltd.", status: "LOCKED", source: "Current brand configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
   { id: "factory-address", zh: "佛山市南海区布新工业区7号", en: "No. 7 Buxin Industrial Zone, Nanhai District, Foshan, Guangdong, China", status: "LOCKED", source: "Current factory location data", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
   { id: "website", zh: "https://www.kehong.tech", en: "https://www.kehong.tech", status: "LOCKED", source: "Current canonical site configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
-  { id: "logo", zh: "/brand/kehong-logo-full-transparent.png", en: "/brand/kehong-logo-full-transparent.png", status: "LOCKED", source: "Current brand asset configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
+  { id: "logo", zh: "/media/brand/kehong-full-logo-transparent.png", en: "/media/brand/kehong-full-logo-transparent.png", status: "LOCKED", source: "Current brand asset configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
   { id: "email", zh: "info@kehong.tech", en: "info@kehong.tech", status: "LOCKED", source: "Current contact configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
   { id: "whatsapp", zh: "+447599669700", en: "+447599669700", status: "LOCKED", source: "Current contact configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },
   { id: "phone-zh", zh: "+86 15888233221", en: "+86 15888233221", status: "LOCKED", source: "Current contact configuration", lastVerifiedDate, mayRephrase: false, mayChangeValue: true },

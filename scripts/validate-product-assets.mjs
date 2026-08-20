@@ -28,7 +28,7 @@ const productImages = readJson(imagesPath);
 
 if (!catalog || !productImages) process.exit(1);
 
-const imageStatuses = new Set(["exact", "representative", "ai-representative", "pending"]);
+const imageStatuses = new Set(["exact", "representative", "pending"]);
 const permissionStatuses = new Set(["approved", "generated-for-site", "pending", "rejected", "unknown"]);
 const assets = new Map((productImages.assets || []).map((asset) => [asset.assetId, asset]));
 const skuImageMap = productImages.skuImages || {};
@@ -38,21 +38,8 @@ function normalizeImageStatus(status) {
   return imageStatuses.has(status) ? status : "pending";
 }
 
-function isAiGeneratedAsset(asset) {
-  return asset?.sourceType === "ai-generated";
-}
-
 function isDisplayAllowedAsset(asset) {
-  if (asset?.permissionStatus === "approved") return true;
-
-  return (
-    isAiGeneratedAsset(asset) &&
-    asset.permissionStatus === "generated-for-site" &&
-    asset.exactness === "representative" &&
-    asset.imageStatus === "ai-representative" &&
-    asset.productionUsageAllowed === true &&
-    asset.exactSkuEligible === false
-  );
+  return asset?.permissionStatus === "approved";
 }
 
 function effectiveSkuImageStatus(sku) {
@@ -62,8 +49,6 @@ function effectiveSkuImageStatus(sku) {
   const asset = mainId ? assets.get(mainId) : undefined;
 
   if (!asset || !isDisplayAllowedAsset(asset)) return "pending";
-  if (isAiGeneratedAsset(asset)) return "ai-representative";
-
   const assetExactness = normalizeImageStatus(asset.exactness);
   if (requestedStatus === "exact") return assetExactness === "exact" ? "exact" : assetExactness;
   if (requestedStatus === "representative") return assetExactness === "exact" ? "representative" : assetExactness;
@@ -106,23 +91,6 @@ for (const asset of productImages.assets || []) {
   if (asset.exactness === "exact" && asset.permissionStatus !== "approved") {
     error(`Exact asset is not approved: ${asset.assetId}`);
   }
-  if (isAiGeneratedAsset(asset)) {
-    if (asset.permissionStatus !== "generated-for-site") {
-      error(`AI-generated asset must use permissionStatus generated-for-site: ${asset.assetId}`);
-    }
-    if (asset.exactness !== "representative") {
-      error(`AI-generated asset must keep exactness representative: ${asset.assetId}`);
-    }
-    if (asset.imageStatus !== "ai-representative") {
-      error(`AI-generated asset must use imageStatus ai-representative: ${asset.assetId}`);
-    }
-    if (asset.productionUsageAllowed !== true) {
-      error(`AI-generated asset must explicitly set productionUsageAllowed true: ${asset.assetId}`);
-    }
-    if (asset.exactSkuEligible !== false) {
-      error(`AI-generated asset must explicitly set exactSkuEligible false: ${asset.assetId}`);
-    }
-  }
 }
 
 for (const sku of skus) {
@@ -158,8 +126,6 @@ for (const sku of skus) {
     const asset = assets.get(mainId);
     if (!asset) {
       error(`Exact SKU ${sku.sku} has missing asset ${mainId}`);
-    } else if (isAiGeneratedAsset(asset)) {
-      error(`SKU ${sku.sku} is marked exact but asset ${mainId} is AI-generated`);
     } else if (asset.exactness !== "exact" || asset.permissionStatus !== "approved") {
       error(`SKU ${sku.sku} is marked exact but asset ${mainId} is ${asset.exactness}/${asset.permissionStatus}`);
     }

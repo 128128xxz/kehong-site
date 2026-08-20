@@ -7,9 +7,9 @@ test.describe("homepage manufacturing website", () => {
     await expect(page.locator(".kh-home-hero")).toBeVisible();
     await expect(page.getByRole("heading", { name: "Paper materials & semi-finished components" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Finished packaging" })).toBeVisible();
-    await expect(page.getByRole("link", { name: /Submit a brief/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /Request a quote/i }).first()).toBeVisible();
     await expect(page.locator(".production-portal")).toHaveCount(0);
-    await expect(page.getByRole("heading", { name: /Choose a product system/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Start with the material or packaging route/i })).toBeVisible();
     await expect(page.locator(".kh-section-forest")).toBeVisible();
     await expect(page.locator(".kh-spec-panel")).toBeVisible();
   });
@@ -27,7 +27,7 @@ test.describe("homepage manufacturing website", () => {
   test("keeps localized homepage copy", async ({ page }) => {
     await page.goto("/zh");
     await expect(page.locator("h1")).toContainText("纸材");
-    await expect(page.getByRole("link", { name: "提交询价" }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: "立即询价" }).first()).toBeVisible();
   });
 
   test("homepage keeps a compact procurement-focused section stack", async ({ page }) => {
@@ -372,7 +372,9 @@ test.describe("homepage manufacturing website", () => {
     });
     expect(metrics.borderTop).toBe("solid");
     expect(metrics.sectionCount).toBe(2);
-    expect(metrics.minItem).toBeGreaterThanOrEqual(36);
+    // The menu is translated by a fractional percentage; Chromium can
+    // report a 36px rhythm as 35.999984px after that transform.
+    expect(metrics.minItem).toBeGreaterThanOrEqual(35.9);
     expect(metrics.allHeight).toBeGreaterThanOrEqual(48);
   });
 
@@ -381,7 +383,9 @@ test.describe("homepage manufacturing website", () => {
     await page.goto("/en", { waitUntil: "networkidle" });
     const headerMetrics = await page.evaluate(() => {
       const nav = document.querySelector(".kh-desktop-nav")!;
-      const model = document.querySelector(".kh-nav-link-3d")!;
+      // The compact mobile section strip remains in the DOM for responsive
+      // hydration; scope this desktop assertion to the actual desktop nav.
+      const model = nav.querySelector('a[href$="/factory"]')!;
       const quote = document.querySelector(".kh-header-cta")!;
       return {
         overflow: document.documentElement.scrollWidth > window.innerWidth + 1,

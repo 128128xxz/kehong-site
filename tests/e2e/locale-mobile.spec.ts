@@ -22,6 +22,12 @@ test.describe("locale routing and dedicated mobile shell", () => {
     });
     expect(cookieWins.headers().location).toBe("/en");
 
+    const nextIntlCookieWins = await request.get("/", {
+      maxRedirects: 0,
+      headers: { "accept-language": "zh-CN,zh;q=0.9", cookie: "NEXT_LOCALE=en" },
+    });
+    expect(nextIntlCookieWins.headers().location).toBe("/en");
+
     const languageFallback = await request.get("/", {
       maxRedirects: 0,
       headers: { "accept-language": "zh-CN,zh;q=0.9" },
@@ -39,7 +45,7 @@ test.describe("locale routing and dedicated mobile shell", () => {
 
     const api = await request.get("/api/health", { maxRedirects: 0, headers: { "accept-language": "zh-CN,zh;q=0.9" } });
     expect(api.status()).not.toBe(307);
-    const asset = await request.get("/brand/kehong-favicon-v2.ico", { maxRedirects: 0, headers: { "accept-language": "zh-CN,zh;q=0.9" } });
+    const asset = await request.get("/media/brand/kehong-favicon.ico", { maxRedirects: 0, headers: { "accept-language": "zh-CN,zh;q=0.9" } });
     expect(asset.status()).toBe(200);
   });
 

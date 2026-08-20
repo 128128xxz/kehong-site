@@ -316,7 +316,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
             href="/contact"
             className="kh-button kh-button-primary kh-button-compact"
           >
-            {locale === "zh" ? "提交询价" : "Request a quote"}
+            {locale === "zh" ? "立即询价" : "Request a quote"}
           </Link>
         </div>
 

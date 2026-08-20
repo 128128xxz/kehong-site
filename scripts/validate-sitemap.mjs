@@ -22,6 +22,7 @@ const staticRoutes = [
   "/terms",
 ];
 staticRoutes.push("/industries/bakery-packaging", "/capabilities", "/resources");
+staticRoutes.push("/news");
 const categoryRoutes = [
   "kraft-paper",
   "white-cardboard",
@@ -36,14 +37,40 @@ const categoryRoutes = [
 ];
 const packagingRoutes = [
   "paper-bags",
-  "labels-stickers",
-  "pillow-boxes",
   "takeout-boxes",
   "cake-boxes",
   "cake-boards-cake-drums",
   "corrugated-mailer-boxes",
 ];
 const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"];
+const newsRoutes = [
+  "artwork-to-dielines-packaging-sampling",
+  "cake-boxes-boards-drums-match",
+  "corrugated-mailer-dimensions-board-inserts",
+  "paper-bag-quotation-paper-handles-printing-quantity",
+  "paper-cup-fans-coated-rolls-sheets-difference",
+  "takeout-box-quotation-six-details",
+];
+const paperCupSheetSourceIds = new Set([
+  "kh-fd-cupsheet-150350-pr-044",
+  "kh-fd-cupsheet-150350-pr-068",
+  "kh-fd-cupsheet-250-pe-221",
+  "kh-fd-cupsheet-280-pe-222",
+  "kh-fd-cupsheet-300-pe-223",
+  "kh-fd-cupsheet-320-pe-224",
+  "kh-fd-cupsheet-320-pr-225",
+  "kh-fd-cupsheet-350-pr-226",
+  "kh-fd-cupsheet-150-pr-227",
+  "kh-fd-cupsheet-170-pr-228",
+  "kh-fd-cupsheet-280-pe-229",
+  "kh-fd-cupsheet-300-pe-230",
+  "kh-fd-cupsheet-320-pe-231",
+  "kh-fd-cupsheet-350-pe-232",
+  "kh-fd-cupsheet-230-pr-233",
+  "kh-fd-cupsheet-240-pr-234",
+  "kh-fd-cupsheet-250-pr-235",
+  "kh-fd-cupsheet-280-pr-236",
+]);
 
 const errors = [];
 const seen = new Set();
@@ -66,9 +93,11 @@ for (const route of staticRoutes) addRoute(`/${locale}${route === "/" ? "" : rou
 addRoute(`/${locale}/industries`, `${locale}/industries`);
 for (const slug of packagingRoutes) addRoute(`/${locale}/packaging/${slug}`, `${locale}/packaging/${slug}`);
 for (const slug of resourceRoutes) addRoute(`/${locale}/resources/${slug}`, `${locale}/resources/${slug}`);
+for (const slug of newsRoutes) addRoute(`/${locale}/news/${slug}`, `${locale}/news/${slug}`);
 for (const slug of ["cake-boxes", "cake-boards-and-drums"]) addRoute(`/${locale}/products/${slug}`, `${locale}/products/${slug}`);
 for (const slug of categoryRoutes) addRoute(`/${locale}/products/${slug}`, `${locale}/products/${slug}`);
-for (const sku of catalog.skus.filter((item) => item?.published === true && item?.sourceStatus === "confirmed")) {
+addRoute(`/${locale}/products/families/paper-cup-materials`, `${locale}/products/families/paper-cup-materials`);
+for (const sku of catalog.skus.filter((item) => item?.published === true && item?.sourceStatus === "confirmed" && !paperCupSheetSourceIds.has(item.id))) {
   if (!sku?.slug || typeof sku.slug !== "string") errors.push("catalog SKU is missing a valid slug");
   else addRoute(`/${locale}/products/${sku.slug}`, `${locale}/products/${sku.slug}`);
 }

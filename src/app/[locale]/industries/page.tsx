@@ -47,7 +47,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
           }
         >
           <Link href="/contact" className="kh-button kh-button-light">
-            {isZh ? "提交询价" : "Get a quote"}
+            {isZh ? "立即询价" : "Get a quote"}
             <ArrowRight className="size-4" />
           </Link>
           <Link href="/products" className="kh-button kh-button-ghost">

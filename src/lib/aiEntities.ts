@@ -24,7 +24,7 @@ export function buildOrganizationJsonLd(locale: string, description?: string) {
     legalName: companyLegalName,
     description: description ?? companyProfile.productionCapability[locale === "zh" ? "zh" : "en"],
     url: siteConfig.url,
-    logo: absoluteSiteUrl(jsonLdValue("logo", locale) ?? "/brand/kehong-logo-full-transparent.png"),
+    logo: absoluteSiteUrl(jsonLdValue("logo", locale) ?? "/media/brand/kehong-full-logo-transparent.png"),
     sameAs: officialSameAs().length ? officialSameAs() : undefined,
     contactPoint: buildContactPointJsonLd(),
   };
@@ -50,7 +50,7 @@ export function buildLocalBusinessJsonLd(locale: string) {
     name: brand.name,
     description: companyProfile.productionCapability[zh ? "zh" : "en"],
     url: siteConfig.url,
-    image: [absoluteSiteUrl(jsonLdValue("logo", locale) ?? "/brand/kehong-logo-full-transparent.png")],
+    image: [absoluteSiteUrl(jsonLdValue("logo", locale) ?? "/media/brand/kehong-full-logo-transparent.png")],
     telephone: contact.phone[zh ? "zh" : "en"],
     email: contact.email,
     address: {

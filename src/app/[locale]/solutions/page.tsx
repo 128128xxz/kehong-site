@@ -46,7 +46,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
             {isZh ? "浏览解决方案" : "Browse solutions"}
           </a>
           <Link href="/contact" className="kh-button kh-button-ghost">
-            {isZh ? "提交询价" : "Request a quote"}
+            {isZh ? "立即询价" : "Request a quote"}
           </Link>
         </PageHero>
         <SolutionsDirectory />

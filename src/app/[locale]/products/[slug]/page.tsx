@@ -40,6 +40,12 @@ import WeChatContactButton from "@/components/site/WeChatContactButton";
 import RelatedLinks from "@/components/site/RelatedLinks";
 import { buildOrganizationJsonLd } from "@/lib/aiEntities";
 import {
+  PAPER_CUP_SHEET_SOURCE_RECORD_IDS,
+  PAPER_CUP_SHEET_TARGET_RECORD_ID,
+  isApprovedPaperCupSheetSource,
+  paperCupSheetDisplayIdentity,
+} from "@/data/paperCupSheetVariants";
+import {
   getProductTypeLabel,
   getPublicProductTypeLabel,
   getSkuImageMeta,
@@ -61,6 +67,7 @@ export async function generateMetadata({
   const brand = getBrandConfig(locale);
   const sku = getSkuBySlug(slug);
   const category = getProductCategoryBySlug(slug);
+  const paperCupSheetTarget = getAllSkus().find((item) => item.id === PAPER_CUP_SHEET_TARGET_RECORD_ID);
 
   if (!sku) {
     if (category) {
@@ -83,7 +90,9 @@ export async function generateMetadata({
   }
 
   const href = `/products/${sku.slug}` as SiteHref;
-  const canonical = await getLocaleUrl(locale, href);
+  const canonical = isApprovedPaperCupSheetSource(sku.id) && locale === "en" && paperCupSheetTarget
+    ? await getLocaleUrl("en", `/products/${paperCupSheetTarget.slug}` as SiteHref)
+    : await getLocaleUrl(locale, href);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
   const groupSummary = buildProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
   const title = `${groupSummary.title} | ${brand.name}`;
@@ -188,16 +197,24 @@ export default async function ProductDetailPage({
   const productHref = `/products/${sku.slug}` as SiteHref;
   const productUrl = await getLocaleUrl(locale, productHref);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
+  const isPaperCupSheetTarget = sku.id === PAPER_CUP_SHEET_TARGET_RECORD_ID;
+  const approvedPaperCupSheetVariants = isPaperCupSheetTarget
+    ? PAPER_CUP_SHEET_SOURCE_RECORD_IDS
+      .map((recordId) => getAllSkus().find((item) => item.id === recordId))
+      .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    : [];
+  const variantPool = isPaperCupSheetTarget ? approvedPaperCupSheetVariants : groupVariants;
   const groupSummary = buildProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
+  const displayedVariantCount = isPaperCupSheetTarget ? approvedPaperCupSheetVariants.length : groupSummary.variantCount;
   const contactHref = buildInquiryContactHref({ product: sku.slug, sku: sku.sku, url: productUrl }) as SiteHref;
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(`${t("inquiry.message")}\n- ${isZh ? "产品组" : "Product group"}: ${groupSummary.title}\n- ${isZh ? "当前 SKU" : "Current SKU"}: ${sku.sku}\n- URL: ${productUrl}`)}`;
   const variantSearch = typeof query.variantSearch === "string" ? query.variantSearch.trim().toLowerCase() : "";
   const matchingVariants = variantSearch
-    ? groupVariants.filter((variant) => [variant.sku, variant.gsmOrThickness, variant.coating, variant.commonSize]
+    ? variantPool.filter((variant) => [variant.sku, variant.gsmOrThickness, variant.coating, variant.commonSize]
       .map((value) => getLocalizedCatalogValue(value, locale).toLowerCase())
       .some((value) => value.includes(variantSearch)))
-    : groupVariants;
-  const showAllVariants = query.variants === "all" || Boolean(variantSearch);
+    : variantPool;
+  const showAllVariants = isPaperCupSheetTarget || query.variants === "all" || Boolean(variantSearch);
   const visibleVariants = showAllVariants ? matchingVariants : matchingVariants.slice(0, 12);
   const hasMoreVariants = matchingVariants.length > visibleVariants.length;
 
@@ -206,7 +223,7 @@ export default async function ProductDetailPage({
     [isZh ? "可用克重范围" : "Available GSM range", groupSummary.gsm || "-"],
     [isZh ? "可选材料" : "Material options", groupSummary.materials.join(isZh ? "、" : " / ")],
     [isZh ? "可选涂层 / 淋膜" : "Coating options", groupSummary.coating],
-    [isZh ? "变体数量" : "Variant count", isZh ? `${groupSummary.variantCount} 个变体` : `${groupSummary.variantCount} ${groupSummary.variantCount === 1 ? "variant" : "variants"}`],
+    [isZh ? "已批准源规格" : "Approved source specifications", isZh ? `${displayedVariantCount} 条` : `${displayedVariantCount} specifications`],
     [isZh ? "适用场景" : "Applications", formatProductDisplayList(groupSummary.applications, locale)],
   ].filter(([, value]) => value);
   const displayField = (field: ProductDisplayField, value: string | undefined) => formatProductFieldValue(getLocalizedCatalogValue(value, locale), field, locale);
@@ -322,6 +339,8 @@ export default async function ProductDetailPage({
         data-product-data-revision={productDataRevision}
         data-product-group-id={getProductGroupId(sku)}
         data-product-sku={sku.sku}
+        data-paper-cup-sheet-center={isPaperCupSheetTarget ? "true" : undefined}
+        data-paper-cup-sheet-source-records={isPaperCupSheetTarget ? String(approvedPaperCupSheetVariants.length) : undefined}
         className="kh-premium-product texture-paper min-h-screen"
       >
       <Header />
@@ -363,7 +382,7 @@ export default async function ProductDetailPage({
                 </span>
               ) : null}
               <span className="rounded-full bg-(--kh-paper) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
-                {groupSummary.variantCount} {isZh ? "个变体" : groupSummary.variantCount === 1 ? "variant" : "variants"}
+                {displayedVariantCount} {isZh ? "条已批准源规格" : displayedVariantCount === 1 ? "approved source specification" : "approved source specifications"}
               </span>
             </div>
             <h1 className="kh-editorial-heading mt-4 text-3xl text-(--kh-ink) sm:text-4xl lg:text-5xl">
@@ -431,7 +450,7 @@ export default async function ProductDetailPage({
               {isZh ? <><WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-primary" /><a href="tel:+8615888233221" className="kh-button kh-button-secondary"><Phone className="size-4" />电话</a></> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-primary"><MessageCircle className="size-4" />{t("cta.whatsapp")}</a>}
               <Link href={contactHref} className="kh-button kh-button-secondary">
                 <FileText className="size-4" />
-                {isZh ? "提交询价" : "Request a quote"}
+                {isZh ? "立即询价" : "Request a quote"}
               </Link>
             </div>
           </div>
@@ -474,7 +493,7 @@ export default async function ProductDetailPage({
               ))}
             </div>
 
-            {groupVariants.length > 1 ? (
+            {variantPool.length > 1 ? (
               <div className="mt-6 overflow-hidden rounded-lg border border-(--kh-line)">
                 <div className="flex flex-col gap-3 bg-(--kh-paper) px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
@@ -507,8 +526,10 @@ export default async function ProductDetailPage({
                     </thead>
                     <tbody>
                       {visibleVariants.map((variant) => (
-                        <tr key={variant.sku} className="border-b border-(--kh-paper-deep) last:border-0">
-                          <td className="px-4 py-3 font-semibold text-(--kh-ink)">{variant.sku}</td>
+                        <tr key={paperCupSheetDisplayIdentity(variant)} className="border-b border-(--kh-paper-deep) last:border-0">
+                          <td className="px-4 py-3 font-semibold text-(--kh-ink)">
+                            {isPaperCupSheetTarget ? <Link href={`/products/${variant.slug}`} className="kh-text-link">{variant.sku}</Link> : variant.sku}
+                          </td>
                           <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.gsmOrThickness, locale) || "-"}</td>
                           <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.coating, locale) || "-"}</td>
                           <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.commonSize, locale) || "-"}</td>
@@ -553,7 +574,7 @@ export default async function ProductDetailPage({
               {isZh ? <WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-light" /> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="kh-button kh-button-light"><MessageCircle className="size-4" />Discuss this product</a>}
               <Link href={contactHref} className="kh-button border border-white/35 text-(--kh-surface) hover:bg-white/10">
                 <FileText className="size-4" />
-                {isZh ? "提交询价" : "Request a quote"}
+                {isZh ? "立即询价" : "Request a quote"}
               </Link>
             </div>
           </aside>
@@ -572,7 +593,7 @@ export default async function ProductDetailPage({
                 url: productUrl,
               },
             ]}
-            title={isZh ? "提交询价" : "Request a quote"}
+            title={isZh ? "立即询价" : "Request a quote"}
             description={
               isZh
                 ? "已为您带入产品名称和产品编号。补充数量、尺寸、印刷和目标市场即可提交。"

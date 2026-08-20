@@ -15,6 +15,8 @@ export type InquiryEmailData = {
   printing: string;
   process: string;
   market: string;
+  targetDate?: string;
+  shipping?: string;
   message: string;
   sourceUrl?: string;
   utmSource?: string;
@@ -99,6 +101,8 @@ export function buildInquiryEmail(data: InquiryEmailData) {
       <p><strong>Printing:</strong> ${escapeHtml(data.printing || "-")}</p>
       <p><strong>Process / finishing:</strong> ${escapeHtml(data.process || "-")}</p>
       <p><strong>Target market:</strong> ${escapeHtml(data.market || "-")}</p>
+      <p><strong>Target timing:</strong> ${escapeHtml(data.targetDate || "-")}</p>
+      <p><strong>Shipping / destination:</strong> ${escapeHtml(data.shipping || "-")}</p>
       <p><strong>Message:</strong></p>
       <p>${escapeHtml(data.message || "-").replaceAll("\n", "<br />")}</p>
       <hr />
@@ -130,6 +134,8 @@ export function buildInquiryEmail(data: InquiryEmailData) {
     `Printing: ${data.printing || "-"}`,
     `Process / finishing: ${data.process || "-"}`,
     `Target market: ${data.market || "-"}`,
+    `Target timing: ${data.targetDate || "-"}`,
+    `Shipping / destination: ${data.shipping || "-"}`,
     `Message: ${data.message || "-"}`,
     `Submitted at: ${submittedAt}`,
     `Source URL: ${data.sourceUrl || "-"}`,

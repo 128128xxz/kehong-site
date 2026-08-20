@@ -48,6 +48,7 @@ test.describe("Kehong Liquid Glass UI material preview", () => {
         headerLensContent: header ? getComputedStyle(header, "::before").content : "",
         headerLensFilter: header ? getComputedStyle(header, "::before").filter : "",
         bubbleLensContent: firstBubble ? getComputedStyle(firstBubble, "::after").content : "",
+        bubbleFrameContent: firstBubble ? getComputedStyle(firstBubble, "::before").content : "",
         bubblePointerX: firstBubble?.style.getPropertyValue("--glass-pointer-x") ?? "",
         iconFilter: firstIcon ? getComputedStyle(firstIcon).filter : "",
       };
@@ -56,6 +57,7 @@ test.describe("Kehong Liquid Glass UI material preview", () => {
     expect(audit.headerLensContent).toBe('""');
     expect(audit.headerLensFilter).toContain("blur");
     expect(audit.bubbleLensContent).toBe("none");
+    expect(audit.bubbleFrameContent).toBe("none");
     expect(audit.bubblePointerX).toBe("");
     expect(audit.iconFilter).toBe("none");
   });
@@ -131,6 +133,75 @@ test.describe("Kehong Liquid Glass UI material preview", () => {
     expect(overflow).toBe(false);
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await expect(page.getByTestId("mobile-sticky-actions")).toBeVisible();
+  });
+
+  test("mobile header keeps menu and quote actions visible with 44px targets", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/zh?uiMaterial=glass-c");
+    const quote = page.getByTestId("site-header-quote");
+    const menu = page.getByRole("button", { name: "打开导航菜单" });
+    await expect(quote).toBeVisible();
+    await expect(menu).toBeVisible();
+    const audit = await page.evaluate(() => {
+      const quote = document.querySelector<HTMLElement>('[data-testid="site-header-quote"]');
+      const menu = document.querySelector<HTMLElement>('.kh-menu-toggle');
+      return {
+        quoteHeight: quote?.getBoundingClientRect().height ?? 0,
+        menuHeight: menu?.getBoundingClientRect().height ?? 0,
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: document.documentElement.clientWidth,
+      };
+    });
+    expect(audit.quoteHeight).toBeGreaterThanOrEqual(44);
+    expect(audit.menuHeight).toBeGreaterThanOrEqual(44);
+    expect(audit.scrollWidth).toBeLessThanOrEqual(audit.clientWidth);
+  });
+
+  test("mobile header exposes the same section entry order as desktop", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/zh?uiMaterial=glass-c");
+    await expect(page.locator(".kh-header-brand-copy")).toBeVisible();
+    await expect(page.locator(".kh-brand-name")).toHaveText("佛山科宏纸品有限公司");
+    const nav = page.getByTestId("mobile-inline-nav");
+    await expect(nav).toBeVisible();
+    await expect(nav.locator("a")).toHaveCount(5);
+    await expect(nav.locator("a").evaluateAll((links) => links.map((link) => link.getAttribute("href")))).resolves.toEqual([
+      "/zh/products",
+      "/zh/solutions",
+      "/zh/capabilities",
+      "/zh/factory",
+      "/zh/resources",
+    ]);
+    await expect(page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).resolves.toBe(true);
+  });
+
+  test("compact header separates the brand row from shortcuts and uses one glass edge", async ({ page }) => {
+    await page.setViewportSize({ width: 663, height: 761 });
+    await page.goto("/zh?uiMaterial=glass-c", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("html")).toHaveAttribute("data-ui-material", "glass-c");
+    await expect(page.locator(".kh-header")).toBeVisible();
+    const audit = await page.evaluate(() => {
+      const brand = document.querySelector<HTMLElement>(".kh-header-brand");
+      const shortcuts = document.querySelector<HTMLElement>('[data-testid="mobile-inline-nav"]');
+      const quote = document.querySelector<HTMLElement>('[data-testid="site-header-quote"]');
+      const language = document.querySelector<HTMLElement>(".kh-language-trigger");
+      const brandBox = brand?.getBoundingClientRect();
+      const shortcutBox = shortcuts?.getBoundingClientRect();
+      return {
+        shortcutsDisplay: shortcuts ? getComputedStyle(shortcuts).display : "none",
+        separateRows: Boolean(brandBox && shortcutBox && brandBox.bottom <= shortcutBox.top),
+        pageOverflow: document.documentElement.scrollWidth > window.innerWidth,
+        quoteBefore: quote ? getComputedStyle(quote, "::before").content : "",
+        languageBefore: language ? getComputedStyle(language, "::before").content : "",
+        quoteBorderWidth: quote ? getComputedStyle(quote).borderTopWidth : "",
+      };
+    });
+    expect(audit.shortcutsDisplay).toBe("flex");
+    expect(audit.separateRows).toBe(true);
+    expect(audit.pageOverflow).toBe(false);
+    expect(audit.quoteBefore).toBe("none");
+    expect(audit.languageBefore).toBe("none");
+    expect(audit.quoteBorderWidth).toBe("1px");
   });
 
   test("reduced motion and unsupported material fall back without renderers", async ({ page }) => {
