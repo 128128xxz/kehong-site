@@ -2,6 +2,7 @@ import { Pool } from "pg";
 import { randomUUID } from "node:crypto";
 import { visitorConfig } from "./config";
 import type { CustomerInquiryDraft, CustomerInquiryRecord, InquiryFilter, InquiryRepository, UnifiedInquiry, VisitorEventRecord, VisitorLeadDraft, VisitorLeadRecord } from "./types";
+import { isNewVisit, visitSessionKey } from "./visit-session";
 
 type Row = Record<string, unknown>;
 
@@ -39,8 +40,14 @@ function getPool() {
 }
 
 export class PostgresInquiryRepository implements InquiryRepository {
+  constructor(private readonly poolOverride?: Pick<Pool, "query" | "connect">) {}
+
+  private database() {
+    return this.poolOverride ?? getPool();
+  }
+
   private async query<T extends Row = Row>(text: string, values: unknown[] = []) {
-    return getPool().query<T>(text, values);
+    return this.database().query<T>(text, values);
   }
 
   async saveVisitorEvent(event: VisitorEventRecord) {
@@ -50,6 +57,32 @@ export class PostgresInquiryRepository implements InquiryRepository {
       [randomUUID(), event.eventId, event.companyIdentity, event.ipHash, event.eventType, event.path, event.pageTitle, event.referrer, event.utmSource, event.utmMedium, event.utmCampaign, event.utmTerm, event.utmContent, event.durationSeconds, null, event.networkType, event.botCategory, event.occurredAt, event.expiresAt],
     );
     return (result.rowCount ?? 0) > 0;
+  }
+
+  async recordVisitorEvent(event: VisitorEventRecord) {
+    const client = await this.database().connect();
+    const sessionKey = visitSessionKey(event) ?? `anonymous\u0000${event.ipHash ?? "none"}`;
+    try {
+      await client.query("BEGIN");
+      await client.query("SELECT pg_advisory_xact_lock(hashtextextended($1, 0))", [sessionKey]);
+      const previous = await client.query<{ occurred_at: string }>(
+        `SELECT occurred_at FROM inquiry_visit_events WHERE company_identity IS NOT DISTINCT FROM $1 AND ip_hash IS NOT DISTINCT FROM $2 ORDER BY occurred_at DESC LIMIT 1`,
+        [event.companyIdentity, event.ipHash],
+      );
+      const result = await client.query(
+        `INSERT INTO inquiry_visit_events (id, event_id, company_identity, ip_hash, event_type, path, page_title, referrer, utm_source, utm_medium, utm_campaign, utm_term, utm_content, duration_seconds, country_code, network_type, bot_category, occurred_at, expires_at)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19) ON CONFLICT (event_id) DO NOTHING RETURNING event_id`,
+        [randomUUID(), event.eventId, event.companyIdentity, event.ipHash, event.eventType, event.path, event.pageTitle, event.referrer, event.utmSource, event.utmMedium, event.utmCampaign, event.utmTerm, event.utmContent, event.durationSeconds, null, event.networkType, event.botCategory, event.occurredAt, event.expiresAt],
+      );
+      await client.query("COMMIT");
+      const inserted = (result.rowCount ?? 0) > 0;
+      return { inserted, isNewVisit: inserted && isNewVisit(previous.rows[0]?.occurred_at ?? null, event.occurredAt, visitorConfig.visitSessionTimeoutMinutes) };
+    } catch (error) {
+      await client.query("ROLLBACK").catch(() => undefined);
+      throw error;
+    } finally {
+      client.release();
+    }
   }
 
   async getVisitorEvents(companyIdentity: string) {

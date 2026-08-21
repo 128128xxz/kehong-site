@@ -2,17 +2,26 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import styles from "./AdminInquiriesClient.module.css";
 
-type Inquiry = { id: string; inquiryType: string; sourceLabel?: string | null; status: string; companyName?: string | null; companyDomain?: string | null; countryName?: string | null; networkType?: string | null; providerConfidence?: number | null; leadScore?: number | null; customerName?: string | null; customerEmail?: string | null; createdAt: string };
+type Inquiry = { id: string; inquiryType: "customer_submitted" | "company_visitor_lead"; sourceLabel?: string | null; status: string; companyName?: string | null; companyDomain?: string | null; countryName?: string | null; networkType?: string | null; providerConfidence?: number | null; leadScore?: number | null; customerName?: string | null; customerEmail?: string | null; createdAt: string };
+type InquiryFilter = "" | Inquiry["inquiryType"];
+
+const typeLabels: Record<Inquiry["inquiryType"], string> = { customer_submitted: "客户主动询盘", company_visitor_lead: "企业访客识别" };
+const statusLabels: Record<string, string> = { new: "新询盘", converted_to_inquiry: "已转为真实询盘", "待人工核实": "待人工核实" };
+
+function statusLabel(status: string) { return statusLabels[status] ?? status; }
 
 export default function AdminInquiriesClient() {
   const [secret, setSecret] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+  const [typeFilter, setTypeFilter] = useState<InquiryFilter>("");
   const [error, setError] = useState("");
 
-  async function load() {
-    const response = await fetch("/api/admin/inquiries", { cache: "no-store" });
+  async function load(nextFilter: InquiryFilter = typeFilter) {
+    const query = nextFilter ? `?type=${nextFilter}` : "";
+    const response = await fetch(`/api/admin/inquiries${query}`, { cache: "no-store" });
     if (!response.ok) { setAuthenticated(false); return; }
     setAuthenticated(true);
     setInquiries(((await response.json()) as { inquiries: Inquiry[] }).inquiries);
@@ -29,6 +38,7 @@ export default function AdminInquiriesClient() {
 
   useEffect(() => { void Promise.resolve().then(() => load()); }, []);
 
-  if (!authenticated) return <main style={{ maxWidth: 480, margin: "4rem auto", padding: "1.5rem" }}><h1>Inquiry administration</h1><p><Link href="/admin/login">Open admin login</Link></p><form onSubmit={login}><label htmlFor="admin-secret">Access secret</label><input id="admin-secret" type="password" value={secret} onChange={(event) => setSecret(event.target.value)} autoComplete="current-password" style={{ display: "block", width: "100%", margin: "0.5rem 0 1rem" }} /><button type="submit">Sign in</button>{error ? <p role="alert">{error}</p> : null}</form></main>;
-  return <main style={{ padding: "2rem", overflowX: "auto" }}><h1>Inquiry administration</h1><p>Visitor records are automated company-level candidates, not confirmed customer inquiries.</p><p><a href="/api/admin/inquiries.csv">Download CSV</a></p><table><thead><tr>{["Type", "Source", "Status", "Company / Customer", "Domain / Email", "Country", "Network", "Confidence", "Score", "Updated"].map((header) => <th key={header} scope="col">{header}</th>)}</tr></thead><tbody>{inquiries.map((inquiry) => <tr key={inquiry.id}><td><a href={`/admin/inquiries/${inquiry.id}`}>{inquiry.inquiryType === "company_visitor_lead" ? "企业访客识别" : "客户主动询盘"}</a></td><td>{inquiry.sourceLabel ?? ""}</td><td>{inquiry.status}</td><td>{inquiry.companyName ?? inquiry.customerName ?? "暂未识别"}</td><td>{inquiry.companyDomain ?? inquiry.customerEmail ?? "暂未识别"}</td><td>{inquiry.countryName ?? ""}</td><td>{inquiry.networkType ?? ""}</td><td>{inquiry.providerConfidence == null ? "" : `${Math.round(inquiry.providerConfidence * 100)}%`}</td><td>{inquiry.leadScore ?? ""}</td><td>{new Date(inquiry.createdAt).toLocaleString()}</td></tr>)}</tbody></table></main>;
+  if (!authenticated) return <main className={styles.page}><div className={styles.narrow}><h1>Inquiry administration</h1><p><Link href="/admin/login">Open admin login</Link></p><form className={styles.loginForm} onSubmit={login}><label htmlFor="admin-secret">Access secret</label><input id="admin-secret" type="password" value={secret} onChange={(event) => setSecret(event.target.value)} autoComplete="current-password" /><button type="submit">Sign in</button>{error ? <p role="alert">{error}</p> : null}</form></div></main>;
+
+  return <main className={styles.page}><div className={styles.container}><header className={styles.header}><div><p className={styles.eyebrow}>KEHONG / INTERNAL</p><h1>Inquiry administration</h1><p className={styles.description}>Review automated company visitor candidates separately from customer-submitted inquiries.</p></div><a className={styles.csvLink} href="/api/admin/inquiries.csv">Download CSV</a></header><nav className={styles.filters} aria-label="Inquiry filters"><span className={styles.filterLabel}>View</span>{[["", "全部"], ["customer_submitted", "客户主动询盘"], ["company_visitor_lead", "企业访客识别"]].map(([value, label]) => <button key={value} type="button" className={typeFilter === value ? styles.filterActive : styles.filter} onClick={() => { const next = value as InquiryFilter; setTypeFilter(next); void load(next); }}>{label}</button>)}</nav><div className={styles.tableShell}><div className={styles.tableScroll}><table><caption className={styles.srOnly}>Inquiry records</caption><thead><tr>{["Type", "Company / Customer", "Country", "Status", "Score", "Confidence", "Source", "Updated"].map((header) => <th key={header} scope="col">{header}</th>)}</tr></thead><tbody>{inquiries.map((inquiry) => <tr key={inquiry.id}><td><Link className={styles.typeCell} href={`/admin/inquiries/${inquiry.id}`}><span className={`${styles.badge} ${inquiry.inquiryType === "company_visitor_lead" ? styles.visitorBadge : styles.customerBadge}`}>{typeLabels[inquiry.inquiryType]}</span></Link></td><td><Link className={styles.rowLink} href={`/admin/inquiries/${inquiry.id}`}><strong>{inquiry.companyName ?? inquiry.customerName ?? "暂未识别"}</strong><small>{inquiry.companyDomain ?? inquiry.customerEmail ?? "暂未识别"}</small></Link></td><td>{inquiry.countryName ?? "暂未识别"}</td><td><span className={styles.status}>{statusLabel(inquiry.status)}</span></td><td>{inquiry.leadScore ?? "-"}</td><td>{inquiry.providerConfidence == null ? "-" : `${Math.round(inquiry.providerConfidence * 100)}%`}</td><td>{inquiry.sourceLabel ?? "-"}</td><td>{new Date(inquiry.createdAt).toLocaleString()}</td></tr>)}</tbody></table>{inquiries.length === 0 ? <p className={styles.empty}>No inquiry records match this view.</p> : null}</div></div></div></main>;
 }

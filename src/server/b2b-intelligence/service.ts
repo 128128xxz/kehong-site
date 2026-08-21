@@ -5,8 +5,9 @@ import { hasMeaningfulBehavior, isEligibleNetwork, scoreLead } from "./lead-scor
 import { lookupCompanyByIp, enrichCompany } from "./providers";
 import { getInquiryRepository } from "./repository-factory";
 import type { CustomerInquiryDraft, ProviderCompanyResult, VisitorEventInput, VisitorEventRecord, VisitorLeadRecord } from "./types";
+import { countVisitSessions } from "./visit-session";
 
-function expiry(days: number) { return new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString(); }
+function expiry(days: number, nowMs: number) { return new Date(nowMs + days * 24 * 60 * 60 * 1000).toISOString(); }
 
 function emptyProfile(): ProviderCompanyResult {
   return { provider: "none", companyId: null, companyName: null, companyDomain: null, companyWebsite: null, countryCode: null, countryName: null, region: null, city: null, industry: null, employeeRange: null, revenueRange: null, headquarters: null, linkedinUrl: null, networkType: "unknown", providerConfidence: 0 };
@@ -16,9 +17,14 @@ function mergeProfile(ipProfile: ProviderCompanyResult | null, enrichment: Provi
   return enrichment ? { ...ipProfile, ...enrichment, provider: ipProfile?.provider ?? enrichment.provider } : ipProfile ?? emptyProfile();
 }
 
-export async function processVisitorEvent(request: Request, event: VisitorEventInput) {
+export type VisitorEventProcessingOptions = { now?: () => Date };
+
+export async function processVisitorEvent(request: Request, event: VisitorEventInput, options: VisitorEventProcessingOptions = {}) {
   if (!visitorIntelligenceEnabled()) return { accepted: true, deduplicated: false, leadId: null, disabled: true };
-  const shouldLookup = event.eventType !== "page_view";
+  // Page views are visit evidence and must share the same company identity as
+  // later meaningful events. Only the HMAC hash is retained; raw IP handling
+  // remains inside the existing trusted extraction/provider path.
+  const shouldLookup = true;
   const rawIp = shouldLookup ? extractTrustedClientIp(request) : null;
   const ipHash = hashIp(rawIp);
   const ipProfile = rawIp && ipHash ? await lookupCompanyByIp(rawIp, ipHash) : null;
@@ -26,20 +32,21 @@ export async function processVisitorEvent(request: Request, event: VisitorEventI
   const enrichment = domain ? await enrichCompany(domain) : null;
   const profile = mergeProfile(ipProfile, enrichment);
   const companyIdentity = companyIdentityFor(profile);
-  const occurredAt = new Date().toISOString();
+  const now = options.now?.() ?? new Date();
+  const occurredAt = now.toISOString();
   const repository = getInquiryRepository();
-  const eventRecord: VisitorEventRecord = { ...event, ipHash, companyIdentity, networkType: profile.networkType, botCategory: profile.networkType === "unknown" ? "unknown" : null, occurredAt, expiresAt: expiry(visitorConfig.visitRetentionDays) };
-  const inserted = await repository.saveVisitorEvent(eventRecord);
-  if (!inserted || !companyIdentity || !hasMeaningfulBehavior([eventRecord]) || !isEligibleNetwork(profile.networkType) || profile.providerConfidence < 0.75) return { accepted: true, deduplicated: !inserted, leadId: null };
+  const eventRecord: VisitorEventRecord = { ...event, ipHash, companyIdentity, networkType: profile.networkType, botCategory: profile.networkType === "unknown" ? "unknown" : null, occurredAt, expiresAt: expiry(visitorConfig.visitRetentionDays, now.getTime()) };
+  const accounting = await repository.recordVisitorEvent(eventRecord);
+  if (!accounting.inserted || !companyIdentity || !isEligibleNetwork(profile.networkType) || profile.providerConfidence < 0.75) return { accepted: true, deduplicated: !accounting.inserted, leadId: null };
 
   const events = await repository.getVisitorEvents(companyIdentity);
   const score = scoreLead(events, profile);
   if (!hasMeaningfulBehavior(events) || score.score < visitorConfig.leadScoreThreshold) return { accepted: true, deduplicated: false, leadId: null };
-  const mergeSince = new Date(Date.now() - visitorConfig.mergeDays * 24 * 60 * 60 * 1000).toISOString();
+  const mergeSince = new Date(now.getTime() - visitorConfig.mergeDays * 24 * 60 * 60 * 1000).toISOString();
   const existing = await repository.findVisitorLead(companyIdentity, mergeSince);
   const first = events[0] ?? eventRecord;
   const last = events[events.length - 1] ?? eventRecord;
-  const lead = await repository.saveVisitorLead({ ...profile, companyIdentity, leadScore: score.score, scoreReasons: score.reasons, firstSeenAt: first.occurredAt, lastSeenAt: last.occurredAt, firstReferrer: first.referrer, latestReferrer: last.referrer, firstUtmSource: first.utmSource, latestUtmSource: last.utmSource, totalVisits: events.filter((item) => item.eventType === "page_view").length, totalEvents: events.length, requiresManualLink: false }, existing?.id);
+  const lead = await repository.saveVisitorLead({ ...profile, companyIdentity, leadScore: score.score, scoreReasons: score.reasons, firstSeenAt: first.occurredAt, lastSeenAt: last.occurredAt, firstReferrer: first.referrer, latestReferrer: last.referrer, firstUtmSource: first.utmSource, latestUtmSource: last.utmSource, totalVisits: countVisitSessions(events, visitorConfig.visitSessionTimeoutMinutes), totalEvents: events.length, requiresManualLink: false }, existing?.id);
   await repository.linkEventsToLead(companyIdentity, lead.id);
   const notificationKey = `score-${Math.floor(score.score / Math.max(1, visitorConfig.renotifyIncrement))}`;
   if (!existing || !(await repository.hasNotification(lead.id, notificationKey))) await notifyVisitorLead(lead, events, notificationKey);

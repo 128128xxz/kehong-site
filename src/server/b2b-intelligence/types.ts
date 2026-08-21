@@ -57,6 +57,11 @@ export type VisitorEventRecord = VisitorEventInput & {
   expiresAt: string;
 };
 
+export type VisitAccountingResult = {
+  inserted: boolean;
+  isNewVisit: boolean;
+};
+
 export type VisitorLeadDraft = ProviderCompanyResult & {
   companyIdentity: string;
   leadScore: number;
@@ -119,6 +124,7 @@ export type InquiryFilter = {
 
 export interface InquiryRepository {
   saveVisitorEvent(event: VisitorEventRecord): Promise<boolean>;
+  recordVisitorEvent(event: VisitorEventRecord): Promise<VisitAccountingResult>;
   getVisitorEvents(companyIdentity: string): Promise<VisitorEventRecord[]>;
   findVisitorLead(companyIdentity: string, mergeSince: string): Promise<VisitorLeadRecord | null>;
   saveVisitorLead(draft: VisitorLeadDraft, existingId?: string): Promise<VisitorLeadRecord>;

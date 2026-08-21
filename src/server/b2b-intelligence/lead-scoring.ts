@@ -1,5 +1,6 @@
 import { visitorConfig } from "./config";
 import type { ProviderCompanyResult, ScoreReason, VisitorEventRecord } from "./types";
+import { countVisitSessions } from "./visit-session";
 
 const meaningfulEventTypes = new Set(["product_view", "contact_view", "quote_view", "email_click", "whatsapp_click", "form_start", "form_submit"]);
 
@@ -30,7 +31,7 @@ export function scoreLead(events: VisitorEventRecord[], profile: ProviderCompany
   if (typeCounts.has("whatsapp_click")) add("whatsapp_click", 30, "WhatsApp contact clicked");
   if (typeCounts.has("form_start")) add("form_start", 20, "Inquiry form started");
   if (typeCounts.has("form_submit")) add("form_submit", 50, "Inquiry form submitted");
-  if ((typeCounts.get("page_view") ?? 0) >= 2) add("repeat_visit", 10, "Repeated website visit");
+  if (countVisitSessions(events, visitorConfig.visitSessionTimeoutMinutes) >= 2) add("repeat_visit", 10, "Repeated website visit");
   if (events.some((event) => (event.durationSeconds ?? 0) > 60)) add("engaged_duration", 10, "Session duration exceeded 60 seconds");
   if (!isEligibleNetwork(profile.networkType)) add("excluded_network", -60, "Excluded network type");
   if (profile.providerConfidence < 0.75) add("low_confidence", -20, "Low provider confidence");

@@ -24,6 +24,7 @@ export const visitorConfig = {
   notificationDedupHours: integerEnv("NOTIFICATION_DEDUP_HOURS", 24, 1, 168),
   renotifyIncrement: integerEnv("LEAD_SCORE_RENOTIFY_INCREMENT", 30, 1, 200),
   mergeDays: integerEnv("COMPANY_LEAD_MERGE_DAYS", 30, 1, 365),
+  visitSessionTimeoutMinutes: integerEnv("VISIT_SESSION_TIMEOUT_MINUTES", 30, 1, 240),
   visitRetentionDays: integerEnv("VISIT_EVENT_RETENTION_DAYS", 90, 1, 730),
   providerCacheRetentionDays: integerEnv("PROVIDER_CACHE_RETENTION_DAYS", 90, 1, 730),
 };

@@ -10,6 +10,7 @@ import type {
   VisitorLeadDraft,
   VisitorLeadRecord,
 } from "./types";
+import { isNewVisit, visitSessionKey } from "./visit-session";
 
 function nowIso() {
   return new Date().toISOString();
@@ -32,6 +33,18 @@ export class MemoryInquiryRepository implements InquiryRepository {
     if (this.events.has(event.eventId)) return false;
     this.events.set(event.eventId, event);
     return true;
+  }
+
+  async recordVisitorEvent(event: VisitorEventRecord) {
+    if (this.events.has(event.eventId)) return { inserted: false, isNewVisit: false };
+    const key = visitSessionKey(event);
+    const previous = key
+      ? [...this.events.values()]
+        .filter((candidate) => visitSessionKey(candidate) === key)
+        .sort((left, right) => right.occurredAt.localeCompare(left.occurredAt))[0]
+      : undefined;
+    this.events.set(event.eventId, event);
+    return { inserted: true, isNewVisit: Boolean(key && isNewVisit(previous?.occurredAt ?? null, event.occurredAt, visitorConfig.visitSessionTimeoutMinutes)) };
   }
 
   async getVisitorEvents(companyIdentity: string) {
