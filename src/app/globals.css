@@ -2132,6 +2132,84 @@ html:root[data-ui-material="glass-c"] .kh-header[data-variant="cinema"][data-scr
   filter: drop-shadow(0 1px 1px rgba(4, 19, 31, .85));
 }
 
+/* Keep inner-page navigation in the same calm liquid-glass language as home. */
+.kh-header[data-variant="solid"] {
+  background: rgba(255, 253, 248, .68) !important;
+  border-bottom-color: rgba(255, 255, 255, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7), 0 8px 24px rgba(7, 28, 40, .1);
+  -webkit-backdrop-filter: blur(18px) saturate(135%) contrast(103%);
+  backdrop-filter: blur(18px) saturate(135%) contrast(103%);
+}
+
+.kh-header[data-variant="solid"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .24) 0, rgba(255, 255, 255, .1) 19%, transparent 48%),
+    linear-gradient(112deg, rgba(255, 255, 255, .08), transparent 34% 68%, rgba(255, 255, 255, .06));
+  filter: blur(8px);
+}
+
+.kh-header[data-variant="solid"] > .kh-header-bar {
+  position: relative;
+  z-index: 1;
+}
+
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-nav-link,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+.kh-header[data-variant="solid"] .kh-header-cta,
+.kh-header[data-variant="solid"] .kh-language-trigger,
+.kh-header[data-variant="solid"] .kh-menu-toggle {
+  background: rgba(255, 255, 255, .1) !important;
+  background-image: none !important;
+  border: 1px solid rgba(255, 255, 255, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .48), inset 0 -1px 0 rgba(9, 27, 39, .14), 0 7px 18px rgba(7, 28, 40, .14) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(135%) contrast(103%);
+  backdrop-filter: blur(12px) saturate(135%) contrast(103%);
+}
+
+.kh-header[data-variant="solid"] .kh-desktop-nav .kh-nav-icon,
+.kh-header[data-variant="solid"] .kh-desktop-nav .kh-nav-chevron,
+.kh-header[data-variant="solid"] .kh-desktop-nav .kh-nav-3d-icon,
+.kh-header[data-variant="solid"] .kh-menu-toggle > svg {
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .82));
+}
+
+/* Reduce the vertical breathing room between content bands without changing
+   the content hierarchy or the homepage hero composition. */
+.kh-page-hero-inner {
+  padding-top: clamp(3rem, 5vw, 4.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.kh-section {
+  padding-top: clamp(3.25rem, 5.5vw, 5.25rem);
+  padding-bottom: clamp(3.25rem, 5.5vw, 5.25rem);
+}
+
+@media (min-width: 1101px) {
+  .kh-footer-grid {
+    grid-template-columns: minmax(0, .88fr) minmax(0, 1.18fr) minmax(16rem, .78fr);
+    gap: 2rem;
+  }
+
+  .kh-footer-links {
+    max-width: 36rem;
+    justify-self: start;
+    grid-template-columns: minmax(0, .88fr) minmax(0, .94fr);
+    gap: 1.25rem;
+  }
+
+  .kh-footer-contact-column {
+    max-width: 19rem;
+    justify-self: start;
+  }
+}
+
 /* Softer, more integrated bubble layout: the controls share one visual
    rhythm instead of reading as a row of rigid cards. */
 html:root[data-ui-material="glass-c"] .kh-desktop-nav {
@@ -6532,4 +6610,115 @@ html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
   filter: none !important;
   opacity: 1 !important;
   stroke: currentColor !important;
+}
+
+/* Final inner-page glass override: keep the material active before and after scroll. */
+.kh-header[data-variant="solid"] {
+  --glass-pointer-x: 50%;
+  --glass-pointer-y: 50%;
+  background: rgba(255, 253, 248, .58) !important;
+  border-bottom-color: rgba(255, 255, 255, .58) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .72), 0 8px 24px rgba(7, 28, 40, .12) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(145%) contrast(104%) !important;
+  backdrop-filter: blur(20px) saturate(145%) contrast(104%) !important;
+}
+
+.kh-header[data-variant="solid"]::before {
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .3), transparent 45%),
+    linear-gradient(112deg, rgba(255, 255, 255, .12), transparent 35% 68%, rgba(255, 255, 255, .08));
+  filter: blur(8px);
+  opacity: .95;
+}
+
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-nav-link,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+.kh-header[data-variant="solid"] .kh-header-cta,
+.kh-header[data-variant="solid"] .kh-language-trigger,
+.kh-header[data-variant="solid"] .kh-menu-toggle {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .68) !important;
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, .08) 52%, rgba(218, 240, 246, .14)) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .74), inset 0 -1.5px 0 rgba(13, 39, 71, .16), 0 8px 18px rgba(7, 28, 40, .14) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(145%) contrast(104%) !important;
+  backdrop-filter: blur(14px) saturate(145%) contrast(104%) !important;
+  color: #0d2747 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .82);
+}
+
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-nav-link > *,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link > *,
+.kh-header[data-variant="solid"] .kh-header-cta > *,
+.kh-header[data-variant="solid"] .kh-language-trigger > *,
+.kh-header[data-variant="solid"] .kh-menu-toggle > * {
+  position: relative;
+  z-index: 1;
+}
+
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-nav-link::before,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+.kh-header[data-variant="solid"] .kh-header-cta::before,
+.kh-header[data-variant="solid"] .kh-language-trigger::before,
+.kh-header[data-variant="solid"] .kh-menu-toggle::before,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-nav-link::after,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+.kh-header[data-variant="solid"] .kh-header-cta::after,
+.kh-header[data-variant="solid"] .kh-language-trigger::after,
+.kh-header[data-variant="solid"] .kh-menu-toggle::after {
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-nav-link::before,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::before,
+.kh-header[data-variant="solid"] .kh-header-cta::before,
+.kh-header[data-variant="solid"] .kh-language-trigger::before,
+.kh-header[data-variant="solid"] .kh-menu-toggle::before {
+  inset: 1px;
+  border: 1px solid rgba(255, 255, 255, .34);
+  background: linear-gradient(120deg, rgba(255, 255, 255, .14), transparent 42% 64%, rgba(255, 255, 255, .08));
+}
+
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-nav-link::after,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link::after,
+.kh-header[data-variant="solid"] .kh-header-cta::after,
+.kh-header[data-variant="solid"] .kh-language-trigger::after,
+.kh-header[data-variant="solid"] .kh-menu-toggle::after {
+  background: radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y), rgba(255, 255, 255, .46), transparent 54%);
+  opacity: .72;
+}
+
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-nav-link:hover,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-nav-link:focus-visible,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:hover,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link:focus-visible,
+.kh-header[data-variant="solid"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link[aria-expanded="true"],
+.kh-header[data-variant="solid"] .kh-header-cta:hover,
+.kh-header[data-variant="solid"] .kh-header-cta:focus-visible,
+.kh-header[data-variant="solid"] .kh-language-trigger:hover,
+.kh-header[data-variant="solid"] .kh-language-trigger:focus-visible,
+.kh-header[data-variant="solid"] .kh-menu-toggle:hover,
+.kh-header[data-variant="solid"] .kh-menu-toggle:focus-visible {
+  border-color: rgba(255, 255, 255, .9) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .92), inset 0 -1.5px 0 rgba(13, 39, 71, .24), 0 12px 28px rgba(7, 28, 40, .22) !important;
+}
+
+.kh-header[data-variant="solid"] .kh-desktop-nav .kh-nav-icon,
+.kh-header[data-variant="solid"] .kh-desktop-nav .kh-nav-chevron,
+.kh-header[data-variant="solid"] .kh-desktop-nav .kh-nav-3d-icon,
+.kh-header[data-variant="solid"] .kh-menu-toggle > svg {
+  color: #279b39 !important;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .88));
 }
