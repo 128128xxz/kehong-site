@@ -79,7 +79,7 @@ export default async function FactoryOverview({ locale }: { locale: string }) {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="03" text={t("factory.process.kicker")} />
-                <h2>{t("factory.process.title")}</h2>
+                <h2 className="kh-editorial-serif">{t("factory.process.title")}</h2>
                 <p className="kh-section-lede mt-5">{t("factory.process.lede")}</p>
               </div>
             </div>

@@ -46,7 +46,7 @@ export default function HomeMaterialsGallery({ locale }: { locale: string }) {
           <div className="kh-section-heading">
             <div>
               <SectionKicker index="04" text={zh ? "材料与质感" : "Materials"} />
-              <h2>{zh ? "材料决定包装的手感与强度" : "Material sets the feel and the strength"}</h2>
+              <h2 className="kh-editorial-serif">{zh ? "材料决定包装的手感与强度" : "Material sets the feel and the strength"}</h2>
             </div>
             <div className="kh-gallery-nav">
               <button type="button" aria-label={zh ? "向前浏览材料" : "Scroll materials backward"} onClick={() => scrollByCard(-1)}>
