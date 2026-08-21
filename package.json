@@ -43,7 +43,6 @@
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
     "test:e2e": "B2B_VISITOR_INTELLIGENCE_ENABLED=false playwright test",
-    "test:e2e:b2b": "B2B_VISITOR_INTELLIGENCE_ENABLED=true B2B_MOCK_SCENARIO=business playwright test tests/e2e/b2b-mock.spec.ts",
     "test:e2e:ui": "B2B_VISITOR_INTELLIGENCE_ENABLED=false playwright test --ui",
     "ci": "pnpm install --frozen-lockfile && pnpm run lint && pnpm run typecheck && pnpm run validate:products && pnpm run audit:legacy-domain && pnpm run test:unit && pnpm run build && pnpm run test:e2e"
   },
@@ -53,6 +52,7 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
+    "@upstash/redis": "^1.38.2",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
     "class-variance-authority": "^0.7.1",
@@ -61,7 +61,6 @@
     "motion": "^12.42.2",
     "next": "^16.2.9",
     "next-intl": "^4.13.0",
-    "pg": "^8.23.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwind-merge": "^3.4.0",

@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, code }, { status });
   }
   after(async () => {
-    try { await processVisitorEvent(request, event); } catch (error) { console.error("B2B visitor event processing failed", { category: error instanceof Error ? error.name : "unknown" }); }
+    try { await processVisitorEvent(request, event); } catch (error) { console.error("Visitor digest event processing failed", { category: error instanceof Error ? error.name : "unknown" }); }
   });
   return NextResponse.json({ ok: true, eventId: event.eventId, accepted: true }, { status: 202, headers: { "Cache-Control": "no-store, max-age=0" } });
 }
