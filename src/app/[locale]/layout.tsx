@@ -4,9 +4,9 @@ import {
   Instrument_Serif,
   Inter,
   Noto_Sans_Thai,
-  Noto_Serif_SC,
   Noto_Serif_Thai,
   Space_Grotesk,
+  ZCOOL_XiaoWei,
 } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -36,7 +36,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-plex-mono", display: "swap" });
 const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: "normal", variable: "--font-instrument-serif", display: "swap" });
-const notoSerifSc = Noto_Serif_SC({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-noto-serif-sc", display: "swap" });
+const zcoolXiaoWei = ZCOOL_XiaoWei({ subsets: ["latin"], weight: "400", variable: "--font-zcool-xiaowei", display: "swap" });
 const notoSerifThai = Noto_Serif_Thai({ subsets: ["thai"], weight: ["400", "600"], variable: "--font-noto-serif-thai", display: "swap" });
 const notoSansThai = Noto_Sans_Thai({ subsets: ["thai"], weight: ["400", "500"], variable: "--font-noto-sans-thai", display: "swap" });
 
@@ -64,7 +64,7 @@ export default async function RootLayout({
   const timeZone = await getTimeZone();
   const now = await getNow();
 
-  return <html lang={locale} dir="ltr" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable} ${instrumentSerif.variable} ${notoSerifSc.variable} ${notoSerifThai.variable} ${notoSansThai.variable}`}>
+  return <html lang={locale} dir="ltr" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable} ${instrumentSerif.variable} ${zcoolXiaoWei.variable} ${notoSerifThai.variable} ${notoSansThai.variable}`}>
     <head><meta name="theme-color" content="#171713" /></head>
     <body className="antialiased">
       <UIMaterialPreview />
