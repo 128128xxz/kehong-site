@@ -96,6 +96,14 @@ export class MemoryInquiryRepository implements InquiryRepository {
     this.notifications.set(`${inquiryId}:${notificationKey}`, { status, createdAt: nowIso() });
   }
 
+  async getLatestNotificationStatus(inquiryId: string) {
+    const statuses = [...this.notifications.entries()]
+      .filter(([key]) => key.startsWith(`${inquiryId}:`))
+      .map(([, notification]) => notification)
+      .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    return statuses[0]?.status ?? null;
+  }
+
   async listInquiries(filter: InquiryFilter = {}) {
     return [...this.customers.values(), ...this.leads.values()].filter((inquiry) => matchesFilter(inquiry, filter)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   }

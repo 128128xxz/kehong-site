@@ -96,6 +96,12 @@ export class PostgresInquiryRepository implements InquiryRepository {
     await this.query(`INSERT INTO inquiry_activity_logs (id, inquiry_id, activity_type, notification_key, status) VALUES ($1,$2,'notification',$3,$4) ON CONFLICT DO NOTHING`, [randomUUID(), inquiryId, notificationKey, status]);
   }
 
+  async getLatestNotificationStatus(inquiryId: string) {
+    const result = await this.query(`SELECT status FROM inquiry_activity_logs WHERE inquiry_id = $1 AND activity_type = 'notification' ORDER BY created_at DESC LIMIT 1`, [inquiryId]);
+    const status = result.rows[0]?.status;
+    return status === "sent" || status === "failed" ? status : null;
+  }
+
   async listInquiries(filter: InquiryFilter = {}) {
     const result = await this.query(`SELECT * FROM inquiries ORDER BY updated_at DESC LIMIT 500`);
     return result.rows.map((row) => row.inquiry_type === "company_visitor_lead" ? leadFromRow(row) : customerFromRow(row)).filter((inquiry) => matchesFilter(inquiry, filter));

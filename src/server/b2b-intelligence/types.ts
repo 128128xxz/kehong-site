@@ -128,6 +128,7 @@ export interface InquiryRepository {
   linkVisitorToCustomer(visitorId: string, customerId: string): Promise<void>;
   hasNotification(inquiryId: string, notificationKey: string): Promise<boolean>;
   recordNotification(inquiryId: string, notificationKey: string, status: "sent" | "failed"): Promise<void>;
+  getLatestNotificationStatus(inquiryId: string): Promise<"sent" | "failed" | null>;
   listInquiries(filter?: InquiryFilter): Promise<UnifiedInquiry[]>;
   cleanupExpired(now: string): Promise<{ visitEvents: number; providerCache: number; activityLogs: number }>;
 }

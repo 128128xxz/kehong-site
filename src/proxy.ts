@@ -124,6 +124,12 @@ export default function proxy(request: NextRequest) {
   const hostname = request.nextUrl.hostname.toLowerCase();
   const isProductionHost = hostname === canonicalHost || hostname === apexHost;
   const mediaRedirect = seoMediaRedirects[request.nextUrl.pathname];
+  const isAdminPath = request.nextUrl.pathname === "/admin" || request.nextUrl.pathname.startsWith("/admin/");
+
+  // Internal admin pages are intentionally not locale-prefixed. Keep them in
+  // the same proxy pipeline so diagnostics and security headers still apply,
+  // but do not let next-intl turn /admin/* into /en/admin/*.
+  if (isAdminPath) return withDiagnostics(NextResponse.next());
 
   // Semantic media renames preserve neutral legacy URLs with one direct 308.
   // AI/GPT-marked historical paths are intentionally absent from this map and

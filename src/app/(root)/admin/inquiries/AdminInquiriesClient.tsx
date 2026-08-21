@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-type Inquiry = { id: string; inquiryType: string; status: string; companyName?: string | null; companyDomain?: string | null; countryName?: string | null; industry?: string | null; networkType?: string | null; providerConfidence?: number | null; leadScore?: number | null; customerName?: string | null; customerEmail?: string | null; createdAt: string };
+type Inquiry = { id: string; inquiryType: string; sourceLabel?: string | null; status: string; companyName?: string | null; companyDomain?: string | null; countryName?: string | null; networkType?: string | null; providerConfidence?: number | null; leadScore?: number | null; customerName?: string | null; customerEmail?: string | null; createdAt: string };
 
 export default function AdminInquiriesClient() {
   const [secret, setSecret] = useState("");
@@ -26,6 +27,8 @@ export default function AdminInquiriesClient() {
     await load();
   }
 
-  if (!authenticated) return <main style={{ maxWidth: 480, margin: "4rem auto", padding: "1.5rem" }}><h1>Inquiry administration</h1><form onSubmit={login}><label htmlFor="admin-secret">Access secret</label><input id="admin-secret" type="password" value={secret} onChange={(event) => setSecret(event.target.value)} autoComplete="current-password" style={{ display: "block", width: "100%", margin: "0.5rem 0 1rem" }} /><button type="submit">Sign in</button>{error ? <p role="alert">{error}</p> : null}</form></main>;
-  return <main style={{ padding: "2rem", overflowX: "auto" }}><h1>Inquiry administration</h1><p>Visitor records are automated company-level candidates, not confirmed customer inquiries.</p><p><a href="/api/admin/inquiries.csv">Download CSV</a></p><table><thead><tr>{["Type", "Status", "Company / Customer", "Domain / Email", "Country", "Network", "Score", "Updated"].map((header) => <th key={header} scope="col">{header}</th>)}</tr></thead><tbody>{inquiries.map((inquiry) => <tr key={inquiry.id}><td>{inquiry.inquiryType}</td><td>{inquiry.status}</td><td>{inquiry.companyName ?? inquiry.customerName ?? ""}</td><td>{inquiry.companyDomain ?? inquiry.customerEmail ?? ""}</td><td>{inquiry.countryName ?? ""}</td><td>{inquiry.networkType ?? ""}</td><td>{inquiry.leadScore ?? ""}</td><td>{new Date(inquiry.createdAt).toLocaleString()}</td></tr>)}</tbody></table></main>;
+  useEffect(() => { void Promise.resolve().then(() => load()); }, []);
+
+  if (!authenticated) return <main style={{ maxWidth: 480, margin: "4rem auto", padding: "1.5rem" }}><h1>Inquiry administration</h1><p><Link href="/admin/login">Open admin login</Link></p><form onSubmit={login}><label htmlFor="admin-secret">Access secret</label><input id="admin-secret" type="password" value={secret} onChange={(event) => setSecret(event.target.value)} autoComplete="current-password" style={{ display: "block", width: "100%", margin: "0.5rem 0 1rem" }} /><button type="submit">Sign in</button>{error ? <p role="alert">{error}</p> : null}</form></main>;
+  return <main style={{ padding: "2rem", overflowX: "auto" }}><h1>Inquiry administration</h1><p>Visitor records are automated company-level candidates, not confirmed customer inquiries.</p><p><a href="/api/admin/inquiries.csv">Download CSV</a></p><table><thead><tr>{["Type", "Source", "Status", "Company / Customer", "Domain / Email", "Country", "Network", "Confidence", "Score", "Updated"].map((header) => <th key={header} scope="col">{header}</th>)}</tr></thead><tbody>{inquiries.map((inquiry) => <tr key={inquiry.id}><td><a href={`/admin/inquiries/${inquiry.id}`}>{inquiry.inquiryType === "company_visitor_lead" ? "企业访客识别" : "客户主动询盘"}</a></td><td>{inquiry.sourceLabel ?? ""}</td><td>{inquiry.status}</td><td>{inquiry.companyName ?? inquiry.customerName ?? "暂未识别"}</td><td>{inquiry.companyDomain ?? inquiry.customerEmail ?? "暂未识别"}</td><td>{inquiry.countryName ?? ""}</td><td>{inquiry.networkType ?? ""}</td><td>{inquiry.providerConfidence == null ? "" : `${Math.round(inquiry.providerConfidence * 100)}%`}</td><td>{inquiry.leadScore ?? ""}</td><td>{new Date(inquiry.createdAt).toLocaleString()}</td></tr>)}</tbody></table></main>;
 }
