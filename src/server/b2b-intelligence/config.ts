@@ -6,10 +6,6 @@ export function visitorIntelligenceEnabled() {
   return process.env.B2B_VISITOR_INTELLIGENCE_ENABLED === "true";
 }
 
-export function mockVisitorIntelligenceEnabled() {
-  return visitorIntelligenceEnabled() && !isProductionEnvironment();
-}
-
 export function integerEnv(name: string, fallback: number, min: number, max: number) {
   const value = Number.parseInt(process.env[name] ?? "", 10);
   return Number.isFinite(value) ? Math.min(max, Math.max(min, value)) : fallback;

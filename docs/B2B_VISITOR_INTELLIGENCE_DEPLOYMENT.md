@@ -13,7 +13,8 @@ values:
 - `B2B_DIGEST_RETENTION_HOURS=48`
 - `B2B_DIGEST_SEND_EMPTY=true`
 - `VISIT_SESSION_TIMEOUT_MINUTES=30`
-- `B2B_DIGEST_EMAIL_TRANSPORT=captured` for a no-external-mail Preview test
+- `B2B_DIGEST_TO_EMAIL` (recommended; falls back to `INQUIRY_TO_EMAIL`, then `EMAIL_TO`)
+- `B2B_DIGEST_EMAIL_TRANSPORT=captured` only for local/contract tests without external mail
 - existing Resend variables when testing actual digest delivery
 
 The Upstash Redis resource is not created or configured by this repository
@@ -21,9 +22,9 @@ change. Production and Preview provisioning remain an explicit operator step.
 
 ## Deliberate non-requirements
 
-`DATABASE_URL`, PostgreSQL, Neon, SQL migrations, IP company providers,
-enrichment providers, provider API keys, an Admin secret, and a CRM database
-are not part of the current runtime. No real IP lookup or company enrichment
+The final runtime has no `DATABASE_URL`, PostgreSQL, Neon, SQL migrations,
+IP-to-company providers, enrichment providers, provider API keys, Admin
+secret, CRM database, or WeCom transport. No external company-identification
 request is made.
 
 ## Schedules and safety

@@ -24,22 +24,3 @@ export type VisitorEventInput = {
   utmContent: string | null;
   durationSeconds: number | null;
 };
-
-export type CustomerInquiryDraft = {
-  source: string;
-  sourceLabel: string;
-  status: string;
-  customerName: string | null;
-  customerEmail: string | null;
-  customerPhone: string | null;
-  customerMessage: string | null;
-  companyName: string | null;
-  companyDomain: string | null;
-  companyWebsite: string | null;
-  countryName: string | null;
-  firstReferrer: string | null;
-  latestReferrer: string | null;
-  firstUtmSource: string | null;
-  latestUtmSource: string | null;
-  linkedInquiryId: string | null;
-};

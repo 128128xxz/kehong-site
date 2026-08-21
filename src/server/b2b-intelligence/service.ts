@@ -1,10 +1,8 @@
-import { randomUUID } from "node:crypto";
 import { visitorConfig, visitorIntelligenceEnabled } from "./config";
 import { digestWindowForEvent } from "./service-window";
-import { getVisitorDigestStore, isRedisConfigured } from "./redis-store";
+import { getVisitorDigestStore } from "./redis-store";
 import type { DigestEventInput, DigestWindowKind } from "./digest-types";
 import { extractTrustedClientIp, hashIp } from "./ip";
-import type { CustomerInquiryDraft } from "./types";
 
 function expiry(nowMs: number) { return new Date(nowMs + visitorConfig.digestRetentionHours * 60 * 60 * 1000).toISOString(); }
 
@@ -21,20 +19,10 @@ export async function processVisitorEvent(request: Request, event: Omit<DigestEv
   return { accepted: true, deduplicated: false, stored: true };
 }
 
-export async function persistCustomerInquiry(input: CustomerInquiryDraft) {
-  const timestamp = new Date().toISOString();
-  return { ...input, id: randomUUID(), inquiryType: "customer_submitted" as const, createdAt: timestamp, updatedAt: timestamp };
-}
-
 export async function cleanupVisitorIntelligence() {
   const removed = await getVisitorDigestStore().cleanupExpired(new Date().toISOString());
-  return { visitEvents: removed, providerCache: 0, activityLogs: 0 };
-}
-
-export function visitorDatabaseStatus() {
-  return isRedisConfigured() ? "upstash_redis_digest_queue_configured" : "NOT_CONFIGURED_MEMORY_TEST_STORAGE";
+  return { digestRows: removed };
 }
 
 export { digestWindowForEvent, digestWindowToSend } from "./service-window";
-export function newEventId() { return randomUUID(); }
 export type { DigestWindowKind };

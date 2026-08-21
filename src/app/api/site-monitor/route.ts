@@ -108,7 +108,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ status: "monitor_not_configured" }, { status: 503 });
   }
 
-  let intelligenceCleanup: { visitEvents: number; providerCache: number; activityLogs: number } | null = null;
+  let intelligenceCleanup: { digestRows: number } | null = null;
   try {
     intelligenceCleanup = await cleanupVisitorIntelligence();
   } catch {

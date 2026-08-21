@@ -1,21 +1,20 @@
-# B2B visitor company identification integrated with inquiry workflow
+# Final visitor behavior digest
 
 ## Summary
 
-- Adds a unified inquiry persistence abstraction for customer inquiries and review-only company visitor candidates.
-- Adds privacy-safe `/api/lead-event` validation and server-side HMAC IP hashing.
-- Adds mock-only provider interfaces, cache boundaries, explainable scoring, merge, notification dedup, and cleanup hook.
-- Reuses Resend for visitor notifications and preserves the existing customer inquiry path.
-- Adds a minimal authenticated unified `/admin/inquiries` and CSV export because no inquiry admin existed.
-- Adds migrations, environment documentation, privacy impact/copy proposal, deployment notes, and targeted tests.
+- Keeps customer-submitted inquiries on the existing immediate Resend path.
+- Captures allow-listed visitor behavior server-side and groups it by HMAC IP hash.
+- Stores only short-lived digest records in Upstash Redis, with raw IP TTL bounded to 48 hours.
+- Sends behavior-only summaries at 12:00 and 18:00 Asia/Shanghai through the existing Resend transport.
 
 ## Safety
 
-- No raw IP is stored, logged, returned, or exported.
-- No visitor record receives fake contact fields or a claim about a specific person.
-- Mock provider only; no paid provider, WeCom message, Production database, or deployment.
-- Homepage/About/Resources and Marvis-owned files are not changed.
-- Privacy legal review remains required before a real provider is enabled.
+- Trusted server-side IP extraction normalizes IPv4/IPv6 and rejects private/local addresses.
+- Client event payloads reject IP, cookie, email, phone, message and other PII fields.
+- Raw IP is never returned to the browser, written to ordinary logs, analytics or browser storage.
+- Behavior score ranks activity only; it does not identify a company, person or purchase intent.
+- No IP-to-company API, enrichment provider, PostgreSQL, CRM, Admin surface or WeCom transport is used.
+- Production remains explicitly disabled until the operator completes the separate privacy and environment review.
 
 ## Validation
 
