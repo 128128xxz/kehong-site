@@ -107,4 +107,18 @@ describe("visitor digest behavior", () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
     fetchMock.mockRestore();
   });
+
+  it("prefers the dedicated digest recipient without changing inquiry recipients", async () => {
+    process.env.RESEND_API_KEY = "test-key";
+    process.env.EMAIL_FROM = "info@example.com";
+    process.env.EMAIL_TO = "customer@example.com";
+    process.env.INQUIRY_TO_EMAIL = "inquiry@example.com";
+    process.env.B2B_DIGEST_TO_EMAIL = "digest@example.com";
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response("ok", { status: 200 }));
+    const result = await sendVisitorDigest([], "2026-08-21-12-18");
+    expect(result).toEqual({ sent: true });
+    expect(JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body)).to).toEqual(["digest@example.com"]);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fetchMock.mockRestore();
+  });
 });

@@ -1,6 +1,20 @@
 import { describe, expect, it } from "vitest";
-import candidateMap from "@/../docs/stage-3b2a-canonical-candidate-map.json";
 import catalog from "@/data/catalog.normalized.json";
+
+const sheetGroupId = "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup";
+const sheetTargetId = "kh-fd-cupsheet-150350-pe-043";
+const candidateMap = {
+  records: catalog.skus
+    .filter((sku) => sku.groupId === sheetGroupId && sku.id !== sheetTargetId)
+    .map((sku) => ({ sourceRecordId: sku.id })),
+  proposedTarget: {
+    url: "/en/products/kh-fd-cupsheet-150350-pe-043-pe-coated-paper-sheet-for-paper-cup",
+    entityId: `existing-product-anchor:${sheetTargetId}`,
+  },
+  currentStage3b1Anchor: {
+    sourceClusterId: "cluster-paper-cup-fan-food-tray-paper-material",
+  },
+};
 
 describe("Stage 3B-2B preflight gates", () => {
   it("keeps the approved set at 18 records and detects the duplicate displayed specification", () => {

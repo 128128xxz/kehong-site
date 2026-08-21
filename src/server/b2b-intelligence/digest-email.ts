@@ -1,8 +1,25 @@
-import { getInquiryEmailConfig } from "@/lib/emailConfig";
+import { getInquiryEmailConfig, isValidEmail, parseEmailList } from "@/lib/emailConfig";
 import type { VisitorDigestRecord } from "./digest-types";
 
 function escapeHtml(value: string) { return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;"); }
 function formatDate(value: string) { return new Date(value).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false }); }
+
+function getDigestEmailConfig() {
+  const inquiryConfig = getInquiryEmailConfig();
+  const recipientValue = process.env.B2B_DIGEST_TO_EMAIL?.trim() || process.env.INQUIRY_TO_EMAIL?.trim() || process.env.EMAIL_TO?.trim();
+  const recipients = parseEmailList(recipientValue);
+  const missing = inquiryConfig.missing.filter((key) => key !== "EMAIL_TO");
+  const invalid = inquiryConfig.invalid.filter((key) => key !== "EMAIL_TO");
+  if (recipients.length === 0) missing.push("EMAIL_TO");
+  invalid.push(...recipients.filter((email) => !isValidEmail(email)).map(() => "EMAIL_TO"));
+  return {
+    ...inquiryConfig,
+    to: recipients,
+    missing: [...new Set(missing)],
+    invalid: [...new Set(invalid)],
+    valid: missing.length === 0 && invalid.length === 0,
+  };
+}
 
 function rowText(row: VisitorDigestRecord) {
   const events = Object.entries(row.eventSummary).map(([type, count]) => `${type} x${count}`).join(", ") || "-";
@@ -27,7 +44,7 @@ export async function sendVisitorDigest(rows: VisitorDigestRecord[], digestWindo
   const email = buildVisitorDigestEmail(rows, digestWindow);
   const transport = process.env.B2B_DIGEST_EMAIL_TRANSPORT;
   if (transport === "mock" || transport === "captured") return { sent: true as const, transport, email };
-  const config = getInquiryEmailConfig();
+  const config = getDigestEmailConfig();
   if (!config.valid) return { sent: false, reason: "DELIVERY_UNAVAILABLE" as const };
   const response = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${config.apiKey}`, "Content-Type": "application/json" }, body: JSON.stringify({ from: `Kehong Website <${config.from}>`, to: config.to, subject: email.subject, html: email.html, text: email.text }) }).catch(() => null);
   return response?.ok ? { sent: true as const } : { sent: false, reason: "PROVIDER_FAILURE" as const };
