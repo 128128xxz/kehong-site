@@ -5,9 +5,8 @@ import {
   Manrope,
   Noto_Sans_Thai,
   Noto_Serif_Thai,
+  ZCOOL_XiaoWei,
 } from "next/font/google";
-import "../fonts/noto-serif-sc/noto-serif-sc-500.css";
-import "../fonts/noto-serif-sc/noto-serif-sc-600.css";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
@@ -37,6 +36,7 @@ const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["500", "600"], var
 const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["normal", "italic"], variable: "--font-instrument-serif", display: "swap" });
 const notoSerifThai = Noto_Serif_Thai({ subsets: ["thai"], weight: ["400", "600"], variable: "--font-noto-serif-thai", display: "swap" });
 const notoSansThai = Noto_Sans_Thai({ subsets: ["thai"], weight: ["400", "500"], variable: "--font-noto-sans-thai", display: "swap" });
+const zcoolXiaoWei = ZCOOL_XiaoWei({ subsets: ["latin"], weight: "400", variable: "--font-zcool-xiaowei", display: "swap" });
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -62,7 +62,7 @@ export default async function RootLayout({
   const timeZone = await getTimeZone();
   const now = await getNow();
 
-  return <html lang={locale} dir="ltr" className={`dark ${manrope.variable} ${plexMono.variable} ${instrumentSerif.variable} ${notoSerifThai.variable} ${notoSansThai.variable}`}>
+  return <html lang={locale} dir="ltr" className={`dark ${manrope.variable} ${plexMono.variable} ${instrumentSerif.variable} ${notoSerifThai.variable} ${notoSansThai.variable} ${zcoolXiaoWei.variable}`}>
     <head><meta name="theme-color" content="#171713" /></head>
     <body className="antialiased">
       <UIMaterialPreview />

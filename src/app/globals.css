@@ -31,12 +31,12 @@
   --kh-header-height: 85px;
   /* ===== Typography System =====
      层级: Display XL/L → H1/H2/H3 → Body L/Body/Small → Eyebrow/Caption/Button/Numeric
-     字体栈: sans(Manrope) 承载 UI/正文/导航/按钮/卡片; serif(Instrument Serif + Noto Serif SC + Noto Serif Thai) 仅用于 editorial 大标题
+     字体栈: sans(Manrope) 承载 UI/正文/导航/按钮/卡片; serif(Instrument Serif + ZCOOL XiaoWei + Noto Serif Thai) 仅用于 editorial 大标题
      Thai 通过 Noto Sans/Serif Thai 独立承载, 避免 fallback 视觉跳变
-     zh Display: Noto Serif SC 500/600; th Display: Noto Serif Thai */
+     zh Display: ZCOOL XiaoWei 400; th Display: Noto Serif Thai */
   --font-body: var(--font-manrope, Manrope), var(--font-noto-sans-thai, "Noto Sans Thai"), "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, "Segoe UI", Arial, sans-serif;
   --font-display: var(--font-manrope, Manrope), var(--font-noto-sans-thai, "Noto Sans Thai"), "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif, "Instrument Serif"), var(--font-noto-serif-sc, "Noto Serif SC"), var(--font-noto-serif-thai, "Noto Serif Thai"), "Songti SC", "STSong", "SimSun", serif;
+  --font-serif: var(--font-instrument-serif, "Instrument Serif"), var(--font-zcool-xiaowei, "ZCOOL XiaoWei"), var(--font-noto-serif-thai, "Noto Serif Thai"), "Songti SC", "STSong", "SimSun", serif;
   --font-mono: var(--font-plex-mono, "IBM Plex Mono"), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* Display / heading scale — Strict Art Direction 2026-08 */
@@ -3868,7 +3868,7 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
 
 /* ---------- UI hierarchy pass: quieter actions, clearer rhythm ---------- */
 :root {
-  --font-noto-serif-sc: "Noto Serif SC";
+  --font-zcool-xiaowei: "ZCOOL XiaoWei";
   --kh-type-display: clamp(2.75rem, 6vw, 5.125rem);
   --kh-type-section: clamp(2.15rem, 3vw, 3rem);
   --kh-type-card: clamp(1.12rem, 1.5vw, 1.45rem);
@@ -3881,13 +3881,13 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
   font-size: var(--kh-type-display);
 }
 
-/* 中文 hero 标题使用思源宋体 600（未分层，优先于 components 层） */
+/* 中文 hero 标题使用 ZCOOL XiaoWei 400（未分层，优先于 components 层） */
 @media (min-width: 761px) {
   html:lang(zh) .kh-home-hero .kh-hero-copy h1 {
     font-size: clamp(2.5rem, 4vw, 3.5rem); /* ZH hero 40→56px */
-    font-weight: 600;
-    line-height: 1.22;
-    letter-spacing: -.025em;
+    font-weight: 400;
+    line-height: 1.18;
+    letter-spacing: -.01em;
   }
 }
 
