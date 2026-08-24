@@ -31,46 +31,47 @@
   --kh-header-height: 85px;
   /* ===== Typography System =====
      层级: Display XL/L → H1/H2/H3 → Body L/Body/Small → Eyebrow/Caption/Button/Numeric
-     字体栈: sans(Inter) 承载 UI/正文; serif(Instrument Serif + Noto Serif SC + Noto Serif Thai) 仅用于 editorial 大标题
-     Thai 通过 Noto Sans/Serif Thai 独立承载, 避免 fallback 视觉跳变 */
-  --font-body: var(--font-inter, Inter), var(--font-noto-sans-thai, "Noto Sans Thai"), "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
-  --font-display: var(--font-space-grotesk, "Space Grotesk"), var(--font-inter, Inter), var(--font-noto-sans-thai, "Noto Sans Thai"), "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-serif: var(--font-instrument-serif, "Instrument Serif"), var(--font-zcool-xiaowei, "ZCOOL XiaoWei"), var(--font-noto-serif-thai, "Noto Serif Thai"), "Songti SC", "STSong", "SimSun", serif;
+     字体栈: sans(Manrope) 承载 UI/正文/导航/按钮/卡片; serif(Instrument Serif + Noto Serif SC + Noto Serif Thai) 仅用于 editorial 大标题
+     Thai 通过 Noto Sans/Serif Thai 独立承载, 避免 fallback 视觉跳变
+     zh Display: Noto Serif SC 500/600; th Display: Noto Serif Thai */
+  --font-body: var(--font-manrope, Manrope), var(--font-noto-sans-thai, "Noto Sans Thai"), "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, "Segoe UI", Arial, sans-serif;
+  --font-display: var(--font-manrope, Manrope), var(--font-noto-sans-thai, "Noto Sans Thai"), "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif, "Instrument Serif"), var(--font-noto-serif-sc, "Noto Serif SC"), var(--font-noto-serif-thai, "Noto Serif Thai"), "Songti SC", "STSong", "SimSun", serif;
   --font-mono: var(--font-plex-mono, "IBM Plex Mono"), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  /* Display / heading scale */
-  --kh-type-display-xl: clamp(3.25rem, 7vw, 6rem);
-  --kh-type-display-xl-lh: 1.02;
-  --kh-type-display-xl-ls: -0.03em;
-  --kh-type-display-l: clamp(2.75rem, 5.5vw, 4.5rem);
+  /* Display / heading scale — Strict Art Direction 2026-08 */
+  --kh-type-display-xl: clamp(2.875rem, 6vw, 4.75rem); /* EN hero H1 46→76px */
+  --kh-type-display-xl-lh: 0.96;
+  --kh-type-display-xl-ls: -0.035em;
+  --kh-type-display-l: clamp(2.25rem, 3.5vw, 3rem); /* 重要 H2 / editorial statement 36→48px */
   --kh-type-display-l-lh: 1.05;
-  --kh-type-display-l-ls: -0.025em;
-  --kh-type-h1: clamp(2.3rem, 4.2vw, 3.6rem);
-  --kh-type-h1-lh: 1.08;
-  --kh-type-h1-ls: -0.02em;
-  --kh-type-h2: clamp(2rem, 3.6vw, 3rem);
+  --kh-type-display-l-ls: -0.022em;
+  --kh-type-h1: clamp(2.5rem, 4.5vw, 3.75rem); /* 普通内页 H1 40→60px */
+  --kh-type-h1-lh: 1.02;
+  --kh-type-h1-ls: -0.028em;
+  --kh-type-h2: clamp(2rem, 3vw, 2.5rem); /* 普通 sans H2 32→40px */
   --kh-type-h2-lh: 1.1;
-  --kh-type-h2-ls: -0.018em;
-  --kh-type-h3: clamp(1.35rem, 2vw, 1.6rem);
-  --kh-type-h3-lh: 1.3;
+  --kh-type-h2-ls: -0.02em;
+  --kh-type-h3: 1.5rem; /* 24px / 600 / 1.25 */
+  --kh-type-h3-lh: 1.25;
   --kh-type-h3-ls: -0.012em;
 
   /* Body scale */
-  --kh-type-body-lg: 1.1rem;
-  --kh-type-body-lg-lh: 1.75;
-  --kh-type-body: 1rem;
-  --kh-type-body-lh: 1.65;
-  --kh-type-small: 0.9rem;
+  --kh-type-body-lg: 1.125rem; /* 18px / 400 / 1.65 */
+  --kh-type-body-lg-lh: 1.65;
+  --kh-type-body: 1rem; /* 16px / 400 / 1.7 */
+  --kh-type-body-lh: 1.7;
+  --kh-type-small: 0.875rem; /* 14px / 500 */
   --kh-type-small-lh: 1.55;
 
   /* Label scale */
-  --kh-type-eyebrow: 0.75rem;
-  --kh-type-eyebrow-ls: 0.14em;
+  --kh-type-eyebrow: 0.75rem; /* EN 11.5-12px / 700 / .16-.2em; ZH 12px / 600 / .08em */
+  --kh-type-eyebrow-ls: 0.18em;
   --kh-type-caption: 0.8rem;
-  --kh-type-button: 0.95rem;
+  --kh-type-button: 0.875rem; /* 14px / 600 / .025-.04em */
 
   /* Numeric: lining + tabular figures for metrics/specs */
-  --kh-type-numeric: "Inter", "Space Grotesk", var(--font-noto-sans-thai, "Noto Sans Thai"), sans-serif;
+  --kh-type-numeric: var(--font-manrope, Manrope), var(--font-noto-sans-thai, "Noto Sans Thai"), sans-serif;
   --kh-type-numeric-features: "tnum" 1, "lnum" 1;
   --background: var(--kh-paper);
   --foreground: var(--kh-ink);
@@ -199,8 +200,9 @@
     display: flex;
     align-items: center;
     gap: .2rem;
-    font-size: .95rem;
+    font-size: .875rem; /* 14px / 600 / .02em */
     font-weight: 600;
+    letter-spacing: .02em;
   }
   .kh-desktop-menu {
     position: relative;
@@ -385,7 +387,7 @@
     margin: 0;
     color: var(--kh-muted);
     font-size: .72rem;
-    font-weight: 750;
+    font-weight: 700;
     line-height: 1.35;
   }
   .kh-product-mega-items {
@@ -624,12 +626,16 @@
   .kh-eyebrow, .kh-section-kicker {
     margin: 0;
     color: var(--kh-brass);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .14em;
+    font-family: var(--font-body);
+    font-size: var(--kh-type-eyebrow); /* 11.5-12px */
+    font-weight: 700;
+    letter-spacing: var(--kh-type-eyebrow-ls); /* .16-.2em */
     line-height: 1.4;
     text-transform: uppercase;
+  }
+  :lang(zh) .kh-eyebrow, :lang(zh) .kh-section-kicker {
+    font-weight: 600;
+    letter-spacing: .08em;
   }
   .kh-eyebrow-light {
     color: var(--kh-brass-soft);
@@ -641,10 +647,10 @@
     line-height: 1.1;
   }
   .kh-lede, .kh-section-lede {
-    max-width: 62ch;
+    max-width: 58ch;
     color: var(--kh-muted);
-    font-size: 1.1rem;
-    line-height: 1.75;
+    font-size: var(--kh-type-body-lg); /* 18px */
+    line-height: var(--kh-type-body-lg-lh);
   }
   .kh-text-link {
     display: inline-flex;
@@ -652,7 +658,7 @@
     gap: .45rem;
     color: var(--kh-forest);
     font-size: .95rem;
-    font-weight: 700;
+    font-weight: 600;
   }
   .kh-text-link:hover {
     color: var(--kh-brass);
@@ -678,8 +684,8 @@
     padding: .7rem 1.05rem;
     font-family: var(--font-body);
     font-size: var(--kh-type-button);
-    font-weight: 700;
-    letter-spacing: .01em;
+    font-weight: 600;
+    letter-spacing: .03em;
     transition: transform .2s ease, background-color .2s ease, color .2s ease;
   }
   .kh-button:hover {
@@ -841,10 +847,11 @@
     line-height: var(--kh-type-h1-lh);
     text-wrap: balance;
   }
-  :lang(zh) .kh-page-hero h1 {
-    font-weight: 400;
-    letter-spacing: -.005em;
-    line-height: 1.14;
+  html:lang(zh) .kh-page-hero h1 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem); /* ZH page hero 40→56px */
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -.025em;
   }
   .kh-page-hero .kh-lede {
     margin-top: 1.1rem;
@@ -936,12 +943,6 @@
     color: #fffdf8;
     text-wrap: balance;
   }
-  /* 中文 hero 标题使用 ZCOOL XiaoWei 400, 该字体原生单字重, 字形高挑有艺术感, 无需 faux bold */
-  :lang(zh) .kh-hero-copy h1 {
-    font-weight: 400;
-    letter-spacing: -.01em;
-    line-height: 1.1;
-  }
   .kh-hero-copy .kh-lede {
     color: rgba(255, 253, 248, .78);
   }
@@ -966,10 +967,10 @@
     height: var(--kh-metric-value-row);
     min-width: 0;
     align-items: baseline;
-    font-family: var(--font-display);
+    font-family: var(--font-body); /* Manrope numeric */
     font-size: var(--kh-metric-value-size);
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    font-variant-numeric: lining-nums tabular-nums;
     letter-spacing: -.02em;
     line-height: 1;
     white-space: nowrap;
@@ -1109,14 +1110,21 @@
   .kh-section h2, .kh-section-cta h2 {
     max-width: 20ch;
     margin: .85rem 0 0;
-    font-size: clamp(2.25rem, 4.5vw, 3.6rem);
+    font-size: var(--kh-type-h2); /* 32-40px sans */
     font-weight: 600;
-    letter-spacing: -.02em;
-    line-height: 1.08;
+    letter-spacing: var(--kh-type-h2-ls);
+    line-height: var(--kh-type-h2-lh);
     text-wrap: balance;
   }
+  /* 中文普通 H2: 40px / 600 / 1.3 */
+  :lang(zh) .kh-section h2, :lang(zh) .kh-section-cta h2 {
+    font-size: clamp(2rem, 4.5vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+  }
 
-  /* Editorial statement: 少量 section 大标题使用 serif, 制造杂志式节奏 */
+  /* Editorial statement: 少量 section 大标题使用 serif, 制造杂志式节奏 (30-35% 视觉占比) */
   .kh-section h2.kh-editorial-serif, .kh-editorial-serif {
     max-width: 26ch;
     font-family: var(--font-serif);
@@ -1125,17 +1133,30 @@
     letter-spacing: var(--kh-type-display-l-ls);
     line-height: var(--kh-type-display-l-lh);
   }
+  /* 中文 editorial serif: 大型 H2 44-48px / 600 / 1.26 */
   :lang(zh) .kh-section h2.kh-editorial-serif, :lang(zh) .kh-editorial-serif {
-    font-weight: 400;
-    letter-spacing: -.005em;
-    line-height: 1.16;
+    font-size: clamp(2.25rem, 4.5vw, 3rem);
+    font-weight: 600;
+    line-height: 1.26;
+    letter-spacing: -.01em;
     max-width: 22ch;
+  }
+  /* Capabilities group title: 38-42px Serif */
+  .kh-capability-group-title {
+    font-size: clamp(2.375rem, 4vw, 2.625rem);
+  }
+  :lang(zh) .kh-capability-group-title {
+    font-size: clamp(2.25rem, 4vw, 2.5rem);
   }
   /* Thai 标题需更高行高, 避免元音/声调与相邻行碰撞 */
   :lang(th) .kh-hero-copy h1,
   :lang(th) .kh-page-hero h1,
   :lang(th) .kh-section h2.kh-editorial-serif {
     line-height: 1.3;
+  }
+  /* Thai 正文行高 1.85, 元音/声调不裁切 */
+  :lang(th) body {
+    line-height: 1.85;
   }
 
   /* ---------- S3 产品系统 Bento ---------- */
@@ -1259,8 +1280,9 @@
   }
   .kh-product-system-copy h3 {
     margin: .45rem 0 0;
-    font-size: clamp(1.45rem, 2vw, 2rem);
-    line-height: 1.15;
+    font-size: 1.5rem; /* H3 24px */
+    font-weight: 600;
+    line-height: 1.25;
   }
   .kh-product-system-copy > p:not(.kh-eyebrow) {
     margin: .55rem 0 1.25rem;
@@ -1304,15 +1326,15 @@
   .kh-product-card-title {
     display: block;
     color: var(--kh-ink);
-    font-size: .9rem;
-    font-weight: 700;
+    font-size: 1.125rem; /* 18px / 600 Card Title */
+    font-weight: 600;
     line-height: 1.3;
   }
   .kh-product-card-description {
     display: block;
     color: var(--kh-muted);
-    font-size: .76rem;
-    line-height: 1.45;
+    font-size: .95rem; /* 15px card body */
+    line-height: 1.6;
   }
   .kh-product-card-copy > svg {
     margin-top: auto;
@@ -1410,9 +1432,10 @@
     opacity: 1;
   }
   .kh-process-step b {
-    font-family: var(--font-mono);
-    font-size: .78rem;
-    font-weight: 700;
+    font-family: var(--font-body); /* Manrope, 500 不超粗 */
+    font-size: .95rem;
+    font-weight: 500;
+    font-variant-numeric: lining-nums tabular-nums;
     color: var(--kh-brass);
   }
   .kh-process-step-title {
@@ -2360,7 +2383,14 @@ html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle:focus-visible {
     padding: 2rem 0 1.75rem;
   }
   .kh-hero-copy h1 {
-    font-size: clamp(2.4rem, 10.5vw, 3.4rem);
+    font-size: clamp(2.875rem, 12vw, 3.25rem); /* EN mobile hero 46px, max 52px */
+  }
+  html:lang(zh) .kh-hero-copy h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem; /* ZH mobile hero 40px */
+    font-weight: 600;
+    line-height: 1.28;
+    letter-spacing: -.018em;
   }
   .kh-hero-stats {
     --kh-metric-value-size: clamp(1.75rem, 7.5vw, 2.4rem);
@@ -3838,8 +3868,9 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
 
 /* ---------- UI hierarchy pass: quieter actions, clearer rhythm ---------- */
 :root {
-  --kh-type-display: clamp(2.75rem, 6vw, 5.25rem);
-  --kh-type-section: clamp(2.15rem, 4.2vw, 3.35rem);
+  --font-noto-serif-sc: "Noto Serif SC";
+  --kh-type-display: clamp(2.75rem, 6vw, 5.125rem);
+  --kh-type-section: clamp(2.15rem, 3vw, 3rem);
   --kh-type-card: clamp(1.12rem, 1.5vw, 1.45rem);
   --kh-type-body: 1rem;
   --kh-type-meta: .72rem;
@@ -3848,6 +3879,16 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
 .kh-home-hero .kh-hero-copy h1 {
   max-width: 13ch;
   font-size: var(--kh-type-display);
+}
+
+/* 中文 hero 标题使用思源宋体 600（未分层，优先于 components 层） */
+@media (min-width: 761px) {
+  html:lang(zh) .kh-home-hero .kh-hero-copy h1 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem); /* ZH hero 40→56px */
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -.025em;
+  }
 }
 
 .kh-home-hero .kh-hero-copy .kh-lede {
@@ -3907,7 +3948,7 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
 
 .kh-home-product-systems .kh-product-system-copy h3 {
   font-size: var(--kh-type-card);
-  font-weight: 750;
+  font-weight: 600;
   letter-spacing: -.01em;
 }
 
@@ -4591,6 +4632,37 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
   text-wrap: pretty;
 }
 
+/* ---------- STRICT ART DIRECTION: unlayered overrides (win over components) ---------- */
+/* Navigation: Manrope 14px / 600 / +0.02em, never serif */
+.kh-nav-link {
+  font-size: .875rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+/* Editorial statement H2: keep the 48px serif display scale */
+.kh-section-heading h2.kh-editorial-serif {
+  font-size: var(--kh-type-display-l);
+}
+
+/* Chinese body copy: 16px / 400 / 1.85 / +0.01em */
+html:lang(zh) body {
+  line-height: 1.85;
+  letter-spacing: .01em;
+}
+
+/* English page-hero (inner pages) mobile: 46px serif */
+@media (max-width: 760px) {
+  :lang(en) .kh-page-hero h1 {
+    font-size: 2.875rem;
+  }
+  /* English section H2 mobile: 36-40px per art direction */
+  :lang(en) .kh-section h2,
+  :lang(en) .kh-section-cta h2 {
+    font-size: clamp(2.25rem, 10vw, 2.5rem);
+  }
+}
+
 /* Footer contact and navigation affordances: use compact icons instead of
    repeating arrow glyphs, and keep the social row as the left-most footer
    utility group on wide screens. */
@@ -4672,7 +4744,7 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
   max-width: 32ch;
   text-wrap: pretty;
 }
-:lang(en) .kh-home-hero .kh-hero-copy .kh-lede { max-width: 72ch; }
+:lang(en) .kh-home-hero .kh-hero-copy .kh-lede { max-width: 640px; }
 
 @media (min-width: 1101px) and (max-width: 1500px) {
   .kh-header-bar { gap: .65rem; }
@@ -4715,15 +4787,14 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
   .kh-header-brand-copy { flex: 0 0 auto; }
 }
 
-/* English mobile copy should use the full readable measure. The shared
-   narrow Chinese display measure is too restrictive for the longer English
-   hero sentence and creates avoidable one- or two-word lines. */
+/* English mobile hero follows the same 46–52px scale as the shared rule;
+   keep the full readable measure for the longer English sentence. */
 @media (max-width: 760px) {
   :lang(en) .kh-home-hero .kh-hero-copy h1 {
     max-width: 100%;
-    font-size: clamp(1.75rem, 6.5vw, 2.4rem);
-    letter-spacing: -.04em;
-    line-height: 1.04;
+    font-size: clamp(2.875rem, 12vw, 3.25rem);
+    letter-spacing: -.028em;
+    line-height: .98;
     text-wrap: pretty;
   }
   :lang(en) .kh-home-hero .kh-hero-copy .kh-lede,
@@ -4737,7 +4808,7 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
    forced an avoidable third line before the accent line at 1440px. */
 @media (min-width: 761px) {
   :lang(en) .kh-home-hero .kh-hero-copy h1 {
-    font-size: clamp(2.75rem, 4.5vw, 4.5rem);
+    font-size: clamp(2.875rem, 5.2vw, 4.75rem);
   }
 }
 

@@ -31,7 +31,7 @@ export default async function HomeResources({ locale }: { locale: string }) {
                   <span className="grid size-10 place-items-center rounded-full bg-(--kh-brass-soft)/35 text-(--kh-brass)">
                     <Icon className="size-5" />
                   </span>
-                  <h3 className="mt-4 text-lg font-bold">{item.title}</h3>
+                  <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-(--kh-muted)">{item.body}</p>
                   <span className="kh-text-link mt-4 inline-flex items-center gap-1">
                     {item.cta}<ArrowRight className="size-4" />

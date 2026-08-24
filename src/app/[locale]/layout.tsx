@@ -2,12 +2,12 @@ import type { Metadata, Viewport } from "next";
 import {
   IBM_Plex_Mono,
   Instrument_Serif,
-  Inter,
+  Manrope,
   Noto_Sans_Thai,
   Noto_Serif_Thai,
-  Space_Grotesk,
-  ZCOOL_XiaoWei,
 } from "next/font/google";
+import "../fonts/noto-serif-sc/noto-serif-sc-500.css";
+import "../fonts/noto-serif-sc/noto-serif-sc-600.css";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
@@ -32,11 +32,9 @@ import AnalyticsConsent from "@/components/site/AnalyticsConsent";
 import B2BVisitorTracking from "@/components/site/B2BVisitorTracking";
 import "../globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
+const manrope = Manrope({ subsets: ["latin", "latin-ext", "vietnamese"], weight: ["400", "500", "600", "700"], variable: "--font-manrope", display: "swap" });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-plex-mono", display: "swap" });
-const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: "normal", variable: "--font-instrument-serif", display: "swap" });
-const zcoolXiaoWei = ZCOOL_XiaoWei({ subsets: ["latin"], weight: "400", variable: "--font-zcool-xiaowei", display: "swap" });
+const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["normal", "italic"], variable: "--font-instrument-serif", display: "swap" });
 const notoSerifThai = Noto_Serif_Thai({ subsets: ["thai"], weight: ["400", "600"], variable: "--font-noto-serif-thai", display: "swap" });
 const notoSansThai = Noto_Sans_Thai({ subsets: ["thai"], weight: ["400", "500"], variable: "--font-noto-sans-thai", display: "swap" });
 
@@ -64,7 +62,7 @@ export default async function RootLayout({
   const timeZone = await getTimeZone();
   const now = await getNow();
 
-  return <html lang={locale} dir="ltr" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable} ${instrumentSerif.variable} ${zcoolXiaoWei.variable} ${notoSerifThai.variable} ${notoSansThai.variable}`}>
+  return <html lang={locale} dir="ltr" className={`dark ${manrope.variable} ${plexMono.variable} ${instrumentSerif.variable} ${notoSerifThai.variable} ${notoSansThai.variable}`}>
     <head><meta name="theme-color" content="#171713" /></head>
     <body className="antialiased">
       <UIMaterialPreview />

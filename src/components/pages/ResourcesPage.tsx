@@ -69,7 +69,7 @@ export default async function ResourcesPage({ locale }: { locale: string }) {
                         </span>
                         <span className="kh-mono text-(--kh-brass)">{item.type === "request" ? t("guides.requestLabel") : t("guides.guideLabel")}</span>
                       </div>
-                      <h3 className="mt-4 text-xl font-bold">{copy.title}</h3>
+                      <h3 className="mt-4 text-xl font-semibold">{copy.title}</h3>
                       <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{copy.summary}</p>
                       <ul className="mt-4 grid gap-2">
                         {copy.topics.map((topic) => (
@@ -120,7 +120,7 @@ export default async function ResourcesPage({ locale }: { locale: string }) {
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="04" text={t("studio.kicker")} />
-                  <h2>{t("studio.title")}</h2>
+                  <h2 className="kh-editorial-serif">{t("studio.title")}</h2>
                   <p className="kh-section-lede mt-5">{t("studio.lede")}</p>
                 </div>
               </div>
@@ -131,7 +131,7 @@ export default async function ResourcesPage({ locale }: { locale: string }) {
                   <span className="grid size-12 place-items-center rounded-full bg-(--kh-brass-soft)/35 text-(--kh-brass)">
                     <Box className="size-6" />
                   </span>
-                  <h3 className="mt-5 text-xl font-bold">{isZh ? "结构参考工具" : "Structure reference tool"}</h3>
+                  <h3 className="mt-5 text-xl font-semibold">{isZh ? "结构参考工具" : "Structure reference tool"}</h3>
                   <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{t("studio.positioning")}</p>
                   <Link href="/model-preview" className="kh-button kh-button-dark mt-6">
                     {t("studio.explore")}<ArrowRight className="size-4" />
@@ -156,7 +156,7 @@ export default async function ResourcesPage({ locale }: { locale: string }) {
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
                 <SectionKicker index="05" text={t("reference.kicker")} light />
-                <h2 className="mt-4">{t("reference.title")}</h2>
+                <h2 className="kh-editorial-serif mt-4">{t("reference.title")}</h2>
                 <p className="kh-section-lede mt-4 text-(--kh-muted)/80">{t("reference.lede")}</p>
                 <div className="kh-cta-actions mt-6 justify-center">
                   <Link href="/contact" className="kh-button kh-button-light">

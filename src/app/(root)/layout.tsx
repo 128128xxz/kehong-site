@@ -3,20 +3,16 @@ import type { ReactNode } from "react";
 import {
   IBM_Plex_Mono,
   Instrument_Serif,
-  Inter,
+  Manrope,
   Noto_Sans_Thai,
   Noto_Serif_Thai,
-  Space_Grotesk,
-  ZCOOL_XiaoWei,
 } from "next/font/google";
 import "../globals.css";
 import UIMaterialPreview from "@/components/site/UIMaterialPreview";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
+const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-manrope", display: "swap" });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-plex-mono", display: "swap" });
-const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: "normal", variable: "--font-instrument-serif", display: "swap" });
-const zcoolXiaoWei = ZCOOL_XiaoWei({ subsets: ["latin"], weight: "400", variable: "--font-zcool-xiaowei", display: "swap" });
+const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["normal", "italic"], variable: "--font-instrument-serif", display: "swap" });
 const notoSerifThai = Noto_Serif_Thai({ subsets: ["thai"], weight: ["400", "600"], variable: "--font-noto-serif-thai", display: "swap" });
 const notoSansThai = Noto_Sans_Thai({ subsets: ["thai"], weight: ["400", "500"], variable: "--font-noto-sans-thai", display: "swap" });
 
@@ -41,5 +37,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en" dir="ltr" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable} ${instrumentSerif.variable} ${zcoolXiaoWei.variable} ${notoSerifThai.variable} ${notoSansThai.variable}`}><head><meta name="theme-color" content="#171713" /></head><body className="antialiased"><UIMaterialPreview />{children}</body></html>;
+  return <html lang="en" dir="ltr" className={`dark ${manrope.variable} ${plexMono.variable} ${instrumentSerif.variable} ${notoSerifThai.variable} ${notoSansThai.variable}`}><head><meta name="theme-color" content="#171713" /></head><body className="antialiased"><UIMaterialPreview />{children}</body></html>;
 }

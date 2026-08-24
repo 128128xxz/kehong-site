@@ -59,7 +59,7 @@ export default async function AboutPage({ locale }: { locale: string }) {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="02" text={t("what.kicker")} />
-                <h2>{t("what.title")}</h2>
+                <h2 className="kh-editorial-serif">{t("what.title")}</h2>
                 <p className="kh-section-lede mt-5">{t("what.lede")}</p>
               </div>
             </div>
@@ -84,7 +84,7 @@ export default async function AboutPage({ locale }: { locale: string }) {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="03" text={t("who.kicker")} />
-                <h2>{t("who.title")}</h2>
+                <h2 className="kh-editorial-serif">{t("who.title")}</h2>
                 <p className="kh-section-lede mt-5">{t("who.lede")}</p>
               </div>
             </div>
@@ -109,7 +109,7 @@ export default async function AboutPage({ locale }: { locale: string }) {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="04" text={t("how.kicker")} />
-                <h2>{t("how.title")}</h2>
+                <h2 className="kh-editorial-serif">{t("how.title")}</h2>
                 <p className="kh-section-lede mt-5">{t("how.lede")}</p>
               </div>
             </div>
@@ -134,7 +134,7 @@ export default async function AboutPage({ locale }: { locale: string }) {
           <div className="grid items-center gap-8 md:grid-cols-2">
             <Reveal>
               <SectionKicker index="05" text={t("entry.kicker")} light />
-              <h2 className="mt-4">{t("entry.title")}</h2>
+              <h2 className="kh-editorial-serif mt-4">{t("entry.title")}</h2>
               <p className="kh-section-lede mt-4 text-(--kh-muted)/80">{t("entry.lede")}</p>
               <div className="kh-cta-actions mt-6">
                 <Link href="/factory" className="kh-button kh-button-light">
@@ -166,7 +166,7 @@ export default async function AboutPage({ locale }: { locale: string }) {
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
               <SectionKicker index="06" text={t("cta.kicker")} light />
-              <h2 className="mt-4">{t("cta.title")}</h2>
+              <h2 className="kh-editorial-serif mt-4">{t("cta.title")}</h2>
               <p className="kh-section-lede mt-4 text-(--kh-muted)/80">{t("cta.lede")}</p>
               <div className="kh-cta-actions mt-6 justify-center">
                 <Link href="/contact" className="kh-button kh-button-light">
