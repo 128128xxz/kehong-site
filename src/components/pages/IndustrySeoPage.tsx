@@ -130,7 +130,7 @@ export default function IndustrySeoPage({ locale, page }: Props) {
               {faq.map((item, index) => (
                 <Reveal key={item.question} className="h-full" delay={(index % 2) * 80}>
                   <div className="kh-panel h-full p-5">
-                    <h3 className="text-sm font-bold text-(--kh-ink)">{item.question}</h3>
+                    <h3 className="text-sm font-semibold text-(--kh-ink)">{item.question}</h3>
                     <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{item.answer}</p>
                   </div>
                 </Reveal>

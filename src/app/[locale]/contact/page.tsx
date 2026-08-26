@@ -248,7 +248,7 @@ export default async function ContactPage({
                   <Link href="/privacy" className="kh-inline-link">{zh ? "隐私政策" : "Privacy Policy"}</Link>
                 </p>
                 <details className="mt-7 border-t border-(--kh-line) pt-5">
-                  <summary className="cursor-pointer text-sm font-bold text-(--kh-forest)">
+                  <summary className="cursor-pointer text-sm font-semibold text-(--kh-forest)">
                     {zh ? "补充技术信息（材质、结构、印刷与交期）" : "Add technical details — material, structure, print and timing"}
                   </summary>
                   <div className="mt-4">

@@ -1,19 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import {
-  IBM_Plex_Mono,
-  Instrument_Serif,
-  Manrope,
-  Noto_Sans_Thai,
-  Noto_Serif_Thai,
-} from "next/font/google";
+import { Noto_Sans_Thai } from "next/font/google";
 import "../globals.css";
 import UIMaterialPreview from "@/components/site/UIMaterialPreview";
 
-const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-manrope", display: "swap" });
-const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-plex-mono", display: "swap" });
-const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["normal", "italic"], variable: "--font-instrument-serif", display: "swap" });
-const notoSerifThai = Noto_Serif_Thai({ subsets: ["thai"], weight: ["400", "600"], variable: "--font-noto-serif-thai", display: "swap" });
 const notoSansThai = Noto_Sans_Thai({ subsets: ["thai"], weight: ["400", "500"], variable: "--font-noto-sans-thai", display: "swap" });
 
 export const viewport: Viewport = {
@@ -37,5 +27,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en" dir="ltr" className={`dark ${manrope.variable} ${plexMono.variable} ${instrumentSerif.variable} ${notoSerifThai.variable} ${notoSansThai.variable}`}><head><meta name="theme-color" content="#171713" /></head><body className="antialiased"><UIMaterialPreview />{children}</body></html>;
+  return <html lang="en" dir="ltr" className={`dark ${notoSansThai.variable}`}><head><meta name="theme-color" content="#171713" /></head><body className="antialiased"><UIMaterialPreview />{children}</body></html>;
 }

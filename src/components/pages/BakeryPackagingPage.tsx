@@ -133,7 +133,7 @@ export default function BakeryPackagingPage({ locale }: { locale: string }) {
                   <tbody>
                     {(isZh ? comparisonRowsZh : comparisonRows).map((row) => (
                       <tr key={row[0]} className="border-t border-(--kh-line)">
-                        <th className="px-5 py-4 font-bold">{row[0]}</th>
+                        <th className="px-5 py-4 font-semibold">{row[0]}</th>
                         {row.slice(1).map((cell) => (
                           <td key={cell} className="px-5 py-4 leading-6 text-(--kh-muted)">
                             {cell}

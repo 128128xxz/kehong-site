@@ -1,4 +1,4 @@
-import { ArrowRight, Box, FileText, Palette, Ruler, Scissors, Send } from "lucide-react";
+import { ArrowRight, Send } from "lucide-react";
 import Image from "next/image";
 import Header from "@/components/site/Header";
 import SiteFooter from "@/components/site/SiteFooter";
@@ -10,8 +10,6 @@ import { Link } from "@/i18n/navigation";
 import { resourceApplicationSlugs, resourceItems, resourceZhCopy } from "@/data/siteContent";
 import { getPublishedNews, type NewsLocale } from "@/content/news";
 import { getTranslations } from "next-intl/server";
-
-const icons = [Palette, FileText, Scissors, Ruler, FileText, FileText];
 
 export default async function ResourcesPage({ locale }: { locale: string }) {
   const isZh = locale === "zh";
@@ -57,35 +55,30 @@ export default async function ResourcesPage({ locale }: { locale: string }) {
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <ol className="kh-resource-list">
                 {resourceItems.map((item, index) => {
-                  const Icon = icons[index] ?? FileText;
                   const copy = isZh ? resourceZhCopy[item.slug] : item;
+                  const isRequest = item.type === "request";
                   return (
-                    <article key={item.slug} className="kh-panel p-5">
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="grid size-10 place-items-center rounded-full bg-(--kh-brass-soft)/35 text-(--kh-brass)">
-                          <Icon className="size-5" />
+                    <li key={item.slug}>
+                      <Link
+                        href={isRequest ? "/contact" : `/resources/${item.slug}`}
+                        className="kh-resource-row"
+                      >
+                        <span className="kh-mono kh-resource-index">{String(index + 1).padStart(2, "0")}</span>
+                        <span className="kh-mono kh-resource-type">
+                          {isRequest ? t("guides.requestLabel") : t("guides.guideLabel")}
                         </span>
-                        <span className="kh-mono text-(--kh-brass)">{item.type === "request" ? t("guides.requestLabel") : t("guides.guideLabel")}</span>
-                      </div>
-                      <h3 className="mt-4 text-xl font-semibold">{copy.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{copy.summary}</p>
-                      <ul className="mt-4 grid gap-2">
-                        {copy.topics.map((topic) => (
-                          <li key={topic} className="flex gap-2 text-sm text-(--kh-muted)">
-                            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-(--kh-brass)" />
-                            {topic}
-                          </li>
-                        ))}
-                      </ul>
-                      <Link href={item.type === "request" ? "/contact" : `/resources/${item.slug}`} className="kh-text-link mt-5">
-                        {item.type === "request" ? t("guides.sendRequest") : t("guides.readGuide")}
+                        <span className="kh-resource-body">
+                          <span className="kh-resource-title">{copy.title}</span>
+                          <span className="kh-resource-summary">{copy.summary}</span>
+                        </span>
+                        <ArrowRight className="kh-resource-arrow size-4" aria-hidden="true" />
                       </Link>
-                    </article>
+                    </li>
                   );
                 })}
-              </div>
+              </ol>
             </Reveal>
           </div>
         </section>
@@ -107,8 +100,17 @@ export default async function ResourcesPage({ locale }: { locale: string }) {
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-news-preview-grid>
-                {articles.map((article) => <NewsCard key={article.slug} article={article} locale={locale} />)}
+              <div className="kh-news-feature-grid" data-news-preview-grid>
+                {articles[0] && (
+                  <div className="kh-news-featured">
+                    <NewsCard article={articles[0]} locale={locale} featured eager />
+                  </div>
+                )}
+                <div className="kh-news-secondary">
+                  {articles.slice(1, 3).map((article) => (
+                    <NewsCard key={article.slug} article={article} locale={locale} />
+                  ))}
+                </div>
               </div>
             </Reveal>
           </div>
@@ -120,29 +122,26 @@ export default async function ResourcesPage({ locale }: { locale: string }) {
               <div className="kh-section-heading">
                 <div>
                   <SectionKicker index="04" text={t("studio.kicker")} />
-                  <h2 className="kh-editorial-serif">{t("studio.title")}</h2>
+                  <h2 className="">{t("studio.title")}</h2>
                   <p className="kh-section-lede mt-5">{t("studio.lede")}</p>
                 </div>
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <div className="kh-panel grid gap-6 p-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:items-center">
-                <div>
-                  <span className="grid size-12 place-items-center rounded-full bg-(--kh-brass-soft)/35 text-(--kh-brass)">
-                    <Box className="size-6" />
-                  </span>
-                  <h3 className="mt-5 text-xl font-semibold">{isZh ? "结构参考工具" : "Structure reference tool"}</h3>
-                  <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{t("studio.positioning")}</p>
+              <div className="kh-studio-feature">
+                <div className="kh-studio-copy">
+                  <h3>{isZh ? "结构参考工具" : "Structure reference tool"}</h3>
+                  <p>{t("studio.positioning")}</p>
                   <Link href="/model-preview" className="kh-button kh-button-dark mt-6">
                     {t("studio.explore")}<ArrowRight className="size-4" />
                   </Link>
                 </div>
-                <div className="kh-media-shade relative aspect-video overflow-hidden rounded-lg">
+                <div className="kh-media-shade relative aspect-[16/10] overflow-hidden rounded-[2px]">
                   <Image
                     src="/media/shared/pizza-box-structure-preview-reference.png"
                     alt={isZh ? "3D 包装结构预览界面" : "3D packaging structure preview"}
                     fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 768px) 55vw, 100vw"
                     className="object-cover"
                   />
                 </div>
@@ -156,7 +155,7 @@ export default async function ResourcesPage({ locale }: { locale: string }) {
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
                 <SectionKicker index="05" text={t("reference.kicker")} light />
-                <h2 className="kh-editorial-serif mt-4">{t("reference.title")}</h2>
+                <h2 className="mt-4">{t("reference.title")}</h2>
                 <p className="kh-section-lede mt-4 text-(--kh-muted)/80">{t("reference.lede")}</p>
                 <div className="kh-cta-actions mt-6 justify-center">
                   <Link href="/contact" className="kh-button kh-button-light">

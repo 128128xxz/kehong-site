@@ -132,7 +132,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
           <Filter className="size-4" />
           {locale === "zh" ? "筛选产品" : "Filter products"}
         </button>
-        <span className="text-right text-xs font-bold leading-5 text-(--kh-muted)">
+        <span className="text-right text-xs font-semibold leading-5 text-(--kh-muted)">
           {(pagination?.totalGroups ?? groups.length) > 0
             ? `${pagination?.totalGroups ?? groups.length} ${locale === "zh" ? "个产品组" : "product groups"}`
             : (locale === "zh" ? "暂无可显示目录" : "No public catalog yet")}
@@ -155,7 +155,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
         aria-label={locale === "zh" ? "产品筛选" : "Product filters"}
       >
         <div className="mb-4 flex items-center justify-between lg:hidden">
-          <p className="text-sm font-bold text-(--kh-ink)">{locale === "zh" ? "筛选产品" : "Filter products"}</p>
+          <p className="text-sm font-semibold text-(--kh-ink)">{locale === "zh" ? "筛选产品" : "Filter products"}</p>
           <button
             type="button"
             aria-label={locale === "zh" ? "关闭筛选" : "Close filters"}
@@ -187,7 +187,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
                 setDraftQuery(filter.value);
                 updateUrl("search", filter.value);
               }}
-              className={`rounded-full border px-3 py-1.5 text-xs font-bold transition ${
+              className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
                 query === filter.value
                   ? "border-(--kh-forest) bg-(--kh-forest) text-(--kh-surface)"
                   : "border-(--kh-line) bg-(--kh-surface) text-(--kh-muted) hover:border-(--kh-forest)/40"
@@ -271,8 +271,8 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
         {selected.length > 0 ? (
           <div className="premium-depth kh-micro-grid texture-ink mt-6 rounded-lg p-4">
             <div className="flex items-center justify-between gap-3">
-              <p className="text-sm font-bold">{t("inquiry.selected")}</p>
-              <span className="kh-status-dot rounded-full bg-white/10 px-2.5 py-1 text-xs font-bold text-(--kh-brass-soft)">
+              <p className="text-sm font-semibold">{t("inquiry.selected")}</p>
+              <span className="kh-status-dot rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold text-(--kh-brass-soft)">
                 {selected.length}
               </span>
             </div>
@@ -299,7 +299,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
       <section className="min-w-0 max-w-full">
         <div className="kh-panel mb-4 grid gap-3 p-4 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <p className="text-sm font-bold text-(--kh-ink)">
+            <p className="text-sm font-semibold text-(--kh-ink)">
               {(pagination?.totalGroups ?? groups.length) > 0
                 ? (locale === "zh"
                   ? `${pagination?.totalGroups ?? groups.length} 个产品组 / ${pagination?.totalSkus ?? skus.length} 个 SKU`
@@ -410,7 +410,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
                 <Link
                   key={page}
                   href={`${pathname}?${params.toString()}#catalog-list`}
-                  className={`grid size-10 place-items-center rounded-full border text-sm font-bold transition ${
+                  className={`grid size-10 place-items-center rounded-full border text-sm font-semibold transition ${
                     page === pagination.page
                       ? "border-(--kh-forest) bg-(--kh-forest) text-(--kh-surface)"
                       : "border-(--kh-line) bg-(--kh-surface) text-(--kh-muted) hover:border-(--kh-forest)/40"

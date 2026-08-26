@@ -22,7 +22,7 @@ export default function HomeCta({ locale }: { locale: string }) {
       <div className="kh-shell kh-cta-grid">
         <Reveal>
           <SectionKicker index="07" text={zh ? "询盘" : "Project brief"} light />
-          <h2 className="kh-editorial-serif">{zh ? "提交项目资料，获取打样或报价建议" : "Share your project brief for sampling or quote guidance"}</h2>
+          <h2 className="">{zh ? "提交项目资料，获取打样或报价建议" : "Share your project brief for sampling or quote guidance"}</h2>
           <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
             {zh ? "请提供产品类型、尺寸、材料、数量和目的地。" : "Please include the product, dimensions, material, quantity and destination."}
           </p>

@@ -93,7 +93,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
         <Field label={zh ? "电话 / 微信（Email 二选一）" : "WhatsApp / phone (or email)"} name="phone" placeholder={zh ? "至少填写一种联系渠道" : "Add at least one contact channel"} />
       </div>
       <div className="mt-6 border-t border-(--kh-line) pt-4">
-        <p className="text-sm font-bold text-(--kh-forest)">{zh ? "补充技术信息" : "Advanced details"}</p>
+        <p className="text-sm font-semibold text-(--kh-forest)">{zh ? "补充技术信息" : "Advanced details"}</p>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <Field label={zh ? "公司" : "Company"} name="company" placeholder={zh ? "公司名称（可选）" : "Company name (optional)"} />
           <Field label={zh ? "材料" : "Material"} name="material" placeholder={zh ? "纸材或纸板" : "Paper or board"} />

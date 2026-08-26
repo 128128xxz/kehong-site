@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/home/interactive";
@@ -96,15 +97,12 @@ export default async function HomeProductSystems({ locale }: { locale: string })
                   <p>{system.intro}</p>
                   <div className="kh-product-card-grid">
                     {system.links.map((item) => {
-                      const visual = system.visuals[item.id];
                       return (
                         <Link key={item.id} href={item.href} data-testid="homepage-product-entry" className="kh-product-card">
-                          <span className="kh-product-card-media">
-                            <Image src={visual.image} alt={zh ? visual.altZh : visual.alt} fill sizes="(max-width: 760px) 42vw, (max-width: 1100px) 22vw, 16vw" className="object-cover" loading="lazy" />
-                          </span>
                           <span className="kh-product-card-copy">
                             <span className="kh-product-card-title">{zh ? item.zh : item.en}</span>
                             <span className="kh-product-card-description">{zh ? shortZhDescriptions[item.id] : item.description.en}</span>
+                            <ArrowRight className="kh-product-card-arrow size-4" aria-hidden="true" />
                           </span>
                         </Link>
                       );

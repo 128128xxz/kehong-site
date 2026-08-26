@@ -18,7 +18,7 @@ export default async function HomeFactoryProof({ locale }: { locale: string }) {
       <div className="kh-shell kh-factory-grid">
         <Reveal>
           <SectionKicker index="04" text={t("factoryProof.kicker")} light />
-          <h2 className="kh-editorial-serif">{t("factoryProof.title")}</h2>
+          <h2>{t("factoryProof.title")}</h2>
           <p className="kh-section-lede">
             {t("factoryProof.lede")}
           </p>
