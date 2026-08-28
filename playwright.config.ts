@@ -3,9 +3,11 @@ import { defineConfig, devices } from "@playwright/test";
 const PLAYWRIGHT_DEFAULT_PORT = 3451;
 const baseURL = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${process.env.PLAYWRIGHT_TEST_PORT || process.env.PLAYWRIGHT_PORT || PLAYWRIGHT_DEFAULT_PORT}`;
 const serverPort = new URL(baseURL).port || (baseURL.startsWith("https:") ? "443" : "80");
+const historicalAuditMode = process.env.PLAYWRIGHT_HISTORICAL_AUDIT === "1";
 
 export default defineConfig({
   testDir: "./tests/e2e",
+  testIgnore: historicalAuditMode ? [] : ["**/image-seo-smoke.spec.ts"],
   timeout: 45_000,
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),

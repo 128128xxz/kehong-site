@@ -24,5 +24,5 @@ export async function cleanupVisitorIntelligence() {
   return { digestRows: removed };
 }
 
-export { digestWindowForEvent, digestWindowToSend } from "./service-window";
+export { digestDayToSend, digestWindowForEvent, digestWindowToSend, digestWindowsForDay } from "./service-window";
 export type { DigestWindowKind };

@@ -26,3 +26,11 @@ export function digestWindowToSend(date: Date, kind: DigestWindowKind) {
   const day = localDate(date);
   return kind === "noon" ? `${shiftDate(day, -1)}-18-12` : `${day}-12-18`;
 }
+
+export function digestDayToSend(date: Date) {
+  return shiftDate(localDate(date), -1);
+}
+
+export function digestWindowsForDay(day: string) {
+  return [`${shiftDate(day, -1)}-18-12`, `${day}-12-18`, `${day}-18-12`];
+}

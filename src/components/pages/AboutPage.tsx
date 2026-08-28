@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
@@ -56,20 +56,20 @@ export default async function AboutPage({ locale }: { locale: string }) {
       <section className="kh-section">
         <div className="kh-shell">
           <Reveal>
-            <div className="kh-section-heading">
+            <div className="kh-about-intro">
               <div>
                 <SectionKicker index="02" text={t("what.kicker")} />
                 <h2>{t("what.title")}</h2>
-                <p className="kh-section-lede mt-5">{t("what.lede")}</p>
               </div>
+              <p className="kh-about-intro-copy">{t("what.lede")}</p>
             </div>
           </Reveal>
           <Reveal delay={80}>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            <div className="kh-open-grid kh-open-grid-2">
               {whatItems.map((item) => (
-                <div key={item.title} className="kh-panel p-6">
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-(--kh-muted)">{item.body}</p>
+                <div key={item.title} className="kh-open-grid-cell">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
                 </div>
               ))}
             </div>
@@ -90,12 +90,9 @@ export default async function AboutPage({ locale }: { locale: string }) {
             </div>
           </Reveal>
           <Reveal delay={80}>
-            <ul className="mt-10 grid list-none gap-3 p-0 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="kh-plain-list mt-10">
               {whoItems.map((item) => (
-                <li key={item} className="flex items-start gap-3 rounded-lg border border-(--kh-line) p-4">
-                  <Check className="mt-0.5 size-4 shrink-0 text-(--kh-brass)" />
-                  <span className="text-sm leading-6">{item}</span>
-                </li>
+                <li key={item}>{item}</li>
               ))}
             </ul>
           </Reveal>
@@ -109,7 +106,7 @@ export default async function AboutPage({ locale }: { locale: string }) {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="04" text={t("how.kicker")} />
-                <h2>{t("how.title")}</h2>
+                <h2 className="">{t("how.title")}</h2>
                 <p className="kh-section-lede mt-5">{t("how.lede")}</p>
               </div>
             </div>
@@ -146,7 +143,7 @@ export default async function AboutPage({ locale }: { locale: string }) {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <div className="kh-media-shade relative aspect-[4/3] overflow-hidden rounded-lg">
+              <div className="kh-media-shade relative aspect-[4/3] overflow-hidden rounded-[2px]">
                 <Image
                   src={showcaseImages.factorySamplesFloor}
                   alt={t("entry.imageAlt")}

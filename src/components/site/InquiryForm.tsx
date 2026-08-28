@@ -279,7 +279,7 @@ export default function InquiryForm({
         </p>
       ) : null}
       {status === "error" ? (
-        <p className="mt-4 rounded-md border border-red-500/20 bg-red-50 px-3 py-2 text-sm font-bold text-red-900">
+        <p className="mt-4 rounded-md border border-red-500/20 bg-red-50 px-3 py-2 text-sm font-semibold text-red-900">
           {errorMessage || text.error}
         </p>
       ) : null}

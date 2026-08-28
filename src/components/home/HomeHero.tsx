@@ -2,11 +2,10 @@ import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { MetricReveal } from "@/components/home/interactive";
 import { showcaseImages } from "@/data/visuals";
 import { productCatalogSections } from "@/data/productDirectory";
 import { companyDisplayName } from "@/data/company";
-import { MetricReveal } from "@/components/home/interactive";
-
 type StatItem = { value: string; label: string };
 
 export default async function HomeHero({ locale }: { locale: string }) {
@@ -70,11 +69,9 @@ export default async function HomeHero({ locale }: { locale: string }) {
 
         <dl className="kh-hero-stats kh-rise kh-rise-6">
           {stats.map((stat) => (
-            <MetricReveal className={`kh-hero-stat${stat.long ? " is-long" : ""}`} key={stat.label}>
-              <b className="kh-hero-stat-value" aria-label={stat.ariaValue}>
-                <span aria-hidden="true" className="kh-hero-stat-number">{stat.value}</span>
-              </b>
-              <span className="kh-mono kh-hero-stat-label">{stat.label}</span>
+            <MetricReveal className="kh-hero-stat" key={stat.label}>
+              <dt className="kh-mono kh-hero-stat-label">{stat.label}</dt>
+              <dd className="kh-hero-stat-value" aria-label={stat.ariaValue}>{stat.value}</dd>
             </MetricReveal>
           ))}
         </dl>
