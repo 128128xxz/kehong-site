@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/home/interactive";
@@ -102,7 +101,6 @@ export default async function HomeProductSystems({ locale }: { locale: string })
                           <span className="kh-product-card-copy">
                             <span className="kh-product-card-title">{zh ? item.zh : item.en}</span>
                             <span className="kh-product-card-description">{zh ? shortZhDescriptions[item.id] : item.description.en}</span>
-                            <ArrowRight className="kh-product-card-arrow size-4" aria-hidden="true" />
                           </span>
                         </Link>
                       );

@@ -1,4 +1,4 @@
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { companyDisplayName, socialLinks } from "@/data/company";
@@ -77,19 +77,19 @@ export default async function SiteFooter() {
             <details className="kh-footer-group" open>
             <summary>{copy.products}</summary>
             <div>
-              <Link href="/products">{copy.allProducts}</Link>
-              <Link href="/solutions">{copy.solutions}</Link>
-              <Link href="/industries">{copy.industries}</Link>
+              <Link href="/products">{copy.allProducts}<ArrowUpRight aria-hidden="true" /></Link>
+              <Link href="/solutions">{copy.solutions}<ArrowUpRight aria-hidden="true" /></Link>
+              <Link href="/industries">{copy.industries}<ArrowUpRight aria-hidden="true" /></Link>
             </div>
           </details>
             <details className="kh-footer-group" open>
             <summary>{copy.capabilities}</summary>
             <div>
-              <Link href="/capabilities">{copy.capabilitiesLink}</Link>
-              <Link href="/factory">{copy.factory}</Link>
-              <Link href="/news">{copy.news}</Link>
-              <Link href="/resources">{copy.resources}</Link>
-              <Link href="/model-preview">{copy.studio}</Link>
+              <Link href="/capabilities">{copy.capabilitiesLink}<ArrowUpRight aria-hidden="true" /></Link>
+              <Link href="/factory">{copy.factory}<ArrowUpRight aria-hidden="true" /></Link>
+              <Link href="/news">{copy.news}<ArrowUpRight aria-hidden="true" /></Link>
+              <Link href="/resources">{copy.resources}<ArrowUpRight aria-hidden="true" /></Link>
+              <Link href="/model-preview">{copy.studio}<ArrowUpRight aria-hidden="true" /></Link>
             </div>
           </details>
         </div>

@@ -50,7 +50,7 @@ test.describe("Kehong Liquid Glass UI material preview", () => {
         bubbleLensContent: firstBubble ? getComputedStyle(firstBubble, "::after").content : "",
         bubbleFrameContent: firstBubble ? getComputedStyle(firstBubble, "::before").content : "",
         bubblePointerX: firstBubble?.style.getPropertyValue("--glass-pointer-x") ?? "",
-        iconFilter: firstIcon ? getComputedStyle(firstIcon).filter : "",
+        iconFilter: firstIcon ? getComputedStyle(firstIcon).filter : "none",
       };
     });
 

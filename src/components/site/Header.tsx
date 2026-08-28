@@ -19,6 +19,16 @@ const headerCopy = {
   ms: { products: "Produk", solutions: "Penyelesaian", capabilities: "Keupayaan", factory: "Kilang", modelPreview: "3D Packaging Studio", resources: "Sumber", contact: "Dapatkan sebut harga", menuOpen: "Buka menu", menuClose: "Tutup menu", menuTitle: "Navigasi" },
 } as const;
 
+const fullProductDirectoryCopy: Record<string, string> = {
+  en: "View the complete product directory",
+  zh: "查看完整产品目录",
+  es: "Ver el directorio completo de productos",
+  th: "ดูแคตตาล็อกสินค้าทั้งหมด",
+  vi: "Xem toàn bộ danh mục sản phẩm",
+  id: "Lihat direktori produk lengkap",
+  ms: "Lihat direktori produk lengkap",
+};
+
 type NavItem = { href: string; zh: string; en: string };
 
 const capabilityLinks: NavItem[] = [
@@ -118,7 +128,7 @@ function MobileResourceDirectory({ zh, close, pathname }: { zh: boolean; close: 
   );
 }
 
-function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () => void; firstLinkRef?: (node: HTMLAnchorElement | null) => void }) {
+function ProductMegaMenu({ zh, allProducts, close, firstLinkRef }: { zh: boolean; allProducts: string; close: () => void; firstLinkRef?: (node: HTMLAnchorElement | null) => void }) {
   return (
     <div id="header-products-menu" className="kh-nav-panel kh-product-mega" data-testid="header-product-mega-menu" aria-label={zh ? "产品目录" : "Product directory"}>
       <div className="kh-product-mega-grid">
@@ -158,6 +168,9 @@ function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () =
           </section>
         ))}
       </div>
+      <Link className="kh-product-mega-all" href="/products" onClick={close}>
+        {allProducts}
+      </Link>
     </div>
   );
 }
@@ -465,7 +478,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
               <span>{copy.products}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
-            {openMenu === "products" ? <ProductMegaMenu zh={isZh} close={closeDesktopDropdowns} firstLinkRef={setFirstProductMenuLinkRef} /> : null}
+            {openMenu === "products" ? <ProductMegaMenu zh={isZh} allProducts={fullProductDirectoryCopy[locale] ?? fullProductDirectoryCopy.en} close={closeDesktopDropdowns} firstLinkRef={setFirstProductMenuLinkRef} /> : null}
           </div>
 
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("capabilities")} onPointerLeave={() => scheduleDesktopClose("capabilities")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("capabilities"); }}>

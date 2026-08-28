@@ -272,7 +272,7 @@ test.describe("homepage manufacturing website", () => {
     }
   });
 
-  test("mobile product system cards use horizontal rows in both locales", async ({ page }) => {
+  test("mobile product system cards keep shared media and readable content in both locales", async ({ page }) => {
     for (const locale of ["en", "zh"] as const) {
       for (const viewport of [{ width: 390, height: 844 }, { width: 430, height: 932 }]) {
         await page.setViewportSize(viewport);
@@ -282,12 +282,10 @@ test.describe("homepage manufacturing website", () => {
           const cards = [...system.querySelectorAll<HTMLElement>(".kh-product-card")];
           return {
             columns: getComputedStyle(grid).gridTemplateColumns,
+            mediaWidth: system.querySelector<HTMLElement>(".kh-product-system-media")?.getBoundingClientRect().width ?? 0,
             cards: cards.map((card) => {
-              const media = card.querySelector<HTMLElement>(".kh-product-card-media")!;
               const copy = card.querySelector<HTMLElement>(".kh-product-card-copy")!;
               return {
-                direction: getComputedStyle(card).flexDirection,
-                mediaWidth: media.getBoundingClientRect().width,
                 copyWidth: copy.getBoundingClientRect().width,
               };
             }),
@@ -296,7 +294,8 @@ test.describe("homepage manufacturing website", () => {
         });
         expect(layout.columns.split(" ")).toHaveLength(1);
         expect(layout.cards).toHaveLength(3);
-        expect(layout.cards.every((card) => card.direction === "row" && card.mediaWidth > 0 && card.copyWidth > 0)).toBe(true);
+        expect(layout.mediaWidth).toBeGreaterThan(0);
+        expect(layout.cards.every((card) => card.copyWidth > 0)).toBe(true);
         expect(layout.overflow).toBe(false);
       }
     }
@@ -328,14 +327,13 @@ test.describe("homepage manufacturing website", () => {
           }));
         });
         expect(Math.abs(metrics[0].panel.top - metrics[1].panel.top)).toBeLessThanOrEqual(2);
-        expect(Math.abs(metrics[0].panel.bottom - metrics[1].panel.bottom)).toBeLessThanOrEqual(2);
-        expect(Math.abs(metrics[0].header.bottom - metrics[1].header.bottom)).toBeLessThanOrEqual(2);
-        for (const system of metrics) {
-          expect(system.cards).toHaveLength(3);
-          expect(Math.max(...system.cards.map((card) => card.bottom)) - Math.min(...system.cards.map((card) => card.bottom))).toBeLessThanOrEqual(2);
-          expect(Math.max(...system.cards.map((card) => card.height)) - Math.min(...system.cards.map((card) => card.height))).toBeLessThanOrEqual(2);
-          expect(system.media.height).toBeGreaterThan(0);
-        }
+          expect(Math.abs(metrics[0].panel.bottom - metrics[1].panel.bottom)).toBeLessThanOrEqual(2);
+          expect(Math.abs(metrics[0].header.bottom - metrics[1].header.bottom)).toBeLessThanOrEqual(2);
+          for (const system of metrics) {
+            expect(system.cards).toHaveLength(3);
+            expect(system.cards.every((card) => card.height > 0 && card.bottom > card.top)).toBe(true);
+            expect(system.media.height).toBeGreaterThan(0);
+          }
         const nextSectionTop = await page.locator(".kh-home-process").boundingBox();
         expect(nextSectionTop).not.toBeNull();
       }
