@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, ChevronDown, Factory, Layers3, Lightbulb, Menu, Settings2, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -102,7 +102,6 @@ function MobileResourceDirectory({ zh, close, pathname }: { zh: boolean; close: 
   return (
     <details className="kh-mobile-resource-directory">
       <summary>
-        <BookOpen className="kh-mobile-nav-icon" aria-hidden="true" />
         <span>{zh ? "资源" : "Resources"}</span>
         <ChevronDown className="kh-mobile-nav-chevron size-4" aria-hidden="true" />
       </summary>
@@ -159,9 +158,6 @@ function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () =
           </section>
         ))}
       </div>
-      <Link className="kh-product-mega-all" href="/products" onClick={close}>
-        <span><small>{zh ? "总目录" : "Directory"}</small>{zh ? "查看完整产品目录" : "View the complete product directory"}</span>
-      </Link>
     </div>
   );
 }
@@ -172,7 +168,6 @@ function MobileProductDirectory({ zh, close }: { zh: boolean; close: () => void 
       {productCatalogSections.map((section, sectionIndex) => (
         <details key={section.id} className="kh-mobile-product-section">
           <summary>
-            <Layers3 className="kh-mobile-nav-icon" aria-hidden="true" />
             <span className="kh-mobile-product-kicker">{String(sectionIndex + 1).padStart(2, "0")}</span>
             <span className="kh-mobile-product-section-title">{directoryLabel(section.label, zh)}</span>
             <ChevronDown className="kh-mobile-nav-chevron size-4" aria-hidden="true" />
@@ -202,19 +197,18 @@ function MobileInlineNav({ copy, pathname, locale }: { copy: { products: string;
     return value;
   };
   const entries = [
-    { href: "/products", label: copy.products, Icon: Layers3 },
-    { href: "/solutions", label: copy.applications, Icon: Lightbulb },
-    { href: "/capabilities", label: copy.capabilities, Icon: Settings2 },
-    { href: "/factory", label: copy.factoryQuality, Icon: Factory },
-    { href: "/resources", label: copy.resources, Icon: BookOpen },
+    { href: "/products", label: copy.products },
+    { href: "/solutions", label: copy.applications },
+    { href: "/capabilities", label: copy.capabilities },
+    { href: "/factory", label: copy.factoryQuality },
+    { href: "/resources", label: copy.resources },
   ] as const;
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <nav className="kh-mobile-inline-nav" data-testid="mobile-inline-nav" aria-label={copy.menuTitle}>
-      {entries.map(({ href, label, Icon }) => (
+      {entries.map(({ href, label }) => (
         <Link key={href} href={href} className={isActive(href) ? "is-active" : undefined}>
-          <Icon className="kh-mobile-inline-nav-icon" aria-hidden="true" />
           <span>{compactLabel(href, label)}</span>
         </Link>
       ))}
@@ -468,7 +462,6 @@ export default function Header({ variant = "solid" }: HeaderProps) {
         <nav ref={desktopNavRef} className="kh-desktop-nav" aria-label="Primary navigation">
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("products")} onPointerLeave={() => scheduleDesktopClose("products")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("products"); }}>
             <button ref={productsButtonRef} type="button" className={navLinkClass(isProducts)} aria-expanded={openMenu === "products"} aria-controls="header-products-menu" aria-haspopup="true" onClick={(event) => { if (keyboardProductsActivationRef.current) { event.preventDefault(); event.stopPropagation(); keyboardProductsActivationRef.current = null; return; } if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); }} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); if (event.repeat) return; keyboardProductsActivationRef.current = event.key; if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); return; } if (event.key !== "ArrowDown") return; event.preventDefault(); event.stopPropagation(); focusFirstProductLinkRef.current = true; setFirstProductFocusRequest((request) => request + 1); openDesktopMenu("products"); }} onKeyUp={(event) => { if (event.key !== keyboardProductsActivationRef.current) return; event.preventDefault(); event.stopPropagation(); requestAnimationFrame(() => { keyboardProductsActivationRef.current = null; }); }}>
-              <Layers3 className="kh-nav-icon size-3.5" aria-hidden="true" />
               <span>{copy.products}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
@@ -477,7 +470,6 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("capabilities")} onPointerLeave={() => scheduleDesktopClose("capabilities")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("capabilities"); }}>
             <button type="button" className={navLinkClass(isCapabilities)} aria-expanded={openMenu === "capabilities"} aria-controls="header-capabilities-menu" aria-haspopup="true" onClick={() => openMenu === "capabilities" ? closeDesktopDropdowns() : openDesktopMenu("capabilities")}>
-              <Settings2 className="kh-nav-icon size-3.5" aria-hidden="true" />
               <span>{copy.capabilities}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
@@ -489,18 +481,15 @@ export default function Header({ variant = "solid" }: HeaderProps) {
           </div>
 
           <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>
-            <Lightbulb className="kh-nav-icon size-3.5" aria-hidden="true" />
             <span>{copy.applications}</span>
           </Link>
 
           <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}>
-            <Factory className="kh-nav-icon size-3.5" aria-hidden="true" />
             <span>{copy.factoryQuality}</span>
           </Link>
 
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("resources")} onPointerLeave={() => scheduleDesktopClose("resources")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("resources"); }}>
             <button type="button" className={navLinkClass(isResources)} aria-expanded={openMenu === "resources"} aria-controls="header-resources-menu" aria-haspopup="true" onClick={() => openMenu === "resources" ? closeDesktopDropdowns() : openDesktopMenu("resources")}>
-              <BookOpen className="kh-nav-icon size-3.5" aria-hidden="true" />
               <span>{copy.resources}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
@@ -544,12 +533,10 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                 <nav aria-label={copy.menuTitle}>
                   <MobileProductDirectory zh={isZh} close={closeMobileMenu} />
                   <Link className="kh-mobile-nav-row" href="/solutions" onClick={closeMobileMenu}>
-                    <Lightbulb className="kh-mobile-nav-icon" aria-hidden="true" />
                     <span>{copy.applications}</span>
                   </Link>
                   <details className="kh-mobile-simple-directory">
                     <summary>
-                      <Settings2 className="kh-mobile-nav-icon" aria-hidden="true" />
                       <span>{copy.capabilities}</span>
                       <ChevronDown className="kh-mobile-nav-chevron size-4" aria-hidden="true" />
                     </summary>
@@ -560,7 +547,6 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                     </div>
                   </details>
                   <Link className="kh-mobile-nav-row" href="/factory" onClick={closeMobileMenu}>
-                    <Factory className="kh-mobile-nav-icon" aria-hidden="true" />
                     <span>{copy.factoryQuality}</span>
                   </Link>
                   <Link href="/about" className="kh-mobile-nav-row" onClick={closeMobileMenu}>

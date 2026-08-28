@@ -1,14 +1,4 @@
-import {
-  BookOpen,
-  Factory,
-  Lightbulb,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Newspaper,
-  Package,
-  Phone,
-} from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { companyDisplayName, socialLinks } from "@/data/company";
@@ -17,7 +7,6 @@ import LocationClickAnchor from "@/components/site/LocationClickAnchor";
 import SiteLogo from "@/components/site/SiteLogo";
 import WeChatContactButton from "@/components/site/WeChatContactButton";
 import PrivacySettingsButton from "@/components/site/PrivacySettingsButton";
-import { GlassSurface } from "@/components/ui/glass/GlassSurface";
 import { mailtoHref, publicContact, telHref, whatsappHref } from "@/config/company-public";
 
 type IconProps = { className?: string };
@@ -29,14 +18,6 @@ function LinkedinIcon({ className }: IconProps) {
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-13h4v2" />
       <rect x="2" y="9" width="4" height="12" />
       <circle cx="4" cy="4" r="2" />
-    </svg>
-  );
-}
-
-function FacebookIcon({ className }: IconProps) {
-  return (
-    <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
   );
 }
@@ -60,31 +41,10 @@ function YoutubeIcon({ className }: IconProps) {
   );
 }
 
-/** X/Twitter(内联简形) */
-function XIcon({ className }: IconProps) {
-  return (
-    <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-      <path d="M4 4l16 16M20 4L4 20" />
-    </svg>
-  );
-}
-
-/** TikTok(lucide 无此品牌图标,内联简形) */
-function TikTokIcon({ className }: IconProps) {
-  return (
-    <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-    </svg>
-  );
-}
-
 const socialEntries = [
   { key: "linkedin", label: "LinkedIn", href: socialLinks.linkedin, Icon: LinkedinIcon },
-  { key: "facebook", label: "Facebook", href: socialLinks.facebook, Icon: FacebookIcon },
   { key: "instagram", label: "Instagram", href: socialLinks.instagram, Icon: InstagramIcon },
   { key: "youtube", label: "YouTube", href: socialLinks.youtube, Icon: YoutubeIcon },
-  { key: "x", label: "X (Twitter)", href: socialLinks.x, Icon: XIcon },
-  { key: "tiktok", label: "TikTok", href: socialLinks.tiktok, Icon: TikTokIcon },
 ] as const;
 
 const footerCopy = {
@@ -115,25 +75,25 @@ export default async function SiteFooter() {
         </div>
         <div className="kh-footer-links">
             <details className="kh-footer-group" open>
-            <summary><Package className="kh-footer-heading-icon" aria-hidden="true" />{copy.products}</summary>
+            <summary>{copy.products}</summary>
             <div>
-              <Link href="/products"><Package aria-hidden="true" />{copy.allProducts}</Link>
-              <Link href="/solutions"><Lightbulb aria-hidden="true" />{copy.solutions}</Link>
-              <Link href="/industries"><Factory aria-hidden="true" />{copy.industries}</Link>
+              <Link href="/products">{copy.allProducts}</Link>
+              <Link href="/solutions">{copy.solutions}</Link>
+              <Link href="/industries">{copy.industries}</Link>
             </div>
           </details>
             <details className="kh-footer-group" open>
-            <summary><BookOpen className="kh-footer-heading-icon" aria-hidden="true" />{copy.capabilities}</summary>
+            <summary>{copy.capabilities}</summary>
             <div>
-              <Link href="/capabilities"><Factory aria-hidden="true" />{copy.capabilitiesLink}</Link>
-              <Link href="/factory"><MapPin aria-hidden="true" />{copy.factory}</Link>
-              <Link href="/news"><Newspaper aria-hidden="true" />{copy.news}</Link>
-              <Link href="/resources"><BookOpen aria-hidden="true" />{copy.resources}</Link>
-              <Link href="/model-preview"><Package aria-hidden="true" />{copy.studio}</Link>
+              <Link href="/capabilities">{copy.capabilitiesLink}</Link>
+              <Link href="/factory">{copy.factory}</Link>
+              <Link href="/news">{copy.news}</Link>
+              <Link href="/resources">{copy.resources}</Link>
+              <Link href="/model-preview">{copy.studio}</Link>
             </div>
           </details>
         </div>
-        <GlassSurface variant="contact-card" tone="dark" className="kh-footer-contact-column kh-glass-footer-card">
+        <div className="kh-footer-contact-column">
           <p className="kh-footer-column-label">{copy.contact}</p>
           <div className="kh-footer-contact">
             <LocationClickAnchor
@@ -154,7 +114,7 @@ export default async function SiteFooter() {
             <a href={emailHref} aria-label={zh ? `发送邮件至 ${publicContact.email}` : `Email ${publicContact.email}`}><Mail aria-hidden="true" />{publicContact.email}</a>
             {zh ? <WeChatContactButton phone={publicContact.factoryPhone} label="微信咨询" copiedLabel="手机号已复制" className="kh-footer-wechat inline-flex min-h-11 items-center gap-2 border-0 bg-transparent p-0" /> : <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Contact ${companyDisplayName.en} on WhatsApp`}><MessageCircle className="size-4" />WhatsApp</a>}
           </div>
-        </GlassSurface>
+        </div>
       </div>
       <div className="kh-shell kh-footer-bottom">
         <div className="kh-social" aria-label={copy.social}>

@@ -79,7 +79,7 @@ export default async function FactoryOverview({ locale }: { locale: string }) {
             <div className="kh-section-heading">
               <div>
                 <SectionKicker index="03" text={t("factory.process.kicker")} />
-                <h2>{t("factory.process.title")}</h2>
+                <h2 className="kh-editorial-serif">{t("factory.process.title")}</h2>
                 <p className="kh-section-lede mt-5">{t("factory.process.lede")}</p>
               </div>
             </div>
@@ -122,7 +122,7 @@ export default async function FactoryOverview({ locale }: { locale: string }) {
             <div className="grid gap-6 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
               <div>
                 <SectionKicker index="04" text={t("factory.quality.kicker")} light />
-                <h2>{t("factory.quality.title")}</h2>
+                <h2 className="kh-editorial-serif">{t("factory.quality.title")}</h2>
               </div>
               <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
                 {t("factory.quality.lede")}

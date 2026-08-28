@@ -82,7 +82,7 @@ export default async function B2BProcurementSections() {
                       <span className="grid size-10 place-items-center rounded-md bg-(--kh-forest) text-(--kh-brass-soft)">
                         <Icon className="size-5" />
                       </span>
-                      <h3 className="text-sm font-bold text-(--kh-ink)">
+                      <h3 className="text-sm font-semibold text-(--kh-ink)">
                         {isZh ? item.zh : item.title}
                       </h3>
                     </div>
@@ -114,7 +114,7 @@ export default async function B2BProcurementSections() {
                   <div key={item.title} className="rounded-md border border-white/12 bg-white/8 p-5">
                     <div className="flex items-center gap-3">
                       <Icon className="size-5 text-(--kh-brass-soft)" />
-                      <h3 className="text-sm font-bold text-white">{isZh ? item.zh : item.title}</h3>
+                      <h3 className="text-sm font-semibold text-white">{isZh ? item.zh : item.title}</h3>
                     </div>
                     <p className="mt-3 text-sm leading-6 text-white/80">{isZh ? item.detailZh : item.detail}</p>
                   </div>
@@ -140,7 +140,7 @@ export default async function B2BProcurementSections() {
               {(isZh ? processSteps.zh : processSteps.en).map((step, index) => (
                 <div key={step} className="kh-procurement-process-step kh-panel p-3">
                   <span className="kh-mono text-(--kh-brass)">{`0${index + 1}`}</span>
-                  <p className="mt-2 text-sm font-bold leading-5 text-(--kh-ink)">{step}</p>
+                  <p className="mt-2 text-sm font-semibold leading-5 text-(--kh-ink)">{step}</p>
                   <CheckCircle2 className="mt-2 size-4 text-(--kh-brass)" />
                 </div>
               ))}

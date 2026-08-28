@@ -2,6 +2,7 @@ import { Redis } from "@upstash/redis";
 import { scoreBehavior } from "./behavior-scoring";
 import { integerEnv, visitorConfig } from "./config";
 import type { DigestEventInput, VisitorDigestRecord } from "./digest-types";
+import { digestWindowsForDay } from "./service-window";
 
 const RELEASE_LOCK_SCRIPT = 'if redis.call("get", KEYS[1]) == ARGV[1] then return redis.call("del", KEYS[1]) else return 0 end';
 const RETENTION_SECONDS = () => visitorConfig.digestRetentionHours * 60 * 60;
@@ -10,6 +11,8 @@ const SCORE_THRESHOLD = () => integerEnv("B2B_DIGEST_SCORE_THRESHOLD", 50, 0, 50
 export type VisitorDigestStore = {
   upsertVisitor(event: DigestEventInput, sessionTimeoutMinutes: number): Promise<VisitorDigestRecord>;
   getWindowVisitors(windowId: string, now: string): Promise<VisitorDigestRecord[]>;
+  getAllVisitors(now: string): Promise<VisitorDigestRecord[]>;
+  getDayVisitors(day: string, now: string): Promise<VisitorDigestRecord[]>;
   markWindowSent(windowId: string): Promise<boolean>;
   isWindowSent(windowId: string): Promise<boolean>;
   acquireDigestLock(windowId: string, ttlSeconds: number): Promise<string | null>;
@@ -86,6 +89,21 @@ export class MemoryVisitorDigestStore implements VisitorDigestStore {
       .sort((a, b) => b.behaviorScore - a.behaviorScore || b.lastSeenAt.localeCompare(a.lastSeenAt));
   }
 
+  async getAllVisitors(now: string) {
+    const nowMs = Date.parse(now);
+    return [...this.state.rows.values()]
+      .filter((row) => Date.parse(row.expiresAt) > nowMs)
+      .sort((a, b) => b.lastSeenAt.localeCompare(a.lastSeenAt));
+  }
+
+  async getDayVisitors(day: string, now: string) {
+    const windows = new Set(digestWindowsForDay(day));
+    const nowMs = Date.parse(now);
+    return [...this.state.rows.values()]
+      .filter((row) => windows.has(row.digestWindow) && Date.parse(row.expiresAt) > nowMs)
+      .sort((a, b) => b.lastSeenAt.localeCompare(a.lastSeenAt));
+  }
+
   async markWindowSent(windowId: string) {
     if (this.state.sent.has(windowId)) return false;
     this.state.sent.add(windowId);
@@ -157,6 +175,30 @@ class UpstashVisitorDigestStore implements VisitorDigestStore {
     const nowMs = Date.parse(now);
     return rows.filter((row): row is VisitorDigestRecord => Boolean(row && !row.sentAt && Date.parse(row.expiresAt) > nowMs && row.behaviorScore >= SCORE_THRESHOLD()))
       .sort((a, b) => b.behaviorScore - a.behaviorScore || b.lastSeenAt.localeCompare(a.lastSeenAt));
+  }
+
+  async getAllVisitors(now: string) {
+    const windows = await this.redis.keys("b2b:digest:window:*");
+    const rows: VisitorDigestRecord[] = [];
+    for (const key of windows) {
+      const windowId = key.replace("b2b:digest:window:", "");
+      const hashes = await this.redis.smembers<string[]>(key);
+      const windowRows = await Promise.all(hashes.map((hash) => this.redis.get<VisitorDigestRecord>(visitorKey(windowId, hash))));
+      rows.push(...windowRows.filter((row): row is VisitorDigestRecord => Boolean(row)));
+    }
+    const nowMs = Date.parse(now);
+    return rows.filter((row) => Date.parse(row.expiresAt) > nowMs).sort((a, b) => b.lastSeenAt.localeCompare(a.lastSeenAt));
+  }
+
+  async getDayVisitors(day: string, now: string) {
+    const rows: VisitorDigestRecord[] = [];
+    for (const windowId of digestWindowsForDay(day)) {
+      const hashes = await this.redis.smembers<string[]>(windowKey(windowId));
+      const windowRows = await Promise.all(hashes.map((hash) => this.redis.get<VisitorDigestRecord>(visitorKey(windowId, hash))));
+      rows.push(...windowRows.filter((row): row is VisitorDigestRecord => Boolean(row)));
+    }
+    const nowMs = Date.parse(now);
+    return rows.filter((row) => Date.parse(row.expiresAt) > nowMs).sort((a, b) => b.lastSeenAt.localeCompare(a.lastSeenAt));
   }
 
   async markWindowSent(windowId: string) {

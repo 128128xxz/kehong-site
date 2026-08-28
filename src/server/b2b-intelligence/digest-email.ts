@@ -23,12 +23,10 @@ function getDigestEmailConfig() {
 
 function rowText(row: VisitorDigestRecord) {
   const events = Object.entries(row.eventSummary).map(([type, count]) => `${type} x${count}`).join(", ") || "-";
-  const reasons = row.scoreReasons.map((reason) => `${reason.label} +${reason.points}`).join(", ") || "-";
   return [
     `IP: ${row.rawIp}`, `首次访问: ${formatDate(row.firstSeenAt)}`, `最近访问: ${formatDate(row.lastSeenAt)}`,
     `访问次数: ${row.totalVisits}`, `估算会话时长: ${row.totalSessionSeconds}s`, `访问页面: ${row.visitedPages.join(", ") || "-"}`,
     `关键行为: ${events}`, `Referrer: ${row.referrer || "-"}`, `UTM: ${[row.utmSource, row.utmMedium, row.utmCampaign].filter(Boolean).join(" / ") || "-"}`,
-    `行为评分: ${row.behaviorScore}`, `评分原因: ${reasons}`,
   ].join("\n");
 }
 
