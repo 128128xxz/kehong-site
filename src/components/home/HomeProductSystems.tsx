@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/home/interactive";
 import { SectionKicker } from "@/components/home/annotations";
+import HomeProductCarousel from "@/components/home/HomeProductCarousel";
 import { showcaseImages } from "@/data/visuals";
 import { productCatalogSections, type DirectoryLink } from "@/data/productDirectory";
 
@@ -58,6 +58,20 @@ export default async function HomeProductSystems({ locale }: { locale: string })
       visuals: finishedVisuals,
     },
   ];
+  const carouselItems = systems.flatMap((system) =>
+    system.links.map((item) => {
+      const visual = system.visuals[item.id];
+      return {
+        id: item.id,
+        href: item.href,
+        title: zh ? item.zh : item.en,
+        description: zh ? shortZhDescriptions[item.id] : item.description.en,
+        image: visual.image,
+        alt: zh ? visual.altZh : visual.alt,
+        systemLabel: system.label,
+      };
+    }),
+  );
 
   return (
     <section className="kh-section kh-section-paper kh-product-systems kh-home-product-systems">
@@ -74,47 +88,9 @@ export default async function HomeProductSystems({ locale }: { locale: string })
           </div>
         </Reveal>
 
-        <div className="kh-product-system-grid" data-testid="homepage-product-systems">
-          {systems.map((system, index) => (
-            <Reveal key={system.id} delay={index * 90}>
-              <article className="kh-product-system">
-                <div className="kh-product-system-media kh-media-shade">
-                  <Image
-                    src={index === 0 ? showcaseImages.structureMaterialReal : showcaseImages.foodBoxReal}
-                    alt={index === 0 ? (zh ? "纸材与纸板材料" : "Paper materials and board") : (zh ? "成品包装样品" : "Finished packaging samples")}
-                    fill
-                    sizes="(max-width: 760px) 100vw, 50vw"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="kh-product-system-copy">
-                  <div className="kh-product-system-head">
-                    <h3>{system.label}</h3>
-                    <Link className="kh-product-system-cta" href={system.href}>{system.cta}</Link>
-                  </div>
-                  <p>{system.intro}</p>
-                  <div className="kh-product-card-grid">
-                    {system.links.map((item) => {
-                      const visual = system.visuals[item.id];
-                      return (
-                        <Link key={item.id} href={item.href} data-testid="homepage-product-entry" className="kh-product-card">
-                          <span className="kh-product-card-media">
-                            <Image src={visual.image} alt={zh ? visual.altZh : visual.alt} fill sizes="(max-width: 760px) 42vw, (max-width: 1100px) 22vw, 16vw" className="object-cover" loading="lazy" />
-                          </span>
-                          <span className="kh-product-card-copy">
-                            <span className="kh-product-card-title">{zh ? item.zh : item.en}</span>
-                            <span className="kh-product-card-description">{zh ? shortZhDescriptions[item.id] : item.description.en}</span>
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={90}>
+          <HomeProductCarousel items={carouselItems} viewLabel={t("products.viewAll")} isZh={zh} />
+        </Reveal>
       </div>
     </section>
   );

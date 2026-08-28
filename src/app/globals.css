@@ -28,16 +28,12 @@
   --kh-forest-deep: #0a1612;
   --kh-shadow-soft: 0 10px 30px rgba(29, 33, 29, .08);
   --kh-ease: cubic-bezier(.22, 1, .36, 1);
-  --kh-header-height: 85px;
-  /* ===== Typography System =====
-     层级: Display XL/L → H1/H2/H3 → Body L/Body/Small → Eyebrow/Caption/Button/Numeric
-     字体栈: sans(Manrope) 承载 UI/正文/导航/按钮/卡片; serif(Instrument Serif + ZCOOL XiaoWei + Noto Serif Thai) 仅用于 editorial 大标题
-     Thai 通过 Noto Sans/Serif Thai 独立承载, 避免 fallback 视觉跳变
-     zh Display: ZCOOL XiaoWei 400; th Display: Noto Serif Thai */
-  --font-body: var(--font-manrope, Manrope), var(--font-noto-sans-thai, "Noto Sans Thai"), "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, "Segoe UI", Arial, sans-serif;
-  --font-display: var(--font-manrope, Manrope), var(--font-noto-sans-thai, "Noto Sans Thai"), "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif, "Instrument Serif"), var(--font-zcool-xiaowei, "ZCOOL XiaoWei"), var(--font-noto-serif-thai, "Noto Serif Thai"), "Songti SC", "STSong", "SimSun", serif;
-  --font-mono: var(--font-plex-mono, "IBM Plex Mono"), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --kh-header-height: 68px;
+  /* Apple system typography keeps the interface quiet and legible across locales. */
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", var(--font-noto-sans-thai, "Noto Sans Thai"), system-ui, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", var(--font-noto-sans-thai, "Noto Sans Thai"), system-ui, sans-serif;
+  --font-serif: var(--font-display);
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   /* Display / heading scale — Strict Art Direction 2026-08 */
   --kh-type-display-xl: clamp(2.875rem, 6vw, 4.75rem); /* EN hero H1 46→76px */
@@ -71,7 +67,7 @@
   --kh-type-button: 0.875rem; /* 14px / 600 / .025-.04em */
 
   /* Numeric: lining + tabular figures for metrics/specs */
-  --kh-type-numeric: var(--font-manrope, Manrope), var(--font-noto-sans-thai, "Noto Sans Thai"), sans-serif;
+  --kh-type-numeric: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Noto Sans SC", var(--font-noto-sans-thai, "Noto Sans Thai"), system-ui, sans-serif;
   --kh-type-numeric-features: "tnum" 1, "lnum" 1;
   --background: var(--kh-paper);
   --foreground: var(--kh-ink);
@@ -6926,4 +6922,671 @@ html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
 .kh-product-mega-cta:focus-visible {
   background: linear-gradient(135deg, rgba(255, 255, 255, .72), rgba(190, 226, 215, .42), rgba(220, 194, 139, .3)) !important;
   color: var(--kh-forest) !important;
+}
+
+/* Final visual pass on the f103259 structure: keep the hierarchy compact and
+   let the existing page components remain the source of truth. */
+.kh-section {
+  padding-block: clamp(4rem, 7vw, 6.5rem);
+}
+
+.kh-section-heading {
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.kh-page-hero-inner {
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.kh-process-grid,
+.kh-factory-grid,
+.kh-cta-grid {
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+/* Homepage main product carousel. */
+.kh-product-carousel {
+  display: grid;
+  gap: 1rem;
+}
+
+.kh-product-carousel-viewport {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: .1rem .1rem .5rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.kh-product-carousel-viewport::-webkit-scrollbar { display: none; }
+
+.kh-product-carousel-slide {
+  display: grid;
+  flex: 0 0 min(82vw, 58rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(17rem, .9fr);
+  min-height: clamp(20rem, 31vw, 28rem);
+  overflow: hidden;
+  border: 1px solid var(--kh-line);
+  border-radius: 3px;
+  background: var(--kh-paper);
+  scroll-snap-align: start;
+}
+
+.kh-product-carousel-media {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background: var(--kh-paper-deep);
+}
+
+.kh-product-carousel-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+.kh-product-carousel-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .9rem;
+  margin-bottom: 1.15rem;
+  color: var(--kh-muted);
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+.kh-product-carousel-meta .kh-mono,
+.kh-product-carousel-status span { color: var(--kh-brass); }
+
+.kh-product-carousel-copy h3 {
+  max-width: 14ch;
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.12;
+}
+
+.kh-product-carousel-copy p {
+  max-width: 32ch;
+  margin: .9rem 0 0;
+  color: var(--kh-muted);
+  font-size: .98rem;
+  line-height: 1.65;
+}
+
+.kh-product-carousel-link {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: .45rem;
+  margin-top: 1.5rem;
+  color: var(--kh-forest);
+  font-size: .88rem;
+  font-weight: 600;
+}
+
+.kh-product-carousel-link:hover { color: var(--kh-brass); }
+
+.kh-product-carousel-footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: .9rem;
+  border-top: 1px solid var(--kh-line);
+  padding-top: .75rem;
+}
+
+.kh-product-carousel-status {
+  margin: 0;
+  color: var(--kh-muted);
+  font-size: .76rem;
+  font-weight: 500;
+}
+
+.kh-product-carousel-controls { display: flex; gap: .35rem; }
+
+.kh-carousel-button {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  border: 1px solid var(--kh-line);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--kh-ink);
+  cursor: pointer;
+}
+
+.kh-carousel-button:hover,
+.kh-carousel-button:focus-visible {
+  border-color: var(--kh-forest);
+  background: var(--kh-forest);
+  color: var(--kh-surface);
+}
+
+.kh-product-carousel-dots {
+  display: flex;
+  justify-content: flex-end;
+  gap: .4rem;
+}
+
+.kh-product-carousel-dots button {
+  width: 1.65rem;
+  height: .22rem;
+  border: 0;
+  background: var(--kh-line);
+  cursor: pointer;
+}
+
+.kh-product-carousel-dots button.is-active { background: var(--kh-forest); }
+
+/* Keep footer navigation readable without empty reserved columns. */
+.kh-footer-grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.35fr) minmax(15rem, .9fr);
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.kh-footer-grid > * { min-width: 0; }
+.kh-footer-links { gap: clamp(1.25rem, 3vw, 2rem); }
+
+.kh-footer-contact-column {
+  min-width: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Neutral frosted menus, with no tinted block behind the text. */
+.kh-nav-panel,
+.kh-language-menu,
+.kh-mobile-panel {
+  border-color: rgba(255, 255, 255, .72) !important;
+  border-radius: 4px !important;
+  background: rgba(246, 248, 246, .84) !important;
+  box-shadow: 0 18px 42px rgba(10, 22, 18, .14), inset 0 1px 0 rgba(255, 255, 255, .72) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(105%) !important;
+  backdrop-filter: blur(24px) saturate(105%) !important;
+  color: var(--kh-ink) !important;
+}
+
+.kh-nav-panel::before,
+.kh-language-menu::before,
+.kh-mobile-panel::before {
+  content: none !important;
+  display: none !important;
+}
+
+.kh-product-mega {
+  left: 50%;
+  width: min(42rem, calc(100vw - 2rem));
+  padding: .55rem;
+  transform: translateX(-38%);
+}
+
+.kh-product-mega-grid { grid-template-columns: 1fr; gap: .45rem; }
+.kh-product-mega-section {
+  padding: .65rem .75rem .7rem;
+  border-color: rgba(23, 56, 47, .2) !important;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, .35) !important;
+  box-shadow: none !important;
+}
+
+.kh-product-mega-section[data-system="finished-packaging"] { background: rgba(255, 255, 255, .35) !important; }
+.kh-product-mega-head { padding-bottom: .55rem; }
+.kh-product-mega-group { padding: .38rem 0 .32rem; }
+.kh-product-mega-items { grid-template-columns: 1fr; }
+.kh-product-mega .kh-product-mega-items a { border-radius: 2px; }
+
+.kh-home-cta .kh-cta-grid { grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); }
+.kh-home-cta .kh-spec-panel { width: 100%; max-width: 42rem; justify-self: end; }
+
+/* Compact homepage rail: keep the product entry inside the first screen. */
+.kh-home-hero {
+  min-height: min(820px, 100svh);
+}
+
+.kh-hero-inner {
+  padding-top: clamp(4.5rem, 8vh, 6rem);
+  padding-bottom: clamp(1rem, 3vh, 2rem);
+}
+
+.kh-hero-product-rail {
+  width: min(100%, 46rem);
+  margin-top: .7rem;
+}
+
+.kh-hero-product-rail .kh-product-carousel {
+  gap: .55rem;
+}
+
+.kh-hero-product-rail .kh-product-carousel-viewport {
+  gap: .75rem;
+  padding: 0 0 .25rem;
+}
+
+.kh-hero-product-rail .kh-product-carousel-slide {
+  flex-basis: 100%;
+  min-height: 0;
+  height: 8.75rem;
+  grid-template-columns: 9.25rem minmax(0, 1fr);
+  border-color: rgba(255, 253, 248, .26);
+  background: rgba(10, 22, 18, .46);
+}
+
+.kh-hero-product-rail .kh-product-carousel-media {
+  min-height: 0;
+  height: 100%;
+}
+
+.kh-hero-product-rail .kh-product-carousel-copy {
+  padding: 1rem 1.25rem;
+  color: #fffdf8;
+}
+
+.kh-hero-product-rail .kh-product-carousel-meta {
+  margin-bottom: .45rem;
+  color: rgba(255, 253, 248, .68);
+  font-size: .68rem;
+}
+
+.kh-hero-product-rail .kh-product-carousel-copy h3 {
+  max-width: 16ch;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  line-height: 1.18;
+}
+
+.kh-hero-product-rail .kh-product-carousel-copy p {
+  max-width: 38ch;
+  margin-top: .35rem;
+  color: rgba(255, 253, 248, .72);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+.kh-hero-product-rail .kh-product-carousel-link {
+  margin-top: .55rem;
+  color: var(--kh-brass-soft);
+  font-size: .76rem;
+}
+
+.kh-hero-product-rail .kh-product-carousel-footer {
+  border-top-color: rgba(255, 253, 248, .2);
+  padding-top: .4rem;
+}
+
+.kh-hero-product-rail .kh-product-carousel-status,
+.kh-hero-product-rail .kh-product-carousel-dots button {
+  color: rgba(255, 253, 248, .64);
+}
+
+.kh-hero-product-rail .kh-carousel-button {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-color: rgba(255, 253, 248, .35);
+  color: #fffdf8;
+}
+
+.kh-hero-product-rail .kh-product-carousel-dots button {
+  width: 1.25rem;
+  height: .18rem;
+  background: rgba(255, 253, 248, .3);
+}
+
+.kh-hero-product-rail .kh-product-carousel-dots button.is-active {
+  background: var(--kh-brass-soft);
+}
+
+/* Footer: three explicit compact columns, no wrapped contact block. */
+.kh-footer {
+  padding-block: 2.75rem 1rem;
+}
+
+.kh-footer-grid {
+  display: grid !important;
+  grid-template-columns: minmax(15rem, 1.05fr) minmax(22rem, 1.45fr) minmax(15rem, .95fr) !important;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+}
+
+.kh-footer-links {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.kh-footer-group > div {
+  gap: .45rem;
+}
+
+.kh-footer-contact-column {
+  grid-column: auto !important;
+  min-width: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.kh-footer-contact {
+  gap: .35rem;
+  margin-top: .65rem;
+}
+
+.kh-footer-bottom {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .kh-product-carousel-slide { grid-template-columns: minmax(0, 1fr) minmax(15rem, .82fr); }
+  .kh-footer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+  .kh-footer-brand-column,
+  .kh-footer-contact-column { grid-column: 1 / -1; }
+
+  .kh-footer-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) !important;
+  }
+
+  .kh-footer-contact-column { grid-column: 1 / -1 !important; }
+}
+
+@media (max-width: 760px) {
+  .kh-section { padding-block: clamp(3.75rem, 15vw, 5.25rem); }
+  .kh-product-carousel-slide { display: block; flex-basis: 88vw; min-height: 0; }
+  .kh-product-carousel-media { aspect-ratio: 16 / 10; min-height: 0; }
+  .kh-product-carousel-copy { padding: 1.2rem; }
+  .kh-product-carousel-copy h3 { max-width: 18ch; font-size: 1.65rem; }
+  .kh-product-carousel-footer { grid-template-columns: 1fr auto; }
+  .kh-product-carousel-dots { grid-column: 1 / -1; justify-content: flex-start; }
+  .kh-footer-grid { grid-template-columns: 1fr; }
+  .kh-footer-brand-column,
+  .kh-footer-contact-column { grid-column: auto; }
+  .kh-footer-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kh-home-cta .kh-cta-grid { grid-template-columns: 1fr; }
+  .kh-home-cta .kh-spec-panel { justify-self: stretch; }
+
+  .kh-home-hero { min-height: min(780px, 100svh); }
+  .kh-hero-inner { padding-top: 4.25rem; }
+  .kh-hero-product-rail { margin-top: .7rem; }
+  .kh-hero-product-rail .kh-product-carousel-slide {
+    display: grid;
+    grid-template-columns: 6.25rem minmax(0, 1fr);
+    height: 7.5rem;
+  }
+  .kh-hero-product-rail .kh-product-carousel-media { min-height: 0; height: 100%; }
+  .kh-hero-product-rail .kh-product-carousel-copy { padding: .8rem .9rem; }
+  .kh-hero-product-rail .kh-product-carousel-copy h3 { font-size: 1.2rem; }
+  .kh-hero-product-rail .kh-product-carousel-copy p { font-size: .72rem; }
+  .kh-footer-grid { grid-template-columns: 1fr !important; }
+  .kh-footer-contact-column { grid-column: auto !important; }
+}
+
+@media (max-width: 520px) {
+  .kh-footer-links { grid-template-columns: 1fr; }
+}
+
+/* Homepage products now move as a quiet conveyor belt: one card enters,
+   crosses the rail, then disappears at the far edge before the loop repeats. */
+.kh-hero-product-rail {
+  width: min(100%, 46rem);
+  margin: .65rem auto 0;
+}
+
+.kh-product-conveyor {
+  display: block;
+  width: 100%;
+}
+
+.kh-product-conveyor-viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-block: .15rem .3rem;
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.kh-product-conveyor-track {
+  display: flex;
+  width: max-content;
+  gap: .75rem;
+  animation: kh-product-conveyor-run 34s linear infinite;
+  will-change: transform;
+}
+
+.kh-product-conveyor-group {
+  display: flex;
+  flex: none;
+  gap: .75rem;
+}
+
+.kh-product-conveyor-card {
+  display: flex;
+  width: 15rem;
+  height: auto;
+  flex-direction: column;
+  flex: none;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--kh-ink);
+  transition: opacity .2s ease;
+}
+
+.kh-product-conveyor-card:hover,
+.kh-product-conveyor-card:focus-visible {
+  opacity: .82;
+}
+
+.kh-product-conveyor-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-width: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.kh-product-conveyor-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: .18rem;
+  padding: .55rem .1rem 0;
+}
+
+.kh-product-conveyor-meta {
+  overflow: hidden;
+  color: var(--kh-brass);
+  font-size: .64rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kh-product-conveyor-copy strong {
+  overflow: hidden;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kh-product-conveyor-description {
+  overflow: hidden;
+  color: var(--kh-muted);
+  font-size: .7rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kh-product-conveyor-link {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: .3rem;
+  margin-top: .18rem;
+  color: var(--kh-forest);
+  font-size: .72rem;
+  font-weight: 600;
+}
+
+.kh-product-conveyor-card:hover .kh-product-conveyor-link,
+.kh-product-conveyor-card:focus-visible .kh-product-conveyor-link { color: var(--kh-brass); }
+
+.kh-product-conveyor:hover .kh-product-conveyor-track,
+.kh-product-conveyor:focus-within .kh-product-conveyor-track {
+  animation-play-state: paused;
+}
+
+@keyframes kh-product-conveyor-run {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(calc(-50% - .375rem), 0, 0); }
+}
+
+@media (max-width: 760px) {
+  .kh-hero-product-rail { width: min(100%, 100%); }
+  .kh-product-conveyor-card {
+    width: 12.5rem;
+  }
+  .kh-product-conveyor-copy { padding: .45rem .05rem 0; }
+  .kh-product-conveyor-copy strong { font-size: .95rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kh-product-conveyor-track { animation: none; }
+}
+
+/* The Hero copy must remain readable even if hydration or motion preferences
+   delay the decorative entrance animation. */
+.kh-home-hero .kh-rise {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+.kh-home-hero .kh-hero-bg { animation: none !important; }
+
+/* The hero rail is transparent: imagery leads and the short description sits
+   directly below it instead of inside a colored card. */
+.kh-hero-product-rail .kh-product-conveyor-viewport {
+  width: min(100%, 52rem);
+  margin-inline: auto;
+}
+
+.kh-hero-product-rail .kh-product-conveyor-card {
+  background: transparent !important;
+  color: #fffdf8;
+}
+
+.kh-hero-product-rail .kh-product-conveyor-copy {
+  color: #fffdf8;
+}
+
+.kh-hero-product-rail .kh-product-conveyor-meta,
+.kh-hero-product-rail .kh-product-conveyor-description {
+  color: rgba(255, 253, 248, .72);
+}
+
+.kh-hero-product-rail .kh-product-conveyor-link {
+  color: var(--kh-brass-soft);
+}
+
+/* Final homepage conveyor treatment: compact, centered, and free of card fills. */
+.kh-home-hero .kh-hero-product-rail {
+  width: min(100%, 48rem);
+  margin-inline: auto;
+}
+
+.kh-home-hero .kh-product-conveyor-viewport {
+  width: min(100%, 58rem);
+  margin-inline: auto;
+  padding: .65rem 1rem .75rem;
+  border: 1px solid rgba(255, 253, 248, .28);
+  border-radius: 1rem;
+  background: linear-gradient(90deg, rgba(255, 253, 248, .12), rgba(255, 253, 248, .2) 48%, rgba(255, 253, 248, .12));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16);
+  -webkit-mask-image: none;
+  mask-image: none;
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  backdrop-filter: blur(18px) saturate(115%);
+}
+
+.kh-home-hero .kh-product-conveyor-track,
+.kh-home-hero .kh-product-conveyor-group {
+  gap: 1rem;
+}
+
+.kh-home-hero .kh-product-conveyor-track {
+  animation-duration: 56s;
+}
+
+.kh-home-hero .kh-product-conveyor-card {
+  display: flex !important;
+  width: 15.5rem !important;
+  flex: 0 0 15.5rem !important;
+  flex-direction: column !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.kh-home-hero .kh-product-conveyor-media,
+.kh-home-hero .kh-product-conveyor-copy {
+  background: transparent !important;
+}
+
+.kh-home-hero .kh-product-conveyor-media {
+  order: 0;
+  aspect-ratio: 16 / 10;
+  border-radius: .7rem;
+}
+
+.kh-home-hero .kh-product-conveyor-copy {
+  align-items: center;
+  order: 1;
+  padding: .5rem .05rem .05rem;
+  text-align: center;
+}
+
+.kh-home-hero .kh-product-conveyor-copy strong {
+  color: #fffdf8;
+  font-size: .95rem;
+  text-align: center;
+}
+
+.kh-home-hero .kh-product-conveyor-description {
+  color: rgba(255, 253, 248, .7);
+  font-size: .68rem;
+}
+
+@media (max-width: 760px) {
+  .kh-home-hero .kh-hero-product-rail { width: 100%; }
+  .kh-home-hero .kh-product-conveyor-viewport {
+    padding-inline: .7rem;
+  }
+  .kh-home-hero .kh-product-conveyor-card {
+    width: 13rem !important;
+    flex-basis: 13rem !important;
+  }
 }

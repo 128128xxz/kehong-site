@@ -159,9 +159,6 @@ function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () =
           </section>
         ))}
       </div>
-      <Link className="kh-product-mega-all" href="/products" onClick={close}>
-        <span><small>{zh ? "总目录" : "Directory"}</small>{zh ? "查看完整产品目录" : "View the complete product directory"}</span>
-      </Link>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import Header from "@/components/site/Header";
 import SiteFooter from "@/components/site/SiteFooter";
 import HomeHero from "@/components/home/HomeHero";
-import HomeProductSystems from "@/components/home/HomeProductSystems";
 import HomeProcess from "@/components/home/HomeProcess";
 import HomeFactoryProof from "@/components/home/HomeFactoryProof";
 import HomeIndustries from "@/components/home/HomeIndustries";
@@ -19,7 +18,6 @@ export default async function HomeIndex() {
         <HomeHero locale={locale} />
         {/* 页头透明态哨兵:滚过 Hero 后 Header 切换为实底 */}
         <div data-kh-hero-sentinel aria-hidden="true" style={{ height: 1 }} />
-        <HomeProductSystems locale={locale} />
         <HomeProcess locale={locale} />
         <HomeFactoryProof locale={locale} />
         <HomeIndustries locale={locale} />
