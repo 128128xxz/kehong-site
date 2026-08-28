@@ -42,7 +42,6 @@ test.describe("Kehong Liquid Glass UI material preview", () => {
       const bubbles = [...document.querySelectorAll<HTMLElement>(
         ".kh-desktop-nav > .kh-nav-link, .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link, .kh-header-cta, .kh-language-trigger",
       )];
-      const firstIcon = document.querySelector<HTMLElement>(".kh-desktop-nav .kh-nav-icon");
       const firstBubble = bubbles[0];
       return {
         headerLensContent: header ? getComputedStyle(header, "::before").content : "",
@@ -50,7 +49,7 @@ test.describe("Kehong Liquid Glass UI material preview", () => {
         bubbleLensContent: firstBubble ? getComputedStyle(firstBubble, "::after").content : "",
         bubbleFrameContent: firstBubble ? getComputedStyle(firstBubble, "::before").content : "",
         bubblePointerX: firstBubble?.style.getPropertyValue("--glass-pointer-x") ?? "",
-        iconFilter: firstIcon ? getComputedStyle(firstIcon).filter : "",
+        iconCount: document.querySelectorAll(".kh-desktop-nav .kh-nav-icon").length,
       };
     });
 
@@ -59,7 +58,7 @@ test.describe("Kehong Liquid Glass UI material preview", () => {
     expect(audit.bubbleLensContent).toBe("none");
     expect(audit.bubbleFrameContent).toBe("none");
     expect(audit.bubblePointerX).toBe("");
-    expect(audit.iconFilter).toBe("none");
+    expect(audit.iconCount).toBe(0);
   });
 
   test("desktop popovers remain real interactive DOM and close with Escape", async ({ page }) => {

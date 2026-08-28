@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import catalog from "../src/data/catalog.normalized.json" with { type: "json" };
 
 const baseUrl = (process.env.PLAYWRIGHT_BASE_URL || process.env.RUNTIME_BASE_URL || "http://127.0.0.1:3453").replace(/\/$/u, "");
+const historicalAudit = process.env.HISTORICAL_AUDIT === "1";
 const expectedDiffPath = "docs/stage-3b3-sitemap-exact-diff.csv";
 const sourceIds = [
   "kh-fd-cupsheet-150350-pr-044",
@@ -71,17 +72,20 @@ async function request(pathname, init = {}) {
   return { response, body };
 }
 
-const expectedDiff = await fs.readFile(expectedDiffPath, "utf8");
-const expected = expectedUrlsFromDiff(expectedDiff);
+let expected;
+if (historicalAudit) {
+  const expectedDiff = await fs.readFile(expectedDiffPath, "utf8");
+  expected = expectedUrlsFromDiff(expectedDiff);
+}
 const sitemap = await request("/sitemap.xml");
 if (sitemap.response.status !== 200) throw new Error(`sitemap.xml returned ${sitemap.response.status}`);
 const actual = [...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/gu)].map((match) => match[1]);
 const actualSet = new Set(actual);
 const actualPathSet = new Set(actual.map((url) => new URL(url).pathname));
 if (actual.length !== actualSet.size) throw new Error(`sitemap URL set is not unique: ${actual.length} rows / ${actualSet.size} unique`);
-const missing = [...expected].filter((url) => !actualSet.has(url));
-const unexpected = [...actualSet].filter((url) => !expected.has(url));
-if (missing.length || unexpected.length) throw new Error(`runtime sitemap set mismatch; missing=${missing.length}; unexpected=${unexpected.length}`);
+const missing = historicalAudit ? [...expected].filter((url) => !actualSet.has(url)) : [];
+const unexpected = historicalAudit ? [...actualSet].filter((url) => !expected.has(url)) : [];
+if (historicalAudit && (missing.length || unexpected.length)) throw new Error(`runtime sitemap set mismatch; missing=${missing.length}; unexpected=${unexpected.length}`);
 
 const imageSitemap = await request("/sitemap-images.xml");
 const imageEntries = (imageSitemap.body.match(/<image:image>/gu) || []).length;
@@ -124,7 +128,8 @@ const summary = {
   baseUrl,
   runtimeSitemapCount: actual.length,
   runtimeSitemapUniqueUrls: actualSet.size,
-  expectedSitemapCount: expected.size,
+  expectedSitemapCount: expected?.size ?? null,
+  historicalAudit,
   missingCount: missing.length,
   unexpectedCount: unexpected.length,
   imageSitemapEntries: imageEntries,

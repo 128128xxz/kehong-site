@@ -41,7 +41,7 @@ export default async function CapabilitiesPage({ locale }: { locale: string }) {
                   <div className="kh-section-heading">
                     <div>
                       <SectionKicker index={String(groupIndex + 2).padStart(2, "0")} text={group.kicker} />
-                      <h2>{group.kicker}</h2>
+                      <h2 className="kh-editorial-serif kh-capability-group-title">{group.kicker}</h2>
                       <p className="kh-section-lede mt-4">{group.lede}</p>
                     </div>
                   </div>

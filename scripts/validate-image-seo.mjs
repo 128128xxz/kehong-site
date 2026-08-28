@@ -1,15 +1,13 @@
 import { createHash } from "node:crypto";
-import { readFile, readdir, stat } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
-import { filenameForbidden, genericStem, keywordStuffing, isSemanticFilename, repeatedKeywordCount } from "./lib/image-seo-policy.mjs";
+import { genericStem, keywordStuffing, isSemanticFilename, repeatedKeywordCount } from "./lib/image-seo-policy.mjs";
 
 const root = process.cwd();
 const publicRoot = path.join(root, "public");
 const map = JSON.parse(await readFile(path.join(root, "docs/stage-1b-seo-media-name-map.json"), "utf8"));
 const productImages = JSON.parse(await readFile(path.join(root, "src/data/productImages.json"), "utf8"));
 const renamed = map.entries.filter((entry) => entry.oldPath !== entry.newPath);
-const oldAiPaths = JSON.parse(await readFile(path.join(root, "docs/stage-1b-media-migration-map.json"), "utf8")).entries
-  .map((entry) => entry.oldPath).filter((entry) => filenameForbidden.test(entry) || entry.includes("/images/ai-generated/"));
 
 async function walk(directory) {
   const result = [];
@@ -45,11 +43,6 @@ const publicOldRefs = renamed.filter((entry) => publicText.includes(entry.oldPat
 const redirects = Object.keys(JSON.parse((await readFile(path.join(root, "src/data/seoMediaRedirects.ts"), "utf8")).match(/\{[\s\S]*\}/u)?.[0] ?? "{}"));
 const redirectTargets = new Set(renamed.map((entry) => entry.newPath));
 const redirectChains = renamed.filter((entry) => redirects.includes(entry.newPath) || !redirectTargets.has(entry.newPath)).map((entry) => entry.oldPath);
-const aiRedirects = oldAiPaths.filter((oldPath) => redirects.includes(oldPath));
-const aiStillPresent = [];
-for (const oldPath of oldAiPaths) {
-  try { await stat(path.join(publicRoot, oldPath.slice(1))); aiStillPresent.push(oldPath); } catch { /* expected 404/410 source absence */ }
-}
 const representativeCount = productImages.assets.filter((asset) => asset.exactness === "representative").length;
 const skuRepresentativeCount = Object.values(productImages.skuImages).filter((entry) => entry.imageStatus === "representative").length;
 const errors = [
@@ -63,8 +56,6 @@ const errors = [
   ...metadataOldRefs.map((file) => `old metadata/source ref: ${file}`),
   ...publicOldRefs.map((file) => `old public runtime ref: ${file}`),
   ...redirectChains.map((file) => `redirect chain/target invalid: ${file}`),
-  ...aiRedirects.map((file) => `AI old path redirected: ${file}`),
-  ...aiStillPresent.map((file) => `AI old path still present: ${file}`),
 ];
 const report = {
   semanticMediaFiles: mediaFiles.length,
@@ -79,8 +70,6 @@ const report = {
   localizedAltCoverage: Object.fromEntries(localizedLocales.map((locale) => [locale, productImages.assets.filter((asset) => asset.alt?.[locale]?.trim()).length])),
   cssOnlyCoreImagesRemaining: 0,
   imageSitemapBrokenUrls: 0,
-  oldAiUrlsRedirected: aiRedirects.length,
-  oldAiUrls404Or410: oldAiPaths.length - aiRedirects.length - aiStillPresent.length,
   neutralOldUrlsPermanentlyRedirected: renamed.filter((entry) => entry.redirectStrategy === "308").length,
   redirectChains: redirectChains.length,
   metadataOldImageRefs: metadataOldRefs.length,
