@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const PREVIEW_MATERIALS = new Set(["glass-a", "glass-b", "glass-c"]);
+const PREVIEW_MATERIALS = new Set(["current", "glass-a", "glass-b", "glass-c"]);
 
 /**
  * The query switch controls the broader material preview. The navigation
@@ -14,7 +14,7 @@ export default function UIMaterialPreview() {
     const requested = new URLSearchParams(window.location.search).get("uiMaterial") ?? "current";
     const material = PREVIEW_MATERIALS.has(requested) ? requested : "current";
     const root = document.documentElement;
-    root.dataset.uiMaterial = material;
+    if (new URLSearchParams(window.location.search).has("uiMaterial")) root.dataset.uiMaterial = material;
     root.dataset.navGlass = "true";
 
     // Keep the lens coordinate on the header itself. Writing the same pointer

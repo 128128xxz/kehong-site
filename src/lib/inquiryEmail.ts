@@ -69,9 +69,9 @@ function safeHeader(value: string) {
 }
 
 export function buildInquiryEmail(data: InquiryEmailData) {
-  const firstProduct = data.products[0] ?? "Product specification to be confirmed";
+  const firstProduct = data.products[0] ?? "Packaging specification request";
   const [firstSku, firstName] = firstProduct.split("|").map((value) => value.trim());
-  const productName = firstName || firstSku || "Product specification to be confirmed";
+  const productName = firstName || firstSku || "Packaging specification request";
   const sku = firstName ? firstSku : "";
   const company = data.company || data.name;
   const subject = safeHeader(`New Kehong quote request — ${productName}${sku ? ` (${sku})` : ""} — ${company}`);

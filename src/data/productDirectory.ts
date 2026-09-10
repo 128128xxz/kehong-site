@@ -86,6 +86,9 @@ export const productCatalogSections: readonly ProductCatalogSection[] = [
           { id: "takeout-boxes", href: "/packaging/takeout-boxes", en: "Takeout boxes", zh: "外带食品盒", description: { en: "Paper boxes for takeaway food, prepared meals and bakery products.", zh: "餐饮外带、熟食和烘焙食品的纸盒包装" } },
           { id: "cake-boxes", href: "/packaging/cake-boxes", en: "Cake boxes", zh: "蛋糕盒", description: { en: "Paper boxes for cakes, desserts and bakery products.", zh: "蛋糕、甜点和烘焙产品的纸盒包装" } },
           { id: "cake-boards-cake-drums", href: "/packaging/cake-boards-cake-drums", en: "Cake boards & cake drums", zh: "蛋糕底托与蛋糕鼓", description: { en: "Boards and drums for cake support, presentation and transport.", zh: "蛋糕承托、展示和运输" } },
+          { id: "pizza-packaging", href: "/packaging/pizza-packaging", en: "Pizza boxes & pads", zh: "披萨盒与披萨垫纸", description: { en: "Pizza boxes, pads and liners for delivery and takeaway programs.", zh: "披萨配送和外带用盒、垫纸与内衬" } },
+          { id: "food-packaging", href: "/packaging/food-packaging", en: "Food packaging", zh: "食品包装", description: { en: "Paper food boxes, trays, pads and components for foodservice projects.", zh: "面向餐饮项目的食品盒、纸托、垫纸和纸材部件" } },
+          { id: "inserts-dividers", href: "/packaging/inserts-dividers", en: "Corrugated inserts & paperboard inserts", zh: "瓦楞内托与纸板内托", description: { en: "Inserts, dividers and pads for protection and presentation.", zh: "用于保护和展示的内托、隔板与纸垫" } },
         ],
       },
       {
@@ -94,6 +97,7 @@ export const productCatalogSections: readonly ProductCatalogSection[] = [
         zh: "零售与手提包装",
         links: [
           { id: "paper-bags", href: "/packaging/paper-bags", en: "Paper bags", zh: "纸袋", description: { en: "Carry packaging for retail, foodservice and branded applications.", zh: "零售、餐饮和品牌手提包装" } },
+          { id: "retail-packaging", href: "/packaging/retail-packaging", en: "Retail packaging", zh: "零售包装", description: { en: "Paper bags, presentation boxes and display-ready packaging.", zh: "纸袋、展示盒和陈列就绪包装" } },
         ],
       },
       {

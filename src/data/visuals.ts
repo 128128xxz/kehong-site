@@ -128,6 +128,28 @@ export const showcaseImages = {
   corrugatorHall: "/media/packaging/packaging-sample-room-reference.webp",
   slittingLinePink: "/media/materials/gold-metallic-cardstock-stack.webp",
   feederOperator: "/media/factory/paper-converting-team-reference.webp",
+  // Owner-provided packaging photography, optimized from the Kehong image pack.
+  providedFoodBox01: "/media/kehong/food-box-01.webp",
+  providedFoodBox02: "/media/kehong/food-box-02.webp",
+  providedOrinsFoodBox: "/media/kehong/orins-food-box.webp",
+  providedOrinsFoodBox03: "/media/kehong/orins-food-box-03.webp",
+  providedBakeryBox: "/media/kehong/rehn-bakery-box.webp",
+  providedDisplay01: "/media/kehong/packaging-display-01.webp",
+  providedDisplay02: "/media/kehong/packaging-display-02.webp",
+  providedDisplay03: "/media/kehong/packaging-display-03.webp",
+  providedDisplay04: "/media/kehong/packaging-display-04.webp",
+  providedPaperBoxDisplay: "/media/kehong/paper-box-display.webp",
+  providedStructureMaterial: "/media/kehong/structure-material.webp",
+  providedWhitePackaging: "/media/kehong/white-packaging.webp",
+  providedSample01: "/media/kehong/sample-display-01.webp",
+  providedSample02: "/media/kehong/sample-display-02.webp",
+  providedSample03: "/media/kehong/sample-display-03.webp",
+  // Owner-provided corrugated material photography from the current DOCX catalog.
+  corrugatedBoardColorOptions: "/media/materials/corrugated-board-color-options.webp",
+  corrugatedBoardEfgFlute: "/media/materials/corrugated-board-efg-flute.webp",
+  foodPaperPadCorrugated: "/media/materials/food-paper-pad-corrugated.webp",
+  coloredCorrugatedBoardOptions: "/media/materials/colored-corrugated-board-options.webp",
+  corrugatedBoardSurfaceStack: "/media/materials/corrugated-board-surface-stack.webp",
 } as const;
 
 export const heroScenes = [

@@ -1,5 +1,5 @@
 /**
- * Buyer-facing product specification formatting. Source catalog values stay
+ * Buyer-facing product specification formatting. Internal catalog values stay
  * untouched so filters, SKU codes, URLs and import payloads remain stable.
  */
 export function formatProductDisplayValue(value: string, locale: string) {

@@ -836,6 +836,9 @@
     pointer-events: none;
     background: linear-gradient(180deg, rgba(16, 42, 35, .62) 0%, rgba(10, 22, 18, .82) 100%);
   }
+  .kh-page-hero-scrim-soft {
+    background: linear-gradient(180deg, rgba(16, 42, 35, .35) 0%, rgba(10, 22, 18, .58) 100%);
+  }
   .kh-page-hero-inner {
     position: relative;
     z-index: 1;
@@ -4766,6 +4769,7 @@ html[data-ui-material="glass-b"] .kh-spec-panel {
 .kh-footer-column-label { margin: 0 0 1rem; color: rgba(255, 253, 248, .55); font-family: var(--font-mono); font-size: .74rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .kh-footer-contact { display: grid; gap: .55rem; margin-top: 0; color: rgba(255, 253, 248, .78); font-size: .9rem; }
 .kh-footer-contact a { display: inline-flex; align-items: center; gap: .35rem; }
+.kh-footer-contact-label { display: block; margin-bottom: .08rem; color: rgba(255, 253, 248, .52); font-family: var(--font-mono); font-size: .63rem; font-weight: 600; letter-spacing: .08em; line-height: 1.2; text-transform: uppercase; }
 .kh-footer-wechat { color: rgba(255, 253, 248, .78); }
 .kh-footer-quote { display: none; }
 .kh-footer-bottom { align-items: center; justify-content: space-between; margin-top: 4.5rem; padding-top: 2rem; border-top: 1px solid rgba(255, 253, 248, .14); }
@@ -5502,6 +5506,7 @@ html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > * { position:
   position: fixed;
   inset: 0 0 auto;
   width: 100%;
+  z-index: 50;
 }
 
 .kh-header:not([data-variant="cinema"]) + main {
@@ -7183,6 +7188,28 @@ html:root[data-ui-material="glass-c"] .kh-header .kh-menu-toggle > svg {
   color: var(--kh-forest) !important;
 }
 
+.kh-product-mega-all {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: .7rem 1rem;
+  border: 1px solid rgba(255, 255, 255, .62);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .28);
+  color: var(--kh-forest);
+  font-size: .85rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.kh-product-mega-all:hover,
+.kh-product-mega-all:focus-visible {
+  background: rgba(255, 255, 255, .58);
+  color: var(--kh-forest-deep, var(--kh-forest));
+}
+
 /* ===== Typography Redirection (Sans-first): mobile inline nav & mega links ===== */
 @media (max-width: 1100px) {
   .kh-mobile-inline-nav > a {
@@ -7642,4 +7669,299 @@ h4,
 .kh-section-forest .kh-kicker-index,
 .kh-section-forest .kh-kicker-row svg {
   color: rgba(255, 253, 248, .62);
+}
+
+/* Approved production shell: keep the live homepage's dark glass header and
+   pill navigation after the historical visual experiments below. */
+html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255, 255, 255, .28), transparent 38%),
+    linear-gradient(115deg, rgba(10, 22, 18, .54), rgba(10, 22, 18, .3) 55%, rgba(220, 194, 139, .2)),
+    rgba(10, 22, 18, .36) !important;
+  border-bottom-color: rgba(255, 253, 248, .24) !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: blur(12px) saturate(115%) !important;
+  backdrop-filter: blur(12px) saturate(115%) !important;
+}
+
+html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 2.55rem !important;
+  padding-block: .42rem !important;
+  padding-inline: .78rem !important;
+  gap: .68rem;
+  border: 1px solid rgba(255, 255, 255, .68) !important;
+  border-radius: 17px !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05) 52%, rgba(218, 240, 246, .1)) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .72), inset 0 -1.5px 0 rgba(13, 39, 71, .18), 0 8px 18px rgba(7, 28, 40, .14) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(4, 19, 31, .72);
+}
+
+html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav {
+  gap: .62rem !important;
+}
+
+html:root[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-icon,
+html:root[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-chevron,
+html:root[data-nav-glass="true"] .kh-header .kh-desktop-nav .kh-nav-3d-icon,
+html:root[data-nav-glass="true"] .kh-header .kh-menu-toggle > svg {
+  width: 1.16rem;
+  height: 1.16rem;
+  color: #279b39 !important;
+  fill: none !important;
+  filter: drop-shadow(0 1px 1px rgba(4, 19, 31, .85));
+  opacity: 1 !important;
+  stroke: currentColor;
+  stroke-width: 2.55;
+}
+
+html:root[data-nav-glass="true"] .kh-header::before {
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--glass-pointer-x, 50%) var(--glass-pointer-y, 50%), rgba(255, 255, 255, .24), transparent 48%),
+    linear-gradient(112deg, rgba(255, 255, 255, .08), transparent 34% 68%, rgba(255, 255, 255, .06));
+  filter: blur(8px);
+  opacity: .9;
+}
+
+html:root[data-nav-glass="true"] .kh-header > .kh-header-bar { position: relative; z-index: 1; }
+
+/* Home-only hard lock for the approved online art direction. This selector
+   intentionally does not depend on the client material toggle, so historical
+   preview switches cannot flatten the production navigation again. */
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link,
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-cta,
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-language-trigger,
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle {
+  min-height: 2.55rem !important;
+  padding-block: .42rem !important;
+  padding-inline: .78rem !important;
+  gap: .68rem;
+  border: 1px solid rgba(255, 255, 255, .68) !important;
+  border-radius: 17px !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05) 52%, rgba(218, 240, 246, .1)) !important;
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .72), inset 0 -1.5px 0 rgba(13, 39, 71, .18), 0 8px 18px rgba(7, 28, 40, .14) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  backdrop-filter: blur(12px) saturate(135%) contrast(103%) !important;
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(4, 19, 31, .72);
+}
+
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav { gap: .62rem !important; }
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-icon,
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-chevron,
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-3d-icon,
+.kh-header[data-variant="cinema"][data-scrolled="false"] .kh-menu-toggle > svg {
+  width: 1.16rem;
+  height: 1.16rem;
+  color: #279b39 !important;
+  fill: none !important;
+  filter: drop-shadow(0 1px 1px rgba(4, 19, 31, .85));
+  opacity: 1 !important;
+  stroke: currentColor;
+    stroke-width: 2.55;
+  }
+
+/* Approved live homepage: the product conveyor sits between the hero actions
+   and the metrics, over the factory image with the same glass treatment. */
+.kh-home-hero .kh-hero-product-rail {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 62rem);
+  margin: .65rem auto 0;
+}
+
+.kh-home-hero .kh-product-conveyor {
+  display: block;
+  width: 100%;
+}
+
+.kh-home-hero .kh-product-conveyor-viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: .65rem 1rem .75rem;
+  border: 1px solid rgba(255, 253, 248, .28);
+  border-radius: 1rem;
+  background: linear-gradient(90deg, rgba(255, 253, 248, .12), rgba(255, 253, 248, .2) 48%, rgba(255, 253, 248, .12));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  backdrop-filter: blur(18px) saturate(115%);
+}
+
+.kh-home-hero .kh-product-conveyor-track,
+.kh-home-hero .kh-product-conveyor-group {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+}
+
+.kh-home-hero .kh-product-conveyor-track {
+  animation: kh-product-conveyor-run 56s linear infinite;
+  will-change: transform;
+}
+
+.kh-home-hero .kh-product-conveyor-group { flex: none; }
+
+.kh-home-hero .kh-product-conveyor-card {
+  display: flex;
+  width: 15.5rem;
+  flex: 0 0 15.5rem;
+  flex-direction: column;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  color: #fffdf8;
+  box-shadow: none;
+  transition: opacity .2s ease;
+}
+
+.kh-home-hero .kh-product-conveyor-card:hover,
+.kh-home-hero .kh-product-conveyor-card:focus-visible { opacity: .82; }
+
+.kh-home-hero .kh-product-conveyor-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: .7rem;
+  background: transparent;
+}
+
+.kh-home-hero .kh-product-conveyor-copy {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex-direction: column;
+  gap: .18rem;
+  padding: .5rem .05rem .05rem;
+  color: #fffdf8;
+  text-align: center;
+}
+
+.kh-home-hero .kh-product-conveyor-copy strong {
+  overflow: hidden;
+  color: #fffdf8;
+  font-size: .95rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kh-home-hero .kh-product-conveyor-description {
+  overflow: hidden;
+  color: rgba(255, 253, 248, .7);
+  font-size: .68rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes kh-product-conveyor-run {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(calc(-50% - .5rem), 0, 0); }
+}
+
+@media (max-width: 760px) {
+  .kh-home-hero .kh-hero-product-rail { width: 100%; }
+  .kh-home-hero .kh-product-conveyor-viewport { padding-inline: .7rem; }
+  .kh-home-hero .kh-product-conveyor-card {
+    width: 13rem;
+    flex-basis: 13rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kh-home-hero .kh-product-conveyor-track { animation: none; }
+}
+
+/* Final acceptance guards: duplicated conveyor cards are visual clones only;
+   they must not enter touch hit testing or the page's accessible entry list. */
+.kh-home-hero .kh-product-conveyor-group[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+/* Glass C uses one optical lens on the header pane. Keep this after the
+   historical preview layers so the accepted live treatment remains visible. */
+html:root[data-nav-glass="true"] .kh-header::before {
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--glass-pointer-x, 50%) var(--glass-pointer-y, 50%), rgba(255, 255, 255, .24), transparent 48%),
+    linear-gradient(112deg, rgba(255, 255, 255, .08), transparent 34% 68%, rgba(255, 255, 255, .06));
+  filter: blur(8px) !important;
+  opacity: .9;
+}
+
+@media (max-width: 760px) {
+  html:root[data-nav-glass="true"] .kh-header .kh-header-cta,
+  html:root[data-nav-glass="true"] .kh-header .kh-menu-toggle {
+    min-height: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* Final mobile hit-area lock: the header actions must retain a full 44px box
+   even when a later compact-header rule changes line-height or padding. */
+@media (max-width: 760px) {
+  .kh-header .kh-header-cta,
+  .kh-header .kh-menu-toggle {
+    min-height: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* Final Glass C lens lock: one shared blurred surface on the header pane. */
+html:root[data-nav-glass="true"] .kh-header::before {
+  content: "" !important;
+  filter: blur(8px) !important;
+}
+
+/* The cinema header has a more specific historical scrolled-state rule;
+   repeat that state here so the shared lens cannot be flattened by it. */
+html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"]::before {
+  content: "" !important;
+  filter: blur(8px) !important;
+}
+
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-icon,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-chevron,
+html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-3d-icon {
+  filter: none !important;
+}
+
+/* Solid interior pages keep their header in document flow so the compact
+   header remains anchored during short mobile scrolls. The cinema homepage
+   stays fixed over the hero. */
+.kh-header[data-variant="solid"] {
+  position: sticky !important;
+  inset: 0 0 auto;
+  top: 0;
+}
+
+.kh-header[data-variant="solid"] + main {
+  padding-block-start: 0 !important;
 }

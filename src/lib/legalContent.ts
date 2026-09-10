@@ -7,7 +7,7 @@ const sections = (items: readonly [string, string][]) => items.map(([heading, bo
 
 export const privacyCopy: Record<AppLocale, LegalCopy> = {
   en: {
-    title: "Privacy Policy", lede: "How Kehong handles information submitted through this website.", intro: "This policy describes the information flows implemented on the Kehong website. It is written for the public-facing business identity shown on this site; formal controller details and provider terms remain subject to confirmation.",
+    title: "Privacy Policy", lede: "How Kehong handles information submitted through this website.", intro: "This policy describes the information flows implemented on the Kehong website. It is written for the public-facing business identity shown on this site.",
     sections: sections([
       ["Who we are", "The website presents Foshan Kehong Paper Products Co., Ltd. and its paper materials and custom packaging services."],
       ["What information we collect", "Depending on how you use the site, we may receive inquiry details such as your name, company, email, phone or WhatsApp, country, product or SKU, quantity, dimensions, material, printing, shipping, message and the files you choose to upload."],

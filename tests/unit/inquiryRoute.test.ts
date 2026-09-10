@@ -50,6 +50,15 @@ describe("inquiry API provider contract", () => {
     expect(duplicate.status).toBe(409);
   });
 
+  it("passes a configured display-name sender through without nesting it", async () => {
+    vi.stubEnv("EMAIL_FROM", "Kehong Website <inquiry@kehong.tech>");
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({ id: "email-qa-display-name" }), { status: 200, headers: { "content-type": "application/json" } }));
+    const response = await POST(requestFor("display-name@example.com", "qa-display-name"));
+    expect(response.status).toBe(200);
+    const body = JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body));
+    expect(body.from).toBe("Kehong Website <inquiry@kehong.tech>");
+  });
+
   for (const status of [401, 403, 429, 500]) {
     it(`normalizes provider ${status} to a safe API error`, async () => {
       vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response("provider detail", { status }));

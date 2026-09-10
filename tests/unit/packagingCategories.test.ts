@@ -7,12 +7,16 @@ import { buildInquiryContactHref } from "@/lib/inquiryContext";
 import { getInterestLabel } from "@/data/interests";
 
 describe("public packaging and locale governance", () => {
-  it("exposes only the five active packaging categories with canonical inquiry labels", () => {
+  it("exposes the active packaging categories with canonical inquiry labels", () => {
     expect(packagingCategories.map((category) => category.slug)).toEqual([
       "paper-bags",
       "takeout-boxes",
       "cake-boxes",
       "cake-boards-cake-drums",
+      "pizza-packaging",
+      "food-packaging",
+      "inserts-dividers",
+      "retail-packaging",
       "corrugated-mailer-boxes",
     ]);
     expect(getPackagingCategory("pillow-boxes")).toBeUndefined();
@@ -23,6 +27,10 @@ describe("public packaging and locale governance", () => {
       "Takeout Boxes",
       "Cake Boxes",
       "Cake Boards & Cake Drums",
+      "Pizza Boxes & Pizza Pads",
+      "Food Packaging",
+      "Corrugated Inserts & Paperboard Inserts",
+      "Retail Packaging",
       "Corrugated Mailer Boxes",
     ]);
     expect(packagingCategories.map((category) => getPackagingInquiryLabel(category.slug, "zh"))).toEqual([
@@ -30,6 +38,10 @@ describe("public packaging and locale governance", () => {
       "外带食品盒",
       "蛋糕盒",
       "蛋糕底托与蛋糕鼓",
+      "披萨盒与披萨垫纸",
+      "食品包装",
+      "瓦楞内托与纸板内托",
+      "零售包装",
       "瓦楞邮寄盒",
     ]);
   });

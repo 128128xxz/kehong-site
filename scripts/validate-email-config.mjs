@@ -1,4 +1,5 @@
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/u;
+const senderPattern = /^(?!.*[\r\n])[^<>\r\n]+<[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+>$/u;
 
 function firstConfigured(...keys) {
   for (const key of keys) {
@@ -20,7 +21,7 @@ const invalid = [];
 if (!process.env.RESEND_API_KEY?.trim()) missing.push("RESEND_API_KEY");
 if (!from.value) missing.push("EMAIL_FROM");
 if (recipients.length === 0) missing.push("EMAIL_TO");
-if (from.value && !emailPattern.test(from.value)) invalid.push("EMAIL_FROM");
+if (from.value && !emailPattern.test(from.value) && !senderPattern.test(from.value)) invalid.push("EMAIL_FROM");
 if (recipients.some((email) => !emailPattern.test(email))) invalid.push("EMAIL_TO");
 if (process.env.EMAIL_REPLY_TO_FALLBACK && !emailPattern.test(process.env.EMAIL_REPLY_TO_FALLBACK.trim())) invalid.push("EMAIL_REPLY_TO_FALLBACK");
 

@@ -48,4 +48,13 @@ describe("inquiry email contract", () => {
     expect(config.apiKey).toBe("re_test_secret");
     expect(JSON.stringify({ missing: config.missing, invalid: config.invalid, fromConfigured: Boolean(config.from) })).not.toContain("re_test_secret");
   });
+
+  it("accepts a verified display-name sender without weakening customer email validation", () => {
+    vi.stubEnv("RESEND_API_KEY", "re_test_secret");
+    vi.stubEnv("EMAIL_FROM", "Kehong Website <inquiry@kehong.tech>");
+    vi.stubEnv("EMAIL_TO", "info@kehong.tech");
+    const config = getInquiryEmailConfig();
+    expect(config.valid).toBe(true);
+    expect(config.from).toBe("Kehong Website <inquiry@kehong.tech>");
+  });
 });

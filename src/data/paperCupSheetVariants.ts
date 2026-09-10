@@ -1,7 +1,7 @@
 /**
  * Stage 3B-2B-R approval boundary for the paper-cup sheet center.
  *
- * These are record identities, not copied business fields. The source catalog
+ * These are record identities, not copied business fields. The internal catalog
  * remains the only source of specification values.
  */
 export const PAPER_CUP_SHEET_TARGET_RECORD_ID = "kh-fd-cupsheet-150350-pe-043";

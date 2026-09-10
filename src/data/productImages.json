@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T00:47:22.307Z",
+  "generatedAt": "2026-09-09T15:13:11.425Z",
   "policy": {
     "exact": "Only assets verified as the exact SKU image may be used as exact.",
     "representative": "Representative assets can be used for family, group and SKU context only when visibly labeled.",
@@ -19,12 +19,7 @@
       "exactness": "representative",
       "alt": {
         "en": "Die-cut paper cup fan blanks — reference image",
-        "zh": "纸杯扇形片参考图",
-        "id": "Gambar referensi lembar kipas paper cup",
-        "vi": "Hình ảnh tham khảo phôi quạt giấy làm cốc",
-        "th": "ภาพอ้างอิงชิ้นพัดกระดาษสำหรับขึ้นรูปแก้ว",
-        "ms": "Imej rujukan kepingan kipas cawan kertas",
-        "es": "Imagen de referencia de troqueles para vasos de papel"
+        "zh": "纸杯扇形片参考图"
       }
     },
     {
@@ -40,12 +35,7 @@
       "exactness": "representative",
       "alt": {
         "en": "Kraft cupstock roll and paper cups — reference image",
-        "zh": "牛皮杯纸卷与纸杯参考图",
-        "id": "Gambar referensi kertas cupstock kraft dan cangkir kertas",
-        "vi": "Hình ảnh tham khảo giấy cupstock kraft và cốc giấy",
-        "th": "ภาพอ้างอิงกระดาษ cupstock คราฟท์และแก้วกระดาษ",
-        "ms": "Imej rujukan kertas cupstock kraft dan cawan kertas",
-        "es": "Imagen de referencia de papel cupstock kraft y vasos de papel"
+        "zh": "牛皮杯纸卷与纸杯参考图"
       }
     },
     {
@@ -61,12 +51,7 @@
       "exactness": "representative",
       "alt": {
         "en": "Representative white cardboard food packaging structure",
-        "zh": "白卡纸食品包装结构代表图",
-        "id": "Referensi struktur kemasan makanan karton putih",
-        "vi": "Hình ảnh tham khảo cấu trúc bao bì thực phẩm bìa trắng",
-        "th": "ภาพอ้างอิงโครงสร้างบรรจุภัณฑ์อาหารกระดาษการ์ดขาว",
-        "ms": "Rujukan struktur pembungkusan makanan kadbod putih",
-        "es": "Imagen de referencia de estructura de envase alimentario de cartón blanco"
+        "zh": "白卡纸食品包装结构代表图"
       }
     },
     {
@@ -82,12 +67,7 @@
       "exactness": "representative",
       "alt": {
         "en": "Single, double and triple wall corrugated cross-sections — reference image",
-        "zh": "单/双/三层瓦楞纸板剖面参考图",
-        "id": "Gambar referensi penampang karton bergelombang",
-        "vi": "Hình ảnh tham khảo mặt cắt tấm carton sóng",
-        "th": "ภาพอ้างอิงหน้าตัดกระดาษลูกฟูก",
-        "ms": "Imej rujukan keratan rentas papan beralun",
-        "es": "Imagen de referencia de secciones de cartón corrugado"
+        "zh": "单/双/三层瓦楞纸板剖面参考图"
       }
     },
     {
@@ -103,12 +83,7 @@
       "exactness": "representative",
       "alt": {
         "en": "Gold, silver and holographic specialty papers — reference image",
-        "zh": "金卡、银卡与镭射特种纸参考图",
-        "id": "Gambar referensi kertas khusus emas perak dan holografik",
-        "vi": "Hình ảnh tham khảo giấy đặc biệt màu vàng bạc và hologram",
-        "th": "ภาพอ้างอิงกระดาษชนิดพิเศษสีทอง เงิน และโฮโลแกรม",
-        "ms": "Imej rujukan kertas khas emas perak dan holografik",
-        "es": "Imagen de referencia de papeles especiales dorados, plateados y holográficos"
+        "zh": "金卡、银卡与镭射特种纸参考图"
       }
     },
     {
@@ -124,12 +99,7 @@
       "exactness": "representative",
       "alt": {
         "en": "Representative food packaging box structure sample",
-        "zh": "食品包装盒结构样品代表图",
-        "id": "Gambar referensi struktur kotak kemasan makanan",
-        "vi": "Hình ảnh tham khảo cấu trúc hộp bao bì thực phẩm",
-        "th": "ภาพอ้างอิงโครงสร้างกล่องบรรจุอาหาร",
-        "ms": "Imej rujukan struktur kotak pembungkusan makanan",
-        "es": "Imagen de referencia de estructura de caja para alimentos"
+        "zh": "食品包装盒结构样品代表图"
       }
     },
     {
@@ -145,12 +115,7 @@
       "exactness": "representative",
       "alt": {
         "en": "Representative cake board and paper pad product image",
-        "zh": "蛋糕垫片与纸垫片代表图",
-        "id": "Gambar produk referensi papan kek dan pad kertas",
-        "vi": "Hình ảnh tham khảo đế bánh và miếng lót giấy",
-        "th": "ภาพอ้างอิงฐานเค้กและแผ่นรองกระดาษ",
-        "ms": "Imej rujukan papan kek dan pad kertas",
-        "es": "Imagen de referencia de bases de tarta y almohadillas de papel"
+        "zh": "蛋糕垫片与纸垫片代表图"
       }
     },
     {
@@ -166,12 +131,7 @@
       "exactness": "representative",
       "alt": {
         "en": "Die-cut molded paper insert tray — reference image",
-        "zh": "模切纸内托参考图",
-        "id": "Gambar referensi baki sisipan kertas cetak mati",
-        "vi": "Hình ảnh tham khảo khay lót giấy bế định hình",
-        "th": "ภาพอ้างอิงถาดกระดาษขึ้นรูปด้วยไดคัท",
-        "ms": "Imej rujukan dulang sisipan kertas die-cut",
-        "es": "Imagen de referencia de bandeja de inserción de papel troquelada"
+        "zh": "模切纸内托参考图"
       }
     },
     {
@@ -187,12 +147,7 @@
       "exactness": "representative",
       "alt": {
         "en": "Representative paper box structure sample",
-        "zh": "纸盒结构样品代表图",
-        "id": "Gambar referensi struktur kotak kertas",
-        "vi": "Hình ảnh tham khảo cấu trúc hộp giấy",
-        "th": "ภาพอ้างอิงโครงสร้างกล่องกระดาษ",
-        "ms": "Imej rujukan struktur kotak kertas",
-        "es": "Imagen de referencia de estructura de caja de papel"
+        "zh": "纸盒结构样品代表图"
       }
     },
     {
@@ -208,12 +163,7 @@
       "exactness": "representative",
       "alt": {
         "en": "PE-coated paper roll — reference image",
-        "zh": "PE 淋膜纸卷参考图",
-        "id": "Gambar referensi gulungan kertas berlapis PE",
-        "vi": "Hình ảnh tham khảo cuộn giấy tráng PE",
-        "th": "ภาพอ้างอิงม้วนกระดาษเคลือบ PE",
-        "ms": "Imej rujukan gulungan kertas bersalut PE",
-        "es": "Imagen de referencia de rollo de papel recubierto de PE"
+        "zh": "PE 淋膜纸卷参考图"
       }
     },
     {
@@ -228,34 +178,8 @@
       "scope": "family",
       "exactness": "representative",
       "alt": {
-        "en": "Paper cup bottom rolls — reference image",
-        "zh": "纸杯底卷参考图",
-        "id": "Gambar referensi gulungan dasar cangkir kertas",
-        "vi": "Hình ảnh tham khảo cuộn đáy cốc giấy",
-        "th": "ภาพอ้างอิงม้วนกระดาษก้นแก้ว",
-        "ms": "Imej rujukan gulungan dasar cawan kertas",
-        "es": "Imagen de referencia de rollos para fondos de vasos de papel"
-      }
-    },
-    {
-      "sourcePageUrl": "local://user-provided-kehong-image-pack",
-      "directImageUrl": "/media/materials/paper-die-cut-sheet-reference.jpg",
-      "sourceOwner": "Kehong / user-provided project asset",
-      "licenseOrPermission": "authorized",
-      "permissionStatus": "approved",
-      "notes": "Representative visual only. Not verified as exact SKU photography.",
-      "assetId": "kh-coated-sheet-family-representative",
-      "localPath": "/media/materials/paper-die-cut-sheet-reference.jpg",
-      "scope": "family",
-      "exactness": "representative",
-      "alt": {
-        "en": "Coated paper sheet — reference image",
-        "zh": "淋膜纸片参考图",
-        "id": "Gambar referensi lembar kertas berlapis",
-        "vi": "Hình ảnh tham khảo tờ giấy tráng phủ",
-        "th": "ภาพอ้างอิงแผ่นกระดาษเคลือบ",
-        "ms": "Imej rujukan kepingan kertas bersalut",
-        "es": "Imagen de referencia de hojas de papel recubiertas"
+        "en": "Paper cup bottom roll — reference image",
+        "zh": "纸杯底纸卷参考图"
       }
     },
     {
@@ -264,19 +188,14 @@
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
-      "notes": "Concept visualization only. It represents stacked PE-coated flat paper sheets and is not exact SKU photography.",
+      "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-coated-sheet-family-concept",
       "localPath": "/media/products/paper-cup-materials/pe-coated-paper-sheet-concept-reference-01.webp",
       "scope": "family",
       "exactness": "representative",
       "alt": {
-        "en": "Stacked PE-coated paper sheets with a lifted coated surface",
-        "zh": "叠放的 PE 淋膜纸片及表面涂层",
-        "id": "Format bahan lembar kertas berlapis PE",
-        "vi": "Dạng vật liệu tờ giấy tráng PE",
-        "th": "รูปแบบวัสดุแผ่นกระดาษเคลือบ PE",
-        "ms": "Format bahan kepingan kertas bersalut PE",
-        "es": "Formato de material de hojas de papel recubiertas de PE"
+        "en": "PE-coated paper sheet — reference image",
+        "zh": "PE 淋膜平张纸参考图"
       }
     },
     {
@@ -285,19 +204,14 @@
       "sourceOwner": "Kehong / user-provided project asset",
       "licenseOrPermission": "authorized",
       "permissionStatus": "approved",
-      "notes": "Concept visualization only. It represents paper tray and insert material formats and is not exact SKU photography.",
+      "notes": "Representative visual only. Not verified as exact SKU photography.",
       "assetId": "kh-food-tray-family-concept",
       "localPath": "/media/products/paper-inserts/paper-insert-tray-reference-01.webp",
       "scope": "family",
       "exactness": "representative",
       "alt": {
-        "en": "Paper tray and insert material formats",
-        "zh": "纸托与纸内托材料形态",
-        "id": "Format bahan baki kertas dan sisipan",
-        "vi": "Dạng vật liệu khay và miếng lót giấy",
-        "th": "รูปแบบวัสดุถาดและแผ่นรองกระดาษ",
-        "ms": "Format bahan dulang dan sisipan kertas",
-        "es": "Formatos de material para bandejas e insertos de papel"
+        "en": "Food tray paper material — reference image",
+        "zh": "食品纸托材料参考图"
       }
     }
   ],

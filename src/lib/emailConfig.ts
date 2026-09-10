@@ -1,7 +1,13 @@
 export const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/u;
+const senderPattern = /^(?!.*[\r\n])[^<>\r\n]+<[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+>$/u;
 
 export function isValidEmail(value: string | undefined) {
   return Boolean(value && emailPattern.test(value.trim()));
+}
+
+export function isValidEmailSender(value: string | undefined) {
+  const trimmed = value?.trim();
+  return Boolean(trimmed && (emailPattern.test(trimmed) || senderPattern.test(trimmed)));
 }
 
 function firstConfigured(...keys: string[]) {
@@ -29,7 +35,7 @@ export function getInquiryEmailConfig() {
   if (!from.value) missing.push("EMAIL_FROM");
   if (recipients.length === 0) missing.push("EMAIL_TO");
   const invalid = [
-    ...(from.value && !isValidEmail(from.value) ? ["EMAIL_FROM"] : []),
+    ...(from.value && !isValidEmailSender(from.value) ? ["EMAIL_FROM"] : []),
     ...recipients.filter((email) => !isValidEmail(email)).map(() => "EMAIL_TO"),
     ...(replyToFallback.value && !isValidEmail(replyToFallback.value) ? ["EMAIL_REPLY_TO_FALLBACK"] : []),
   ];
@@ -44,4 +50,3 @@ export function getInquiryEmailConfig() {
     valid: missing.length === 0 && invalid.length === 0,
   };
 }
-

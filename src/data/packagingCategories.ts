@@ -7,6 +7,10 @@ export const packagingCategorySlugs = [
   "takeout-boxes",
   "cake-boxes",
   "cake-boards-cake-drums",
+  "pizza-packaging",
+  "food-packaging",
+  "inserts-dividers",
+  "retail-packaging",
   "corrugated-mailer-boxes",
 ] as const;
 
@@ -18,6 +22,10 @@ export const PACKAGING_INQUIRY_LABELS = {
   "takeout-boxes": { en: "Takeout Boxes", zh: "外带食品盒" },
   "cake-boxes": { en: "Cake Boxes", zh: "蛋糕盒" },
   "cake-boards-cake-drums": { en: "Cake Boards & Cake Drums", zh: "蛋糕底托与蛋糕鼓" },
+  "pizza-packaging": { en: "Pizza Boxes & Pizza Pads", zh: "披萨盒与披萨垫纸" },
+  "food-packaging": { en: "Food Packaging", zh: "食品包装" },
+  "inserts-dividers": { en: "Corrugated Inserts & Paperboard Inserts", zh: "瓦楞内托与纸板内托" },
+  "retail-packaging": { en: "Retail Packaging", zh: "零售包装" },
   "corrugated-mailer-boxes": { en: "Corrugated Mailer Boxes", zh: "瓦楞邮寄盒" },
 } as const satisfies Record<PackagingCategorySlug, { en: string; zh: string }>;
 
@@ -108,6 +116,62 @@ const allPackagingCategories: PackagingCategory[] = [
     productTypes: ["paper-pad"],
   },
   {
+    slug: "pizza-packaging",
+    title: { en: "Pizza Boxes & Pizza Pads", zh: "披萨盒与披萨垫纸" },
+    shortDescription: { en: "Pizza boxes, liners and pads for delivery, takeaway and bakery programs.", zh: "用于配送、外带和烘焙项目的披萨盒、垫纸和内衬。" },
+    description: { en: "Review the pizza footprint, board, grease resistance, ventilation, stacking and print requirements together. Pizza pads and liners can be scoped with the box when the application needs a complete delivery set.", zh: "可一并评审披萨尺寸、纸板、耐油、通风、堆叠和印刷要求。需要完整配送组合时，披萨垫纸和内衬可与盒型一起纳入项目。" },
+    image: showcaseImages.aiPizzaBox,
+    subcategories: { en: ["Pizza boxes", "Pizza pads", "Pizza liner paper", "Corrugated pizza boxes", "Window pizza boxes", "Custom delivery sets"], zh: ["披萨盒", "披萨垫纸", "披萨内衬纸", "瓦楞披萨盒", "开窗披萨盒", "定制配送组合"] },
+    applications: { en: ["Pizza delivery", "Restaurant takeaway", "Bakery and foodservice", "Grease-sensitive foods"], zh: ["披萨配送", "餐厅外带", "烘焙与餐饮", "需耐油的食品"] },
+    filters: { en: ["Box size", "Board", "Flute", "Grease barrier", "Ventilation", "Printing"], zh: ["盒型尺寸", "纸板", "楞型", "耐油要求", "通风", "印刷"] },
+    seoTitle: "Pizza Boxes & Pizza Pads | Custom Food Packaging",
+    seoDescription: "Pizza boxes, pads and liners scoped around delivery dimensions, board, grease barrier, ventilation and printing requirements.",
+    searchTerms: ["pizza", "liner", "pad"],
+    productTypes: ["food-packaging-box", "paper-pad", "corrugated-fluted-paper"],
+  },
+  {
+    slug: "food-packaging",
+    title: { en: "Food Packaging", zh: "食品包装" },
+    shortDescription: { en: "Paper food packaging for takeaway, bakery, prepared meals and delivery programs.", zh: "面向外带、烘焙、熟食和配送项目的纸质食品包装。" },
+    description: { en: "Select the food format first, then confirm the footprint, board, barrier, closure, ventilation, printing and packing workflow. Kehong can review boxes, trays, pads and related paper components within one project brief.", zh: "先确认食品应用，再确认尺寸、纸板、阻隔、闭合、通风、印刷和包装流程。科宏可在同一项目需求中评审食品盒、纸托、垫纸及相关纸材部件。" },
+    image: showcaseImages.takeoutBoxesReference,
+    subcategories: { en: ["Takeout boxes", "Pizza boxes", "Food trays", "Bakery boxes", "Food pads and liners", "Paper cup components"], zh: ["外带盒", "披萨盒", "食品纸托", "烘焙盒", "食品垫纸与内衬", "纸杯组件"] },
+    applications: { en: ["Foodservice", "Bakery delivery", "Restaurant takeaway", "Prepared meals", "Catering"], zh: ["餐饮服务", "烘焙配送", "餐厅外带", "熟食配送", "餐饮配套"] },
+    filters: { en: ["Food format", "Material", "Barrier", "Structure", "Size", "Printing"], zh: ["食品类型", "材料", "阻隔要求", "结构", "尺寸", "印刷"] },
+    seoTitle: "Food Packaging | Custom Paper Food Boxes & Components",
+    seoDescription: "Custom paper food packaging for takeaway, bakery, prepared meals and delivery projects, including boxes, trays, pads and liners.",
+    searchTerms: ["food", "takeaway", "bakery", "tray", "cup"],
+    productTypes: ["food-packaging-box", "paper-pad"],
+  },
+  {
+    slug: "inserts-dividers",
+    title: { en: "Corrugated Inserts & Paperboard Inserts", zh: "瓦楞内托与纸板内托" },
+    shortDescription: { en: "Die-cut inserts, dividers and pads for product protection, presentation and shipping stability.", zh: "用于产品保护、展示和运输稳定性的模切内托、隔板和纸垫。" },
+    description: { en: "Share the product footprint, contact points, stacking direction and packing sequence. Corrugated inserts, paperboard inserts, cosmetic inserts and custom dividers can be reviewed with the outer package.", zh: "请提供产品尺寸、接触位置、堆叠方向和装箱顺序。瓦楞内托、纸板内托、化妆品内托和定制隔板可与外包装一并评审。" },
+    image: showcaseImages.representativeInserts,
+    subcategories: { en: ["Corrugated inserts", "Paperboard inserts", "Cosmetic inserts", "Custom dividers", "Protective pads", "Electronics inserts"], zh: ["瓦楞内托", "纸板内托", "化妆品内托", "定制隔板", "保护垫", "电子产品内托"] },
+    applications: { en: ["E-commerce shipping", "Cosmetics", "Electronics", "Retail presentation", "Food and bakery"], zh: ["电商运输", "化妆品", "电子产品", "零售展示", "食品与烘焙"] },
+    filters: { en: ["Product footprint", "Board", "Flute", "Divider layout", "Printing", "Finish"], zh: ["产品尺寸", "纸板", "楞型", "隔板布局", "印刷", "表面工艺"] },
+    seoTitle: "Corrugated Inserts & Paperboard Inserts | Custom Packaging Components",
+    seoDescription: "Custom corrugated inserts, paperboard inserts, cosmetic inserts, dividers and pads reviewed with the outer packaging structure.",
+    searchTerms: ["insert", "divider", "pad", "cosmetic", "electronics"],
+    productTypes: ["paper-insert", "paper-pad", "corrugated-fluted-paper"],
+  },
+  {
+    slug: "retail-packaging",
+    title: { en: "Retail Packaging", zh: "零售包装" },
+    shortDescription: { en: "Branded paper bags, presentation boxes and display-ready packaging for retail programs.", zh: "面向零售项目的品牌纸袋、展示盒和陈列就绪包装。" },
+    description: { en: "Build a retail packaging brief around the product, shelf or carry context, brand artwork, paper grade, handle, finish and packing requirements. The same review can cover carry bags, retail boxes and display components.", zh: "围绕产品、货架或携带场景、品牌稿件、纸张、提手、表面工艺和包装要求建立零售包装需求。同一项目可同时评审手提袋、零售盒和展示部件。" },
+    image: showcaseImages.retailShelfDisplay,
+    subcategories: { en: ["Paper bags", "Retail boxes", "Gift packaging", "Counter display packaging", "Branded carry packaging", "Presentation inserts"], zh: ["纸袋", "零售盒", "礼品包装", "台面展示包装", "品牌手提包装", "展示内托"] },
+    applications: { en: ["Retail stores", "Apparel and lifestyle", "Gift presentation", "Beauty and cosmetics", "E-commerce dispatch"], zh: ["零售门店", "服装与生活方式", "礼品展示", "美妆与化妆品", "电商发货"] },
+    filters: { en: ["Product size", "Paper grade", "Handle", "Printing", "Finish", "Insert"], zh: ["产品尺寸", "纸张", "提手", "印刷", "表面工艺", "内托"] },
+    seoTitle: "Retail Packaging | Custom Paper Bags, Boxes & Displays",
+    seoDescription: "Custom retail packaging including paper bags, presentation boxes, display packaging and inserts for overseas B2B programs.",
+    searchTerms: ["retail", "bag", "display", "gift", "cosmetic"],
+    productTypes: ["kraft-paper", "paper-box", "paper-insert"],
+  },
+  {
     slug: "corrugated-mailer-boxes",
     title: { en: "Corrugated Mailer Boxes", zh: "瓦楞邮寄盒" },
     shortDescription: { en: "Protective corrugated structures for e-commerce dispatch and product presentation.", zh: "瓦楞保护结构，用于电商发货和产品展示。" },
@@ -123,10 +187,7 @@ const allPackagingCategories: PackagingCategory[] = [
   },
 ];
 
-/**
- * These descriptions remain as source material, but only the five approved
- * current categories are exposed through routes, navigation, and sitemap.
- */
+/** Pillow boxes remain internal source material and are not exposed publicly. */
 const retiredPackagingCategorySlugs = new Set(["pillow-boxes"]);
 
 export const packagingCategories = allPackagingCategories.filter(

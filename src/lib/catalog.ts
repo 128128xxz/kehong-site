@@ -89,7 +89,7 @@ const catalogEnglishLabels: Record<string, string> = {
   "分切": "Slitting",
   "柔印 / 定制印刷": "Flexographic / custom printing",
   "按客户杯型/尺寸定制": "Custom by cup size / dimensions",
-  "未公开/询价": "To be confirmed by quotation",
+  "未公开/询价": "Quotation required",
   "询价；阿里常见1-5吨起": "Quoted to order; typical MOQ 1–5 tons",
   "吨 / ton": "ton",
   "平方米 / sqm": "sqm",
@@ -291,10 +291,13 @@ function englishCatalogValue(value: string | undefined) {
 
 /** Keep source records bilingual without serializing untranslated fields into English client props. */
 export function getLocalizedProductSku(sku: ProductSku, locale: string): ProductSku {
-  if (locale !== "en") return sku;
+  // The normalized source retains legacy grouping keys for internal reconciliation.
+  // Never serialize those source-derived keys into public catalog props.
+  const publicSku = { ...sku, canonicalGroupId: sku.groupId ?? sku.sku } as ProductSku;
+  if (locale !== "en") return publicSku;
 
   return {
-    ...sku,
+    ...publicSku,
     title: {
       ...sku.title,
       zh: sku.title.en,
@@ -364,7 +367,7 @@ export function getLocalizedCatalogValue(
   return containsCjk(normalized) ? fallback : formatProductDisplayValue(normalized, locale);
 }
 
-/** Keep the source catalog intact while redacting unconfirmed public claims. */
+/** Keep the internal catalog intact while redacting unconfirmed public claims. */
 function sanitizeBuyerFacingCatalogValue(value: string, locale: string) {
   let sanitized = value;
   if (locale === "zh") {

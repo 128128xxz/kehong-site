@@ -6,7 +6,6 @@ import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
 import ProductCatalog from "@/components/site/ProductCatalog";
 import ProductDirectory from "@/components/site/ProductDirectory";
-import ProductFamilyDirectory from "@/components/site/ProductFamilyDirectory";
 import { Link } from "@/i18n/navigation";
 import { buildProductCatalogView, getCatalogFilterOptions, getQueryValue } from "@/lib/catalog";
 import { buildOrganizationJsonLd } from "@/lib/aiEntities";
@@ -33,8 +32,10 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Site" });
   const brand = getBrandConfig(locale);
-  const title = `${t("catalog.title")} | ${brand.name}`;
-  const description = t("catalog.description");
+  const title = `${locale === "zh" ? "产品目录" : "Finished Packaging"} | ${brand.name}`;
+  const description = locale === "zh"
+    ? "食品盒、蛋糕盒、纸袋与瓦楞邮寄盒，按用途、结构、材料和数量提供定制包装支持。"
+    : "Food boxes, cake packaging, paper bags and corrugated mailers developed around your application, structure, material and quantity.";
   const canonical = await getLocaleUrl(locale, "/products");
   const query = searchParams ? await searchParams : {};
   const hasFilters = ["system", "category", "group", "productType", "material", "gsm", "coating", "process", "customizable", "search", "page"]
@@ -146,28 +147,28 @@ export default async function ProductsPage({
         <PageHero
           index="01"
           kicker={t("products.eyebrow")}
-          title={t("catalog.title")}
-          lede={t("catalog.description")}
+          title={locale === "zh" ? "成品包装" : "Finished Packaging"}
+          lede={locale === "zh" ? "食品盒、蛋糕盒、纸袋与瓦楞邮寄盒，按用途、结构、材料和数量提供定制包装支持。" : "Food boxes, cake packaging, paper bags and corrugated mailers developed around your application, structure, material and quantity."}
           meta={[
-            locale === "zh" ? `${catalogView.allSkus.length} 个纸材与半成品 SKU` : `${catalogView.allSkus.length} material & semi-finished SKUs`,
+            locale === "zh" ? "材料与加工能力" : "Materials & converting",
             "OEM / ODM",
             locale === "zh" ? "中国广东佛山" : "Foshan, Guangdong, China",
           ]}
         >
-          <a href="#materials-and-components" className="kh-button kh-button-light">
-            {locale === "zh" ? "查看规格" : "View specifications"}
+          <a href="#finished-packaging" className="kh-button kh-button-light">
+            {locale === "zh" ? "查看包装类型" : "Explore packaging"}
           </a>
           <Link href="/contact" className="kh-button kh-button-ghost">
             {locale === "zh" ? "索取目录 / 规格资料" : "Request catalog / data sheet"}
           </Link>
         </PageHero>
-        <ProductFamilyDirectory locale={locale} />
+        <ProductDirectory locale={locale} section="finished" />
         <ProductDirectory locale={locale} section="materials" />
         <section id="catalog-list" aria-labelledby="material-catalog-title" className="kh-shell scroll-mt-24 py-10">
           <div className="mb-7 max-w-3xl">
             <p className="kh-eyebrow">{locale === "zh" ? "规格筛选" : "Specification catalog"}</p>
-            <h2 id="material-catalog-title" className="mt-2 text-3xl font-semibold tracking-tight">{locale === "zh" ? "纸材与半成品 SKU 规格" : "Material & semi-finished SKU specifications"}</h2>
-            <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{locale === "zh" ? "筛选器和 231 个已发布 SKU 仅对应纸材、卷材、平张和加工部件；成品包装项目请见下方目录。" : "Filters and the 231 published SKUs cover paper materials, rolls, sheets and converting components only. See the project-led finished packaging directory below."}</p>
+            <h2 id="material-catalog-title" className="mt-2 text-3xl font-semibold tracking-tight">{locale === "zh" ? "材料与加工规格" : "Materials & converting specifications"}</h2>
+            <p className="mt-3 text-sm leading-6 text-(--kh-muted)">{locale === "zh" ? "这里集中展示纸材、卷材、平张和加工部件的规格筛选。成品包装请先从上方的包装目录开始。" : "Use this section to compare paper materials, rolls, sheets and converting components. Start with the finished-packaging directory above for project-led packaging."}</p>
           </div>
           <ProductCatalog
             skus={catalogView.skus}
@@ -179,7 +180,6 @@ export default async function ProductsPage({
             invalidFilters={catalogView.invalidFilters}
           />
         </section>
-        <ProductDirectory locale={locale} section="finished" />
       </main>
       <SiteFooter />
       </div>

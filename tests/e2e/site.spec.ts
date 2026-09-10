@@ -252,16 +252,16 @@ test.describe("Kehong production flows", () => {
         modelLabel: "3D结构展厅",
         resourceLabel: "资源",
         overview: "资源中心",
-        groups: ["设计与打样", "采购与内容", "工具"],
-        links: ["设计稿指南", "刀模图与模板", "采购与询价指南", "新闻与洞察", "3D结构展厅"],
+        groups: ["设计与打样", "材料与表面", "采购与内容", "工具"],
+        links: ["设计稿指南", "刀模图与模板", "材料集合", "瓦楞纸与坑纸", "特种纸与装饰纸", "材料指南", "采购与询价指南", "新闻与洞察", "3D结构展厅"],
       },
       {
         locale: "en",
         modelLabel: "3D Packaging Studio",
         resourceLabel: "Resources",
         overview: "Resource Center",
-        groups: ["Artwork & Sampling", "Buying & Insights", "Tools"],
-        links: ["Artwork Guide", "Dielines & Templates", "Buying & Quotation Guide", "News & Insights", "3D Packaging Studio"],
+        groups: ["Artwork & Sampling", "Materials & Surfaces", "Buying & Insights", "Tools"],
+        links: ["Artwork Guide", "Dielines & Templates", "Material collections", "Corrugated materials", "Specialty & decorative paper", "Materials Guide", "Buying & Quotation Guide", "News & Insights", "3D Packaging Studio"],
       },
     ] as const;
 
@@ -277,7 +277,7 @@ test.describe("Kehong production flows", () => {
       for (const heading of item.groups) await expect(panel).toContainText(heading);
       for (const link of item.links) await expect(panel.getByText(link, { exact: true })).toBeVisible();
       await expect(panel).toContainText(item.modelLabel);
-      await expect(panel.locator("a")).toHaveCount(6);
+      await expect(panel.locator("a")).toHaveCount(10);
       await panel.locator('a[href$="/model-preview"]').click();
       await expect(page).toHaveURL(new RegExp(`/${item.locale}/model-preview$`));
       await page.keyboard.press("Escape");
@@ -287,8 +287,8 @@ test.describe("Kehong production flows", () => {
 
   test("mobile navigation places 3D inside the resources directory", async ({ page }) => {
     for (const item of [
-      { locale: "zh", modelLabel: "3D结构展厅", resourceLabel: "资源", links: ["资源中心", "设计稿指南", "刀模图与模板", "采购与询价指南", "新闻与洞察"] },
-      { locale: "en", modelLabel: "3D Packaging Studio", resourceLabel: "Resources", links: ["Resource Center", "Artwork Guide", "Dielines & Templates", "Buying & Quotation Guide", "News & Insights"] },
+      { locale: "zh", modelLabel: "3D结构展厅", resourceLabel: "资源", links: ["资源中心", "设计稿指南", "刀模图与模板", "材料集合", "瓦楞纸与坑纸", "特种纸与装饰纸", "材料指南", "采购与询价指南", "新闻与洞察"] },
+      { locale: "en", modelLabel: "3D Packaging Studio", resourceLabel: "Resources", links: ["Resource Center", "Artwork Guide", "Dielines & Templates", "Material collections", "Corrugated materials", "Specialty & decorative paper", "Materials Guide", "Buying & Quotation Guide", "News & Insights"] },
     ] as const) {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(`/${item.locale}`, { waitUntil: "networkidle" });

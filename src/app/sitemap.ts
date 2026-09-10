@@ -4,6 +4,7 @@ import { getAlternateLanguages, getLocaleUrl, type SiteHref } from "@/lib/site";
 import { packagingCategories } from "@/data/packagingCategories";
 import { getNewsSlugs } from "@/content/news";
 import { PAPER_CUP_SHEET_SOURCE_RECORD_IDS } from "@/data/paperCupSheetVariants";
+import { materialCollections } from "@/data/materialCollections";
 
 const staticRoutes = [
   { href: "/", changeFrequency: "weekly", priority: 1 },
@@ -12,6 +13,7 @@ const staticRoutes = [
   { href: "/industries/bakery-packaging", changeFrequency: "monthly", priority: 0.84 },
   { href: "/capabilities", changeFrequency: "monthly", priority: 0.82 },
   { href: "/resources", changeFrequency: "monthly", priority: 0.76 },
+  { href: "/materials", changeFrequency: "monthly", priority: 0.8 },
   { href: "/news", changeFrequency: "weekly", priority: 0.78 },
   { href: "/contact", changeFrequency: "monthly", priority: 0.8 },
   { href: "/paper-cup-fan-manufacturer", changeFrequency: "monthly", priority: 0.82 },
@@ -67,11 +69,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
   const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"].map((slug) => ({ href: `/resources/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.65 }));
+  const materialRoutes = materialCollections.map((collection) => ({ href: `/materials/${collection.slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.76 }));
   const bakeryProductRoutes = ["cake-boxes", "cake-boards-and-drums"].map((slug) => ({ href: `/products/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.78 }));
   const newsRoutes = getNewsSlugs().map((slug) => ({ href: `/news/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.66 }));
   const paperCupFamilyRoute = { href: "/products/families/paper-cup-materials" as SiteHref, changeFrequency: "monthly" as const, priority: 0.8 };
 
-  const routes = [...staticRoutes, ...resourceRoutes, ...bakeryProductRoutes, ...newsRoutes, ...packagingRoutes, ...categoryRoutes, paperCupFamilyRoute, ...productRoutes];
+  const routes = [...staticRoutes, ...resourceRoutes, ...materialRoutes, ...bakeryProductRoutes, ...newsRoutes, ...packagingRoutes, ...categoryRoutes, paperCupFamilyRoute, ...productRoutes];
   const entries = await Promise.all(
     routes.map((route) => sitemapEntry({ ...route, lastModified })),
   );

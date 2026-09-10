@@ -22,7 +22,7 @@ export default function ProductDirectory({ locale, section }: Props) {
       <div className="kh-shell">
         <div className="kh-section-heading">
           <div>
-            <p className="kh-eyebrow">{materials ? (zh ? "产品范围" : "01 · Product range") : (zh ? "产品范围" : "02 · Product range")}</p>
+            <p className="kh-eyebrow">{materials ? (zh ? "02 · 材料与加工" : "02 · Materials & converting") : (zh ? "01 · 成品包装" : "01 · Finished packaging")}</p>
             <h2 id={`${section}-directory-title`}>{title(catalogSection.label, zh)}</h2>
           </div>
           <p className="max-w-[48ch] text-sm leading-6 text-(--kh-muted)">{title(catalogSection.description, zh)}</p>

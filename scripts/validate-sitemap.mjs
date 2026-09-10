@@ -22,6 +22,7 @@ const staticRoutes = [
   "/terms",
 ];
 staticRoutes.push("/industries/bakery-packaging", "/capabilities", "/resources");
+staticRoutes.push("/materials");
 staticRoutes.push("/news");
 const categoryRoutes = [
   "kraft-paper",
@@ -43,6 +44,7 @@ const packagingRoutes = [
   "corrugated-mailer-boxes",
 ];
 const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"];
+const materialRoutes = ["corrugated-paper", "specialty-paper", "metallic-paper", "pearlescent-paper", "embossed-paper", "laser-paper"];
 const newsRoutes = [
   "artwork-to-dielines-packaging-sampling",
   "cake-boxes-boards-drums-match",
@@ -93,6 +95,7 @@ for (const route of staticRoutes) addRoute(`/${locale}${route === "/" ? "" : rou
 addRoute(`/${locale}/industries`, `${locale}/industries`);
 for (const slug of packagingRoutes) addRoute(`/${locale}/packaging/${slug}`, `${locale}/packaging/${slug}`);
 for (const slug of resourceRoutes) addRoute(`/${locale}/resources/${slug}`, `${locale}/resources/${slug}`);
+for (const slug of materialRoutes) addRoute(`/${locale}/materials/${slug}`, `${locale}/materials/${slug}`);
 for (const slug of newsRoutes) addRoute(`/${locale}/news/${slug}`, `${locale}/news/${slug}`);
 for (const slug of ["cake-boxes", "cake-boards-and-drums"]) addRoute(`/${locale}/products/${slug}`, `${locale}/products/${slug}`);
 for (const slug of categoryRoutes) addRoute(`/${locale}/products/${slug}`, `${locale}/products/${slug}`);

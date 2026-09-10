@@ -129,8 +129,8 @@
     "home": {
       "hero": {
         "eyebrow": "Specialty paper · Corrugated board · Custom converting",
-        "title": "Specialty Paper and Corrugated Board for Custom Packaging",
-        "description": "Kehong supplies corrugated board, specialty and functional paper, paper-cup materials, and custom paper converting support for B2B packaging projects.",
+        "title": "Paper Packaging & Cupstock Manufacturer in Foshan, China",
+        "description": "Kehong supplies corrugated board, specialty and functional paper, paper cup fan blanks, and custom paper packaging for B2B projects. From material selection and structural sampling to printing, die-cutting, finishing and packing, each project is confirmed against the required specification, drawing or sample.",
         "primary": "Explore Products",
         "secondary": "Request a Quote",
         "stats": [
@@ -165,12 +165,12 @@
       },
       "factoryProof": {
             "kicker": "Factory and capability",
-            "title": "From material selection to shipment preparation",
-            "lede": "Kehong is based in Foshan and arranges material selection, structural sampling, paper converting, finishing, quality checks and shipment preparation according to product structure and specification requirements.",
+            "title": "From Paper Material to Finished Packaging",
+            "lede": "Kehong combines paper material sourcing, corrugated production, structural development, die cutting, printing and packaging manufacturing in Foshan to support consistent B2B delivery.",
             "facts": [
-                  "Die-cutting, slitting, mounting and corrugated processing",
-                  "Material selection and structural sampling",
-                  "Quality checks and shipment preparation"
+                  "20+ years manufacturing experience",
+                  "8000+ m² factory with integrated paper and corrugated production",
+                  "Fast sampling, flexible MOQ and export-oriented project support"
             ],
             "factoryCta": "See the factory",
             "capabilitiesCta": "Explore Capabilities",
@@ -358,13 +358,25 @@
       "groups": [
         {
           "kicker": "Material processing",
-          "lede": "Confirming and preparing the right paper material before converting.",
+          "lede": "Confirming paper, board, flute, layer construction and the right material direction before converting.",
           "items": [
             {
               "title": "Material selection",
-              "what": "Confirm paper, board or coated material against product use and structure.",
-              "materials": "Paper, board, coated paper",
+              "what": "Confirm paper, board, coated, colored, PET-faced, pearlescent, metallic or embossed-textured material against product use and structure.",
+              "materials": "Paper, board and surface-led material options",
               "output": "Approved material specification"
+            },
+            {
+              "title": "Flute & layer construction",
+              "what": "Review E, F or G flute separately from double-layer or triple-layer construction against the brief.",
+              "materials": "Corrugated paper and board",
+              "output": "Confirmed construction direction"
+            },
+            {
+              "title": "Custom material & grammage combination",
+              "what": "Review paper combinations and grammage proportions for the required format, handling and finish.",
+              "materials": "Paper, board and corrugated combinations",
+              "output": "Project-specific material direction"
             },
             {
               "title": "Slitting & sheeting",
@@ -416,14 +428,14 @@
             },
             {
               "title": "Lamination & coating",
-              "what": "Apply matte or gloss lamination and aqueous coating as required.",
-              "materials": "Printed paper and board",
+              "what": "Review matte or gloss lamination, coating, scratch-resistant and anti-counterfeit directions as required.",
+              "materials": "Printed paper, board and corrugated surfaces",
               "output": "Surface-protected material"
             },
             {
               "title": "Finishing details",
-              "what": "Hot foil, embossing, debossing, spot UV and window patching.",
-              "materials": "Paper, board, printed material",
+              "what": "Review custom logo, pattern printing, hot foil, embossing, debossing, spot UV and window patching.",
+              "materials": "Paper, board and printed material",
               "output": "Finished packaging detail"
             }
           ]
@@ -698,7 +710,7 @@
       "service": {
         "title": "OEM / ODM & custom paper converting",
         "description": "A project route for buyers who need material selection, structure sampling or custom paper converting support.",
-        "material": "Confirmed against the project brief",
+        "material": "Choose the material direction for your packaging",
         "forms": "Custom sheets, components or packaging structures",
         "applications": "Custom packaging projects",
         "capabilities": "Material selection, structure review and converting",

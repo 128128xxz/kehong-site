@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Menu, X } from "lucide-react";
+import { BookOpen, ChevronDown, Factory, Lightbulb, Menu, Package, SlidersHorizontal, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -35,6 +35,17 @@ const resourceGroups = [
     links: [
       { href: "/resources/artwork-guidelines", zh: "设计稿指南", en: "Artwork Guide", zhDescription: "准备印刷文件、颜色和出血信息", enDescription: "Prepare print files, colors and bleed settings" },
       { href: "/resources/dielines-templates", zh: "刀模图与模板", en: "Dielines & Templates", zhDescription: "申请包装结构对应的刀模图和模板", enDescription: "Request dielines and templates for confirmed structures" },
+    ],
+  },
+  {
+    id: "materials",
+    zh: "材料与表面",
+    en: "Materials & Surfaces",
+    links: [
+      { href: "/materials", zh: "材料集合", en: "Material collections", zhDescription: "按结构、表面、颜色和纹理浏览材料方向", enDescription: "Browse materials by structure, surface, color and texture" },
+      { href: "/materials/corrugated-paper", zh: "瓦楞纸与坑纸", en: "Corrugated materials", zhDescription: "查看 E/F/G 坑型、层数与定制组合", enDescription: "Review E/F/G flute, layers and custom combinations" },
+      { href: "/materials/specialty-paper", zh: "特种纸与装饰纸", en: "Specialty & decorative paper", zhDescription: "查看金属、珠光、压纹和镭射方向", enDescription: "Review metallic, pearlescent, embossed and laser directions" },
+      { href: "/resources/materials-guide", zh: "材料指南", en: "Materials Guide", zhDescription: "准备材料、结构和表面确认信息", enDescription: "Prepare material, structure and surface details" },
     ],
   },
   {
@@ -158,6 +169,9 @@ function ProductMegaMenu({ zh, close, firstLinkRef }: { zh: boolean; close: () =
           </section>
         ))}
       </div>
+      <Link className="kh-product-mega-all" href="/products" onClick={close}>
+        <span>{zh ? "查看完整产品目录" : "View the complete product directory"}</span>
+      </Link>
     </div>
   );
 }
@@ -306,7 +320,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
     desktopCloseTimerRef.current = setTimeout(() => {
       setOpenMenu((current) => current === menu ? null : current);
       desktopCloseTimerRef.current = null;
-    }, 180);
+    }, 650);
   };
 
   // 路由变化后收起所有菜单
@@ -441,7 +455,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
   const isProducts = pathname.startsWith("/products") || pathname.startsWith("/packaging");
   const isCapabilities = pathname.startsWith("/capabilities") || pathname.startsWith("/process");
-  const isResources = pathname.startsWith("/resources") || pathname.startsWith("/news") || pathname.startsWith("/procurement") || pathname.startsWith("/model-preview");
+  const isResources = pathname.startsWith("/resources") || pathname.startsWith("/materials") || pathname.startsWith("/news") || pathname.startsWith("/procurement") || pathname.startsWith("/model-preview");
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const navLinkClass = (active: boolean) => `kh-nav-link${active ? " is-active" : ""}`;
 
@@ -462,6 +476,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
         <nav ref={desktopNavRef} className="kh-desktop-nav" aria-label="Primary navigation">
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("products")} onPointerLeave={() => scheduleDesktopClose("products")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("products"); }}>
             <button ref={productsButtonRef} type="button" className={navLinkClass(isProducts)} aria-expanded={openMenu === "products"} aria-controls="header-products-menu" aria-haspopup="true" onClick={(event) => { if (keyboardProductsActivationRef.current) { event.preventDefault(); event.stopPropagation(); keyboardProductsActivationRef.current = null; return; } if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); }} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); if (event.repeat) return; keyboardProductsActivationRef.current = event.key; if (openMenu === "products") { closeDesktopDropdowns(); return; } openDesktopMenu("products"); return; } if (event.key !== "ArrowDown") return; event.preventDefault(); event.stopPropagation(); focusFirstProductLinkRef.current = true; setFirstProductFocusRequest((request) => request + 1); openDesktopMenu("products"); }} onKeyUp={(event) => { if (event.key !== keyboardProductsActivationRef.current) return; event.preventDefault(); event.stopPropagation(); requestAnimationFrame(() => { keyboardProductsActivationRef.current = null; }); }}>
+              <Package className="kh-nav-icon size-4" aria-hidden="true" />
               <span>{copy.products}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
@@ -470,6 +485,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
 
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("capabilities")} onPointerLeave={() => scheduleDesktopClose("capabilities")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("capabilities"); }}>
             <button type="button" className={navLinkClass(isCapabilities)} aria-expanded={openMenu === "capabilities"} aria-controls="header-capabilities-menu" aria-haspopup="true" onClick={() => openMenu === "capabilities" ? closeDesktopDropdowns() : openDesktopMenu("capabilities")}>
+              <SlidersHorizontal className="kh-nav-icon size-4" aria-hidden="true" />
               <span>{copy.capabilities}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>
@@ -481,15 +497,18 @@ export default function Header({ variant = "solid" }: HeaderProps) {
           </div>
 
           <Link href="/solutions" aria-current={isActive("/solutions") ? "page" : undefined} className={navLinkClass(isActive("/solutions"))}>
+            <Lightbulb className="kh-nav-icon size-4" aria-hidden="true" />
             <span>{copy.applications}</span>
           </Link>
 
           <Link href="/factory" aria-current={isActive("/factory") ? "page" : undefined} className={navLinkClass(isActive("/factory"))}>
+            <Factory className="kh-nav-icon size-4" aria-hidden="true" />
             <span>{copy.factoryQuality}</span>
           </Link>
 
           <div className="kh-desktop-menu" onPointerEnter={() => openDesktopMenu("resources")} onPointerLeave={() => scheduleDesktopClose("resources")} onFocusCapture={clearDesktopCloseTimer} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleDesktopClose("resources"); }}>
             <button type="button" className={navLinkClass(isResources)} aria-expanded={openMenu === "resources"} aria-controls="header-resources-menu" aria-haspopup="true" onClick={() => openMenu === "resources" ? closeDesktopDropdowns() : openDesktopMenu("resources")}>
+              <BookOpen className="kh-nav-icon size-4" aria-hidden="true" />
               <span>{copy.resources}</span>
               <ChevronDown className="kh-nav-chevron size-3.5" />
             </button>

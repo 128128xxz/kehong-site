@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T00:47:22.346Z",
+  "generatedAt": "2026-09-09T15:13:11.461Z",
   "families": [
     {
       "id": "01-kraft-paper-series",
@@ -421,7 +421,7 @@
         "en": "",
         "zh": "适合环保风格包装与内衬"
       },
-      "canonicalGroupId": "kraft-paper-kraft-paper-80g-pe-coating",
+      "canonicalGroupId": "kraft-paper-single-sided-kraft-paper",
       "groupId": "kraft-paper-single-sided-kraft-paper",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -480,7 +480,7 @@
         "en": "",
         "zh": "两面质感均匀，适合印刷"
       },
-      "canonicalGroupId": "kraft-paper-kraft-paper-120g-pe-coating",
+      "canonicalGroupId": "kraft-paper-double-sided-kraft-paper",
       "groupId": "kraft-paper-double-sided-kraft-paper",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -539,7 +539,7 @@
         "en": "",
         "zh": "适合洁净浅色包装"
       },
-      "canonicalGroupId": "kraft-paper-white-kraft-150g-pe-coating",
+      "canonicalGroupId": "kraft-paper-white-kraft-paper",
       "groupId": "kraft-paper-white-kraft-paper",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -598,7 +598,7 @@
         "en": "",
         "zh": "可做品牌 Logo 印刷"
       },
-      "canonicalGroupId": "kraft-paper-yellow-kraft-180g-pe-coating",
+      "canonicalGroupId": "kraft-paper-yellow-kraft-paper",
       "groupId": "kraft-paper-yellow-kraft-paper",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -658,7 +658,7 @@
         "en": "",
         "zh": "食品接触要求需另行确认"
       },
-      "canonicalGroupId": "kraft-paper-food-grade-kraft-100g-pe-coating",
+      "canonicalGroupId": "kraft-paper-food-grade-kraft-paper",
       "groupId": "kraft-paper-food-grade-kraft-paper",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -718,7 +718,7 @@
         "en": "",
         "zh": "防水防油性能按膜厚确认"
       },
-      "canonicalGroupId": "kraft-paper-pe-120g-pe-pe-coating-pe",
+      "canonicalGroupId": "kraft-paper-pe-coated-kraft-paper",
       "groupId": "kraft-paper-pe-coated-kraft-paper",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -778,7 +778,7 @@
         "en": "",
         "zh": "适合接触油性食品"
       },
-      "canonicalGroupId": "kraft-paper-80g-pe-coating",
+      "canonicalGroupId": "kraft-paper-greaseproof-kraft-paper",
       "groupId": "kraft-paper-greaseproof-kraft-paper",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -838,7 +838,7 @@
         "en": "",
         "zh": "可做单色、专色或四色印刷"
       },
-      "canonicalGroupId": "kraft-paper-200g-pe-coating",
+      "canonicalGroupId": "kraft-paper-printed-kraft-paper",
       "groupId": "kraft-paper-printed-kraft-paper",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -897,7 +897,7 @@
         "en": "",
         "zh": "挺度较好，适合成型结构"
       },
-      "canonicalGroupId": "paper-pad-kraft-cardstock-300g",
+      "canonicalGroupId": "paper-pad-kraft-cardstock",
       "groupId": "paper-pad-kraft-cardstock",
       "productType": "paper-pad",
       "coating": "",
@@ -957,7 +957,7 @@
         "en": "",
         "zh": "可按坑型与面纸克重定制"
       },
-      "canonicalGroupId": "paper-insert-250g-e-f-g-pe-coating",
+      "canonicalGroupId": "paper-insert-kraft-laminated-corrugated-paper",
       "groupId": "paper-insert-kraft-laminated-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -1019,7 +1019,7 @@
         "en": "",
         "zh": "适合大面积印刷"
       },
-      "canonicalGroupId": "paper-pad-white-cardboard-210g",
+      "canonicalGroupId": "paper-pad-white-cardboard",
       "groupId": "paper-pad-white-cardboard",
       "productType": "paper-pad",
       "coating": "",
@@ -1079,7 +1079,7 @@
         "en": "",
         "zh": "食品接触认证按目标市场确认"
       },
-      "canonicalGroupId": "paper-pad-230g-greaseproof",
+      "canonicalGroupId": "paper-pad-food-grade-white-cardboard",
       "groupId": "paper-pad-food-grade-white-cardboard",
       "productType": "paper-pad",
       "coating": "Greaseproof",
@@ -1139,7 +1139,7 @@
         "en": "",
         "zh": "印刷面表现好"
       },
-      "canonicalGroupId": "white-cardboard-250g-coated",
+      "canonicalGroupId": "white-cardboard-single-side-coated-white-board",
       "groupId": "white-cardboard-single-side-coated-white-board",
       "productType": "white-cardboard",
       "coating": "Coated",
@@ -1198,7 +1198,7 @@
         "en": "",
         "zh": "双面印刷需求适用"
       },
-      "canonicalGroupId": "white-cardboard-300g-coated",
+      "canonicalGroupId": "white-cardboard-double-side-coated-white-board",
       "groupId": "white-cardboard-double-side-coated-white-board",
       "productType": "white-cardboard",
       "coating": "Coated",
@@ -1258,7 +1258,7 @@
         "en": "",
         "zh": "适合折叠盒结构"
       },
-      "canonicalGroupId": "white-cardboard-350g",
+      "canonicalGroupId": "white-cardboard-white-cardboard-box-material",
       "groupId": "white-cardboard-white-cardboard-box-material",
       "productType": "white-cardboard",
       "coating": "",
@@ -1316,7 +1316,7 @@
         "en": "",
         "zh": "可做圆形、方形、异形"
       },
-      "canonicalGroupId": "paper-pad-400g",
+      "canonicalGroupId": "paper-pad-white-cardboard-pad",
       "groupId": "paper-pad-white-cardboard-pad",
       "productType": "paper-pad",
       "coating": "",
@@ -1376,7 +1376,7 @@
         "en": "",
         "zh": "结构需按产品尺寸打样"
       },
-      "canonicalGroupId": "paper-insert-450g",
+      "canonicalGroupId": "paper-insert-white-cardboard-insert",
       "groupId": "paper-insert-white-cardboard-insert",
       "productType": "paper-insert",
       "coating": "",
@@ -1436,7 +1436,7 @@
         "en": "",
         "zh": "面纸可印刷后裱合"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-300g-e-f-g-pe-coating",
+      "canonicalGroupId": "corrugated-fluted-paper-white-cardboard-laminated-corrugated-paper",
       "groupId": "corrugated-fluted-paper-white-cardboard-laminated-corrugated-paper",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -1498,7 +1498,7 @@
         "en": "",
         "zh": "可做局部 UV 与专色"
       },
-      "canonicalGroupId": "white-cardboard-350g-uv",
+      "canonicalGroupId": "white-cardboard-printed-white-cardboard",
       "groupId": "white-cardboard-printed-white-cardboard",
       "productType": "white-cardboard",
       "coating": "",
@@ -1558,7 +1558,7 @@
         "en": "",
         "zh": "防水防油，膜厚另行确认"
       },
-      "canonicalGroupId": "white-cardboard-pe-300g-pe-pe-coating-pe",
+      "canonicalGroupId": "white-cardboard-pe-coated-white-cardboard",
       "groupId": "white-cardboard-pe-coated-white-cardboard",
       "productType": "white-cardboard",
       "coating": "PE coating",
@@ -1617,7 +1617,7 @@
         "en": "",
         "zh": "适合食品接触包装"
       },
-      "canonicalGroupId": "white-cardboard-210g",
+      "canonicalGroupId": "white-cardboard-food-grade-white-cardboard",
       "groupId": "white-cardboard-food-grade-white-cardboard",
       "productType": "white-cardboard",
       "coating": "",
@@ -1677,7 +1677,7 @@
         "en": "",
         "zh": "可配食品级油墨印刷"
       },
-      "canonicalGroupId": "kraft-paper-120g-pe-coating",
+      "canonicalGroupId": "kraft-paper-food-grade-kraft-paper",
       "groupId": "kraft-paper-food-grade-kraft-paper",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -1737,7 +1737,7 @@
         "en": "",
         "zh": "轻克重食品包纸"
       },
-      "canonicalGroupId": "paper-packaging-material-40g-pe-coating",
+      "canonicalGroupId": "paper-packaging-material-greaseproof-paper",
       "groupId": "paper-packaging-material-greaseproof-paper",
       "productType": "paper-packaging-material",
       "coating": "PE coating",
@@ -1796,7 +1796,7 @@
         "en": "",
         "zh": "支持定制 Logo 与尺寸"
       },
-      "canonicalGroupId": "paper-packaging-material-50g-pe-coating",
+      "canonicalGroupId": "paper-packaging-material-burger-wrapping-paper",
       "groupId": "paper-packaging-material-burger-wrapping-paper",
       "productType": "paper-packaging-material",
       "coating": "PE coating",
@@ -1855,7 +1855,7 @@
         "en": "",
         "zh": "可做防油处理"
       },
-      "canonicalGroupId": "paper-packaging-material-60g-pe-coating",
+      "canonicalGroupId": "paper-packaging-material-sandwich-wrapping-paper",
       "groupId": "paper-packaging-material-sandwich-wrapping-paper",
       "productType": "paper-packaging-material",
       "coating": "PE coating",
@@ -1914,7 +1914,7 @@
         "en": "",
         "zh": "耐温要求需另行确认"
       },
-      "canonicalGroupId": "paper-packaging-material-70g-pe-coating",
+      "canonicalGroupId": "paper-packaging-material-baking-paper",
       "groupId": "paper-packaging-material-baking-paper",
       "productType": "paper-packaging-material",
       "coating": "PE coating",
@@ -1973,7 +1973,7 @@
         "en": "",
         "zh": "可选防油或淋膜"
       },
-      "canonicalGroupId": "paper-pad-230g-pe-coating",
+      "canonicalGroupId": "paper-pad-cake-pad-paper",
       "groupId": "paper-pad-cake-pad-paper",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -2033,7 +2033,7 @@
         "en": "",
         "zh": "防油等级按样品确认"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-120g-pe-coating",
+      "canonicalGroupId": "corrugated-fluted-paper-pizza-liner-paper",
       "groupId": "corrugated-fluted-paper-pizza-liner-paper",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -2093,7 +2093,7 @@
         "en": "",
         "zh": "适合防水防油托盘"
       },
-      "canonicalGroupId": "paper-insert-250g-pe-coating-pe",
+      "canonicalGroupId": "paper-insert-food-tray-paper",
       "groupId": "paper-insert-food-tray-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -2153,7 +2153,7 @@
         "en": "",
         "zh": "适合后续成盒加工"
       },
-      "canonicalGroupId": "white-cardboard-300g-pe-coating",
+      "canonicalGroupId": "white-cardboard-food-box-paper-material",
       "groupId": "white-cardboard-food-box-paper-material",
       "productType": "white-cardboard",
       "coating": "PE coating",
@@ -2214,7 +2214,7 @@
         "en": "",
         "zh": "适合轻量缓冲结构"
       },
-      "canonicalGroupId": "paper-pad-120g-80g-pe-coating",
+      "canonicalGroupId": "paper-pad-single-face-corrugated-paper",
       "groupId": "paper-pad-single-face-corrugated-paper",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -2274,7 +2274,7 @@
         "en": "",
         "zh": "强度较单面更好"
       },
-      "canonicalGroupId": "paper-insert-150g-100g-pe-coating",
+      "canonicalGroupId": "paper-insert-double-wall-corrugated-paper",
       "groupId": "paper-insert-double-wall-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -2336,7 +2336,7 @@
         "en": "",
         "zh": "按强度需求选择坑型"
       },
-      "canonicalGroupId": "paper-insert-180g-100g-pe-coating",
+      "canonicalGroupId": "paper-insert-triple-layer-corrugated-paper",
       "groupId": "paper-insert-triple-layer-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -2397,7 +2397,7 @@
         "en": "",
         "zh": "细坑型，适合精品包装"
       },
-      "canonicalGroupId": "paper-insert-e-250g-e-pe-coating-e-flute",
+      "canonicalGroupId": "paper-insert-e-flute-corrugated-paper",
       "groupId": "paper-insert-e-flute-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -2459,7 +2459,7 @@
         "en": "",
         "zh": "坑纹更细，平整度好"
       },
-      "canonicalGroupId": "paper-insert-f-300g-f-pe-coating-f-flute",
+      "canonicalGroupId": "paper-insert-f-flute-corrugated-paper",
       "groupId": "paper-insert-f-flute-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -2521,7 +2521,7 @@
         "en": "",
         "zh": "超细坑型，适合高端包装"
       },
-      "canonicalGroupId": "paper-insert-g-350g-g-pe-coating-g-flute",
+      "canonicalGroupId": "paper-insert-g-flute-corrugated-paper",
       "groupId": "paper-insert-g-flute-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -2582,7 +2582,7 @@
         "en": "",
         "zh": "颜色按色样确认"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-e-f-g-pe-coating-e-f-g-mixed",
+      "canonicalGroupId": "corrugated-fluted-paper-colored-corrugated-paper",
       "groupId": "corrugated-fluted-paper-colored-corrugated-paper",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -2644,7 +2644,7 @@
         "en": "",
         "zh": "适合高端黑色包装"
       },
-      "canonicalGroupId": "paper-insert-e-f-g-f-pe-coating-e-f-g-mixed",
+      "canonicalGroupId": "paper-insert-black-corrugated-paper",
       "groupId": "paper-insert-black-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -2706,7 +2706,7 @@
         "en": "",
         "zh": "适合洁净包装视觉"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-e-pe-coating-e-f-g-mixed",
+      "canonicalGroupId": "corrugated-fluted-paper-white-corrugated-paper",
       "groupId": "corrugated-fluted-paper-white-corrugated-paper",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -2769,7 +2769,7 @@
         "en": "",
         "zh": "环保自然风格"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-e-f-g-pe-coating-e-f-g-mixed",
+      "canonicalGroupId": "corrugated-fluted-paper-kraft-corrugated-paper",
       "groupId": "corrugated-fluted-paper-kraft-corrugated-paper",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -2832,7 +2832,7 @@
         "en": "",
         "zh": "可配防刮花工艺"
       },
-      "canonicalGroupId": "paper-insert-e-f-g-f-pe-coating-e-f-g-mixed",
+      "canonicalGroupId": "paper-insert-black-card-laminated-corrugated-paper",
       "groupId": "paper-insert-black-card-laminated-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -2894,7 +2894,7 @@
         "en": "",
         "zh": "面纸可做印刷覆膜"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-300g-e-pe-coating-e-f-g-mixed",
+      "canonicalGroupId": "corrugated-fluted-paper-white-card-laminated-corrugated-paper",
       "groupId": "corrugated-fluted-paper-white-card-laminated-corrugated-paper",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -2956,7 +2956,7 @@
         "en": "",
         "zh": "适合高端表面效果"
       },
-      "canonicalGroupId": "paper-insert-e-f-g-g-pe-coating-e-f-g-mixed",
+      "canonicalGroupId": "paper-insert-specialty-paper-laminated-corrugated-paper",
       "groupId": "paper-insert-specialty-paper-laminated-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -3018,7 +3018,7 @@
         "en": "",
         "zh": "Logo 效果需按模具确认"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-150g-100g-pe-coating-logo-e-f-g-mixed",
+      "canonicalGroupId": "corrugated-fluted-paper-logo-embossed-corrugated-paper",
       "groupId": "corrugated-fluted-paper-logo-embossed-corrugated-paper",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -3079,7 +3079,7 @@
         "en": "",
         "zh": "防伪方案需单独评估"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-180g-100g-pe-coating-e-f-g-mixed",
+      "canonicalGroupId": "corrugated-fluted-paper-anti-counterfeit-corrugated-paper",
       "groupId": "corrugated-fluted-paper-anti-counterfeit-corrugated-paper",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -3140,7 +3140,7 @@
         "en": "",
         "zh": "用于客户后段成盒加工"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-250g-e",
+      "canonicalGroupId": "corrugated-fluted-paper-corrugated-box-semi-finished-sheet",
       "groupId": "corrugated-fluted-paper-corrugated-box-semi-finished-sheet",
       "productType": "corrugated-fluted-paper",
       "coating": "",
@@ -3204,7 +3204,7 @@
         "en": "",
         "zh": "金属质感强"
       },
-      "canonicalGroupId": "paper-pad-300g-pe-coating",
+      "canonicalGroupId": "paper-pad-gold-card-paper",
       "groupId": "paper-pad-gold-card-paper",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -3264,7 +3264,7 @@
         "en": "",
         "zh": "银色金属质感"
       },
-      "canonicalGroupId": "paper-insert-300g-pe-coating",
+      "canonicalGroupId": "paper-insert-silver-card-paper",
       "groupId": "paper-insert-silver-card-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -3324,7 +3324,7 @@
         "en": "",
         "zh": "镭射效果按样确认"
       },
-      "canonicalGroupId": "specialty-paper-250g-pe-coating-uv",
+      "canonicalGroupId": "specialty-paper-holographic-paper",
       "groupId": "specialty-paper-holographic-paper",
       "productType": "specialty-paper",
       "coating": "PE coating",
@@ -3383,7 +3383,7 @@
         "en": "",
         "zh": "适合柔和高级视觉"
       },
-      "canonicalGroupId": "specialty-paper-230g-pe-coating",
+      "canonicalGroupId": "specialty-paper-pearlescent-paper",
       "groupId": "specialty-paper-pearlescent-paper",
       "productType": "specialty-paper",
       "coating": "PE coating",
@@ -3443,7 +3443,7 @@
         "en": "",
         "zh": "黑卡建议评估掉粉与折痕"
       },
-      "canonicalGroupId": "paper-pad-350g-pe-coating",
+      "canonicalGroupId": "paper-pad-black-card-paper",
       "groupId": "paper-pad-black-card-paper",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -3503,7 +3503,7 @@
         "en": "",
         "zh": "颜色按色样与批次确认"
       },
-      "canonicalGroupId": "specialty-paper-250g-pe-coating",
+      "canonicalGroupId": "specialty-paper-colored-specialty-paper",
       "groupId": "specialty-paper-colored-specialty-paper",
       "productType": "specialty-paper",
       "coating": "PE coating",
@@ -3563,7 +3563,7 @@
         "en": "",
         "zh": "防伪方案需另行确认"
       },
-      "canonicalGroupId": "specialty-paper-200g-pe-coating",
+      "canonicalGroupId": "specialty-paper-anti-counterfeit-paper",
       "groupId": "specialty-paper-anti-counterfeit-paper",
       "productType": "specialty-paper",
       "coating": "PE coating",
@@ -3622,7 +3622,7 @@
         "en": "",
         "zh": "适合高触摸频率包装"
       },
-      "canonicalGroupId": "specialty-paper-300g-pe-coating",
+      "canonicalGroupId": "specialty-paper-anti-scratch-paper",
       "groupId": "specialty-paper-anti-scratch-paper",
       "productType": "specialty-paper",
       "coating": "PE coating",
@@ -3681,7 +3681,7 @@
         "en": "",
         "zh": "香型、浓度与时效需确认"
       },
-      "canonicalGroupId": "specialty-paper-180g-pe-coating",
+      "canonicalGroupId": "specialty-paper-scented-paper",
       "groupId": "specialty-paper-scented-paper",
       "productType": "specialty-paper",
       "coating": "PE coating",
@@ -3740,7 +3740,7 @@
         "en": "",
         "zh": "适合高端纸面与坑纸结合"
       },
-      "canonicalGroupId": "paper-insert-300g-g-pe-coating-g-flute",
+      "canonicalGroupId": "paper-insert-specialty-paper-laminated-corrugated-paper",
       "groupId": "paper-insert-specialty-paper-laminated-corrugated-paper",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -3802,7 +3802,7 @@
         "en": "",
         "zh": "支持食品级油墨与 Logo 定制"
       },
-      "canonicalGroupId": "food-packaging-box-250g-350g-greaseproof",
+      "canonicalGroupId": "food-packaging-box-burger-box",
       "groupId": "food-packaging-box-burger-box",
       "productType": "food-packaging-box",
       "coating": "Greaseproof",
@@ -3864,7 +3864,7 @@
         "en": "",
         "zh": "按尺寸、坑型与印刷核价"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-flute",
+      "canonicalGroupId": "corrugated-fluted-paper-pizza-box",
       "groupId": "corrugated-fluted-paper-pizza-box",
       "productType": "corrugated-fluted-paper",
       "coating": "",
@@ -3924,7 +3924,7 @@
         "en": "",
         "zh": "可配蛋糕垫片"
       },
-      "canonicalGroupId": "food-packaging-box-300g-400g",
+      "canonicalGroupId": "food-packaging-box-cake-box",
       "groupId": "food-packaging-box-cake-box",
       "productType": "food-packaging-box",
       "coating": "",
@@ -3985,7 +3985,7 @@
         "en": "",
         "zh": "窗口材料需另行确认"
       },
-      "canonicalGroupId": "food-packaging-box-250g-350g",
+      "canonicalGroupId": "food-packaging-box-sandwich-box",
       "groupId": "food-packaging-box-sandwich-box",
       "productType": "food-packaging-box",
       "coating": "",
@@ -4046,7 +4046,7 @@
         "en": "",
         "zh": "防漏性能按结构与材质确认"
       },
-      "canonicalGroupId": "food-packaging-box-pe-300g-400g-pe-coating-pe",
+      "canonicalGroupId": "food-packaging-box-takeaway-food-box",
       "groupId": "food-packaging-box-takeaway-food-box",
       "productType": "food-packaging-box",
       "coating": "PE coating",
@@ -4107,7 +4107,7 @@
         "en": "",
         "zh": "可做防油内层"
       },
-      "canonicalGroupId": "food-packaging-box-300g-400g-greaseproof",
+      "canonicalGroupId": "food-packaging-box-fried-chicken-box",
       "groupId": "food-packaging-box-fried-chicken-box",
       "productType": "food-packaging-box",
       "coating": "Greaseproof",
@@ -4168,7 +4168,7 @@
         "en": "",
         "zh": "可定制容量和边高"
       },
-      "canonicalGroupId": "paper-insert-250g-350g-pe-coating-pe",
+      "canonicalGroupId": "paper-insert-food-paper-tray",
       "groupId": "paper-insert-food-paper-tray",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -4229,7 +4229,7 @@
         "en": "",
         "zh": "可按包装外形定制"
       },
-      "canonicalGroupId": "food-packaging-box-120g-250g-pe-coating",
+      "canonicalGroupId": "food-packaging-box-food-paper-sleeve",
       "groupId": "food-packaging-box-food-paper-sleeve",
       "productType": "food-packaging-box",
       "coating": "PE coating",
@@ -4290,7 +4290,7 @@
         "en": "",
         "zh": "价格按尺寸与印刷数量核算"
       },
-      "canonicalGroupId": "food-packaging-box-40g-120g-pe-coating",
+      "canonicalGroupId": "food-packaging-box-food-liner-paper",
       "groupId": "food-packaging-box-food-liner-paper",
       "productType": "food-packaging-box",
       "coating": "PE coating",
@@ -4352,7 +4352,7 @@
         "en": "",
         "zh": "可配内托与垫片"
       },
-      "canonicalGroupId": "food-packaging-box-300g-400g",
+      "canonicalGroupId": "food-packaging-box-bakery-packaging-box",
       "groupId": "food-packaging-box-bakery-packaging-box",
       "productType": "food-packaging-box",
       "coating": "",
@@ -4413,7 +4413,7 @@
         "en": "",
         "zh": "可选金银卡或白卡"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-230g-600g-pe-coating",
+      "canonicalGroupId": "paper-pad-cake-pad",
       "groupId": "paper-pad-cake-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -4474,7 +4474,7 @@
         "en": "",
         "zh": "按直径与防油需求确认"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-80g-250g-pe-coating",
+      "canonicalGroupId": "paper-pad-pizza-paper-pad",
       "groupId": "paper-pad-pizza-paper-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -4534,7 +4534,7 @@
         "en": "",
         "zh": "可定制图案和尺寸"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-80g-300g-pe-coating",
+      "canonicalGroupId": "paper-pad-food-paper-pad",
       "groupId": "paper-pad-food-paper-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -4593,7 +4593,7 @@
         "en": "",
         "zh": "适合高端展示包装"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-300g-600g-pe-coating",
+      "canonicalGroupId": "paper-pad-cosmetic-paper-pad",
       "groupId": "paper-pad-cosmetic-paper-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -4654,7 +4654,7 @@
         "en": "",
         "zh": "结构按产品尺寸打样"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-300g-600g-pe-coating",
+      "canonicalGroupId": "paper-pad-electronics-paper-pad",
       "groupId": "paper-pad-electronics-paper-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -4714,7 +4714,7 @@
         "en": "",
         "zh": "可配表面纹路"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-300g-600g-pe-coating",
+      "canonicalGroupId": "paper-pad-gift-box-inner-pad",
       "groupId": "paper-pad-gift-box-inner-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -4775,7 +4775,7 @@
         "en": "",
         "zh": "按承重与跌落要求确认"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-e-f-g-flute-pe-coating",
+      "canonicalGroupId": "paper-pad-shock-absorbing-paper-pad",
       "groupId": "paper-pad-shock-absorbing-paper-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -4835,7 +4835,7 @@
         "en": "",
         "zh": "尺寸按直径确认"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-120g-600g-pe-coating",
+      "canonicalGroupId": "paper-pad-round-paper-pad",
       "groupId": "paper-pad-round-paper-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -4897,7 +4897,7 @@
         "en": "",
         "zh": "适合标准盒型"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-120g-600g-pe-coating",
+      "canonicalGroupId": "paper-pad-square-paper-pad",
       "groupId": "paper-pad-square-paper-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -4959,7 +4959,7 @@
         "en": "",
         "zh": "需提供图纸或实物样"
       },
-      "canonicalGroupId": "paper-pad-paper-pads-pe-coating",
+      "canonicalGroupId": "paper-pad-custom-die-cut-paper-pad",
       "groupId": "paper-pad-custom-die-cut-paper-pad",
       "productType": "paper-pad",
       "coating": "PE coating",
@@ -5019,7 +5019,7 @@
         "en": "",
         "zh": "结构需按产品尺寸打样"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-300g-600g-pe-coating",
+      "canonicalGroupId": "paper-insert-cosmetic-paper-insert",
       "groupId": "paper-insert-cosmetic-paper-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5081,7 +5081,7 @@
         "en": "",
         "zh": "可做高端黑卡效果"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-350g-600g-pe-coating",
+      "canonicalGroupId": "paper-insert-perfume-paper-insert",
       "groupId": "paper-insert-perfume-paper-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5142,7 +5142,7 @@
         "en": "",
         "zh": "按缓冲与定位要求确认"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-e-f-g-flute-pe-coating",
+      "canonicalGroupId": "paper-insert-electronics-paper-insert",
       "groupId": "paper-insert-electronics-paper-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5203,7 +5203,7 @@
         "en": "",
         "zh": "可配礼盒整体方案"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-300g-600g-pe-coating",
+      "canonicalGroupId": "paper-insert-gift-box-paper-insert",
       "groupId": "paper-insert-gift-box-paper-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5264,7 +5264,7 @@
         "en": "",
         "zh": "强度按产品重量确认"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-e-f-g-flute-pe-coating",
+      "canonicalGroupId": "paper-insert-wine-box-paper-insert",
       "groupId": "paper-insert-wine-box-paper-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5325,7 +5325,7 @@
         "en": "",
         "zh": "可做多格结构"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-300g-500g-pe-coating",
+      "canonicalGroupId": "paper-insert-tea-box-paper-insert",
       "groupId": "paper-insert-tea-box-paper-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5387,7 +5387,7 @@
         "en": "",
         "zh": "食品接触要求需确认"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-250g-400g-pe-coating-pe",
+      "canonicalGroupId": "paper-insert-food-paper-insert",
       "groupId": "paper-insert-food-paper-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5448,7 +5448,7 @@
         "en": "",
         "zh": "适合轻量缓冲"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-e-f-g-flute-pe-coating",
+      "canonicalGroupId": "paper-insert-corrugated-paper-insert",
       "groupId": "paper-insert-corrugated-paper-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5507,7 +5507,7 @@
         "en": "",
         "zh": "洁净白色外观"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-300g-600g-pe-coating",
+      "canonicalGroupId": "paper-insert-white-cardboard-insert",
       "groupId": "paper-insert-white-cardboard-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5565,7 +5565,7 @@
         "en": "",
         "zh": "适合高端包装质感"
       },
-      "canonicalGroupId": "paper-insert-paper-inserts-300g-600g-pe-coating-uv",
+      "canonicalGroupId": "paper-insert-specialty-paper-insert",
       "groupId": "paper-insert-specialty-paper-insert",
       "productType": "paper-insert",
       "coating": "PE coating",
@@ -5624,7 +5624,7 @@
         "en": "",
         "zh": "客户可进行后续成型"
       },
-      "canonicalGroupId": "corrugated-fluted-paper",
+      "canonicalGroupId": "corrugated-fluted-paper-die-cut-semi-finished-sheet",
       "groupId": "corrugated-fluted-paper-die-cut-semi-finished-sheet",
       "productType": "corrugated-fluted-paper",
       "coating": "",
@@ -5683,7 +5683,7 @@
         "en": "",
         "zh": "折线位置按刀模图确认"
       },
-      "canonicalGroupId": "white-cardboard",
+      "canonicalGroupId": "white-cardboard-creased-semi-finished-sheet",
       "groupId": "white-cardboard-creased-semi-finished-sheet",
       "productType": "white-cardboard",
       "coating": "",
@@ -5742,7 +5742,7 @@
         "en": "",
         "zh": "裱合平整度按样确认"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-flute",
+      "canonicalGroupId": "corrugated-fluted-paper-laminated-semi-finished-sheet",
       "groupId": "corrugated-fluted-paper-laminated-semi-finished-sheet",
       "productType": "corrugated-fluted-paper",
       "coating": "",
@@ -5801,7 +5801,7 @@
         "en": "",
         "zh": "适合快速成盒"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-e-f-g-flute",
+      "canonicalGroupId": "corrugated-fluted-paper-corrugated-box-blank",
       "groupId": "corrugated-fluted-paper-corrugated-box-blank",
       "productType": "corrugated-fluted-paper",
       "coating": "",
@@ -5862,7 +5862,7 @@
         "en": "",
         "zh": "可按客户线体要求供货"
       },
-      "canonicalGroupId": "white-cardboard-250g-450g",
+      "canonicalGroupId": "white-cardboard-folding-box-blank",
       "groupId": "white-cardboard-folding-box-blank",
       "productType": "white-cardboard",
       "coating": "",
@@ -5921,7 +5921,7 @@
         "en": "",
         "zh": "价格按印刷颜色与工艺核算"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-300g-450g",
+      "canonicalGroupId": "corrugated-fluted-paper-printed-color-box-blank",
       "groupId": "corrugated-fluted-paper-printed-color-box-blank",
       "productType": "corrugated-fluted-paper",
       "coating": "",
@@ -5980,7 +5980,7 @@
         "en": "",
         "zh": "食品等级与工艺需确认"
       },
-      "canonicalGroupId": "white-cardboard-250g-400g-greaseproof",
+      "canonicalGroupId": "white-cardboard-food-box-blank",
       "groupId": "white-cardboard-food-box-blank",
       "productType": "white-cardboard",
       "coating": "Greaseproof",
@@ -6040,7 +6040,7 @@
         "en": "",
         "zh": "可与内托一起报价"
       },
-      "canonicalGroupId": "paper-insert",
+      "canonicalGroupId": "paper-insert-gift-box-semi-finished-sheet",
       "groupId": "paper-insert-gift-box-semi-finished-sheet",
       "productType": "paper-insert",
       "coating": "",
@@ -6102,7 +6102,7 @@
         "en": "",
         "zh": "适合高端表面工艺"
       },
-      "canonicalGroupId": "paper-pad-300g-450g-uv",
+      "canonicalGroupId": "paper-pad-cosmetic-box-semi-finished-sheet",
       "groupId": "paper-pad-cosmetic-box-semi-finished-sheet",
       "productType": "paper-pad",
       "coating": "",
@@ -6164,7 +6164,7 @@
         "en": "",
         "zh": "需提供刀模图或样品"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-pe-coating",
+      "canonicalGroupId": "corrugated-fluted-paper-custom-shape-box-blank",
       "groupId": "corrugated-fluted-paper-custom-shape-box-blank",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -6224,7 +6224,7 @@
         "en": "",
         "zh": "常规成品盒型"
       },
-      "canonicalGroupId": "white-cardboard-300g-450g",
+      "canonicalGroupId": "white-cardboard-white-cardboard-packaging-box",
       "groupId": "white-cardboard-white-cardboard-packaging-box",
       "productType": "white-cardboard",
       "coating": "",
@@ -6284,7 +6284,7 @@
         "en": "",
         "zh": "适合自然环保定位"
       },
-      "canonicalGroupId": "kraft-paper-250g-400g-pe-coating",
+      "canonicalGroupId": "kraft-paper-kraft-paper-box",
       "groupId": "kraft-paper-kraft-paper-box",
       "productType": "kraft-paper",
       "coating": "PE coating",
@@ -6344,7 +6344,7 @@
         "en": "",
         "zh": "结构强度按产品确认"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-flute-pe-coating",
+      "canonicalGroupId": "corrugated-fluted-paper-corrugated-paper-box",
       "groupId": "corrugated-fluted-paper-corrugated-paper-box",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -6403,7 +6403,7 @@
         "en": "",
         "zh": "颜色按色样确认"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-e-f-g-flute",
+      "canonicalGroupId": "corrugated-fluted-paper-colored-corrugated-box",
       "groupId": "corrugated-fluted-paper-colored-corrugated-box",
       "productType": "corrugated-fluted-paper",
       "coating": "",
@@ -6462,7 +6462,7 @@
         "en": "",
         "zh": "适合高级表面工艺"
       },
-      "canonicalGroupId": "white-cardboard-300g-450g-uv",
+      "canonicalGroupId": "white-cardboard-cosmetic-packaging-box",
       "groupId": "white-cardboard-cosmetic-packaging-box",
       "productType": "white-cardboard",
       "coating": "",
@@ -6525,7 +6525,7 @@
         "en": "",
         "zh": "可配纸内托"
       },
-      "canonicalGroupId": "corrugated-fluted-paper",
+      "canonicalGroupId": "corrugated-fluted-paper-electronics-packaging-box",
       "groupId": "corrugated-fluted-paper-electronics-packaging-box",
       "productType": "corrugated-fluted-paper",
       "coating": "",
@@ -6587,7 +6587,7 @@
         "en": "",
         "zh": "食品接触需按市场确认"
       },
-      "canonicalGroupId": "food-packaging-box-250g-400g-pe-coating",
+      "canonicalGroupId": "food-packaging-box-food-packaging-box",
       "groupId": "food-packaging-box-food-packaging-box",
       "productType": "food-packaging-box",
       "coating": "PE coating",
@@ -6649,7 +6649,7 @@
         "en": "",
         "zh": "可结合内托与垫片报价"
       },
-      "canonicalGroupId": "corrugated-fluted-paper",
+      "canonicalGroupId": "corrugated-fluted-paper-gift-packaging-box",
       "groupId": "corrugated-fluted-paper-gift-packaging-box",
       "productType": "corrugated-fluted-paper",
       "coating": "",
@@ -6710,7 +6710,7 @@
         "en": "",
         "zh": "适合平铺运输与快速成型"
       },
-      "canonicalGroupId": "white-cardboard-250g-450g",
+      "canonicalGroupId": "white-cardboard-folding-carton",
       "groupId": "white-cardboard-folding-carton",
       "productType": "white-cardboard",
       "coating": "",
@@ -6771,7 +6771,7 @@
         "en": "",
         "zh": "结构需按产品与装配确认"
       },
-      "canonicalGroupId": "corrugated-fluted-paper-pe-coating",
+      "canonicalGroupId": "corrugated-fluted-paper-one-piece-paper-box",
       "groupId": "corrugated-fluted-paper-one-piece-paper-box",
       "productType": "corrugated-fluted-paper",
       "coating": "PE coating",
@@ -6831,7 +6831,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-paper-cup-fan-for-hot-coffee-paper-cup-with-sleeves-and-lid",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -6894,7 +6894,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-7-oz-shirong-die-cut-flexography-printing-coffee-cups-pe-coated-paper-fan-raw-material-for-paper-cup-printing-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -6957,7 +6957,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-flexography-printing-black-coffee-tea-beverage-drink-cup-use-210gsm-single-pe-coated-paper-fan-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7020,7 +7020,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexography-printing-280-gsm-single-wall-pe-coated-paper-cup-fan-raw-material-for-hot-drinks-coffee-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7083,7 +7083,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-beverage-cup-use-app-recycled-1-pe-210gsm-high-coated-paper-fan-raw-materials",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7146,7 +7146,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexo-printed-die-cutting-food-grade-160-350gsm-single-pe-coated-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7209,7 +7209,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-tea-cup-making-machine-use-flexography-printing-single-pe-240gsm-pe-coated-paper-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7272,7 +7272,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-bagasse-custom-flexo-printing-hot-drink-8oz-paper-cups-fan-paper-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7335,7 +7335,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-fan-manufacturers-and-suppliers-raw-material-6oz-pe-coated-paper-cup-paper",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7398,7 +7398,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-for-9oz-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7460,7 +7460,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-ice-cream-cup-paper-china-factory-high-quality-printed-and-personalized-disposable-for-making-machine-for-paper-cup-logo-printer",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7522,7 +7522,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-high-quality-8oz-12oz-16oz-disposable-hot-drink-coffee-waterproof-pe-coating-paper-cup-fan-for-cupcake-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7585,7 +7585,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-degradable-oem-fans-food-grade-6oz-12oz-printing-paper-cup-fan-1-5oz-for-white-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7648,7 +7648,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-wholesale-custom-pe-coated-paper-roll-craft-paper-cup-fan-for-making-100-biodegradable-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -7712,7 +7712,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-pla-coated-white-craft-paper-cup-fan-bottom-paper-for-making-100-biodegradable-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -7772,7 +7772,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-factory-2-5-16oz-custom-paper-cup-fan-single-pe-coated-hot-cup-bottom-raw-material-for-coffee-tea-paper-cups-fans-4oz",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -7833,7 +7833,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-material-for-paper-cup-single-double-pe-coated-pla-coated-customized-logo-printing-paper-cup-fans",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -7896,7 +7896,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-wholesales-paper-cups-raw-material-150gsm-380gsm-single-double-pe-coated-pla-coated-customized-logo-printing-paper-cup-fans",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -7959,7 +7959,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-wenzhou-pe-coated-paper-roll-hot-tea-raw-material-for-paper-cup-custom-width",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -8022,7 +8022,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-wholesale-high-quality-waterproof-pe-coated-disposable-raw-material-for-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -8083,7 +8083,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-roll-china-high-quality-printed-and-personalized-disposable-for-kraft-paper-cup-soup-bucket-disposable",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -8145,7 +8145,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-cup-bottom-roll-for-china-factory-price-custom-design-for-big-size-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -8207,7 +8207,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-170gsm-for-china-factory-price-custom-design-for-paper-cups-for-hot-drinks-double-wall",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -8268,7 +8268,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-jumbo-roll-cup-stock-paper-pe-coated-china-high-quality-printed-and-personalized-disposable-food-grade-for-paper-cups-12oz",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -8331,7 +8331,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-factory-supply-plain-pe-coated-paper-cup-sheet-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -8392,7 +8392,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coated-paper-cup-sheets-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -8453,7 +8453,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-kraft-paper-raw-materials-180gsm-pe-coated-brown-kraft-paper-rolls-for-food-paper-cup-bowl",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -8515,7 +8515,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-food-grade-for-paper-cup-lid-cover",
+      "canonicalGroupId": "paper-cup-fan-kraft-cupstock-paper",
       "groupId": "paper-cup-fan-kraft-cupstock-paper",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -8576,7 +8576,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-8-12-16-oz-customized-logo-eco-friendly-disposable-kraft-paper-for-paper-cup-for-paper-cups-manufacturer-in-uae",
+      "canonicalGroupId": "paper-cup-fan-kraft-cupstock-paper",
       "groupId": "paper-cup-fan-kraft-cupstock-paper",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -8636,7 +8636,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-greaseproof-resist-high-temperature-chinese-customized-1200mm-cup-stock-paper-for-paper-cup-die-cutting-machine",
+      "canonicalGroupId": "paper-cup-fan-kraft-cupstock-paper",
       "groupId": "paper-cup-fan-kraft-cupstock-paper",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -8698,7 +8698,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-plain-single-double-wall-pe-coated-base-craft-cup-paper-roll-for-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -8760,7 +8760,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-kraft-single-double-wall-pe-coat-paper-for-cups",
+      "canonicalGroupId": "paper-cup-fan-kraft-cupstock-paper",
       "groupId": "paper-cup-fan-kraft-cupstock-paper",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -8820,7 +8820,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-wholesale-brown-kraft-paper-150g-craft-paper-roll-kraft-paper-packaging-raw-material",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -8882,7 +8882,7 @@
         "en": "",
         "zh": "价格通常需要询价"
       },
-      "canonicalGroupId": "paper-cup-fan-product-blank-white-bottom-cup-paper-cup-raw-materials-for-disposable-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -8942,7 +8942,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-shirongnewmaterial-en-alibaba-com",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9004,7 +9004,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-guangzhou-300g-matte-card-craft-copper-1600542519488-html",
+      "canonicalGroupId": "paper-cup-fan-kraft-cupstock-paper",
       "groupId": "paper-cup-fan-kraft-cupstock-paper",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -9064,7 +9064,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-guangdong-shirong-paper-4oz-20oz-printed-1600552939596-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9127,7 +9127,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-1601181316104-html",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9190,7 +9190,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-paperboard-printing-pe-coated-paper-roll-1600654043943-html",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9253,7 +9253,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-paper-cup-fan-raw-material-china-1601166953810-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9316,7 +9316,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-jumbo-roll-cup-stock-paper-pe-1600996756482-html",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9379,7 +9379,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-factory-price-waterproof-pe-coated-paper-1601490445076-html",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9440,7 +9440,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-shi-rong-double-wall-8oz-eco-1601818543424-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9502,7 +9502,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-shi-rong-enso-app-yibin-ningbo-1601825687345-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9564,7 +9564,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-shirong-new-material-factory-wholesale-eco-1601241852809-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -9626,7 +9626,7 @@
         "en": "",
         "zh": "需打开页面复核"
       },
-      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll-price-per-1601184762053-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9688,7 +9688,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-paper-cup-fan-for-hot-coffee-paper-cup-with-sleeves-and-lid",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9751,7 +9751,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-paper-cup-fan-for-hot-coffee-paper-cup-with-sleeves-and-lid",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -9814,7 +9814,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-paper-cup-fan-for-hot-coffee-paper-cup-with-sleeves-and-lid",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9877,7 +9877,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-paper-cup-fan-for-hot-coffee-paper-cup-with-sleeves-and-lid",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -9940,7 +9940,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-paper-cup-fan-for-hot-coffee-paper-cup-with-sleeves-and-lid",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -10003,7 +10003,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-paper-cup-fan-for-hot-coffee-paper-cup-with-sleeves-and-lid",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10066,7 +10066,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-single-wall-pe-coated-paper-cup-fan-for-hot-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10129,7 +10129,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-single-wall-pe-coated-paper-cup-fan-for-hot-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -10192,7 +10192,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-single-wall-pe-coated-paper-cup-fan-for-hot-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10255,7 +10255,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-single-wall-pe-coated-paper-cup-fan-for-hot-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10318,7 +10318,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-single-wall-pe-coated-paper-cup-fan-for-hot-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -10381,7 +10381,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-single-wall-pe-coated-paper-cup-fan-for-hot-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10444,7 +10444,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-7-oz-shirong-die-cut-flexography-printing-coffee-cups-pe-coated-paper-fan-raw-material-for-paper-cup-printing-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10507,7 +10507,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-7-oz-shirong-die-cut-flexography-printing-coffee-cups-pe-coated-paper-fan-raw-material-for-paper-cup-printing-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -10570,7 +10570,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-7-oz-shirong-die-cut-flexography-printing-coffee-cups-pe-coated-paper-fan-raw-material-for-paper-cup-printing-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10633,7 +10633,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-7-oz-shirong-die-cut-flexography-printing-coffee-cups-pe-coated-paper-fan-raw-material-for-paper-cup-printing-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10696,7 +10696,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-7-oz-shirong-die-cut-flexography-printing-coffee-cups-pe-coated-paper-fan-raw-material-for-paper-cup-printing-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -10759,7 +10759,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-7-oz-shirong-die-cut-flexography-printing-coffee-cups-pe-coated-paper-fan-raw-material-for-paper-cup-printing-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10822,7 +10822,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-flexography-printing-black-coffee-tea-beverage-drink-cup-use-210gsm-single-pe-coated-paper-fan-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -10885,7 +10885,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-flexography-printing-black-coffee-tea-beverage-drink-cup-use-210gsm-single-pe-coated-paper-fan-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -10948,7 +10948,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-flexography-printing-black-coffee-tea-beverage-drink-cup-use-210gsm-single-pe-coated-paper-fan-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11011,7 +11011,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-flexography-printing-black-coffee-tea-beverage-drink-cup-use-210gsm-single-pe-coated-paper-fan-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11074,7 +11074,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-flexography-printing-black-coffee-tea-beverage-drink-cup-use-210gsm-single-pe-coated-paper-fan-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -11137,7 +11137,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-flexography-printing-black-coffee-tea-beverage-drink-cup-use-210gsm-single-pe-coated-paper-fan-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11200,7 +11200,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexography-printing-280-gsm-single-wall-pe-coated-paper-cup-fan-raw-material-for-hot-drinks-coffee-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11263,7 +11263,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexography-printing-280-gsm-single-wall-pe-coated-paper-cup-fan-raw-material-for-hot-drinks-coffee-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -11326,7 +11326,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexography-printing-280-gsm-single-wall-pe-coated-paper-cup-fan-raw-material-for-hot-drinks-coffee-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11389,7 +11389,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexography-printing-280-gsm-single-wall-pe-coated-paper-cup-fan-raw-material-for-hot-drinks-coffee-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11452,7 +11452,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexography-printing-280-gsm-single-wall-pe-coated-paper-cup-fan-raw-material-for-hot-drinks-coffee-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -11515,7 +11515,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexography-printing-280-gsm-single-wall-pe-coated-paper-cup-fan-raw-material-for-hot-drinks-coffee-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11578,7 +11578,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-beverage-cup-use-app-recycled-1-pe-210gsm-high-coated-paper-fan-raw-materials",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11639,7 +11639,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-beverage-cup-use-app-recycled-1-pe-210gsm-high-coated-paper-fan-raw-materials",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -11702,7 +11702,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-beverage-cup-use-app-recycled-1-pe-210gsm-high-coated-paper-fan-raw-materials",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11763,7 +11763,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-beverage-cup-use-app-recycled-1-pe-210gsm-high-coated-paper-fan-raw-materials",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11826,7 +11826,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-beverage-cup-use-app-recycled-1-pe-210gsm-high-coated-paper-fan-raw-materials",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -11889,7 +11889,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-beverage-cup-use-app-recycled-1-pe-210gsm-high-coated-paper-fan-raw-materials",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -11952,7 +11952,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexo-printed-die-cutting-food-grade-160-350gsm-single-pe-coated-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12015,7 +12015,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexo-printed-die-cutting-food-grade-160-350gsm-single-pe-coated-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -12078,7 +12078,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexo-printed-die-cutting-food-grade-160-350gsm-single-pe-coated-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12141,7 +12141,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexo-printed-die-cutting-food-grade-160-350gsm-single-pe-coated-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12204,7 +12204,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexo-printed-die-cutting-food-grade-160-350gsm-single-pe-coated-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -12267,7 +12267,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-biodegradable-flexo-printed-die-cutting-food-grade-160-350gsm-single-pe-coated-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12330,7 +12330,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-tea-cup-making-machine-use-flexography-printing-single-pe-240gsm-pe-coated-paper-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12393,7 +12393,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-tea-cup-making-machine-use-flexography-printing-single-pe-240gsm-pe-coated-paper-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -12456,7 +12456,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-tea-cup-making-machine-use-flexography-printing-single-pe-240gsm-pe-coated-paper-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12519,7 +12519,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-tea-cup-making-machine-use-flexography-printing-single-pe-240gsm-pe-coated-paper-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12582,7 +12582,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-tea-cup-making-machine-use-flexography-printing-single-pe-240gsm-pe-coated-paper-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -12645,7 +12645,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-tea-cup-making-machine-use-flexography-printing-single-pe-240gsm-pe-coated-paper-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12708,7 +12708,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-bagasse-custom-flexo-printing-hot-drink-8oz-paper-cups-fan-paper-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12771,7 +12771,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-bagasse-custom-flexo-printing-hot-drink-8oz-paper-cups-fan-paper-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -12834,7 +12834,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-bagasse-custom-flexo-printing-hot-drink-8oz-paper-cups-fan-paper-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12897,7 +12897,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-bagasse-custom-flexo-printing-hot-drink-8oz-paper-cups-fan-paper-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -12960,7 +12960,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-bagasse-custom-flexo-printing-hot-drink-8oz-paper-cups-fan-paper-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -13023,7 +13023,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-bagasse-custom-flexo-printing-hot-drink-8oz-paper-cups-fan-paper-raw-material",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13086,7 +13086,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-saudi-arabia-welcome-hot-sell-good-grade-pe-coated-wood-pulp-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13149,7 +13149,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-saudi-arabia-welcome-hot-sell-good-grade-pe-coated-wood-pulp-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -13212,7 +13212,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-saudi-arabia-welcome-hot-sell-good-grade-pe-coated-wood-pulp-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13275,7 +13275,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-saudi-arabia-welcome-hot-sell-good-grade-pe-coated-wood-pulp-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13338,7 +13338,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-saudi-arabia-welcome-hot-sell-good-grade-pe-coated-wood-pulp-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -13399,7 +13399,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-saudi-arabia-welcome-hot-sell-good-grade-pe-coated-wood-pulp-paper-cup-fan",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13462,7 +13462,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-fan-manufacturers-and-suppliers-raw-material-6oz-pe-coated-paper-cup-paper",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -13523,7 +13523,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-for-9oz-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13585,7 +13585,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-for-9oz-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -13647,7 +13647,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-for-9oz-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13709,7 +13709,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-for-9oz-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13771,7 +13771,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-for-9oz-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -13833,7 +13833,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-for-9oz-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13895,7 +13895,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-ice-cream-cup-paper-china-factory-high-quality-printed-and-personalized-disposable-for-making-machine-for-paper-cup-logo-printer",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -13957,7 +13957,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-ice-cream-cup-paper-china-factory-high-quality-printed-and-personalized-disposable-for-making-machine-for-paper-cup-logo-printer",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -14019,7 +14019,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-ice-cream-cup-paper-china-factory-high-quality-printed-and-personalized-disposable-for-making-machine-for-paper-cup-logo-printer",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14081,7 +14081,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-ice-cream-cup-paper-china-factory-high-quality-printed-and-personalized-disposable-for-making-machine-for-paper-cup-logo-printer",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14143,7 +14143,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-ice-cream-cup-paper-china-factory-high-quality-printed-and-personalized-disposable-for-making-machine-for-paper-cup-logo-printer",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -14205,7 +14205,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-ice-cream-cup-paper-china-factory-high-quality-printed-and-personalized-disposable-for-making-machine-for-paper-cup-logo-printer",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14267,7 +14267,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coated-cup-fan-paper-china-high-quality-printed-and-personalized-disposable-food-grade-for-machine-production-of-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -14330,7 +14330,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-prepared-paper-for-oz6-cups-by-tons-for-china-factory-price-custom-design-for-cone-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14392,7 +14392,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-prepared-paper-for-oz6-cups-by-tons-for-china-factory-price-custom-design-for-cone-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -14454,7 +14454,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-prepared-paper-for-oz6-cups-by-tons-for-china-factory-price-custom-design-for-cone-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14516,7 +14516,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-prepared-paper-for-oz6-cups-by-tons-for-china-factory-price-custom-design-for-cone-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14578,7 +14578,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-prepared-paper-for-oz6-cups-by-tons-for-china-factory-price-custom-design-for-cone-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -14640,7 +14640,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-prepared-paper-for-oz6-cups-by-tons-for-china-factory-price-custom-design-for-cone-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14702,7 +14702,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-fan-raw-material-in-taiwan-for-china-factory-price-custom-design-for-paper-soup-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14765,7 +14765,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-fan-raw-material-in-taiwan-for-china-factory-price-custom-design-for-paper-soup-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -14826,7 +14826,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-fan-raw-material-in-taiwan-for-china-factory-price-custom-design-for-paper-soup-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14889,7 +14889,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-fan-raw-material-in-taiwan-for-china-factory-price-custom-design-for-paper-soup-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -14952,7 +14952,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-fan-raw-material-in-taiwan-for-china-factory-price-custom-design-for-paper-soup-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15015,7 +15015,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-fan-raw-material-in-taiwan-for-china-factory-price-custom-design-for-paper-soup-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -15076,7 +15076,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-wenzhou-pe-coated-paper-roll-hot-tea-raw-material-for-paper-cup-custom-width",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15139,7 +15139,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-wenzhou-pe-coated-paper-roll-hot-tea-raw-material-for-paper-cup-custom-width",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15202,7 +15202,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-wenzhou-pe-coated-paper-roll-hot-tea-raw-material-for-paper-cup-custom-width",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -15265,7 +15265,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-wenzhou-pe-coated-paper-roll-hot-tea-raw-material-for-paper-cup-custom-width",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15328,7 +15328,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-wholesale-high-quality-waterproof-pe-coated-disposable-raw-material-for-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -15390,7 +15390,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-wholesale-high-quality-waterproof-pe-coated-disposable-raw-material-for-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15452,7 +15452,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-wholesale-high-quality-waterproof-pe-coated-disposable-raw-material-for-coffee-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -15514,7 +15514,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-roll-china-high-quality-printed-and-personalized-disposable-for-kraft-paper-cup-soup-bucket-disposable",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15576,7 +15576,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-roll-china-high-quality-printed-and-personalized-disposable-for-kraft-paper-cup-soup-bucket-disposable",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15638,7 +15638,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-roll-china-high-quality-printed-and-personalized-disposable-for-kraft-paper-cup-soup-bucket-disposable",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15700,7 +15700,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-roll-china-high-quality-printed-and-personalized-disposable-for-kraft-paper-cup-soup-bucket-disposable",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15762,7 +15762,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-for-cups-for-china-factory-price-custom-design-for-glue-for-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15824,7 +15824,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-for-cups-for-china-factory-price-custom-design-for-glue-for-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -15886,7 +15886,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-for-cups-for-china-factory-price-custom-design-for-glue-for-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -15948,7 +15948,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-for-cups-for-china-factory-price-custom-design-for-glue-for-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16010,7 +16010,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-for-cups-for-china-factory-price-custom-design-for-glue-for-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16072,7 +16072,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-for-cups-for-china-factory-price-custom-design-for-glue-for-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -16134,7 +16134,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-cups-pe-coated-paper-for-china-factory-price-custom-design-for-price-of-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -16196,7 +16196,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-cups-pe-coated-paper-for-china-factory-price-custom-design-for-price-of-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16258,7 +16258,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-cups-pe-coated-paper-for-china-factory-price-custom-design-for-price-of-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -16320,7 +16320,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-cups-pe-coated-paper-for-china-factory-price-custom-design-for-price-of-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16382,7 +16382,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-cups-pe-coated-paper-for-china-factory-price-custom-design-for-price-of-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16444,7 +16444,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-coffee-cups-pe-coated-paper-for-china-factory-price-custom-design-for-price-of-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -16506,7 +16506,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-cup-bottom-roll-for-china-factory-price-custom-design-for-big-size-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16566,7 +16566,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-cup-bottom-roll-for-china-factory-price-custom-design-for-big-size-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16628,7 +16628,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-cup-bottom-roll-for-china-factory-price-custom-design-for-big-size-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16688,7 +16688,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-pe-coated-paper-cup-bottom-roll-for-china-factory-price-custom-design-for-big-size-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16748,7 +16748,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-jumbo-roll-cup-stock-paper-pe-coated-for-paper-cup-for-china-factory-price-custom-design-for-woosung-paper-cup-machine",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -16811,7 +16811,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-jumbo-roll-cup-stock-paper-pe-coated-for-paper-cup-for-china-factory-price-custom-design-for-woosung-paper-cup-machine",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -16872,7 +16872,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-jumbo-roll-cup-stock-paper-pe-coated-for-paper-cup-for-china-factory-price-custom-design-for-woosung-paper-cup-machine",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -16935,7 +16935,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-jumbo-roll-cup-stock-paper-pe-coated-for-paper-cup-for-china-factory-price-custom-design-for-woosung-paper-cup-machine",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -16998,7 +16998,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-factory-supply-plain-pe-coated-paper-cup-sheet-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -17059,7 +17059,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-factory-supply-plain-pe-coated-paper-cup-sheet-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -17120,7 +17120,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-factory-supply-plain-pe-coated-paper-cup-sheet-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -17181,7 +17181,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-factory-supply-plain-pe-coated-paper-cup-sheet-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -17242,7 +17242,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coated-paper-cup-sheets-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -17303,7 +17303,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coated-paper-cup-sheets-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -17364,7 +17364,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coated-paper-cup-sheets-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -17425,7 +17425,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coated-paper-cup-sheets-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -17486,7 +17486,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coating-coffee-paper-cup-sheets-raw-material-for-flexography-printing",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -17547,7 +17547,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coating-coffee-paper-cup-sheets-raw-material-for-flexography-printing",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -17608,7 +17608,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coating-coffee-paper-cup-sheets-raw-material-for-flexography-printing",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -17669,7 +17669,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coating-coffee-paper-cup-sheets-raw-material-for-flexography-printing",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -17730,7 +17730,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coated-coffee-drink-paper-cup-sheet-duplex-board-raw-material-for-flexography-printing",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -17791,7 +17791,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coated-coffee-drink-paper-cup-sheet-duplex-board-raw-material-for-flexography-printing",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -17852,7 +17852,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coated-coffee-drink-paper-cup-sheet-duplex-board-raw-material-for-flexography-printing",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -17913,7 +17913,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-custom-size-single-double-wall-pe-coated-coffee-drink-paper-cup-sheet-duplex-board-raw-material-for-flexography-printing",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -17974,7 +17974,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-kraft-paper-raw-materials-180gsm-pe-coated-brown-kraft-paper-rolls-for-food-paper-cup-bowl",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18036,7 +18036,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-kraft-paper-raw-materials-180gsm-pe-coated-brown-kraft-paper-rolls-for-food-paper-cup-bowl",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18096,7 +18096,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-kraft-paper-raw-materials-180gsm-pe-coated-brown-kraft-paper-rolls-for-food-paper-cup-bowl",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18158,7 +18158,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-kraft-paper-raw-materials-180gsm-pe-coated-brown-kraft-paper-rolls-for-food-paper-cup-bowl",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18220,7 +18220,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-food-grade-for-paper-cup-lid-cover",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -18282,7 +18282,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-food-grade-for-paper-cup-lid-cover",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18344,7 +18344,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-food-grade-for-paper-cup-lid-cover",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -18406,7 +18406,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-food-grade-for-paper-cup-lid-cover",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -18468,7 +18468,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-food-grade-for-paper-cup-lid-cover",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18530,7 +18530,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-food-grade-for-paper-cup-lid-cover",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -18592,7 +18592,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-8-12-16-oz-customized-logo-eco-friendly-disposable-kraft-paper-for-paper-cup-for-paper-cups-manufacturer-in-uae",
+      "canonicalGroupId": "paper-cup-fan-kraft-cupstock-paper",
       "groupId": "paper-cup-fan-kraft-cupstock-paper",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18652,7 +18652,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-8-12-16-oz-customized-logo-eco-friendly-disposable-kraft-paper-for-paper-cup-for-paper-cups-manufacturer-in-uae",
+      "canonicalGroupId": "paper-cup-fan-kraft-cupstock-paper",
       "groupId": "paper-cup-fan-kraft-cupstock-paper",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18712,7 +18712,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-8-12-16-oz-customized-logo-eco-friendly-disposable-kraft-paper-for-paper-cup-for-paper-cups-manufacturer-in-uae",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18774,7 +18774,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-8-12-16-oz-customized-logo-eco-friendly-disposable-kraft-paper-for-paper-cup-for-paper-cups-manufacturer-in-uae",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18836,7 +18836,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-greaseproof-resist-high-temperature-chinese-customized-1200mm-cup-stock-paper-for-paper-cup-die-cutting-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -18899,7 +18899,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-greaseproof-resist-high-temperature-chinese-customized-1200mm-cup-stock-paper-for-paper-cup-die-cutting-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -18960,7 +18960,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-greaseproof-resist-high-temperature-chinese-customized-1200mm-cup-stock-paper-for-paper-cup-die-cutting-machine",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -19023,7 +19023,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-original-single-double-wall-pe-coated-kraft-cup-paper-roll-for-drink-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19085,7 +19085,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-original-single-double-wall-pe-coated-kraft-cup-paper-roll-for-drink-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19147,7 +19147,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-original-single-double-wall-pe-coated-kraft-cup-paper-roll-for-drink-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19209,7 +19209,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-original-single-double-wall-pe-coated-kraft-cup-paper-roll-for-drink-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19271,7 +19271,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-plain-single-double-wall-pe-coated-base-craft-cup-paper-roll-for-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19333,7 +19333,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-plain-single-double-wall-pe-coated-base-craft-cup-paper-roll-for-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19395,7 +19395,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-plain-single-double-wall-pe-coated-base-craft-cup-paper-roll-for-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19457,7 +19457,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-shirong-biodegradable-plain-single-double-wall-pe-coated-base-craft-cup-paper-roll-for-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19519,7 +19519,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-bottom-paper-roll-for-cups-and-bowl-making-pe-coated-double-pe-paper-reel",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19581,7 +19581,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-bottom-paper-roll-for-cups-and-bowl-making-pe-coated-double-pe-paper-reel",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19643,7 +19643,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-bottom-paper-roll-for-cups-and-bowl-making-pe-coated-double-pe-paper-reel",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -19705,7 +19705,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-paper-cup-raw-material-bottom-paper-roll-for-cups-and-bowl-making-pe-coated-double-pe-paper-reel",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19767,7 +19767,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-blank-white-bottom-cup-paper-cup-raw-materials-for-disposable-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -19827,7 +19827,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-blank-white-bottom-cup-paper-cup-raw-materials-for-disposable-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -19887,7 +19887,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-blank-white-bottom-cup-paper-cup-raw-materials-for-disposable-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -19947,7 +19947,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-blank-white-bottom-cup-paper-cup-raw-materials-for-disposable-paper-cup",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "groupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20007,7 +20007,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-china-manufacture-professional-paper-cup-roll-pe-coated-paper-paper-cup-raw-material",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20070,7 +20070,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-china-manufacture-professional-paper-cup-roll-pe-coated-paper-paper-cup-raw-material",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20133,7 +20133,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-china-manufacture-professional-paper-cup-roll-pe-coated-paper-paper-cup-raw-material",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20196,7 +20196,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-product-china-manufacture-professional-paper-cup-roll-pe-coated-paper-paper-cup-raw-material",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20259,7 +20259,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-compostable-takeway-hot-biodegradable-disposable-cup-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20321,7 +20321,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-clay-210gsm-single-pe-coated-paper-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20382,7 +20382,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-factory-wholesale-8oz-150gsm-pe-coated-html",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20445,7 +20445,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-china-manufacture-professional-paper-cup-roll-html",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20506,7 +20506,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-pe-laminated-pe-coated-paper-cup-html",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "groupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20567,7 +20567,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-paper-cup-raw-material-china-high-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20629,7 +20629,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-dark-brown-280gsm-die-cut-kraft-html",
+      "canonicalGroupId": "paper-cup-fan-kraft-cupstock-paper",
       "groupId": "paper-cup-fan-kraft-cupstock-paper",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -20688,7 +20688,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-good-adhesion-recyclable-white-150-350gsm-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -20748,7 +20748,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-flexography-printing-clay-280gsm-single-wall-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20811,7 +20811,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-die-cut-craft-paper-bio-degradable-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -20871,7 +20871,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-hd-flexo-print-paper-cup-fan-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -20934,7 +20934,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-pe-pla-coated-biodegradable-disposable-craft-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PLA coating",
@@ -20995,7 +20995,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-polyethylene-polylactic-acid-coated-single-layer-html",
+      "canonicalGroupId": "paper-cup-fan-food-tray-paper-material",
       "groupId": "paper-cup-fan-food-tray-paper-material",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -21056,7 +21056,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-eco-friendly-biodegradable-waterproof-7oz-8oz-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -21119,7 +21119,7 @@
         "en": "",
         "zh": ""
       },
-      "canonicalGroupId": "paper-cup-fan-custom-logo-eco-friendly-cardboard-hand-html",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "groupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "coating": "PE coating",
@@ -21158,7 +21158,7 @@
     "dataStatus": {
       "complete": "Source link and core commercial fields are present.",
       "partial": "Source link exists, but some procurement fields still need confirmation.",
-      "pending-source": "No productLink is available in the source catalog."
+      "pending-source": "No productLink is available in the internal catalog."
     },
     "imageStatus": {
       "exact": "Verified exact SKU image.",
@@ -21170,7 +21170,7 @@
     {
       "id": "paper-cup-fan-paper-cup-fan",
       "slug": "paper-cup-fan-paper-cup-fan",
-      "canonicalGroupId": "paper-cup-fan-product-eco-friendly-cup-logo-custom-flexography-printed-paper-cup-fan-for-hot-coffee-paper-cup-with-sleeves-and-lid",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-fan",
       "productType": "paper-cup-fan",
       "categoryId": "food-grade-paper",
       "title": {
@@ -21495,7 +21495,7 @@
     {
       "id": "paper-cup-fan-paper-cup-bottom-roll",
       "slug": "paper-cup-fan-paper-cup-bottom-roll",
-      "canonicalGroupId": "paper-cup-fan-product-pe-pla-coated-white-craft-paper-cup-fan-bottom-paper-for-making-100-biodegradable-paper-cups",
+      "canonicalGroupId": "paper-cup-fan-paper-cup-bottom-roll",
       "productType": "paper-cup-fan",
       "categoryId": "food-grade-paper",
       "title": {
@@ -21572,7 +21572,7 @@
     {
       "id": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "slug": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
-      "canonicalGroupId": "paper-cup-fan-product-wenzhou-pe-coated-paper-roll-hot-tea-raw-material-for-paper-cup-custom-width",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "productType": "paper-cup-fan",
       "categoryId": "food-grade-paper",
       "title": {
@@ -21702,7 +21702,7 @@
     {
       "id": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "slug": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
-      "canonicalGroupId": "paper-cup-fan-product-factory-supply-plain-pe-coated-paper-cup-sheet-raw-material-for-flexography-digital-printing-usage",
+      "canonicalGroupId": "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "productType": "paper-cup-fan",
       "categoryId": "food-grade-paper",
       "title": {
@@ -21781,7 +21781,7 @@
     {
       "id": "paper-cup-fan-kraft-cupstock-paper",
       "slug": "paper-cup-fan-kraft-cupstock-paper",
-      "canonicalGroupId": "paper-cup-fan-product-raw-materials-for-paper-cups-china-high-quality-printed-and-personalized-disposable-food-grade-for-paper-cup-lid-cover",
+      "canonicalGroupId": "paper-cup-fan-kraft-cupstock-paper",
       "productType": "paper-cup-fan",
       "categoryId": "kraft-paper-series",
       "title": {
@@ -21839,7 +21839,7 @@
     {
       "id": "paper-cup-fan-food-tray-paper-material",
       "slug": "paper-cup-fan-food-tray-paper-material",
-      "canonicalGroupId": "paper-cup-fan-polyethylene-polylactic-acid-coated-single-layer-html",
+      "canonicalGroupId": "paper-cup-fan-food-tray-paper-material",
       "productType": "paper-cup-fan",
       "categoryId": "food-grade-paper",
       "title": {
@@ -22057,6 +22057,6 @@
     "publishedProducts": 231,
     "pendingProducts": 106,
     "unresolvedTaxonomyProducts": 0,
-    "generatedAt": "2026-07-27T00:47:22.347Z"
+    "generatedAt": "2026-09-09T15:13:11.462Z"
   }
 }

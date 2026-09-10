@@ -250,7 +250,10 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: `Kehong Website <${emailConfig.from}>`,
+        // EMAIL_FROM may be a plain address or a verified display-name sender.
+        // Pass the configured value through unchanged so a value such as
+        // `Kehong Website <inquiry@kehong.tech>` is not nested a second time.
+        from: emailConfig.from,
         to: emailConfig.to,
         reply_to: isValidEmail(inquiry.email) ? inquiry.email : emailConfig.replyToFallback || undefined,
         subject: email.subject,

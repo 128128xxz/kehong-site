@@ -43,20 +43,24 @@ export default async function HomeProductSystems({ locale }: { locale: string })
   const finished = productCatalogSections[1];
   const systems = [
     {
-      ...materials,
-      label: t("products.materials"),
-      intro: t("products.materialsIntro"),
-      cta: t("products.materialsCta"),
-      links: pickLinks("materials", ["paper-cup-fan", "pe-coated-paper-roll", "food-tray-material"]),
-      visuals: materialVisuals,
-    },
-    {
       ...finished,
       label: t("products.finished"),
       intro: t("products.finishedIntro"),
       cta: t("products.finishedCta"),
       links: pickLinks("finished-packaging", ["takeout-boxes", "cake-boxes", "corrugated-mailer-boxes"]),
       visuals: finishedVisuals,
+      image: showcaseImages.providedOrinsFoodBox,
+      imageAlt: zh ? "科宏成品食品包装盒" : "Kehong finished food packaging boxes",
+    },
+    {
+      ...materials,
+      label: t("products.materials"),
+      intro: t("products.materialsIntro"),
+      cta: t("products.materialsCta"),
+      links: pickLinks("materials", ["paper-cup-fan", "pe-coated-paper-roll", "food-tray-material"]),
+      visuals: materialVisuals,
+      image: showcaseImages.providedStructureMaterial,
+      imageAlt: zh ? "科宏纸材与包装结构材料" : "Kehong paper materials and packaging structures",
     },
   ];
 
@@ -81,8 +85,8 @@ export default async function HomeProductSystems({ locale }: { locale: string })
               <article className="kh-product-system">
                 <div className="kh-product-system-media kh-media-shade">
                   <Image
-                    src={index === 0 ? showcaseImages.structureMaterialReal : showcaseImages.foodBoxReal}
-                    alt={index === 0 ? (zh ? "纸材与纸板材料" : "Paper materials and board") : (zh ? "成品包装样品" : "Finished packaging samples")}
+                    src={system.image}
+                    alt={system.imageAlt}
                     fill
                     sizes="(max-width: 760px) 100vw, 50vw"
                     className="object-cover"

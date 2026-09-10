@@ -41,7 +41,7 @@ export const processSteps = [
 
 export const resourceItems: ResourceItem[] = [
   { slug: "artwork-guidelines", title: "Artwork Guidelines", type: "guide", summary: "A practical checklist for artwork handoff, color communication and file versions.", topics: ["CMYK and Pantone communication", "Bleed, safe area and cut/fold lines", "Fonts, vectors and image resolution", "Accepted file formats"] },
-  { slug: "materials-guide", title: "Materials Guide", type: "guide", summary: "Compare paper, board and corrugated materials by structure, appearance and use.", topics: ["Paper and board selection", "Structure and application", "Surface compatibility", "Specification details to confirm"] },
+  { slug: "materials-guide", title: "Materials Guide", type: "guide", summary: "Compare paper, board, corrugated and specialty surfaces by structure, appearance and project use.", topics: ["Corrugated overview", "E/F/G flute", "Double-layer and triple-layer construction", "White, black, kraft and colored board", "PET, pearlescent and metallic corrugated", "Metallic paper", "Pearlescent paper", "Embossed and textured paper", "Laser and decorative paper", "Surface processes", "Choosing materials", "Requesting samples"] },
   { slug: "cupstock-vs-pe-coated-paper", title: "Cupstock vs PE Coated Paper", type: "guide", summary: "Clarify the starting material, conversion format and coating requirement before a cupstock project is quoted.", topics: ["Cupstock and converting components", "Roll, sheet and fan blank formats", "Coating requirements", "GSM and application brief"] },
   { slug: "food-packaging-material-selection", title: "Food Packaging Material Selection", type: "guide", summary: "Prepare the product use, contact conditions and specification details needed to select a suitable food-packaging material.", topics: ["Product contact and handling brief", "Structure and fit", "Barrier or grease requirement", "Available documentation"] },
   { slug: "paper-bag-structure-guide", title: "Paper Bag Structure Guide", type: "guide", summary: "Use a concise structure checklist to align bag size, handle type, carry load and retail presentation needs.", topics: ["Bag dimensions", "Handle type", "Paper and board selection", "Printing and packing"] },
@@ -61,7 +61,7 @@ export const finishOptions = ["Matte / gloss lamination", "Hot foil", "Emboss / 
 
 export const resourceZhCopy: Record<string, { title: string; summary: string; topics: string[] }> = {
   "artwork-guidelines": { title: "设计稿指南", summary: "实用清单：设计稿交接、色彩沟通和文件版本确认。", topics: ["CMYK 与潘通色沟通", "出血、安全区域和切折线", "字体、矢量图和图片分辨率", "可接受的文件格式"] },
-  "materials-guide": { title: "材料指南", summary: "按结构、外观和用途比较纸张、纸板和瓦楞材料。", topics: ["纸张和纸板选择", "结构与应用", "表面工艺适配", "需要确认的规格"] },
+  "materials-guide": { title: "材料指南", summary: "按结构、外观和项目用途比较纸张、纸板、瓦楞和特种表面。", topics: ["瓦楞材料概览", "E/F/G 坑型", "双层与三层结构", "白色、黑色、牛皮色与彩色纸板", "PET、珠光与金属瓦楞", "金属纸", "珠光纸", "压纹与纹理纸", "镭射与装饰纸", "表面工艺", "材料选择", "申请样品"] },
   "cupstock-vs-pe-coated-paper": { title: "杯纸与 PE 淋膜纸指南", summary: "杯纸项目报价前，先明确原纸、加工形态和淋膜要求。", topics: ["杯纸与加工组件", "纸卷、平张和扇形片", "涂层要求", "克重与应用需求"] },
   "food-packaging-material-selection": { title: "食品包装材料选型指南", summary: "整理产品用途、使用方式和规格要求，选择合适的食品包装纸材。", topics: ["产品用途与使用需求", "结构与适配", "性能要求", "可提供资料"] },
   "paper-bag-structure-guide": { title: "纸袋结构指南", summary: "用简明结构清单确认纸袋尺寸、提手、使用方式和零售展示需求。", topics: ["纸袋尺寸", "提手类型", "纸张与纸板选择", "印刷与包装"] },

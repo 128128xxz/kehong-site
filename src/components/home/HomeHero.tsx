@@ -5,7 +5,40 @@ import { Link } from "@/i18n/navigation";
 import { showcaseImages } from "@/data/visuals";
 import { productCatalogSections } from "@/data/productDirectory";
 import { companyDisplayName } from "@/data/company";
+import HomeProductCarousel, { type HomeProductCarouselItem } from "@/components/home/HomeProductCarousel";
+
 type StatItem = { value: string; label: string };
+
+const heroProductVisuals: Record<string, { image: string; alt: string; altZh: string }> = {
+  "paper-cup-fan": { image: showcaseImages.colorPaperFan, alt: "Paper cup fan blanks ready for converting", altZh: "待加工的纸杯扇形片" },
+  "pe-coated-paper-roll": { image: showcaseImages.goldBoardSheets, alt: "Coated paper sheets for packaging conversion", altZh: "用于包装加工的淋膜纸张" },
+  "food-tray-material": { image: showcaseImages.goldBoardPieces, alt: "Paper tray material pieces", altZh: "纸托材料片" },
+  "takeout-boxes": { image: showcaseImages.foodBoxRealAlt, alt: "Unbranded takeaway paper boxes", altZh: "外带食品纸盒" },
+  "cake-boxes": { image: showcaseImages.cakeBoardRealAlt, alt: "Cake packaging components", altZh: "蛋糕包装组件" },
+  "cake-boards-cake-drums": { image: showcaseImages.cakeBoardReal, alt: "Cake boards and cake drums for bakery support", altZh: "用于烘焙承托的蛋糕底托与蛋糕鼓" },
+  "corrugated-mailer-boxes": { image: showcaseImages.kraftCartonsTall, alt: "Corrugated mailer cartons prepared for dispatch", altZh: "待出货的瓦楞邮寄盒" },
+  "paper-bags": { image: showcaseImages.aiPaperBagBranded, alt: "Custom paper bags for retail packaging", altZh: "用于零售包装的定制纸袋" },
+};
+
+const heroProductDescriptions: Record<string, { en: string; zh: string }> = {
+  "paper-cup-fan": { en: "Paper cup fan blanks for converting lines.", zh: "纸杯杯身扇形片。" },
+  "pe-coated-paper-roll": { en: "Coated paper rolls for food-contact packaging.", zh: "食品容器淋膜卷材。" },
+  "food-tray-material": { en: "Paper materials for formed food trays.", zh: "纸托内托用纸材。" },
+  "takeout-boxes": { en: "Takeaway paper boxes for foodservice programs.", zh: "外带餐饮纸盒。" },
+  "cake-boxes": { en: "Paper packaging components for cakes and desserts.", zh: "蛋糕甜点纸盒。" },
+  "cake-boards-cake-drums": { en: "Boards and drums for cake support and transport.", zh: "蛋糕承托与运输用底托和蛋糕鼓。" },
+  "corrugated-mailer-boxes": { en: "Corrugated mailer cartons prepared for dispatch.", zh: "电商发货邮寄盒。" },
+  "paper-bags": { en: "Carry packaging for retail and branded applications.", zh: "零售与品牌手提包装。" },
+};
+
+const heroProductIds = [
+  "takeout-boxes",
+  "cake-boxes",
+  "cake-boards-cake-drums",
+  "corrugated-mailer-boxes",
+  "paper-bags",
+  "paper-cup-fan",
+] as const;
 
 export default async function HomeHero({ locale }: { locale: string }) {
   const zh = locale === "zh";
@@ -23,6 +56,23 @@ export default async function HomeHero({ locale }: { locale: string }) {
     label: stat.label,
     long: stat.value.length > 10,
   }));
+
+  const catalogLinks = productCatalogSections.flatMap((section) => section.groups.flatMap((group) => group.links));
+  const heroProducts: HomeProductCarouselItem[] = heroProductIds.map((id) => {
+    const product = catalogLinks.find((item) => item.id === id);
+    const visual = heroProductVisuals[id];
+    const description = heroProductDescriptions[id];
+    if (!product) throw new Error(`Missing homepage product: ${id}`);
+    return {
+      id,
+      href: product.href,
+      title: zh ? product.zh : product.en,
+      description: zh ? description.zh : description.en,
+      image: visual.image,
+      alt: zh ? visual.altZh : visual.alt,
+      systemLabel: zh ? "主营产品" : "Main products",
+    };
+  });
 
   return (
     <section className="kh-home-hero">
@@ -64,6 +114,10 @@ export default async function HomeHero({ locale }: { locale: string }) {
               {t("hero.secondary")}
             </Link>
           </div>
+        </div>
+
+        <div className="kh-hero-product-rail">
+          <HomeProductCarousel items={heroProducts} viewLabel={zh ? "查看产品" : "View product"} isZh={zh} compact />
         </div>
 
         <dl className="kh-hero-stats kh-rise kh-rise-6">

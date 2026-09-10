@@ -98,23 +98,10 @@ function inferDataStatus(sku) {
   return "complete";
 }
 
-function canonicalGroupId(sku, productType, coating) {
-  if (sku.productLink) {
-    const urlTail = sku.productLink.split("?")[0].split("/").filter(Boolean).pop();
-    return `${productType}-${slugify(urlTail || sku.productLink)}`;
-  }
-
-  const groupSeed = [
-    productType,
-    sku.category,
-    sku.material,
-    sku.gsmOrThickness,
-    coating,
-    sku.surfaceProcess,
-    sku.structureOrFlute,
-  ].join(" ");
-
-  return slugify(groupSeed);
+function canonicalGroupId(sku, productType) {
+  // Source URLs are reconciliation inputs only. Never derive a public or
+  // persisted grouping key from a supplier URL or its product-page slug.
+  return productGroupId(sku, productType);
 }
 
 function productGroupId(sku, productType) {
@@ -311,7 +298,7 @@ const normalizedSkus = catalog.skus.map((sku) => {
 
   return {
     ...publicSku,
-    canonicalGroupId: canonicalGroupId(sku, productType, coating),
+    canonicalGroupId: canonicalGroupId(sku, productType),
     groupId: productGroupId(sku, productType),
     productType,
     coating,
@@ -406,7 +393,7 @@ const normalizedCatalog = {
     dataStatus: {
       complete: "Source link and core commercial fields are present.",
       partial: "Source link exists, but some procurement fields still need confirmation.",
-      "pending-source": "No productLink is available in the source catalog.",
+      "pending-source": "No productLink is available in the internal catalog.",
     },
     imageStatus: {
       exact: "Verified exact SKU image.",

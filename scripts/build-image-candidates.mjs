@@ -33,7 +33,7 @@ function recommendedAction(url) {
 
 function reasoningFor(url, count) {
   if (!url) {
-    return "No productLink exists in the source catalog. A Kehong-owned exact SKU photo or approved supplier photo is required before promotion.";
+    return "No productLink exists in the internal catalog. A Kehong-owned exact SKU photo or approved supplier photo is required before promotion.";
   }
 
   return `${count} SKU(s) share this source page. It can be used for specification research, but product photos must stay out of production until reuse permission and exact SKU match are approved.`;

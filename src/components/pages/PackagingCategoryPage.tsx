@@ -57,6 +57,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
     ],
   };
   const faqEntries = getCategoryFaq(category.slug, isZh);
+  const hasR2StudioLink = ["cake-boxes", "cake-boards-cake-drums", "corrugated-mailer-boxes", "inserts-dividers", "food-packaging"].includes(category.slug);
 
   return (
     <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">
@@ -138,7 +139,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
               </>
             ) : (
               <div className="kh-panel max-w-3xl p-7">
-                <p className="text-sm leading-6 text-(--kh-muted)">{isTakeoutBoxes ? (isZh ? "请提交参考图、尺寸和目标数量，开始结构评估和报价。" : "Send a reference image, dimensions and target quantity to start the structure review and quotation.") : (isZh ? "当前公开目录没有可直接比较的 SKU。请发送尺寸、用途、数量和参考资料，我们会评估合适的材料与结构。" : "There are no public SKUs to compare in this category. Send dimensions, application, quantity and a reference so the suitable material and structure can be reviewed.")}</p>
+                <p className="text-sm leading-6 text-(--kh-muted)">{isZh ? "欢迎提交尺寸、用途、数量和参考资料，我们会围绕合适的材料与结构提供定制建议。" : "Popular custom structures can be developed around your dimensions, application, quantity and reference materials."}</p>
                 {scopeQuote}
               </div>
             )}
@@ -194,6 +195,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           sectionId="packaging-related"
           title={{ en: "Related materials, industries & resources", zh: "相关材料、行业与资料" }}
           links={[
+            ...(hasR2StudioLink ? [{ href: "/model-preview", en: "Open 3D Packaging Studio", zh: "打开 3D 结构展厅" }] : []),
             ...(isTakeoutBoxes ? [{ href: "/products/kh-fd-trayp-150350-pe-290-food-tray-paper-material", en: "Food Tray Paper Material", zh: "食品纸托材料" }] : []),
             { href: "/products?collection=materials", en: "Related paper materials", zh: "相关纸材" },
             { href: "/industries", en: "Recommended industries", zh: "推荐行业" },
@@ -232,7 +234,7 @@ function getCategoryFaq(slug: string, isZh: boolean): [string, string][] {
       zh: [["蛋糕托板（Cake Board）与蛋糕鼓（Cake Drum）有什么区别？", "蛋糕托板（Cake Board）通常用于日常承托与展示；项目需要更厚承托时会评审蛋糕鼓（Cake Drum）规格。"], ["报价前需要确认什么？", "请提供蛋糕尺寸、承托需求、数量、表面效果和目的地。"], ["形状和边缘可以定制吗？", "形状、直径、边缘与表面效果会按确认后的项目需求评审。"]],
     },
     "corrugated-mailer-boxes": {
-      en: [["What is needed to review a mailer structure?", "Share the product dimensions, protective points, quantity and dispatch workflow."], ["Can inserts be included with a mailer?", "Paper inserts and dividers can be reviewed together with the mailer structure."], ["When is sampling needed?", "Sampling is considered when fit, closure or protection needs to be confirmed before production."]],
+      en: [["What is needed to review a mailer structure?", "Share the product dimensions, protective points, quantity and dispatch workflow."], ["Can inserts be included with a mailer?", "Paper inserts and dividers can be reviewed together with the mailer structure."], ["When is sampling needed?", "Sampling is considered when fit, closure or protection need review before production."]],
       zh: [["评审邮寄盒结构需要什么信息？", "请提供产品尺寸、需要保护的位置、数量和发货流程。"], ["邮寄盒可以搭配内托吗？", "纸内托和隔板可以与邮寄盒结构一起评审。"], ["什么时候需要打样？", "需要确认适配、闭合或保护需求时，可评估是否进行打样。"]],
     },
     "takeout-boxes": {
