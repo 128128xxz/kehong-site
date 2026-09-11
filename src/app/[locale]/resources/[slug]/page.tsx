@@ -81,8 +81,8 @@ export default async function ResourceDetailPage({ params, searchParams }: { par
                   </ul>
                   <p className="mt-6 border-t border-(--kh-line) pt-5 text-sm leading-6 text-(--kh-muted)">
                     {isZh
-                      ? "科宏按双方确认的项目要求核对技术参数。在获得可公开的公司文件之前，本页不提供公开下载。"
-                      : "Kehong confirms project-specific technical parameters against the approved brief. No public download is shown until a verified company file is available."}
+                      ? "科宏会在生产前确认项目技术参数，并根据已确认的结构和尺寸准备刀模文件。"
+                      : "Kehong confirms project-specific technical parameters before production. Dielines are prepared according to the confirmed structure and dimensions."}
                   </p>
                 </div>
                 <Link href={contactHref} className="kh-button kh-button-primary mt-8">

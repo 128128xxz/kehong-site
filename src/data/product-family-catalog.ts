@@ -110,6 +110,9 @@ export const productFamilyCatalog: readonly ProductFamilyConfig[] = [
 
 export const PRODUCT_FAMILY_IDS = productFamilyCatalog.map((item) => item.id);
 export const PRODUCT_FAMILY_ROUTE_SLUGS = productFamilyCatalog.map((item) => item.routeSlug);
+export const PUBLIC_PRODUCT_FAMILY_ROUTE_SLUGS = productFamilyCatalog
+  .filter((item) => item.id !== "cup")
+  .map((item) => item.routeSlug);
 export const CORE_PRODUCT_ANCHOR = {
   id: "food-tray-material",
   slug: "food-tray-paper-material",
@@ -126,6 +129,15 @@ export function getProductFamilyConfig(id: ProductFamilyId) {
 
 export function getProductFamilyBySlug(routeSlug: string) {
   return productFamilyCatalog.find((item) => item.routeSlug === routeSlug);
+}
+
+export function isPublicProductFamily(config: ProductFamilyConfig) {
+  return config.id !== "cup";
+}
+
+export function getPublicProductFamilyBySlug(routeSlug: string) {
+  const config = getProductFamilyBySlug(routeSlug);
+  return config && isPublicProductFamily(config) ? config : undefined;
 }
 
 export function getFamilyPublishedSkus(config: ProductFamilyConfig): ProductSku[] {

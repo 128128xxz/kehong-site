@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { productFamilyCatalog, CORE_PRODUCT_ANCHOR, getFamilyPublishedGroups } from "@/data/product-family-catalog";
+import { productFamilyCatalog, getFamilyPublishedGroups, isPublicProductFamily } from "@/data/product-family-catalog";
 import { buildProductGroupSummary, getLocalizedProductTitle } from "@/lib/catalog";
 import { getPublicAssetMeta } from "@/lib/productImages";
 
@@ -13,7 +13,7 @@ type Props = {
 export default async function ProductFamilyDirectory({ locale, showAnchor = true }: Props) {
   const t = await getTranslations({ locale, namespace: "ProductFamilies" });
   const tx = t as unknown as (key: string, values?: Record<string, unknown>) => string;
-  const sortedFamilies = [...productFamilyCatalog].sort((a, b) => a.navigationPriority - b.navigationPriority);
+  const sortedFamilies = productFamilyCatalog.filter(isPublicProductFamily).sort((a, b) => a.navigationPriority - b.navigationPriority);
 
   return (
     <section id="product-families" aria-labelledby="product-families-title" className="kh-shell scroll-mt-24 py-12 sm:py-16">
@@ -29,10 +29,7 @@ export default async function ProductFamilyDirectory({ locale, showAnchor = true
         {sortedFamilies.map((config) => {
           const familyKey = `family.${config.id}`;
           const image = getPublicAssetMeta(config.imageId, locale);
-          // The cup family contains a large manual-review cluster. Keep the
-          // published directory accessible, but promote only the approved
-          // singleton anchor in this family-first surface.
-          const publishedGroups = getFamilyPublishedGroups(config).filter((group) => config.id !== "cup" || group.id === CORE_PRODUCT_ANCHOR.sourceClusterId.replace(/^cluster-/, ""));
+          const publishedGroups = getFamilyPublishedGroups(config);
           const familyHref = `/products/families/${config.routeSlug}`;
           return (
             <div key={config.id} className="kh-panel flex min-h-full flex-col overflow-hidden">

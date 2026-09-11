@@ -27,6 +27,8 @@
   --kh-line: rgba(29, 33, 29, .14);
   --kh-forest-deep: #0a1612;
   --kh-shadow-soft: 0 10px 30px rgba(29, 33, 29, .08);
+  --kh-radius-card: 10px;
+  --kh-radius-control: 6px;
   --kh-ease: cubic-bezier(.22, 1, .36, 1);
   --kh-header-height: 68px;
   /* ===== Typography System — Apple system stack (SF Pro / PingFang) =====
@@ -612,7 +614,7 @@
     color: var(--kh-forest);
   }
   .kh-button-compact {
-    min-height: 40px;
+    min-height: 42px;
     padding: .5rem .95rem;
   }
 
@@ -680,7 +682,7 @@
     align-items: center;
     justify-content: center;
     gap: .55rem;
-    border-radius: 3px;
+    border-radius: var(--kh-radius-control);
     padding: .7rem 1.05rem;
     font-family: var(--font-body);
     font-size: var(--kh-type-button);
@@ -711,7 +713,7 @@
   /* ---------- 表单与面板 ---------- */
   .kh-input {
     border: 1px solid rgba(29, 33, 29, .22);
-    border-radius: 3px;
+    border-radius: var(--kh-radius-control);
     background: var(--kh-surface);
     color: var(--kh-ink);
     transition: border-color .2s ease, box-shadow .2s ease;
@@ -728,7 +730,7 @@
     position: relative;
     background: var(--kh-surface);
     border: 1px solid var(--kh-line);
-    border-radius: 2px;
+    border-radius: var(--kh-radius-card);
     box-shadow: none;
   }
   .premium-depth {
@@ -1100,7 +1102,7 @@
 
   /* ---------- 区块通用 ---------- */
   .kh-section {
-    padding: clamp(7.5rem, 10vw, 10rem) 0; /* 120-160px */
+    padding: clamp(5rem, 7vw, 8rem) 0;
   }
   .kh-section-paper {
     background: var(--kh-surface);
@@ -1117,7 +1119,7 @@
     align-items: end;
     justify-content: space-between;
     gap: 2rem;
-    margin-bottom: 2.75rem;
+    margin-bottom: 2rem;
   }
   .kh-section-heading .kh-text-link {
     margin-bottom: .45rem;
@@ -5041,12 +5043,13 @@ html:lang(zh) body {
   .kh-header-bar { gap: .65rem; }
   .kh-header-brand { gap: .48rem; flex: 0 0 auto; }
   .kh-header-brand-copy { flex: 0 0 auto; }
-  .kh-brand-name { font-size: .82rem; }
-  .kh-brand-tag { font-size: .56rem; letter-spacing: .05em; }
-  .kh-desktop-nav { gap: .02rem; font-size: .84rem; }
-  .kh-nav-link { gap: .22rem; padding-inline: .44rem; }
+  .kh-header-brand-mark { width: 2.35rem; height: 2.35rem; }
+  .kh-brand-name { font-size: .78rem; }
+  .kh-brand-tag { font-size: .5rem; letter-spacing: .04em; }
+  .kh-desktop-nav { gap: 0; font-size: .78rem; }
+  .kh-nav-link { gap: .18rem; padding-inline: .24rem; }
   .kh-header-actions { gap: .3rem; }
-  .kh-header-cta { padding-inline: .68rem; }
+  .kh-header-cta { padding-inline: .5rem; font-size: .8rem; }
 }
 
 /* At the compact desktop breakpoint retain every procurement entry while
@@ -7964,4 +7967,55 @@ html:root[data-ui-material="glass-c"] .kh-header .kh-desktop-nav .kh-nav-3d-icon
 
 .kh-header[data-variant="solid"] + main {
   padding-block-start: 0 !important;
+}
+
+/* Keep the glass cinema header inside the 1240px homepage shell at laptop
+   desktop widths. The full pill treatment remains intact; only its density
+   changes so the brand, navigation and actions stay visible together. */
+@media (min-width: 1101px) and (max-width: 1500px) {
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-brand-mark {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-brand-name {
+    font-size: .66rem !important;
+  }
+
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-brand-tag {
+    font-size: .42rem !important;
+    letter-spacing: .02em !important;
+  }
+
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav {
+    gap: .25rem !important;
+  }
+
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-nav-link,
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav > .kh-desktop-menu > .kh-nav-link {
+    min-height: 2.3rem !important;
+    padding-block: .3rem !important;
+    padding-inline: .12rem !important;
+    gap: .35rem !important;
+    font-size: .72rem !important;
+  }
+
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-icon,
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-chevron,
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-desktop-nav .kh-nav-3d-icon {
+    width: .8rem !important;
+    height: .8rem !important;
+  }
+
+  .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-actions {
+    gap: .35rem !important;
+  }
+
+  html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-actions > .kh-language-trigger,
+  html:root[data-nav-glass="true"] .kh-header[data-variant="cinema"][data-scrolled="false"] .kh-header-actions > .kh-header-cta {
+    min-height: 2.3rem !important;
+    padding-inline: .35rem !important;
+    gap: .35rem !important;
+    font-size: .72rem !important;
+  }
 }

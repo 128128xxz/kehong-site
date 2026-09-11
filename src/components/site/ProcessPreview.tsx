@@ -18,9 +18,9 @@ export default async function ProcessPreview() {
   ] : [
     { title: "Material confirmation", text: "Confirm paper grade, GSM, coating, dimensions, and the intended packaging structure." },
     { title: "Cutting and slitting", text: "Set material width, feed direction, and layout requirements for the next converting stage." },
-    { title: "Board converting", text: "Match board construction, flute direction, and required strength to the approved structure." },
+    { title: "Board converting", text: "Match board construction, flute direction, and required strength to the agreed structure." },
     { title: "Die-cutting and creasing", text: "Check the cutting form, dimensional fit, fold sequence, and assembly requirements." },
-    { title: "Lamination and finishing", text: "Apply the confirmed lamination, coating, or finishing requirement for the product." },
+    { title: "Lamination and finishing", text: "Apply the required lamination, coating, or finishing for the product." },
     { title: "Inspection, packing, and shipment", text: "Review key dimensions, surface finish, packing method, and shipment preparation." },
   ];
   const proofImages = [
@@ -84,7 +84,7 @@ export default async function ProcessPreview() {
         </Reveal>
         <div className="kh-shell">
           <Reveal>
-            <SectionKicker index="03" text={isZh ? "开始一个包装项目" : "Start a packaging project"} light />
+            <SectionKicker index="03" text={isZh ? "包装询盘" : "Request a quote"} light />
             <h2>{isZh ? "把规格与目标市场交给同一条产线" : "Put your spec and market on the same line"}</h2>
             <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
               {isZh

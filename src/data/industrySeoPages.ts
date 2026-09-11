@@ -19,37 +19,6 @@ export type IndustrySeoPageData = {
 };
 
 export const industrySeoPages = {
-  paperCupFanManufacturer: {
-    href: "/paper-cup-fan-manufacturer" as SiteHref,
-    title: "Paper Cup Fan Blanks Manufacturer for Foodservice Packaging",
-    zhTitle: "纸杯扇形片与杯纸供应商",
-    description:
-      "Kehong supplies paper cup fan blanks and cupstock solutions for foodservice buyers, with material, GSM, coating and custom printing support.",
-    zhDescription:
-      "科宏供应纸杯扇形片和杯纸材料，支持材质、克重、淋膜、尺寸和定制印刷确认。",
-    eyebrow: "Paper Cup Fan Blanks Manufacturer",
-    zhEyebrow: "纸杯扇形片供应商",
-    buyerFocus: ["Paperboard material", "PE-coated cupstock by specification", "Custom fan dimensions", "Export-ready packaging"],
-    zhBuyerFocus: ["食品包装纸板", "PE 淋膜杯纸", "定制扇形尺寸", "出口包装准备"],
-    capabilities: ["Material and GSM matching", "PE coating options confirmed by specification", "Cup fan printing coordination", "Sample and production approval"],
-    zhCapabilities: ["材料和克重匹配", "单面或双面 PE 淋膜", "纸杯扇形片印刷协调", "样品和生产确认"],
-    applications: ["Hot and cold beverage cups", "Takeaway beverage packaging", "Café and foodservice supply", "Distributor cupstock programs"],
-    zhApplications: ["冷热饮纸杯", "外带饮品包装", "咖啡和餐饮供应", "经销商杯纸项目"],
-    faq: [
-      {
-        question: "Can Kehong customize paper cup fan dimensions?",
-        answer: "Yes. Share the cup size, fan drawing, material, coating and quantity for a quotation and sample confirmation.",
-      },
-      {
-        question: "Can you confirm the specification for my project?",
-        answer: "Share the target material, GSM, size and application so the team can confirm a suitable specification and sample plan.",
-      },
-    ],
-    zhFaq: [
-      { question: "可以定制纸杯扇形片尺寸吗？", answer: "可以。请提供杯型尺寸、扇形图纸、材料、淋膜和数量，以便报价和样品确认。" },
-      { question: "可以确认项目规格吗？", answer: "请提供目标材料、克重、尺寸和用途，科宏确认合适的规格和打样方案。" },
-    ],
-  },
   paperPackagingSupplier: {
     href: "/paper-packaging-supplier" as SiteHref,
     title: "Paper Packaging Supplier for Food, Bakery and Retail Projects",
@@ -93,18 +62,18 @@ export const industrySeoPages = {
     zhEyebrow: "纸制品定制",
     buyerFocus: ["Material selection", "GSM and size confirmation", "Custom structure", "Sample and quote support"],
     zhBuyerFocus: ["材料选择", "克重和尺寸确认", "定制结构", "样品和报价支持"],
-    capabilities: ["Paper cup fan blanks and rolls", "Kraft, white board and specialty paper", "Food packaging boxes", "Paper inserts, pads and trays"],
-    zhCapabilities: ["纸杯扇形片和卷材", "牛皮纸、白卡和特种纸", "食品包装盒", "纸内托、纸垫和纸托"],
+    capabilities: ["Paper rolls and coated sheets", "Kraft, white board and specialty paper", "Food packaging boxes", "Paper inserts, pads and trays"],
+    zhCapabilities: ["纸卷、淋膜平张和特种纸材", "牛皮纸、白卡和特种纸", "食品包装盒", "纸内托、纸垫和纸托"],
     applications: ["Foodservice packaging", "Bakery and dessert packaging", "Retail packaging projects", "Regional distributor programs"],
     zhApplications: ["餐饮包装", "烘焙和甜品包装", "零售包装项目", "区域经销商项目"],
     faq: [
       {
         question: "Can you confirm a product from a sample or drawing?",
-      answer: "Share a sample, drawing or target specification and the team will confirm the suitable material and production route.",
+        answer: "Share a sample, drawing or target specification and the team will recommend a suitable material and production route.",
       },
       {
         question: "How does the custom product process work?",
-        answer: "Share your requirements, Kehong confirms the specifications, production follows the approved details, then inspection and shipment are arranged.",
+        answer: "Share your requirements, Kehong agrees the specifications, production follows the agreed details, then inspection and shipment are arranged.",
       },
     ],
     zhFaq: [
@@ -128,7 +97,7 @@ export const industrySeoPages = {
     zhApplications: ["零售展示", "生活方式产品包装", "礼盒和季节性产品", "品牌零售发货"],
     faq: [
       { question: "Can the packaging be developed around a retail product?", answer: "Yes. Share the product dimensions, presentation goal, quantity and artwork status so the structure and material requirements can be reviewed." },
-      { question: "Can Kehong support branded components as well as boxes?", answer: "A project brief can include bags, inserts, paper cards and other paper components alongside the main packaging structure." },
+      { question: "Can Kehong support branded components as well as boxes?", answer: "A packaging project can include bags, inserts, paper cards and other paper components alongside the main structure." },
     ],
     zhFaq: [
       { question: "能按零售产品开发包装吗？", answer: "可以。请提供产品尺寸、展示目标、数量和设计稿状态，以便评审结构和材料。" },

@@ -134,7 +134,7 @@ export default async function ContactPage({
     {
       index: "B",
       label: zh ? "可提供资料" : "Available documents",
-      body: zh ? "产品目录、规格资料及项目文件" : "Reference images, dimensions, material and quantity",
+      body: zh ? "产品目录、规格资料及项目文件" : "Catalogs, specifications and project files",
     },
     {
       index: "C",
@@ -169,7 +169,7 @@ export default async function ContactPage({
           ]}
         >
           <a href="#quote-form" className="kh-button kh-button-light">
-            {zh ? "填写询价表单" : "Start the quote form"}
+            {zh ? "填写询价表单" : "Request a quote"}
           </a>
           <a href={emailHref} className="kh-button kh-button-ghost">
             {t("cta.email")}

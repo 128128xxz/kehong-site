@@ -47,7 +47,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
           }
         >
           <Link href="/contact" className="kh-button kh-button-light">
-            {isZh ? "立即询价" : "Get a quote"}
+            {isZh ? "立即询价" : "Request a quote"}
             <ArrowRight className="size-4" />
           </Link>
           <Link href="/products" className="kh-button kh-button-ghost">
@@ -98,7 +98,7 @@ export default async function IndustriesPage({ params }: { params: Promise<{ loc
             { href: "/packaging", en: "Packaging overview", zh: "成品包装总览" },
             { href: "/products?collection=materials", en: "Paper materials", zh: "纸材与半成品" },
             { href: "/resources", en: "Buyer resources", zh: "买家资料中心" },
-            { href: "/contact", en: "Send a project brief", zh: "提交项目需求" },
+            { href: "/contact", en: "Request a quote", zh: "立即询价" },
           ]}
         />
       </main>

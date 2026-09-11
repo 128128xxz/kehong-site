@@ -22,11 +22,11 @@ export type ComplianceDocument = {
 
 export const capabilities: Capability[] = [
   { slug: "structural-design", title: "Structural Design", summary: "Review the product footprint, opening, support and packing sequence before quotation.", buyerValue: "A clearer structure brief helps reduce fit and assembly surprises.", input: "Product dimensions, reference images or an existing dieline." },
-  { slug: "artwork-prepress", title: "Artwork & Prepress", summary: "Coordinate artwork checks, print areas and version notes against the approved structure.", buyerValue: "Your team sees what needs confirmation before production files move forward.", input: "Artwork, brand colors, logo files and target print method." },
+  { slug: "artwork-prepress", title: "Artwork & Prepress", summary: "Coordinate artwork checks, print areas and version notes with the agreed structure.", buyerValue: "Your team sees what needs attention before production files move forward.", input: "Artwork, brand colors, logo files and target print method." },
   { slug: "prototyping", title: "Prototyping", summary: "Use structural samples to review size, fit, opening and handling before production.", buyerValue: "Samples turn a packaging idea into a reviewable physical sample.", input: "Target dimensions, product sample or reference structure." },
   { slug: "printing-finishing", title: "Printing & Finishing", summary: "Coordinate print settings and available surface treatments with the material and structure.", buyerValue: "The finish decision stays connected to substrate, artwork and use case.", input: "Print colors, reference finish and application priorities." },
   { slug: "die-cutting-assembly", title: "Die Cutting & Assembly", summary: "Review panels, folds, cut lines, gluing and assembly requirements as one workflow.", buyerValue: "Clear structural handoff supports repeatable converting and packing.", input: "Dieline, structure drawing or a physical reference." },
-  { slug: "quality-control", title: "Quality Control", summary: "Use specification, artwork, dimension, finishing and final packing checks through the project.", buyerValue: "Quality checkpoints are tied to the project brief instead of generic claims.", input: "Approved specification, artwork and inspection priorities." },
+  { slug: "quality-control", title: "Quality Control", summary: "Use specification, artwork, dimension, finishing and final packing checks through the project.", buyerValue: "Quality checkpoints stay tied to the agreed requirements.", input: "Specification, artwork and inspection priorities." },
   { slug: "packing-export-support", title: "Packing & Export Support", summary: "Coordinate packing information and destination requirements for overseas B2B projects.", buyerValue: "The handoff keeps product, packing and destination details aligned.", input: "Destination country, packing preference and shipping brief." },
 ];
 
@@ -34,7 +34,7 @@ export const processSteps = [
   { number: "01", title: "Inquiry", body: "Share the product, dimensions, quantity and target market." },
   { number: "02", title: "Structure Review", body: "Confirm material, format, opening, fit and project constraints." },
   { number: "03", title: "Sample", body: "Review a structural sample when the brief requires it." },
-  { number: "04", title: "Production", body: "Move the approved specification into printing, converting and assembly." },
+  { number: "04", title: "Production", body: "Move the agreed specification into printing, converting and assembly." },
   { number: "05", title: "Quality Check", body: "Review agreed checkpoints before packing and shipment." },
   { number: "06", title: "Export Handoff", body: "Align packing, destination and document details for dispatch." },
 ];
@@ -62,7 +62,7 @@ export const finishOptions = ["Matte / gloss lamination", "Hot foil", "Emboss / 
 export const resourceZhCopy: Record<string, { title: string; summary: string; topics: string[] }> = {
   "artwork-guidelines": { title: "设计稿指南", summary: "实用清单：设计稿交接、色彩沟通和文件版本确认。", topics: ["CMYK 与潘通色沟通", "出血、安全区域和切折线", "字体、矢量图和图片分辨率", "可接受的文件格式"] },
   "materials-guide": { title: "材料指南", summary: "按结构、外观和项目用途比较纸张、纸板、瓦楞和特种表面。", topics: ["瓦楞材料概览", "E/F/G 坑型", "双层与三层结构", "白色、黑色、牛皮色与彩色纸板", "PET、珠光与金属瓦楞", "金属纸", "珠光纸", "压纹与纹理纸", "镭射与装饰纸", "表面工艺", "材料选择", "申请样品"] },
-  "cupstock-vs-pe-coated-paper": { title: "杯纸与 PE 淋膜纸指南", summary: "杯纸项目报价前，先明确原纸、加工形态和淋膜要求。", topics: ["杯纸与加工组件", "纸卷、平张和扇形片", "涂层要求", "克重与应用需求"] },
+  "cupstock-vs-pe-coated-paper": { title: "杯纸与 PE 淋膜纸指南", summary: "纸材项目报价前，先明确原纸、加工形态和淋膜要求。", topics: ["杯纸与加工组件", "纸卷、平张和加工规格", "涂层要求", "克重与应用需求"] },
   "food-packaging-material-selection": { title: "食品包装材料选型指南", summary: "整理产品用途、使用方式和规格要求，选择合适的食品包装纸材。", topics: ["产品用途与使用需求", "结构与适配", "性能要求", "可提供资料"] },
   "paper-bag-structure-guide": { title: "纸袋结构指南", summary: "用简明结构清单确认纸袋尺寸、提手、使用方式和零售展示需求。", topics: ["纸袋尺寸", "提手类型", "纸张与纸板选择", "印刷与包装"] },
   "corrugated-mailer-structure-guide": { title: "瓦楞邮寄盒结构指南", summary: "评审电商邮寄盒的纸板结构、闭合方式、保护点和内托需求。", topics: ["产品尺寸", "纸板与保护要求", "闭合与内托", "发货流程"] },

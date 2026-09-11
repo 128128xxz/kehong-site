@@ -1,8 +1,8 @@
 {
   "Metadata": {
     "title": "Foshan Kehong Paper Products | Bahan Kemasan Kertas",
-    "description": "Pabrik bahan kemasan kertas untuk corrugated paper, specialty paper, paper box, tray, dan paper cup fan.",
-    "keywords": "bahan kemasan kertas, corrugated paper, food grade paper packaging, paper cup fan"
+    "description": "Pabrik bahan kemasan kertas untuk corrugated paper, specialty paper, paper box, tray, dan material konversi.",
+    "keywords": "bahan kemasan kertas, corrugated paper, food grade paper packaging, material konversi"
   },
   "Site": {
     "brand": "Kehong Paper",
@@ -676,15 +676,6 @@
         "applications": "Foodservice, tray, dan insert kertas",
         "capabilities": "Pilihan material dan tinjauan struktur",
         "parameters": "Material · GSM · format · proses permukaan"
-      },
-      "cup": {
-        "title": "Material paper cup",
-        "description": "Grup cupstock, roll, sheet, bottom stock, dan material tray untuk proyek konversi.",
-        "material": "Cupstock dan material kertas berlapis",
-        "forms": "Blank kipas, roll, sheet, dan material tray",
-        "applications": "Paper cup, bowl, dan tray bentuk",
-        "capabilities": "Coating, die-cutting, dan konversi",
-        "parameters": "GSM · ukuran · coating · permukaan · finishing"
       },
       "converted": {
         "title": "Material kemasan dan komponen konversi",

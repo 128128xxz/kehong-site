@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
@@ -29,10 +30,13 @@ import {
   getLocalizedCatalogValue,
   getLocalizedProductMaterial,
   getLocalizedProductTitle,
+  getLocalizedProductSku,
+  getPublicProductGroupSummary,
   getProductGroupId,
+  getPublicProductGroupId,
+  getPublicProductType,
   getSkuBySlug,
   getSkusByGroupId,
-  buildProductGroupSummary,
   productDataRevision,
 } from "@/lib/catalog";
 import ProductImageWithStatus from "@/components/site/ProductImageWithStatus";
@@ -48,8 +52,12 @@ import {
 import {
   getProductTypeLabel,
   getPublicProductTypeLabel,
+  getSkuGalleryMeta,
   getSkuImageMeta,
 } from "@/lib/productImages";
+import { getR3SkuImageMapping } from "@/data/r3SkuImages";
+import { isDataConflictSku } from "@/data/dataConflictRecords";
+import { productFamilyCatalog, isPublicProductFamily } from "@/data/product-family-catalog";
 
 function serializeJsonLd(data: Record<string, unknown>) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -94,11 +102,14 @@ export async function generateMetadata({
     ? await getLocaleUrl("en", `/products/${paperCupSheetTarget.slug}` as SiteHref)
     : await getLocaleUrl(locale, href);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
-  const groupSummary = buildProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
+  const groupSummary = getPublicProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
   const title = `${groupSummary.title} | ${brand.name}`;
   const description = groupSummary.metadata.description;
   const imageMeta = getSkuImageMeta(sku, locale);
-  const socialImage = imageMeta.status === "exact" ? imageMeta.src : "/og-image.png";
+  const socialImage = imageMeta.status === "pending" ? "/og-image.png" : imageMeta.src;
+  const socialImageDimensions = imageMeta.status === "exact"
+    ? { width: 1200, height: 630 }
+    : { width: 1600, height: 1200 };
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -106,8 +117,8 @@ export async function generateMetadata({
     description,
     keywords: [
       sku.sku,
-      sku.title.en,
-      sku.productType,
+      getLocalizedProductTitle(sku, locale),
+      getPublicProductType(sku),
       ...sku.materialIds,
       sku.categoryId,
       getLocalizedCatalogValue(sku.applications, locale),
@@ -124,8 +135,8 @@ export async function generateMetadata({
       images: [
         {
           url: socialImage,
-          width: 1200,
-          height: 630,
+          width: socialImageDimensions.width,
+          height: socialImageDimensions.height,
           alt: imageMeta.alt,
         },
       ],
@@ -194,9 +205,13 @@ export default async function ProductDetailPage({
 
   const t = await getTranslations({ locale, namespace: "Site" });
   const isZh = locale === "zh";
+  const publicSku = getLocalizedProductSku(sku, locale);
+  const publicGroupId = getPublicProductGroupId(sku);
   const productHref = `/products/${sku.slug}` as SiteHref;
   const productUrl = await getLocaleUrl(locale, productHref);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
+  const familyConfig = productFamilyCatalog.find((family) => isPublicProductFamily(family) && family.sourceClusterIds.includes(`cluster-${getProductGroupId(sku)}`));
+  const familyHref = familyConfig ? `/products/families/${familyConfig.routeSlug}` as SiteHref : `/products?group=${encodeURIComponent(publicGroupId)}` as SiteHref;
   const isPaperCupSheetTarget = sku.id === PAPER_CUP_SHEET_TARGET_RECORD_ID;
   const approvedPaperCupSheetVariants = isPaperCupSheetTarget
     ? PAPER_CUP_SHEET_SOURCE_RECORD_IDS
@@ -204,38 +219,48 @@ export default async function ProductDetailPage({
       .filter((item): item is NonNullable<typeof item> => Boolean(item))
     : [];
   const variantPool = isPaperCupSheetTarget ? approvedPaperCupSheetVariants : groupVariants;
-  const groupSummary = buildProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
+  const hideVariantCoating = variantPool.some(isDataConflictSku);
+  const groupSummary = getPublicProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
   const displayedVariantCount = isPaperCupSheetTarget ? approvedPaperCupSheetVariants.length : groupSummary.variantCount;
   const contactHref = buildInquiryContactHref({ product: sku.slug, sku: sku.sku, url: productUrl }) as SiteHref;
   const whatsapp = `https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(`${t("inquiry.message")}\n- ${isZh ? "产品组" : "Product group"}: ${groupSummary.title}\n- ${isZh ? "当前 SKU" : "Current SKU"}: ${sku.sku}\n- URL: ${productUrl}`)}`;
   const variantSearch = typeof query.variantSearch === "string" ? query.variantSearch.trim().toLowerCase() : "";
   const matchingVariants = variantSearch
-    ? variantPool.filter((variant) => [variant.sku, variant.gsmOrThickness, variant.coating, variant.commonSize]
+    ? variantPool.filter((variant) => [variant.sku, variant.gsmOrThickness, ...(hideVariantCoating ? [] : [variant.coating]), variant.commonSize]
       .map((value) => getLocalizedCatalogValue(value, locale).toLowerCase())
       .some((value) => value.includes(variantSearch)))
     : variantPool;
   const showAllVariants = isPaperCupSheetTarget || query.variants === "all" || Boolean(variantSearch);
   const visibleVariants = showAllVariants ? matchingVariants : matchingVariants.slice(0, 12);
+  const publicVisibleVariants = visibleVariants.map((variant) => getLocalizedProductSku(variant, locale));
   const hasMoreVariants = matchingVariants.length > visibleVariants.length;
+  const galleryItems = getR3SkuImageMapping(sku)
+    ? getSkuGalleryMeta(sku, locale).slice(1, 3)
+    : [];
 
   const groupSpecs = [
     [isZh ? "产品家族" : "Product family", groupSummary.familyLabel],
-    [isZh ? "可用克重范围" : "Available GSM range", groupSummary.gsm || "-"],
+    [isZh ? "可用克重范围" : "Available GSM range", groupSummary.gsm],
     [isZh ? "可选材料" : "Material options", groupSummary.materials.join(isZh ? "、" : " / ")],
     [isZh ? "可选涂层 / 淋膜" : "Coating options", groupSummary.coating],
-    [isZh ? "已批准源规格" : "Approved source specifications", isZh ? `${displayedVariantCount} 条` : `${displayedVariantCount} specifications`],
+    [isZh ? "已公开规格" : "Published specifications", isZh ? `${displayedVariantCount} 条` : `${displayedVariantCount} specifications`],
     [isZh ? "适用场景" : "Applications", formatProductDisplayList(groupSummary.applications, locale)],
   ].filter(([, value]) => value);
   const displayField = (field: ProductDisplayField, value: string | undefined) => formatProductFieldValue(getLocalizedCatalogValue(value, locale), field, locale);
   const displayApplication = displayField("application", sku.applications);
+  const displaySurface = hideVariantCoating ? "" : displayField("surface", sku.surfaceProcess);
+  const displayFinishing = hideVariantCoating ? "" : displayField("finishing", sku.finishingProcess);
+  const surfaceFinishing = [displaySurface, displayFinishing]
+    .filter(Boolean)
+    .join(" / ");
   const currentSkuSpecs = [
     [isZh ? "当前 SKU" : "Current SKU", sku.sku],
     [t("detail.material"), formatProductFieldValue(getLocalizedProductMaterial(sku, locale), "material", locale)],
     [isZh ? "当前克重 / 厚度" : "Current GSM / thickness", getLocalizedCatalogValue(sku.gsmOrThickness, locale)],
-    [isZh ? "当前涂层 / 淋膜" : "Current coating", getLocalizedCatalogValue(sku.coating, locale)],
+    [isZh ? "当前涂层 / 淋膜" : "Current coating", hideVariantCoating ? "" : getLocalizedCatalogValue(sku.coating, locale)],
     [t("detail.structure"), displayField("structure", sku.structureOrFlute)],
-    [t("detail.surface"), displayField("surface", sku.surfaceProcess)],
-    [t("detail.finishing"), displayField("finishing", sku.finishingProcess)],
+    [t("detail.surface"), displaySurface],
+    [t("detail.finishing"), displayFinishing],
     [t("detail.size"), displayField("size", sku.commonSize)],
     [isZh ? "常规起订量" : "Typical MOQ", getLocalizedCatalogValue(sku.moq, locale)],
     [isZh ? "报价单位" : "Quotation unit", getLocalizedCatalogValue(sku.unit, locale)],
@@ -244,7 +269,7 @@ export default async function ProductDetailPage({
     {
       icon: PackageCheck,
       label: isZh ? "常规起订量" : "Typical MOQ",
-      value: getLocalizedCatalogValue(sku.moq, locale) || "-",
+      value: getLocalizedCatalogValue(sku.moq, locale),
     },
     {
       icon: Ruler,
@@ -262,6 +287,7 @@ export default async function ProductDetailPage({
       value: isZh ? "按出口或国内配送要求确认" : "Matched to export or domestic delivery needs",
     },
   ] as const;
+  const visibleProcurementCards = procurementCards.filter((item) => item.value);
   const customNotes = [
     isZh ? "可按图纸、样品图或尺寸要求确认结构" : "Structure can be confirmed by drawing, sample photo or target size",
     isZh ? "支持材质、颜色、表面工艺和后加工组合" : "Material, color, surface process and finishing can be combined",
@@ -315,7 +341,7 @@ export default async function ProductDetailPage({
     itemListElement: [
       { "@type": "ListItem", position: 1, name: isZh ? "首页" : "Home", item: await getLocaleUrl(locale, "/" as SiteHref) },
       { "@type": "ListItem", position: 2, name: isZh ? "产品目录" : "Products", item: await getLocaleUrl(locale, "/products" as SiteHref) },
-      { "@type": "ListItem", position: 3, name: groupSummary.familyLabel, item: await getLocaleUrl(locale, `/products?group=${encodeURIComponent(groupSummary.id)}` as SiteHref) },
+      { "@type": "ListItem", position: 3, name: groupSummary.familyLabel, item: await getLocaleUrl(locale, familyHref) },
       { "@type": "ListItem", position: 4, name: groupSummary.title, item: productUrl },
     ],
   };
@@ -337,7 +363,7 @@ export default async function ProductDetailPage({
       <div
         data-product-template-version="v2"
         data-product-data-revision={productDataRevision}
-        data-product-group-id={getProductGroupId(sku)}
+        data-product-group-id={publicGroupId}
         data-product-sku={sku.sku}
         data-paper-cup-sheet-center={isPaperCupSheetTarget ? "true" : undefined}
         data-paper-cup-sheet-source-records={isPaperCupSheetTarget ? String(approvedPaperCupSheetVariants.length) : undefined}
@@ -345,28 +371,38 @@ export default async function ProductDetailPage({
       >
       <Header />
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
-        <Link href="/products" className="kh-text-link">
-          {t("detail.back")}
+        <Link href={familyHref} className="kh-text-link">
+          {isZh ? `返回${groupSummary.familyLabel}` : `Back to ${groupSummary.familyLabel}`}
         </Link>
         <div className="kh-detail-hero mt-6 lg:grid lg:grid-cols-[.95fr_1.05fr]">
-          <div className="kh-detail-media relative min-h-[360px]">
-            <ProductImageWithStatus
-              sku={sku}
-              locale={locale}
-              priority
-              sizes="(min-width: 1024px) 48vw, 95vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-(--kh-ink)/60 to-transparent" />
-            <div className="absolute right-5 top-5 rounded-full border border-white/25 bg-(--kh-ink)/55 px-3 py-2 text-xs font-semibold uppercase tracking-[.08em] text-white backdrop-blur-md">
-              {sku.customizable ? "OEM / ODM" : isZh ? "产品" : "Product"}
+          <div>
+            <div className="kh-detail-media relative min-h-[360px]">
+              <ProductImageWithStatus
+                sku={publicSku}
+                locale={locale}
+                priority
+                sizes="(min-width: 1024px) 48vw, 95vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-(--kh-ink)/60 to-transparent" />
+              <div className="absolute right-5 top-5 rounded-full border border-white/25 bg-(--kh-ink)/55 px-3 py-2 text-xs font-semibold uppercase tracking-[.08em] text-white backdrop-blur-md">
+                {sku.customizable ? "OEM / ODM" : isZh ? "产品" : "Product"}
+              </div>
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <p className="kh-eyebrow kh-eyebrow-light">
+                  {groupSummary.familyLabel}
+                </p>
+              </div>
             </div>
-            <div className="absolute bottom-6 left-6 right-6 text-white">
-              <p className="kh-eyebrow kh-eyebrow-light">
-                {groupSummary.familyLabel}
-              </p>
-              <p className="mt-2 text-2xl font-semibold">{sku.sku}</p>
-            </div>
+            {galleryItems.length ? (
+              <div data-product-gallery className="mt-3 grid grid-cols-2 gap-3" aria-label={isZh ? "产品参考图集" : "Product reference gallery"}>
+                {galleryItems.map((item) => (
+                  <div key={item.src} className="relative aspect-[4/3] overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-paper)">
+                    <Image src={item.src} alt={item.alt} fill sizes="(min-width: 1024px) 23vw, 45vw" className="object-contain p-2" />
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </div>
           <div className="p-6 sm:p-8 lg:p-10">
             <div className="flex flex-wrap items-center gap-2">
@@ -382,18 +418,24 @@ export default async function ProductDetailPage({
                 </span>
               ) : null}
               <span className="rounded-full bg-(--kh-paper) px-3 py-1.5 text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
-                {displayedVariantCount} {isZh ? "条已批准源规格" : displayedVariantCount === 1 ? "approved source specification" : "approved source specifications"}
+                {displayedVariantCount} {isZh ? "条公开规格" : displayedVariantCount === 1 ? "published specification" : "published specifications"}
               </span>
             </div>
             <h1 className="kh-editorial-heading mt-4 text-3xl text-(--kh-ink) sm:text-4xl lg:text-5xl">
               {groupSummary.title}
             </h1>
+            <p className="kh-mono mt-3 text-xs text-(--kh-muted)">{isZh ? "参考编号" : "Ref"}: {sku.sku}</p>
+            {getSkuImageMeta(sku, locale).status !== "exact" ? (
+              <p className="mt-3 text-xs leading-5 text-(--kh-muted)">
+                {isZh ? "当前为产品组代表性参考图，最终外观请以确认的项目规格为准。" : "Representative material view. Final appearance depends on the confirmed project specification."}
+              </p>
+            ) : null}
             <p className="mt-4 text-base leading-8 text-(--kh-muted)">
               {groupSummary.description || getLocalizedProductMaterial(sku, locale) || getProductTypeLabel(sku.productType, locale)}
             </p>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {procurementCards.map((item) => {
+              {visibleProcurementCards.map((item) => {
                 const Icon = item.icon;
 
                 return (
@@ -473,16 +515,14 @@ export default async function ProductDetailPage({
                   <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">{displayApplication}</p>
                 </div>
               ) : null}
-              <div className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
-                <p className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
-                  {isZh ? "表面 / 后工艺" : "Surface / finishing"}
-                </p>
-                  <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">
-                    {[displayField("surface", sku.surfaceProcess), displayField("finishing", sku.finishingProcess)]
-                      .filter(Boolean)
-                      .join(" / ") || "-"}
+              {surfaceFinishing ? (
+                <div className="rounded-md border border-(--kh-line) bg-(--kh-paper) p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
+                    {isZh ? "表面 / 后工艺" : "Surface / finishing"}
                   </p>
-              </div>
+                  <p className="mt-2 text-sm font-semibold leading-6 text-(--kh-ink)">{surfaceFinishing}</p>
+                </div>
+              ) : null}
             </div>
             <div className="mt-5 grid gap-3">
               {customNotes.map((item) => (
@@ -509,7 +549,7 @@ export default async function ProductDetailPage({
                     <label htmlFor="variant-search" className="sr-only">{isZh ? "搜索变体" : "Search variants"}</label>
                     <div className="flex min-w-0 items-center gap-2 rounded-md border border-(--kh-line) bg-(--kh-surface) px-3 py-2">
                       <Search className="size-3.5 shrink-0 text-(--kh-brass)" aria-hidden="true" />
-                      <input id="variant-search" name="variantSearch" defaultValue={variantSearch} placeholder={isZh ? "搜索尺寸 / 克重 / 涂层" : "Search size / GSM / coating"} className="min-w-0 w-full bg-transparent text-xs font-semibold text-(--kh-ink) outline-none placeholder:text-(--kh-muted)/80" />
+                    <input id="variant-search" name="variantSearch" defaultValue={variantSearch} placeholder={hideVariantCoating ? (isZh ? "搜索尺寸 / 克重 / 编号" : "Search size / GSM / code") : (isZh ? "搜索尺寸 / 克重 / 涂层" : "Search size / GSM / coating")} className="min-w-0 w-full bg-transparent text-xs font-semibold text-(--kh-ink) outline-none placeholder:text-(--kh-muted)/80" />
                     </div>
                     <button type="submit" className="kh-button kh-button-primary kh-button-compact">{isZh ? "搜索" : "Search"}</button>
                   </form>
@@ -520,19 +560,19 @@ export default async function ProductDetailPage({
                       <tr className="border-b border-(--kh-line) text-left text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">
                         <th className="px-4 py-3">{isZh ? "产品编号" : "Product code"}</th>
                         <th className="px-4 py-3">{isZh ? "克重 / 厚度" : "GSM / thickness"}</th>
-                        <th className="px-4 py-3">{isZh ? "涂层" : "Coating"}</th>
+                        {!hideVariantCoating ? <th className="px-4 py-3">{isZh ? "涂层" : "Coating"}</th> : null}
                         <th className="px-4 py-3">{isZh ? "尺寸" : "Size"}</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {visibleVariants.map((variant) => (
+                      {publicVisibleVariants.map((variant) => (
                         <tr key={paperCupSheetDisplayIdentity(variant)} className="border-b border-(--kh-paper-deep) last:border-0">
                           <td className="px-4 py-3 font-semibold text-(--kh-ink)">
                             {isPaperCupSheetTarget ? <Link href={`/products/${variant.slug}`} className="kh-text-link">{variant.sku}</Link> : variant.sku}
                           </td>
-                          <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.gsmOrThickness, locale) || "-"}</td>
-                          <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.coating, locale) || "-"}</td>
-                          <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.commonSize, locale) || "-"}</td>
+                          <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.gsmOrThickness, locale)}</td>
+                          {!hideVariantCoating ? <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.coating, locale)}</td> : null}
+                          <td className="px-4 py-3 text-(--kh-muted)">{getLocalizedCatalogValue(variant.commonSize, locale)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -585,10 +625,10 @@ export default async function ProductDetailPage({
             locale={locale}
             initialProducts={[
               {
-                productGroupId: groupSummary.id,
+                productGroupId: publicGroupId,
                 productGroupTitle: groupSummary.title,
                 sku: sku.sku,
-                skuTitle: isZh ? sku.title.zh : sku.title.en,
+                skuTitle: getLocalizedProductTitle(sku, locale),
                 name: groupSummary.title,
                 url: productUrl,
               },

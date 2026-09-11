@@ -41,7 +41,6 @@ const staticRoutePaths = new Set([
   "resources",
   "news",
   "contact",
-  "paper-cup-fan-manufacturer",
   "paper-packaging-supplier",
   "custom-paper-products",
   "factory",
@@ -62,7 +61,6 @@ const resourceSlugs = new Set([
   "proofing-samples",
 ]);
 const newsSlugs = new Set([
-  "paper-cup-fans-coated-rolls-sheets-difference",
   "takeout-box-quotation-six-details",
   "corrugated-mailer-dimensions-board-inserts",
   "paper-bag-quotation-paper-handles-printing-quantity",
@@ -70,7 +68,7 @@ const newsSlugs = new Set([
   "artwork-to-dielines-packaging-sampling",
 ]);
 const publicProductSlugs = new Set([
-  ...catalog.skus.filter((sku) => sku.published && sku.sourceStatus === "confirmed").map((sku) => sku.slug),
+  ...catalog.skus.filter((sku) => sku.published && sku.sourceStatus === "confirmed" && !/^KH-FD-CUPFAN-/iu.test(sku.sku ?? "") && sku.groupId !== "paper-cup-fan-paper-cup-fan" && sku.canonicalGroupId !== "paper-cup-fan-paper-cup-fan").map((sku) => sku.slug),
   ...catalog.groups.map((group) => group.slug),
 ]);
 

@@ -1,8 +1,8 @@
 {
   "Metadata": {
     "title": "Foshan Kehong Paper Products | Vật liệu bao bì giấy",
-    "description": "Nhà máy vật liệu bao bì giấy: giấy sóng, giấy đặc biệt, hộp giấy, khay giấy và paper cup fan.",
-    "keywords": "vật liệu bao bì giấy, giấy sóng, bao bì giấy thực phẩm, paper cup fan"
+    "description": "Nhà máy vật liệu bao bì giấy: giấy sóng, giấy đặc biệt, hộp giấy, khay giấy và vật liệu gia công.",
+    "keywords": "vật liệu bao bì giấy, giấy sóng, bao bì giấy thực phẩm, vật liệu gia công"
   },
   "Site": {
     "brand": "Kehong Paper",
@@ -676,15 +676,6 @@
         "applications": "Dịch vụ ăn uống, khay và khay lót giấy",
         "capabilities": "Chọn vật liệu và xem xét cấu trúc",
         "parameters": "Vật liệu · GSM · quy cách · xử lý bề mặt"
-      },
-      "cup": {
-        "title": "Vật liệu cốc giấy",
-        "description": "Các nhóm cupstock, cuộn, tờ, giấy đáy và vật liệu khay cho dự án gia công.",
-        "material": "Cupstock và giấy phủ",
-        "forms": "Phôi quạt, cuộn, tờ và vật liệu khay",
-        "applications": "Cốc giấy, bát giấy và khay tạo hình",
-        "capabilities": "Phủ, bế và gia công",
-        "parameters": "GSM · kích thước · lớp phủ · bề mặt · hoàn thiện"
       },
       "converted": {
         "title": "Vật liệu bao bì và linh kiện gia công",

@@ -243,10 +243,10 @@ export const solutionScenes = [
       ms: "Pembungkusan makanan",
     },
     body: {
-      en: "Paper boxes, pads and cup fan blanks for food brands and distributors; final material and use requirements are confirmed by project.",
-      zh: "纸盒、纸垫和纸杯扇形片，按食品包装项目确认。",
+      en: "Paper boxes, pads and coated paper materials for food brands and distributors; material and use are selected for each project.",
+      zh: "纸盒、纸垫和淋膜纸材，按食品包装项目确认。",
     },
-    tags: ["Structure review", "Material confirmation", "Pizza box", "Cup fan blanks"],
+    tags: ["Structure review", "Material confirmation", "Pizza box", "Coated paper"],
   },
   {
     id: "display",

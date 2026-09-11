@@ -7,15 +7,15 @@ import ProductFamilyPage from "@/components/site/ProductFamilyPage";
 import { locales } from "@/i18n/locales";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
-import { getProductFamilyBySlug, PRODUCT_FAMILY_ROUTE_SLUGS } from "@/data/product-family-catalog";
+import { getPublicProductFamilyBySlug, PUBLIC_PRODUCT_FAMILY_ROUTE_SLUGS } from "@/data/product-family-catalog";
 
 export function generateStaticParams() {
-  return locales.flatMap((locale) => PRODUCT_FAMILY_ROUTE_SLUGS.map((familySlug) => ({ locale, familySlug })));
+  return locales.flatMap((locale) => PUBLIC_PRODUCT_FAMILY_ROUTE_SLUGS.map((familySlug) => ({ locale, familySlug })));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; familySlug: string }> }): Promise<Metadata> {
   const { locale, familySlug } = await params;
-  const config = getProductFamilyBySlug(familySlug);
+  const config = getPublicProductFamilyBySlug(familySlug);
   if (!config) return {};
   const t = await getTranslations({ locale, namespace: "ProductFamilies" });
   const tx = t as unknown as (key: string) => string;
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function FamilyRoute({ params }: { params: Promise<{ locale: string; familySlug: string }> }) {
   const { locale, familySlug } = await params;
-  if (!getProductFamilyBySlug(familySlug)) notFound();
+  if (!getPublicProductFamilyBySlug(familySlug)) notFound();
   setRequestLocale(locale);
   return <><Header /><ProductFamilyPage locale={locale} familySlug={familySlug} /><SiteFooter /></>;
 }

@@ -1,29 +1,30 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { productFamilyCatalog, getFamilyPublishedGroups, getProductFamilyBySlug } from "@/data/product-family-catalog";
-import { buildProductGroupSummary, getAllSkus, getProductGroupId, getLocalizedProductMaterial, getLocalizedProductTitle, getLocalizedCatalogValue } from "@/lib/catalog";
+import { productFamilyCatalog, getFamilyPublishedGroups, getPublicProductFamilyBySlug, isPublicProductFamily } from "@/data/product-family-catalog";
+import { buildProductGroupSummary, getLocalizedProductMaterial, getLocalizedProductTitle, getLocalizedCatalogValue, getLocalizedProductSku } from "@/lib/catalog";
 import { formatProductFieldValue } from "@/lib/productPresentation";
 import { getPublicAssetMeta } from "@/lib/productImages";
 import { siteConfig } from "@/lib/site";
-import { PAPER_CUP_SHEET_TARGET_RECORD_ID } from "@/data/paperCupSheetVariants";
+import ProductFamilyVariantTable from "@/components/site/ProductFamilyVariantTable";
+import { isSourceOnlyRecord } from "@/data/sourceOnlyRecords";
 
 function serializeJsonLd(data: Record<string, unknown>) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
 export default async function ProductFamilyPage({ locale, familySlug }: { locale: string; familySlug: string }) {
-  const config = getProductFamilyBySlug(familySlug);
+  const config = getPublicProductFamilyBySlug(familySlug);
   if (!config) return null;
   const t = await getTranslations({ locale, namespace: "ProductFamilies" });
   const tx = t as unknown as (key: string, values?: Record<string, unknown>) => string;
   const familyKey = `family.${config.id}`;
   const image = getPublicAssetMeta(config.imageId, locale);
-  const paperCupSheetTarget = getAllSkus().find((sku) => sku.id === PAPER_CUP_SHEET_TARGET_RECORD_ID);
-  const paperCupSheetGroupId = paperCupSheetTarget ? getProductGroupId(paperCupSheetTarget) : "";
-  const publishedGroups = getFamilyPublishedGroups(config).filter((group) => config.id !== "cup" || group.id === paperCupSheetGroupId);
+  const publishedGroups = getFamilyPublishedGroups(config)
+    .map((group) => ({ ...group, variants: group.variants.filter((variant) => !isSourceOnlyRecord(variant.id)) }))
+    .filter((group) => group.variants.length > 0);
   const publishedVariants = publishedGroups.flatMap((group) => group.variants);
-  const related = productFamilyCatalog.filter((candidate) => candidate.id !== config.id).sort((a, b) => a.navigationPriority - b.navigationPriority).slice(0, 4);
+  const related = productFamilyCatalog.filter((candidate) => isPublicProductFamily(candidate) && candidate.id !== config.id).sort((a, b) => a.navigationPriority - b.navigationPriority).slice(0, 4);
   const familyHref = `/products/families/${config.routeSlug}`;
   const organizationJsonLd = {
     "@context": "https://schema.org",
@@ -96,7 +97,7 @@ export default async function ProductFamilyPage({ locale, familySlug }: { locale
             {publishedVariants.length ? <span className="kh-mono text-xs text-(--kh-muted)">{tx("publishedCount", { count: publishedVariants.length })}</span> : null}
           </div>
           {publishedGroups.length ? (
-            <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mt-7 grid gap-4">
               {publishedGroups.map((group) => {
                 const summary = buildProductGroupSummary({ id: group.id, representative: group.representative, variants: group.variants }, locale);
                 const first = group.representative;
@@ -107,13 +108,26 @@ export default async function ProductFamilyPage({ locale, familySlug }: { locale
                   [locale === "zh" ? "尺寸" : "Size", formatProductFieldValue(getLocalizedCatalogValue(first.commonSize, locale), "size", locale)],
                 ].filter(([, value]) => value);
                 return (
-                  <article key={group.id} className="kh-panel flex flex-col p-5 sm:p-6">
-                    <p className="kh-eyebrow">{group.variants.length} · {tx("publishedSpecs")}</p>
-                    <h3 className="mt-2 text-lg font-semibold leading-tight text-(--kh-ink)">{summary.title || getLocalizedProductTitle(first, locale)}</h3>
-                    <dl className="mt-4 grid gap-2 border-t border-(--kh-line) pt-4 text-sm">
-                      {specs.map(([label, value]) => <div key={label} className="grid grid-cols-[7rem_1fr] gap-2"><dt className="font-semibold text-(--kh-ink)">{label}</dt><dd className="text-(--kh-muted)">{value}</dd></div>)}
+                  <article key={group.id} className="kh-panel p-5 sm:p-6">
+                    <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                      <div>
+                        <p className="kh-eyebrow">{group.variants.length} · {tx("publishedSpecs")}</p>
+                        <h3 className="mt-2 text-xl font-semibold leading-tight text-(--kh-ink)">{summary.title || getLocalizedProductTitle(first, locale)}</h3>
+                        <p className="mt-2 max-w-2xl text-sm leading-6 text-(--kh-muted)">
+                          {locale === "zh" ? "按实际公开 SKU 对比材料、涂层、克重与关键规格。" : "Compare material, coating, GSM and key specifications across the published SKUs."}
+                        </p>
+                      </div>
+                      <Link href={`/products/${first.slug}`} className="kh-button kh-button-secondary kh-button-compact shrink-0">{tx("viewPublishedSpecs")}</Link>
+                    </div>
+                    <dl className="mt-5 grid gap-2 border-y border-(--kh-line) py-4 text-sm sm:grid-cols-2 lg:grid-cols-4">
+                      {specs.map(([label, value]) => <div key={label} className="grid gap-1"><dt className="text-xs font-semibold uppercase tracking-[.08em] text-(--kh-muted)">{label}</dt><dd className="font-semibold text-(--kh-ink)">{value}</dd></div>)}
                     </dl>
-                    <Link href={`/products/${first.slug}`} className="kh-text-link mt-5 inline-flex">{tx("viewPublishedSpecs")}</Link>
+                    <details className="mt-4 group/variants" open={group.variants.length <= 20}>
+                      <summary className="cursor-pointer list-none text-sm font-semibold text-(--kh-forest) marker:hidden">
+                        <span className="inline-flex items-center gap-2">{locale === "zh" ? `查看 ${group.variants.length} 个变体` : `View ${group.variants.length} variants`}<span aria-hidden="true" className="transition group-open/variants:rotate-90">→</span></span>
+                      </summary>
+                      <ProductFamilyVariantTable variants={group.variants.map((variant) => getLocalizedProductSku(variant, locale))} locale={locale} />
+                    </details>
                   </article>
                 );
               })}

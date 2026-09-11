@@ -1,13 +1,8 @@
 export const interests = {
   "pe-coated-paper-roll": {
     id: "pe-coated-paper-roll",
-    label: { en: "PE coated paper roll", zh: "PE 淋膜纸卷", id: "Gulungan kertas berlapis PE", vi: "Cuộn giấy phủ PE", th: "กระดาษม้วนเคลือบ PE", ms: "Gulungan kertas bersalut PE" },
-    formProductType: "paper-cup-fan",
-  },
-  "paper-cup-fan": {
-    id: "paper-cup-fan",
-    label: { en: "Paper cup fan", zh: "纸杯扇形片", id: "Lembaran kipas cangkir kertas", vi: "Phôi quạt cốc giấy", th: "แผ่นพัดแก้วกระดาษ", ms: "Keping kipas cawan kertas" },
-    formProductType: "paper-cup-fan",
+    label: { en: "Coated paper roll", zh: "淋膜纸卷", id: "Gulungan kertas berlapis", vi: "Cuộn giấy phủ", th: "กระดาษม้วนเคลือบ", ms: "Gulungan kertas bersalut" },
+    formProductType: "paper-packaging-material",
   },
   "structure-review": {
     id: "structure-review",

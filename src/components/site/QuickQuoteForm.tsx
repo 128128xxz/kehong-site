@@ -83,7 +83,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
       <InquiryContext locale={locale} seeds={initialProducts} />
       <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden" />
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <Field label={zh ? "产品 / 包装需求" : "Product or packaging requirement"} name="products" placeholder={zh ? "例如：蛋糕盒、纸杯扇形片或产品链接" : "e.g. cake box, cup fan or product link"} defaultValue={initialProductText} required={!initialProducts.some((item) => item.interestId)} wide />
+        <Field label={zh ? "产品 / 包装需求" : "Product or packaging requirement"} name="products" placeholder={zh ? "例如：蛋糕盒、纸卷或产品链接" : "e.g. cake box, paper roll or product link"} defaultValue={initialProductText} required={!initialProducts.some((item) => item.interestId)} wide />
         <FileField locale={locale} />
         <Field label={zh ? "尺寸" : "Size"} name="size" placeholder={zh ? "长 × 宽 × 高（如已知）" : "L × W × H, if known"} />
         <Field label={zh ? "预估数量" : "Estimated quantity"} name="quantity" placeholder={zh ? "例如：10,000 件" : "e.g. 10,000 pcs"} />
@@ -108,7 +108,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
       <InquiryConsent locale={locale} id="quick-quote-privacy" />
       <div className="mt-5 flex flex-wrap items-center gap-3">
         <button type="submit" disabled={status === "sending"} className="kh-button kh-button-primary disabled:opacity-60">
-          <Send className="size-4" />{status === "sending" ? (zh ? "发送中…" : "Sending…") : (zh ? "提交快速询盘" : "Send quick quote")}
+          <Send className="size-4" />{status === "sending" ? (zh ? "发送中…" : "Sending…") : (zh ? "提交快速询盘" : "Request a quote")}
         </button>
         <span className="text-xs leading-5 text-(--kh-muted)">{zh ? "后续可补充材质、结构、印刷和交期" : "Material, structure, print and timing can be added next."}</span>
       </div>
@@ -119,7 +119,7 @@ export default function QuickQuoteForm({ locale, initialProducts = [] }: { local
 }
 
 const inquiryCopy = {
-  en: { validation: "Please add your name, an email or phone/WhatsApp contact, a product or request type, and privacy consent.", deliveryUnavailable: "Email delivery is not configured yet. Please use the direct email or phone shown on this page.", deliveryFailed: "We could not send the inquiry just now. Please check the details, retry, or use the direct email shown on this page.", success: "The email service accepted your inquiry. The team will follow up shortly." },
+  en: { validation: "Please add your name, an email or phone/WhatsApp contact, a product or request type, and privacy consent.", deliveryUnavailable: "Email delivery is not configured yet. Please use the direct email or phone shown on this page.", deliveryFailed: "We couldn’t send the inquiry just now. Please check the details, retry, or use the direct email shown on this page.", success: "Thank you. Your inquiry has been sent to our sales team." },
   zh: { validation: "请填写姓名、Email 或电话/微信、产品或服务需求，并同意隐私政策。", deliveryUnavailable: "当前邮件服务尚未配置，请使用页面上的 Email 或电话直接联系。", deliveryFailed: "暂时无法发送询盘，请检查内容后重试或使用页面上的 Email 联系。", success: "邮件服务已接收询盘，团队会尽快回复。" },
   id: { validation: "Isi nama, email atau telepon/WhatsApp, produk atau jenis permintaan, dan persetujuan privasi.", deliveryUnavailable: "Pengiriman email belum dikonfigurasi. Gunakan email atau telepon langsung di halaman ini.", deliveryFailed: "Pertanyaan belum dapat dikirim. Periksa detail, coba lagi, atau gunakan email langsung.", success: "Layanan email telah menerima pertanyaan Anda. Tim akan segera menindaklanjuti." },
   vi: { validation: "Vui lòng nhập tên, email hoặc điện thoại/WhatsApp, sản phẩm hoặc loại yêu cầu và đồng ý với chính sách riêng tư.", deliveryUnavailable: "Dịch vụ email chưa được cấu hình. Vui lòng dùng email hoặc điện thoại trực tiếp trên trang.", deliveryFailed: "Không thể gửi yêu cầu lúc này. Hãy kiểm tra, thử lại hoặc dùng email trực tiếp.", success: "Dịch vụ email đã nhận yêu cầu của bạn. Đội ngũ sẽ sớm phản hồi." },

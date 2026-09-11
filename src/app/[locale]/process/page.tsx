@@ -35,7 +35,7 @@ export default async function ProcessPage({ params }: { params: Promise<{ locale
           }
         >
           <Link href="/contact" className="kh-button kh-button-light">
-            {isZh ? "提交项目需求" : "Start a packaging project"}
+            {isZh ? "提交项目需求" : "Request a quote"}
           </Link>
           <Link href="/factory" className="kh-button kh-button-ghost">
             {isZh ? "了解工厂和设备" : "See factory & equipment"}

@@ -2,6 +2,9 @@ import { getAllSkus } from "@/lib/catalog";
 import { getSkuImageMeta } from "@/lib/productImages";
 import { absoluteSiteUrl } from "@/lib/site";
 import { seoMediaEntries } from "@/data/seoMediaEntries";
+import { packagingCategories } from "@/data/packagingCategories";
+import { getR2AssetsForPackagingRoute } from "@/data/r2WebsiteAssets";
+import { getR3SkuImageMapping } from "@/data/r3SkuImages";
 
 const XML_NS = "http://www.sitemaps.org/schemas/sitemap/0.9";
 const IMAGE_NS = "http://www.google.com/schemas/sitemap-image/1.1";
@@ -23,10 +26,25 @@ export async function GET() {
     pairs.set(`${pageUrl}|${imageUrl}`, { page: pageUrl, image: imageUrl, title });
   };
 
-  for (const entry of seoMediaEntries) add(entry.landingPage, entry.newPath, entry.altKey.replace("media.", ""));
+  for (const entry of seoMediaEntries) {
+    const mediaKey = `${entry.newPath} ${entry.altKey}`;
+    if (/cup[- ]?fan|cupfan/iu.test(mediaKey)) continue;
+    add(entry.landingPage, entry.newPath, entry.altKey.replace("media.", ""));
+  }
   for (const sku of getAllSkus()) {
     const meta = getSkuImageMeta(sku, "en");
     add(`/en/products/${sku.slug}`, meta.src, meta.alt);
+    const r3Mapping = getR3SkuImageMapping(sku);
+    if (r3Mapping) {
+      for (const galleryImage of r3Mapping.gallery) {
+        add(`/en/products/${sku.slug}`, galleryImage.src, galleryImage.alt.en);
+      }
+    }
+  }
+  for (const category of packagingCategories) {
+    const page = `/en/packaging/${category.slug}`;
+    add(page, category.image, category.title.en);
+    for (const asset of getR2AssetsForPackagingRoute(category.slug)) add(page, asset.image, asset.alt);
   }
 
   const grouped = new Map<string, { image: string; title: string }[]>();

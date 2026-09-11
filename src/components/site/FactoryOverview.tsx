@@ -13,7 +13,7 @@ const workWithImages = [
   { src: "/media/materials/paper-color-swatch-detail-01.webp" },
   { src: "/media/products/paper-cup-materials/pe-coated-paper-roll-reference-01.jpg" },
   { src: "/media/products/paper-materials/kraft-paper-roll-sheet-reference-01.webp" },
-  { src: "/media/products/paper-cup-materials/paper-cup-fan-product-reference-01.webp" },
+  { src: "/media/materials/paper-die-cut-sheet-reference.jpg" },
   { src: "/media/materials/paper-die-cut-sheet-reference.jpg" },
 ] as const;
 

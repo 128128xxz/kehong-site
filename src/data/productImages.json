@@ -34,8 +34,8 @@
       "scope": "family",
       "exactness": "representative",
       "alt": {
-        "en": "Kraft cupstock roll and paper cups — reference image",
-        "zh": "牛皮杯纸卷与纸杯参考图"
+        "en": "Cupstock roll and paper cups — reference image",
+        "zh": "杯纸卷与纸杯参考图"
       }
     },
     {
@@ -162,8 +162,8 @@
       "scope": "family",
       "exactness": "representative",
       "alt": {
-        "en": "PE-coated paper roll — reference image",
-        "zh": "PE 淋膜纸卷参考图"
+        "en": "Coated paper roll — reference image",
+        "zh": "淋膜纸卷参考图"
       }
     },
     {
@@ -194,8 +194,8 @@
       "scope": "family",
       "exactness": "representative",
       "alt": {
-        "en": "PE-coated paper sheet — reference image",
-        "zh": "PE 淋膜平张纸参考图"
+        "en": "Coated paper sheet — reference image",
+        "zh": "淋膜平张纸参考图"
       }
     },
     {

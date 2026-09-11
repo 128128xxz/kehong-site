@@ -87,6 +87,9 @@ export default async function ProductsPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Site" });
   const value = (key: string) => getQueryValue(query[key]);
+  const legacyCatalogFilter = value("productType") === "paper-cup-fan"
+    || /paper-cup-fan|cupfan/iu.test(value("group"));
+  if (legacyCatalogFilter) redirect(`/${locale}/products`);
   const rawCategory = value("category");
   const canonicalCategory = getCanonicalTaxonomyCategoryId(rawCategory);
   if (rawCategory && canonicalCategory && canonicalCategory !== rawCategory) {
@@ -106,10 +109,10 @@ export default async function ProductsPage({
     mainEntity: [
       {
         "@type": "Question",
-        name: "How do I confirm a product specification?",
+        name: "What should I send to confirm a product?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Please send the target material, GSM, size, quantity and application. Kehong will confirm the suitable specification and sample requirements.",
+          text: "Send the material, GSM, size, quantity and application. Kehong will confirm a suitable option and whether a sample is needed.",
         },
       },
       {
@@ -117,7 +120,7 @@ export default async function ProductsPage({
         name: "Can Kehong customize paper products?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Kehong supports custom material, GSM, size, coating, printing and packaging structure based on project requirements.",
+          text: "Kehong supports custom material, GSM, size, coating, printing and packaging structure for your project.",
         },
       },
       {
@@ -159,7 +162,7 @@ export default async function ProductsPage({
             {locale === "zh" ? "查看包装类型" : "Explore packaging"}
           </a>
           <Link href="/contact" className="kh-button kh-button-ghost">
-            {locale === "zh" ? "索取目录 / 规格资料" : "Request catalog / data sheet"}
+            {locale === "zh" ? "查看全部规格" : "View all specifications"}
           </Link>
         </PageHero>
         <ProductDirectory locale={locale} section="finished" />

@@ -10,11 +10,11 @@ import {
   getCommonGsmOptions,
   getCanonicalCategoryBySlug,
   getCatalogGroups,
-  getProductGroupSummary,
   getLocalizedCatalogValue,
   getLocalizedProcessFilterLabel,
   getLocalizedProductMaterial,
   getLocalizedProductTitle,
+  getPublicProductGroupSummary,
   type CatalogFilterOptions,
   type ProductSku,
 } from "@/lib/catalog";
@@ -135,7 +135,7 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
         <span className="text-right text-xs font-semibold leading-5 text-(--kh-muted)">
           {(pagination?.totalGroups ?? groups.length) > 0
             ? `${pagination?.totalGroups ?? groups.length} ${locale === "zh" ? "个产品组" : "product groups"}`
-            : (locale === "zh" ? "暂无可显示目录" : "No public catalog yet")}
+            : (locale === "zh" ? "暂无匹配产品" : "No matching products")}
         </span>
       </div>
 
@@ -302,9 +302,9 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
             <p className="text-sm font-semibold text-(--kh-ink)">
               {(pagination?.totalGroups ?? groups.length) > 0
                 ? (locale === "zh"
-                  ? `${pagination?.totalGroups ?? groups.length} 个产品组 / ${pagination?.totalSkus ?? skus.length} 个 SKU`
-                  : `${pagination?.totalGroups ?? groups.length} product groups / ${pagination?.totalSkus ?? skus.length} published SKUs`)
-                : (locale === "zh" ? "该分类目前暂无公开 SKU" : "No public SKUs in this range yet")}
+                  ? `${pagination?.totalGroups ?? groups.length} 个产品组`
+                  : `${pagination?.totalGroups ?? groups.length} product groups`)
+                : (locale === "zh" ? "暂无匹配产品" : "No matching products")}
             </p>
             <p className="mt-1 text-sm leading-6 text-(--kh-muted)">
               {locale === "zh"
@@ -326,13 +326,13 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
             {invalidFilters ? <p className="mt-2 text-sm font-semibold text-(--kh-ink)">{locale === "zh" ? "筛选参数无效。请清除筛选后重新浏览。" : "This filter is not valid. Clear filters to browse the current range."}</p> : null}
             <p className="mt-2 text-sm">{locale === "zh" ? "如果您正在寻找定制包装结构，请直接提交需求。" : "If you are looking for a custom packaging structure, send the requirement directly."}</p>
             <button type="button" onClick={reset} className="kh-button kh-button-secondary kh-button-compact mt-5">{locale === "zh" ? "清除筛选" : "Clear filters"}</button>
-            <Link href="/contact" className="kh-button kh-button-primary kh-button-compact mt-5">{locale === "zh" ? "提交项目需求" : "Start a packaging project"}</Link>
+            <Link href="/contact" className="kh-button kh-button-primary kh-button-compact mt-5">{locale === "zh" ? "提交项目需求" : "Request a quote"}</Link>
           </div>
         ) : (
           <div className="grid min-w-0 gap-4 xl:grid-cols-[repeat(2,minmax(0,1fr))]">
             {groups.map((group, index) => {
                 const sku = group.representative;
-                const summary = getProductGroupSummary(group, locale);
+                const summary = getPublicProductGroupSummary(group, locale);
                 const summaryMaterial = summary.materials[0] || getLocalizedProductMaterial(sku, locale);
                 const summaryStructure = [summary.gsm, summary.coating]
                   .filter((item): item is string => Boolean(item))
@@ -343,56 +343,47 @@ export default function ProductCatalog({ skus, initialQuery = "", initialFilters
               <article
                 key={group.id}
                 data-product-group-id={group.id}
-                className="premium-depth group min-w-0 max-w-full overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) transition hover:-translate-y-1 hover:border-(--kh-forest)/45 hover:shadow-lg"
+                className="kh-product-card premium-depth group flex min-w-0 max-w-full flex-col overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface) transition hover:-translate-y-1 hover:border-(--kh-forest)/45 hover:shadow-lg"
               >
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden bg-(--kh-paper-deep)">
                   <ProductImageWithStatus
                     sku={sku}
                     locale={locale}
                     imageIndex={index}
                     sizes="(min-width: 1280px) 420px, 92vw"
-                    className="object-cover transition duration-200 group-hover:scale-[1.03]"
+                    className="object-contain p-4 transition duration-200 group-hover:scale-[1.03]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-(--kh-ink)/60 to-transparent" />
                   <div className="absolute right-4 top-4 rounded-full border border-white/25 bg-(--kh-ink)/55 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
                     {summary.variantCount} {locale === "zh" ? "个变体" : summary.variantCount === 1 ? "variant" : "variants"}
                   </div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="kh-eyebrow kh-eyebrow-light">
-                      {summary.familyLabel || getProductTypeLabel(sku.productType, locale)}
-                    </p>
-                    <h2 className="mt-2 text-xl font-semibold text-white">
-                      {summary.title}
-                    </h2>
-                  </div>
                 </div>
-                <div className="p-5">
-                  <div className="grid gap-2 text-sm text-(--kh-muted)">
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="kh-eyebrow">{summary.familyLabel || getProductTypeLabel(sku.productType, locale)}</p>
+                  <h2 className="mt-2 text-xl font-semibold leading-tight text-(--kh-ink)">{summary.title}</h2>
+                  {summary.description ? <p className="mt-2 min-h-12 text-sm leading-6 text-(--kh-muted)">{summary.description}</p> : null}
+                  <div className="mt-4 grid gap-2 text-sm text-(--kh-muted)">
                     {summaryMaterial ? (
                       <p className="inline-flex items-start gap-2">
                         <Layers3 className="mt-0.5 size-4 shrink-0 text-(--kh-brass)" />
                         {summaryMaterial}
                       </p>
                     ) : null}
-                    <p>
-                      {[summaryStructure, getLocalizedCatalogValue(sku.structureOrFlute, locale)]
-                        .filter((item): item is string => Boolean(item))
-                        .join(" / ") || "-"}
-                    </p>
+                    {summaryStructure || getLocalizedCatalogValue(sku.structureOrFlute, locale) ? <p>{[summaryStructure, getLocalizedCatalogValue(sku.structureOrFlute, locale)].filter((item): item is string => Boolean(item)).join(" / ")}</p> : null}
                     {summaryApplication ? <p>{summaryApplication}</p> : null}
                   </div>
+                  <p className="kh-mono mt-4 text-xs text-(--kh-muted)">{locale === "zh" ? "参考编号" : "Ref"}: {sku.sku}</p>
                   <div className="mt-4 h-px bg-(--kh-line)" />
-                  <div className="mt-5 flex flex-wrap gap-2">
+                  <div className="mt-auto flex flex-wrap gap-2 pt-5">
+                    <Link href={`/products/${sku.slug}?variants=all`} aria-label={locale === "zh" ? "查看规格与变体" : "View specifications and variants"} className="kh-button kh-button-primary kh-button-compact">
+                      {locale === "zh" ? "查看变体" : "View variants"}
+                    </Link>
                     <button
                       type="button"
-                      className="kh-button kh-button-primary kh-button-compact"
+                      className="kh-button kh-button-secondary kh-button-compact"
                       onClick={() => addSku(sku)}
                     >
                       {t("cta.add")}
                     </button>
-                    <Link href={`/products/${sku.slug}`} className="kh-button kh-button-secondary kh-button-compact">
-                      {locale === "zh" ? "查看规格" : "View product specifications"}
-                    </Link>
                   </div>
                 </div>
               </article>

@@ -10,7 +10,6 @@ import HomeProductCarousel, { type HomeProductCarouselItem } from "@/components/
 type StatItem = { value: string; label: string };
 
 const heroProductVisuals: Record<string, { image: string; alt: string; altZh: string }> = {
-  "paper-cup-fan": { image: showcaseImages.colorPaperFan, alt: "Paper cup fan blanks ready for converting", altZh: "待加工的纸杯扇形片" },
   "pe-coated-paper-roll": { image: showcaseImages.goldBoardSheets, alt: "Coated paper sheets for packaging conversion", altZh: "用于包装加工的淋膜纸张" },
   "food-tray-material": { image: showcaseImages.goldBoardPieces, alt: "Paper tray material pieces", altZh: "纸托材料片" },
   "takeout-boxes": { image: showcaseImages.foodBoxRealAlt, alt: "Unbranded takeaway paper boxes", altZh: "外带食品纸盒" },
@@ -21,7 +20,6 @@ const heroProductVisuals: Record<string, { image: string; alt: string; altZh: st
 };
 
 const heroProductDescriptions: Record<string, { en: string; zh: string }> = {
-  "paper-cup-fan": { en: "Paper cup fan blanks for converting lines.", zh: "纸杯杯身扇形片。" },
   "pe-coated-paper-roll": { en: "Coated paper rolls for food-contact packaging.", zh: "食品容器淋膜卷材。" },
   "food-tray-material": { en: "Paper materials for formed food trays.", zh: "纸托内托用纸材。" },
   "takeout-boxes": { en: "Takeaway paper boxes for foodservice programs.", zh: "外带餐饮纸盒。" },
@@ -37,7 +35,6 @@ const heroProductIds = [
   "cake-boards-cake-drums",
   "corrugated-mailer-boxes",
   "paper-bags",
-  "paper-cup-fan",
 ] as const;
 
 export default async function HomeHero({ locale }: { locale: string }) {

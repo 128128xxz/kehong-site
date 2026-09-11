@@ -524,7 +524,7 @@ export default function Header({ variant = "solid" }: HeaderProps) {
           <LanguageSwitcher />
           <Link href="/contact" data-testid="site-header-quote" aria-label={copy.contact} onClick={() => trackKehongEvent("quote_click", { locale, ctaLocation: "header" })} className="kh-button kh-button-primary kh-button-compact kh-header-cta" style={{ minHeight: "44px" }}>
             <span className="kh-header-cta-full" aria-hidden="true">{copy.contact}</span>
-            <span className="kh-header-cta-mobile" aria-hidden="true">{isZh ? "询价" : "Quote"}</span>
+            <span className="kh-header-cta-mobile" aria-hidden="true">{isZh ? "询价" : "Request a quote"}</span>
           </Link>
           <div className="kh-compact-nav">
             <button

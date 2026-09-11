@@ -1,8 +1,8 @@
 {
   "Metadata": {
     "title": "Foshan Kehong Paper Products | Custom Paper Packaging Solutions",
-    "description": "Custom paper packaging manufacturer and food grade paper supplier for OEM paper packaging, cup fan blanks and export-ready B2B projects.",
-    "keywords": "custom paper packaging manufacturer, food grade paper supplier, OEM paper packaging, cup fan blank supplier, custom corrugated paperboard, fluted paper packaging material, food-grade paper packaging, paper cup fan blanks, custom paper box manufacturer"
+    "description": "Custom paper packaging manufacturer and paper material supplier for OEM paper packaging and export-ready B2B projects.",
+    "keywords": "custom paper packaging manufacturer, paper material supplier, OEM paper packaging, custom corrugated paperboard, fluted paper packaging material, paper packaging, custom paper box manufacturer"
   },
   "Site": {
     "brand": "Kehong Paper",
@@ -16,7 +16,7 @@
       "quote": "Request a quote",
       "explore": "Explore products",
       "whatsapp": "WhatsApp",
-      "sample": "Ask for samples",
+      "sample": "Request samples",
       "add": "Add to inquiry",
       "email": "Send email inquiry"
     },
@@ -94,7 +94,7 @@
       "moq": "MOQ",
       "application": "Application",
       "unit": "Unit",
-      "note": "Final specifications and pricing are confirmed against approved samples or drawings."
+      "note": "Final specifications and pricing are confirmed from the approved sample or drawing."
     },
     "contact": {
       "title": "Contact Kehong",
@@ -130,7 +130,7 @@
       "hero": {
         "eyebrow": "Specialty paper · Corrugated board · Custom converting",
         "title": "Paper Packaging & Cupstock Manufacturer in Foshan, China",
-        "description": "Kehong supplies corrugated board, specialty and functional paper, paper cup fan blanks, and custom paper packaging for B2B projects. From material selection and structural sampling to printing, die-cutting, finishing and packing, each project is confirmed against the required specification, drawing or sample.",
+        "description": "Kehong supplies corrugated board, specialty and functional paper, and custom paper packaging for B2B projects. Send your product details, dimensions and finish requirements, and we can help review the right material and structure.",
         "primary": "Explore Products",
         "secondary": "Request a Quote",
         "stats": [
@@ -241,9 +241,9 @@
             "alt": "Paper roll material reference"
           },
           {
-            "title": "Paper cup materials",
-            "body": "Cupstock, fan blanks and bottom rolls for paper cup projects.",
-            "alt": "Paper cup fan blank product reference"
+            "title": "Coated paper materials",
+            "body": "Cupstock, coated paper and bottom rolls for paper packaging projects.",
+            "alt": "Cupstock and coated paper material reference"
           },
           {
             "title": "Converted paper components",
@@ -306,16 +306,16 @@
       },
       "quality": {
         "kicker": "Quality approach",
-        "title": "Confirmation-based quality control",
+      "title": "Quality checks at each stage",
         "lede": "Quality is managed through material and specification confirmation, in-process checks and final order review.",
         "items": [
           {
             "title": "Material confirmation",
-            "body": "Confirm the starting material against the project specification."
+            "body": "Check the starting material against the agreed specification."
           },
           {
             "title": "Specification confirmation",
-            "body": "Confirm dimensions, structure and surface requirements before production."
+            "body": "Check dimensions, structure and surface requirements before production."
           },
           {
             "title": "In-process checks",
@@ -323,7 +323,7 @@
           },
           {
             "title": "Final order confirmation",
-            "body": "Review the finished order against the approved specification before packing."
+            "body": "Review the finished order against the agreed specification before packing."
           },
           {
             "title": "Sample & document discussion",
@@ -418,7 +418,7 @@
         },
         {
           "kicker": "Surface & functional treatment",
-          "lede": "Printing and finishing options confirmed against material and brief.",
+          "lede": "Printing and finishing options follow the selected material and approved artwork.",
           "items": [
             {
               "title": "Printing",
@@ -564,7 +564,7 @@
         },
         {
           "title": "Quotation and sample discussion",
-          "body": "Review project requirements, discuss sampling procedure and production timeline."
+            "body": "Review the key requirements, discuss sampling and agree the production timeline."
         }
       ]
     },
@@ -578,9 +578,9 @@
     },
     "cta": {
       "kicker": "Start a project",
-      "title": "Share your project requirements for a discussion",
-      "lede": "Submit a brief or request a quote to begin the conversation.",
-      "discussBtn": "Discuss Your Requirement",
+      "title": "Share your packaging requirements",
+      "lede": "Send the key details or request a quote to begin the conversation.",
+      "discussBtn": "Request a quote",
       "quoteBtn": "Request a Quote"
     }
   },
@@ -641,9 +641,9 @@
     "requestQuote": "Request a quote",
     "viewPublishedSpecs": "View published specifications",
     "publishedSpecs": "Published specifications",
-    "publishedSpecsDescription": "Browse the confirmed product groups currently available in this family.",
+    "publishedSpecsDescription": "Browse the published product groups currently available in this family.",
     "noPublishedSpecs": "This family is presented as a planning route. Published specifications can be reviewed in the main directory.",
-    "representativeNote": "Representative reference image · confirm the final asset against your brief",
+    "representativeNote": "Representative reference image · final asset may vary by project",
     "materials": "Material direction",
     "forms": "Forms and formats",
     "applications": "Buyer applications",
@@ -688,15 +688,6 @@
         "applications": "Foodservice, trays and paper inserts",
         "capabilities": "Material selection and structure review",
         "parameters": "Material · GSM · format · surface process"
-      },
-      "cup": {
-        "title": "Paper cup materials",
-        "description": "Published cupstock, roll, sheet, bottom-stock and tray-material groups for converting projects.",
-        "material": "Cupstock and coated paper materials",
-        "forms": "Fan blanks, rolls, sheets and tray material",
-        "applications": "Paper cups, bowls and formed trays",
-        "capabilities": "Coating, die-cutting and converting review",
-        "parameters": "GSM · size · coating · surface process · finishing"
       },
       "converted": {
         "title": "Packaging materials & converted components",

@@ -4,7 +4,7 @@ export const homeEnglish = {
     title: "Paper packaging, built from the material up.",
     body: "From cupstock and corrugated board to custom boxes and inserts, Kehong brings material selection, structural sampling, paper converting, and production support into one coordinated workflow.",
     primary: "Explore products",
-    secondary: "Start a packaging project",
+    secondary: "Request a quote",
     capabilities: ["Material supply", "Structural sampling", "Converting & finishing", "Export-ready packing"],
     imageLabel: "Real equipment",
     imageTitle: "Paper converting capacity for reliable production.",

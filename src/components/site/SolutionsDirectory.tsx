@@ -22,9 +22,9 @@ const solutions = [
     id: "cupstock",
     href: "/products?search=cup",
     image: showcaseImages.webPaperCupStacks,
-    imageAlt: "Paper cup fan blanks and cupstock material",
-    en: { title: "Cupstock & cup fan blanks", body: "Cupstock matched by GSM, coating, print area and forming requirement.", tags: ["GSM selection", "Coating"] },
-    zh: { title: "杯纸与纸杯扇形片", body: "按克重、涂层、印刷区域和成型要求匹配杯纸", tags: ["克重选择", "涂层"] },
+    imageAlt: "Cupstock and coated paper material",
+    en: { title: "Cupstock & coated paper", body: "Cupstock and coated paper matched by GSM, coating, print area and forming requirement.", tags: ["GSM selection", "Coating"] },
+    zh: { title: "杯纸与淋膜纸材", body: "按克重、涂层、印刷区域和成型要求匹配纸材", tags: ["克重选择", "涂层"] },
   },
   {
     id: "corrugated",

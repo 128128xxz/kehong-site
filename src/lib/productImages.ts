@@ -2,6 +2,7 @@ import productImages from "@/data/productImages.json";
 import type { AppLocale } from "@/i18n/locales";
 import type { ProductSku } from "@/lib/catalog";
 import { getPublicProductType } from "@/lib/catalog";
+import { getR3SkuImageMapping, type R3Image } from "@/data/r3SkuImages";
 
 export type ProductImageStatus = "exact" | "representative" | "pending";
 export type ProductDataStatus = "complete" | "partial" | "pending-source";
@@ -38,6 +39,11 @@ const publicGroupVisualAssets: Record<string, string> = {
   "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup": "kh-coated-sheet-family-concept",
   "paper-cup-fan-kraft-cupstock-paper": "kh-kraft-family-representative",
   "paper-cup-fan-food-tray-paper-material": "kh-food-tray-family-concept",
+  "coated-paper-roll": "kh-material-family-representative",
+  "coated-paper-sheet": "kh-coated-sheet-family-concept",
+  "paper-cup-bottom-roll": "kh-cup-bottom-family-representative",
+  "cupstock-paper": "kh-kraft-family-representative",
+  "food-tray-paper-material": "kh-food-tray-family-concept",
 };
 
 export type ProductImageMeta = {
@@ -145,16 +151,7 @@ export function getDataStatusLabel(status: ProductDataStatus | string, locale: s
 }
 
 const productTypeLabels: Record<string, LocalizedLabel> = {
-  "paper-cup-fan": {
-    en: "Cupstock components",
-    zh: "杯纸组件",
-    es: "Componentes de cupstock",
-    id: "Cupstock components",
-    vi: "Thành phần giấy làm ly",
-    th: "ส่วนประกอบกระดาษทำแก้ว",
-    ms: "Komponen cupstock",
-  },
-  "pe-coated-paper-roll": { en: "PE coated paper roll", zh: "PE 淋膜纸卷" },
+  "pe-coated-paper-roll": { en: "Coated paper roll", zh: "淋膜纸卷" },
   "pe-coated-paper-sheet": { en: "Coated paper sheet", zh: "淋膜平张纸" },
   "paper-cup-bottom-roll": { en: "Paper cup bottom roll", zh: "纸杯底卷" },
   "cupstock-paper": { en: "Cupstock paper", zh: "杯纸" },
@@ -250,8 +247,7 @@ export function getProductTypeLabel(productType: string, locale: string) {
 export function getPublicProductTypeLabel(sku: ProductSku, locale: string) {
   const publicType = getPublicProductType(sku);
   const labels: Record<string, LocalizedLabel> = {
-    "paper-cup-fan": { en: "Paper cup fan", zh: "纸杯扇形片" },
-    "pe-coated-paper-roll": { en: "PE coated paper roll", zh: "PE 淋膜纸卷" },
+    "pe-coated-paper-roll": { en: "Coated paper roll", zh: "淋膜纸卷" },
     "pe-coated-paper-sheet": { en: "Coated paper sheet", zh: "淋膜平张纸" },
     "paper-cup-bottom-roll": { en: "Paper cup bottom roll", zh: "纸杯底卷" },
     "cupstock-paper": { en: "Cupstock paper", zh: "杯纸" },
@@ -271,6 +267,8 @@ function isAssetDisplayAllowed(asset: ProductImageAsset) {
 }
 
 export function getSkuEffectiveImageStatus(sku: ProductSku): ProductImageStatus {
+  if (getR3SkuImageMapping(sku)) return "representative";
+
   const mapping = getSkuImageMapping(sku);
   const requestedStatus = normalizeImageStatus(mapping.imageStatus ?? sku.imageMappingStatus);
   const mainImageAssetId = getGroupVisualAssetId(sku) ?? mapping.main ?? sku.mainImageAssetId;
@@ -285,8 +283,7 @@ export function getSkuEffectiveImageStatus(sku: ProductSku): ProductImageStatus 
 }
 
 const productTypeFallbacks: Record<string, { src: string; en: string; zh: string }> = {
-  "paper-cup-fan": { src: "/media/products/paper-cup-materials/paper-cup-fan-product-reference-03.jpg", en: "Paper cup fan blanks for cup converting", zh: "用于纸杯加工的纸杯扇形片" },
-  "paper-packaging-material": { src: "/media/products/paper-cup-materials/pe-coated-paper-roll-reference-01.jpg", en: "PE-coated paper roll for packaging conversion", zh: "用于包装加工的 PE 淋膜纸卷" },
+  "paper-packaging-material": { src: "/media/products/paper-cup-materials/pe-coated-paper-roll-reference-01.jpg", en: "Coated paper roll for packaging conversion", zh: "用于包装加工的淋膜纸卷" },
   "kraft-paper": { src: "/media/products/paper-cup-materials/cupstock-paper-product-reference-01.jpg", en: "Kraft paper and cupstock material reference", zh: "牛皮纸与杯纸材料参考图" },
   "food-packaging-box": { src: "/media/products/food-packaging/food-packaging-box-reference-01.jpg", en: "Food packaging box structure reference", zh: "食品包装盒结构参考图" },
   "corrugated-fluted-paper": { src: "/media/products/corrugated-board/corrugated-board-cross-section-reference-01.jpg", en: "Corrugated board material structure reference", zh: "瓦楞纸板材料结构参考图" },
@@ -306,6 +303,9 @@ function fallbackImage(sku: ProductSku, locale: string): ProductImageMeta {
 }
 
 export function getSkuImageMeta(sku: ProductSku, locale: string): ProductImageMeta {
+  const r3Mapping = getR3SkuImageMapping(sku);
+  if (r3Mapping) return r3ImageMeta(r3Mapping.primary, locale);
+
   const mapping = getSkuImageMapping(sku);
   const mainImageAssetId = getGroupVisualAssetId(sku) ?? mapping.main ?? sku.mainImageAssetId;
   const asset = mainImageAssetId ? assetsById.get(mainImageAssetId) : undefined;
@@ -323,6 +323,16 @@ export function getSkuImageMeta(sku: ProductSku, locale: string): ProductImageMe
     statusLabel: getImageStatusLabel(safeStatus, locale),
     statusTone: statusTone(safeStatus),
     asset: approvedAsset,
+  };
+}
+
+function r3ImageMeta(r3Image: R3Image, locale: string): ProductImageMeta {
+  return {
+    src: r3Image.src,
+    alt: pickLabel(r3Image.alt, locale),
+    status: "representative",
+    statusLabel: getImageStatusLabel("representative", locale),
+    statusTone: statusTone("representative"),
   };
 }
 
@@ -357,6 +367,11 @@ function getSafeGalleryStatus(sku: ProductSku, asset: ProductImageAsset): Produc
 }
 
 export function getSkuGalleryMeta(sku: ProductSku, locale: string): ProductImageMeta[] {
+  const r3Mapping = getR3SkuImageMapping(sku);
+  if (r3Mapping) {
+    return [r3Mapping.primary, ...r3Mapping.gallery].map((r3Image) => r3ImageMeta(r3Image, locale));
+  }
+
   const mapping = getSkuImageMapping(sku);
   const groupVisualAssetId = getGroupVisualAssetId(sku);
   const ids = groupVisualAssetId

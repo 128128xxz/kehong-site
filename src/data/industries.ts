@@ -46,7 +46,7 @@ export const industryGroups: IndustryGroup[] = [
     application("eyewear-medical-devices", "Eyewear & Medical Devices", "Compact protective and presentation formats for precision products.", showcaseImages.displayWide, ["pillow-boxes", "paper-inserts"]),
     application("automotive-parts-tools", "Automotive Parts & Tools", "Protective inserts and mailers for parts, tools and technical products.", showcaseImages.machine, ["corrugated-mailer-boxes", "paper-inserts"]),
     application("stationery-office-supplies", "Stationery & Office Supplies", "Printed boxes, bags and inserts for stationery and office product ranges.", showcaseImages.goldBoard, ["paper-bags", "paper-boxes"]),
-    application("cbd-packaging", "CBD Packaging", "Packaging structures reviewed against the applicable product and market brief.", showcaseImages.displayWide, ["pillow-boxes", "paper-boxes"]),
+    application("cbd-packaging", "CBD Packaging", "Packaging structures reviewed for the product and market needs.", showcaseImages.displayWide, ["pillow-boxes", "paper-boxes"]),
   ] },
 ];
 

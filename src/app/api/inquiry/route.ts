@@ -4,6 +4,7 @@ import { buildInquiryEmail } from "@/lib/inquiryEmail";
 import { getInquiryEmailConfig, isValidEmail } from "@/lib/emailConfig";
 import { absoluteSiteUrl } from "@/lib/site-config";
 import { getInterest } from "@/data/interests";
+import { sendWithResend } from "@/server/mail-history/resend";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -241,46 +242,33 @@ export async function POST(request: Request) {
   }
 
   const email = buildInquiryEmail({ ...inquiry, submittedAt: new Date(now).toISOString(), requestId });
-  let response: Response;
-  try {
-    response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${emailConfig.apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // EMAIL_FROM may be a plain address or a verified display-name sender.
-        // Pass the configured value through unchanged so a value such as
-        // `Kehong Website <inquiry@kehong.tech>` is not nested a second time.
-        from: emailConfig.from,
-        to: emailConfig.to,
-        reply_to: isValidEmail(inquiry.email) ? inquiry.email : emailConfig.replyToFallback || undefined,
-        subject: email.subject,
-        html: email.html,
-        text: email.text,
-        ...(attachments.length ? { attachments } : {}),
-      }),
-    });
-  } catch {
+  const delivery = await sendWithResend({
+    apiKey: emailConfig.apiKey,
+    from: emailConfig.from,
+    to: emailConfig.to,
+    replyTo: isValidEmail(inquiry.email) ? inquiry.email : emailConfig.replyToFallback || undefined,
+    subject: email.subject,
+    html: email.html,
+    text: email.text,
+    attachments,
+    source: "website_inquiry",
+    campaign: "website_inquiry",
+    messageId: inquiryKey,
+    tag: inquiry.inquiryType || "quote_request",
+  });
+  if (delivery.networkError) {
     recentInquiryKeys.delete(inquiryKey);
     console.error("Kehong inquiry email request failed", { requestId, status: "network_error", at: new Date().toISOString() });
     return inquiryError("EMAIL_DELIVERY_FAILED", 502, "Email delivery failed");
   }
 
-  if (!response.ok) {
+  if (!delivery.ok) {
     recentInquiryKeys.delete(inquiryKey);
-    console.error("Kehong inquiry email provider rejected request", { requestId, status: response.status, at: new Date().toISOString() });
+    console.error("Kehong inquiry email provider rejected request", { requestId, status: delivery.status, reason: delivery.reason, at: new Date().toISOString() });
     return inquiryError("EMAIL_PROVIDER_REJECTED", 502, "Email delivery failed");
   }
 
-  let emailId = "unknown";
-  try {
-    const result = (await response.json()) as { id?: unknown };
-    if (typeof result.id === "string" && result.id) emailId = result.id;
-  } catch {
-    // Resend normally returns JSON; acceptance is still recorded if the HTTP response was successful.
-  }
+  const emailId = delivery.providerMessageId ?? "unknown";
   recentRequests.set(ip, now);
   recentInquiryKeys.set(inquiryKey, { timestamp: now, status: "accepted" });
   console.info("Kehong inquiry email accepted", { requestId, emailId, at: new Date().toISOString(), status: "accepted" });

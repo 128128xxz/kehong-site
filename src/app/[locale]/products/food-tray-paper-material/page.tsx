@@ -6,7 +6,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 import ProductAnchorSelector, { type AnchorVariantOption } from "@/components/site/ProductAnchorSelector";
 import { Link } from "@/i18n/navigation";
 import { locales } from "@/i18n/locales";
-import { CORE_PRODUCT_ANCHOR, getProductFamilyBySlug, getCoreAnchorVariants } from "@/data/product-family-catalog";
+import { CORE_PRODUCT_ANCHOR, getCoreAnchorVariants } from "@/data/product-family-catalog";
 import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
 import { getLocalizedCatalogValue, getLocalizedProductMaterial, getLocalizedProductTitle } from "@/lib/catalog";
@@ -44,7 +44,6 @@ export default async function FoodTrayAnchorPage({ params }: { params: Promise<{
   const tx = t as unknown as (key: string) => string;
   const anchor = variants[0];
   const image = getSkuImageMeta(anchor, locale);
-  const family = getProductFamilyBySlug("paper-cup-materials");
   const variantOptions: AnchorVariantOption[] = variants.map((variant) => ({
     sku: variant.sku,
     slug: variant.slug,
@@ -64,7 +63,6 @@ export default async function FoodTrayAnchorPage({ params }: { params: Promise<{
         <section className="kh-shell pt-7 sm:pt-10">
           <nav aria-label={locale === "zh" ? "面包屑" : "Breadcrumb"} className="kh-mono flex flex-wrap items-center gap-2 text-xs text-(--kh-muted)">
             <Link href="/products" className="kh-text-link">{tx("breadcrumbProducts")}</Link><span aria-hidden="true">/</span>
-            {family ? <><Link href={`/products/families/${family.routeSlug}`} className="kh-text-link">{tx(`family.${family.id}.title`)}</Link><span aria-hidden="true">/</span></> : null}
             <span>{tx("anchor.title")}</span>
           </nav>
         </section>
@@ -73,7 +71,7 @@ export default async function FoodTrayAnchorPage({ params }: { params: Promise<{
             <p className="kh-eyebrow">{tx("anchorEyebrow")}</p>
             <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-[1.04] tracking-tight text-(--kh-ink) sm:text-6xl">{tx("anchor.title")}</h1>
             <p className="mt-5 max-w-3xl text-base leading-8 text-(--kh-muted) sm:text-lg">{tx("anchor.description")}</p>
-            <div className="mt-7 flex flex-wrap gap-3"><Link href={`/products/families/${family?.routeSlug ?? "paper-cup-materials"}`} className="kh-button kh-button-ghost">{tx("backToFamilies")}</Link><Link href={`/contact?interest=${CORE_PRODUCT_ANCHOR.interest}&product=${anchor.slug}&sku=${anchor.sku}&family=${CORE_PRODUCT_ANCHOR.familyId}`} className="kh-button kh-button-dark">{tx("requestQuote")}</Link></div>
+            <div className="mt-7 flex flex-wrap gap-3"><Link href="/products" className="kh-button kh-button-ghost">{tx("viewAllSpecifications")}</Link><Link href={`/contact?interest=${CORE_PRODUCT_ANCHOR.interest}&product=${anchor.slug}&sku=${anchor.sku}&family=${CORE_PRODUCT_ANCHOR.familyId}`} className="kh-button kh-button-dark">{tx("requestQuote")}</Link></div>
           </div>
           <figure className="overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface-muted)"><div className="relative aspect-[4/3]"><Image src={image.src} alt={image.alt} fill priority sizes="(min-width: 1024px) 35vw, 100vw" className="object-cover" /></div><figcaption className="px-4 py-3 text-xs leading-5 text-(--kh-muted)">{tx("representativeNote")}</figcaption></figure>
         </section>

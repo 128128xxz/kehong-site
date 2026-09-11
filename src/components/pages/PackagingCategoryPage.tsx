@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import { ArrowRight, Check, ClipboardCheck, Factory, MessageCircle } from "lucide-react";
+import Image from "next/image";
 import Header from "@/components/site/Header";
 import SiteFooter from "@/components/site/SiteFooter";
 import PageHero from "@/components/site/PageHero";
@@ -11,16 +12,18 @@ import { buildInquiryContactHref } from "@/lib/inquiryContext";
 import RelatedLinks from "@/components/site/RelatedLinks";
 import { getAllSkus, getCatalogFilterOptions, getLocalizedProductSku, getProductGroupId, type ProductSku } from "@/lib/catalog";
 import { type PackagingCategory } from "@/data/packagingCategories";
+import { getR2AssetsForPackagingRoute } from "@/data/r2WebsiteAssets";
 import { buildPackagingContactHref } from "@/lib/packagingInquiry";
 
 const packagingSectionNumbers = {
   hero: "01",
   selection: "02",
   catalog: "03",
-  production: "04",
-  faq: "05",
-  related: "06",
-  project: "07",
+  visuals: "04",
+  production: "05",
+  faq: "06",
+  related: "07",
+  project: "08",
 } as const;
 
 function matchesCategory(sku: ProductSku, category: PackagingCategory) {
@@ -40,11 +43,12 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
   const subcategories = isZh ? category.subcategories.zh : category.subcategories.en;
   const applications = isZh ? category.applications.zh : category.applications.en;
   const filters = isZh ? category.filters.zh : category.filters.en;
+  const r2Visuals = getR2AssetsForPackagingRoute(category.slug);
   const pagePath = `/packaging/${category.slug}`;
   const contactHref = buildPackagingContactHref(locale, category.slug);
   const scopeQuote = (
     <Link href={contactHref} data-testid="packaging-scope-quote" className="kh-button kh-button-primary mt-5">
-      {isZh ? "提交项目需求" : "Discuss this requirement"}<ArrowRight className="size-4" />
+      {isZh ? "提交项目需求" : "Request a quote"}<ArrowRight className="size-4" />
     </Link>
   );
   const breadcrumbJsonLd = {
@@ -77,7 +81,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           }
         >
           <Link href={contactHref} data-testid="packaging-hero-quote" className="kh-button kh-button-light">
-            {isZh ? "立即询价" : "Get a custom quote"}
+            {isZh ? "立即询价" : "Request a quote"}
             <ArrowRight className="size-4" />
           </Link>
           <a href="#catalog-list" className="kh-button kh-button-ghost">
@@ -99,7 +103,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           <div className="kh-shell grid gap-10 lg:grid-cols-[.85fr_1.15fr]">
             <Reveal>
               <SectionKicker index={packagingSectionNumbers.selection} text={isZh ? "快速选择" : "Quick selection"} />
-              <h2 id="packaging-selection-title">{isZh ? "从项目需求开始" : "Start with the project brief"}</h2>
+              <h2 id="packaging-selection-title">{isZh ? "从包装需求开始" : "Start with your packaging needs"}</h2>
               <p className="kh-section-lede mt-5">{isZh ? category.description.zh : category.description.en}</p>
             </Reveal>
             <Reveal delay={120}>
@@ -119,16 +123,16 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           <div className="kh-shell">
             <Reveal>
               <div className="mb-9 max-w-3xl">
-                <SectionKicker index={packagingSectionNumbers.catalog} text={isTakeoutBoxes ? (isZh ? "项目确认" : "Project confirmation") : (isZh ? "已确认目录" : "Confirmed catalog")} />
+                <SectionKicker index={packagingSectionNumbers.catalog} text={isTakeoutBoxes ? (isZh ? "需求范围" : "Packaging scope") : (isZh ? "公开目录" : "Published catalog")} />
                 <h2 id="packaging-catalog-title">{isTakeoutBoxes ? (isZh ? "外带盒结构待提交规格评估" : "Takeout structure review from project scope") : (isZh ? "产品范围" : "Product range")}</h2>
                 <p className="kh-section-lede mt-4">
                   {isTakeoutBoxes
                     ? (isZh
                       ? "外带盒的结构、尺寸、材料和印刷按项目需求确认。请提交参考图、尺寸和目标数量，以便评估和报价。"
-                      : "Takeout box structures, sizes, materials and printing are confirmed against the project brief. Send a reference image, dimensions and target quantity for evaluation.")
+                      : "Takeout box structures, sizes, materials and printing are reviewed from your reference image, dimensions and target quantity.")
                     : isZh
                     ? "目录展示已确认的产品。定制结构请直接提交项目需求。"
-                    : "Only confirmed public product records are shown here. Send a project brief for a custom structure or an unlisted format."}
+                    : "Only published product records are shown here. Send your dimensions and reference materials for a custom structure or an unlisted format."}
                 </p>
               </div>
             </Reveal>
@@ -145,6 +149,47 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
             )}
           </div>
         </section>
+
+        {r2Visuals.length > 0 ? (
+          <section id="packaging-visuals" aria-labelledby="packaging-visuals-title" className="kh-section">
+            <div className="kh-shell">
+              <Reveal>
+                <div className="kh-section-heading">
+                  <div>
+                    <SectionKicker index={packagingSectionNumbers.visuals} text={isZh ? "代表性视觉" : "Representative visuals"} />
+                    <h2 id="packaging-visuals-title">{isZh ? "包装结构与方向参考" : "Packaging structures & directions"}</h2>
+                  </div>
+                </div>
+                <p className="kh-section-lede mt-4 max-w-3xl">
+                  {isZh
+                    ? "以下视觉用于展示包装结构、应用方向和定制思路；最终尺寸、材料和工艺以项目规格评审为准。"
+                    : "These visuals show packaging structures, application directions and customisation ideas. Final dimensions, materials and finishes are confirmed before production."}
+                </p>
+              </Reveal>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {r2Visuals.map((visual, index) => (
+                  <Reveal key={visual.assetId} delay={Math.min(index, 3) * 60}>
+                    <figure className="overflow-hidden rounded-lg border border-(--kh-line) bg-(--kh-surface)">
+                      <div className="relative aspect-[4/3] bg-[#eeeae5]">
+                        <Image
+                          src={visual.image}
+                          alt={isZh ? visual.altZh : visual.alt}
+                          fill
+                          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-contain p-3"
+                          loading="lazy"
+                        />
+                      </div>
+                      <figcaption className="px-4 py-3 text-sm font-semibold text-(--kh-ink)">
+                        {isZh ? visual.altZh : visual.alt}
+                      </figcaption>
+                    </figure>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <section id="packaging-production" aria-labelledby="packaging-production-title" className="kh-section">
           <div className="kh-shell">
@@ -174,7 +219,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
           <div className="kh-shell grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
             <Reveal>
               <SectionKicker index={packagingSectionNumbers.faq} text={isZh ? "答疑" : "FAQ"} />
-              <h2 id="packaging-faq-title">{isZh ? "从规格确认开始" : "Start with a clear specification brief"}</h2>
+              <h2 id="packaging-faq-title">{isZh ? "从关键规格开始" : "Start with the key details"}</h2>
             </Reveal>
             <Reveal delay={120}>
               <div className="grid gap-3">
@@ -200,7 +245,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
             { href: "/products?collection=materials", en: "Related paper materials", zh: "相关纸材" },
             { href: "/industries", en: "Recommended industries", zh: "推荐行业" },
             { href: "/resources/packaging-selection-guide", en: "Packaging selection guide", zh: "包装选型指南" },
-            { href: buildInquiryContactHref({ interest: "structure-review" }), en: "Start your project brief", zh: "提交项目需求" },
+            { href: buildInquiryContactHref({ interest: "structure-review" }), en: "Request a quote", zh: "提交项目需求" },
           ]}
         />
 
@@ -230,7 +275,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
 function getCategoryFaq(slug: string, isZh: boolean): [string, string][] {
   const categorySpecific: Record<string, { en: [string, string][]; zh: [string, string][] }> = {
     "cake-boards-cake-drums": {
-      en: [["How do cake boards and cake drums differ?", "Cake boards are commonly selected for everyday support and display. Cake drums are reviewed when a project needs a thicker support format."], ["What should be confirmed before quoting?", "Share the cake footprint, target support requirement, quantity, finish requirements and destination."], ["Can the shape and edge be customized?", "Shape, diameter, edge and finish are reviewed against the approved project brief."]],
+      en: [["How do cake boards and cake drums differ?", "Cake boards are commonly selected for everyday support and display. Cake drums are reviewed when a project needs a thicker support format."], ["What should I send for a quote?", "Share the cake footprint, target support requirement, quantity, finish requirements and destination."], ["Can the shape and edge be customized?", "Shape, diameter, edge and finish are reviewed from the agreed requirements."]],
       zh: [["蛋糕托板（Cake Board）与蛋糕鼓（Cake Drum）有什么区别？", "蛋糕托板（Cake Board）通常用于日常承托与展示；项目需要更厚承托时会评审蛋糕鼓（Cake Drum）规格。"], ["报价前需要确认什么？", "请提供蛋糕尺寸、承托需求、数量、表面效果和目的地。"], ["形状和边缘可以定制吗？", "形状、直径、边缘与表面效果会按确认后的项目需求评审。"]],
     },
     "corrugated-mailer-boxes": {
@@ -244,7 +289,7 @@ function getCategoryFaq(slug: string, isZh: boolean): [string, string][] {
   };
   return categorySpecific[slug]?.[isZh ? "zh" : "en"] ?? (isZh
     ? [["询盘需要提供哪些信息？", "建议提供尺寸、材料、数量、印刷或后处理要求和目标市场。"], ["可以定制结构和表面效果吗？", "结构、尺寸、印刷和后处理方案会在项目评审中确认。"], ["如何确认最终规格？", "我们会根据项目资料进行规格评审，并在需要时安排结构打样。"]]
-    : [["What should a buyer include in a brief?", "Share dimensions, material, quantity, print or finishing needs, and target market where available."], ["Can the structure and finish be customized?", "Structure, size, printing and finishing options are confirmed during project review."], ["How are final specifications confirmed?", "Kehong reviews the project brief and can coordinate structural sampling when required."]]);
+    : [["What should I send for a quote?", "Share dimensions, material, quantity, print or finishing needs, and target market where available."], ["Can the structure and finish be customized?", "Structure, size, printing and finishing options are reviewed during the project."], ["How are final specifications confirmed?", "Kehong reviews the information you provide and can coordinate structural sampling when required."]]);
 }
 
 function InfoPanel({ icon, title, items }: { icon: ReactNode; title: string; items: string[] }) {

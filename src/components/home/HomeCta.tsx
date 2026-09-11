@@ -21,8 +21,8 @@ export default function HomeCta({ locale }: { locale: string }) {
       <Reveal mode="none"><div className="kh-keyline" aria-hidden="true" /></Reveal>
       <div className="kh-shell kh-cta-grid">
         <Reveal>
-          <SectionKicker index="07" text={zh ? "询盘" : "Project brief"} light />
-          <h2 className="">{zh ? "提交项目资料，获取打样或报价建议" : "Share your project brief for sampling or quote guidance"}</h2>
+          <SectionKicker index="07" text={zh ? "询盘" : "Request a quote"} light />
+          <h2 className="">{zh ? "提交项目资料，获取打样或报价建议" : "Share your packaging details for a quote"}</h2>
           <p className="kh-section-lede" style={{ color: "rgba(255,253,248,.75)" }}>
             {zh ? "请提供产品类型、尺寸、材料、数量和目的地。" : "Please include the product, dimensions, material, quantity and destination."}
           </p>
@@ -36,7 +36,7 @@ export default function HomeCta({ locale }: { locale: string }) {
               ))}
             </div>
             <div className="kh-cta-actions">
-              <Link className="kh-button kh-button-light" href="/contact">{zh ? "立即询价" : "Submit a brief"}<ArrowRight className="size-4" /></Link>
+              <Link className="kh-button kh-button-light" href="/contact">{zh ? "立即询价" : "Request a quote"}<ArrowRight className="size-4" /></Link>
               {zh ? <><WeChatContactButton phone={contact.phone.zh} label="微信咨询" copiedLabel="手机号已复制" className="kh-button kh-button-ghost" /><a className="kh-button kh-button-ghost" href="tel:+8615888233221"><Phone className="size-4" />电话</a></> : <a className="kh-button kh-button-ghost" href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle className="size-4" />WhatsApp</a>}
             </div>
             <div className="kh-final-links">

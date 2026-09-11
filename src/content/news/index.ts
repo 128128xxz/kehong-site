@@ -66,7 +66,7 @@ const articles: NewsArticle[] = [
     sections: [
       { heading: "Three formats, three handoffs", paragraphs: ["A paper cup fan is a die-cut blank that is ready for the next forming step. A coated roll is supplied as a continuous web, while a coated sheet is supplied as cut sheets. The right choice depends on the buyer's converting equipment, artwork route and packing preference.", "These terms describe a format, not a promise about a particular paper grade. A useful brief names the intended product, the required GSM, the coating side and whether the next process expects a roll, sheet or fan blank."] },
       { heading: "What to confirm before comparing prices", paragraphs: ["Record the cup or container size, paper direction, coating requirement, print method and estimated quantity. If the buyer already has a forming line, the material handoff should match its feeding method. If the project is still at concept stage, a sample or reference drawing helps the team discuss the feasible blank format.", "A side-by-side comparison is most useful when the same paper, coating and quantity assumptions are used. Otherwise a lower unit price may simply represent a different level of converting or a different delivery format."] },
-      { heading: "A cleaner inquiry path", paragraphs: ["Send the intended application, dimensions, material preference and destination together. Kehong can then separate material selection from any die-cutting or printing discussion and keep the quotation tied to the approved brief."] },
+      { heading: "A cleaner inquiry path", paragraphs: ["Send the intended application, dimensions, material preference and destination together. Kehong can then separate material selection from any die-cutting or printing discussion and keep the quotation tied to the confirmed project requirements."] },
     ],
     relatedLinks: [
       { href: "/products?collection=materials", en: "Browse paper materials", zh: "查看纸材产品" },
@@ -74,8 +74,8 @@ const articles: NewsArticle[] = [
       { href: "/contact?interest=pe-coated-paper-roll", en: "Ask about a material format", zh: "咨询材料形态" },
     ],
     cta: { href: "/contact?interest=pe-coated-paper-roll", en: "Discuss a cupstock brief", zh: "提交杯纸项目需求" },
-    socialExcerpt: "Compare paper cup fan blanks, coated rolls and coated sheets by the converting handoff, coating requirement and project brief.",
-    published: true,
+    socialExcerpt: "Compare paper cup fan blanks, coated rolls and coated sheets by the converting handoff, coating requirement and packaging details.",
+    published: false,
   },
   {
     slug: "takeout-box-quotation-six-details",
@@ -187,7 +187,7 @@ const articles: NewsArticle[] = [
     sections: [
       { heading: "Start with the finished presentation", paragraphs: ["A cake box and its board are usually handled together. Confirm the cake diameter or footprint, the board edge allowance, the finished height and the way the box opens. If a drum or spacer is part of the presentation, record its thickness as well.", "A board that is too close to the box wall can make loading harder, while an oversized board can change the visual proportion. Reviewing the set avoids treating each item as an unrelated SKU."] },
       { heading: "Match material and appearance", paragraphs: ["Describe the board finish, the box window or opening, and the print area that matters to the brand. The material and surface conversation should stay tied to the approved product data and the requested sample, rather than a generic promise about performance."] },
-      { heading: "Prepare the bakery inquiry", paragraphs: ["Send the cake dimensions, box style, board or drum preference, quantity and destination. A reference photo helps the team distinguish a celebration cake presentation from a bakery transport format. The final project brief can then connect the selected packaging with artwork, sampling and packing review."] },
+      { heading: "Prepare the bakery inquiry", paragraphs: ["Send the cake dimensions, box style, board or drum preference, quantity and destination. A reference photo helps the team distinguish a celebration cake presentation from a bakery transport format. These packaging details can then connect the selected packaging with artwork, sampling and packing review."] },
     ],
     relatedLinks: [
       { href: "/products/cake-boxes", en: "Cake boxes", zh: "蛋糕盒" },
@@ -216,9 +216,9 @@ const articles: NewsArticle[] = [
     coverAlt: "Representative packaging artwork and dieline preparation",
     tags: ["artwork", "dielines", "sampling"],
     sections: [
-      { heading: "Prepare the project brief", paragraphs: ["Start with the product, packed dimensions, material preference, quantity and target market. Add a reference image or existing structure when available. The goal is to give the structural review enough context before a dieline or sample is discussed."] },
-      { heading: "Separate artwork from structure", paragraphs: ["Artwork files communicate the visual layer; a dieline communicates cut, fold and panel relationships. Keep version names clear and mark the approved structure, print areas, bleed and safe zones. If the structure is still open, request a dieline review instead of forcing artwork onto an unconfirmed template."] },
-      { heading: "Use the sample to confirm the brief", paragraphs: ["A sample creates a tangible checkpoint for size, opening, fit and presentation. Record the changes after review and keep the revised artwork, dieline and sample notes aligned. This creates a clearer handoff to converting and packing without adding unsupported promises about timing or performance."] },
+      { heading: "Prepare the packaging details", paragraphs: ["Start with the product, packed dimensions, material preference, quantity and target market. Add a reference image or existing structure when available. The goal is to give the structural review enough context before a dieline or sample is discussed."] },
+      { heading: "Separate artwork from structure", paragraphs: ["Artwork files communicate the visual layer; a dieline communicates cut, fold and panel relationships. Keep version names clear and mark the agreed structure, print areas, bleed and safe zones. If the structure is still open, request a dieline review instead of forcing artwork onto an unconfirmed template."] },
+      { heading: "Use the sample to confirm the requirements", paragraphs: ["A sample creates a tangible checkpoint for size, opening, fit and presentation. Record the changes after review and keep the revised artwork, dieline and sample notes aligned. This creates a clearer handoff to converting and packing without adding unsupported promises about timing or performance."] },
     ],
     relatedLinks: [
       { href: "/resources/artwork-guidelines", en: "Artwork guidelines", zh: "设计稿指南" },
@@ -350,7 +350,7 @@ export function getNewsArticle(locale: NewsLocale, slug: string) {
 }
 
 export function getNewsSlugs() {
-  return articles.map((article) => article.slug);
+  return articles.filter((article) => article.published).map((article) => article.slug);
 }
 
 export function getNewsTranslation(locale: NewsLocale, translationKey: string) {

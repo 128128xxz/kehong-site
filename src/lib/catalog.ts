@@ -9,6 +9,9 @@ import {
 } from "@/lib/taxonomy";
 import { getCollectionForCategory, getProductCollection } from "@/data/productCollections";
 import { getProductFamily } from "@/data/productFamilies";
+import { isRemovedFromPublicCatalog } from "@/data/catalogVisibility";
+import { isSourceOnlyRecord } from "@/data/sourceOnlyRecords";
+import { isDataConflictSku } from "@/data/dataConflictRecords";
 import { formatProductDisplayList, formatProductDisplayValue, formatProductFieldValue } from "@/lib/productPresentation";
 
 export type ProductSku = (typeof catalog.skus)[number];
@@ -282,6 +285,17 @@ function containsCjk(value: string) {
 }
 
 export function getLocalizedProductTitle(sku: ProductSku, locale: string) {
+  if (isDataConflictSku(sku)) {
+    if (sku.groupId === "paper-cup-fan-pe-coated-paper-roll-for-paper-cup") {
+      return locale === "zh" ? "纸杯淋膜纸卷" : "Coated Paper Roll for Paper Cup";
+    }
+    if (sku.groupId === "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup") {
+      return locale === "zh" ? "纸杯淋膜平张纸" : "Coated Paper Sheet for Paper Cup";
+    }
+    if (sku.sku === "KH-FD-KCUP-150350-PR-048") {
+      return locale === "zh" ? "杯纸原纸" : "Cupstock Paper";
+    }
+  }
   return sku.title[locale as keyof typeof sku.title] ?? sku.title.en;
 }
 
@@ -293,7 +307,16 @@ function englishCatalogValue(value: string | undefined) {
 export function getLocalizedProductSku(sku: ProductSku, locale: string): ProductSku {
   // The normalized source retains legacy grouping keys for internal reconciliation.
   // Never serialize those source-derived keys into public catalog props.
-  const publicSku = { ...sku, canonicalGroupId: sku.groupId ?? sku.sku } as ProductSku;
+  const publicGroupId = getPublicProductGroupId(sku);
+  const publicSku = {
+    ...sku,
+    canonicalGroupId: publicGroupId,
+    groupId: publicGroupId,
+    productType: getPublicProductType(sku),
+    mainImageAssetId: undefined,
+    galleryAssetIds: [],
+    productLink: undefined,
+  } as unknown as ProductSku;
   if (locale !== "en") return publicSku;
 
   return {
@@ -426,7 +449,12 @@ export function getProductGroups(): ProductGroup[] {
 }
 
 export function getAllSkus(): ProductSku[] {
-  return catalog.skus.filter((sku) => sku.published === true && sku.sourceStatus === "confirmed");
+  return catalog.skus.filter((sku) => (
+    sku.published === true
+    && sku.sourceStatus === "confirmed"
+    && !isRemovedFromPublicCatalog(sku)
+    && !isSourceOnlyRecord(sku.id)
+  ));
 }
 
 export function getAllCatalogSkus(): ProductSku[] {
@@ -452,8 +480,22 @@ const publicProductTypesByGroup: Record<string, string> = {
   "paper-cup-fan-food-tray-paper-material": "food-tray-paper-material",
 };
 
+const publicProductGroupIdsByGroup: Record<string, string> = {
+  "paper-cup-fan-paper-cup-fan": "removed-product-family",
+  "paper-cup-fan-pe-coated-paper-roll-for-paper-cup": "coated-paper-roll",
+  "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup": "coated-paper-sheet",
+  "paper-cup-fan-paper-cup-bottom-roll": "paper-cup-bottom-roll",
+  "paper-cup-fan-kraft-cupstock-paper": "cupstock-paper",
+  "paper-cup-fan-food-tray-paper-material": "food-tray-paper-material",
+};
+
 export function getPublicProductType(sku: Pick<ProductSku, "groupId" | "canonicalGroupId" | "sku" | "productType">) {
   return publicProductTypesByGroup[getProductGroupId(sku)] ?? sku.productType;
+}
+
+export function getPublicProductGroupId(sku: Pick<ProductSku, "groupId" | "canonicalGroupId" | "sku">) {
+  const groupId = getProductGroupId(sku);
+  return publicProductGroupIdsByGroup[groupId] ?? groupId;
 }
 
 export function getProductGroupVariants(sku: ProductSku): ProductSku[] {
@@ -721,6 +763,11 @@ const canonicalGroupTitles: Record<string, { en: string; zh: string }> = {
   // Keep the historical slug, but never present it as a kraft-only range.
   "paper-cup-fan-kraft-cupstock-paper": { en: "Cupstock Paper", zh: "杯纸原纸" },
   "paper-cup-fan-food-tray-paper-material": { en: "Food Tray Paper Material", zh: "食品纸托材料" },
+  "coated-paper-roll": { en: "Coated Paper Roll for Paper Cup", zh: "纸杯淋膜纸卷" },
+  "coated-paper-sheet": { en: "Coated Paper Sheet for Paper Cup", zh: "纸杯淋膜平张纸" },
+  "paper-cup-bottom-roll": { en: "Paper Cup Bottom Roll", zh: "纸杯底纸卷" },
+  "cupstock-paper": { en: "Cupstock Paper", zh: "杯纸原纸" },
+  "food-tray-paper-material": { en: "Food Tray Paper Material", zh: "食品纸托材料" },
 };
 
 export type ProductGroupSummary = {
@@ -776,8 +823,8 @@ export function buildProductGroupSummary(group: { id: string; representative: Pr
       ? getLocalizedCatalogValue(rawFamilyLabel, locale)
       : rawFamilyLabel
     : getPublicProductType(group.representative);
-  const materials = group.id === "paper-cup-fan-kraft-cupstock-paper"
-    ? [locale === "zh" ? "可选白色杯纸与牛皮杯纸" : "White and kraft cupstock options"]
+  const materials = group.id === "paper-cup-fan-kraft-cupstock-paper" || group.id === "cupstock-paper"
+    ? [locale === "zh" ? "杯纸" : "Cupstock Paper"]
     : [...new Set(group.variants.map((variant) => getLocalizedProductMaterial(variant, locale)).filter(Boolean))];
   const applications = [...new Set(group.variants.flatMap((variant) => (variant.applicationsList ?? [variant.applications])
     .map((value) => formatProductFieldValue(getLocalizedCatalogValue(value, locale), "application", locale))
@@ -809,6 +856,30 @@ export function buildProductGroupSummary(group: { id: string; representative: Pr
   };
 }
 
+/**
+ * Customer-facing group summary. Internal summary calculations retain the
+ * source-derived coating rollup for audits and filters; unresolved public
+ * conflicts suppress that field only at the presentation boundary.
+ */
+export function getPublicProductGroupSummary(group: { id: string; representative: ProductSku; variants: ProductSku[] }, locale: string): ProductGroupSummary {
+  const summary = buildProductGroupSummary(group, locale);
+  if (!group.variants.some(isDataConflictSku)) return summary;
+
+  const description = [
+    summary.familyLabel,
+    summary.gsm,
+    formatProductDisplayList(summary.applications.slice(0, 2), locale),
+  ].filter(Boolean).join(" · ");
+
+  return {
+    ...summary,
+    coating: "",
+    coatingOptions: [],
+    description,
+    metadata: { ...summary.metadata, description },
+  };
+}
+
 /** @deprecated Use buildProductGroupSummary for all new consumers. */
 export const getProductGroupSummary = buildProductGroupSummary;
 
@@ -829,13 +900,6 @@ export type FeaturedProductGroup = {
  * to their product range instead of publishing an unverified product detail.
  */
 const homepageFeaturePlan = [
-  {
-    productGroupId: "paper-cup-fan-paper-cup-fan",
-    categoryId: "food-grade-paper",
-    categorySlug: "food-grade-paper",
-    title: { en: "Cup fan", zh: "纸杯扇形片" },
-    image: "/media/products/paper-cup-materials/paper-cup-fan-product-reference-02.webp",
-  },
   {
     productGroupId: "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
     categoryId: "food-grade-paper",
@@ -924,7 +988,7 @@ function searchableSkuText(sku: ProductSku): string {
     .toLocaleLowerCase();
 }
 
-export function filterCatalogSkus(filters: CatalogFilters = {}, skus: ProductSku[] = catalog.skus): ProductSku[] {
+export function filterCatalogSkus(filters: CatalogFilters = {}, skus: ProductSku[] = getAllSkus()): ProductSku[] {
   const query = filters.search?.trim().toLocaleLowerCase();
   const canonicalCategory = getCanonicalTaxonomyCategoryId(filters.category);
   const matchesLocalizedValue = (raw: string | undefined, selected: string | undefined) => {

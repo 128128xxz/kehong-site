@@ -6,9 +6,8 @@
 export const productCollections = {
   materials: {
     id: "materials",
-    title: { en: "Paper Materials & Components", zh: "纸材与纸杯组件" },
+    title: { en: "Paper Materials & Components", zh: "纸材与半成品组件" },
     productGroupIds: [
-      "paper-cup-fan-paper-cup-fan",
       "paper-cup-fan-pe-coated-paper-roll-for-paper-cup",
       "paper-cup-fan-pe-coated-paper-sheet-for-paper-cup",
       "paper-cup-fan-paper-cup-bottom-roll",

@@ -10,8 +10,8 @@ import { productCatalogSections, type DirectoryLink } from "@/data/productDirect
 type ProductVisual = DirectoryLink & { image: string; alt: string; altZh: string };
 
 const materialVisuals: Record<string, Pick<ProductVisual, "image" | "alt" | "altZh">> = {
-  "paper-cup-fan": { image: showcaseImages.colorPaperFan, alt: "Paper cup fan blanks ready for converting", altZh: "待加工的纸杯扇形片" },
   "pe-coated-paper-roll": { image: showcaseImages.goldBoardSheets, alt: "Coated paper sheets for packaging conversion", altZh: "用于包装加工的淋膜纸张" },
+  "pe-coated-paper-sheet": { image: showcaseImages.goldBoardSheets, alt: "Coated paper sheets for packaging conversion", altZh: "用于包装加工的淋膜纸张" },
   "food-tray-material": { image: showcaseImages.goldBoardPieces, alt: "Paper tray material pieces", altZh: "纸托材料片" },
 };
 
@@ -22,8 +22,8 @@ const finishedVisuals: Record<string, Pick<ProductVisual, "image" | "alt" | "alt
 };
 
 const shortZhDescriptions: Record<string, string> = {
-  "paper-cup-fan": "纸杯杯身扇形片。",
   "pe-coated-paper-roll": "食品容器淋膜卷材。",
+  "pe-coated-paper-sheet": "食品容器淋膜平张。",
   "food-tray-material": "纸托内托用纸材。",
   "takeout-boxes": "外带餐饮纸盒。",
   "cake-boxes": "蛋糕甜点纸盒。",
@@ -57,7 +57,7 @@ export default async function HomeProductSystems({ locale }: { locale: string })
       label: t("products.materials"),
       intro: t("products.materialsIntro"),
       cta: t("products.materialsCta"),
-      links: pickLinks("materials", ["paper-cup-fan", "pe-coated-paper-roll", "food-tray-material"]),
+      links: pickLinks("materials", ["pe-coated-paper-roll", "pe-coated-paper-sheet", "food-tray-material"]),
       visuals: materialVisuals,
       image: showcaseImages.providedStructureMaterial,
       imageAlt: zh ? "科宏纸材与包装结构材料" : "Kehong paper materials and packaging structures",

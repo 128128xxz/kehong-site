@@ -136,7 +136,7 @@ export default function MaterialCollectionPage({ locale, collection }: { locale:
           { href: "/packaging/corrugated-mailer-boxes", en: "Corrugated mailer boxes", zh: "瓦楞邮寄盒" },
           { href: "/packaging/pizza-packaging", en: "Pizza boxes & food paper pads", zh: "披萨盒与食品纸垫" },
           { href: "/packaging/inserts-dividers", en: "Inserts & dividers", zh: "内托与隔板" },
-          { href: "/contact", en: "Get a quote / request samples", zh: "询价 / 申请样品" },
+          { href: "/contact", en: "Request a quote / Request samples", zh: "询价 / 申请样品" },
         ]} />
       </main>
       <SiteFooter />

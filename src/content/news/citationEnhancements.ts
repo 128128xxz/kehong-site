@@ -16,7 +16,7 @@ const en = {
       { Format: "Coated sheet", "How it is supplied": "Cut sheets", "Best first confirmation": "Sheet size, grain and next process" },
     ],
     buyerChecklist: ["Application and finished size", "Paper, GSM and coating side", "Roll, sheet or fan handoff", "Quantity and destination market"],
-    sources: [{ label: "Current Kehong material catalog", href: "/products?collection=materials" }, { label: "Project brief supplied by buyer" }],
+    sources: [{ label: "Current Kehong material catalog", href: "/products?collection=materials" }, { label: "Buyer-supplied packaging details" }],
   },
   "packaging-brief-02": {
     directAnswer: "A takeout-box quotation is easier to review when the brief names the product, inside dimensions, opening style, material, artwork status, quantity and destination. These details describe the structure and converting route without assuming grease resistance, food-contact status or another performance claim. A photo, drawing or existing sample can fill gaps when the final dieline is not ready.",
@@ -66,7 +66,7 @@ const en = {
     directAnswer: "Before packaging sampling, align the product, packed dimensions, material preference, quantity, artwork version, cut lines, folds, bleed and safe zones in one structure brief. Artwork communicates the visual layer; a dieline communicates the physical relationship. Use the sample to confirm size, opening, fit and presentation, then keep the revised artwork, dieline and review notes on the same version path.",
     comparisonColumns: ["Stage", "Prepare", "Visible decision"],
     comparisonRows: [
-      { Stage: "Project brief", Prepare: "Product, size, material and quantity", "Visible decision": "Scope for structure review" },
+      { Stage: "Packaging details", Prepare: "Product, size, material and quantity", "Visible decision": "Scope for structure review" },
       { Stage: "Artwork handoff", Prepare: "Version, print area, bleed and safe zone", "Visible decision": "Approved visual layer" },
       { Stage: "Sample review", Prepare: "Fit, opening and presentation notes", "Visible decision": "Changes before next handoff" },
     ],
