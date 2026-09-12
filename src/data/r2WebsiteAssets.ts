@@ -108,6 +108,7 @@ const routeAssetIds: Record<string, readonly string[]> = {
     "paperboard-insert-jar-bottle",
     "paperboard-insert-precision-die-cut",
   ],
+  "cosmetic-packaging": ["perfume-gift-box", "skincare-gift-box", "cosmetic-box-with-insert", "premium-presentation-box"],
   "retail-packaging": [
     "window-retail-box",
     "folding-retail-box",

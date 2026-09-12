@@ -8,7 +8,11 @@ import { shouldSendLeadEvent, trackLeadEvent, type LeadEventPayload } from "@/li
 const eventTypes = new Set<LeadEventPayload["eventType"]>([
   "page_view", "product_view", "contact_view", "quote_view",
   "email_click", "whatsapp_click", "form_start", "form_submit",
+  "engagement_ping",
 ]);
+
+const HEARTBEAT_WINDOW_SECONDS = 15;
+const HEARTBEAT_MAX_SECONDS = 30;
 
 function cleanPath(pathname: string) {
   return pathname.split("?")[0].slice(0, 500) || "/";
@@ -17,6 +21,10 @@ function cleanPath(pathname: string) {
 function safeQueryValue(value: string | null) {
   if (!value || value.length > 120 || /@|\+?\d[\d .()_-]{6,}\d/u.test(value)) return undefined;
   return value;
+}
+
+function shouldTrackEngagement() {
+  return document.visibilityState === "visible" && document.hasFocus() === true;
 }
 
 export default function B2BVisitorTracking({ enabled }: { enabled: boolean }) {
@@ -32,22 +40,27 @@ export default function B2BVisitorTracking({ enabled }: { enabled: boolean }) {
 
   useEffect(() => {
     if (!shouldSendLeadEvent(enabled, optedOut)) return;
+
     const path = cleanPath(pathname);
     const params = new URLSearchParams(window.location.search);
     const common = {
       path,
       pageTitle: document.title.slice(0, 200),
+      referrer: document.referrer || undefined,
       utmSource: safeQueryValue(params.get("utm_source")),
       utmMedium: safeQueryValue(params.get("utm_medium")),
       utmCampaign: safeQueryValue(params.get("utm_campaign")),
       utmTerm: safeQueryValue(params.get("utm_term")),
       utmContent: safeQueryValue(params.get("utm_content")),
+      automationHint: navigator.webdriver === true,
     };
-    const send = (eventType: LeadEventPayload["eventType"], key: string = eventType) => {
+    const sentEvents = sent.current;
+
+    const send = (eventType: LeadEventPayload["eventType"], key: string = eventType, durationSeconds?: number, allowDuplicate = false) => {
       const eventKey = `${path}:${key}`;
-      if (sent.current.has(eventKey)) return;
-      sent.current.add(eventKey);
-      trackLeadEvent({ eventType, ...common });
+      if (!allowDuplicate && sentEvents.has(eventKey)) return;
+      if (!allowDuplicate) sentEvents.add(eventKey);
+      trackLeadEvent({ eventType, ...common, ...(durationSeconds == null ? {} : { durationSeconds }) });
     };
 
     send("page_view");
@@ -57,11 +70,68 @@ export default function B2BVisitorTracking({ enabled }: { enabled: boolean }) {
       if (params.has("product") || params.has("interest")) send("quote_view");
     }
 
+    const heartbeatState = {
+      accumulatedMs: 0,
+      segmentStartMs: shouldTrackEngagement() ? performance.now() : null,
+    };
+
+    const addElapsed = () => {
+      if (heartbeatState.segmentStartMs == null) return;
+      heartbeatState.accumulatedMs += Math.max(0, performance.now() - heartbeatState.segmentStartMs);
+      heartbeatState.segmentStartMs = null;
+    };
+
+    const resumeHeartbeat = () => {
+      if (shouldTrackEngagement() && heartbeatState.segmentStartMs == null) {
+        heartbeatState.segmentStartMs = performance.now();
+      }
+    };
+
+    const flushHeartbeat = (force = false) => {
+      addElapsed();
+
+      const pendingSeconds = Math.floor(heartbeatState.accumulatedMs / 1000);
+      if (pendingSeconds <= 0) {
+        resumeHeartbeat();
+        return;
+      }
+
+      const canSend = force || pendingSeconds >= HEARTBEAT_WINDOW_SECONDS;
+      if (!canSend) {
+        resumeHeartbeat();
+        return;
+      }
+
+      const durationSeconds = Math.min(HEARTBEAT_MAX_SECONDS, pendingSeconds);
+      heartbeatState.accumulatedMs -= durationSeconds * 1000;
+      send("engagement_ping", `engagement:${Date.now()}:${durationSeconds}`, durationSeconds, true);
+      resumeHeartbeat();
+    };
+
+    const onVisibilityChange = () => {
+      if (shouldTrackEngagement()) {
+        resumeHeartbeat();
+      } else {
+        flushHeartbeat(true);
+      }
+    };
+
+    const onPageHide = () => {
+      flushHeartbeat(true);
+    };
+
+    const tick = () => {
+      flushHeartbeat();
+    };
+
+    const interval = window.setInterval(tick, 1000);
     const onFocusIn = (event: FocusEvent) => {
-      if ((event.target as Element | null)?.closest("form")) send("form_start");
+      const target = (event.target as Element | null)?.closest("form");
+      if (target) send("form_start", `form-start:${target.getAttribute("id") || target.getAttribute("name") || ""}`);
     };
     const onSubmit = (event: Event) => {
-      if ((event.target as Element | null)?.closest("form")) send("form_submit");
+      const target = (event.target as Element | null)?.closest("form");
+      if (target) send("form_submit", `form-submit:${target.getAttribute("id") || target.getAttribute("name") || ""}`);
     };
     const onClick = (event: MouseEvent) => {
       const target = (event.target as Element | null)?.closest("a,button");
@@ -80,10 +150,18 @@ export default function B2BVisitorTracking({ enabled }: { enabled: boolean }) {
     document.addEventListener("focusin", onFocusIn);
     document.addEventListener("submit", onSubmit);
     document.addEventListener("click", onClick);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("pagehide", onPageHide);
+
     return () => {
+      window.clearInterval(interval);
       document.removeEventListener("focusin", onFocusIn);
       document.removeEventListener("submit", onSubmit);
       document.removeEventListener("click", onClick);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("pagehide", onPageHide);
+      flushHeartbeat(true);
+      sentEvents.clear();
     };
   }, [enabled, optedOut, pathname]);
 

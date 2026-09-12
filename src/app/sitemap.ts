@@ -67,9 +67,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
   const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"].map((slug) => ({ href: `/resources/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.65 }));
   const materialRoutes = materialCollections.map((collection) => ({ href: `/materials/${collection.slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.76 }));
-  const bakeryProductRoutes = ["cake-boxes", "cake-boards-and-drums"].map((slug) => ({ href: `/products/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.78 }));
   const newsRoutes = getNewsSlugs().map((slug) => ({ href: `/news/${slug}` as SiteHref, changeFrequency: "monthly" as const, priority: 0.66 }));
-  const routes = [...staticRoutes, ...resourceRoutes, ...materialRoutes, ...bakeryProductRoutes, ...newsRoutes, ...packagingRoutes, ...categoryRoutes, ...productRoutes];
+  const routes = [...staticRoutes, ...resourceRoutes, ...materialRoutes, ...newsRoutes, ...packagingRoutes, ...categoryRoutes, ...productRoutes];
   const entries = await Promise.all(
     routes.map((route) => sitemapEntry({ ...route, lastModified })),
   );

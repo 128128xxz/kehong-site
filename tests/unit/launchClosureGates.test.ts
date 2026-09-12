@@ -8,8 +8,8 @@ import { FACTORY_ADDRESS, FACTORY_MAP_DESTINATION, getFactoryLocationUrl } from 
 describe("launch closure buyer-facing gates", () => {
   it("exposes every confirmed published SKU through a unique detail route", () => {
     const skus = getAllSkus();
-    expect(skus).toHaveLength(231);
-    expect(new Set(skus.map((sku) => sku.slug)).size).toBe(231);
+    expect(skus).toHaveLength(83);
+    expect(new Set(skus.map((sku) => sku.slug)).size).toBe(83);
     expect(skus.every((sku) => getSkuBySlug(sku.slug)?.sku === sku.sku)).toBe(true);
   });
 

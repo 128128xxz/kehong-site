@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { isProductionEnvironment } from "./config";
 import { visitorEventTypes, type VisitorEventInput } from "./types";
 
-const allowedKeys = new Set(["eventId", "eventType", "path", "pageTitle", "referrer", "utmSource", "utmMedium", "utmCampaign", "utmTerm", "utmContent", "durationSeconds"]);
+const allowedKeys = new Set(["eventId", "eventType", "path", "pageTitle", "referrer", "utmSource", "utmMedium", "utmCampaign", "utmTerm", "utmContent", "durationSeconds", "automationHint"]);
 const piiKeys = /(?:name|email|phone|whatsapp|message|attachment|cookie|password|payment|ip)/iu;
 
 function text(value: unknown, max: number) {
@@ -25,6 +25,21 @@ function referrer(value: unknown) {
   }
 }
 
+function booleanLike(value: unknown): boolean {
+  if (value == null) return false;
+  if (typeof value !== "boolean") throw new Error("INVALID_AUTOMATION_HINT");
+  return value;
+}
+
+function sanitizeDuration(eventType: string, value: unknown) {
+  if (value == null || value === "") return null;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || !Number.isInteger(parsed) || parsed < 0) throw new Error("INVALID_DURATION");
+  if (eventType === "engagement_ping") return Math.min(30, parsed);
+  if (parsed > 3600) throw new Error("INVALID_DURATION");
+  return parsed;
+}
+
 export function parseLeadEvent(value: unknown): VisitorEventInput {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("INVALID_BODY");
   const record = value as Record<string, unknown>;
@@ -36,8 +51,7 @@ export function parseLeadEvent(value: unknown): VisitorEventInput {
   if (typeof eventType !== "string" || !visitorEventTypes.includes(eventType as typeof visitorEventTypes[number])) throw new Error("INVALID_EVENT_TYPE");
   const path = text(record.path, 512);
   if (!path || !path.startsWith("/") || path.startsWith("//")) throw new Error("INVALID_PATH");
-  const duration = record.durationSeconds == null || record.durationSeconds === "" ? null : Number(record.durationSeconds);
-  if (duration != null && (!Number.isInteger(duration) || duration < 0 || duration > 3600)) throw new Error("INVALID_DURATION");
+  const duration = sanitizeDuration(eventType as string, record.durationSeconds);
   const eventId = text(record.eventId, 100) ?? randomUUID();
   return {
     eventId,
@@ -51,6 +65,7 @@ export function parseLeadEvent(value: unknown): VisitorEventInput {
     utmTerm: text(record.utmTerm, 160),
     utmContent: text(record.utmContent, 160),
     durationSeconds: duration,
+    automationHint: booleanLike(record.automationHint),
   };
 }
 

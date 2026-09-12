@@ -1,4 +1,6 @@
 import { test, expect } from "@playwright/test";
+import catalog from "@/data/catalog.normalized.json";
+import { SOURCE_ONLY_RECORD_IDS } from "@/data/sourceOnlyRecords";
 
 const locales = ["en", "zh", "id", "vi", "th", "ms"];
 const remainingFamilies = [
@@ -8,6 +10,7 @@ const remainingFamilies = [
   "packaging-materials-converted-components",
   "oem-odm-custom-paper-converting",
 ];
+const sourceOnlySlugs = SOURCE_ONLY_RECORD_IDS.map((id) => catalog.skus.find((sku) => sku.id === id)?.slug).filter((slug): slug is string => Boolean(slug));
 
 test.describe("Stage 3B-3 remaining-family safe admission", () => {
   for (const family of remainingFamilies) {
@@ -30,9 +33,9 @@ test.describe("Stage 3B-3 remaining-family safe admission", () => {
     expect(response.ok()).toBe(true);
     const xml = await response.text();
     const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/gu)].map((match) => match[1]);
-    expect(new Set(urls).size).toBe(259);
-    expect(urls.some((url) => url.endsWith("/en/products/families/paper-cup-materials"))).toBe(true);
-    expect(urls.some((url) => url.includes("cupsheet-150350-pr-044"))).toBe(false);
+    expect(new Set(urls).size).toBe(136);
+    expect(urls.some((url) => url.endsWith("/en/products/families/paper-cup-materials"))).toBe(false);
+    for (const slug of sourceOnlySlugs) expect(urls).not.toContain(`https://www.kehong.tech/en/products/${slug}`);
     expect(urls.some((url) => url.includes("/es/"))).toBe(false);
   });
 });

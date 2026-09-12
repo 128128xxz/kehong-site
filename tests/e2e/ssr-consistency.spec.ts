@@ -35,7 +35,7 @@ test.describe("Production SSR/CDN consistency", () => {
     expect(html).not.toContain("0 products");
     expect(html).toContain("Kehong supplies corrugated board, specialty and functional paper");
     expect(html).toContain("kh-home-hero");
-    expect(html).toContain("Paper materials &amp; semi-finished components");
+    expect(html).toContain("Finished Packaging First");
     expect(html).not.toContain("Popular products");
 
     const productPath = "/zh/products/kh-fd-cuproll-150350-pr-032-pe-coated-paper-roll-for-paper-cup";

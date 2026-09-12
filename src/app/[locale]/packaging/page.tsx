@@ -20,6 +20,7 @@ const overviewCategorySlugs = new Set([
   "pizza-packaging",
   "food-packaging",
   "inserts-dividers",
+  "cosmetic-packaging",
   "retail-packaging",
 ]);
 
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const zh = locale === "zh";
   const brand = getBrandConfig(locale);
   const title = zh ? "成品纸包装分类总览" : "Finished Paper Packaging";
-  const description = zh ? "浏览蛋糕盒、蛋糕底托与蛋糕鼓、披萨盒与垫纸、食品包装、瓦楞邮寄盒、内托和零售包装分类。" : "Browse cake boxes, cake boards and drums, pizza boxes and pads, food packaging, corrugated mailers, inserts and retail packaging by category.";
+  const description = zh ? "浏览蛋糕盒、蛋糕底托与蛋糕鼓、披萨盒与垫纸、食品包装、化妆品包装、瓦楞邮寄盒、内托和零售包装分类。" : "Browse cake boxes, cake boards and drums, pizza boxes and pads, food packaging, cosmetic packaging, corrugated mailers, inserts and retail packaging by category.";
   const canonical = await getLocaleUrl(locale, "/packaging");
   const metadataTitle = `${title} | ${brand.name}`;
   return { metadataBase: new URL(siteConfig.url), title: metadataTitle, description, alternates: { canonical, languages: await getAlternateLanguages("/packaging") }, openGraph: { title: metadataTitle, description, url: canonical, siteName: brand.name, locale: openGraphLocales[locale] ?? locale, type: "website" }, twitter: { card: "summary_large_image", title: metadataTitle, description } };

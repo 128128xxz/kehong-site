@@ -23,10 +23,10 @@ describe("AI search visibility foundations", () => {
     expect(verifiedCompanyFacts.some((fact) => fact.id === "material-sku-count" && fact.en.includes("231"))).toBe(true);
   });
 
-  it("exposes six current product groups and twelve citation-ready articles", () => {
+  it("exposes the current public product groups and citation-ready articles", () => {
     expect(getPublicProductGroups()).toHaveLength(6);
-    expect(getPublishedNews("en")).toHaveLength(6);
-    expect(getPublishedNews("zh")).toHaveLength(6);
+    expect(getPublishedNews("en")).toHaveLength(5);
+    expect(getPublishedNews("zh")).toHaveLength(5);
     for (const article of getPublishedNews("en")) {
       const enhancement = getNewsEnhancement("en", article.translationKey);
       expect(enhancement.directAnswer.length).toBeGreaterThan(180);

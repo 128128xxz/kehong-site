@@ -61,7 +61,7 @@ export default function PackagingCategoryPage({ locale, category }: { locale: st
     ],
   };
   const faqEntries = getCategoryFaq(category.slug, isZh);
-  const hasR2StudioLink = ["cake-boxes", "cake-boards-cake-drums", "corrugated-mailer-boxes", "inserts-dividers", "food-packaging"].includes(category.slug);
+  const hasR2StudioLink = ["cake-boxes", "cake-boards-cake-drums", "corrugated-mailer-boxes", "inserts-dividers", "cosmetic-packaging", "food-packaging"].includes(category.slug);
 
   return (
     <div className="kh-premium-site texture-paper min-h-screen text-(--kh-ink)">

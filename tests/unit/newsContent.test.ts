@@ -2,12 +2,12 @@ import { describe, expect, it } from "vitest";
 import { getNewsArticle, getNewsSlugs, getPublishedNews, getNewsTranslation } from "@/content/news";
 
 describe("News & Insights content source", () => {
-  it("publishes six paired, non-company guide articles", () => {
-    expect(getNewsSlugs()).toHaveLength(6);
-    expect(getPublishedNews("en")).toHaveLength(6);
-    expect(getPublishedNews("zh")).toHaveLength(6);
+  it("publishes the current paired, non-company guide articles", () => {
+    expect(getNewsSlugs()).toHaveLength(5);
+    expect(getPublishedNews("en")).toHaveLength(5);
+    expect(getPublishedNews("zh")).toHaveLength(5);
     expect(getPublishedNews("en").every((article) => article.type !== "company-news")).toBe(true);
-    expect(new Set(getPublishedNews("en").map((article) => article.slug)).size).toBe(6);
+    expect(new Set(getPublishedNews("en").map((article) => article.slug)).size).toBe(5);
   });
 
   it("keeps each article pair and internal paths buyer-relevant", () => {

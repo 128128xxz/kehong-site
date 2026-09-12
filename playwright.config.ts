@@ -15,9 +15,10 @@ export default defineConfig({
   use: {
     baseURL,
     ...devices["Desktop Chrome"],
+    ...(process.env.PW_EXECUTABLE_PATH ? { launchOptions: { executablePath: process.env.PW_EXECUTABLE_PATH } } : {}),
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
-    video: "retain-on-failure",
+    video: process.env.PW_EXECUTABLE_PATH ? "off" : "retain-on-failure",
     actionTimeout: 15_000,
   },
   outputDir: "test-results/artifacts",

@@ -1,144 +1,95 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import catalog from "@/data/catalog.normalized.json";
+import { SOURCE_ONLY_RECORD_IDS } from "@/data/sourceOnlyRecords";
+import { getAllCatalogSkus, getAllSkus, getCatalogGroups, getProductCategories } from "@/lib/catalog";
+import { getHomepageProductEntries } from "@/lib/product-routing";
+import { getSkuImageMeta } from "@/lib/productImages";
 
 const root = process.cwd();
-const read = (file: string) => fs.readFileSync(path.join(root, file), "utf8");
-const csv = (file: string): Array<Record<string, string>> => {
-  const text = read(file).trim();
-  const rows: string[][] = [];
-  let row: string[] = [];
-  let cell = "";
-  let quoted = false;
-  for (let index = 0; index < text.length; index += 1) {
-    const char = text[index];
-    if (char === '"') {
-      if (quoted && text[index + 1] === '"') { cell += '"'; index += 1; }
-      else quoted = !quoted;
-    } else if (char === "," && !quoted) { row.push(cell); cell = ""; }
-    else if (char === "\n" && !quoted) { row.push(cell); rows.push(row); row = []; cell = ""; }
-    else if (char !== "\r") cell += char;
-  }
-  if (cell || row.length) { row.push(cell); rows.push(row); }
-  const [headers, ...body] = rows;
-  return body.map((values) => Object.fromEntries(headers.map((header, index) => [header, values[index] ?? ""])));
-};
 
-const catalog = JSON.parse(read("src/data/catalog.normalized.json")) as { skus: Array<{ id: string; sku: string; slug: string; published: boolean; sourceStatus: string }> };
-const inventory = csv("docs/stage-3a5-current-url-inventory.csv");
-const clusters = csv("docs/stage-3a5-cluster-commercial-review.csv");
-const scenarios = csv("docs/stage-3a5-indexation-scenarios.csv");
-const sitemap = csv("docs/stage-3a5-sitemap-reconciliation.csv");
-const decisions = csv("docs/stage-3a5-human-decision-sheet.csv");
-
-describe("Stage 3A.5 calibration artifacts", () => {
-  it("keeps the normalized record accounting unchanged", () => {
-    expect(catalog.skus).toHaveLength(337);
-    expect(catalog.skus.filter((sku) => sku.published && sku.sourceStatus === "confirmed")).toHaveLength(231);
-    expect(catalog.skus.filter((sku) => !(sku.published && sku.sourceStatus === "confirmed"))).toHaveLength(106);
-    expect(new Set(catalog.skus.map((sku) => sku.sku)).size).toBe(337);
-    expect(new Set(catalog.skus.map((sku) => sku.slug)).size).toBe(337);
+describe("current catalog and media QA baseline", () => {
+  it("keeps the source record accounting explicit", () => {
+    const source = getAllCatalogSkus();
+    expect(source).toHaveLength(337);
+    expect(source.filter((sku) => sku.published && sku.sourceStatus === "confirmed")).toHaveLength(231);
+    expect(source.filter((sku) => !(sku.published && sku.sourceStatus === "confirmed"))).toHaveLength(106);
   });
 
-  it("covers 271 current sitemap URLs plus every pending product access URL", () => {
-    expect(inventory).toHaveLength(377);
-    expect(inventory.filter((row) => row.inCurrentSitemap === "true")).toHaveLength(271);
-    expect(inventory.filter((row) => row.publishStatus === "pending")).toHaveLength(106);
-    expect(new Set(inventory.map((row) => row.url)).size).toBe(377);
+  it("keeps the public directory at 83 verified records", () => {
+    const publicSkus = getAllSkus();
+    expect(publicSkus).toHaveLength(83);
+    expect(new Set(publicSkus.map((sku) => sku.sku)).size).toBe(83);
+    expect(new Set(publicSkus.map((sku) => sku.slug)).size).toBe(83);
+    expect(publicSkus.every((sku) => sku.published && sku.sourceStatus === "confirmed")).toBe(true);
   });
 
-  it("reviews all 109 variant clusters", () => {
-    expect(clusters).toHaveLength(109);
-    expect(new Set(clusters.map((row) => row.clusterId)).size).toBe(109);
-    expect(clusters.some((row) => row.memberCount === "141")).toBe(true);
+  it("keeps five public product groups and excludes the removed family", () => {
+    const groups = getCatalogGroups(getAllSkus());
+    expect(groups).toHaveLength(5);
+    expect(groups.some((group) => group.id === "paper-cup-fan-paper-cup-fan")).toBe(false);
+    expect(groups.reduce((sum, group) => sum + group.variants.length, 0)).toBe(83);
   });
 
-  it("keeps singleton policy conservative", () => {
-    const singletonPublished = clusters.filter((row) => row.memberCount === "1" && row.publishedCount !== "0");
-    expect(singletonPublished).toHaveLength(1);
-    expect(singletonPublished[0]?.recommendedSeoTreatment).not.toBe("NOINDEX_FOLLOW");
-    expect(read("docs/stage-3a5-summary.md")).toContain("One independent product anchor entity");
+  it("keeps all seven source-only records outside public lookups", () => {
+    const publicIds = new Set(getAllSkus().map((sku) => sku.id));
+    expect(SOURCE_ONLY_RECORD_IDS).toHaveLength(7);
+    expect(SOURCE_ONLY_RECORD_IDS.every((id) => !publicIds.has(id))).toBe(true);
   });
 
-  it("reconciles all three scenario arithmetic models", () => {
-    const firstByScenario = new Map<string, (typeof scenarios)[number]>();
-    for (const row of scenarios) if (!firstByScenario.has(row.scenario)) firstByScenario.set(row.scenario, row);
-    expect(firstByScenario.get("A_CONSERVATIVE_ADDITIVE")).toMatchObject({ currentSitemapCount: "271", removedCount: "0", addedCount: "6", projectedCount: "277" });
-    expect(firstByScenario.get("B_STAGED_CONSOLIDATION")).toMatchObject({ currentSitemapCount: "271", removedCount: "18", addedCount: "6", projectedCount: "259" });
-    expect(firstByScenario.get("C_AGGRESSIVE_CONSOLIDATION")).toMatchObject({ currentSitemapCount: "271", removedCount: "231", addedCount: "6", projectedCount: "46" });
-    for (const row of firstByScenario.values()) expect(Number(row.currentSitemapCount) - Number(row.removedCount) + Number(row.addedCount)).toBe(Number(row.projectedCount));
+  it("keeps Paper Cup Fan source records out of the public product type", () => {
+    expect(catalog.skus.filter((sku) => /^KH-FD-CUPFAN-/iu.test(sku.sku))).toHaveLength(141);
+    expect(getAllSkus().filter((sku) => /^KH-FD-CUPFAN-/iu.test(sku.sku))).toHaveLength(0);
   });
 
-  it("traces every current sitemap URL and every planned addition", () => {
-    expect(sitemap).toHaveLength(383);
-    expect(sitemap.filter((row) => row.currentInSitemap === "true")).toHaveLength(271);
-    expect(sitemap.filter((row) => row.pageType === "planned-family")).toHaveLength(6);
-    expect(sitemap.every((row) => row.scenarioAAction && row.scenarioBAction && row.scenarioCAction)).toBe(true);
+  it("provides a usable current image result for every public SKU", () => {
+    for (const sku of getAllSkus()) {
+      const image = getSkuImageMeta(sku, "en");
+      expect(image.src, sku.sku).toMatch(/^\/media\//u);
+      expect(image.alt, sku.sku).toBeTruthy();
+      expect(["exact", "representative", "pending"]).toContain(image.status);
+    }
   });
 
-  it("keeps entity, base-route and localized URL counts separate", () => {
-    const scenariosText = read("docs/stage-3a5-indexation-scenarios.md");
-    expect(scenariosText).toContain("36 localized URL");
-    expect(scenariosText).toContain("6 base routes");
-    expect(scenariosText).toContain("six sitemap rows");
-    expect(scenariosText.includes("archived `es`")).toBe(false);
+  it("keeps the current product category registry non-empty", () => {
+    const categories = getProductCategories();
+    expect(categories.length).toBeGreaterThan(0);
+    expect(new Set(categories.map((category) => category.slug)).size).toBe(categories.length);
+    expect(categories.every((category) => category.title.en && category.title.zh && category.description.en && category.description.zh)).toBe(true);
   });
 
-  it("does not count archived Spanish routes as active localized URLs", () => {
-    expect(inventory.some((row) => row.locale === "es")).toBe(false);
-    expect(read("docs/stage-3a5-count-reconciliation.md")).toContain("archived locale: es");
+  it("keeps homepage product entry links out of empty catalog states", () => {
+    const entries = getHomepageProductEntries();
+    expect(entries).toHaveLength(5);
+    expect(entries.every((entry) => entry.hasPublicSku || !entry.href.startsWith("/products?"))).toBe(true);
+    expect(entries.every((entry) => !entry.href.includes("productType=paper-cup-fan"))).toBe(true);
   });
 
-  it("keeps canonical targets in the source locale", () => {
-    const changed = sitemap.filter((row) => row.scenarioBAction === "REMOVE" && row.scenarioBTarget);
-    expect(changed.length).toBe(18);
-    expect(changed.every((row) => row.scenarioBTarget.startsWith("/en/"))).toBe(true);
-    expect(read("docs/stage-3a5-indexation-scenarios.md")).toContain("same-locale canonical");
+  it("keeps the sitemap implementation independent of retired stage artifacts", () => {
+    const sitemap = fs.readFileSync(path.join(root, "src/app/sitemap.ts"), "utf8");
+    expect(sitemap).toContain("getAllSkus");
+    expect(sitemap).toContain("productRoutes");
+    expect(sitemap).not.toContain("docs/stage-");
+    expect(sitemap).not.toContain("migration-map");
   });
 
-  it("does not propose the forbidden noindex-plus-cross-page canonical combination", () => {
-    const scenariosText = read("docs/stage-3a5-indexation-scenarios.md");
-    expect(scenariosText).toContain("No noindex + cross-page canonical combination is proposed");
-    expect(scenariosText).toContain("no canonical target is a noindex page");
+  it("keeps source and public counts separate in the current data model", () => {
+    expect(getAllCatalogSkus().length).toBeGreaterThan(getAllSkus().length);
+    expect(getAllCatalogSkus().length).toBe(337);
+    expect(getAllSkus().length).toBe(83);
   });
 
-  it("keeps manual review groups visible at P0, P1 and P2", () => {
-    expect(new Set(decisions.map((row) => row.priority))).toEqual(new Set(["P0", "P1", "P2"]));
-    expect(decisions.reduce((sum, row) => sum + Number(row.affectedRecordCount), 0)).toBeGreaterThanOrEqual(110);
-    expect(decisions.some((row) => row.priority === "P1" && row.publishedCount === "1")).toBe(true);
+  it("does not reintroduce historical Spanish routes into the active locale set", () => {
+    const localeSource = fs.readFileSync(path.join(root, "src/i18n/locales.ts"), "utf8");
+    expect(localeSource).not.toContain('"es"');
   });
 
-  it("keeps the largest cluster as a separately reviewed decision", () => {
-    const report = read("docs/stage-3a5-largest-cluster-review.md");
-    expect(report).toContain("141");
-    expect(report).toContain("does not auto-remove");
-    expect(report).toContain("Owner confirmation");
-  });
-
-  it("does not invent Search Console, analytics or backlink evidence", () => {
-    const report = read("docs/stage-3a5-seo-evidence-availability.md");
-    expect(report).toContain("SEARCH_CONSOLE_DATA_AVAILABLE=false");
-    expect(report).toContain("ANALYTICS_LANDING_DATA_AVAILABLE=false");
-    expect(report).toContain("BACKLINK_DATA_AVAILABLE=false");
-    expect(report).toContain("makes no claim");
-  });
-
-  it("emits the required planning deliverables without runtime files", () => {
-    const required = [
-      "stage-3a5-summary.md", "stage-3a5-count-reconciliation.md", "stage-3a5-current-url-inventory.csv",
-      "stage-3a5-cluster-commercial-review.csv", "stage-3a5-largest-cluster-review.md", "stage-3a5-core-product-anchor-review.md",
-      "stage-3a5-core-product-anchor-review.csv", "stage-3a5-indexation-scenarios.md", "stage-3a5-indexation-scenarios.csv",
-      "stage-3a5-sitemap-reconciliation.csv", "stage-3a5-seo-evidence-availability.md", "stage-3a5-human-decision-sheet.csv",
-      "stage-3a5-stage3b-rollout-plan.md", "stage-3a5-unresolved-risks.md",
-    ];
-    for (const file of required) expect(fs.existsSync(path.join(root, "docs", file))).toBe(true);
-    expect(fs.existsSync(path.join(root, "src", "app", "sitemap.ts"))).toBe(true);
-    expect(fs.existsSync(path.join(root, "src", "app", "robots.ts"))).toBe(true);
-  });
-
-  it("keeps the implementation boundary explicit", () => {
-    const summary = read("docs/stage-3a5-summary.md");
-    expect(summary).toContain("No runtime code, product data, pages, metadata, canonical, robots, sitemap");
-    expect(summary).toContain("stopped before Stage 3B");
+  it("keeps current public group representatives stable", () => {
+    for (const group of getCatalogGroups(getAllSkus())) {
+      expect(group.representative.sku).toBeTruthy();
+      expect(group.representative.slug).toBeTruthy();
+      expect(group.variants.length).toBeGreaterThan(0);
+    }
   });
 });

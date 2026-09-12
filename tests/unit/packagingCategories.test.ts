@@ -17,6 +17,7 @@ describe("public packaging and locale governance", () => {
       "food-packaging",
       "inserts-dividers",
       "retail-packaging",
+      "cosmetic-packaging",
       "corrugated-mailer-boxes",
     ]);
     expect(getPackagingCategory("pillow-boxes")).toBeUndefined();
@@ -31,6 +32,7 @@ describe("public packaging and locale governance", () => {
       "Food Packaging",
       "Corrugated Inserts & Paperboard Inserts",
       "Retail Packaging",
+      "Cosmetic Packaging",
       "Corrugated Mailer Boxes",
     ]);
     expect(packagingCategories.map((category) => getPackagingInquiryLabel(category.slug, "zh"))).toEqual([
@@ -42,6 +44,7 @@ describe("public packaging and locale governance", () => {
       "食品包装",
       "瓦楞内托与纸板内托",
       "零售包装",
+      "化妆品包装",
       "瓦楞邮寄盒",
     ]);
   });

@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-19T04:09:04.271Z",
+  "generatedAt": "2026-09-12T06:35:00.993Z",
   "publicImageStatusPolicy": "representative is the only non-exact public display state; exact remains zero until verified.",
-  "assetCount": 14,
+  "assetCount": 13,
   "statusCounts": {
     "exact": 0,
-    "representative": 14,
+    "representative": 13,
     "pending": 0
   },
   "legacyAiRepresentativeCount": 0,

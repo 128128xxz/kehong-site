@@ -40,6 +40,11 @@ const packagingRoutes = [
   "takeout-boxes",
   "cake-boxes",
   "cake-boards-cake-drums",
+  "pizza-packaging",
+  "food-packaging",
+  "inserts-dividers",
+  "cosmetic-packaging",
+  "retail-packaging",
   "corrugated-mailer-boxes",
 ];
 const resourceRoutes = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"];
@@ -86,7 +91,6 @@ for (const slug of packagingRoutes) addRoute(`/${locale}/packaging/${slug}`, `${
 for (const slug of resourceRoutes) addRoute(`/${locale}/resources/${slug}`, `${locale}/resources/${slug}`);
 for (const slug of materialRoutes) addRoute(`/${locale}/materials/${slug}`, `${locale}/materials/${slug}`);
 for (const slug of newsRoutes) addRoute(`/${locale}/news/${slug}`, `${locale}/news/${slug}`);
-for (const slug of ["cake-boxes", "cake-boards-and-drums"]) addRoute(`/${locale}/products/${slug}`, `${locale}/products/${slug}`);
 for (const slug of categoryRoutes) addRoute(`/${locale}/products/${slug}`, `${locale}/products/${slug}`);
 for (const sku of catalog.skus.filter((item) => item?.published === true && item?.sourceStatus === "confirmed" && !sourceOnlyIds.has(item.id) && !/^KH-FD-CUPFAN-/iu.test(item.sku ?? "") && item.groupId !== "paper-cup-fan-paper-cup-fan" && item.canonicalGroupId !== "paper-cup-fan-paper-cup-fan")) {
   if (!sku?.slug || typeof sku.slug !== "string") errors.push("catalog SKU is missing a valid slug");

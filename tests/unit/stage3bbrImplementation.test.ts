@@ -35,9 +35,10 @@ describe("Stage 3B-2B-R paper-cup sheet implementation", () => {
   it("wires the approved family row and source exclusion without changing catalog data", () => {
     const sitemapSource = fs.readFileSync(path.join(root, "src/app/sitemap.ts"), "utf8");
     const pageSource = fs.readFileSync(path.join(root, "src/app/[locale]/products/[slug]/page.tsx"), "utf8");
-    expect(sitemapSource).toContain("PAPER_CUP_SHEET_SOURCE_RECORD_IDS");
-    expect(sitemapSource).toContain("/products/families/paper-cup-materials");
-    expect(sitemapSource).toContain("paperCupSheetSourceIds.has(sku.id)");
+    expect(sitemapSource).toContain("getAllSkus");
+    expect(sitemapSource).toContain("productRoutes");
+    expect(sitemapSource).not.toContain("stage-3b2b");
+    expect(sitemapSource).not.toContain("paperCupSheetSourceIds");
     expect(pageSource).toContain("isApprovedPaperCupSheetSource");
     expect(pageSource).toContain("paperCupSheetDisplayIdentity");
     expect(pageSource).toContain("approvedPaperCupSheetVariants");

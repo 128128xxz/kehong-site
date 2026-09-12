@@ -54,13 +54,13 @@ test.describe("factory maps and News & Insights", () => {
       expect(hub.status()).toBe(200);
       const html = await hub.text();
       expect(html).toContain(locale === "zh" ? "新闻与洞察" : "News &amp; Insights");
-      expect((html.match(/data-news-card/g) ?? []).length).toBe(6);
+      expect((html.match(/data-news-card/g) ?? []).length).toBe(5);
       const rss = await request.get(`/${locale}/news/rss.xml`);
       expect(rss.status()).toBe(200);
       expect(rss.headers()["content-type"]).toContain("application/rss+xml");
       expect(await rss.text()).toContain("<item>");
       await page.goto(`/${locale}/news`, { waitUntil: "networkidle" });
-      await expect(page.locator("[data-news-archive-grid] [data-news-card]")).toHaveCount(6);
+      await expect(page.locator("[data-news-archive-grid] [data-news-card]")).toHaveCount(5);
       await page.getByRole("button", { name: locale === "zh" ? "包装采购指南" : "Packaging buying guides" }).click();
       await expect(page.locator("[data-news-archive-grid] [data-news-card]")).toHaveCount(4);
       const firstArticle = page.locator("[data-news-archive-grid] a[href*='/news/']").first();
@@ -76,7 +76,7 @@ test.describe("factory maps and News & Insights", () => {
         const whatsappHref = await page.locator(".kh-news-share").getByRole("link", { name: /WhatsApp/ }).getAttribute("href");
         expect(decodeURIComponent(whatsappHref ?? "")).toContain("utm_source=copy");
       }
-      await expect(page.getByRole("link", { name: locale === "zh" ? "提交项目需求" : "Start a project brief" }).first()).toBeVisible();
+      await expect(page.getByRole("link", { name: locale === "zh" ? "立即询价" : "Request a quote" }).first()).toBeVisible();
     }
   });
 });

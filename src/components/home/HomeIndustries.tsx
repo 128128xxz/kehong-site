@@ -6,34 +6,44 @@ import { SectionKicker } from "@/components/home/annotations";
 
 const paths = [
   {
-    title: "Food & bakery",
-    titleZh: "餐饮与烘焙",
-    body: "Boxes and cake components for takeaway and bakery projects.",
-    bodyZh: "餐饮烘焙纸盒。",
-    href: "/industries/bakery-packaging",
-    image: showcaseImages.bakeryDessertDisplay,
-    alt: "Bakery desserts presented on paper packaging",
-    altZh: "纸品包装上的烘焙甜品陈列",
+    title: "Food & Takeaway",
+    titleZh: "食品与外带",
+    body: "Boxes, trays and pads for foodservice programs.",
+    bodyZh: "面向餐饮项目的盒、托与垫纸。",
+    href: "/packaging/food-packaging",
+    image: showcaseImages.foodBoxReal,
+    alt: "Finished paper food packaging",
+    altZh: "成品食品纸包装",
   },
   {
-    title: "Retail & brand",
-    titleZh: "零售与品牌包装",
-    body: "Carry bags and presentation packaging for retail shelves.",
-    bodyZh: "零售品牌包装。",
-    href: "/industries/retail-lifestyle",
-    image: showcaseImages.retailShelfDisplay,
-    alt: "Retail paper packaging display",
-    altZh: "零售纸品包装陈列",
+    title: "Bakery & Cake",
+    titleZh: "烘焙与蛋糕",
+    body: "Cake boxes, boards and bakery presentation packaging.",
+    bodyZh: "蛋糕盒、底托和烘焙展示包装。",
+    href: "/packaging/cake-boxes",
+    image: showcaseImages.providedBakeryBox,
+    alt: "Bakery and cake packaging",
+    altZh: "烘焙与蛋糕包装",
   },
   {
     title: "E-commerce & shipping",
     titleZh: "电商与运输包装",
     body: "Corrugated mailers and protective structures for dispatch.",
     bodyZh: "电商运输包装。",
-    href: "/industries/ecommerce-industrial-professional",
-    image: showcaseImages.textileLine,
-    alt: "Industrial packaging production line",
-    altZh: "工业包装生产现场",
+    href: "/packaging/corrugated-mailer-boxes",
+    image: showcaseImages.kraftCartonsTall,
+    alt: "Corrugated mailer boxes for shipping",
+    altZh: "电商运输用瓦楞邮寄盒",
+  },
+  {
+    title: "Cosmetics & Retail",
+    titleZh: "化妆品与零售",
+    body: "Presentation boxes and fitted paper inserts for retail products.",
+    bodyZh: "零售产品展示盒与配套纸内托。",
+    href: "/packaging/cosmetic-packaging",
+    image: showcaseImages.aiCosmeticsBox,
+    alt: "Cosmetic presentation box with paper insert",
+    altZh: "带纸内托的化妆品展示盒",
   },
 ] as const;
 
@@ -55,7 +65,7 @@ export default function HomeIndustries({ locale }: { locale: string }) {
             <Reveal key={path.title} delay={index * 70}>
               <Link href={path.href} className="kh-industry-card">
                 <span className="kh-industry-card-media kh-media-shade">
-                  <Image src={path.image} alt={zh ? path.altZh : path.alt} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 33vw, 30vw" className="object-cover" loading="eager" />
+                  <Image src={path.image} alt={zh ? path.altZh : path.alt} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 33vw, 30vw" className="object-cover" loading={index === 0 ? "eager" : "lazy"} />
                   <span className="kh-fig-caption kh-mono">0{index + 1}</span>
                 </span>
                 <span className="kh-industry-card-copy">

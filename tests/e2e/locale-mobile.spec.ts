@@ -68,14 +68,15 @@ test.describe("locale routing and dedicated mobile shell", () => {
     await page.goto("/en", { waitUntil: "networkidle" });
     await page.evaluate(() => window.scrollTo(0, window.innerHeight));
     await expect(page.getByTestId("mobile-sticky-actions")).toBeVisible();
-    await expect(page.getByTestId("mobile-sticky-actions").getByRole("link", { name: /Get a quote/i })).toHaveAttribute("href", "/en/contact");
+    await expect(page.getByTestId("mobile-sticky-actions").getByRole("link", { name: /Request a quote/i })).toHaveAttribute("href", "/en/contact");
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
 
     const group = page.locator("footer details").first();
-    await expect(group).toHaveAttribute("open", "");
-    await group.locator("summary").click();
+    // Mobile footer groups start collapsed to keep the page compact.
     await expect(group).not.toHaveAttribute("open", "");
     await group.locator("summary").click();
     await expect(group).toHaveAttribute("open", "");
+    await group.locator("summary").click();
+    await expect(group).not.toHaveAttribute("open", "");
   });
 });

@@ -10,7 +10,7 @@ test("production metadata stays on the canonical public origin", async ({ reques
     "/en/procurement",
     "/en/model-preview",
     "/en/solutions",
-    "/en/products/kh-fd-cupfan-150350-pr-001-paper-cup-fan",
+    "/en/products/kh-fd-cuproll-150350-pr-032-pe-coated-paper-roll-for-paper-cup",
   ]) {
     const response = await request.get(path);
     expect(response.status()).toBe(200);

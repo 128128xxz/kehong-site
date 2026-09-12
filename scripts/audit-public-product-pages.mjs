@@ -6,7 +6,44 @@ const baseArg = process.argv.find((arg) => arg.startsWith("--base-url="))?.slice
 const baseUrl = (baseArg || process.env.PRODUCT_AUDIT_BASE_URL || "https://www.kehong.tech").replace(/\/+$/u, "");
 const canonicalBaseUrl = (process.env.PRODUCT_CANONICAL_URL || "https://www.kehong.tech").replace(/\/+$/u, "");
 const catalog = JSON.parse(fs.readFileSync(path.join(root, "src/data/catalog.normalized.json"), "utf8"));
-const products = catalog.skus.filter((sku) => sku.published === true && sku.sourceStatus === "confirmed" && sku.slug);
+const sourceOnlyIds = new Set([
+  "kh-fd-cupsheet-300-pe-230",
+  "kh-fd-cupsheet-320-pe-231",
+  "kh-fd-cupsheet-350-pe-232",
+  "kh-fd-cupsheet-230-pr-233",
+  "kh-fd-cupsheet-240-pr-234",
+  "kh-fd-cupsheet-250-pr-235",
+  "kh-fd-cupsheet-280-pr-236",
+]);
+const removedFromPublicCatalog = (sku) => /^KH-FD-CUPFAN-/iu.test(sku.sku ?? "")
+  || sku.groupId === "paper-cup-fan-paper-cup-fan"
+  || sku.canonicalGroupId === "paper-cup-fan-paper-cup-fan";
+const products = catalog.skus.filter((sku) => sku.published === true
+  && sku.sourceStatus === "confirmed"
+  && sku.slug
+  && !sourceOnlyIds.has(sku.id)
+  && !removedFromPublicCatalog(sku));
+const sheetCenterTarget = catalog.skus.find((sku) => sku.id === "kh-fd-cupsheet-150350-pe-043");
+const approvedSheetSourceIds = new Set([
+  "kh-fd-cupsheet-150350-pr-044",
+  "kh-fd-cupsheet-150350-pr-068",
+  "kh-fd-cupsheet-250-pe-221",
+  "kh-fd-cupsheet-280-pe-222",
+  "kh-fd-cupsheet-300-pe-223",
+  "kh-fd-cupsheet-320-pe-224",
+  "kh-fd-cupsheet-320-pr-225",
+  "kh-fd-cupsheet-350-pr-226",
+  "kh-fd-cupsheet-150-pr-227",
+  "kh-fd-cupsheet-170-pr-228",
+  "kh-fd-cupsheet-280-pe-229",
+  "kh-fd-cupsheet-300-pe-230",
+  "kh-fd-cupsheet-320-pe-231",
+  "kh-fd-cupsheet-350-pe-232",
+  "kh-fd-cupsheet-230-pr-233",
+  "kh-fd-cupsheet-240-pr-234",
+  "kh-fd-cupsheet-250-pr-235",
+  "kh-fd-cupsheet-280-pr-236",
+]);
 const oldDomain = /kehongpaper\.com/iu;
 const cjk = /[\u3400-\u9fff]/u;
 const concurrency = Math.max(1, Number.parseInt(process.env.PRODUCT_AUDIT_CONCURRENCY || "8", 10) || 8);
@@ -18,7 +55,10 @@ function attr(html, name) {
 
 async function auditProduct(sku) {
   const url = `${baseUrl}/en/products/${sku.slug}`;
-  const expectedCanonicalUrl = `${canonicalBaseUrl}/en/products/${sku.slug}`;
+  const expectedCanonicalSlug = approvedSheetSourceIds.has(sku.id) && sheetCenterTarget
+    ? sheetCenterTarget.slug
+    : sku.slug;
+  const expectedCanonicalUrl = `${canonicalBaseUrl}/en/products/${expectedCanonicalSlug}`;
   const started = Date.now();
   try {
     const response = await fetch(url, { redirect: "follow", cache: "no-store", headers: { "user-agent": "KehongPublicProductAudit/1.0" } });
@@ -43,7 +83,13 @@ async function auditProduct(sku) {
     if (!/data-product-template-version=["']v2["']/iu.test(html)) failures.push("product template marker is not v2");
     if (!/href=["'][^"']*\/en\/contact(?:\?|["'])/iu.test(html)) failures.push("quote CTA does not target contact");
     const whatsapp = [...html.matchAll(/href=["'](https:\/\/wa\.me\/[^"']+)["']/giu)].map((match) => decodeURIComponent(match[1]));
-    if (!whatsapp.some((href) => href.includes(sku.sku) && href.includes(expectedCanonicalUrl))) failures.push("WhatsApp link missing SKU/current URL");
+    const expectedPublicProductUrl = `${canonicalBaseUrl}/en/products/${sku.slug}`;
+    // The inquiry context must preserve the URL the buyer is currently on.
+    // Approved sheet aliases intentionally canonicalize to the center SKU,
+    // so the canonical URL is not the right value to require in this message.
+    // Preview requests use localhost, while rendered inquiry context carries
+    // the public production URL by design.
+    if (!whatsapp.some((href) => href.includes(sku.sku) && href.includes(expectedPublicProductUrl))) failures.push("WhatsApp link missing SKU/current URL");
     return {
       sku: sku.sku,
       slug: sku.slug,
@@ -80,6 +126,8 @@ const report = {
   totalProducts: products.length,
   passedProducts: products.length - failures.length,
   failedProducts: failures.length,
+  sourceOnlyExcluded: sourceOnlyIds.size,
+  removedCatalogExcluded: catalog.skus.filter(removedFromPublicCatalog).length,
   failures,
   sample: results.slice(0, 5),
 };

@@ -23,6 +23,21 @@ const CRAWLER_UAS = {
 
 const projectRoot = path.resolve(new URL("..", import.meta.url).pathname);
 const catalogPath = path.join(projectRoot, "src", "data", "catalog.normalized.json");
+const SOURCE_ONLY_IDS = new Set([
+  "kh-fd-cupsheet-300-pe-230",
+  "kh-fd-cupsheet-320-pe-231",
+  "kh-fd-cupsheet-350-pe-232",
+  "kh-fd-cupsheet-230-pr-233",
+  "kh-fd-cupsheet-240-pr-234",
+  "kh-fd-cupsheet-250-pr-235",
+  "kh-fd-cupsheet-280-pr-236",
+]);
+
+function isRemovedFromPublicCatalog(sku) {
+  return /^KH-FD-CUPFAN-/iu.test(sku?.sku ?? "")
+    || sku?.groupId === "paper-cup-fan-paper-cup-fan"
+    || sku?.canonicalGroupId === "paper-cup-fan-paper-cup-fan";
+}
 
 function parseArgs() {
   const args = Object.fromEntries(
@@ -251,7 +266,7 @@ function pickProductPaths() {
   try {
     const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
     const skus = Array.isArray(catalog.skus)
-      ? catalog.skus.filter((sku) => sku?.slug && sku.published === true && sku.sourceStatus !== "pending")
+      ? catalog.skus.filter((sku) => sku?.slug && sku.published === true && sku.sourceStatus === "confirmed" && !SOURCE_ONLY_IDS.has(sku.id) && !isRemovedFromPublicCatalog(sku))
       : [];
     const count = Math.min(10, skus.length);
     return Array.from({ length: count }, (_, index) => {

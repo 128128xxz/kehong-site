@@ -12,6 +12,7 @@ export const packagingCategorySlugs = [
   "food-packaging",
   "inserts-dividers",
   "retail-packaging",
+  "cosmetic-packaging",
   "corrugated-mailer-boxes",
 ] as const;
 
@@ -27,6 +28,7 @@ export const PACKAGING_INQUIRY_LABELS = {
   "food-packaging": { en: "Food Packaging", zh: "食品包装" },
   "inserts-dividers": { en: "Corrugated Inserts & Paperboard Inserts", zh: "瓦楞内托与纸板内托" },
   "retail-packaging": { en: "Retail Packaging", zh: "零售包装" },
+  "cosmetic-packaging": { en: "Cosmetic Packaging", zh: "化妆品包装" },
   "corrugated-mailer-boxes": { en: "Corrugated Mailer Boxes", zh: "瓦楞邮寄盒" },
 } as const satisfies Record<PackagingCategorySlug, { en: string; zh: string }>;
 
@@ -171,6 +173,20 @@ const allPackagingCategories: PackagingCategory[] = [
     seoDescription: "Custom retail packaging including paper bags, presentation boxes, display packaging and inserts for overseas B2B programs.",
     searchTerms: ["retail", "bag", "display", "gift", "cosmetic"],
     productTypes: ["kraft-paper", "paper-box", "paper-insert"],
+  },
+  {
+    slug: "cosmetic-packaging",
+    title: { en: "Cosmetic Packaging", zh: "化妆品包装" },
+    shortDescription: { en: "Presentation boxes and fitted paper inserts for beauty, skincare and fragrance projects.", zh: "面向美妆、护肤和香水项目的展示盒与配套纸内托。" },
+    description: { en: "Review the product footprint, presentation style, insert contact points, board, printing, finish and packing sequence together. Final fit and material selection are confirmed through the project requirements and sampling process.", zh: "可一并评审产品尺寸、展示方式、内托接触位置、纸板、印刷、表面工艺和装箱顺序。最终适配与材料选择根据项目需求和打样流程确认。" },
+    image: getR2HeroForPackagingRoute("cosmetic-packaging")?.image ?? showcaseImages.retailShelfDisplay,
+    subcategories: { en: ["Folding cosmetic cartons", "Perfume gift boxes", "Skincare presentation boxes", "Cosmetic paperboard inserts", "Protective cosmetic mailers"], zh: ["折叠化妆品盒", "香水礼盒", "护肤品展示盒", "化妆品纸板内托", "化妆品保护邮寄盒"] },
+    applications: { en: ["Skincare", "Fragrance", "Makeup", "Beauty gift sets", "E-commerce beauty dispatch"], zh: ["护肤品", "香水", "彩妆", "美妆礼盒", "美妆电商发货"] },
+    filters: { en: ["Product footprint", "Board", "Insert layout", "Window", "Printing", "Finish"], zh: ["产品尺寸", "纸板", "内托布局", "开窗", "印刷", "表面工艺"] },
+    seoTitle: "Cosmetic Packaging Boxes & Inserts | Custom Beauty Packaging",
+    seoDescription: "Custom cosmetic packaging boxes and paperboard inserts for skincare, fragrance, makeup and beauty gift-set projects.",
+    searchTerms: ["cosmetic", "skincare", "fragrance", "perfume", "beauty"],
+    productTypes: ["paper-box", "paper-insert"],
   },
   {
     slug: "corrugated-mailer-boxes",

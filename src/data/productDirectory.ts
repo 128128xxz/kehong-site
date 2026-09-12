@@ -26,7 +26,7 @@ export type ProductCatalogSection = {
 /**
  * The sole buyer-facing taxonomy for the Header, homepage and product page.
  * Material links are verified published-SKU group routes; finished links are
- * the five active packaging categories and intentionally do not imply SKUs.
+ * active packaging category routes and intentionally do not imply SKUs.
  */
 export const productCatalogSections: readonly ProductCatalogSection[] = [
   {
@@ -97,6 +97,7 @@ export const productCatalogSections: readonly ProductCatalogSection[] = [
         links: [
           { id: "paper-bags", href: "/packaging/paper-bags", en: "Paper bags", zh: "纸袋", description: { en: "Carry packaging for retail, foodservice and branded applications.", zh: "零售、餐饮和品牌手提包装" } },
           { id: "retail-packaging", href: "/packaging/retail-packaging", en: "Retail packaging", zh: "零售包装", description: { en: "Paper bags, presentation boxes and display-ready packaging.", zh: "纸袋、展示盒和陈列就绪包装" } },
+          { id: "cosmetic-packaging", href: "/packaging/cosmetic-packaging", en: "Cosmetic packaging", zh: "化妆品包装", description: { en: "Beauty, skincare and fragrance boxes with fitted paper inserts.", zh: "美妆、护肤和香水用包装盒与配套纸内托" } },
         ],
       },
       {

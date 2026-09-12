@@ -5,7 +5,6 @@ const families = [
   "corrugated-board-flute-materials",
   "specialty-decorative-paper",
   "functional-food-paper",
-  "paper-cup-materials",
   "packaging-materials-converted-components",
   "oem-odm-custom-paper-converting",
 ];
@@ -27,6 +26,7 @@ test.describe("Stage 3B-1 family and anchor routes", () => {
   });
 
   test("anchor page exposes one real published selection and no horizontal overflow", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
     for (const locale of ["en", "zh"]) {
       await page.goto(`/${locale}/products/food-tray-paper-material`, { waitUntil: "networkidle" });
       await expect(page.locator("h1")).toHaveCount(1);
@@ -39,11 +39,12 @@ test.describe("Stage 3B-1 family and anchor routes", () => {
     }
   });
 
-  test("products directory and navigation expose family routes while old catalog remains linked", async ({ page }) => {
+  test("products directory exposes current packaging and materials routes", async ({ page }) => {
     await page.goto("/en/products", { waitUntil: "domcontentloaded" });
-    await expect(page.locator("#product-families")).toBeVisible();
-    for (const family of families) await expect(page.locator(`a[href="/en/products/families/${family}"]`)).toHaveCount(1);
-    await expect(page.locator('a[href="/en/products/food-tray-paper-material"]')).toHaveCount(1);
+    await expect(page.locator("#finished-packaging")).toBeVisible();
+    await expect(page.locator("#materials-and-components")).toBeVisible();
+    await expect(page.locator('a[href="/en/packaging/cake-boxes"]')).toHaveCount(1);
+    await expect(page.locator('a[href="/en/products?productType=cupstock-paper"]')).toHaveCount(1);
     await expect(page.locator("#catalog-list")).toBeVisible();
     await page.getByRole("button", { name: /Products|产品/u }).first().press("Enter").catch(() => undefined);
     const resources = await page.evaluate(() => performance.getEntriesByType("resource").map((entry) => entry.name));

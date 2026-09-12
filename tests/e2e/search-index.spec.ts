@@ -64,7 +64,7 @@ test("AI and search crawler user agents receive public raw HTML without challeng
 });
 
 test("news pages expose visible direct answer, semantic comparison and article schema", async ({ request }) => {
-  const response = await request.get("/en/news/paper-cup-fans-coated-rolls-sheets-difference", { maxRedirects: 0, headers: { "user-agent": "OAI-SearchBot" } });
+  const response = await request.get("/en/news/takeout-box-quotation-six-details", { maxRedirects: 0, headers: { "user-agent": "OAI-SearchBot" } });
   expect(response.status()).toBe(200);
   const html = await response.text();
   expect(html).toContain("data-ai-direct-answer");
@@ -75,8 +75,6 @@ test("news pages expose visible direct answer, semantic comparison and article s
 
 test("quote-led product pages do not emit incomplete product rich-result markup", async ({ request }) => {
   const routes = [
-    "/en/products",
-    "/zh/products",
     "/en/products/kh-fd-cuproll-150350-pr-032-pe-coated-paper-roll-for-paper-cup",
     "/zh/products/kh-fd-cuproll-150350-pr-032-pe-coated-paper-roll-for-paper-cup",
   ];
@@ -89,8 +87,23 @@ test("quote-led product pages do not emit incomplete product rich-result markup"
       .map((match) => match[1].replaceAll("\\u003c", "<"));
     const jsonLd = jsonLdBlocks.map((block) => JSON.parse(block) as { "@type"?: string | string[] });
     const types = jsonLd.flatMap((item) => Array.isArray(item["@type"]) ? item["@type"] : item["@type"] ? [item["@type"]] : []);
-    expect(types, route).not.toContain("Product");
+    expect(types, route).toContain("Product");
     expect(types, route).not.toContain("ProductGroup");
     expect(jsonLdBlocks.join("\n"), route).not.toMatch(/"(?:hasVariant|aggregateRating|offers|review)"\s*:/iu);
+  }
+
+  for (const route of ["/en/products", "/zh/products"]) {
+    const response = await request.get(route, { maxRedirects: 0 });
+    expect(response.status(), route).toBe(200);
+    const html = await response.text();
+    const jsonLdBlocks = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/giu)]
+      .map((match) => match[1].replaceAll("\\u003c", "<"));
+    const types = jsonLdBlocks.flatMap((block) => {
+      const item = JSON.parse(block) as { "@type"?: string | string[] };
+      return Array.isArray(item["@type"]) ? item["@type"] : item["@type"] ? [item["@type"]] : [];
+    });
+    expect(types, route).not.toContain("Product");
+    expect(types, route).toContain("Organization");
+    expect(types, route).toContain("FAQPage");
   }
 });

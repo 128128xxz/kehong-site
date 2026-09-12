@@ -1,78 +1,35 @@
-import fs from "node:fs";
-import path from "node:path";
 import { describe, expect, it } from "vitest";
+import catalog from "@/data/catalog.normalized.json";
+import { isRemovedFromPublicCatalog } from "@/data/catalogVisibility";
+import { SOURCE_ONLY_RECORD_IDS, isSourceOnlyRecord } from "@/data/sourceOnlyRecords";
+import { getAllCatalogSkus, getAllSkus, getCatalogGroups, getSkuBySlug } from "@/lib/catalog";
 
-const root = process.cwd();
-const catalog = JSON.parse(fs.readFileSync(path.join(root, "src/data/catalog.normalized.json"), "utf8")) as {
-  skus: Array<{ id: string; sku: string; slug: string; published: boolean; sourceStatus: string }>;
-};
-const report = JSON.parse(fs.readFileSync(path.join(root, "docs/stage-3a-product-family-map.json"), "utf8")) as {
-  records: Array<{
-    recordId: string;
-    sku: string;
-    slug: string;
-    publishStatus: string;
-    variantClusterId: string;
-    proposedPublicFamily: string;
-    proposedSubfamily: string;
-    publicEntityType: string;
-    recommendedIndexability: string;
-    recommendedSitemapAction: string;
-    mappingConfidence: number;
-  }>;
-};
-
-const allowedEntityTypes = new Set([
-  "material-family",
-  "material-product",
-  "semi-finished-component",
-  "specification-variant",
-  "application",
-  "service",
-  "archived-compatible-record",
-]);
-const allowedIndexability = new Set(["INDEX_FAMILY", "INDEX_PRODUCT", "NOINDEX_CANONICAL", "NOINDEX_FOLLOW", "PENDING_NOINDEX", "MANUAL_REVIEW"]);
-const allowedSitemapActions = new Set(["KEEP", "REMOVE_FROM_SITEMAP", "ADD_FAMILY_PAGE_LATER", "MANUAL_REVIEW"]);
-
-describe("Stage 3A analysis artifacts", () => {
-  it("covers every normalized record without changing SKU or slug", () => {
-    expect(report.records).toHaveLength(337);
-    expect(report.records.filter((record) => record.publishStatus === "published")).toHaveLength(231);
-    expect(report.records.filter((record) => record.publishStatus === "pending")).toHaveLength(106);
-    expect(new Set(report.records.map((record) => record.recordId)).size).toBe(337);
-    expect(new Set(report.records.map((record) => record.sku)).size).toBe(337);
-    expect(new Set(report.records.map((record) => record.slug)).size).toBe(337);
-    const sourceBySku = new Map(catalog.skus.map((sku) => [sku.sku, sku]));
-    for (const record of report.records) {
-      const source = sourceBySku.get(record.sku);
-      expect(source).toBeDefined();
-      expect(record.recordId).toBe(source?.id);
-      expect(record.slug).toBe(source?.slug);
-    }
+describe("current catalog publication baseline", () => {
+  it("preserves source accounting without confusing it with public exposure", () => {
+    const source = getAllCatalogSkus();
+    expect(source).toHaveLength(337);
+    expect(source.filter((sku) => sku.published && sku.sourceStatus === "confirmed")).toHaveLength(231);
+    expect(source.filter((sku) => !(sku.published && sku.sourceStatus === "confirmed"))).toHaveLength(106);
+    expect(new Set(source.map((sku) => sku.sku)).size).toBe(337);
+    expect(new Set(source.map((sku) => sku.slug)).size).toBe(337);
   });
 
-  it("provides complete mappings, valid enums and an exact cluster partition", () => {
-    const clusterCounts = new Map<string, number>();
-    for (const record of report.records) {
-      expect(record.proposedPublicFamily.length).toBeGreaterThan(0);
-      expect(record.proposedSubfamily.length).toBeGreaterThan(0);
-      expect(allowedEntityTypes.has(record.publicEntityType)).toBe(true);
-      expect(allowedIndexability.has(record.recommendedIndexability)).toBe(true);
-      expect(allowedSitemapActions.has(record.recommendedSitemapAction)).toBe(true);
-      expect(record.mappingConfidence).toBeGreaterThanOrEqual(0);
-      expect(record.mappingConfidence).toBeLessThanOrEqual(1);
-      clusterCounts.set(record.variantClusterId, (clusterCounts.get(record.variantClusterId) ?? 0) + 1);
-    }
-    expect([...clusterCounts.values()].reduce((total, count) => total + count, 0)).toBe(337);
-    expect(clusterCounts.size).toBeGreaterThan(0);
+  it("exposes exactly the verified public records through current detail routes", () => {
+    const publicSkus = getAllSkus();
+    expect(publicSkus).toHaveLength(83);
+    expect(new Set(publicSkus.map((sku) => sku.slug)).size).toBe(83);
+    expect(publicSkus.every((sku) => sku.published && sku.sourceStatus === "confirmed")).toBe(true);
+    expect(publicSkus.every((sku) => !isRemovedFromPublicCatalog(sku) && !isSourceOnlyRecord(sku.id))).toBe(true);
+    expect(publicSkus.every((sku) => getSkuBySlug(sku.slug)?.sku === sku.sku)).toBe(true);
+    expect(getCatalogGroups(publicSkus)).toHaveLength(5);
   });
 
-  it("keeps projected sitemap accounting explainable", () => {
-    const plan = fs.readFileSync(path.join(root, "docs/stage-3a-indexation-plan.md"), "utf8");
-    expect(plan).toContain("Current validator sitemap baseline: **271 URLs**");
-    expect(plan).toContain("Projected sitemap after a future Stage 3B family migration: **46 URLs**");
-    expect(plan).toContain("Product URLs projected for removal from sitemap: **231**");
-    expect(plan).toContain("Proposed family URLs to add later: **6**");
-    expect(plan.match(/\/en\/products\/families\//g)?.length).toBeGreaterThanOrEqual(6);
+  it("keeps the removed family and source-only records in audit data only", () => {
+    const source = getAllCatalogSkus();
+    expect(source.filter((sku) => /^KH-FD-CUPFAN-/iu.test(sku.sku))).toHaveLength(141);
+    expect(getAllSkus().filter((sku) => /^KH-FD-CUPFAN-/iu.test(sku.sku))).toHaveLength(0);
+    expect(SOURCE_ONLY_RECORD_IDS).toHaveLength(7);
+    expect(SOURCE_ONLY_RECORD_IDS.every((id) => source.some((sku) => sku.id === id))).toBe(true);
+    expect(SOURCE_ONLY_RECORD_IDS.every((id) => !getAllSkus().some((sku) => sku.id === id))).toBe(true);
   });
 });

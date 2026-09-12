@@ -22,7 +22,7 @@ describe("product taxonomy and publication gate", () => {
     expect(skus.every((sku) => sku.materialIds.length > 0 && sku.materialIds.every((id) => materialIds.has(id)))).toBe(true);
     expect(skus.some((sku) => Object.hasOwn(sku, "material") || Object.hasOwn(sku, "category"))).toBe(false);
     expect(skus.filter((sku) => sku.sourceStatus === "pending").every((sku) => sku.published === false)).toBe(true);
-    expect(getAllSkus().length).toBe(skus.filter((sku) => sku.published).length);
+    expect(getAllSkus().length).toBe(83);
   });
 
   it("deduplicates SKU and slug values and keeps one-variant groups singular", () => {
@@ -53,7 +53,7 @@ describe("product taxonomy and publication gate", () => {
     const featured = getFeaturedProductGroups(8);
     const groupCounts = new Map<string, number>();
     featured.forEach((group) => groupCounts.set(group.productGroupId, (groupCounts.get(group.productGroupId) ?? 0) + 1));
-    expect(featured).toHaveLength(8);
+    expect(featured).toHaveLength(7);
     expect([...groupCounts.values()].every((count) => count <= 2)).toBe(true);
     expect(new Set(featured.map((group) => group.categoryId)).size).toBeGreaterThanOrEqual(5);
     expect(featured.filter((group) => group.representative).length).toBeGreaterThan(0);
@@ -65,7 +65,7 @@ describe("product taxonomy and publication gate", () => {
     expect(getCanonicalTaxonomyCategoryId("food-grade-paper-series")).toBe("food-grade-paper");
 
     const entries = getHomepageProductEntries();
-    expect(entries).toHaveLength(6);
+    expect(entries).toHaveLength(5);
     expect(entries.every((entry) => !entry.href.includes("productType=paper-packaging-material"))).toBe(true);
     expect(entries.every((entry) => entry.hasPublicSku || !entry.href.startsWith("/products?"))).toBe(true);
   });
@@ -74,12 +74,12 @@ describe("product taxonomy and publication gate", () => {
     expect(productCatalogSections.map((section) => section.id)).toEqual(["materials", "finished-packaging"]);
     const materials = productCatalogSections[0];
     const finished = productCatalogSections[1];
-    expect(materials.groups.flatMap((group) => group.links)).toHaveLength(6);
-    expect(finished.groups.flatMap((group) => group.links)).toHaveLength(9);
+    expect(materials.groups.flatMap((group) => group.links)).toHaveLength(5);
+    expect(finished.groups.flatMap((group) => group.links)).toHaveLength(10);
     expect(materials.label.en).toBe("Paper materials & semi-finished components");
     expect(materials.label.zh).toBe("纸材与半成品");
     expect(finished.label.zh).toBe("成品包装");
-    expect(materials.groups.flatMap((group) => group.links).every((link) => link.href.startsWith("/products?group="))).toBe(true);
+    expect(materials.groups.flatMap((group) => group.links).every((link) => link.href.startsWith("/products?"))).toBe(true);
     expect(finished.groups.flatMap((group) => group.links).every((link) => link.href.startsWith("/packaging/"))).toBe(true);
   });
 
@@ -107,8 +107,7 @@ describe("product taxonomy and publication gate", () => {
 
     expect(unfiltered.allSkus).toEqual(getAllSkus());
     expect(unfiltered.totalGroups).toBe(getCatalogGroups(getAllSkus()).length);
-    expect(cupFan.skus).not.toHaveLength(0);
-    expect(cupFan.skus.every((sku) => sku.productType === "paper-cup-fan")).toBe(true);
+    expect(cupFan.skus).toHaveLength(0);
     expect(invalid.invalidFilters).toBe(true);
     expect(invalid.skus).toEqual([]);
   });

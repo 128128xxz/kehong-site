@@ -8,6 +8,7 @@ import {
   getCoreAnchorVariants,
   getFamilyPublishedGroups,
   getFamilyPublishedSkus,
+  PUBLIC_PRODUCT_FAMILY_ROUTE_SLUGS,
   productFamilyCatalog,
 } from "@/data/product-family-catalog";
 import catalog from "@/data/catalog.normalized.json";
@@ -32,7 +33,7 @@ describe("Stage 3B-1 family catalog", () => {
 
   it("promotes only published records and keeps pending records out", () => {
     const published = productFamilyCatalog.flatMap((family) => getFamilyPublishedSkus(family));
-    expect(published).toHaveLength(231);
+    expect(published).toHaveLength(83);
     expect(published.every((sku) => sku.published && sku.sourceStatus === "confirmed")).toBe(true);
     expect(getCoreAnchorVariants()).toHaveLength(1);
     expect(getCoreAnchorVariants()[0]?.slug).toBe(CORE_PRODUCT_ANCHOR.recordSlug);
@@ -44,20 +45,14 @@ describe("Stage 3B-1 family catalog", () => {
     expect(anchor).toBeDefined();
     expect(family).toBeDefined();
     const groups = getFamilyPublishedGroups(family!);
-    expect(groups.reduce((total, group) => total + group.variants.length, 0)).toBe(231);
+    expect(groups.reduce((total, group) => total + group.variants.length, 0)).toBe(83);
     expect(groups.some((group) => group.variants.some((variant) => variant.id === anchor?.id))).toBe(true);
-    expect(new Set(groups.flatMap((group) => group.variants.map((variant) => variant.id))).size).toBe(231);
+    expect(new Set(groups.flatMap((group) => group.variants.map((variant) => variant.id))).size).toBe(83);
   });
 
-  it("emits all Stage 3B-1 audit artifacts without touching sitemap", () => {
-    const required = [
-      "stage-3b1-summary.md", "stage-3b1-route-preflight.md", "stage-3b1-route-plan.csv", "stage-3b1-static-page-reconciliation.csv",
-      "stage-3b1-family-source-map.csv", "stage-3b1-content-claim-audit.md", "stage-3b1-excluded-records.csv", "stage-3b1-anchor-implementation.md",
-      "stage-3b1-rfq-prefill-map.csv", "stage-3b1-stage2-link-alignment.csv", "stage-3b1-i18n-review.md", "stage-3b1-sitemap-deferred-actions.csv",
-      "stage-3b1-index-state-diff.md", "stage-3b1-unresolved-backlog.md",
-    ];
-    for (const file of required) expect(fs.existsSync(path.join(root, "docs", file))).toBe(true);
-    expect(fs.readFileSync(path.join(root, "docs", "stage-3b1-index-state-diff.md"), "utf8")).toContain("SITEMAP_DELTA=0");
-    expect(fs.readFileSync(path.join(root, "src", "app", "sitemap.ts"), "utf8")).not.toContain("product-family-catalog");
+  it("keeps public family routes separate from the removed cup-fan family", () => {
+    expect(PUBLIC_PRODUCT_FAMILY_ROUTE_SLUGS).toHaveLength(5);
+    expect(PUBLIC_PRODUCT_FAMILY_ROUTE_SLUGS).not.toContain("paper-cup-materials");
+    expect(fs.readFileSync(path.join(root, "src", "app", "sitemap.ts"), "utf8")).toContain("getAllSkus");
   });
 });

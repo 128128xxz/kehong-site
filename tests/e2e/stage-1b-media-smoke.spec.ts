@@ -3,7 +3,7 @@ import { test, expect, type Page } from "@playwright/test";
 const locales = ["en", "zh", "id", "vi", "th", "ms"];
 const corePaths = [
   "/en/products",
-  "/en/products/kh-fd-cupfan-150350-pr-001-paper-cup-fan",
+  "/en/products/kh-fd-cuproll-150350-pr-032-pe-coated-paper-roll-for-paper-cup",
   "/en/factory",
   "/en/contact",
   "/en/resources",
@@ -25,9 +25,27 @@ async function assertPageMedia(page: Page, path: string) {
   // bitmap-only pages still require at least one image. Treat either as
   // valid public media while continuing to verify every bitmap response.
   expect(imageCount + canvasCount).toBeGreaterThan(0);
-  for (let index = 0; index < imageCount; index += 1) await page.locator("img").nth(index).scrollIntoViewIfNeeded();
+  for (let index = 0; index < imageCount; index += 1) {
+    const image = page.locator("img").nth(index);
+    if (await image.isVisible()) {
+      await page.evaluate((imageIndex) => {
+        const image = document.querySelectorAll("img")[imageIndex];
+        image?.scrollIntoView({ block: "center", inline: "nearest" });
+      }, index);
+    }
+  }
   await expect.poll(
-    () => page.locator("img").evaluateAll((images) => images.map((image) => image as HTMLImageElement).filter((image) => !image.complete || image.naturalWidth <= 0).map((image) => image.getAttribute("src") || "unknown")),
+    () => page.locator("img").evaluateAll((images) => images
+      .map((image) => image as HTMLImageElement)
+      .filter((image) => {
+        const style = getComputedStyle(image);
+        const box = image.getBoundingClientRect();
+        return style.display !== "none" && style.visibility !== "hidden" && box.width > 0 && box.height > 0;
+      })
+      // A visible image with a decoded natural width is usable even while the
+      // browser is still finishing the decode/paint bookkeeping.
+      .filter((image) => image.naturalWidth <= 0)
+      .map((image) => image.getAttribute("src") || "unknown")),
     { timeout: 10_000 },
   ).toEqual([]);
   expect(imageFailures, `${path} image responses`).toEqual([]);

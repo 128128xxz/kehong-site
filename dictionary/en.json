@@ -129,10 +129,10 @@
     "home": {
       "hero": {
         "eyebrow": "Specialty paper · Corrugated board · Custom converting",
-        "title": "Paper Packaging & Cupstock Manufacturer in Foshan, China",
+      "title": "Custom Paper Packaging Manufacturer in Foshan, China",
         "description": "Kehong supplies corrugated board, specialty and functional paper, and custom paper packaging for B2B projects. Send your product details, dimensions and finish requirements, and we can help review the right material and structure.",
-        "primary": "Explore Products",
-        "secondary": "Request a Quote",
+      "primary": "Request a Quote",
+      "secondary": "Explore Packaging",
         "stats": [
                 {
                         "value": "OEM / ODM",
@@ -154,19 +154,19 @@
       },
       "products": {
             "eyebrow": "Product systems",
-            "title": "Start with the material or packaging route that fits your brief",
+      "title": "Finished Packaging First",
             "viewAll": "View all products",
             "materials": "Paper materials & semi-finished components",
             "materialsIntro": "Browse paper grades, cup components and forming materials for B2B packaging work.",
             "materialsCta": "View specifications",
-            "finished": "Finished packaging",
-            "finishedIntro": "Review food, bakery and shipping packaging by application, structure and finish.",
+      "finished": "Finished Packaging First",
+      "finishedIntro": "Start with the finished packaging route, then confirm the material, structure and finish around your brief.",
             "finishedCta": "View packaging types"
       },
       "factoryProof": {
-            "kicker": "Factory and capability",
-            "title": "From Paper Material to Finished Packaging",
-            "lede": "Kehong combines paper material sourcing, corrugated production, structural development, die cutting, printing and packaging manufacturing in Foshan to support consistent B2B delivery.",
+      "kicker": "Buyer confidence",
+      "title": "Why Buyers Work With Kehong",
+      "lede": "Kehong brings factory capability, stable material coordination and export-ready project support together in Foshan, so packaging buyers can move from brief to shipment with fewer handoffs.",
             "facts": [
                   "20+ years manufacturing experience",
                   "8000+ m² factory with integrated paper and corrugated production",

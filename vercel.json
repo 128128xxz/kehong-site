@@ -5,11 +5,7 @@
       "schedule": "0 3 * * *"
     },
     {
-      "path": "/api/visitor-digest?window=noon",
-      "schedule": "0 4 * * *"
-    },
-    {
-      "path": "/api/visitor-digest?window=evening",
+      "path": "/api/visitor-digest?window=daily",
       "schedule": "0 10 * * *"
     },
     {

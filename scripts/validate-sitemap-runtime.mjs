@@ -1,8 +1,7 @@
-import fs from "node:fs/promises";
 import catalog from "../src/data/catalog.normalized.json" with { type: "json" };
 
 const baseUrl = (process.env.PLAYWRIGHT_BASE_URL || process.env.RUNTIME_BASE_URL || "http://127.0.0.1:3453").replace(/\/$/u, "");
-const expectedDiffPath = "docs/stage-3b3-sitemap-exact-diff.csv";
+const expectedSiteOrigin = (process.env.EXPECTED_SITEMAP_ORIGIN || "https://www.kehong.tech").replace(/\/$/u, "");
 const sourceIds = [
   "kh-fd-cupsheet-150350-pr-044",
   "kh-fd-cupsheet-150350-pr-068",
@@ -25,7 +24,6 @@ const sourceIds = [
 ];
 const targetSlug = "kh-fd-cupsheet-150350-pe-043-pe-coated-paper-sheet-for-paper-cup";
 const familySlugs = [
-  "paper-cup-materials",
   "corrugated-board-flute-materials",
   "specialty-decorative-paper",
   "functional-food-paper",
@@ -34,30 +32,36 @@ const familySlugs = [
 ];
 const locales = ["en", "zh", "id", "vi", "th", "ms"];
 
-function csvRow(line) {
-  const cells = [];
-  let cell = "";
-  let quoted = false;
-  for (let i = 0; i < line.length; i += 1) {
-    const char = line[i];
-    if (char === '"') {
-      if (quoted && line[i + 1] === '"') { cell += '"'; i += 1; }
-      else quoted = !quoted;
-    } else if (char === "," && !quoted) { cells.push(cell); cell = ""; }
-    else cell += char;
-  }
-  cells.push(cell);
-  return cells;
-}
-
-function expectedUrlsFromDiff(csv) {
-  const [header, ...lines] = csv.trim().split(/\r?\n/u);
-  const keys = csvRow(header);
-  const urlIndex = keys.indexOf("url");
-  const afterIndex = keys.indexOf("after");
-  if (urlIndex < 0 || afterIndex < 0) throw new Error(`Invalid ${expectedDiffPath}: missing url/after columns`);
-  return new Set(lines.filter(Boolean).map(csvRow).filter((row) => row[afterIndex] === "true").map((row) => row[urlIndex]));
-}
+const staticPaths = [
+  "/en", "/en/products", "/en/contact", "/en/paper-packaging-supplier", "/en/custom-paper-products",
+  "/en/factory", "/en/process", "/en/procurement", "/en/privacy", "/en/terms", "/en/industries",
+  "/en/industries/bakery-packaging", "/en/capabilities", "/en/resources", "/en/materials", "/en/news",
+];
+const categorySlugs = ["kraft-paper", "white-cardboard", "food-grade-paper", "corrugated-paper", "specialty-paper", "food-packaging-boxes", "paper-pads", "paper-inserts", "paper-boxes", "paper-packaging-materials"];
+const packagingSlugs = ["paper-bags", "takeout-boxes", "cake-boxes", "cake-boards-cake-drums", "pizza-packaging", "food-packaging", "inserts-dividers", "cosmetic-packaging", "retail-packaging", "corrugated-mailer-boxes"];
+const resourceSlugs = ["artwork-guidelines", "materials-guide", "finishes-guide", "dielines-templates", "packaging-selection-guide", "proofing-samples"];
+const materialSlugs = ["corrugated-paper", "specialty-paper", "metallic-paper", "pearlescent-paper", "embossed-paper", "laser-paper"];
+const newsSlugs = ["artwork-to-dielines-packaging-sampling", "cake-boxes-boards-drums-match", "corrugated-mailer-dimensions-board-inserts", "paper-bag-quotation-paper-handles-printing-quantity", "takeout-box-quotation-six-details"];
+const sourceOnlyIds = new Set([
+  "kh-fd-cupsheet-300-pe-230", "kh-fd-cupsheet-320-pe-231", "kh-fd-cupsheet-350-pe-232",
+  "kh-fd-cupsheet-230-pr-233", "kh-fd-cupsheet-240-pr-234", "kh-fd-cupsheet-250-pr-235", "kh-fd-cupsheet-280-pr-236",
+]);
+const publicProductPaths = catalog.skus
+  .filter((sku) => sku?.published === true && sku?.sourceStatus === "confirmed" && sku.slug
+    && !sourceOnlyIds.has(sku.id)
+    && !/^KH-FD-CUPFAN-/iu.test(sku.sku ?? "")
+    && sku.groupId !== "paper-cup-fan-paper-cup-fan"
+    && sku.canonicalGroupId !== "paper-cup-fan-paper-cup-fan")
+  .map((sku) => `/en/products/${sku.slug}`);
+const expected = new Set([
+  ...staticPaths,
+  ...packagingSlugs.map((slug) => `/en/packaging/${slug}`),
+  ...resourceSlugs.map((slug) => `/en/resources/${slug}`),
+  ...materialSlugs.map((slug) => `/en/materials/${slug}`),
+  ...newsSlugs.map((slug) => `/en/news/${slug}`),
+  ...categorySlugs.map((slug) => `/en/products/${slug}`),
+  ...publicProductPaths,
+].map((pathname) => `${expectedSiteOrigin}${pathname}`));
 
 function absolute(url) { return new URL(url, baseUrl).toString(); }
 function pathname(url) { return new URL(url, baseUrl).pathname; }
@@ -71,8 +75,6 @@ async function request(pathname, init = {}) {
   return { response, body };
 }
 
-const expectedDiff = await fs.readFile(expectedDiffPath, "utf8");
-const expected = expectedUrlsFromDiff(expectedDiff);
 const sitemap = await request("/sitemap.xml");
 if (sitemap.response.status !== 200) throw new Error(`sitemap.xml returned ${sitemap.response.status}`);
 const actual = [...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/gu)].map((match) => match[1]);
@@ -85,7 +87,8 @@ if (missing.length || unexpected.length) throw new Error(`runtime sitemap set mi
 
 const imageSitemap = await request("/sitemap-images.xml");
 const imageEntries = (imageSitemap.body.match(/<image:image>/gu) || []).length;
-if (imageEntries !== 380) throw new Error(`image sitemap entries changed: ${imageEntries}`);
+const expectedImageEntries = 341;
+if (imageEntries !== expectedImageEntries) throw new Error(`image sitemap entries changed: ${imageEntries}; expected ${expectedImageEntries}`);
 
 const pe043 = await request(`/en/products/${targetSlug}`);
 if (pe043.response.status !== 200 || pathname(canonicalFrom(pe043.body)) !== `/en/products/${targetSlug}`) throw new Error("pe-043 is not a self-canonical 200 page");
@@ -98,12 +101,19 @@ for (const sourceId of sourceIds) {
   const fallbackUrl = `/en/products/${sourceRecord.slug}`;
   const result = await request(fallbackUrl);
   const canonical = pathname(canonicalFrom(result.body));
+  const inSitemap = actualPathSet.has(fallbackUrl);
+  if (sourceOnlyIds.has(sourceId)) {
+    if (result.response.status !== 404) throw new Error(`${sourceId} source-only route returned ${result.response.status}, expected 404`);
+    if (inSitemap) throw new Error(`${sourceId} source-only route is in sitemap`);
+    sourceResults.push({ sourceId, status: result.response.status, canonical, inSitemap, visibility: "source-only" });
+    continue;
+  }
   if (result.response.status !== 200) throw new Error(`${sourceId} returned ${result.response.status}`);
   if (canonical !== `/en/products/${targetSlug}`) throw new Error(`${sourceId} canonical mismatch: ${canonical}`);
   if (/noindex/iu.test(robotsFrom(result.body))) throw new Error(`${sourceId} has noindex`);
-  sourceResults.push({ sourceId, status: result.response.status, canonical, inSitemap: actualPathSet.has(fallbackUrl) });
+  if (!inSitemap) throw new Error(`${sourceId} public alias is missing from sitemap`);
+  sourceResults.push({ sourceId, status: result.response.status, canonical, inSitemap, visibility: "public-alias" });
 }
-if (sourceResults.some((row) => row.inSitemap)) throw new Error("a paper-cup source URL was restored to sitemap");
 
 const familyResults = [];
 for (const slug of familySlugs) {
@@ -125,9 +135,11 @@ const summary = {
   runtimeSitemapCount: actual.length,
   runtimeSitemapUniqueUrls: actualSet.size,
   expectedSitemapCount: expected.size,
+  expectedSitemapSource: "current route baseline + current catalog public visibility",
   missingCount: missing.length,
   unexpectedCount: unexpected.length,
   imageSitemapEntries: imageEntries,
+  expectedImageSitemapEntries: expectedImageEntries,
   pe043InSitemap: actualPathSet.has(`/en/products/${targetSlug}`),
   sourceResults,
   familyResults,

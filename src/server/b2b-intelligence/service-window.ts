@@ -22,13 +22,21 @@ export function digestWindowForEvent(date: Date) {
   return `${day}-18-12`;
 }
 
+export function digestCalendarDate(date: Date) {
+  return localDate(date);
+}
+
+export function dailyDigestDateToSend(date: Date) {
+  return shiftDate(localDate(date), -1);
+}
+
 export function digestWindowToSend(date: Date, kind: DigestWindowKind) {
   const day = localDate(date);
   return kind === "noon" ? `${shiftDate(day, -1)}-18-12` : `${day}-12-18`;
 }
 
 export function digestDayToSend(date: Date) {
-  return shiftDate(localDate(date), -1);
+  return dailyDigestDateToSend(date);
 }
 
 export function digestWindowsForDay(day: string) {

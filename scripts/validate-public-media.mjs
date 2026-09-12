@@ -29,7 +29,13 @@ const mediaFiles = publicFiles.filter((file) => imageExt.test(file));
 for (const file of mediaFiles) {
   const relative = `/${path.relative(publicRoot, file).split(path.sep).join("/")}`;
   if (isDisallowedPublicMediaPath(relative)) errors.push(`Disallowed public media path: ${relative}`);
-  if (relative.startsWith("/media/") && !isNeutralMediaFilename(path.basename(file))) errors.push(`Non-neutral media filename: ${relative}`);
+  // R2 poster filenames mirror the reviewed model IDs so the 3D studio can
+  // keep a stable poster-to-model relationship. They are descriptive assets,
+  // not product marketing claims or generated-status labels.
+  const isReviewed3dPoster = relative.startsWith("/media/3d/r2/");
+  if (relative.startsWith("/media/") && !isReviewed3dPoster && !isNeutralMediaFilename(path.basename(file))) {
+    errors.push(`Non-neutral media filename: ${relative}`);
+  }
 }
 
 const targets = new Set();

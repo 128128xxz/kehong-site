@@ -40,7 +40,6 @@ const heroProductIds = [
 export default async function HomeHero({ locale }: { locale: string }) {
   const zh = locale === "zh";
   const t = await getTranslations({ locale, namespace: "Stage2.home" });
-  const materialEntry = productCatalogSections[0];
   const alt = zh
     ? "科宏工厂车间:成排模切设备与纸板堆垛"
     : "Kehong factory hall with die-cutting lines and stacked board";
@@ -103,11 +102,11 @@ export default async function HomeHero({ locale }: { locale: string }) {
           <h1 className="kh-rise kh-rise-3">{t("hero.title")}</h1>
           <p className="kh-lede kh-rise kh-rise-4">{t("hero.description")}</p>
           <div className="kh-actions kh-rise kh-rise-5">
-            <Link className="kh-button kh-button-light" href={materialEntry.href}>
+            <Link className="kh-button kh-button-light" href="/contact">
               {t("hero.primary")}
               <ArrowRight className="size-4" />
             </Link>
-            <Link className="kh-button kh-button-ghost" href="/contact">
+            <Link className="kh-button kh-button-ghost" href="/packaging">
               {t("hero.secondary")}
             </Link>
           </div>

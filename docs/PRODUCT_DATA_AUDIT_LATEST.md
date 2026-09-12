@@ -1,9 +1,9 @@
 # Kehong Product Data Audit
 
-Generated: 2026-07-17T02:20:05.381Z
+Generated: 2026-09-12T06:35:00.985Z
 
-- SKUs scanned: 398
-- Published confirmed SKUs: 292
+- SKUs scanned: 337
+- Published confirmed SKUs: 231
 - Product groups: 6
 - Total issues: 106
 - Blocking issues: 0

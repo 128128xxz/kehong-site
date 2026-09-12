@@ -20,7 +20,7 @@ describe("finalized Chinese buyer copy", () => {
   });
 
   it("keeps the published SKU count and protects raw data through display formatting", () => {
-    expect(getAllSkus()).toHaveLength(231);
+    expect(getAllSkus()).toHaveLength(83);
     expect(getLocalizedCatalogValue("食品级白卡纸", "zh")).not.toMatch(/食品级|防油|食品接触/u);
     expect(getLocalizedCatalogValue("Food-grade paper", "en")).not.toMatch(/food[- ]grade|greaseproof|food[- ]contact/iu);
     expect(getTaxonomyMaterialLabel("food-grade-white-board", "zh")).toBe("白卡纸");

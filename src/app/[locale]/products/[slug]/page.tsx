@@ -20,7 +20,7 @@ import InquiryForm from "@/components/site/InquiryForm";
 import SiteFooter from "@/components/site/SiteFooter";
 import { Link } from "@/i18n/navigation";
 import { contact } from "@/data/company";
-import { getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
+import { absoluteSiteUrl, getAlternateLanguages, getLocaleUrl, openGraphLocales, siteConfig, type SiteHref } from "@/lib/site";
 import { getBrandConfig } from "@/lib/site-config";
 import { formatProductDisplayList, formatProductFieldValue, type ProductDisplayField } from "@/lib/productPresentation";
 import { buildInquiryContactHref } from "@/lib/inquiryContext";
@@ -103,8 +103,8 @@ export async function generateMetadata({
     : await getLocaleUrl(locale, href);
   const groupVariants = getSkusByGroupId(getProductGroupId(sku));
   const groupSummary = getPublicProductGroupSummary({ id: getProductGroupId(sku), representative: sku, variants: groupVariants }, locale);
-  const title = `${groupSummary.title} | ${brand.name}`;
-  const description = groupSummary.metadata.description;
+  const title = `${groupSummary.title} · ${sku.sku} | ${brand.name}`;
+  const description = `${groupSummary.metadata.description} ${locale === "zh" ? `参考编号 ${sku.sku}。` : `Reference ${sku.sku}.`}`;
   const imageMeta = getSkuImageMeta(sku, locale);
   const socialImage = imageMeta.status === "pending" ? "/og-image.png" : imageMeta.src;
   const socialImageDimensions = imageMeta.status === "exact"
@@ -237,6 +237,8 @@ export default async function ProductDetailPage({
   const galleryItems = getR3SkuImageMapping(sku)
     ? getSkuGalleryMeta(sku, locale).slice(1, 3)
     : [];
+  const productImageMeta = getSkuImageMeta(sku, locale);
+  const productSocialImage = productImageMeta.status === "pending" ? "/og-image.png" : productImageMeta.src;
 
   const groupSpecs = [
     [isZh ? "产品家族" : "Product family", groupSummary.familyLabel],
@@ -297,6 +299,25 @@ export default async function ProductDetailPage({
     ? ["产品图片 / 图纸", "尺寸 / 材质 / 克重", "数量 / 目标价格", "印刷颜色 / 后工艺", "目标市场"]
     : ["Product photo / drawing", "Size / material / GSM", "Quantity / target price", "Print color / finish", "Destination market"];
   const organizationJsonLd = buildOrganizationJsonLd(locale, groupSummary.metadata.description);
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: groupSummary.title,
+    description: groupSummary.metadata.description,
+    url: productUrl,
+    image: [absoluteSiteUrl(productSocialImage)],
+    sku: sku.sku,
+    category: groupSummary.familyLabel,
+    brand: { "@type": "Brand", name: getBrandConfig(locale).name },
+    manufacturer: { "@id": `${siteConfig.url}/#organization` },
+    additionalProperty: [
+      [isZh ? "GSM / 厚度" : "GSM / thickness", getLocalizedCatalogValue(sku.gsmOrThickness, locale)],
+      [isZh ? "尺寸" : "Size", displayField("size", sku.commonSize)],
+      [isZh ? "适用场景" : "Application", displayApplication],
+    ]
+      .filter(([, value]) => value)
+      .map(([name, value]) => ({ "@type": "PropertyValue", name, value })),
+  };
   const productFaqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -351,6 +372,10 @@ export default async function ProductDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(productJsonLd) }}
       />
       <script
         type="application/ld+json"

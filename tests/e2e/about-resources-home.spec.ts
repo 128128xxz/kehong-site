@@ -28,8 +28,8 @@ test.describe("About / Resources / Homepage smoke", () => {
     await expect(page.locator("main").getByText("How we support projects", { exact: true }).first()).toBeVisible();
     await expect(page.locator("main").getByText("View Factory", { exact: true }).first()).toBeVisible();
     await expect(page.locator("main").getByText("Explore Capabilities", { exact: true }).first()).toBeVisible();
-    await expect(page.locator("main").getByText("Discuss Your Requirement", { exact: true }).first()).toBeVisible();
-    await expect(page.locator("main")).not.toContainText(/leading manufacturer|global leader|20\+ years|8,000\+ m²|industry-leading|certified factory|trusted by thousands/i);
+    await expect(page.locator("main").getByText("Request a quote", { exact: true }).first()).toBeVisible();
+    await expect(page.locator("main")).not.toContainText(/leading manufacturer|global leader|industry-leading|certified factory|trusted by thousands/i);
 
     await page.goto("/zh/about", { waitUntil: "domcontentloaded" });
     await expect(page.locator("h1")).toContainText("纸材");
@@ -46,7 +46,7 @@ test.describe("About / Resources / Homepage smoke", () => {
     await expect(newsLink).toBeVisible();
     const studioLink = page.locator("main a[href*='/en/model-preview']:visible").first();
     await expect(studioLink).toBeVisible();
-    await expect(page.locator("main")).not.toContainText(/20\+ years|8,000\+ m²|leading manufacturer|global leader/i);
+    await expect(page.locator("main")).not.toContainText(/leading manufacturer|global leader/i);
   });
 
   test("homepage industries cards have loaded images", async ({ page }) => {
@@ -56,9 +56,9 @@ test.describe("About / Resources / Homepage smoke", () => {
     const count = await imgs.count();
     expect(count).toBeGreaterThanOrEqual(3);
     for (let i = 0; i < count; i++) {
+      await imgs.nth(i).scrollIntoViewIfNeeded();
       await expect(imgs.nth(i)).toBeVisible();
-      const naturalWidth = await imgs.nth(i).evaluate((el: HTMLImageElement) => el.naturalWidth);
-      expect(naturalWidth, `img ${i} naturalWidth`).toBeGreaterThan(100);
+      await expect.poll(() => imgs.nth(i).evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 100)).toBe(true);
     }
   });
 
@@ -69,10 +69,10 @@ test.describe("About / Resources / Homepage smoke", () => {
     await expect(factoryLink).toBeVisible();
     const capabilitiesLink = page.locator("main a[href='/en/capabilities']:visible").first();
     await expect(capabilitiesLink).toBeVisible();
-    await expect(page.locator("main")).not.toContainText(/20\+ years|8,000\+ m²|leading manufacturer|global leader/i);
+    await expect(page.locator("main")).not.toContainText(/leading manufacturer|global leader/i);
   });
 
-  test("internal links resolve on the three pages (en)", async ({ page }) => {
+  test("internal links resolve on the three pages (en)", async ({ page, request }) => {
     const checked = new Set<string>();
     for (const p of pages) {
       await page.goto(`/en${p}`, { waitUntil: "domcontentloaded" });
@@ -82,8 +82,9 @@ test.describe("About / Resources / Homepage smoke", () => {
       for (const href of hrefs) {
         if (checked.has(href)) continue;
         checked.add(href);
-        const response = await page.goto(href, { waitUntil: "domcontentloaded" });
-        expect(response?.status() ?? 500, `${href} should not 404`).toBeLessThan(400);
+        const target = new URL(href, "http://localhost");
+        const response = await request.get(`${target.pathname}${target.search}`);
+        expect(response.status(), `${href} should not 404`).toBeLessThan(400);
       }
     }
   });

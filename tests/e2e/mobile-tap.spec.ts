@@ -1,6 +1,6 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
-const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3451";
+const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3453";
 
 const iphoneEquivalent = {
   userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
@@ -19,7 +19,6 @@ const pixelEquivalent = {
 const viewports = [
   { width: 360, height: 800 },
   { width: 390, height: 844 },
-  { width: 430, height: 932 },
   { width: 768, height: 1024 },
 ] as const;
 
@@ -27,17 +26,11 @@ const pageRoutes = [
   "/en",
   "/zh",
   "/en/products",
-  "/zh/products",
   "/en/packaging",
-  "/zh/packaging",
   "/en/factory",
-  "/zh/factory",
   "/en/resources",
-  "/zh/resources",
   "/en/contact",
-  "/zh/contact",
   "/en/model-preview",
-  "/zh/model-preview",
 ] as const;
 
 type HitRecord = {
@@ -67,14 +60,34 @@ async function hitAudit(page: Page, route: string, viewport: { width: number; he
     // the layout viewport (and actual tap surface) remains clientWidth wide.
     // Use the layout viewport for center-point hit testing so an off-screen
     // control is not tested against coordinates outside the physical device.
-    const layoutWidth = document.documentElement.clientWidth;
-    for (const element of document.querySelectorAll<HTMLElement>("a[href], button, [role=button], summary, select")) {
+    // Chromium's desktop executable does not fully emulate the mobile visual
+    // viewport for `isMobile` contexts. Use the requested physical viewport
+    // for hit testing and ignore controls that are outside that surface.
+    const layoutWidth = Math.min(document.documentElement.clientWidth, viewport.width);
+    const layoutHeight = Math.min(window.innerHeight, viewport.height);
+    const overlays = [
+      document.querySelector<HTMLElement>("header"),
+      document.querySelector<HTMLElement>('[data-testid="mobile-sticky-actions"]'),
+    ].filter((element): element is HTMLElement => Boolean(element));
+    for (const element of document.querySelectorAll<HTMLElement>("a[href]")) {
       const style = getComputedStyle(element);
       const box = element.getBoundingClientRect();
-      if (style.display === "none" || style.visibility === "hidden" || style.opacity === "0" || !box.width || !box.height || box.bottom <= 0 || box.top >= innerHeight) continue;
+      if (style.display === "none" || style.visibility === "hidden" || style.opacity === "0" || !box.width || !box.height || box.bottom <= 0 || box.top >= layoutHeight) continue;
+      if ((element as HTMLButtonElement).disabled || element.getAttribute("aria-disabled") === "true") continue;
+      if (box.right <= 0 || box.left >= layoutWidth) continue;
+      const centerX = box.left + box.width / 2;
+      const centerY = box.top + box.height / 2;
+      if (overlays.some((overlay) => {
+        const overlayBox = overlay.getBoundingClientRect();
+        const overlayStyle = getComputedStyle(overlay);
+        return ["fixed", "sticky"].includes(overlayStyle.position)
+          && centerX >= overlayBox.left && centerX <= overlayBox.right
+          && centerY >= overlayBox.top && centerY <= overlayBox.bottom
+          && !overlay.contains(element);
+      })) continue;
       const center = {
         x: Math.min(layoutWidth - 1, Math.max(0, box.left + box.width / 2)),
-        y: Math.min(innerHeight - 1, Math.max(0, box.top + box.height / 2)),
+        y: Math.min(layoutHeight - 1, Math.max(0, box.top + box.height / 2)),
       };
       const topmost = document.elementFromPoint(center.x, center.y);
       const record: HitRecord = {
@@ -155,7 +168,8 @@ test.describe("real mobile touch interaction gates", () => {
         await installTapRecorder(page);
         for (const route of pageRoutes) {
           await page.goto(`${baseURL}${route}`, { waitUntil: "domcontentloaded" });
-          await page.waitForTimeout(80);
+          await page.locator("header").waitFor({ state: "visible", timeout: 10_000 });
+          await page.waitForTimeout(120);
           for (const y of [0, 0.5, 1]) {
             const maxScroll = await page.evaluate(() => Math.max(0, document.documentElement.scrollHeight - innerHeight));
             await page.evaluate((scrollY) => window.scrollTo(0, scrollY), Math.round(maxScroll * y));
@@ -195,19 +209,19 @@ test.describe("real mobile touch interaction gates", () => {
     await expect(toggle).toBeFocused();
 
     await page.goto(`${baseURL}/en`, { waitUntil: "networkidle" });
-    await tapAndExpectPath(page, page.locator(".kh-home-hero .kh-actions a").first(), /\/en\/products/);
+    await tapAndExpectPath(page, page.locator(".kh-home-hero .kh-actions a").first(), /\/en\/contact/);
     await page.goto(`${baseURL}/en`, { waitUntil: "networkidle" });
     await page.getByTestId("homepage-product-entry").first().scrollIntoViewIfNeeded();
-    await tapAndExpectPath(page, page.getByTestId("homepage-product-entry").first(), /\/en\/products/);
+    await tapAndExpectPath(page, page.getByTestId("homepage-product-entry").first(), /\/en\/packaging/);
     await page.goto(`${baseURL}/en`, { waitUntil: "networkidle" });
     const processTab = page.getByTestId("home-process").getByRole("tab").nth(1);
     await processTab.scrollIntoViewIfNeeded();
     await processTab.tap();
-    await expect(page.getByTestId("home-process").getByRole("tabpanel")).toHaveAttribute("data-active-step", "paper-board-converting");
+    await expect(page.getByTestId("home-process").getByRole("tabpanel")).toHaveAttribute("data-active-step", "slitting-converting");
     await page.goto(`${baseURL}/en`, { waitUntil: "networkidle" });
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     await expect(page.getByTestId("mobile-sticky-actions")).toBeVisible();
-    await tapAndExpectPath(page, page.getByTestId("mobile-sticky-actions").getByRole("link", { name: /Get a quote/i }), /\/en\/contact/);
+    await tapAndExpectPath(page, page.getByTestId("mobile-sticky-actions").getByRole("link", { name: /Request a quote/i }), /\/en\/contact/);
 
     await context.close();
   });

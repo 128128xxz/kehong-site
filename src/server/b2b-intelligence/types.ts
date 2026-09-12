@@ -7,6 +7,7 @@ export const visitorEventTypes = [
   "whatsapp_click",
   "form_start",
   "form_submit",
+  "engagement_ping",
 ] as const;
 
 export type VisitorEventType = (typeof visitorEventTypes)[number];
@@ -23,4 +24,5 @@ export type VisitorEventInput = {
   utmTerm: string | null;
   utmContent: string | null;
   durationSeconds: number | null;
+  automationHint: boolean;
 };

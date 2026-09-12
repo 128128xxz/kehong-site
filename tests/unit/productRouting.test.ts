@@ -13,12 +13,12 @@ describe("public product routing", () => {
 
   it("only sends homepage entries to a filtered directory when a public SKU exists", () => {
     const cupFan = getProductEntry("paper-cup-fan");
-    expect(cupFan.hasPublicSku).toBe(true);
-    expect(cupFan.href).toContain("group=paper-cup-fan-paper-cup-fan");
+    expect(cupFan.hasPublicSku).toBe(false);
+    expect(cupFan.href).toBe("/products");
 
     const roll = getProductEntry("pe-coated-paper-roll");
     expect(roll.hasPublicSku).toBe(true);
-    expect(roll.href).toContain("group=paper-cup-fan-pe-coated-paper-roll-for-paper-cup");
+    expect(roll.href).toContain("productType=pe-coated-paper-roll");
 
     expect(getProductEntry("materials").href).toBe("/products?collection=materials");
     expect(getProductEntry("packaging").href).toBe("/packaging");
@@ -26,7 +26,7 @@ describe("public product routing", () => {
 
   it("filters the public cup fan direction without leaking sibling source groups", () => {
     const filtered = filterCatalogSkus({ productType: "paper-cup-fan" }, getAllSkus());
-    expect(new Set(filtered.map((sku) => sku.groupId))).toEqual(new Set(["paper-cup-fan-paper-cup-fan"]));
+    expect(filtered).toHaveLength(0);
     expect(filterCatalogSkus({ category: "food-grade-paper" }, getAllSkus()).some((sku) => sku.groupId === "paper-cup-fan-kraft-cupstock-paper")).toBe(true);
   });
 
@@ -42,18 +42,18 @@ describe("public product routing", () => {
     expect(buildProductGroupSummary(tray, "zh").family?.title.zh).toBe("食品纸托与纸内托材料");
   });
 
-  it("keeps the six homepage product visuals distinct", () => {
+  it("keeps the five current homepage product visuals distinct", () => {
     const entries = getHomepageProductEntries();
-    expect(entries).toHaveLength(6);
+    expect(entries).toHaveLength(5);
     expect(new Set(entries.map((entry) => entry.image)).size).toBe(entries.length);
     expect(entries.map((entry) => entry.image)).not.toContain("/media/materials/paper-die-cut-sheet-reference.jpg");
     expect(entries.map((entry) => entry.image)).not.toContain("/media/packaging/meal-box-reference.jpg");
   });
 
-  it("assigns distinct approved representative images to the six public product groups", () => {
+  it("assigns distinct approved representative images to the five public product groups", () => {
     const groups = getCatalogGroups(getAllSkus());
     const images = groups.map((group) => getSkuImageMeta(group.representative, "en").src);
-    expect(groups).toHaveLength(6);
+    expect(groups).toHaveLength(5);
     expect(new Set(images).size).toBe(groups.length);
     expect(images.every((image) => image.startsWith("/media/"))).toBe(true);
     expect(images).not.toContain("/media/materials/paper-die-cut-sheet-reference.jpg");

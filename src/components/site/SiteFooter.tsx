@@ -114,7 +114,7 @@ export default async function SiteFooter() {
           </p>
         </div>
         <div className="kh-footer-links">
-            <details className="kh-footer-group" open>
+            <details className="kh-footer-group">
             <summary><Package className="kh-footer-heading-icon" aria-hidden="true" />{copy.products}</summary>
             <div>
               <Link href="/products"><Package aria-hidden="true" />{copy.allProducts}</Link>
@@ -122,7 +122,7 @@ export default async function SiteFooter() {
               <Link href="/industries"><Factory aria-hidden="true" />{copy.industries}</Link>
             </div>
           </details>
-            <details className="kh-footer-group" open>
+            <details className="kh-footer-group">
             <summary><BookOpen className="kh-footer-heading-icon" aria-hidden="true" />{copy.capabilities}</summary>
             <div>
               <Link href="/capabilities"><Factory aria-hidden="true" />{copy.capabilitiesLink}</Link>

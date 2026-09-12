@@ -1,29 +1,27 @@
 {
-  "generatedAt": "2026-08-17T15:06:46.281Z",
+  "generatedAt": "2026-09-12T06:26:08.037Z",
   "totals": {
     "skus": 337,
     "productGroups": 6,
     "families": 11,
-    "imageAssets": 14,
+    "imageAssets": 13,
     "skuImageMappings": 337,
-    "candidateImageRows": 179
+    "candidateImageRows": 0
   },
   "skuImageStatus": {
-    "ai-representative": 296,
-    "representative": 41
+    "representative": 337
   },
   "requestedSkuImageStatus": {
     "representative": 337
   },
   "assetExactness": {
-    "ai-representative": 10,
-    "representative": 4
+    "representative": 13
   },
   "assetPermissionStatus": {
-    "approved": 14
+    "approved": 13
   },
   "assetSourceType": {
-    "provided-local": 14
+    "provided-local": 13
   },
   "sourceStatus": {
     "confirmed": 231,
@@ -44,26 +42,13 @@
     "specialty-paper": 6,
     "white-cardboard": 13
   },
-  "candidateSourceOwners": {
-    "arabic.alibaba.com": 1,
-    "chinese.alibaba.com": 1,
-    "Kehong / user follow-up required": 91,
-    "m.alibaba.com": 16,
-    "shirongnewmaterial.en.alibaba.com": 1,
-    "www.alibaba.com": 9,
-    "www.shirongpaper.com": 60
-  },
-  "candidatePermissionStatus": {
-    "pending": 179
-  },
-  "candidateExactnessAssessment": {
-    "uncertain": 179
-  },
+  "candidateSourceOwners": {},
+  "candidatePermissionStatus": {},
+  "candidateExactnessAssessment": {},
   "conclusion": {
     "exactSkuImageMappingComplete": false,
     "hasAnyExactSkuImage": false,
-    "productionUsesOnlyApprovedOrGeneratedRepresentativeAssets": false,
-    "aiGeneratedAssetsCannotCountAsExact": true,
+    "productionUsesOnlyApprovedRepresentativeAssets": true,
     "stillNeedsExactSkuPhotography": true,
     "stillNeedsSourceConfirmationForPendingProducts": true
   }
